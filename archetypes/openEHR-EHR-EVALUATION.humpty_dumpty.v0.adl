@@ -1,0 +1,159 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.humpty_dumpty.v0
+
+concept
+	[at0000]	-- Humpty Dumpty
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["id"] = <
+			language = <[ISO_639-1::id]>
+			author = <
+				["name"] = <"Dimas SEW Sumunar">
+				["email"] = <"sumunardimas@gmail.com">
+				["organisation"] = <"Health Informatics, Karolinska Institutet, Sweden">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Dimas Septian Eko Wahyu Sumunar">
+		["email"] = <"sumunardimas@gmail.com">
+		["organisation"] = <"Health Informatics Program, Karolinska Institutet, Sweden">
+		["date"] = <"2022-01-03">
+	>
+	details = <
+		["id"] = <
+			language = <[ISO_639-1::id]>
+			purpose = <"Untuk mengidentifikasi apakah pasien anak berisiko rendah atau berisiko tinggi jatuh.">
+			use = <"Humpty Dumpty Falls Scale (HDFS) adalah tujuh item skala penilaian yang digunakan untuk mendokumentasikan usia, jenis kelamin, diagnosis, gangguan kognitif, faktor lingkungan, respons terhadap pembedahan/ sedasi, dan penggunaan obat dalam mengevaluasi risiko jatuh pada pasien anak.">
+			keywords = <"pasien anak", "pencegahan jatuh", "risiko jatuh">
+			misuse = <"Penilaian ini tidak sesuai untuk pasien dewasa.">
+			copyright = <"*2022 Dimas SEW Sumunar(ID)">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To identify whether a pediatric patient is at risk of low, moderate, or high risk of falling.">
+			use = <"Assess fall-risk in pediatric patients.">
+			keywords = <"fall-prevention", "fall-risk", "pediatric">
+			misuse = <"The assessment not suitable for adult patient.">
+			copyright = <"2022 Dimas SEW Sumunar">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"Gonzalez, J., Hill-Rodriguez, D., Hernandez, L. M., Williams, J. R., & Cordo, J. A. (2016). The Nicklaus Children’s Hospital Humpty Dumpty Falls Prevention ProgramTM: Preventing Falls in Children Across the Globe. Nurse Leader, 14(3), 212–218. https://doi.org/10.1016/j.mnl.2015.12.005
+Hill-Rodriguez, D., Messmer, P. R., Williams, P. D., Zeller, R. A., Williams, A. R., Wood, M., & Henry, M. (2009). The Humpty Dumpty Falls Scale: A Case-Control Study. Journal for Specialists in Pediatric Nursing, 14(1), 22–32. https://doi.org/10.1111/j.1744-6155.2008.00166.x
+Pauley, B. J., Houston, L. S., Cheng, D., & Johnston, D. M. (2014). Clinical Relevance of the Humpty Dumpty Falls Scale in a Pediatric Specialty Hospital. Pediatric Nursing, 40(3).
+">
+		["MD5-CAM-1.0.1"] = <"5CAF46800413B9383DDCD072D76AD655">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Humpty Dumpty
+		data matches {
+			ITEM_LIST[at0001] matches {	-- List
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0005] occurrences matches {0..1} matches {	-- Fall Risk
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0006, 	-- Low risk for fall
+									at0007]	-- High risk for fall
+								}
+							}
+						}
+					}
+					ELEMENT[at0008] occurrences matches {0..1} matches {	-- Recommendation
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0009, 	-- Low Risk Standard Protocol
+									at0010]	-- High Risk Standard Protocol
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Humpty Dumpty">
+					description = <"The Humpty Dumpty Falls Scale (HDFS), a seven-item assessment scale used to document age, gender, diagnosis, cognitive impairments, environmental factors, response to surgery/sedation, and medication usage, is one of several instruments developed to assess fall risk in pediatric patients.">
+				>
+				["at0001"] = <
+					text = <"List">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Fall Risk">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Low risk for fall">
+					description = <"Pediatric patient humpty dumpty total score range from 7 to 11">
+				>
+				["at0007"] = <
+					text = <"High risk for fall">
+					description = <"Pediatric patient humpty dumpty total score range from 12 to 23">
+				>
+				["at0008"] = <
+					text = <"Recommendation">
+					description = <"Recommendations based on Humpty Dumpty Falls Prevention Program.">
+				>
+				["at0009"] = <
+					text = <"Low Risk Standard Protocol">
+					description = <"Implement the following patient falls safety protocol: Orientation to room; Bed in low position, brakes on; Side rails × 2 or 4 up, assess large gaps, such that a patient could get extremity or other body part entrapped, use additional safety procedures; Use of non-skid footwear for ambulating patients, use of appropriate-size clothing to prevent risk of tripping; Assess eliminations need, assist as needed; Call light is within reach, educate patient/family on its functionality; Environment clear of unused equipment, furniture’s in place, clear of hazards; Assess for adequate lighting, leave nightlight on; Patient and family education available to parents and patient; Document fall prevention teaching and include in plan of care.">
+				>
+				["at0010"] = <
+					text = <"High Risk Standard Protocol">
+					description = <"Implement the following patient falls safety protocol: Identify patient with an ID band on the patient and Humpty Dumpty signage on the bed and in patient chart; Educate patient/parents of falls protocol precautions; Check patient at minimum every 1 hour; Accompany patient with ambulation; Developmentally place patient in appropriate bed; Consider moving patient closer to nurses’ station; Assess need for 1:1 supervision; Evaluate medication administration times; Remove all unused equipment out of room; Protective barriers to close off spaces, gaps in bed; Keep door open at all times unless specified isolation precautions are in use; Keep bed in the lowest position, unless patient is directly attended; Document in nursing narrative teaching and plan of care.">
+				>
+			>
+		>
+		["id"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Humpty Dumpty(en)">
+					description = <"Humpty Dumpty Falls Scale (HDFS) merupakan penilaian risiko jatuh untuk pasien anak-anak. Selama satu dekade terakhir, kejadian jatuh pada anak mendorong perlunya tindakan pencegahan untuk mewududkan keselamatan pasien di seluruh dunia. Insiden jatuh menjadi penyebab utama cedera otak traumatis pada anak-anak. Jatuh merupakan risiko keselamatan pasien yang signifikan untuk pasien anak maupun dewasa. Langkah-langkah yang dapat dilakukan untuk mengatasi hal ini adalah evaluasi risiko jatuh pada saat masuk rumah sakit atau masuk ke unit gawat darurat, setiap pergantian shift, dan saat terjadi perubahan besar dalam status kesehatan pasien.">
+				>
+				["at0001"] = <
+					text = <"*List(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0005"] = <
+					text = <"Risiko Jatuh (ID)">
+					description = <"Klasifikasi risiko jatuh.">
+				>
+				["at0006"] = <
+					text = <"Risiko jatuh rendah">
+					description = <"Total skor penilaian risiko jatuh berada pada rentang 7 hingga 11">
+				>
+				["at0007"] = <
+					text = <"Risiko jatuh tinggi">
+					description = <"Total skor penilaian risiko jatuh berada pada rentang 12 hingga 23">
+				>
+				["at0008"] = <
+					text = <"Rekomendasi">
+					description = <"Rekomendasi berdasarkan Humpty Dumpty Falls Prevention Program.">
+				>
+				["at0009"] = <
+					text = <"Protokol Pencegahan Risiko Jatuh Rendah (ID)">
+					description = <"Terapkan protokol keselamatan pasien jatuh sebagai berikut: Orientasikan terhadap ruangan; atur tempat tidur dalam posisi rendah, aktifkan rem roda tempat tidur; pagar tempat tidur dinaikkan, kaji celah yang besar guna menghindarkan ekstremitas atau bagian tubuh lain pasien terjepit, terapkan prosedur keselamatan tambahan; gunakan alas kaki anti selip untuk ambulasi pasien, penggunaan pakaian dengan ukuran yang sesuai untuk mencegah risiko tersandung; kaji kebutuhan eliminasi, bantu sesuai kebutuhan; dekatkan bel tempat tidur agar dalam jangkauan, lakukan edukasi pada pasien/ keluarga tentang fungsi bel; jaga lingkungan bersih dari peralatan yang tidak digunakan, furnitur diposisikan sesuai kebutuhan, hindari barang berbahaya dekat dengan pasien; upayakan pencahayaan yang memadai, biarkan lampu menyala; sediakan materi edukasi pasien dan keluarga; dokumentasikan edukasi pencegahan jatuh dan sertakan dalam rencana perawatan.">
+				>
+				["at0010"] = <
+					text = <"Protokol Pencegahan Risiko Jatuh Tinggi (ID)">
+					description = <"Terapkan protokol keselamatan pasien jatuh sebagai berikut: berikan identifikasi pasien dengan pita, serta label Humpty Dumpty pada tempat tidur dan rekam medis pasien; lakukan edukasi kepada pasien/ orang tua tentang protokol pencegahan jatuh; periksa pasien minimal setiap 1 jam; temani pasien selama ambulasi; tempatkan pasien menurut tahap perkembangan pada tempat tidur yang sesuai; pertimbangkan untuk memindahkan pasien agar lebih dekat ke ruang perawat; kaji kebutuhan akan supervisi 1:1; evaluasi waktu pemberian obat; keluarkan semua peralatan yang tidak digunakan dari ruangan; berikan penghalang untuk menutupi celah di tempat tidur; pertahankan agar pintu tetap terbuka setiap saat kecuali pada tindakan isolasi yang diterapkan; pertahankan tempat tidur pada posisi terendah, kecuali pasien sedang ditangani secara langsung; dokumentasikan edukasi pencegahan jatuh dan sertakan dalam rencana perawatan.">
+				>
+			>
+		>
+	>
