@@ -1,0 +1,112 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.pediatric_mobility_risk_assessment_scoring_tool.v0
+
+concept
+	[at0000]	-- Pediatric Mobility Risk Assessment Scoring Tool
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Dimas Septian Eko Wahyu Sumunar">
+		["email"] = <"sumunardimas@gmail.com">
+		["organisation"] = <"Health Informatics Program, Karolinska Institutet, Sweden">
+		["date"] = <"2022-01-19">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To assess risk for mobilization following tracheostomy surgery among children. ">
+			use = <"The Pediatric Mobility Risk-Assessment Scoring consist of five indicators: complexity of airway anatomy, stoma or skin healing concerns, physiologic stability, patient’s cognitive status, and patient’s ability to participate in rehabilitation. Risk-assessment performed by calculating sub score of each indicator ranging from 0 to 2 in daily basis. Higher evaluation score signifying clinical issues for the patient. A total score 0 to 1 indicate early Edge of Bed (EOB) and Out of Bed (OOB) mobility is recommended prior to first tracheostomy replacement. Score 3 to 4 require further clinical evaluation for the risks associated with EOB and OOB due to patient movements. Total score of 5 and above suggest that EOB and OOB mobilization is contraindicated.">
+			keywords = <"airway", "mobilization", "pediatric", "risk assessment", "trachea">
+			misuse = <"The risk assessment does not include other clinical status, for example cervical spine injury, long-bone fractures or hematologic abnormalities that may considered as contraindication for patient mobility.">
+			copyright = <"2022">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"Sioshansi, P. C., Byrne, E., Freccero, A., Meister, K. D., & Sidell, D. R. (2021). Risk Assessment and Early Mobilization Pathway Following Pediatric Tracheostomy: A Pilot Study. Laryngoscope, 131(2), E653–E658. https://doi.org/10.1002/lary.28748">
+		["MD5-CAM-1.0.1"] = <"A3B12812C8E2BDF67037EB83320ECC18">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Pediatric Mobility Risk Assessment Scoring Tool
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0010] occurrences matches {0..1} matches {	-- Risk Categorization
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0011, 	-- Low Risk for Mobility
+									at0012, 	-- Moderate Risk for Mobility
+									at0013]	-- High Risk for Mobility
+								}
+							}
+						}
+					}
+					ELEMENT[at0014] occurrences matches {0..1} matches {	-- Recommendations
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0015, 	-- Prior to initial trach change EOB/ OOB mobility is clinically indicated. Patient initial transfer require direct rehabilitative assessment upon mobility recommendation.
+									at0016, 	-- Meeting with primary team and Otolaryngology deemed necessary for reassessing mobility indication. Patient, under clinical pathway may prescribed with therapeutic activities in bed, transfer to chair position and or sitting up on the bed. Presence of respiratory therapist required for EOB/ OOB mobility. Medical doctor presence requested based on treating therapist discretion.
+									at0017]	-- Prior to initial trach change, EOB/ OOB mobilization is contraindicated. Patient recommended to participate in bed level therapeutic exercises following the clinical pathway.
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Pediatric Mobility Risk Assessment Scoring Tool">
+					description = <"Among critically ill children that require mechanical ventilation, tracheostomy procedure is frequently indicated. Tracheostomy present potential comorbidities for children. Therefore, individualized postoperative care should be implemented. Mobilization protocols following surgical procedures promote optimal patient outcomes in the sense of skeletal muscle and cardiopulmonary functions. Pediatric Mobility Risk-Assessment Scoring aimed to evaluate children readiness for mobilization after tracheostomy procedure.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0010"] = <
+					text = <"Risk Categorization">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Low Risk for Mobility">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Moderate Risk for Mobility">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"High Risk for Mobility">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Recommendations">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Prior to initial trach change EOB/ OOB mobility is clinically indicated. Patient initial transfer require direct rehabilitative assessment upon mobility recommendation.">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Meeting with primary team and Otolaryngology deemed necessary for reassessing mobility indication. Patient, under clinical pathway may prescribed with therapeutic activities in bed, transfer to chair position and or sitting up on the bed. Presence of respiratory therapist required for EOB/ OOB mobility. Medical doctor presence requested based on treating therapist discretion.">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Prior to initial trach change, EOB/ OOB mobilization is contraindicated. Patient recommended to participate in bed level therapeutic exercises following the clinical pathway.">
+					description = <"*">
+				>
+			>
+		>
+	>

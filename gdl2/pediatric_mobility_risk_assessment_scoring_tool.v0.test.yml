@@ -1,0 +1,68 @@
+guidelines:
+  1: pediatric_mobility_risk_assessment_scoring_tool.v0
+test_cases:
+- id: case_1
+  input:
+    1:
+      gt0003|Complexity of Airway Anatomy: 0|local::at0005|Normal as determined by Otolaryngology|
+      gt0004|Physiological Stability: 0|local::at0009|Stable|
+      gt0005|Stoma/Skin Healing: 0|local::at0013|No evidence of stoma breakdown|
+      gt0006|Cognitive Status: 0|local::at0017|Consistently follows commands|
+      gt0007|Mobility Participation: 0|local::at0021|Initiates movement|
+  expected_output:
+    1:
+      gt0010|Recommendations: local::at0015|Prior to initial trach change EOB/ OOB mobility is clinically indicated. Patient initial transfer require direct rehabilitative assessment upon mobility recommendation.|
+      gt0009|Risk Categorization: local::at0011|Low Risk for Mobility|
+      gt0013|Total Score: 0
+- id: case_2
+  input:
+    1:
+      gt0003|Complexity of Airway Anatomy: 1|local::at0006|Moderately complex as determined by Otolaryngology|
+      gt0004|Physiological Stability: 0|local::at0009|Stable|
+      gt0005|Stoma/Skin Healing: 2|local::at0015|Moderate/severe stoma breakdown|
+      gt0006|Cognitive Status: 1|local::at0018|Able to follow simple commands|
+      gt0007|Mobility Participation: 1|local::at0022|Will mobilize with encouragement|
+  expected_output:
+    1:
+      gt0010|Recommendations: local::at0016|Meeting with primary team and Otolaryngology deemed necessary for reassessing mobility indication. Patient, under clinical pathway may prescribed with therapeutic activities in bed, transfer to chair position and or sitting up on the bed. Presence of respiratory therapist required for EOB/ OOB mobility. Medical doctor presence requested based on treating therapist discretion.|
+      gt0009|Risk Categorization: local::at0013|High Risk for Mobility|
+      gt0013|Total Score: 5
+- id: case_3
+  input:
+    1:
+      gt0003|Complexity of Airway Anatomy: 0|local::at0005|Normal as determined by Otolaryngology|
+      gt0004|Physiological Stability: 0|local::at0009|Stable|
+      gt0005|Stoma/Skin Healing: 1|local::at0014|Mild stoma breakdown|
+      gt0006|Cognitive Status: 1|local::at0018|Able to follow simple commands|
+      gt0007|Mobility Participation: 1|local::at0022|Will mobilize with encouragement|
+  expected_output:
+    1:
+      gt0010|Recommendations: local::at0017|Prior to initial trach change, EOB/ OOB mobilization is contraindicated. Patient recommended to participate in bed level therapeutic exercises following the clinical pathway.|
+      gt0009|Risk Categorization: local::at0012|Moderate Risk for Mobility|
+      gt0013|Total Score: 3
+- id: case_4
+  input:
+    1:
+      gt0003|Complexity of Airway Anatomy: 2|local::at0007|Very complex as determined by Otolaryngology |
+      gt0004|Physiological Stability: 0|local::at0009|Stable|
+      gt0005|Stoma/Skin Healing: 0|local::at0013|No evidence of stoma breakdown|
+      gt0006|Cognitive Status: 0|local::at0017|Consistently follows commands|
+      gt0007|Mobility Participation: 0|local::at0021|Initiates movement|
+  expected_output:
+    1:
+      gt0010|Recommendations: local::at0016|Meeting with primary team and Otolaryngology deemed necessary for reassessing mobility indication. Patient, under clinical pathway may prescribed with therapeutic activities in bed, transfer to chair position and or sitting up on the bed. Presence of respiratory therapist required for EOB/ OOB mobility. Medical doctor presence requested based on treating therapist discretion.|
+      gt0009|Risk Categorization: local::at0013|High Risk for Mobility|
+      gt0013|Total Score: 2
+- id: case_5
+  input:
+    1:
+      gt0003|Complexity of Airway Anatomy: 0|local::at0005|Normal as determined by Otolaryngology|
+      gt0004|Physiological Stability: 2|local::at0011|Unstable |
+      gt0005|Stoma/Skin Healing: 1|local::at0014|Mild stoma breakdown|
+      gt0006|Cognitive Status: 0|local::at0017|Consistently follows commands|
+      gt0007|Mobility Participation: 0|local::at0021|Initiates movement|
+  expected_output:
+    1:
+      gt0010|Recommendations: local::at0016|Meeting with primary team and Otolaryngology deemed necessary for reassessing mobility indication. Patient, under clinical pathway may prescribed with therapeutic activities in bed, transfer to chair position and or sitting up on the bed. Presence of respiratory therapist required for EOB/ OOB mobility. Medical doctor presence requested based on treating therapist discretion.|
+      gt0009|Risk Categorization: local::at0013|High Risk for Mobility|
+      gt0013|Total Score: 3
