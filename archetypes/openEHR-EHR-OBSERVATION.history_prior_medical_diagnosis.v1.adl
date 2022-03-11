@@ -1,8 +1,9 @@
-archetype (adl_version=1.4)
+archetype (adl_version=1.4; uid=d6ae2480-ddf8-38de-bb27-89bfbbc7c7b7)
 	openEHR-EHR-OBSERVATION.history_prior_medical_diagnosis.v1
 
 concept
-	[at0000]	-- History of prior medical diagnosis
+	[at0000]
+
 language
 	original_language = <[ISO_639-1::en]>
 	translations = <
@@ -13,221 +14,231 @@ language
 				["organisation"] = <"Cambio Healthcare Systems">
 			>
 		>
+		["es"] = <
+			language = <[ISO_639-1::es]>
+			author = <
+			>
+		>
 	>
+
 description
 	original_author = <
-		["name"] = <"Eneimi Allwell-Brown">
-		["email"] = <"models@cambiocds.com">
-		["organisation"] = <"Cambio Healthcare Systems">
 		["date"] = <"2016-12-12">
+		["name"] = <"Eneimi Allwell-Brown">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"models@cambiocds.com">
 	>
+	lifecycle_state = <"AuthorDraft">
 	details = <
 		["sv"] = <
 			language = <[ISO_639-1::sv]>
 			purpose = <"Strukturell registrering av en individs sjukdomshistoria/tidigare sjukdomar.">
+			copyright = <"© Cambio Healthcare Systems">
 			use = <"Använd för strukturell registrering av en individs sjukdomshistoria/tidigare sjukdomar. Frågan ”Har individen någon gång diagnosticerats med (specificerad diagnos)?” besvaras med ”Ja” eller Nej”. ">
 			misuse = <"Endast avsedd för att registrera eventuell förekomst av tidigare sjukdom, ej eventuella detaljer kring denna.">
-			copyright = <"© Cambio Healthcare Systems">
 		>
 		["en"] = <
 			language = <[ISO_639-1::en]>
 			purpose = <"To record data about whether an individual has previously being diagnosed with any named medical condition(s).">
+			copyright = <"© Cambio Healthcare Systems">
 			use = <"Use to record the presence or absence of a prior history of a named medical condition. If the individual has previously being diagnosed with... (named diagnosis), the ordinal 1 (Yes) is selected and if there has been no previous diagnosis of the named condition, the ordinal 0 (No) is selected.">
 			misuse = <"Not intended for use to record a clinical narrative about a named medical condition.">
-			copyright = <"© Cambio Healthcare Systems">
+		>
+		["es"] = <
+			language = <[ISO_639-1::es]>
+			copyright = <"© openEHR Foundation">
 		>
 	>
-	lifecycle_state = <"AuthorDraft">
-	other_contributors = <>
 	other_details = <
-		["MD5-CAM-1.0.1"] = <"3D60E9D1C6E78CC4210517E2E7A139D3">
+		["MD5-CAM-1.0.1"] = <"7831d2bec318dbb3d7ce009e2d37074c">
+		["build_uid"] = <"06e67779-ab64-30bb-a687-ad067ff570d6">
 	>
 
 definition
-	OBSERVATION[at0000] matches {	-- History of prior medical diagnosis
+	OBSERVATION[at0000] matches {    -- History of prior medical diagnosis
 		data matches {
-			HISTORY[at0001] matches {	-- Event Series
+			HISTORY[at0001] matches {    -- Event Series
 				events cardinality matches {1..*; unordered} matches {
-					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+					EVENT[at0002] occurrences matches {0..1} matches {    -- Any event
 						data matches {
-							ITEM_TREE[at0003] matches {	-- Tree
+							ITEM_TREE[at0003] matches {    -- Tree
 								items cardinality matches {0..*; unordered} matches {
-									ELEMENT[at0016] occurrences matches {0..1} matches {	-- Cardiovascular disease
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Cardiovascular disease
 										value matches {
-											0|[local::at0024], 	-- No
-											1|[local::at0025]  	-- Yes
+											0|[local::at0024],
+											1|[local::at0025]
 										}
 									}
-									ELEMENT[at0017] occurrences matches {0..1} matches {	-- Lung/airway disease
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Lung/airway disease
 										value matches {
-											0|[local::at0027], 	-- No
-											1|[local::at0028]  	-- Yes
+											0|[local::at0027],
+											1|[local::at0028]
 										}
 									}
-									ELEMENT[at0018] occurrences matches {0..1} matches {	-- Rheumatic_autoimmune disease
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Rheumatic_autoimmune disease
 										value matches {
-											0|[local::at0029], 	-- No
-											1|[local::at0030]  	-- Yes
+											0|[local::at0029],
+											1|[local::at0030]
 										}
 									}
-									ELEMENT[at0040] occurrences matches {0..1} matches {	-- Liver disease
+									ELEMENT[at0040] occurrences matches {0..1} matches {    -- Liver disease
 										value matches {
-											0|[local::at0041], 	-- No
-											1|[local::at0042]  	-- Yes
+											0|[local::at0041],
+											1|[local::at0042]
 										}
 									}
-									ELEMENT[at0050] occurrences matches {0..1} matches {	-- Cancer (unspecified)
+									ELEMENT[at0050] occurrences matches {0..1} matches {    -- Cancer (unspecified)
 										value matches {
-											0|[local::at0051], 	-- No
-											1|[local::at0052]  	-- Yes
+											0|[local::at0051],
+											1|[local::at0052]
 										}
 									}
-									ELEMENT[at0054] occurrences matches {0..1} matches {	-- Endocrine_metabolic disease
+									ELEMENT[at0054] occurrences matches {0..1} matches {    -- Endocrine_metabolic disease
 										value matches {
-											0|[local::at0055], 	-- No
-											1|[local::at0056]  	-- Yes
+											0|[local::at0055],
+											1|[local::at0056]
 										}
 									}
-									ELEMENT[at0057] occurrences matches {0..1} matches {	-- Acquired coagulation disorder
+									ELEMENT[at0057] occurrences matches {0..1} matches {    -- Acquired coagulation disorder
 										value matches {
-											0|[local::at0059], 	-- No
-											1|[local::at0060]  	-- Yes
+											0|[local::at0059],
+											1|[local::at0060]
 										}
 									}
-									ELEMENT[at0061] occurrences matches {0..1} matches {	-- Hemorrhage diagnosis (unspecified)
+									ELEMENT[at0061] occurrences matches {0..1} matches {    -- Hemorrhage diagnosis (unspecified)
 										value matches {
-											0|[local::at0063], 	-- No
-											1|[local::at0064]  	-- Yes
+											0|[local::at0063],
+											1|[local::at0064]
 										}
 									}
-									ELEMENT[at0065] occurrences matches {0..1} matches {	-- Ophthalmic disease
+									ELEMENT[at0065] occurrences matches {0..1} matches {    -- Ophthalmic disease
 										value matches {
-											0|[local::at0069], 	-- No
-											1|[local::at0070]  	-- Yes
+											0|[local::at0069],
+											1|[local::at0070]
 										}
 									}
-									ELEMENT[at0067] occurrences matches {0..1} matches {	-- Dermatologic disease
+									ELEMENT[at0067] occurrences matches {0..1} matches {    -- Dermatologic disease
 										value matches {
-											0|[local::at0071], 	-- No
-											1|[local::at0072]  	-- Yes
+											0|[local::at0071],
+											1|[local::at0072]
 										}
 									}
-									CLUSTER[at0068] occurrences matches {0..1} matches {	-- Named dermatologic diagnosis
+									CLUSTER[at0068] occurrences matches {0..1} matches {    -- Named dermatologic diagnosis
 										items cardinality matches {1..*; unordered} matches {
-											ELEMENT[at0089] occurrences matches {0..1} matches {	-- Eczema
+											ELEMENT[at0089] occurrences matches {0..1} matches {    -- Eczema
 												value matches {
-													0|[local::at0090], 	-- No
-													1|[local::at0091]  	-- Yes
+													0|[local::at0090],
+													1|[local::at0091]
 												}
 											}
-											ELEMENT[at0074] occurrences matches {0..1} matches {	-- Tendon xanthoma
+											ELEMENT[at0074] occurrences matches {0..1} matches {    -- Tendon xanthoma
 												value matches {
-													0|[local::at0075], 	-- No
-													1|[local::at0076]  	-- Yes
+													0|[local::at0075],
+													1|[local::at0076]
 												}
 											}
 										}
 									}
-									CLUSTER[at0066] occurrences matches {0..1} matches {	-- Named ophthalmic diagnosis
+									CLUSTER[at0066] occurrences matches {0..1} matches {    -- Named ophthalmic diagnosis
 										items cardinality matches {1..*; unordered} matches {
-											ELEMENT[at0073] occurrences matches {0..1} matches {	-- Corneal arcus
+											ELEMENT[at0073] occurrences matches {0..1} matches {    -- Corneal arcus
 												value matches {
-													0|[local::at0077], 	-- No
-													1|[local::at0078]  	-- Yes
+													0|[local::at0077],
+													1|[local::at0078]
 												}
 											}
 										}
 									}
-									CLUSTER[at0062] occurrences matches {0..1} matches {*}
-									CLUSTER[at0058] occurrences matches {0..1} matches {*}
-									CLUSTER[at0053] occurrences matches {0..1} matches {*}
-									CLUSTER[at0046] occurrences matches {0..1} matches {*}
-									CLUSTER[at0019] occurrences matches {0..1} matches {	-- Named cardiovascular diagnosis
+									CLUSTER[at0062] occurrences matches {0..1} matches {*}    -- Named haemorrhage diagnosis
+									CLUSTER[at0058] occurrences matches {0..1} matches {*}    -- Named acquired coagulation disorder
+									CLUSTER[at0053] occurrences matches {0..1} matches {*}    -- Named cancer diagnosis
+									CLUSTER[at0046] occurrences matches {0..1} matches {*}    -- Named liver diagnosis
+									CLUSTER[at0019] occurrences matches {0..1} matches {    -- Named cardiovascular diagnosis
 										items cardinality matches {1..*; unordered} matches {
-											ELEMENT[at0006] occurrences matches {0..1} matches {	-- Hypertension
+											ELEMENT[at0006] occurrences matches {0..1} matches {    -- Hypertension
 												value matches {
-													0|[local::at0011], 	-- No
-													1|[local::at0012]  	-- Yes
+													0|[local::at0011],
+													1|[local::at0012]
 												}
 											}
-											ELEMENT[at0031] occurrences matches {0..1} matches {	-- Stroke/cerebrovascular accident
+											ELEMENT[at0031] occurrences matches {0..1} matches {    -- Stroke/cerebrovascular accident
 												value matches {
-													0|[local::at0035], 	-- No
-													1|[local::at0036]  	-- Yes
+													0|[local::at0035],
+													1|[local::at0036]
 												}
 											}
-											ELEMENT[at0032] occurrences matches {0..1} matches {	-- Transient ischaemic attack (TIA)
+											ELEMENT[at0032] occurrences matches {0..1} matches {    -- Transient ischaemic attack (TIA)
 												value matches {
-													0|[local::at0033], 	-- No
-													1|[local::at0034]  	-- Yes
+													0|[local::at0033],
+													1|[local::at0034]
 												}
 											}
-											ELEMENT[at0037] occurrences matches {0..1} matches {	-- Atrial fibrillation
+											ELEMENT[at0037] occurrences matches {0..1} matches {    -- Atrial fibrillation
 												value matches {
-													0|[local::at0038], 	-- No
-													1|[local::at0039]  	-- Yes
+													0|[local::at0038],
+													1|[local::at0039]
 												}
 											}
-											ELEMENT[at0043] occurrences matches {0..1} matches {	-- Heart failure (unspecified)
+											ELEMENT[at0043] occurrences matches {0..1} matches {    -- Heart failure (unspecified)
 												value matches {
-													0|[local::at0044], 	-- No
-													1|[local::at0045]  	-- Yes
+													0|[local::at0044],
+													1|[local::at0045]
 												}
 											}
-											ELEMENT[at0005] occurrences matches {0..1} matches {	-- Congestive Heart Failure
+											ELEMENT[at0005] occurrences matches {0..1} matches {    -- Congestive Heart Failure
 												value matches {
-													0|[local::at0009], 	-- No
-													1|[local::at0010]  	-- Yes
+													0|[local::at0009],
+													1|[local::at0010]
 												}
 											}
-											ELEMENT[at0079] occurrences matches {0..1} matches {	-- Coronary heart disease
+											ELEMENT[at0079] occurrences matches {0..1} matches {    -- Coronary heart disease
 												value matches {
-													0|[local::at0080], 	-- No
-													1|[local::at0081]  	-- Yes
+													0|[local::at0080],
+													1|[local::at0081]
 												}
 											}
-											ELEMENT[at0082] occurrences matches {0..1} matches {	-- Cerebrovascular disease
+											ELEMENT[at0082] occurrences matches {0..1} matches {    -- Cerebrovascular disease
 												value matches {
-													0|[local::at0084], 	-- No
-													1|[local::at0085]  	-- Yes
+													0|[local::at0084],
+													1|[local::at0085]
 												}
 											}
-											ELEMENT[at0083] occurrences matches {0..1} matches {	-- Peripheral vascular disease
+											ELEMENT[at0083] occurrences matches {0..1} matches {    -- Peripheral vascular disease
 												value matches {
-													0|[local::at0086], 	-- No
-													1|[local::at0087]  	-- Yes
+													0|[local::at0086],
+													1|[local::at0087]
 												}
 											}
 										}
 									}
-									CLUSTER[at0020] occurrences matches {0..1} matches {	-- Named lung/airway diagnosis
+									CLUSTER[at0020] occurrences matches {0..1} matches {    -- Named lung/airway diagnosis
 										items cardinality matches {1..*; unordered} matches {
-											ELEMENT[at0088] occurrences matches {0..1} matches {	-- Allergic rhinitis
+											ELEMENT[at0088] occurrences matches {0..1} matches {    -- Allergic rhinitis
 												value matches {
-													0|[local::at0092], 	-- No
-													1|[local::at0093]  	-- Yes
+													0|[local::at0092],
+													1|[local::at0093]
 												}
 											}
-											ELEMENT[at0047] occurrences matches {0..1} matches {	-- Chronic lung disease
+											ELEMENT[at0047] occurrences matches {0..1} matches {    -- Chronic lung disease
 												value matches {
-													0|[local::at0048], 	-- No
-													1|[local::at0049]  	-- Yes
+													0|[local::at0048],
+													1|[local::at0049]
 												}
 											}
 										}
 									}
-									CLUSTER[at0021] occurrences matches {0..1} matches {	-- Named endocrine_metabolic diagnosis
+									CLUSTER[at0021] occurrences matches {0..1} matches {    -- Named endocrine_metabolic diagnosis
 										items cardinality matches {1..*; unordered} matches {
-											ELEMENT[at0004] occurrences matches {0..1} matches {	-- Diabetes Mellitus
+											ELEMENT[at0004] occurrences matches {0..1} matches {    -- Diabetes Mellitus
 												value matches {
-													0|[local::at0007], 	-- No
-													1|[local::at0008]  	-- Yes
+													0|[local::at0007],
+													1|[local::at0008]
 												}
 											}
 										}
 									}
-									CLUSTER[at0023] occurrences matches {0..1} matches {*}
-									ELEMENT[at0013] occurrences matches {0..1} matches {	-- Comment
+									CLUSTER[at0023] occurrences matches {0..1} matches {*}    -- Named rheumatic_autoimmune diagnosis
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- Comment
 										value matches {
 											DV_TEXT matches {*}
 										}
@@ -968,6 +979,370 @@ ontology
 				["at0093"] = <
 					text = <"Ja">
 					description = <"*Positive history of allergic rhinitis.(en)">
+				>
+			>
+		>
+		["es"] = <
+			items = <
+				["at0000"] = <
+					text = <"Historial previo de diagnóstico médico">
+					description = <"*A structure to record the answer to a question regarding an individual's history of being diagnosed with a named medical condition. The question \"Has the individual ever being diagnosed with....(named diagnosis)?\" is answered with either 'No' (ordinal 0) or 'Yes' (ordinal 1). Ordinal 1 (Yes) implies the individual has previously being diagnosed with the condition in question. (en)">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"*Any event (en)">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"*Diabetes Mellitus (en)">
+					description = <"*Has the individual ever been diagnosed with Diabetes Mellitus? (en)">
+				>
+				["at0005"] = <
+					text = <"*Congestive Heart Failure (en)">
+					description = <"*Has the individual ever been diagnosed with congestive heart failure? (en)">
+				>
+				["at0006"] = <
+					text = <"Hipertensión">
+					description = <"*Has the individual ever been diagnosed with Hypertension? (en)">
+				>
+				["at0007"] = <
+					text = <"*No (en)">
+					description = <"*No history of diabetes mellitus (en)">
+				>
+				["at0008"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of diabetes mellitus (en)">
+				>
+				["at0009"] = <
+					text = <"*No (en)">
+					description = <"*No history of congestive heart failure (en)">
+				>
+				["at0010"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of congestive heart failure (en)">
+				>
+				["at0011"] = <
+					text = <"No">
+					description = <"Sin antecedentes de hipertensión">
+				>
+				["at0012"] = <
+					text = <"Si">
+					description = <"Historia positiva de hipertensión">
+				>
+				["at0013"] = <
+					text = <"*Comment (en)">
+					description = <"*Additional information about history of prior medical diagnosis. (en)">
+				>
+				["at0016"] = <
+					text = <"Enfermedad cardiovascular">
+					description = <"*Has the individual ever been diagnosed with any kind of cardiovascular disease? (en)">
+				>
+				["at0017"] = <
+					text = <"*Lung/airway disease (en)">
+					description = <"*Has the individual ever been diagnosed with any kind of lung disease? (en)">
+				>
+				["at0018"] = <
+					text = <"*Rheumatic_autoimmune disease (en)">
+					description = <"*Has the individual ever been diagnosed with any kind of rheumatic or autoimmune disorder? (en)">
+				>
+				["at0019"] = <
+					text = <"*Named cardiovascular diagnosis (en)">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"*Named lung/airway diagnosis (en)">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"*Named endocrine_metabolic diagnosis (en)">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"*Named rheumatic_autoimmune diagnosis (en)">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"*No (en)">
+					description = <"*No history of cardiovascula disease. (en)">
+				>
+				["at0025"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of cardiovascular disease. (en)">
+				>
+				["at0027"] = <
+					text = <"*No (en)">
+					description = <"*No history of lung disease. (en)">
+				>
+				["at0028"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of lung disease. (en)">
+				>
+				["at0029"] = <
+					text = <"*No (en)">
+					description = <"*No history of rheumatic or autoimmune disease. (en)">
+				>
+				["at0030"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of rheumatic or autoimmune disease. (en)">
+				>
+				["at0031"] = <
+					text = <"*Stroke/cerebrovascular accident (en)">
+					description = <"*Has the individual ever been diagnosed with a stroke/cerebrovascular accident? (en)">
+				>
+				["at0032"] = <
+					text = <"*Transient ischaemic attack (TIA) (en)">
+					description = <"*Has the individual ever been diagnosed with a TIA? (en)">
+				>
+				["at0033"] = <
+					text = <"*No (en)">
+					description = <"*No history of TIA. (en)">
+				>
+				["at0034"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of TIA. (en)">
+				>
+				["at0035"] = <
+					text = <"*No (en)">
+					description = <"*No history of stroke. (en)">
+				>
+				["at0036"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of stroke. (en)">
+				>
+				["at0037"] = <
+					text = <"*Atrial fibrillation (en)">
+					description = <"*Has the individual ever been diagnosed with atrial fibrillation? (en)">
+				>
+				["at0038"] = <
+					text = <"*No (en)">
+					description = <"*No history of atrial fibrillation. (en)">
+				>
+				["at0039"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of atrial fibrillation. (en)">
+				>
+				["at0040"] = <
+					text = <"*Liver disease (en)">
+					description = <"*Has the individual ever been diagnosed with any kind of liver disease? (en)">
+				>
+				["at0041"] = <
+					text = <"*No (en)">
+					description = <"*No history of liver disease. (en)">
+				>
+				["at0042"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of liver disease. (en)">
+				>
+				["at0043"] = <
+					text = <"*Heart failure (unspecified) (en)">
+					description = <"*Has the individual ever been diagnosed with heart failure? (en)">
+				>
+				["at0044"] = <
+					text = <"*No (en)">
+					description = <"*No history of heart failure (en)">
+				>
+				["at0045"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of heart failure (en)">
+				>
+				["at0046"] = <
+					text = <"*Named liver diagnosis (en)">
+					description = <"*">
+				>
+				["at0047"] = <
+					text = <"*Chronic lung disease (en)">
+					description = <"*Has the individual ever been diagnosed with Chronic lung disease? (en)">
+				>
+				["at0048"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0049"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0050"] = <
+					text = <"*Cancer (unspecified) (en)">
+					description = <"*Has the individual ever been diagnosed with any kind of cancer? (en)">
+				>
+				["at0051"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0052"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0053"] = <
+					text = <"*Named cancer diagnosis (en)">
+					description = <"*">
+				>
+				["at0054"] = <
+					text = <"*Endocrine_metabolic disease (en)">
+					description = <"*Has the individual ever been diagnosed with any kind of endocrine or metabolic disorder? (en)">
+				>
+				["at0055"] = <
+					text = <"*No (en)">
+					description = <"*No history of endocrine or metabolic disease. (en)">
+				>
+				["at0056"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of endocrine or metabolic disease. (en)">
+				>
+				["at0057"] = <
+					text = <"*Acquired coagulation disorder (en)">
+					description = <"*Has the individual ever been diagnosed with any kind of acquired coagulation disorder? (en)">
+				>
+				["at0058"] = <
+					text = <"*Named acquired coagulation disorder (en)">
+					description = <"*">
+				>
+				["at0059"] = <
+					text = <"*No (en)">
+					description = <"*No history of acquired coagulation disorder. (en)">
+				>
+				["at0060"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of acquired coagulation disorder. (en)">
+				>
+				["at0061"] = <
+					text = <"*Hemorrhage diagnosis (unspecified) (en)">
+					description = <"*Has the individual ever been diagnosed with any kind of haemorrhage? (en)">
+				>
+				["at0062"] = <
+					text = <"*Named haemorrhage diagnosis (en)">
+					description = <"*">
+				>
+				["at0063"] = <
+					text = <"*No (en)">
+					description = <"*No history of haemorrhage. (en)">
+				>
+				["at0064"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of haemorrhage. (en)">
+				>
+				["at0065"] = <
+					text = <"*Ophthalmic disease (en)">
+					description = <"*Has the individual ever been diagnosed with any kind of eye disease? (en)">
+				>
+				["at0066"] = <
+					text = <"*Named ophthalmic diagnosis (en)">
+					description = <"*">
+				>
+				["at0067"] = <
+					text = <"*Dermatologic disease (en)">
+					description = <"*Has the individual ever been diagnosed with any kind of skin disease? (en)">
+				>
+				["at0068"] = <
+					text = <"*Named dermatologic diagnosis (en)">
+					description = <"*">
+				>
+				["at0069"] = <
+					text = <"*No (en)">
+					description = <"*No history of eye disease. (en)">
+				>
+				["at0070"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of eye disease. (en)">
+				>
+				["at0071"] = <
+					text = <"*No (en)">
+					description = <"*No history of skin disease. (en)">
+				>
+				["at0072"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of skin disease. (en)">
+				>
+				["at0073"] = <
+					text = <"*Corneal arcus (en)">
+					description = <"*Has the individual ever been diagnosed with corneal arcus? (en)">
+				>
+				["at0074"] = <
+					text = <"*Tendon xanthoma (en)">
+					description = <"*Has the individual ever been diagnosed with tendon xanthoma? (en)">
+				>
+				["at0075"] = <
+					text = <"*No (en)">
+					description = <"*No history of tendon xanthoma. (en)">
+				>
+				["at0076"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of tendon xanthoma. (en)">
+				>
+				["at0077"] = <
+					text = <"*No (en)">
+					description = <"*No history of corneal arcus. (en)">
+				>
+				["at0078"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of corneal arcus. (en)">
+				>
+				["at0079"] = <
+					text = <"*Coronary heart disease (en)">
+					description = <"*Has the individual ever been diagnosed with coronary heart disease? (en)">
+				>
+				["at0080"] = <
+					text = <"*No (en)">
+					description = <"*No history of coronary heart disease. (en)">
+				>
+				["at0081"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of coronary heart disease. (en)">
+				>
+				["at0082"] = <
+					text = <"*Cerebrovascular disease (en)">
+					description = <"*Has the individual ever been diagnosed with cerebrovascular disease? (en)">
+				>
+				["at0083"] = <
+					text = <"*Peripheral vascular disease (en)">
+					description = <"*Has the individual ever been diagnosed with peripheral vascular disease? (en)">
+				>
+				["at0084"] = <
+					text = <"*No (en)">
+					description = <"*No history of cerebrovascular disease. (en)">
+				>
+				["at0085"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of cerebrovascular disease. (en)">
+				>
+				["at0086"] = <
+					text = <"*No (en)">
+					description = <"*No history of peripheral vascular disease. (en)">
+				>
+				["at0087"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of peripheral vascular disease. (en)">
+				>
+				["at0088"] = <
+					text = <"*Allergic rhinitis (en)">
+					description = <"*Has the individual ever been diagnosed with allergic rhinitis? (en)">
+				>
+				["at0089"] = <
+					text = <"*Eczema (en)">
+					description = <"*Has the individual ever been diagnosed with tendon xanthoma? (en)">
+				>
+				["at0090"] = <
+					text = <"*No (en)">
+					description = <"*No history of eczema. (en)">
+				>
+				["at0091"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of eczema. (en)">
+				>
+				["at0092"] = <
+					text = <"*No (en)">
+					description = <"*No history of allergic rhinitis. (en)">
+				>
+				["at0093"] = <
+					text = <"*Yes (en)">
+					description = <"*Positive history of allergic rhinitis. (en)">
 				>
 			>
 		>

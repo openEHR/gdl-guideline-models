@@ -10,11 +10,18 @@ language
 		["sv"] = <
 			language = <[ISO_639-1::sv]>
 			author = <
-				["name"] = <"?">
+				["name"] = <"Jimmy Axelsson">
+				["organisation"] = <"Cambio Healthcare Systems">
 			>
 		>
 		["si"] = <
 			language = <[ISO_639-1::si]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+		["el"] = <
+			language = <[ISO_639-1::el]>
 			author = <
 				["name"] = <"?">
 			>
@@ -37,9 +44,10 @@ description
 		["date"] = <"2015-02-24">
 		["name"] = <"Konstantinos Kalliamvakos">
 		["organisation"] = <"Cambio Healthcare Systems">
-		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["email"] = <"models@cambiocds.com">
 	>
 	lifecycle_state = <"AuthorDraft">
+	other_contributors = <"Syeeda S Farruque", ...>
 	details = <
 		["sv"] = <
 			language = <[ISO_639-1::sv]>
@@ -54,6 +62,14 @@ description
 			purpose = <"To record the basic personal information of patients such as gender, birthdate or place of residence.">
 			keywords = <"demographics","patient","age","gender","residence","birthdate">
 			copyright = <"Cambio Healthcare Systems">
+		>
+		["el"] = <
+			language = <[ISO_639-1::el]>
+			purpose = <"*To record the basic personal information of patients such as gender, birthdate or place of residence.(en)">
+			keywords = <"demographics","patient","age","gender","residence","birthdate">
+			copyright = <"Cambio Healthcare Systems">
+			use = <"*(en)">
+			misuse = <"*(en)">
 		>
 		["en"] = <
 			language = <[ISO_639-1::en]>
@@ -76,7 +92,7 @@ description
 	>
 	other_details = <
 		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems, Konstantinos.Kalliamvakos@cambio.se">
-		["MD5-CAM-1.0.1"] = <"6b3e9d4690b2cb283058512cf8270da0">
+		["MD5-CAM-1.0.1"] = <"fd524203fbb16b2d47aafded2a1b3c8a">
 		["build_uid"] = <"31c33112-73db-3962-8a50-38a03cac72ae">
 	>
 
@@ -89,13 +105,13 @@ definition
 						data matches {
 							ITEM_TREE[at0003] matches {    -- Tree
 								items cardinality matches {0..*; unordered} matches {
-									ELEMENT[at0020] occurrences matches {0..1} matches {    -- Gender
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Gender
 										value matches {
 											DV_CODED_TEXT matches {
 												defining_code matches {
 													[local::
-													at0023,    -- Female
-													at0024]    -- Male
+													at0005,    -- Male
+													at0006]    -- Female
 												}
 											}
 										}
@@ -195,6 +211,18 @@ ontology
 					text = <"*Tree(en)">
 					description = <"*@ internal @(en)">
 				>
+				["at0004"] = <
+					text = <"Køn">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Hankøn">
+					description = <"*Male(en)">
+				>
+				["at0006"] = <
+					text = <"Hunkøn">
+					description = <"*Female(en)">
+				>
 				["at0008"] = <
 					text = <"Fødselsdato">
 					description = <"**(en)">
@@ -235,17 +263,77 @@ ontology
 					text = <"*Postal code(en)">
 					description = <"**(en)">
 				>
-				["at0020"] = <
-					text = <"*Gender (en)">
-					description = <"">
+			>
+		>
+		["el"] = <
+			items = <
+				["at0000"] = <
+					text = <"Δημογραφικά δεδομένα">
+					description = <"*Demographic information about patients such as gender, date of birth or place of residence(en)">
 				>
-				["at0023"] = <
-					text = <"*Female (en)">
-					description = <"*Female (en)">
+				["at0001"] = <
+					text = <"*Event Series(en)">
+					description = <"*@ internal @(en)">
 				>
-				["at0024"] = <
-					text = <"*Male (en)">
-					description = <"*Male (en)">
+				["at0002"] = <
+					text = <"*Any event(en)">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0004"] = <
+					text = <"Φύλο">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Άρρεν">
+					description = <"Άντρας">
+				>
+				["at0006"] = <
+					text = <"Θήλυ">
+					description = <"Γυναίκα">
+				>
+				["at0008"] = <
+					text = <"Χρονολογία γέννησης">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"Γλώσσες">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"Τόπος διαμονής">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"Περιφέρεια">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"Δήμος">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"Πληροφορίες Θανάτου">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Ημερομηνία/Ώρα Θανάτου">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Αιτία θανάτου">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Ταχυδρομικός κώδικας">
+					description = <"*">
 				>
 			>
 		>
@@ -266,6 +354,18 @@ ontology
 				["at0003"] = <
 					text = <"Tree">
 					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Gender">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Male">
+					description = <"Male">
+				>
+				["at0006"] = <
+					text = <"Female">
+					description = <"Female">
 				>
 				["at0008"] = <
 					text = <"Birthdate">
@@ -307,18 +407,6 @@ ontology
 					text = <"Postal code">
 					description = <"*">
 				>
-				["at0020"] = <
-					text = <"Gender">
-					description = <"">
-				>
-				["at0023"] = <
-					text = <"Female">
-					description = <"Female">
-				>
-				["at0024"] = <
-					text = <"Male">
-					description = <"Male">
-				>
 			>
 		>
 		["sv"] = <
@@ -338,6 +426,18 @@ ontology
 				["at0003"] = <
 					text = <"Träd">
 					description = <"@ intern@">
+				>
+				["at0004"] = <
+					text = <"Kön">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Man">
+					description = <"Man">
+				>
+				["at0006"] = <
+					text = <"Kvinna">
+					description = <"Kvinna">
 				>
 				["at0008"] = <
 					text = <"Födelsedatum">
@@ -379,18 +479,6 @@ ontology
 					text = <"Postnummer">
 					description = <"*">
 				>
-				["at0020"] = <
-					text = <"*Gender (en)">
-					description = <"">
-				>
-				["at0023"] = <
-					text = <"*Female (en)">
-					description = <"*Female (en)">
-				>
-				["at0024"] = <
-					text = <"*Male (en)">
-					description = <"*Male (en)">
-				>
 			>
 		>
 		["si"] = <
@@ -410,6 +498,18 @@ ontology
 				["at0003"] = <
 					text = <"Tree">
 					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"ස්ත්‍රී පුරුශ භාවය">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"පුරුශ">
+					description = <"පුරුශ">
+				>
+				["at0006"] = <
+					text = <"ස්ත්‍රී">
+					description = <"ස්ත්‍රී">
 				>
 				["at0008"] = <
 					text = <"උපන් දිනය">
@@ -451,24 +551,12 @@ ontology
 					text = <"*Postal code(en)">
 					description = <"**(en)">
 				>
-				["at0020"] = <
-					text = <"*Gender (en)">
-					description = <"">
-				>
-				["at0023"] = <
-					text = <"*Female (en)">
-					description = <"*Female (en)">
-				>
-				["at0024"] = <
-					text = <"*Male (en)">
-					description = <"*Male (en)">
-				>
 			>
 		>
 		["es"] = <
 			items = <
 				["at0000"] = <
-					text = <"Demograficos basicos">
+					text = <"Demográficos básicos">
 					description = <"*Demographic information about patients. (en)">
 				>
 				["at0001"] = <
@@ -476,12 +564,24 @@ ontology
 					description = <"@ internal @">
 				>
 				["at0002"] = <
-					text = <"Cualquier evento">
-					description = <"">
+					text = <"*Any event (en)">
+					description = <"*">
 				>
 				["at0003"] = <
 					text = <"Tree">
 					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Genero">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Masculino">
+					description = <"Masculino">
+				>
+				["at0006"] = <
+					text = <"Femenino">
+					description = <"Femenino">
 				>
 				["at0008"] = <
 					text = <"Fecha de nacimiento">
@@ -508,11 +608,11 @@ ontology
 					description = <"*Age in years, and for babies: months, weeks or days (en)">
 				>
 				["at0015"] = <
-					text = <"Informacion de defuncion">
+					text = <"Informacion de defunsion">
 					description = <"">
 				>
 				["at0016"] = <
-					text = <"Fecha/hora de defunción">
+					text = <"Fecha/hora de muerte">
 					description = <"">
 				>
 				["at0017"] = <
@@ -522,18 +622,6 @@ ontology
 				["at0018"] = <
 					text = <"Codigo postal">
 					description = <"">
-				>
-				["at0020"] = <
-					text = <"Genero">
-					description = <"">
-				>
-				["at0023"] = <
-					text = <"Femenino">
-					description = <"Femenino">
-				>
-				["at0024"] = <
-					text = <"Masculino">
-					description = <"Masculino">
 				>
 			>
 		>

@@ -79,22 +79,6 @@
           }
         }
       },
-      "gt0004": {
-        "id": "gt0004",
-        "model_id": "openEHR-EHR-OBSERVATION.basic_demographic.v1",
-        "template_id": "openEHR-EHR-OBSERVATION.basic_demographic.v1",
-        "type": "INPUT",
-        "elements": {
-          "gt0008": {
-            "id": "gt0008",
-            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0013]"
-          },
-          "gt0009": {
-            "id": "gt0009",
-            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0020]"
-          }
-        }
-      },
       "gt0005": {
         "id": "gt0005",
         "model_id": "openEHR-EHR-OBSERVATION.stop_bang_score_for_obstructive_sleep_apnea.v0",
@@ -125,10 +109,6 @@
             "id": "gt0014",
             "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0022]"
           },
-          "gt0015": {
-            "id": "gt0015",
-            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0025]"
-          },
           "gt0017": {
             "id": "gt0017",
             "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0008]/items[at0039]"
@@ -137,12 +117,12 @@
             "id": "gt0018",
             "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0008]/items[at0042]"
           },
-          "gt0019": {
-            "id": "gt0019",
+          "gt0055": {
+            "id": "gt0055",
             "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0008]/items[at0032]/items[at0049]"
           },
-          "gt0020": {
-            "id": "gt0020",
+          "gt0056": {
+            "id": "gt0056",
             "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0008]/items[at0032]/items[at0046]"
           }
         }
@@ -158,32 +138,40 @@
             "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0019]/items[at0006]"
           }
         }
+      },
+      "gt0051": {
+        "id": "gt0051",
+        "model_id": "openEHR-EHR-EVALUATION.health_risk.v1",
+        "template_id": "openEHR-EHR-EVALUATION.health_risk.v1",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0052": {
+            "id": "gt0052",
+            "path": "/data[at0001]/items[at0003]"
+          }
+        }
+      },
+      "gt0057": {
+        "id": "gt0057",
+        "model_id": "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "template_id": "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "type": "INPUT",
+        "elements": {
+          "gt0058": {
+            "id": "gt0058",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]"
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0013]"
+          }
+        }
       }
     },
     "rules": {
-      "gt0021": {
-        "id": "gt0021",
-        "priority": 11,
-        "when": [
-          "(($gt0008|Age|.magnitude<=50)&&($gt0008|Age|.unit=='a'))||((($gt0008|Age|.magnitude<=600)&&($gt0008|Age|.unit=='mo'))||((($gt0008|Age|.magnitude<=2607)&&($gt0008|Age|.unit=='wk'))||(($gt0008|Age|.magnitude<=18250)&&($gt0008|Age|.unit=='d'))))"
-        ],
-        "then": [
-          "$gt0020|Age|=0|local::at0047|<=50|"
-        ]
-      },
-      "gt0039": {
-        "id": "gt0039",
-        "priority": 10,
-        "when": [
-          "(($gt0008|Age|.magnitude>50)&&($gt0008|Age|.unit=='a'))||((($gt0008|Age|.magnitude>600)&&($gt0008|Age|.unit=='mo'))||((($gt0008|Age|.magnitude>2607)&&($gt0008|Age|.unit=='wk'))||(($gt0008|Age|.magnitude>18250)&&($gt0008|Age|.unit=='d'))))"
-        ],
-        "then": [
-          "$gt0020|Age|=1|local::at0048|>50|"
-        ]
-      },
       "gt0030": {
         "id": "gt0030",
-        "priority": 9,
+        "priority": 11,
         "when": [
           "(($gt0006|Body mass index|.magnitude<=35)&&($gt0006|Body mass index|.unit=='kg/m2'))||(($gt0006|Body mass index|.magnitude<=119601)&&($gt0006|Body mass index|.unit=='[lb_av]/[in_i]2'))"
         ],
@@ -193,7 +181,7 @@
       },
       "gt0040": {
         "id": "gt0040",
-        "priority": 8,
+        "priority": 10,
         "when": [
           "(($gt0006|Body mass index|.magnitude>35)&&($gt0006|Body mass index|.unit=='kg/m2'))||(($gt0006|Body mass index|.magnitude>119601)&&($gt0006|Body mass index|.unit=='[lb_av]/[in_i]2'))"
         ],
@@ -201,9 +189,49 @@
           "$gt0017|Body mass index|=1|local::at0041|>35 kg/m^2|"
         ]
       },
+      "gt0060": {
+        "id": "gt0060",
+        "priority": 9,
+        "when": [
+          "$gt0058|Gender|==local::at0006|Female|"
+        ],
+        "then": [
+          "$gt0055|Gender|=0|local::at0050|Femenino|"
+        ]
+      },
+      "gt0061": {
+        "id": "gt0061",
+        "priority": 8,
+        "when": [
+          "$gt0058|Gender|==local::at0005|Male|"
+        ],
+        "then": [
+          "$gt0055|Gender|=1|local::at0051|Masculino|"
+        ]
+      },
+      "gt0062": {
+        "id": "gt0062",
+        "priority": 7,
+        "when": [
+          "(($gt0059|Age|.magnitude<=50)&&($gt0059|Age|.unit=='a'))||((($gt0059|Age|.magnitude<=600)&&($gt0059|Age|.unit=='mo'))||((($gt0059|Age|.magnitude<=2607)&&($gt0059|Age|.unit=='wk'))||(($gt0059|Age|.magnitude<=18250)&&($gt0059|Age|.unit=='d'))))"
+        ],
+        "then": [
+          "$gt0056|Age|=0|local::at0047|<=50|"
+        ]
+      },
+      "gt0063": {
+        "id": "gt0063",
+        "priority": 6,
+        "when": [
+          "(($gt0059|Age|.magnitude>50)&&($gt0059|Age|.unit=='a'))||((($gt0059|Age|.magnitude>600)&&($gt0059|Age|.unit=='mo'))||((($gt0059|Age|.magnitude>2607)&&($gt0059|Age|.unit=='wk'))||(($gt0059|Age|.magnitude>18250)&&($gt0059|Age|.unit=='d'))))"
+        ],
+        "then": [
+          "$gt0056|Age|=1|local::at0048|>50|"
+        ]
+      },
       "gt0028": {
         "id": "gt0028",
-        "priority": 7,
+        "priority": 5,
         "when": [
           "(($gt0007|Neck Circumference|.magnitude<=40)&&($gt0007|Neck Circumference|.unit=='cm'))||((($gt0007|Neck Circumference|.magnitude<=15.748)&&($gt0007|Neck Circumference|.unit=='[in_i]'))||(($gt0007|Neck Circumference|.magnitude<=400)&&($gt0007|Neck Circumference|.unit=='mm')))"
         ],
@@ -213,32 +241,12 @@
       },
       "gt0041": {
         "id": "gt0041",
-        "priority": 6,
+        "priority": 4,
         "when": [
           "(($gt0007|Neck Circumference|.magnitude>40)&&($gt0007|Neck Circumference|.unit=='cm'))||((($gt0007|Neck Circumference|.magnitude>15.748)&&($gt0007|Neck Circumference|.unit=='[in_i]'))||(($gt0007|Neck Circumference|.magnitude>400)&&($gt0007|Neck Circumference|.unit=='mm')))"
         ],
         "then": [
           "$gt0018|Neck circunference|=1|local::at0044|>40 cm|"
-        ]
-      },
-      "gt0046": {
-        "id": "gt0046",
-        "priority": 5,
-        "when": [
-          "($gt0009|Gender|!=local::at0023|Female|)||($gt0009|Gender|==local::at0024|Male|)"
-        ],
-        "then": [
-          "$gt0019|Gender|=1|local::at0051|Male|"
-        ]
-      },
-      "gt0045": {
-        "id": "gt0045",
-        "priority": 4,
-        "when": [
-          "($gt0009|Gender|==local::at0023|Female|)||($gt0009|Gender|!=local::at0024|Male|)"
-        ],
-        "then": [
-          "$gt0019|Gender|=0|local::at0050|Female|"
         ]
       },
       "gt0022": {
@@ -247,35 +255,33 @@
         "when": [
           "$gt0006|Body mass index|!=null",
           "$gt0007|Neck Circumference|!=null",
-          "$gt0008|Age|!=null",
-          "$gt0009|Gender|!=null",
           "$gt0010|Do you snore loudly?|!=null",
           "$gt0011|Do you often feel tired, fatigued, or sleepy during the daytime?|!=null",
           "$gt0036|Has anyone observed you stop breathing during sleep?|!=null",
           "$gt0043|Do you have (or are you being treated for) high blood pressure?|!=null"
         ],
         "then": [
-          "$gt0014|Total Score|.magnitude=$gt0010.value+$gt0011.value+$gt0017.value+$gt0018.value+$gt0020.value+$gt0036.value+$gt0043.value+$gt0019.value"
+          "$gt0014|Total Score|.magnitude=$gt0010.value+$gt0011.value+$gt0017.value+$gt0018.value+$gt0036.value+$gt0043.value+$gt0056.value+$gt0055.value"
         ]
       },
-      "gt0035": {
-        "id": "gt0035",
+      "gt0053": {
+        "id": "gt0053",
         "priority": 2,
-        "when": [
-          "$gt0014|Total Score|>2"
-        ],
-        "then": [
-          "$gt0015|Risk factor|=local::at0030|High Risk of OSA|"
-        ]
-      },
-      "gt0033": {
-        "id": "gt0033",
-        "priority": 1,
         "when": [
           "$gt0014|Total Score|<=2"
         ],
         "then": [
-          "$gt0015|Risk factor|=local::at0029|Low Risk of OSA|"
+          "$gt0052|Risk assessment|=local::at0031|Bajo riesgo|"
+        ]
+      },
+      "gt0054": {
+        "id": "gt0054",
+        "priority": 1,
+        "when": [
+          "$gt0014|Total Score|>2"
+        ],
+        "then": [
+          "$gt0052|Risk assessment|=local::at0032|Alto riesgo|"
         ]
       }
     }
@@ -300,16 +306,6 @@
             "text": "Neck Circumference",
             "description": "Measured girth of the identified body segment."
           },
-          "gt0008": {
-            "id": "gt0008",
-            "text": "Age",
-            "description": "Age in years, and for babies: months, weeks or days"
-          },
-          "gt0009": {
-            "id": "gt0009",
-            "text": "Gender",
-            "description": "Gender variable"
-          },
           "gt0010": {
             "id": "gt0010",
             "text": "Do you snore loudly?",
@@ -325,11 +321,6 @@
             "text": "Total Score",
             "description": "Total score"
           },
-          "gt0015": {
-            "id": "gt0015",
-            "text": "Risk factor",
-            "description": "Risk factor"
-          },
           "gt0017": {
             "id": "gt0017",
             "text": "Body mass index",
@@ -339,21 +330,6 @@
             "id": "gt0018",
             "text": "Neck circunference",
             "description": "Neck circunference variable"
-          },
-          "gt0019": {
-            "id": "gt0019",
-            "text": "Gender",
-            "description": "Gender variable"
-          },
-          "gt0020": {
-            "id": "gt0020",
-            "text": "Age",
-            "description": "Age variable"
-          },
-          "gt0021": {
-            "id": "gt0021",
-            "text": "Age value 0",
-            "description": "Rule to get the score of Age <=50"
           },
           "gt0022": {
             "id": "gt0022",
@@ -370,25 +346,10 @@
             "text": "BMI value 0",
             "description": " Rule to obtain the score of BMI <=35 kg/m^2"
           },
-          "gt0033": {
-            "id": "gt0033",
-            "text": "Risk factor low",
-            "description": "Rule to get low risk factor"
-          },
-          "gt0035": {
-            "id": "gt0035",
-            "text": "Risk factor high",
-            "description": "Rule to get high risk factor"
-          },
           "gt0036": {
             "id": "gt0036",
             "text": "Has anyone observed you stop breathing during sleep?",
             "description": "Apnea variable"
-          },
-          "gt0039": {
-            "id": "gt0039",
-            "text": "Age value 1",
-            "description": "Rule to get the score of Age >50"
           },
           "gt0040": {
             "id": "gt0040",
@@ -409,14 +370,60 @@
             "id": "gt0044",
             "text": "openEHR-EHR-OBSERVATION.stop_bang_score_for_obstructive_sleep_apnea.v0"
           },
-          "gt0045": {
-            "id": "gt0045",
-            "text": "Gender value 0"
+          "gt0052": {
+            "id": "gt0052",
+            "text": "Risk assessment",
+            "description": "Evaluation of the health risk."
           },
-          "gt0046": {
-            "id": "gt0046",
-            "text": "Gender value 1",
-            "description": ""
+          "gt0053": {
+            "id": "gt0053",
+            "text": "Low Risk",
+            "description": " Rule to get low risk"
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "High Risk",
+            "description": " Rule to get high risk"
+          },
+          "gt0055": {
+            "id": "gt0055",
+            "text": "Gender",
+            "description": "Variable of gender"
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "Age",
+            "description": "Variable of age"
+          },
+          "gt0058": {
+            "id": "gt0058",
+            "text": "Gender",
+            "description": "Gender"
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "Age",
+            "description": "Age in years, and for babies: months, weeks or days"
+          },
+          "gt0060": {
+            "id": "gt0060",
+            "text": "Gender Value 0",
+            "description": " Rule to get the score of Female"
+          },
+          "gt0061": {
+            "id": "gt0061",
+            "text": "Gender Value 1",
+            "description": " Rule to get the score of Male"
+          },
+          "gt0062": {
+            "id": "gt0062",
+            "text": "Age value 0",
+            "description": " Rule to get the score of Age<=50"
+          },
+          "gt0063": {
+            "id": "gt0063",
+            "text": "Age value 1",
+            "description": " Rule to get the score of Age>50"
           }
         }
       },
@@ -438,16 +445,6 @@
             "text": "Circunferencia del cuello",
             "description": "Circunferencia medida del segmento corporal identificado"
           },
-          "gt0008": {
-            "id": "gt0008",
-            "text": "Edad",
-            "description": "Edad en años, y para bebés: meses, semanas o días"
-          },
-          "gt0009": {
-            "id": "gt0009",
-            "text": "Genero",
-            "description": "Variable de genero"
-          },
           "gt0010": {
             "id": "gt0010",
             "text": "Ronca fuerte",
@@ -463,11 +460,6 @@
             "text": "Puntaje total",
             "description": "Sumatoria del puntaje"
           },
-          "gt0015": {
-            "id": "gt0015",
-            "text": "Factor de riesgo",
-            "description": "Factor de riesgo"
-          },
           "gt0017": {
             "id": "gt0017",
             "text": "Indice de masa corporal",
@@ -478,64 +470,34 @@
             "text": "Circunferencia del cuello",
             "description": "Variable de circunferencia del cuello"
           },
-          "gt0019": {
-            "id": "gt0019",
-            "text": "Genero",
-            "description": "Variable de genero"
-          },
-          "gt0020": {
-            "id": "gt0020",
-            "text": "Edad",
-            "description": "Variable de edad"
-          },
-          "gt0021": {
-            "id": "gt0021",
-            "text": "Edad valor 0",
-            "description": "Regla para obtener el puntaje de Edad <=50"
-          },
           "gt0022": {
             "id": "gt0022",
-            "text": "Puntaje total",
+            "text": "Regla Puntaje total",
             "description": "Regla para obtener el puntaje total"
           },
           "gt0028": {
             "id": "gt0028",
-            "text": "Circunferencia cuello valor 0",
+            "text": "Regla Circunferencia cuello valor 0",
             "description": "Regla para obtener el puntaje de circunferencia de cuello <=40 cm"
           },
           "gt0030": {
             "id": "gt0030",
-            "text": "IMC valor 0",
+            "text": "Regla IMC valor 0",
             "description": "Regla para obtener el puntaje de IMC <=35 kg/m^2"
-          },
-          "gt0033": {
-            "id": "gt0033",
-            "text": "Factor de riesgo bajo",
-            "description": "Regla para obtener factor de riesgo bajo "
-          },
-          "gt0035": {
-            "id": "gt0035",
-            "text": "Factor de riesgo alto",
-            "description": "Regla para obtener factor de riesgo alto"
           },
           "gt0036": {
             "id": "gt0036",
             "text": "¿Alguien ha observado que deja de respirar durante el sueño?",
             "description": "Variable de apnea"
           },
-          "gt0039": {
-            "id": "gt0039",
-            "text": "Edad valor 1",
-            "description": "Regla para obtener el puntaje de Edad >50"
-          },
           "gt0040": {
             "id": "gt0040",
-            "text": "IMC valor 1",
+            "text": "Regla IMC valor 1",
             "description": "Regla para obtener el puntaje de IMC >35 kg/m^2"
           },
           "gt0041": {
             "id": "gt0041",
-            "text": "Circunferencia cuello valor 1",
+            "text": "Regla Circunferencia cuello valor 1",
             "description": "Regla para obtener el puntaje de circunferencia de cuello >40 cm"
           },
           "gt0043": {
@@ -545,17 +507,63 @@
           },
           "gt0044": {
             "id": "gt0044",
-            "text": "*(en) openEHR-EHR-OBSERVATION.stop_bang_score_for_obstructive_sleep_apnea.v0",
+            "text": "openEHR-EHR-OBSERVATION.stop_bang_score_for_obstructive_sleep_apnea.v0",
             "description": ""
           },
-          "gt0045": {
-            "id": "gt0045",
-            "text": "Genero valor 0",
-            "description": ""
+          "gt0052": {
+            "id": "gt0052",
+            "text": " Evaluación de riesgos",
+            "description": "Evaluación del riesgo para la salud."
           },
-          "gt0046": {
-            "id": "gt0046",
-            "text": "Genero valor 1"
+          "gt0053": {
+            "id": "gt0053",
+            "text": "Regla Bajo riesgo",
+            "description": "Regla para obtener bajo riesgo"
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "Regla Alto riesgo",
+            "description": "Regla para obtener alto riesgo"
+          },
+          "gt0055": {
+            "id": "gt0055",
+            "text": "Genero",
+            "description": "Variable de genero"
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "Edad",
+            "description": "Variable de edad "
+          },
+          "gt0058": {
+            "id": "gt0058",
+            "text": "Genero",
+            "description": "Genero"
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "Edad",
+            "description": " Edad en años, y para bebés: meses, semanas o días"
+          },
+          "gt0060": {
+            "id": "gt0060",
+            "text": "Regla Genero valor 0",
+            "description": "Regla para obtener el puntaje de Femenino"
+          },
+          "gt0061": {
+            "id": "gt0061",
+            "text": "Regla Genero valor 1",
+            "description": "Regla para obtener el puntaje de Masculino"
+          },
+          "gt0062": {
+            "id": "gt0062",
+            "text": "Regla Edad valor 0",
+            "description": "Regla para obtener el puntaje de Edad<=50"
+          },
+          "gt0063": {
+            "id": "gt0063",
+            "text": "Regla Edad valor 1",
+            "description": "Regla para obtener el puntaje de Edad>50"
           }
         }
       }
