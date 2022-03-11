@@ -1,0 +1,564 @@
+{
+  "id": "STOP-BANG-Score.v0",
+  "gdl_version": "2.0",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "date": "2022-03-09",
+      "name": "Rony Ventura",
+      "email": "rony_d_v@hotmail.com"
+    },
+    "other_contributors": [
+      "Silvia Dubon"
+    ],
+    "lifecycle_state": "Not set",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "The STOP-Bang questionnaire is a scoring model consisting of eight easily administered questions starting with the acronym STOP-Bang and is scored based on Yes/No answers each yes sums up 1 point. A score of ≥3 has shown a high sensitivity for detecting OSA: 93% and 100% for moderate and severe OSA, respectively. (1)",
+        "keywords": [
+          "Polysomnography ",
+          "Sleep Apnea, Obstructive / epidemiology",
+          "Sleep Apnea, Obstructive / physiopathology",
+          "mass screening",
+          "questionnaires",
+          "sleep apnea",
+          "snoring/di (diagnosis)",
+          "snoring/ep (epidemiology)"
+        ],
+        "use": "-Patients undergoing preoperative evaluation.\n-Patients presenting to a clinic setting with symptoms associated with OSA like: daytime drowsiness, snoring, observed periods of nighttime apnea, noisy breathing, etc.",
+        "misuse": "- Not well validated in the obstetrical population, a subgroup with increased risk of OSA.\n- If a patient has already been diagnosed with OSA or uses CPAP at night.\n- Not for central sleep apnea."
+      },
+      "es": {
+        "id": "es",
+        "purpose": "El cuestionario STOP-Bang es un modelo de calificación que consta de ocho preguntas fáciles de administrar que comienzan con el acrónimo STOP-Bang y se puntúa en base a respuestas Sí/No, cada sí suma 1 punto. Una puntuación de ≥3 ha mostrado una alta sensibilidad para detectar AOS: 93 % y 100 % para AOS moderado y grave, respectivamente. (1)",
+        "keywords": [
+          "Apnea del Sueño Obstructiva / fisiopatología",
+          " Apnea del Sueño Obstructiva / epidemiología",
+          " Polisomnografía",
+          " tamizaje masivo",
+          " cuestionarios",
+          "Apnea del sueño",
+          " ronquido/di (diagnóstico)",
+          " ronquido/ep (epidemiología)"
+        ],
+        "use": "-Pacientes sometidos a evaluación preoperatoria\n-Pacientes que acuden a un entorno clínico con síntomas asociados con AOS como: somnolencia diurna, ronquidos, periodos observados de apnea nocturna, respiración ruidosa, etc.",
+        "misuse": "- Uso no validado en población obstétrica, un subgrupo con alto riesgo de AOS.\n- Si el paciente ya fue diagnosticado con AOS o usa un CPAP por las noches.\n- No apto para apnea central del sueño"
+      }
+    },
+    "other_details": {
+      "references": "1. Chung, F., Subramanyam, R., Liao, P., Sasaki, E., Shapiro, C., & Sun, Y. (2012). High STOP-Bang score indicates a high probability of obstructive sleep apnoea. British journal of anaesthesia, 108(5), 768–775. https://doi.org/10.1093/bja/aes022\n2.Nagappa, M., Liao, P., Wong, J., Auckley, D., Ramachandran, S. K., Memtsoudis, S., Mokhlesi, B., & Chung, F. (2015). Validation of the STOP-Bang Questionnaire as a Screening Tool for Obstructive Sleep Apnea among Different Populations: A Systematic Review and Meta-Analysis. PloS one, 10(12), e0143697. https://doi.org/10.1371/journal.pone.0143697\n3.Doshi, V., Walia, R., Jones, K., Aston, C. E., & Awab, A. (2015). STOP-BANG questionnaire as a screening tool for diagnosis of obstructive sleep apnea by unattended portable monitoring sleep study. SpringerPlus, 4, 795. https://doi.org/10.1186/s40064-015-1588-0"
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "openEHR-EHR-OBSERVATION.body_mass_index.v2",
+        "template_id": "openEHR-EHR-OBSERVATION.body_mass_index.v2",
+        "type": "INPUT",
+        "elements": {
+          "gt0006": {
+            "id": "gt0006",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]"
+          }
+        }
+      },
+      "gt0003": {
+        "id": "gt0003",
+        "model_id": "openEHR-EHR-OBSERVATION.body_segment_circumference.v1",
+        "template_id": "openEHR-EHR-OBSERVATION.body_segment_circumference.v1",
+        "type": "INPUT",
+        "elements": {
+          "gt0007": {
+            "id": "gt0007",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0008]"
+          }
+        }
+      },
+      "gt0004": {
+        "id": "gt0004",
+        "model_id": "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "template_id": "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "type": "INPUT",
+        "elements": {
+          "gt0008": {
+            "id": "gt0008",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0013]"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0020]"
+          }
+        }
+      },
+      "gt0005": {
+        "id": "gt0005",
+        "model_id": "openEHR-EHR-OBSERVATION.stop_bang_score_for_obstructive_sleep_apnea.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.stop_bang_score_for_obstructive_sleep_apnea.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0010": {
+            "id": "gt0010",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0008]/items[at0010]"
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0008]/items[at0011]"
+          },
+          "gt0036": {
+            "id": "gt0036",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0008]/items[at0012]"
+          }
+        }
+      },
+      "gt0013": {
+        "id": "gt0013",
+        "model_id": "openEHR-EHR-OBSERVATION.stop_bang_score_for_obstructive_sleep_apnea.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.stop_bang_score_for_obstructive_sleep_apnea.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0014": {
+            "id": "gt0014",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0022]"
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0025]"
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0008]/items[at0039]"
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0008]/items[at0042]"
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0008]/items[at0032]/items[at0049]"
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0008]/items[at0032]/items[at0046]"
+          }
+        }
+      },
+      "gt0042": {
+        "id": "gt0042",
+        "model_id": "openEHR-EHR-OBSERVATION.history_prior_medical_diagnosis.v1",
+        "template_id": "openEHR-EHR-OBSERVATION.history_prior_medical_diagnosis.v1",
+        "type": "INPUT",
+        "elements": {
+          "gt0043": {
+            "id": "gt0043",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0019]/items[at0006]"
+          }
+        }
+      }
+    },
+    "rules": {
+      "gt0021": {
+        "id": "gt0021",
+        "priority": 11,
+        "when": [
+          "(($gt0008|Age|.magnitude<=50)&&($gt0008|Age|.unit=='a'))||((($gt0008|Age|.magnitude<=600)&&($gt0008|Age|.unit=='mo'))||((($gt0008|Age|.magnitude<=2607)&&($gt0008|Age|.unit=='wk'))||(($gt0008|Age|.magnitude<=18250)&&($gt0008|Age|.unit=='d'))))"
+        ],
+        "then": [
+          "$gt0020|Age|=0|local::at0047|<=50|"
+        ]
+      },
+      "gt0039": {
+        "id": "gt0039",
+        "priority": 10,
+        "when": [
+          "(($gt0008|Age|.magnitude>50)&&($gt0008|Age|.unit=='a'))||((($gt0008|Age|.magnitude>600)&&($gt0008|Age|.unit=='mo'))||((($gt0008|Age|.magnitude>2607)&&($gt0008|Age|.unit=='wk'))||(($gt0008|Age|.magnitude>18250)&&($gt0008|Age|.unit=='d'))))"
+        ],
+        "then": [
+          "$gt0020|Age|=1|local::at0048|>50|"
+        ]
+      },
+      "gt0030": {
+        "id": "gt0030",
+        "priority": 9,
+        "when": [
+          "(($gt0006|Body mass index|.magnitude<=35)&&($gt0006|Body mass index|.unit=='kg/m2'))||(($gt0006|Body mass index|.magnitude<=119601)&&($gt0006|Body mass index|.unit=='[lb_av]/[in_i]2'))"
+        ],
+        "then": [
+          "$gt0017|Body mass index|=0|local::at0040|<=35 kg/m^2|"
+        ]
+      },
+      "gt0040": {
+        "id": "gt0040",
+        "priority": 8,
+        "when": [
+          "(($gt0006|Body mass index|.magnitude>35)&&($gt0006|Body mass index|.unit=='kg/m2'))||(($gt0006|Body mass index|.magnitude>119601)&&($gt0006|Body mass index|.unit=='[lb_av]/[in_i]2'))"
+        ],
+        "then": [
+          "$gt0017|Body mass index|=1|local::at0041|>35 kg/m^2|"
+        ]
+      },
+      "gt0028": {
+        "id": "gt0028",
+        "priority": 7,
+        "when": [
+          "(($gt0007|Neck Circumference|.magnitude<=40)&&($gt0007|Neck Circumference|.unit=='cm'))||((($gt0007|Neck Circumference|.magnitude<=15.748)&&($gt0007|Neck Circumference|.unit=='[in_i]'))||(($gt0007|Neck Circumference|.magnitude<=400)&&($gt0007|Neck Circumference|.unit=='mm')))"
+        ],
+        "then": [
+          "$gt0018|Neck circunference|=0|local::at0043|≤40 cm|"
+        ]
+      },
+      "gt0041": {
+        "id": "gt0041",
+        "priority": 6,
+        "when": [
+          "(($gt0007|Neck Circumference|.magnitude>40)&&($gt0007|Neck Circumference|.unit=='cm'))||((($gt0007|Neck Circumference|.magnitude>15.748)&&($gt0007|Neck Circumference|.unit=='[in_i]'))||(($gt0007|Neck Circumference|.magnitude>400)&&($gt0007|Neck Circumference|.unit=='mm')))"
+        ],
+        "then": [
+          "$gt0018|Neck circunference|=1|local::at0044|>40 cm|"
+        ]
+      },
+      "gt0046": {
+        "id": "gt0046",
+        "priority": 5,
+        "when": [
+          "($gt0009|Gender|!=local::at0023|Female|)||($gt0009|Gender|==local::at0024|Male|)"
+        ],
+        "then": [
+          "$gt0019|Gender|=1|local::at0051|Male|"
+        ]
+      },
+      "gt0045": {
+        "id": "gt0045",
+        "priority": 4,
+        "when": [
+          "($gt0009|Gender|==local::at0023|Female|)||($gt0009|Gender|!=local::at0024|Male|)"
+        ],
+        "then": [
+          "$gt0019|Gender|=0|local::at0050|Female|"
+        ]
+      },
+      "gt0022": {
+        "id": "gt0022",
+        "priority": 3,
+        "when": [
+          "$gt0006|Body mass index|!=null",
+          "$gt0007|Neck Circumference|!=null",
+          "$gt0008|Age|!=null",
+          "$gt0009|Gender|!=null",
+          "$gt0010|Do you snore loudly?|!=null",
+          "$gt0011|Do you often feel tired, fatigued, or sleepy during the daytime?|!=null",
+          "$gt0036|Has anyone observed you stop breathing during sleep?|!=null",
+          "$gt0043|Do you have (or are you being treated for) high blood pressure?|!=null"
+        ],
+        "then": [
+          "$gt0014|Total Score|.magnitude=$gt0010.value+$gt0011.value+$gt0017.value+$gt0018.value+$gt0020.value+$gt0036.value+$gt0043.value+$gt0019.value"
+        ]
+      },
+      "gt0035": {
+        "id": "gt0035",
+        "priority": 2,
+        "when": [
+          "$gt0014|Total Score|>2"
+        ],
+        "then": [
+          "$gt0015|Risk factor|=local::at0030|High Risk of OSA|"
+        ]
+      },
+      "gt0033": {
+        "id": "gt0033",
+        "priority": 1,
+        "when": [
+          "$gt0014|Total Score|<=2"
+        ],
+        "then": [
+          "$gt0015|Risk factor|=local::at0029|Low Risk of OSA|"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "STOP-BANG Score for Obstructive Sleep Apnea",
+            "description": "This guideline intends to detect Obstructive Sleep Apnea (OSA) with the calculation of a patient's STOP-BANG score and it's risk interpretation."
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "Body mass index",
+            "description": "Index describing ratio of weight to height."
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "Neck Circumference",
+            "description": "Measured girth of the identified body segment."
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "text": "Age",
+            "description": "Age in years, and for babies: months, weeks or days"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "Gender",
+            "description": "Gender variable"
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "Do you snore loudly?",
+            "description": " Snoring variable"
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "text": "Do you often feel tired, fatigued, or sleepy during the daytime?",
+            "description": "Tiredness variable"
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "Total Score",
+            "description": "Total score"
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "Risk factor",
+            "description": "Risk factor"
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "text": "Body mass index",
+            "description": "Body mass index variable"
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "Neck circunference",
+            "description": "Neck circunference variable"
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "Gender",
+            "description": "Gender variable"
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "Age",
+            "description": "Age variable"
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "Age value 0",
+            "description": "Rule to get the score of Age <=50"
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "Total score",
+            "description": " Rule to get the total score"
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "Neck circumference value 0",
+            "description": "Rule to obtain the neck circumference score <=40 cm"
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "BMI value 0",
+            "description": " Rule to obtain the score of BMI <=35 kg/m^2"
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "Risk factor low",
+            "description": "Rule to get low risk factor"
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "Risk factor high",
+            "description": "Rule to get high risk factor"
+          },
+          "gt0036": {
+            "id": "gt0036",
+            "text": "Has anyone observed you stop breathing during sleep?",
+            "description": "Apnea variable"
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "Age value 1",
+            "description": "Rule to get the score of Age >50"
+          },
+          "gt0040": {
+            "id": "gt0040",
+            "text": "BMI value 1",
+            "description": " Rule to obtain the score of BMI >35 kg/m^2"
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "Neck circumference value 1",
+            "description": "Rule to obtain the neck circumference score >40 cm"
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "Do you have (or are you being treated for) high blood pressure?",
+            "description": " Hypertension variable"
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "openEHR-EHR-OBSERVATION.stop_bang_score_for_obstructive_sleep_apnea.v0"
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "Gender value 0"
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "Gender value 1",
+            "description": ""
+          }
+        }
+      },
+      "es": {
+        "id": "es",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": " Puntuación STOP-BANG para apnea obstructiva del sueño",
+            "description": "Detección de la apnea obstructiva del sueño (AOS)"
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "Indice de masa corporal",
+            "description": "Índice que describe la relación entre el peso y la altura."
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "Circunferencia del cuello",
+            "description": "Circunferencia medida del segmento corporal identificado"
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "text": "Edad",
+            "description": "Edad en años, y para bebés: meses, semanas o días"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "Genero",
+            "description": "Variable de genero"
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "Ronca fuerte",
+            "description": "Variable de ronquido"
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "text": "¿Se siente a menudo cansado, fatigado o con sueño durante el día?",
+            "description": "Variable de Cansancio"
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "Puntaje total",
+            "description": "Sumatoria del puntaje"
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "Factor de riesgo",
+            "description": "Factor de riesgo"
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "text": "Indice de masa corporal",
+            "description": "Variable de IMC"
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "Circunferencia del cuello",
+            "description": "Variable de circunferencia del cuello"
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "Genero",
+            "description": "Variable de genero"
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "Edad",
+            "description": "Variable de edad"
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "Edad valor 0",
+            "description": "Regla para obtener el puntaje de Edad <=50"
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "Puntaje total",
+            "description": "Regla para obtener el puntaje total"
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "Circunferencia cuello valor 0",
+            "description": "Regla para obtener el puntaje de circunferencia de cuello <=40 cm"
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "IMC valor 0",
+            "description": "Regla para obtener el puntaje de IMC <=35 kg/m^2"
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "Factor de riesgo bajo",
+            "description": "Regla para obtener factor de riesgo bajo "
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "Factor de riesgo alto",
+            "description": "Regla para obtener factor de riesgo alto"
+          },
+          "gt0036": {
+            "id": "gt0036",
+            "text": "¿Alguien ha observado que deja de respirar durante el sueño?",
+            "description": "Variable de apnea"
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "Edad valor 1",
+            "description": "Regla para obtener el puntaje de Edad >50"
+          },
+          "gt0040": {
+            "id": "gt0040",
+            "text": "IMC valor 1",
+            "description": "Regla para obtener el puntaje de IMC >35 kg/m^2"
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "Circunferencia cuello valor 1",
+            "description": "Regla para obtener el puntaje de circunferencia de cuello >40 cm"
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "¿Tiene (o está siendo tratado por) presión arterial alta?",
+            "description": "Variable de hipertension"
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "*(en) openEHR-EHR-OBSERVATION.stop_bang_score_for_obstructive_sleep_apnea.v0",
+            "description": ""
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "Genero valor 0",
+            "description": ""
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "Genero valor 1"
+          }
+        }
+      }
+    }
+  }
+}
