@@ -1,0 +1,211 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.news2.v0
+
+concept
+	[at0000]	-- NEWS2_input
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To use as input variables in the NEWS2 scoring system">
+			use = <"To use in the NEWS2 scoring system where there is no existing archetype.">
+			misuse = <"Not to use for variables which are present in the existing archetypes.">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"CC0704D32CF547CD2CE69B5F37E72197">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- NEWS2_input
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0017] occurrences matches {0..1} matches {	-- NEW score
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+									ELEMENT[at0032] occurrences matches {0..1} matches {	-- NEW category
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0027] occurrences matches {0..1} matches {	-- Clinical risk
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0028] occurrences matches {0..1} matches {	-- Response
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {	-- Consciousness
+										value matches {
+											0|[local::at0014], 	-- Alert
+											3|[local::at0015]  	-- CVPU
+										}
+									}
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Hypercapnic respiratory failure (e.g. due to COPD)
+										value matches {
+											0|[local::at0005], 	-- Absent
+											1|[local::at0006]  	-- Present
+										}
+									}
+									ELEMENT[at0029] occurrences matches {0..1} matches {	-- Air or oxygen
+										value matches {
+											0|[local::at0030], 	-- Air
+											2|[local::at0031]  	-- Oxygen
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {	-- Respiratory score
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {	-- SpO2 score
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {	-- Air score
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {	-- SBP score
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {	-- Pulse score
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {	-- Temperature score
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"NEWS2_input">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Hypercapnic respiratory failure (e.g. due to COPD)">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Absent">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Present">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Respiratory score">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"SpO2 score">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Air score">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"SBP score">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Pulse score">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Temperature score">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Consciousness">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Alert">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"CVPU">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"NEW score">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"Clinical risk">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"Response">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"Air or oxygen">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"Air">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"Oxygen">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"NEW category">
+					description = <"*">
+				>
+			>
+		>
+	>
