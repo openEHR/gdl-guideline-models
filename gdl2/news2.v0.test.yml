@@ -1,0 +1,91 @@
+guidelines:
+  1: news2.v0
+test_cases:
+- id: Red score
+  input:
+    1:
+      gt0010|hypercapnic respiratory failure (e.g. due to COPD): 0|local::at0005|Absent|
+      gt0012|Air or oxygen: 0|local::at0030|Air|
+      gt0013|Consciousness: 3|local::at0015|CVPU|
+      gt0014|Respiration rate (per minute): 14,/min
+      gt0015|SpO₂ (%): 97,ml/dl
+      gt0016|Systolic BP (mmHg): 120,mm[Hg]
+      gt0017|Temperature (C): 37.1,Cel
+      gt0042|Pulse rate (per minute): 80,/min
+  expected_output:
+    1:
+      gt0024|NEW score: 3
+      gt0022|Pulse score: 0
+      gt0023|Temperature score: 0
+      gt0018|Respiratory score: 0
+      gt0026|Response: Urgent ward-based response. Response by a clinician or team with competence in the assessment and treatment of acutely ill patients and in recognising when the escalation of care to a critical care team is appropriate.
+      gt0025|Clinical risk: Low-medium
+      gt0069|NEW category: Red score (score of 3 in any individual parameter)
+      gt0021|SBP score: 0
+      gt0019|SpO2 score: 0
+- id: Low
+  input:
+    1:
+      gt0010|hypercapnic respiratory failure (e.g. due to COPD): 1|local::at0006|Present|
+      gt0012|Air or oxygen: 0|local::at0030|Air|
+      gt0013|Consciousness: 0|local::at0014|Alert|
+      gt0014|Respiration rate (per minute): 10,/min
+      gt0015|SpO₂ (%): 87,ml/dl
+      gt0016|Systolic BP (mmHg): 120,mm[Hg]
+      gt0017|Temperature (C): 37.1,Cel
+      gt0042|Pulse rate (per minute): 80,/min
+  expected_output:
+    1:
+      gt0024|NEW score: 2
+      gt0022|Pulse score: 0
+      gt0023|Temperature score: 0
+      gt0018|Respiratory score: 1
+      gt0026|Response: Ward-based response
+      gt0025|Clinical risk: Low
+      gt0069|NEW category: Aggregate score 0–4
+      gt0021|SBP score: 0
+      gt0019|SpO2 score: 1
+- id: Medium
+  input:
+    1:
+      gt0010|hypercapnic respiratory failure (e.g. due to COPD): 1|local::at0006|Present|
+      gt0012|Air or oxygen: 2|local::at0031|Oxygen|
+      gt0013|Consciousness: 0|local::at0014|Alert|
+      gt0014|Respiration rate (per minute): 10,/min
+      gt0015|SpO₂ (%): 87,ml/dl
+      gt0016|Systolic BP (mmHg): 100,mm[Hg]
+      gt0017|Temperature (C): 37.1,Cel
+      gt0042|Pulse rate (per minute): 80,/min
+  expected_output:
+    1:
+      gt0024|NEW score: 6
+      gt0022|Pulse score: 0
+      gt0023|Temperature score: 0
+      gt0018|Respiratory score: 1
+      gt0026|Response: Key threshold for urgent response. Response by a clinician or team with competence in the assessment and treatment of acutely ill patients and in recognising when the escalation of care to a critical care team is appropriate.
+      gt0025|Clinical risk: Medium
+      gt0069|NEW category: Aggregate score 5–6
+      gt0021|SBP score: 2
+      gt0019|SpO2 score: 1
+- id: High
+  input:
+    1:
+      gt0010|hypercapnic respiratory failure (e.g. due to COPD): 1|local::at0006|Present|
+      gt0012|Air or oxygen: 2|local::at0031|Oxygen|
+      gt0013|Consciousness: 0|local::at0014|Alert|
+      gt0014|Respiration rate (per minute): 10,/min
+      gt0015|SpO₂ (%): 87,ml/dl
+      gt0016|Systolic BP (mmHg): 100,mm[Hg]
+      gt0017|Temperature (C): 40,Cel
+      gt0042|Pulse rate (per minute): 120,/min
+  expected_output:
+    1:
+      gt0024|NEW score: 10
+      gt0022|Pulse score: 2
+      gt0023|Temperature score: 2
+      gt0018|Respiratory score: 1
+      gt0026|Response: Urgent or emergency response. The response team must also include staff with critical care skills, including airway management.
+      gt0025|Clinical risk: High
+      gt0069|NEW category: Aggregate score 7 or more
+      gt0021|SBP score: 2
+      gt0019|SpO2 score: 1
