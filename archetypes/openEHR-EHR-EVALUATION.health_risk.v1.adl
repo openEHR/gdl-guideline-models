@@ -169,7 +169,7 @@ Poiché i fattori di rischio possono essere identificati gradualmente nel tempo 
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"75b232795f1cd035116b01f77611e0f7">
+		["MD5-CAM-1.0.1"] = <"0476188229245de31d058534e4bab44a">
 		["build_uid"] = <"8208638f-87b8-4c47-ae09-8ce3545fb34e">
 		["ip_acknowledgements"] = <"This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyrighted material of the International Health Terminology Standards Development Organisation (IHTSDO). Where an implementation of this artefact makes use of SNOMED CT content, the implementer must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/get-snomedct or info@snomed.org.">
 		["revision"] = <"1.1.8">
@@ -237,16 +237,18 @@ definition
 							}
 						}
 					}
-					ELEMENT[at0003] matches {    -- Risk assessment
+					ELEMENT[at0003] occurrences matches {0..1} matches {    -- Risk assessment
 						value matches {
-							DV_CODED_TEXT matches {
-								defining_code matches {
-									[local::
-									at0031,    -- Low
-									at0032,    -- medium
-									at0033]    -- High
-								}
-							}
+							DV_TEXT matches {*}
+							DV_PROPORTION matches {*}
+							C_DV_QUANTITY <
+								property = <[openehr::380]>
+								list = <
+									["1"] = <
+										units = <"1">
+									>
+								>
+							>
 						}
 					}
 					ELEMENT[at0020] occurrences matches {0..1} matches {    -- Assessment type
@@ -270,7 +272,7 @@ definition
 							DV_TEXT matches {*}
 						}
 					}
-					ELEMENT[at0015] occurrences matches {0..1} matches {    -- Risk Recommendation
+					ELEMENT[at0015] matches {    -- tPA Recommendation
 						value matches {
 							DV_TEXT matches {*}
 						}
@@ -352,7 +354,7 @@ ontology
 					description = <"*Narrative description about the risk factor.(en)">
 				>
 				["at0015"] = <
-					text = <"*Risk Recommendation (en)">
+					text = <"*tPA Recommendation (en)">
 					description = <"*Additional narrative about the risk assessment not captured in other fields.(en)">
 				>
 				["at0016"] = <
@@ -420,18 +422,6 @@ ontology
 					text = <"*Comment(en)">
 					description = <"*Additional narrative about the risk factor not captured in other fields.(en)">
 				>
-				["at0031"] = <
-					text = <"*Low (en)">
-					description = <"">
-				>
-				["at0032"] = <
-					text = <"*medium (en)">
-					description = <"">
-				>
-				["at0033"] = <
-					text = <"*High (en)">
-					description = <"">
-				>
 			>
 		>
 		["de"] = <
@@ -482,7 +472,7 @@ ontology
 					description = <"Beschreibung des Risikofaktors.">
 				>
 				["at0015"] = <
-					text = <"*Risk Recommendation (en)">
+					text = <"*tPA Recommendation (en)">
 					description = <"Zusätzliche Informationen über die Risikobewertung, welche in anderen Bereichen nicht erfasst wurden.">
 				>
 				["at0016"] = <
@@ -550,18 +540,6 @@ ontology
 					text = <"Kommentar">
 					description = <"Zusätzliche Informationen zum Risikofaktor, welche in anderen Bereichen nicht erfasst wurden.">
 				>
-				["at0031"] = <
-					text = <"*Low (en)">
-					description = <"">
-				>
-				["at0032"] = <
-					text = <"*medium (en)">
-					description = <"">
-				>
-				["at0033"] = <
-					text = <"*High (en)">
-					description = <"">
-				>
 			>
 		>
 		["en"] = <
@@ -613,7 +591,7 @@ ontology
 					description = <"Narrative description about the risk factor.">
 				>
 				["at0015"] = <
-					text = <"Risk Recommendation">
+					text = <"tPA Recommendation">
 					description = <"Additional narrative about the risk assessment not captured in other fields.">
 				>
 				["at0016"] = <
@@ -681,18 +659,6 @@ ontology
 					text = <"Comment">
 					description = <"Additional narrative about the risk factor not captured in other fields.">
 				>
-				["at0031"] = <
-					text = <"Low">
-					description = <"">
-				>
-				["at0032"] = <
-					text = <"medium">
-					description = <"">
-				>
-				["at0033"] = <
-					text = <"High">
-					description = <"">
-				>
 			>
 		>
 		["es-ar"] = <
@@ -743,7 +709,7 @@ ontology
 					description = <"Descripción narrativa del factor de riesgo.">
 				>
 				["at0015"] = <
-					text = <"*Risk Recommendation (en)">
+					text = <"*tPA Recommendation (en)">
 					description = <"Narrativa adicional acerca de la evaluación de riesgo no contemplada en otros campos.">
 				>
 				["at0016"] = <
@@ -811,18 +777,6 @@ ontology
 					text = <"*Comment(en)">
 					description = <"*Additional narrative about the risk factor not captured in other fields.(en)">
 				>
-				["at0031"] = <
-					text = <"*Low (en)">
-					description = <"">
-				>
-				["at0032"] = <
-					text = <"*medium (en)">
-					description = <"">
-				>
-				["at0033"] = <
-					text = <"*High (en)">
-					description = <"">
-				>
 			>
 		>
 		["sv"] = <
@@ -874,7 +828,7 @@ Riskfaktor använd en terminologi om det är möjligt.">
 					description = <"Berättande beskrivning om riksfaktorn.">
 				>
 				["at0015"] = <
-					text = <"*Risk Recommendation (en)">
+					text = <"*tPA Recommendation (en)">
 					description = <"Ytterligare beskrivning om riskbedömningen som inte tagits med i andra fält.">
 				>
 				["at0016"] = <
@@ -943,18 +897,6 @@ Riskfaktor använd en terminologi om det är möjligt.">
 					text = <"Kommentar">
 					description = <"Ytterligare beskrivning av riskfaktorn som inte fångats i andra fält.">
 				>
-				["at0031"] = <
-					text = <"*Low (en)">
-					description = <"">
-				>
-				["at0032"] = <
-					text = <"*medium (en)">
-					description = <"">
-				>
-				["at0033"] = <
-					text = <"*High (en)">
-					description = <"">
-				>
 			>
 		>
 		["fi"] = <
@@ -1006,7 +948,7 @@ Riskfaktor använd en terminologi om det är möjligt.">
 					description = <"*Narrative description about the risk factor.(en)">
 				>
 				["at0015"] = <
-					text = <"*Risk Recommendation (en)">
+					text = <"*tPA Recommendation (en)">
 					description = <"*Additional narrative about the risk assessment not captured in other fields.(en)">
 				>
 				["at0016"] = <
@@ -1074,18 +1016,6 @@ Riskfaktor använd en terminologi om det är möjligt.">
 					text = <"*Comment(en)">
 					description = <"*Additional narrative about the risk factor not captured in other fields.(en)">
 				>
-				["at0031"] = <
-					text = <"*Low (en)">
-					description = <"">
-				>
-				["at0032"] = <
-					text = <"*medium (en)">
-					description = <"">
-				>
-				["at0033"] = <
-					text = <"*High (en)">
-					description = <"">
-				>
 			>
 		>
 		["nb"] = <
@@ -1138,7 +1068,7 @@ Riskfaktor använd en terminologi om det är möjligt.">
 					description = <"Fritekst beskrivelse av risikofaktoren.">
 				>
 				["at0015"] = <
-					text = <"*Risk Recommendation (en)">
+					text = <"*tPA Recommendation (en)">
 					description = <"Fritekst om risikovurderingen som ikke passer i andre felt.">
 				>
 				["at0016"] = <
@@ -1208,18 +1138,6 @@ Riskfaktor använd en terminologi om det är möjligt.">
 					text = <"Kommentar">
 					description = <"Ytterligere fritekst om risikofaktoren som ikke er fanget opp i andre felt.">
 				>
-				["at0031"] = <
-					text = <"*Low (en)">
-					description = <"">
-				>
-				["at0032"] = <
-					text = <"*medium (en)">
-					description = <"">
-				>
-				["at0033"] = <
-					text = <"*High (en)">
-					description = <"">
-				>
 			>
 		>
 		["it"] = <
@@ -1271,7 +1189,7 @@ Fattore di rischio\" con una terminologia, ove possibile.">
 					description = <"Descrizione narrativa del fattore di rischio.">
 				>
 				["at0015"] = <
-					text = <"*Risk Recommendation (en)">
+					text = <"*tPA Recommendation (en)">
 					description = <"Narrativa aggiuntiva sulla valutazione del rischio non catturata in altri campi.">
 				>
 				["at0016"] = <
@@ -1342,18 +1260,6 @@ Tradotto con www.DeepL.com/Translator (versione gratuita)">
 				["at0030"] = <
 					text = <"Commento">
 					description = <"Narrativa aggiuntiva sul fattore di rischio non catturato in altri campi.">
-				>
-				["at0031"] = <
-					text = <"*Low (en)">
-					description = <"">
-				>
-				["at0032"] = <
-					text = <"*medium (en)">
-					description = <"">
-				>
-				["at0033"] = <
-					text = <"*High (en)">
-					description = <"">
 				>
 			>
 		>
