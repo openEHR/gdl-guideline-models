@@ -34,75 +34,75 @@ If you would like to test an app, simply click on "ENG" to access the English ve
 
 _Select a medical specialty below to view the available apps._
 
-[Anesthesia](https://github.com/gdl-lang/common-clinical-models#anesthesia)
+[Anesthesia](https://github.com/openEHR/gdl-guideline-models#anesthesia)
 
-[Cardiology](https://github.com/gdl-lang/common-clinical-models#cardiology)
+[Cardiology](https://github.com/openEHR/gdl-guideline-models#cardiology)
 
-[Clinical Chemistry](https://github.com/gdl-lang/common-clinical-models#clinical-chemistry)
+[Clinical Chemistry](https://github.com/openEHR/gdl-guideline-models#clinical-chemistry)
 
-[Dermatology](https://github.com/gdl-lang/common-clinical-models#dermatology)
+[Dermatology](https://github.com/openEHR/gdl-guideline-models#dermatology)
 
-[Emergency Medicine](https://github.com/gdl-lang/common-clinical-models#emergency-medicine)
+[Emergency Medicine](https://github.com/openEHR/gdl-guideline-models#emergency-medicine)
 
-[Endocrinology](https://github.com/gdl-lang/common-clinical-models#endocrinology)
+[Endocrinology](https://github.com/openEHR/gdl-guideline-models#endocrinology)
 
-[Gastroenterology](https://github.com/gdl-lang/common-clinical-models#gastroenterology)
+[Gastroenterology](https://github.com/openEHR/gdl-guideline-models#gastroenterology)
 
-[Geriatrics](https://github.com/gdl-lang/common-clinical-models#geriatrics)
+[Geriatrics](https://github.com/openEHR/gdl-guideline-models#geriatrics)
 
-[Hematology](https://github.com/gdl-lang/common-clinical-models#hematology)
+[Hematology](https://github.com/openEHR/gdl-guideline-models#hematology)
 
-[Intensive Care](https://github.com/gdl-lang/common-clinical-models#intensive-care)
+[Intensive Care](https://github.com/openEHR/gdl-guideline-models#intensive-care)
 
-[Neonatology](https://github.com/gdl-lang/common-clinical-models#neonatology)
+[Neonatology](https://github.com/openEHR/gdl-guideline-models#neonatology)
 
-[Nephrology](https://github.com/gdl-lang/common-clinical-models#nephrology)
+[Nephrology](https://github.com/openEHR/gdl-guideline-models#nephrology)
 
-[Neurology](https://github.com/gdl-lang/common-clinical-models#neurology)
+[Neurology](https://github.com/openEHR/gdl-guideline-models#neurology)
 
-[Obstetrics](https://github.com/gdl-lang/common-clinical-models#obstetrics)
+[Obstetrics](https://github.com/openEHR/gdl-guideline-models#obstetrics)
 
-[Oncology](https://github.com/gdl-lang/common-clinical-models#oncology)
+[Oncology](https://github.com/openEHR/gdl-guideline-models#oncology)
 
-[Ophthalmology](https://github.com/gdl-lang/common-clinical-models#ophthalmology)
+[Ophthalmology](https://github.com/openEHR/gdl-guideline-models#ophthalmology)
 
-[Orthopedics](https://github.com/gdl-lang/common-clinical-models#orthopedics)
+[Orthopedics](https://github.com/openEHR/gdl-guideline-models#orthopedics)
 
-[Osteoporosis](https://github.com/gdl-lang/common-clinical-models#osteoporosis)
+[Osteoporosis](https://github.com/openEHR/gdl-guideline-models#osteoporosis)
 
 [Pediatrics](https://github.com/gdl-lang/common-clinical-models#pediatrics) 
 
-[Pharmacology](https://github.com/gdl-lang/common-clinical-models#pharmacology) 
+[Pharmacology](https://github.com/openEHR/gdl-guideline-models#pharmacology) 
 
-[Primary Care](https://github.com/gdl-lang/common-clinical-models#primary-care)
+[Primary Care](https://github.com/openEHR/gdl-guideline-models#primary-care)
 
-[Psychiatry](https://github.com/gdl-lang/common-clinical-models#psychiatry)
+[Psychiatry](https://github.com/openEHR/gdl-guideline-models#psychiatry)
 
-[Pulmonology](https://github.com/gdl-lang/common-clinical-models#pulmonology)
+[Pulmonology](https://github.com/openEHR/gdl-guideline-models#pulmonology)
 
-[Rheumatology](https://github.com/gdl-lang/common-clinical-models#rheumatology)
+[Rheumatology](https://github.com/openEHR/gdl-guideline-models#rheumatology)
 
-[Surgery](https://github.com/gdl-lang/common-clinical-models#surgery)
+[Surgery](https://github.com/openEHR/gdl-guideline-models#surgery)
 
-[Trauma Care](https://github.com/gdl-lang/common-clinical-models#trauma-care)
+[Trauma Care](https://github.com/openEHR/gdl-guideline-models#trauma-care)
 
-[Urology](https://github.com/gdl-lang/common-clinical-models#urology)
-
-----------
-
-[CDS Summer App Challenge 2017](https://github.com/gdl-lang/common-clinical-models#cds-summer-app-challenge-2017)
+[Urology](https://github.com/openEHR/gdl-guideline-models#urology)
 
 ----------
 
-[CDS Summer App Challenge 2018](https://github.com/gdl-lang/common-clinical-models#cds-summer-app-challenge-2018)
+[CDS Summer App Challenge 2017](https://github.com/openEHR/gdl-guideline-models#cds-summer-app-challenge-2017)
 
 ----------
 
-[CDS App Challenge 2019](https://github.com/gdl-lang/common-clinical-models#cds-app-challenge-2019)
+[CDS Summer App Challenge 2018](https://github.com/openEHR/gdl-guideline-models#cds-summer-app-challenge-2018)
 
 ----------
 
-[CDS App Challenge 2020 Submissions](https://github.com/gdl-lang/common-clinical-models#cds-app-challenge-2020-submissions)
+[CDS App Challenge 2019](https://github.com/openEHR/gdl-guideline-models#cds-app-challenge-2019)
+
+----------
+
+[CDS App Challenge 2020 Submissions](https://github.com/openEHR/gdl-guideline-models#cds-app-challenge-2020-submissions)
 
 -----------
 
@@ -144,7 +144,7 @@ _Select a medical specialty below to view the available apps._
 
 * ASCVD (Atherosclerotic Cardiovascular Disease) Risk Algorithm including Known ASCVD from AHA/ACC - ([_ENG_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/ASCVD_risk_statin_recommendation/1?language=en))
 
-* ASCVD (Atherosclerotic Cardiovascular Disease) 2013 Risk Calculator from AHA/ACC - ([_ENG_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/ASCVD_risk_calculator/0?language=en))
+* ASCVD (Atherosclerotic Cardiovascular Disease) 2013 Risk Calculator from AHA/ACC - ([_ENG_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/ASCVD_risk_calculator/1?language=en))
 
 * ATRIA Bleeding Risk Score - ([_ENG_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/ATRIA_bleeding_risk_score/1?language=en))/([_SWE_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/ATRIA_bleeding_risk_score/1?language=sv))
 
@@ -176,7 +176,7 @@ _Select a medical specialty below to view the available apps._
 
 * DASH Prediction Score for Recurrent VTE - ([_ENG_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/DASH_for_recurrent_VTE/1?language=en))/([_SWE_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/DASH_for_recurrent_VTE/1?language=sv))
 
-* Detsky Cardiac Risk Index - ([_ENG_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/Detsky_cardiac/1?language=en))
+* Detsky Cardiac Risk Index - ([_ENG_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/Detsky_cardiac_risk_index/1?language=en))
 
 * Dual Antiplatelet Therapy (DAPT) Score - ([_ENG_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/DAPT_score/1?language=en))
 
@@ -196,7 +196,7 @@ _Select a medical specialty below to view the available apps._
 
 * Framingham Heart Failure Diagnostic Criteria - ([_ENG_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/Framingham_Heart_Failure_Diagnostic_Criteria_guideline/1?language=en))
 
-* Get With The Guidelines in Heart Failure Risk Score (GWTG-HF) - ([_ENG_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/GWTG_HF/1?language=en))/([_SWE_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/GWTG_HF/1?language=sv))
+* Get With The Guidelines in Heart Failure Risk Score (GWTG-HF) - ([_ENG_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/GWTG_HF_risk_score/1?language=en))/([_SWE_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/GWTG_HF_risk_score/1?language=sv))
 
 * Global Registry of Acute Coronary Events (GRACE) - ([_ENG_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/GRACE_ACS/1?language=en))/([_SWE_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/GRACE_ACS/1?language=sv))
 
