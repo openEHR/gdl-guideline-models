@@ -1,0 +1,218 @@
+archetype (adl_version=1.4; uid=cbe6372d-ddb8-4477-8107-98caa1534fa6)
+	openEHR-EHR-OBSERVATION.score2_diabetes.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2024-05-24">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Predicts 10-year CVD risk in patients with type 2 diabetes.">
+			keywords = <"SCORE2; Systematic Coronary Risk Evaluation 2-Diabetes; Diabetes, CVD risk; Type 2 Diabetes : eGFR; HgbA1C; Total cholesterol; HDL cholesterol; smoking; systolic blood pressure", ...>
+			use = <"Use this score to predict 10-year risk of cardiovascular disease in European patients under 70 years of age and who have a history of diabetes.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"298a98ed117b9c6c6fa30d106eaab9c1">
+		["build_uid"] = <"c1cd3ee9-4b88-35a8-a796-cf2f354972eb">
+		["references"] = <"(1) \"SCORE2-Diabetes: 10-year cardiovascular risk estimation in type 2 diabetes in Europe.\" European Heart Journal 44, no. 28 (2023): 2544-2556.
+(2) ESC Scientific Document Group. 2021 ESC Guidelines on cardiovascular disease prevention in clinical practice. European Journal of Preventive Cardiology. 2021 Sep 24;29(1):5-115.
+(3)\"SCORE2 risk prediction algorithms: new models to estimate 10-year risk of cardiovascular disease in Europe.\" European heart journal 42, no. 25 (2021): 2439-2454.">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- SCORE2_Diabetes
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Sex
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Age
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+									ELEMENT[at0022] occurrences matches {0..1} matches {    -- Smoking
+										value matches {
+											0|[local::at0023],
+											1|[local::at0024]
+										}
+									}
+									ELEMENT[at0025] occurrences matches {0..1} matches {    -- Systolic Blood Pressure (sbp)
+										value matches {
+											DV_COUNT matches {
+												magnitude matches {|>=0|}
+											}
+										}
+									}
+									ELEMENT[at0026] occurrences matches {0..1} matches {    -- Diabetes
+										value matches {
+											0|[local::at0027],
+											1|[local::at0028]
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Total cholesterol
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- HDL cholesterol
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- HgbA1c
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- eGFR
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Risk region
+										value matches {
+											1|[local::at0017],
+											2|[local::at0018],
+											3|[local::at0019],
+											4|[local::at0020]
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- Percentage 10-year risk of CVD
+										value matches {
+											DV_PROPORTION matches {
+												type matches {2}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"SCORE2_Diabetes">
+					description = <"SCORE2_Diabetes
+Predicts 10-year CVD risk in patients with type 2 diabetes.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Sex">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Age">
+					description = <"Age in years.
+Apply cage = (age – 60)/5">
+				>
+				["at0010"] = <
+					text = <"Total cholesterol">
+					description = <"Apply ctchol = tchol – 6">
+				>
+				["at0011"] = <
+					text = <"HDL cholesterol">
+					description = <"Apply  chdl = (hdl – 1.3)/0.5">
+				>
+				["at0014"] = <
+					text = <"HgbA1c">
+					description = <"Apply : ca1c = (a1c – 31)/9.34">
+				>
+				["at0015"] = <
+					text = <"eGFR">
+					description = <"Apply: cegfr = (ln(egfr) – 4.5)/0.15">
+				>
+				["at0016"] = <
+					text = <"Risk region">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Low">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Moderate">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"High">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Very high">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Percentage 10-year risk of CVD">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Smoking">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Other">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Current">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Systolic Blood Pressure (sbp)">
+					description = <"Apply : csbp = (sbp – 120)/20">
+				>
+				["at0026"] = <
+					text = <"Diabetes">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Yes">
+					description = <"">
+				>
+			>
+		>
+	>
