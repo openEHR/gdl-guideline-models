@@ -1,0 +1,111 @@
+archetype (adl_version=1.4; uid=f7e4f9e6-705a-412d-8c51-69ff595527e7)
+	openEHR-EHR-EVALUATION.score2_diabetes_evaluation.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2024-05-24">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"ff79bb1326ea0c10fd6449ecd3048cc0">
+		["build_uid"] = <"1e4a3819-30c8-31a4-ba0f-ef42c30123f5">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- SCORE2_Diabetes Evaluation
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- Percentage 10-year risk of CVD
+						value matches {
+							DV_PROPORTION matches {
+								type matches {2}
+							}
+						}
+					}
+					ELEMENT[at0003] occurrences matches {0..1} matches {    -- Patients <50 years old
+						value matches {
+							1|[local::at0004],
+							2|[local::at0005],
+							3|[local::at0006]
+						}
+					}
+					ELEMENT[at0007] occurrences matches {0..1} matches {    -- Patients 50-69 years old
+						value matches {
+							1|[local::at0008],
+							2|[local::at0009],
+							3|[local::at0010]
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"SCORE2_Diabetes Evaluation">
+					description = <"SCORE2_Diabetes Evaluation">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Percentage 10-year risk of CVD">
+					description = <"">
+				>
+				["at0003"] = <
+					text = <"Patients <50 years old">
+					description = <"">
+				>
+				["at0004"] = <
+					text = <"Low to moderate risk :<2,5%">
+					description = <"Risk factor treatment plan generally not recommended">
+				>
+				["at0005"] = <
+					text = <"High risk:2.5% to <7.5%">
+					description = <"Risk factor treatment plan should be considered">
+				>
+				["at0006"] = <
+					text = <"Very high risk :≥7.5%">
+					description = <"Risk factor treatment plan should be recommended">
+				>
+				["at0007"] = <
+					text = <"Patients 50-69 years old">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Low to moderate risk">
+					description = <"<5% Risk  factor treatment plan generally not recommended">
+				>
+				["at0009"] = <
+					text = <"High risk :5% to <10%">
+					description = <"Risk factor treatment plan should be considered (i.e., blood pressure and LDL-C control).">
+				>
+				["at0010"] = <
+					text = <"Very high risk">
+					description = <">10% Risk factor treatment plan should be recommended.">
+				>
+			>
+		>
+	>
