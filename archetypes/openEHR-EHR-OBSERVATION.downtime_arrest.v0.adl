@@ -1,0 +1,157 @@
+archetype (adl_version=1.4; uid=a183c707-2b41-4ad3-bc65-ddeaeb436f11)
+	openEHR-EHR-OBSERVATION.downtime_arrest.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2024-03-21">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To define the term downtime and pinpoint the important components of the term commonly used by clinicians, nurses, paramedics. ">
+			keywords = <"Downtime; cardiac arrest; arrest; bystander; witness; witnessed arrest; unwitnessed arrest; low flow time; no flow time; ROSC; return of spontaneous circulation ; pulse; out of hospital cardiac arrest; OHCA; in hospital cardiac arrest", ...>
+			use = <"Downtime is a term commonly use by clinicians when referring to interval duration between the start of a cardiac arrest to return of spontaneous circulation. 
+It is an important term in cardiac arrest related to patients prognosis and outcomes.">
+			misuse = <"Not to be used as a time when the person can relax or periods when a system is unavailable or when a machine is not productive">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"f700af52beee1a4b5d9efda88eaeb56c">
+		["build_uid"] = <"975c2f51-ccf2-392e-9e99-80983f4d5f81">
+		["references"] = <"(1) Kim WY, Giberson TA, Uber A, Berg K, Cocchi MN, Donnino MW. Neurologic outcome in comatose patients resuscitated from out-of-hospital cardiac arrest with prolonged downtime and treated with therapeutic hypothermia. Resuscitation. 2014 Aug 1;85(8):1042-6.
+(2) Kim WY, Ahn S, Hong JS, Cho GC, Seo DW, Jeung KW, Kim YM, Park KN, Berg K, Donnino MW. The impact of downtime on neurologic intact survival in patients with targeted temperature management after out-of-hospital cardiac arrest: National multicenter cohort study. Resuscitation. 2016 Aug 1;105:203-8.">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Downtime_cardiac_arrest
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					POINT_EVENT[at0015] occurrences matches {0..1} matches {    -- Cardiac arrest
+						data matches {
+							ITEM_TREE[at0022] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0023] occurrences matches {0..1} matches {    -- Time of arrest
+										value matches {
+											DV_DATE_TIME matches {
+												value matches {yyyy-mm-ddThh:mm:ss}
+											}
+										}
+									}
+									ELEMENT[at0024] occurrences matches {0..1} matches {    -- No flow time
+										value matches {
+											DV_DATE_TIME matches {*}
+										}
+									}
+									ELEMENT[at0025] occurrences matches {0..1} matches {    -- Low flow time
+										value matches {
+											DV_DATE_TIME matches {*}
+										}
+									}
+									ELEMENT[at0026] occurrences matches {0..1} matches {    -- ROSC time
+										value matches {
+											DV_DATE_TIME matches {*}
+										}
+									}
+									ELEMENT[at0027] occurrences matches {0..1} matches {    -- Pulse
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0028] occurrences matches {0..1} matches {    -- Witness
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0029] occurrences matches {0..1} matches {    -- Setting
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0021] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Downtime_cardiac_arrest">
+					description = <"To describe the clinical concept of the term \"downtime\" used by clinicians in situations of cardiac arrest. 
+Downtime in cardiac arrest is defined as the interval of time from collapse or lack of palpable pulse or output to return of spontaneous circulation (ROSC) (1).
+Time from the recognition of cardiac arrest to the time of sustained ROSC (2).
+Also defined by the sum of no-flow time plus low-flow time (2).">
+					comment = <"(1) Kim WY, Giberson TA, Uber A, Berg K, Cocchi MN, Donnino MW. Neurologic outcome in comatose patients resuscitated from out-of-hospital cardiac arrest with prolonged downtime and treated with therapeutic hypothermia. Resuscitation. 2014 Aug 1;85(8):1042-6.
+(2) Kim WY, Ahn S, Hong JS, Cho GC, Seo DW, Jeung KW, Kim YM, Park KN, Berg K, Donnino MW. The impact of downtime on neurologic intact survival in patients with targeted temperature management after out-of-hospital cardiac arrest: National multicenter cohort study. Resuscitation. 2016 Aug 1;105:203-8.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0015"] = <
+					text = <"Cardiac arrest">
+					description = <"Cardiac event arrest : sudden cessation of cardiac activity so that the victim becomes unresponsive, with no normal breathing and no signs of circulation (1)
+">
+				>
+				["at0021"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0022"] = <
+					text = <"Tree">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Time of arrest">
+					description = <"In witness arrest, time of arrest was defined as time of collapse.
+In unwitnessed arrest, it was defined as the time that EMS was called.">
+				>
+				["at0024"] = <
+					text = <"No flow time">
+					description = <"Duration from collapse to CPR begun in minutes.">
+				>
+				["at0025"] = <
+					text = <"Low flow time">
+					description = <"Duration from CPR to ROSC (return of spontaneous circulation) in minutes.">
+				>
+				["at0026"] = <
+					text = <"ROSC time">
+					description = <"Time of return of spontaneous circulation ">
+				>
+				["at0027"] = <
+					text = <"Pulse">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Witness">
+					description = <"Witnessed arrest: when a bystander or witness directly sees the person collapse or become unresponsive due to cardiac arrest.
+Unwitnessed arrest: onset of cardiac arrest occurs without anyone present to directly observe the event. ">
+				>
+				["at0029"] = <
+					text = <"Setting">
+					description = <"Out of hospital cardiac arrest (or) in hospital cardiac arrest ">
+				>
+			>
+		>
+	>
