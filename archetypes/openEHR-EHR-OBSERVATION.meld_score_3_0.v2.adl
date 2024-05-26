@@ -1,0 +1,366 @@
+archetype (adl_version=1.4; uid=fbcf7153-647b-3cec-b6d8-89420108a521)
+	openEHR-EHR-OBSERVATION.meld_score_3_0.v2
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"Dennis Forslund">
+				["organisation"] = <"Cambio Healthcare Systems">
+			>
+		>
+	>
+
+description
+	original_author = <
+		["date"] = <"2017-01-18">
+		["name"] = <"Eneimi Allwell-Brown">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"models@cambiocds.com">
+	>
+	lifecycle_state = <"AuthorDraft">
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"*MELD 3.0 is the standard used by the Organ Procurement and Transplantation Network (OPTN) and determines who is the highest priority to receive liver transplants in the US. Predicts estimated 90-day survival.  (en)">
+			keywords = <"*MELD 3.0 (en)","*liver cirrhosis (en)","*alcoholic hepatitis (en)","*hepatic failure (en)","*liver failure (en)","*chronic liver disease (en)","*transplant (en)","*end-stage (en)","*survival (en)">
+			copyright = <"© Cambio Healthcare Systems">
+			use = <"*Values should be no more than 48 hours old.
+MELD can be used on any patient with end stage liver disease irrespective of cirrhosis etiology.
+
+MELD 3.0 improves the accuracy of the MELD calculation by: 
+
+• Incorporating additional variables (albumin and sex) 
+
+• Updating coefficients for existing variables 
+
+• Introducing interaction terms 
+
+• Lowering the maximum creatinine value from 4.0 to 3.0 mg/dL.  
+
+MELD 3.0 will apply to all adult liver transplant candidates (registered after turning 18) and to adolescent candidates (age 12-17).  Both male and female adolescent candidates will receive the 1.33 points that will be provided to all adult female candidates. This is based on data that shows there is no sexbased disparity in the adolescent population [3].  (en)">
+			misuse = <"*Only for ages 12 and above.
+
+Several conditions are “standard MELD exceptions” and receive a different score:  hepatocellular carcinoma, hepatopulmonary syndrome, portopulmonary hypertension, familial amyloid polyneuropathy, primary hyperoxaluria, cystic fibrosis, hilar cholangiocarcinoma and hepatic artery thrombosis. (en)">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"MELD 3.0 is the standard used by the Organ Procurement and Transplantation Network (OPTN) and determines who is the highest priority to receive liver transplants in the US. Predicts estimated 90-day survival. ">
+			keywords = <"MELD 3.0","liver cirrhosis","alcoholic hepatitis","hepatic failure","liver failure","chronic liver disease","transplant","end-stage","survival">
+			copyright = <"© Cambio Healthcare Systems">
+			use = <"Values should be no more than 48 hours old.
+MELD can be used on any patient with end stage liver disease irrespective of cirrhosis etiology.
+
+MELD 3.0 improves the accuracy of the MELD calculation by: 
+
+• Incorporating additional variables (albumin and sex) 
+
+• Updating coefficients for existing variables 
+
+• Introducing interaction terms 
+
+• Lowering the maximum creatinine value from 4.0 to 3.0 mg/dL.  
+
+MELD 3.0 will apply to all adult liver transplant candidates (registered after turning 18) and to adolescent candidates (age 12-17).  Both male and female adolescent candidates will receive the 1.33 points that will be provided to all adult female candidates. This is based on data that shows there is no sexbased disparity in the adolescent population [3]. ">
+			misuse = <"Only for ages 12 and above.
+
+Several conditions are “standard MELD exceptions” and receive a different score:  hepatocellular carcinoma, hepatopulmonary syndrome, portopulmonary hypertension, familial amyloid polyneuropathy, primary hyperoxaluria, cystic fibrosis, hilar cholangiocarcinoma and hepatic artery thrombosis.">
+		>
+	>
+	other_details = <
+		["references"] = <"1. Kim WR, Mannalithara A, Heimbach JK, Kamath PS, Asrani SK, Biggins SW, Wood NL, Gentry SE, Kwong AJ. MELD 3.0: The Model for End-Stage Liver Disease Updated for the Modern Era. Gastroenterology. 2021;161(6):1887-1895.e4. doi:10.1053/j.gastro.2021.08.050. Available from: https://www.sciencedirect.com/science/article/pii/S0016508521034697
+
+
+2. O’Leary JG, Bajaj JS. MELD 3.0: One Small Step for Womankind or One Big Step for Everyone? Gastroenterology. 2022;162(6):1780-1781. doi:10.1053/j.gastro.2021.09.014. Available from: https://www.sciencedirect.com/science/article/pii/S0016508521034934
+
+
+3. Improving Liver Allocation: MELD 3.0 FAQ [Internet]. 2023 Jul 13 [cited 2024 May 21]. Available from: https://optn.transplant.hrsa.gov/media/fyxhlkp5/improving-liver-allocation-meld-30-faq.pdf
+
+
+4. Trivedi, Hirsh D. MD1. The Evolution of the MELD Score and Its Implications in Liver Transplant Allocation: A Beginner's Guide for Trainees. ACG Case Reports Journal 9(5):p e00763, May 2022. | DOI: 10.14309/crj.0000000000000763 
+
+
+5. OPTN MELD serum sodium policy changes [Internet]. 2015 Nov 11 [cited 2024 May 21]. Available from: https://optn.transplant.hrsa.gov/news/meld-serum-sodium-policy-changes/">
+		["MD5-CAM-1.0.1"] = <"72410fb603313828b39d9bdbe19d978b">
+		["build_uid"] = <"ce1c7718-f2d5-3553-ac4f-ebeb8a4d69b1">
+		["revision"] = <"2024-05-25">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Model For End-Stage Liver Disease (MELD 3.0) score
+		data matches {
+			HISTORY[at0001] matches {    -- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- MELD 3.0
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"1">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- MELD 3.0 score
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"1">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Adjusted serum albumin
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"g/L">
+													>
+													["2"] = <
+														units = <"g/dL">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Adjusted total bilirubin
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mg/dL">
+													>
+													["2"] = <
+														units = <"umol/L">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Adjusted serum sodium
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mmol/L">
+													>
+													["2"] = <
+														units = <"meq/L">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- Adjusted serum creatinine
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mg/dL">
+													>
+													["2"] = <
+														units = <"umol/L">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Adjusted INR
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::507]>
+												list = <
+													["1"] = <
+														units = <"1">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Comment
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0015] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Model For End-Stage Liver Disease (MELD 3.0) score">
+					description = <"MELD 3.0, implemented 2023, is the current standard calculation for organ transplantation consideration in the United States.
+
+MELD 3.0 will address the sex-based disparity that has existed in liver allocation since the original MELD score was implemented. MELD 3.0 includes 1.33 points for candidates who are female. In addition, MELD 3.0 better predicts risk of waitlist mortality for all liver candidates compared to the earlier versions of MELD, by updating the coefficients for each of the variables in the score, adding albumin as a factor, introducing interaction terms, and lowering the maximum creatinine value from 4.0 to 3.0 mg/dL.  Thus providing patients a meaningfully higher chance of receiving an organ and possibly averting death compared to MELD NA score [1]. Furthermore, MELD 3.0 also finally addresses the disadvantage that women have faced in the liver allocation system since the inception of MELD [2].
+
+MELD 3.0 does not set a maximum score of 40. The cap was put in place when MELD was first implemented nearly two decades ago. The proportion of patients with high MELD scores awaiting transplantation has increased over time, and it has been observed that patients with MELD >40 experience greater waitlist mortality compared those with MELD 40, leading some to advocate removing the cap.20 MELD 3.0 was scaled in such a way that the distribution of the score is similar to prior scores without a presumption that the score would be capped at 40. [1].
+
+MELD 3.0 improves the accuracy of the MELD calculation by: 
+
+• Incorporating additional variables (albumin and sex)
+
+• Updating coefficients for existing variables • Introducing interaction terms 
+
+• Lowering the maximum creatinine value from 4.0 to 3.0 mg/dL [3]. 
+
+FORMULA:
+
+MELD 3.0 = 1.33*(Female) + 4.56*ln(Serum bilirubin) + 0.82*(137 - Sodium) – 0.24*(137 - Sodium)*ln(Serum bilirubin) + 9.09*ln(INR) + 11.14*ln(Serum creatinine) + 1.85*(3.5 – Serum albumin) – 1.83*(3.5 – Serum albumin)*ln(Serum creatinine) + 6, rounded to the nearest integer
+
+Additional rules:
+
+Serum bilirubin, INR, and serum creatinine values below 1.0 are set to 1.0.
+Sodium is limited to a range of 125-137 mEq/L, and if outside of these bounds, is set to the nearest limit.
+Serum albumin is limited to a range of 1.5-3.5 g/dL, and if outside of these bounds, is set to the nearest limit.
+Maximum serum creatinine is 3.0 mg/dL, and if above this bound, is set to 3.0 mg/dL.
+">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"MELD 3.0">
+					description = <"MELD 3.0, implemented 2023, is the current standard calculation for organ transplantation consideration in the United States.
+">
+				>
+				["at0005"] = <
+					text = <"MELD 3.0 score">
+					description = <"FORMULA:
+
+MELD 3.0 = 1.33*(Female) + 4.56*ln(Serum bilirubin) + 0.82*(137 - Sodium) – 0.24*(137 - Sodium)*ln(Serum bilirubin) + 9.09*ln(INR) + 11.14*ln(Serum creatinine) + 1.85*(3.5 – Serum albumin) – 1.83*(3.5 – Serum albumin)*ln(Serum creatinine) + 6, rounded to the nearest integer">
+				>
+				["at0009"] = <
+					text = <"Comment">
+					description = <"Additional information about the recordings.">
+				>
+				["at0010"] = <
+					text = <"Adjusted serum albumin">
+					description = <"Additional rules:
+Serum albumin is limited to a range of 1.5-3.5 g/dL, and if outside of these bounds, is set to the nearest limit.">
+				>
+				["at0011"] = <
+					text = <"Adjusted total bilirubin">
+					description = <"Additional rules: 
+Serum bilirubin, INR, and serum creatinine values below 1.0 are set to 1.0.
+">
+				>
+				["at0012"] = <
+					text = <"Adjusted serum sodium">
+					description = <"Additional rules:
+Sodium is limited to a range of 125-137 mEq/L, and if outside of these bounds, is set to the nearest limit.">
+				>
+				["at0013"] = <
+					text = <"Adjusted serum creatinine">
+					description = <"Additional rules: 
+Serum bilirubin, INR, and serum creatinine values below 1.0 are set to 1.0.
+
+Maximum serum creatinine is 3.0 mg/dL, and if above this bound, is set to 3.0 mg/dL.">
+				>
+				["at0014"] = <
+					text = <"Adjusted INR">
+					description = <"Additional rules: 
+Serum bilirubin, INR, and serum creatinine values below 1.0 are set to 1.0.
+">
+				>
+				["at0015"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Model For End-Stage Liver Disease (MELD 3.0) score (en)">
+					description = <"Model For End-Stage Liver Disease (MELD) Score används för att på kort sikt uppskatta mortalitet hos patienter med terminal leversjukdom och därigenom bedöma behov av levertransplantation.">
+				>
+				["at0001"] = <
+					text = <"*Event Series(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"*Any event(en)">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0004"] = <
+					text = <"*MELD 3.0 (en)">
+					description = <"Beräknat värde från ursprungliga, pre-2016, versionen av Model For End-Stage Liver Disease (MELD)">
+				>
+				["at0005"] = <
+					text = <"*MELD 3.0 score (en)">
+					description = <"Beräknat värde av den senaste (2016) versionen av Model For End-Stage Liver Disease (MELD).">
+				>
+				["at0009"] = <
+					text = <"Kommentar">
+					description = <"Ev tillägg">
+				>
+				["at0010"] = <
+					text = <"*Adjusted serum albumin (en)">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"*Adjusted total bilirubin (en)">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"*Adjusted serum sodium (en)">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"*Adjusted serum creatinine (en)">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"*Adjusted INR (en)">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"*Item tree (en)">
+					description = <"@ internal @">
+				>
+			>
+		>
+	>
