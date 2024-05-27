@@ -1,0 +1,205 @@
+archetype (adl_version=1.4; uid=a2b983ff-3aa0-47b5-b0bd-1271744a3a6c)
+	openEHR-EHR-OBSERVATION.meld_3_kostas.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2024-05-25">
+		["name"] = <"Konstantinos Kalliamvakos">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"konstantinos.kalliamvakos@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"meld 3">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"8a45115d4f8b861a8542c077821860fa">
+		["build_uid"] = <"232d6918-9253-30d8-80d8-012b4a568dbf">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- meld_3_kostas
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Adjusted creatinine
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"umol/L">
+													>
+													["2"] = <
+														units = <"mg/dL">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Adjusted bilirubin
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"umol/L">
+													>
+													["2"] = <
+														units = <"mg/dL">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Adjusted INR
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"1">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Adjusted sodium
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mmol/L">
+													>
+													["2"] = <
+														units = <"meq/L">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Adjusted albumin
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"g/dL">
+													>
+													["2"] = <
+														units = <"g/L">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Score
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"1">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Estimated 90-day survival
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::507]>
+												list = <
+													["1"] = <
+														units = <"%">
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0008] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"meld_3_kostas">
+					description = <"meld 3">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Adjusted creatinine">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Adjusted bilirubin">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Adjusted INR">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Adjusted sodium">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0009"] = <
+					text = <"Adjusted albumin">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Score">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Estimated 90-day survival">
+					description = <"">
+				>
+			>
+		>
+	>
