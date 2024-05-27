@@ -1,0 +1,61 @@
+current_datetime: 2024-05-23T09:00:00+02:00
+guidelines:
+  "1": MELD_3_0.v21-draft
+test_cases:
+  - id: Test case 1
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0067|Age: 20,a
+        gt0005|Total bilirubin: 1.2,mg/dl
+        gt0009|Serum Albumin: 4,gm/dl
+        gt0011|INR: 0.8,1
+        gt0013|serum Sodium (sNa): 138,mmol/l
+        gt0019|Serum Creatinine: 1,mg/dl
+    expected_output:
+      "1":
+        gt0017|Total bilirubin: 1.20,mg/dl
+        gt0021|Serum Creatinine: 1.00,mg/dl
+        gt0023|Serum Albumin: 3.5,gm/dl
+        gt0025|INR: 1,1
+        gt0027|serum Sodium (sNa): 137,mmol/l
+        gt0055|MELD score 3.0: "8"
+        gt0059|Estimated 90-day survival: "99.35168814496093"
+  - id: Test case 2
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0067|Age: 24,a
+        gt0005|Total bilirubin: 0.3,mg/dl
+        gt0009|Serum Albumin: 3.5,gm/dl
+        gt0011|INR: 1,1
+        gt0013|serum Sodium (sNa): 136,mmol/l
+        gt0019|Serum Creatinine: 0.7,mg/dl
+    expected_output:
+      "1":
+        gt0017|Total bilirubin: 1.00,mg/dl
+        gt0021|Serum Creatinine: 1,mg/dl
+        gt0023|Serum Albumin: 3.50,gm/dl
+        gt0025|INR: 1,1
+        gt0027|serum Sodium (sNa): 136,mmol/l
+        gt0055|MELD score 3.0: "8"
+        gt0059|Estimated 90-day survival: "99.35168814496093"
+  - id: Test case 3
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0067|Age: 40,a
+        gt0005|Total bilirubin: 1,mg/dl
+        gt0009|Serum Albumin: 1,gm/dl
+        gt0011|INR: 2,1
+        gt0013|serum Sodium (sNa): 125,mmol/l
+        gt0019|Serum Creatinine: 1,umol/l
+    expected_output:
+      "1":
+        gt0017|Total bilirubin: 1.00,mg/dl
+        gt0021|Serum Creatinine: 1.00,mg/dl
+        gt0023|Serum Albumin: 1.5,gm/dl
+        gt0025|INR: 2,1
+        gt0027|serum Sodium (sNa): 125,mmol/l
+        gt0055|MELD score 3.0: "27"
+        gt0059|Estimated 90-day survival: "82.88280004210893"

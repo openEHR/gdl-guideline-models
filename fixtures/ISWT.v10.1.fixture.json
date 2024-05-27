@@ -1,0 +1,59 @@
+current_datetime: 2024-05-17T04:00:00+02:00
+guidelines:
+  "1": ISWT.v10.1
+test_cases:
+  - id: "01"
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0004|Age: 56,a
+        gt0006|Height/Length: 170,cm
+        gt0008|Weight: 83,kg
+        gt0024|Distance Walked: 250,m
+    expected_output:
+      "1":
+        gt0011|Body mass index: "28.72"
+        gt0027|Predicted Distance: "1028"
+        gt0028|% of Predicted Distance: "24.3"
+        gt0029|Predicted VO2 Peak: "10.44"
+        gt0030|Predicted Peak Exc Capacity: "866.52"
+  - id: "02"
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 45,a
+        gt0006|Height/Length: 163,cm
+        gt0008|Weight: 78,kg
+        gt0024|Distance Walked: 560,m
+    expected_output:
+      "1":
+        gt0011|Body mass index: "29.358"
+        gt0027|Predicted Distance: "915"
+        gt0028|% of Predicted Distance: "61.2"
+        gt0029|Predicted VO2 Peak: "18.19"
+        gt0030|Predicted Peak Exc Capacity: "1418.82"
+  - id: "03"
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 15,a
+        gt0006|Height/Length: 156,cm
+        gt0008|Weight: 52,kg
+        gt0024|Distance Walked: 400,m
+    expected_output:
+      "1": {}
+  - id: "04"
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0004|Age: 76,a
+        gt0006|Height/Length: 180,cm
+        gt0008|Weight: 92,kg
+        gt0024|Distance Walked: 750,m
+    expected_output:
+      "1":
+        gt0011|Body mass index: "28.395"
+        gt0027|Predicted Distance: "794"
+        gt0028|% of Predicted Distance: "94.5"
+        gt0029|Predicted VO2 Peak: "22.94"
+        gt0030|Predicted Peak Exc Capacity: "2110.48"
