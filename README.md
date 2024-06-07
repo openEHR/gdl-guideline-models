@@ -110,6 +110,10 @@ _Select a medical specialty below to view the available apps._
 
 -----------
 
+[CDS App Challenge 2023 Submissions](https://github.com/openEHR/gdl-guideline-models#cds-app-challenge-2023-submissions)
+
+-----------
+
 ### Anesthesia
 
 ----------
@@ -1624,6 +1628,19 @@ _Select a medical specialty below to view the available apps._
 * STOP-BANG score - ([_ENG_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/STOP-BANG-Score/0?language=en))/([_ES_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/STOP-BANG-Score/0?language=es))
 
 * tPA Contraindications for Ischemic Stroke - ([_ENG_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/tPA_Contraindications_for_Ischemic_Stroke_guideline/0?language=en))
+-----------
+
+### CDS App Challenge 2023 submissions
+
+----------
+* ISWT (Incremental Shuttle Walk Test)  - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-app-challenge-2023/ISWT/16.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-app-challenge-2023/ISWT/16.1?language=sv))
+
+* DOWNES score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-app-challenge-2023/Downes_score/8.1.3?language=en))
+  
+* Diagnostic criteria for preeclampsia - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-app-challenge-2023/Diagnostic_criteria_for_preeclampsia/2.1?language=en))
+
+* MELD_3_0 - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-app-challenge-2023/MELD_3_0/3.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-app-challenge-2023/MELD_3_0/3.1?language=sv))
+----------
 
 ### Disclaimer
 
