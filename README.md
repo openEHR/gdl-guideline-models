@@ -1637,7 +1637,7 @@ _Select a medical specialty below to view the available apps._
 
 * DOWNES score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-app-challenge-2023/Downes_score/8.1.3?language=en))
   
-* Diagnostic criteria for preeclampsia - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-app-challenge-2023/Diagnostic_criteria_for_preeclampsia/2.1?language=en))
+* Diagnostic criteria for preeclampsia - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-app-challenge-2023/Diagnostic_criteria_for_preeclampsia/2.3?language=en))/([_GER_](https://modelling.cds-platform.com/ckm/view/ckm-app-challenge-2023/Diagnostic_criteria_for_preeclampsia/2.3?language=de))/([_ES_](https://modelling.cds-platform.com/ckm/view/ckm-app-challenge-2023/Diagnostic_criteria_for_preeclampsia/2.3?language=es))/([_CAT_](https://modelling.cds-platform.com/ckm/view/ckm-app-challenge-2023/Diagnostic_criteria_for_preeclampsia/2.3?language=ca))/([_FR_](https://modelling.cds-platform.com/ckm/view/ckm-app-challenge-2023/Diagnostic_criteria_for_preeclampsia/2.3?language=fr))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-app-challenge-2023/Diagnostic_criteria_for_preeclampsia/2.3?language=sv))
 
 * MELD_3_0 - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-app-challenge-2023/MELD_3_0/3.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-app-challenge-2023/MELD_3_0/3.1?language=sv))
 ----------
