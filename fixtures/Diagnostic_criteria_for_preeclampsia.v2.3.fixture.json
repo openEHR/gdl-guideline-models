@@ -1,0 +1,150 @@
+guidelines:
+  "1": Diagnostic_criteria_for_preeclampsia.v2.3
+test_cases:
+  - id: Preeclampsia with severe features
+    input:
+      "1":
+        gt0003|Quantitative urinary protein: 30,mg/dl
+        gt0009|Urine Creatinine: 300,umol/l
+        gt0017|Systolic: 170,mm[Hg]
+        gt0018|Diastolic: 95,mm[Hg]
+        gt0027|Pulmonary edema: local::at0025|Yes|
+    expected_output:
+      "1":
+        gt0005|Diagnostic criteria for preeclampsia: Use Preeclampsia with severe features criteria
+        gt0053|Observations/Differential Diagnoses: Preeclampsia with severe features
+  - id: Chronic hypertension with superimposed preeclampsia
+    input:
+      "1":
+        gt0003|Quantitative urinary protein: 30,mg/dl
+        gt0009|Urine Creatinine: 300,umol/l
+        gt0017|Systolic: 150,mm[Hg]
+        gt0018|Diastolic: 95,mm[Hg]
+        gt0027|Pulmonary edema: local::at0025|Yes|
+        gt0042|Hypertension diagnosed  before pregnancy  before 20 weeks of gestation and for at least 12 weeks postpartum: 0|local::at0013|Yes|
+    expected_output:
+      "1":
+        gt0005|Diagnostic criteria for preeclampsia: Meet Diagnostic criteria for preeclampsia
+        gt0053|Observations/Differential Diagnoses: Chronic hypertension with superimposed preeclampsia
+  - id: preeclampsia
+    input:
+      "1":
+        gt0003|Quantitative urinary protein: 30,mg/dl
+        gt0009|Urine Creatinine: 300,umol/l
+        gt0017|Systolic: 150,mm[Hg]
+        gt0018|Diastolic: 95,mm[Hg]
+        gt0027|Pulmonary edema: local::at0024|No|
+        gt0033|Proteinuria ≥0.3 g in a 24-hour urine: 1|local::at0021|Yes|
+        gt0041|Generalized seizures: 0|local::at0003|No|
+        gt0042|Hypertension diagnosed  before pregnancy  before 20 weeks of gestation and for at least 12 weeks postpartum: 1|local::at0012|No|
+    expected_output:
+      "1":
+        gt0005|Diagnostic criteria for preeclampsia: Meet Diagnostic criteria for preeclampsia
+        gt0053|Observations/Differential Diagnoses: Bood pressure measurements must show
+          hypertension on at least 2 occasions at least 4 hours apart after 20
+          weeks of gestation in a previously normotensive patient
+  - id: eclamsia
+    input:
+      "1":
+        gt0003|Quantitative urinary protein: 30,mg/dl
+        gt0009|Urine Creatinine: 300,umol/l
+        gt0017|Systolic: 150,mm[Hg]
+        gt0018|Diastolic: 95,mm[Hg]
+        gt0027|Pulmonary edema: local::at0024|No|
+        gt0033|Proteinuria ≥0.3 g in a 24-hour urine: 1|local::at0021|Yes|
+        "gt0032|Visual symptoms (eg, blurred vision, flashing lights or sparks, scotomata)": 0|local::at0032|No|
+        gt0041|Generalized seizures: 1|local::at0004|Yes|
+        gt0042|Hypertension diagnosed  before pregnancy  before 20 weeks of gestation and for at least 12 weeks postpartum: 1|local::at0012|No|
+    expected_output:
+      "1":
+        gt0005|Diagnostic criteria for preeclampsia: Meet Diagnostic criteria for preeclampsia
+        gt0053|Observations/Differential Diagnoses: Eclampsia
+  - id: Hellp
+    input:
+      "1":
+        gt0003|Quantitative urinary protein: 30,mg/dl
+        gt0009|Urine Creatinine: 300,umol/l
+        gt0017|Systolic: 150,mm[Hg]
+        gt0018|Diastolic: 95,mm[Hg]
+        gt0027|Pulmonary edema: local::at0024|No|
+        gt0033|Proteinuria ≥0.3 g in a 24-hour urine: 1|local::at0021|Yes|
+        "gt0032|Visual symptoms (eg, blurred vision, flashing lights or sparks, scotomata)": 0|local::at0032|No|
+        gt0040|Hemolysis: 1|local::at0007|Yes|
+        gt0041|Generalized seizures: 0|local::at0003|No|
+        gt0042|Hypertension diagnosed  before pregnancy  before 20 weeks of gestation and for at least 12 weeks postpartum: 1|local::at0012|No|
+    expected_output:
+      "1":
+        gt0005|Diagnostic criteria for preeclampsia: Meet Diagnostic criteria for preeclampsia
+        gt0053|Observations/Differential Diagnoses: HELLP syndrome
+  - id: HT and eclam
+    input:
+      "1":
+        gt0003|Quantitative urinary protein: 30,mg/dl
+        gt0009|Urine Creatinine: 300,umol/l
+        gt0017|Systolic: 150,mm[Hg]
+        gt0018|Diastolic: 95,mm[Hg]
+        gt0027|Pulmonary edema: local::at0024|No|
+        gt0033|Proteinuria ≥0.3 g in a 24-hour urine: 1|local::at0021|Yes|
+        "gt0032|Visual symptoms (eg, blurred vision, flashing lights or sparks, scotomata)": 0|local::at0032|No|
+        gt0040|Hemolysis: 0|local::at0006|No|
+        gt0041|Generalized seizures: 1|local::at0004|Yes|
+        gt0042|Hypertension diagnosed  before pregnancy  before 20 weeks of gestation and for at least 12 weeks postpartum: 0|local::at0013|Yes|
+    expected_output:
+      "1":
+        gt0005|Diagnostic criteria for preeclampsia: Consider Diagnostic criteria for eclampsia
+        gt0053|Observations/Differential Diagnoses: Chronic hypertension with superimposed eclampsia
+  - id: HT no pre
+    input:
+      "1":
+        gt0003|Quantitative urinary protein: 30,mg/dl
+        gt0009|Urine Creatinine: 300,umol/l
+        gt0017|Systolic: 150,mm[Hg]
+        gt0018|Diastolic: 95,mm[Hg]
+        gt0027|Pulmonary edema: local::at0024|No|
+        gt0033|Proteinuria ≥0.3 g in a 24-hour urine: 0|local::at0020|No|
+        "gt0032|Visual symptoms (eg, blurred vision, flashing lights or sparks, scotomata)": 0|local::at0032|No|
+        gt0040|Hemolysis: 0|local::at0006|No|
+        gt0041|Generalized seizures: 0|local::at0003|No|
+        gt0042|Hypertension diagnosed  before pregnancy  before 20 weeks of gestation and for at least 12 weeks postpartum: 0|local::at0013|Yes|
+    expected_output:
+      "1":
+        gt0005|Diagnostic criteria for preeclampsia: Do not meet Diagnostic criteria for preeclampsia
+        gt0053|Observations/Differential Diagnoses: Chronic (preexisting) hypertension
+  - id: HT gest
+    input:
+      "1":
+        gt0003|Quantitative urinary protein: 30,mg/dl
+        gt0009|Urine Creatinine: 300,umol/l
+        gt0017|Systolic: 150,mm[Hg]
+        gt0018|Diastolic: 99,mm[Hg]
+        gt0027|Pulmonary edema: local::at0024|No|
+        gt0033|Proteinuria ≥0.3 g in a 24-hour urine: 0|local::at0020|No|
+        gt0037|Doubling of the creatinine concentration (no kidney disease): 0|local::at0024|No|
+        "gt0032|Visual symptoms (eg, blurred vision, flashing lights or sparks, scotomata)": 0|local::at0032|No|
+        gt0040|Hemolysis: 0|local::at0006|No|
+        gt0041|Generalized seizures: 0|local::at0003|No|
+        gt0042|Hypertension diagnosed  before pregnancy  before 20 weeks of gestation and for at least 12 weeks postpartum: 1|local::at0012|No|
+    expected_output:
+      "1":
+        gt0005|Diagnostic criteria for preeclampsia: Do not meet Diagnostic criteria for preeclampsia
+        gt0053|Observations/Differential Diagnoses: Gestational hypertension
+  - id: HT + prsev
+    input:
+      "1":
+        gt0003|Quantitative urinary protein: 30,mg/dl
+        gt0009|Urine Creatinine: 300,umol/l
+        gt0017|Systolic: 150,mm[Hg]
+        gt0018|Diastolic: 120,mm[Hg]
+        gt0027|Pulmonary edema: local::at0024|No|
+        gt0033|Proteinuria ≥0.3 g in a 24-hour urine: 0|local::at0020|No|
+        gt0034|Dipstick ≥2+: 1|local::at0019|Yes|
+        gt0037|Doubling of the creatinine concentration (no kidney disease): 0|local::at0024|No|
+        "gt0032|Visual symptoms (eg, blurred vision, flashing lights or sparks, scotomata)": 0|local::at0032|No|
+        gt0040|Hemolysis: 0|local::at0006|No|
+        gt0041|Generalized seizures: 0|local::at0003|No|
+        gt0042|Hypertension diagnosed  before pregnancy  before 20 weeks of gestation and for at least 12 weeks postpartum: 0|local::at0013|Yes|
+    expected_output:
+      "1":
+        gt0005|Diagnostic criteria for preeclampsia: Meet Diagnostic criteria for preeclampsia
+        gt0053|Observations/Differential Diagnoses: Chronic hypertension with
+          superimposed preeclampsia with severe features

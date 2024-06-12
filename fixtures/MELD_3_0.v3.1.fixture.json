@@ -1,0 +1,88 @@
+current_datetime: 2024-05-24T15:00:00+02:00
+guidelines:
+  "1": MELD_3_0.v3.1
+test_cases:
+  - id: Test case 1
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0067|Age: 13,a
+        gt0005|Total bilirubin: 5,mg/dl
+        gt0009|Serum Albumin: 5,gm/dl
+        gt0011|INR: 1,1
+        gt0013|serum Sodium (sNa): 120,mmol/l
+        gt0019|Serum Creatinine: 2,mg/dl
+    expected_output:
+      "1":
+        gt0075|MELD score 3.0: "28"
+        gt0059|Estimated 90-day survival: "79.9"
+  - id: Test case 2
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0067|Age: 35,a
+        gt0005|Total bilirubin: 5,µmol/l
+        gt0009|Serum Albumin: 20,gm/l
+        gt0011|INR: 3,1
+        gt0013|serum Sodium (sNa): 150,mmol/l
+        gt0019|Serum Creatinine: 3.5,mg/dl
+    expected_output:
+      "1":
+        gt0075|MELD score 3.0: "28"
+        gt0059|Estimated 90-day survival: "79.9"
+  - id: Test case 3
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0067|Age: 44,a
+        gt0005|Total bilirubin: 35,µmol/l
+        gt0009|Serum Albumin: 1,gm/dl
+        gt0011|INR: 0.8,1
+        gt0013|serum Sodium (sNa): 125,mmol/l
+        gt0019|Serum Creatinine: 71,umol/l
+    expected_output:
+      "1":
+        gt0075|MELD score 3.0: "21"
+        gt0059|Estimated 90-day survival: "93.7"
+  - id: Test case 4
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0067|Age: 70,a
+        gt0005|Total bilirubin: 10,mg/dl
+        gt0009|Serum Albumin: 20,gm/l
+        gt0011|INR: 3,1
+        gt0013|serum Sodium (sNa): 110,mmol/l
+        gt0019|Serum Creatinine: 2.5,mg/dl
+    expected_output:
+      "1":
+        gt0075|MELD score 3.0: "41"
+        gt0059|Estimated 90-day survival: "10.7"
+  - id: Test case 5
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0067|Age: 17,a
+        gt0005|Total bilirubin: 2,mg/dl
+        gt0009|Serum Albumin: 3,gm/dl
+        gt0011|INR: 2,1
+        gt0013|serum Sodium (sNa): 130,mmol/l
+        gt0019|Serum Creatinine: 0.2,mg/dl
+    expected_output:
+      "1":
+        gt0075|MELD score 3.0: "22"
+        gt0059|Estimated 90-day survival: "92.5"
+  - id: Test case 6 (same as adolescent man test case 5)
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0067|Age: 20,a
+        gt0005|Total bilirubin: 2,mg/dl
+        gt0009|Serum Albumin: 3,gm/dl
+        gt0011|INR: 2,1
+        gt0013|serum Sodium (sNa): 130,mmol/l
+        gt0019|Serum Creatinine: 0.2,mg/dl
+    expected_output:
+      "1":
+        gt0075|MELD score 3.0: "22"
+        gt0059|Estimated 90-day survival: "92.5"
