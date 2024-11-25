@@ -1,0 +1,383 @@
+(GUIDE) <
+	gdl_version = <"0.1">
+	id = <"4 Ts HIT score assessment.v1">
+	concept = <"gt0001">
+	language = (LANGUAGE) <
+		original_language = <[ISO_639-1::en]>
+	>
+	description = (RESOURCE_DESCRIPTION) <
+		details = <
+			["en"] = (RESOURCE_DESCRIPTION_ITEM) <
+				copyright = <"© Cambio Healthcare Systems">
+				keywords = <"thrombocytopenia", "HIT", "Heparin", "Heparin Induced Thrombocytopenia">
+				misuse = <"Any positive scores should lead to further clinical evidence to provide further support to the result and so the tool should not be used on its own.">
+				purpose = <"The 4 Ts (the 4 parts of the tool starting with \"T\") score helps to stratify patients at risk of HIT (Heparin induced thrombocytopenia) among those at risk of thrombocytopen ia overall and who are taking heparin-based substances.">
+				use = <"Those patients in the low risk group do not require further investigation for HIT.
+Those patients in the intermediate or high risk groups should warrant further investigation and/or changing to other anti-coagulants without heparin.
+
+There are 4 areas that are scored and each one is scored either 0,1 or 2:
+
+- Thrombocytopenia
+- Timing of platelet count fall
+- Thrombosis or other sequelae
+- Other causes for thrombocytopenia
+
+Interpretation:
+•≤3 points: low probability for HIT (≤5% in the original study).
+• 4-5 points: intermediate probability (~14% probability of HIT).
+• 6-8 points: high probability (~64% probability of HIT).">
+			>
+			["sv"] = (RESOURCE_DESCRIPTION_ITEM) <
+				copyright = <"© Cambio Healthcare Systems">
+				keywords = <"trombocytopeni", "heparin", "heparininducerad trombocytopeni">
+				misuse = <"Instrumentet är ej avsett för isolerat bruk utan används understödjande till vidare inhämtad klinisk data.">
+				purpose = <"Utvärdering av poäng genererad i enlighet med 4 Ts (instrumentets fyra beståndsdelar börjar med bokstaven T) score, vilken understödjer riskstratifiering för heparininducerad trombocytopeni (HIT) bland patienter som intar heparinbaserade substanser.">
+				use = <"För patienter i lågriskgruppen är vidare utredning med avseende på heparininducerad trombocytopeni (HIT) ej nödvändig.
+För patienter i mellan- eller högriskgrupp är vidare utredning indicerad och byte till annan antikoagulantia bör övervägas.
+
+Fyra områden poängsätts med 0-2p:
+- Trombocytopeni
+- Tidsintervall (dag 0 motsvarar första heparindosen)
+- Trombos eller annan förändring
+- Trombocytopeni av annan orsak
+
+Tolkning av resultat, med avseende på risk för HIT-utveckling:
+•≤3 poäng: låg sannolikhet (≤5%).
+• 4-5 poäng: mellanrisk (~14%).
+• 6-8 poäng: hög sannolikhet (~64%).">
+			>
+		>
+		lifecycle_state = <"Author draft">
+		original_author = <
+			["date"] = <"2017-05-07">
+			["email"] = <"syeeda.farruque@cambiocds.com">
+			["name"] = <"Syeeda S Farruque">
+			["organisation"] = <"Cambio Healthcare Systems">
+		>
+		other_contributors = <"Dennis Forslund, Cambio Healthcare Systems",...>
+		other_details = <
+			["references"] = <"Ref. 1: Lo GK, Juhl D, Warkentin TE, Sigouin CS, Eichler P, Greinacher A. Evaluation of pretest clinical score (4 Ts) for the diagnosis of heparin-induced thrombocytopenia in two clinical settings. J Thromb Haemost 2006; 4: 759–65.
+
+Ref. 2: Vatanparast R, Lantz S, Ward K, Crilley PA, Styler M. Evaluation of a pretest scoring system (4Ts) for the diagnosis of heparin-induced thrombocytopenia in a university hospital setting. Postgrad Med. 2012 Nov;124(6):36-42.
+">
+		>
+	>
+	definition = (GUIDE_DEFINITION) <
+		archetype_bindings = <
+			["gt0002"] = (ARCHETYPE_BINDING) <
+				archetype_id = <"openEHR-EHR-OBSERVATION.four_ts_heparin_induced_thrombocytopenia.v1">
+				domain = <"CDS">
+				elements = <
+					["gt0012"] = (ELEMENT_BINDING) <
+						path = <"/data[at0001]/events[at0002]/data[at0003]/items[at0008]">
+					>
+				>
+			>
+			["gt0034"] = (ARCHETYPE_BINDING) <
+				archetype_id = <"openEHR-EHR-EVALUATION.four_ts_hit_assessment.v1">
+				domain = <"CDS">
+				elements = <
+					["gt0035"] = (ELEMENT_BINDING) <
+						path = <"/data[at0001]/items[at0002]">
+					>
+					["gt0036"] = (ELEMENT_BINDING) <
+						path = <"/data[at0001]/items[at0010]">
+					>
+				>
+			>
+		>
+		rules = <
+			["gt0037"] = (RULE) <
+				when = <"$gt0012<=3",...>
+				then = <"$gt0035=0|local::at0005|Low Risk: ≤3|", "$gt0036=0|local::at0011|No intervention required|">
+				priority = <3>
+			>
+			["gt0038"] = (RULE) <
+				when = <"$gt0012<=5", "$gt0012>=4">
+				then = <"$gt0035=1|local::at0006|Intermediate Risk: 4-5|", "$gt0036=1|local::at0012|Intervention required|">
+				priority = <2>
+			>
+			["gt0039"] = (RULE) <
+				when = <"$gt0012<=8", "$gt0012>=6">
+				then = <"$gt0035=2|local::at0007|High Risk: 6-8|", "$gt0036=1|local::at0012|Intervention required|">
+				priority = <1>
+			>
+		>
+	>
+	ontology = (GUIDE_ONTOLOGY) <
+		term_definitions = <
+			["en"] = (TERM_DEFINITION) <
+				terms = <
+					["gt0001"] = (TERM) <
+						text = <"4 Ts HIT assessment">
+						description = <"4 Ts score for heparin induced thrombocytopenia (HIT). Differentiates patients with HIT from those with other causes of thrombocytopenia.">
+					>
+					["gt0004"] = (TERM) <
+						text = <"Thrombocytopenia">
+						description = <"*">
+					>
+					["gt0005"] = (TERM) <
+						text = <"Timing of platelet count fall">
+						description = <"*">
+					>
+					["gt0006"] = (TERM) <
+						text = <"Thrombosis or other sequelae">
+						description = <"*">
+					>
+					["gt0007"] = (TERM) <
+						text = <"Other causes for thrombocytopenia">
+						description = <"*">
+					>
+					["gt0008"] = (TERM) <
+						text = <"Thrombocytopenia">
+						description = <"*">
+					>
+					["gt0009"] = (TERM) <
+						text = <"Timing of platelet count fall">
+						description = <"*">
+					>
+					["gt0010"] = (TERM) <
+						text = <"Thrombosis or other sequelae">
+						description = <"*">
+					>
+					["gt0011"] = (TERM) <
+						text = <"Other causes for thrombocytopenia">
+						description = <"*">
+					>
+					["gt0012"] = (TERM) <
+						text = <"Total score">
+						description = <"Total sum of the 4 parts of this tool">
+					>
+					["gt0013"] = (TERM) <
+						text = <"Set Default">
+					>
+					["gt0014"] = (TERM) <
+						text = <"Set Thrombocytopenia">
+					>
+					["gt0015"] = (TERM) <
+						text = <"Set Timing of platlet count">
+					>
+					["gt0016"] = (TERM) <
+						text = <"Set Thrombosis">
+					>
+					["gt0017"] = (TERM) <
+						text = <"Set other causes">
+					>
+					["gt0018"] = (TERM) <
+						text = <"Calculate score">
+					>
+					["gt0020"] = (TERM) <
+						text = <"Risk level">
+						description = <"Interpretation:
+≤3 points: low probability for HIT (≤5% in the original study).
+4-5 points: intermediate probability (~14% probability of HIT).
+6-8 points: high probability (~64% probability of HIT).">
+					>
+					["gt0021"] = (TERM) <
+						text = <"Management">
+						description = <"Those patients in the low risk group do not require further investigation for HIT.
+Those patients in the intermediate or high risk groups should warrant further investigation and/or changing to other anti-coagulants without heparin.">
+					>
+					["gt0022"] = (TERM) <
+						text = <"Total score">
+						description = <"Total sum of the 4 parts of this tool">
+					>
+					["gt0023"] = (TERM) <
+						text = <"score">
+					>
+					["gt0024"] = (TERM) <
+						text = <"Low Risk">
+					>
+					["gt0025"] = (TERM) <
+						text = <"Intermediate risk">
+					>
+					["gt0026"] = (TERM) <
+						text = <"Management">
+						description = <"Those patients in the low risk group do not require further investigation for HIT.
+Those patients in the intermediate or high risk groups should warrant further investigation and/or changing to other anti-coagulants without heparin.">
+					>
+					["gt0027"] = (TERM) <
+						text = <"Low risk">
+					>
+					["gt0028"] = (TERM) <
+						text = <"Intermediate risk">
+					>
+					["gt0029"] = (TERM) <
+						text = <"HIgh risk">
+					>
+					["gt0031"] = (TERM) <
+						text = <"Risk level">
+						description = <"Interpretation:
+≤3 points: low probability for HIT (≤5% in the original study).
+4-5 points: intermediate probability (~14% probability of HIT).
+6-8 points: high probability (~64% probability of HIT).">
+					>
+					["gt0032"] = (TERM) <
+						text = <"Management">
+						description = <"Those patients in the low risk group do not require further investigation for HIT.
+Those patients in the intermediate or high risk groups should warrant further investigation and/or changing to other anti-coagulants without heparin.">
+					>
+					["gt0033"] = (TERM) <
+						text = <"Low risk">
+					>
+					["gt0035"] = (TERM) <
+						text = <"Risk level">
+						description = <"Interpretation:
+≤3 points: low probability for HIT (≤5% in the original study).
+4-5 points: intermediate probability (~14% probability of HIT).
+6-8 points: high probability (~64% probability of HIT).">
+					>
+					["gt0036"] = (TERM) <
+						text = <"Management">
+						description = <"Management dependant on risk level">
+					>
+					["gt0037"] = (TERM) <
+						text = <"Low risk">
+					>
+					["gt0038"] = (TERM) <
+						text = <"Intermediate risk">
+					>
+					["gt0039"] = (TERM) <
+						text = <"High risk">
+					>
+				>
+			>
+			["sv"] = (TERM_DEFINITION) <
+				terms = <
+					["gt0001"] = (TERM) <
+						text = <"4 Ts HIT utvärdering">
+						description = <"Utvärdering av poäng genererad i enlighet med 4 Ts score för heparininducerad trombocytopeni (HIT). Differentierar HIT från andra orsaker till trombocytopeni.">
+					>
+					["gt0004"] = (TERM) <
+						text = <"Trombocytopeni">
+						description = <"*(en) *">
+					>
+					["gt0005"] = (TERM) <
+						text = <"Tidsintervall (dag 0 motsvarar första heparindosen)">
+						description = <"*(en) *">
+					>
+					["gt0006"] = (TERM) <
+						text = <"Trombos eller annan förändring">
+						description = <"*(en) *">
+					>
+					["gt0007"] = (TERM) <
+						text = <"Trombocytopeni av annan orsak">
+						description = <"*(en) *">
+					>
+					["gt0008"] = (TERM) <
+						text = <"Trombocytopeni">
+						description = <"*(en) *">
+					>
+					["gt0009"] = (TERM) <
+						text = <"Tidsintervall (dag 0 motsvarar första heparindosen)">
+						description = <"*(en) *">
+					>
+					["gt0010"] = (TERM) <
+						text = <"Trombos eller annan förändring">
+						description = <"*(en) *">
+					>
+					["gt0011"] = (TERM) <
+						text = <"Trombocytopeni av annan orsak">
+						description = <"*(en) *">
+					>
+					["gt0012"] = (TERM) <
+						text = <"Total poäng">
+						description = <"*(en) Total sum of the 4 parts of this tool">
+					>
+					["gt0013"] = (TERM) <
+						text = <"CDS standard">
+					>
+					["gt0014"] = (TERM) <
+						text = <"CDS Trombocytopeni">
+					>
+					["gt0015"] = (TERM) <
+						text = <"CDS Tidsintervall (dag 0 motsvarar första heparindosen)">
+					>
+					["gt0016"] = (TERM) <
+						text = <"CDS Trombos eller annan förändring">
+					>
+					["gt0017"] = (TERM) <
+						text = <"CDS Trombocytopeni av annan orsak">
+					>
+					["gt0018"] = (TERM) <
+						text = <"Beräkna resultat">
+					>
+					["gt0020"] = (TERM) <
+						text = <"Risknivå">
+						description = <"*(en) Interpretation:
+≤3 points: low probability for HIT (≤5% in the original study).
+4-5 points: intermediate probability (~14% probability of HIT).
+6-8 points: high probability (~64% probability of HIT).">
+					>
+					["gt0021"] = (TERM) <
+						text = <"Rekommendation">
+						description = <"*(en) Those patients in the low risk group do not require further investigation for HIT.
+Those patients in the intermediate or high risk groups should warrant further investigation and/or changing to other anti-coagulants without heparin.">
+					>
+					["gt0022"] = (TERM) <
+						text = <"Total poäng">
+						description = <"*(en) Total sum of the 4 parts of this tool">
+					>
+					["gt0023"] = (TERM) <
+						text = <"Poäng">
+					>
+					["gt0024"] = (TERM) <
+						text = <"Låg risk">
+					>
+					["gt0025"] = (TERM) <
+						text = <"Mellanrisk">
+					>
+					["gt0026"] = (TERM) <
+						text = <"Rekommendation">
+						description = <"*(en) Those patients in the low risk group do not require further investigation for HIT.
+Those patients in the intermediate or high risk groups should warrant further investigation and/or changing to other anti-coagulants without heparin.">
+					>
+					["gt0027"] = (TERM) <
+						text = <"Låg risk">
+					>
+					["gt0028"] = (TERM) <
+						text = <"Mellanrisk">
+					>
+					["gt0029"] = (TERM) <
+						text = <"Hög risk">
+					>
+					["gt0031"] = (TERM) <
+						text = <"Risknivå">
+						description = <"*(en) Interpretation:
+≤3 points: low probability for HIT (≤5% in the original study).
+4-5 points: intermediate probability (~14% probability of HIT).
+6-8 points: high probability (~64% probability of HIT).">
+					>
+					["gt0032"] = (TERM) <
+						text = <"Rekommendation">
+						description = <"*(en) Those patients in the low risk group do not require further investigation for HIT.
+Those patients in the intermediate or high risk groups should warrant further investigation and/or changing to other anti-coagulants without heparin.">
+					>
+					["gt0033"] = (TERM) <
+						text = <"Låg risk">
+					>
+					["gt0035"] = (TERM) <
+						text = <"Risknivå">
+						description = <"*(en) Interpretation:
+≤3 points: low probability for HIT (≤5% in the original study).
+4-5 points: intermediate probability (~14% probability of HIT).
+6-8 points: high probability (~64% probability of HIT).">
+					>
+					["gt0036"] = (TERM) <
+						text = <"Rekommendation">
+						description = <"*(en) Management dependant on risk level">
+					>
+					["gt0037"] = (TERM) <
+						text = <"Låg risk">
+					>
+					["gt0038"] = (TERM) <
+						text = <"Mellanrisk">
+					>
+					["gt0039"] = (TERM) <
+						text = <"Hög risk">
+					>
+				>
+			>
+		>
+	>
+>
