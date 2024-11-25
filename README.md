@@ -24,7 +24,7 @@ If you would like to test an app, simply click on "ENG" to access the English ve
 5. MAGGIC Risk Calculator for Heart Failure - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MAGGIC_Risk_Calculator_for_Heart_Failure_guideline/1?language=en))
 6. Acute Decompensated Heart Failure National Registry (ADHERE) Algorithm - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Acute_decompensated_heart_failure_national_registry_adhere_algorithm.v0.gdl2/0?language=en))
 7. Patient Activity Scale II (PAS II) for RA - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Patient_Activity_Scale_II_PAS_II_for_RA_guideline/1?language=en))
-8. BISAP Score for Pancreatitis Mortality - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BISAP_score/1?language=en))
+8. BISAP Score for Pancreatitis Mortality - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BISAP_Score/1?language=en))
 9. NEXUS Chest Decision Instrument for Blunt Chest Trauma - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Nexus_chest_decision_instrument_for_blunt_chest_trauma/1?language=en))
 10. EVendo Score for Esophageal Varices - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/EVendo_Score_for_Esophageal_Varices/1?language=en))
 
@@ -208,7 +208,7 @@ _Select a medical specialty below to view the available apps._
 
 * Framingham Heart Failure Diagnostic Criteria - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Framingham_Heart_Failure_Diagnostic_Criteria_guideline/1?language=en))
 
-* Get With The Guidelines in Heart Failure Risk Score (GWTG-HF) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/GWTG_HF_risk_score/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/GWTG_HF_risk_score/1?language=sv))
+* Get With The Guidelines in Heart Failure Risk Score (GWTG-HF) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/GWTG_HF/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/GWTG_HF/1?language=sv))
 
 * Global Registry of Acute Coronary Events (GRACE) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/GRACE_ACS/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/GRACE_ACS/1?language=sv))
 
