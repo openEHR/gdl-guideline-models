@@ -17,7 +17,7 @@ If you would like to test an app, simply click on "ENG" to access the English ve
 
 ### Latest added
 
-1. Trauma Injury Severity Score (TRISS) - ([_ENG_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/TRISS/1?language=en))
+1. Trauma Injury Severity Score (TRISS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/TRISS/1?language=en))
 2. Villalta Score for Post-thrombotic Syndrome (PTS) - ([_ENG_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/villalta_score/1?language=en))
 3. Elderly Mobility Scale (EMS) - ([_ENG_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/EMS/1?language=en))
 4. Pediatric Trauma BIG Score - ([_ENG_](https://development.cds-platform.com/ckm/clinical-knowledge-manager/demo/view/Pediatric_trauma_BIG_score/1?language=en))
