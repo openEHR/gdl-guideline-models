@@ -21,6 +21,13 @@ description
 		["date"] = <"2020-03-17">
 	>
 	details = <
+		["hu"] = <
+			language = <[ISO_639-1::hu]>
+			purpose = <"">
+			use = <"">
+			misuse = <"">
+			copyright = <"">
+		>
 		["en"] = <
 			language = <[ISO_639-1::en]>
 			purpose = <"Determines the degree of illness of a patient and prompts critical care intervention (recommended by NHS over original NEWS).">
@@ -46,19 +53,12 @@ Score of 3 in any individual pr	Low-medium	Minimum every hr	Urgent review by a w
 May not be reliable in patients with spinal cord injury due to functional disturbance of autonomic responses.">
 			copyright = <"Cambio CDS">
 		>
-		["hu"] = <
-			language = <[ISO_639-1::hu]>
-			purpose = <"">
-			use = <"">
-			misuse = <"">
-			copyright = <"">
-		>
 	>
 	lifecycle_state = <"0">
 	other_contributors = <>
 	other_details = <
 		["references"] = <"[1] Royal College of Physicians. National Early Warning Score (NEWS) 2: Standardising the assessment of acute-illness severity in the NHS. Updated report of a working party. London: RCP, 2017.">
-		["MD5-CAM-1.0.1"] = <"5D815DA6B77185002805685E503A1B90">
+		["MD5-CAM-1.0.1"] = <"600C50B12B5190E29B80F9F519B2CDA1">
 	>
 
 definition
@@ -88,6 +88,17 @@ definition
 							1|[local::at0014], 	-- Urgent review by a ward-based doctor, to decide change in frequency of clinical monitoring or escalation of care
 							2|[local::at0015], 	-- Urgent review by a ward-based doctor or acute team nurse, to decide if critical care team assessment is needed
 							3|[local::at0016]  	-- Emergent assessment by a clinical team or critical care team and usually transfer to higher level of care
+						}
+					}
+					ELEMENT[at0017] occurrences matches {0..1} matches {	-- Oxygen saturation target
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0018, 	-- > 92%
+									at0019]	-- 88-92%
+								}
+							}
 						}
 					}
 				}
@@ -167,6 +178,18 @@ ontology
 					text = <"*Emergent assessment by a clinical team or critical care team and usually transfer to higher level of care(hu)">
 					description = <"**(hu)">
 				>
+				["at0017"] = <
+					text = <"*New element(hu)">
+					description = <"**(hu)">
+				>
+				["at0018"] = <
+					text = <"*No(hu)">
+					description = <"**(hu)">
+				>
+				["at0019"] = <
+					text = <"*Yes(hu)">
+					description = <"**(hu)">
+				>
 			>
 		>
 		["en"] = <
@@ -237,6 +260,18 @@ ontology
 				>
 				["at0016"] = <
 					text = <"Emergent assessment by a clinical team or critical care team and usually transfer to higher level of care">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Oxygen saturation target">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"> 92%">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"88-92%">
 					description = <"*">
 				>
 			>
