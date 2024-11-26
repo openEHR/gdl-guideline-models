@@ -1593,7 +1593,7 @@ _Select a medical specialty below to view the available apps._
 
 * Predictive criteria for covid-19 cytokine storm - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Predictive_criteria_for_COVID-19_cytokine_storm/0?language=en))
 
-* ROX index - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/rox_index_final/0?language=en))/([_GER_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/rox_index_final/0?language=de))/([_RU_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/rox_index_final/0?language=ru))
+* ROX index - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/rox_index/1?language=en))/([_GER_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/rox_index/1?language=de))/([_RU_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/rox_index/1?language=ru))
 
 * UKELD score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/UKELD_score/1?language=en))
 -----------
