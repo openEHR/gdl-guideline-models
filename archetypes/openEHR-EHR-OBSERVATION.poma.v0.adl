@@ -1,0 +1,524 @@
+archetype (adl_version=1.4; uid=2fed2429-3f74-4e47-be85-ab1fa9e07252)
+	openEHR-EHR-OBSERVATION.poma.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2024-11-27">
+		["name"] = <"Konstantinos Kalliamvakos">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"konstantinos.kalliamvakos@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and their total sum for the Tinetti Performance Oriented Mobility Assessment.">
+			keywords = <"Tinetti","POMA","performance","oriented","mobility","assessment","balance","gait">
+			copyright = <"Cambio Healthcare Systems">
+			use = <"Use to record the results for each component parameter and their total sum for the Tinetti Performance Oriented Mobility Assessment.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Tinetti ME, Williams TF, Mayewski R. Fall risk index for elderly patients based on number of chronic disabilities. Am J Med. 1986 Mar;80(3):429-34. doi: 10.1016/0002-9343(86)90717-5. PMID: 3953620.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"be53c664-9ff3-370d-928f-7f65ed8a9e0e">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Tinetti Performance Oriented Mobility Assessment (POMA)
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									CLUSTER[at0004] occurrences matches {0..1} matches {    -- Balance
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0005] occurrences matches {0..1} matches {    -- 1 - Sitting balance
+												value matches {
+													0|[local::at0006],
+													1|[local::at0007]
+												}
+											}
+											ELEMENT[at0008] occurrences matches {0..1} matches {    -- 2 - Rises from chair
+												value matches {
+													0|[local::at0009],
+													1|[local::at0010],
+													2|[local::at0011]
+												}
+											}
+											ELEMENT[at0012] occurrences matches {0..1} matches {    -- 3 - Attempts to rise
+												value matches {
+													0|[local::at0013],
+													1|[local::at0014],
+													2|[local::at0015]
+												}
+											}
+											ELEMENT[at0016] occurrences matches {0..1} matches {    -- 4 - Immediate standing balance
+												value matches {
+													0|[local::at0017],
+													1|[local::at0018],
+													2|[local::at0019]
+												}
+											}
+											ELEMENT[at0020] occurrences matches {0..1} matches {    -- 5 - Standing balance
+												value matches {
+													0|[local::at0021],
+													1|[local::at0022],
+													2|[local::at0023]
+												}
+											}
+											ELEMENT[at0024] occurrences matches {0..1} matches {    -- 6 - Nudged
+												value matches {
+													0|[local::at0025],
+													1|[local::at0026],
+													2|[local::at0027]
+												}
+											}
+											ELEMENT[at0028] occurrences matches {0..1} matches {    -- 7 - Eyes closed
+												value matches {
+													0|[local::at0029],
+													1|[local::at0030]
+												}
+											}
+											ELEMENT[at0031] occurrences matches {0..1} matches {    -- 8A - Turning 360 degrees (steps)
+												value matches {
+													0|[local::at0032],
+													1|[local::at0033]
+												}
+											}
+											ELEMENT[at0034] occurrences matches {0..1} matches {    -- 8B - Turning 360 degrees (steadiness)
+												value matches {
+													0|[local::at0035],
+													1|[local::at0036]
+												}
+											}
+											ELEMENT[at0037] occurrences matches {0..1} matches {    -- 9 - Sitting down
+												value matches {
+													0|[local::at0038],
+													1|[local::at0039],
+													2|[local::at0040]
+												}
+											}
+										}
+									}
+									CLUSTER[at0041] occurrences matches {0..1} matches {    -- Gait
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0042] occurrences matches {0..1} matches {    -- 10 - Indication of gait
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0045] occurrences matches {0..1} matches {    -- 11A - Step length and height (Right)
+												value matches {
+													0|[local::at0046],
+													1|[local::at0047]
+												}
+											}
+											ELEMENT[at0048] occurrences matches {0..1} matches {    -- 11B - Step length and height (Left)
+												value matches {
+													0|[local::at0049],
+													1|[local::at0050]
+												}
+											}
+											ELEMENT[at0051] occurrences matches {0..1} matches {    -- 12A - Foot clearance (Right)
+												value matches {
+													0|[local::at0052],
+													1|[local::at0053]
+												}
+											}
+											ELEMENT[at0054] occurrences matches {0..1} matches {    -- 12B - Foot clearance (Left)
+												value matches {
+													0|[local::at0055],
+													1|[local::at0056]
+												}
+											}
+											ELEMENT[at0057] occurrences matches {0..1} matches {    -- 13 - Step symmetry
+												value matches {
+													0|[local::at0058],
+													1|[local::at0059]
+												}
+											}
+											ELEMENT[at0060] occurrences matches {0..1} matches {    -- 14 - Step continuity
+												value matches {
+													0|[local::at0061],
+													1|[local::at0062]
+												}
+											}
+											ELEMENT[at0063] occurrences matches {0..1} matches {    -- 15 - Path
+												value matches {
+													0|[local::at0064],
+													1|[local::at0065],
+													2|[local::at0066]
+												}
+											}
+											ELEMENT[at0067] occurrences matches {0..1} matches {    -- 16 - Trunk
+												value matches {
+													0|[local::at0068],
+													1|[local::at0069],
+													2|[local::at0070]
+												}
+											}
+											ELEMENT[at0071] occurrences matches {0..1} matches {    -- 17 - Walking time
+												value matches {
+													0|[local::at0072],
+													1|[local::at0073]
+												}
+											}
+										}
+									}
+									ELEMENT[at0074] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											DV_COUNT matches {
+												magnitude matches {|0..28|}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0075] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0076] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Tinetti Performance Oriented Mobility Assessment (POMA)">
+					description = <"An assessment tool used to predict the risk of falling in patients.">
+					comment = <"Original version, c 1986">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Balance">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"1 - Sitting balance">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Leans or slides in chair">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Steady, safe">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"2 - Rises from chair">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Unable to without help">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Able, uses arms to help">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Able without use of arms">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"3 - Attempts to rise">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Unable to without help">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Able, requires > 1 attempt">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Able to rise, 1 attempt">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"4 - Immediate standing balance">
+					description = <"First 5 seconds.">
+				>
+				["at0017"] = <
+					text = <"Unsteady">
+					description = <"Staggers, moves feet, trunk sway">
+				>
+				["at0018"] = <
+					text = <"Steady but uses walker or other support">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Steady without walker or other support">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"5 - Standing balance">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Unsteady">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Steady but wide stance and uses support">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Narrow stance without support">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"6 - Nudged">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Begins to fall">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Staggers, grabs, catches self">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Steady">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"7 - Eyes closed">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Unsteady">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Steady">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"8A - Turning 360 degrees (steps)">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Discontinuous steps">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Continuous">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"8B - Turning 360 degrees (steadiness)">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"Unsteady">
+					description = <"Grabs, staggers">
+				>
+				["at0036"] = <
+					text = <"Steady">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"9 - Sitting down">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"Unsafe">
+					description = <"Misjudged distance, falls into chair">
+				>
+				["at0039"] = <
+					text = <"Uses arms or not a smooth motion">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"Safe, smooth motion">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"Gait">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"10 - Indication of gait">
+					description = <"Immediately after told to \"go\".">
+				>
+				["at0043"] = <
+					text = <"Any hesitancy or multiple attempts">
+					description = <"">
+				>
+				["at0044"] = <
+					text = <"No hesitancy">
+					description = <"">
+				>
+				["at0045"] = <
+					text = <"11A - Step length and height (Right)">
+					description = <"">
+				>
+				["at0046"] = <
+					text = <"Step to">
+					description = <"">
+				>
+				["at0047"] = <
+					text = <"Step through R">
+					description = <"">
+				>
+				["at0048"] = <
+					text = <"11B - Step length and height (Left)">
+					description = <"">
+				>
+				["at0049"] = <
+					text = <"Step to">
+					description = <"">
+				>
+				["at0050"] = <
+					text = <"Step through L">
+					description = <"">
+				>
+				["at0051"] = <
+					text = <"12A - Foot clearance (Right)">
+					description = <"">
+				>
+				["at0052"] = <
+					text = <"Foot drop">
+					description = <"">
+				>
+				["at0053"] = <
+					text = <"R foot clears floor">
+					description = <"">
+				>
+				["at0054"] = <
+					text = <"12B - Foot clearance (Left)">
+					description = <"">
+				>
+				["at0055"] = <
+					text = <"Foot drop">
+					description = <"">
+				>
+				["at0056"] = <
+					text = <"L foot clears floor">
+					description = <"">
+				>
+				["at0057"] = <
+					text = <"13 - Step symmetry">
+					description = <"">
+				>
+				["at0058"] = <
+					text = <"Right and left step lengths not equal">
+					description = <"">
+				>
+				["at0059"] = <
+					text = <"Right and left step lengths appear equal">
+					description = <"">
+				>
+				["at0060"] = <
+					text = <"14 - Step continuity">
+					description = <"">
+				>
+				["at0061"] = <
+					text = <"Stopping or discontinuity between steps">
+					description = <"">
+				>
+				["at0062"] = <
+					text = <"Steps appear continuous">
+					description = <"">
+				>
+				["at0063"] = <
+					text = <"15 - Path">
+					description = <"">
+				>
+				["at0064"] = <
+					text = <"Marked deviation">
+					description = <"">
+				>
+				["at0065"] = <
+					text = <"Mild/moderate deviation or uses walking aid">
+					description = <"">
+				>
+				["at0066"] = <
+					text = <"Straight without walking aid">
+					description = <"">
+				>
+				["at0067"] = <
+					text = <"16 - Trunk">
+					description = <"">
+				>
+				["at0068"] = <
+					text = <"Marked sway or uses walking aid">
+					description = <"">
+				>
+				["at0069"] = <
+					text = <"No sway but flexes knees or back or uses arms for stability">
+					description = <"">
+				>
+				["at0070"] = <
+					text = <"No sway, flexes, use of arms or walking aid">
+					description = <"">
+				>
+				["at0071"] = <
+					text = <"17 - Walking time">
+					description = <"">
+				>
+				["at0072"] = <
+					text = <"Heels apart">
+					description = <"">
+				>
+				["at0073"] = <
+					text = <"Heels almost touching while walking">
+					description = <"">
+				>
+				["at0074"] = <
+					text = <"Total score">
+					description = <"The total sum of each component parameter for the Tinetti Performance Oriented Mobility Assessment.">
+				>
+				["at0075"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0076"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>
