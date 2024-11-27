@@ -1,0 +1,545 @@
+archetype (adl_version=1.4; uid=61ad9f97-ab01-4e31-8d37-f61bff50e856)
+	openEHR-EHR-OBSERVATION.dsm_5_ptsd.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2024-11-27">
+		["name"] = <"Konstantinos Kalliamvakos">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"konstantinos.kalliamvakos@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			keywords = <"DSM-5","PTSD","posttraumatic","stress","disorder">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"American Psychiatric Association: Desk Reference to the Diagnostic Criteria From DSM-5. Arlington, VA, American Psychiatric Association, 2013.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"004fb532-04ea-39e9-b2be-d71e4c81b996">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- dsm 5 ptsd
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									CLUSTER[at0004] occurrences matches {0..1} matches {    -- Exposure
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0005] occurrences matches {0..1} matches {    -- Direct experience
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0006] occurrences matches {0..1} matches {    -- Witnessing the event
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0007] occurrences matches {0..1} matches {    -- Traumatic event occurred to family or friend
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0008] occurrences matches {0..1} matches {    -- Repetitive or extreme exposure
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0009] occurrences matches {0..1} matches {    -- Exposure Score
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+										}
+									}
+									CLUSTER[at0010] occurrences matches {0..1} matches {    -- Intrusion symptoms
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0011] occurrences matches {0..1} matches {    -- Memories of the traumatic event
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0012] occurrences matches {0..1} matches {    -- Distressing dreams of the traumatic event
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0013] occurrences matches {0..1} matches {    -- Dissociative reactions
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0014] occurrences matches {0..1} matches {    -- Intense or prolonged psychological distress at exposure
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0015] occurrences matches {0..1} matches {    -- Marked physiological reactions
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0016] occurrences matches {0..1} matches {    -- Intrusion symptoms Score
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+										}
+									}
+									CLUSTER[at0017] occurrences matches {0..1} matches {    -- Avoidance
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0018] occurrences matches {0..1} matches {    -- Efforts to avoid distressing memories thoughts or feelings
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0019] occurrences matches {0..1} matches {    -- Efforts to avoid external reminders
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0020] occurrences matches {0..1} matches {    -- Avoidance Score
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+										}
+									}
+									CLUSTER[at0021] occurrences matches {0..1} matches {    -- Altered mood
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0022] occurrences matches {0..1} matches {    -- Inability to remember
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0023] occurrences matches {0..1} matches {    -- Persistent and exaggerated negative beliefs or expectations
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0024] occurrences matches {0..1} matches {    -- Persistent or distorted cognitions about the cause or consequences
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0025] occurrences matches {0..1} matches {    -- Persistent negative emotional state
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0026] occurrences matches {0..1} matches {    -- Markedly diminished interest or participation in significant activities
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0027] occurrences matches {0..1} matches {    -- Feelings of detachment or estrangement from others
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0028] occurrences matches {0..1} matches {    -- Persistent inability to experience positive emotions
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0029] occurrences matches {0..1} matches {    -- Altered mood Score
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+										}
+									}
+									CLUSTER[at0030] occurrences matches {0..1} matches {    -- Altered reactivity
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0031] occurrences matches {0..1} matches {    -- Irritable behavior and angry outbursts
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0032] occurrences matches {0..1} matches {    -- Reckless or self-destructive behavior
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0033] occurrences matches {0..1} matches {    -- Hypervigilance
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0034] occurrences matches {0..1} matches {    -- Exaggerated startle response
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0035] occurrences matches {0..1} matches {    -- Problems with concentration
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0036] occurrences matches {0..1} matches {    -- Sleep disturbance
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0037] occurrences matches {0..1} matches {    -- Altered reactivity Score
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+										}
+									}
+									CLUSTER[at0038] occurrences matches {0..1} matches {    -- Additional required criteria
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0039] occurrences matches {0..1} matches {    -- Duration of the disturbance over 1 month
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0040] occurrences matches {0..1} matches {    -- Causes clinically significant distress or impairment
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0041] occurrences matches {0..1} matches {    -- Not attributable to medication or medical condition
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+											ELEMENT[at0042] occurrences matches {0..1} matches {    -- Additional required criteria Score
+												value matches {
+													0|[local::at0043],
+													1|[local::at0044]
+												}
+											}
+										}
+									}
+									CLUSTER[at0045] occurrences matches {0..1} matches {    -- Dissociative symptoms
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0046] occurrences matches {0..1} matches {    -- Depersonalization
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0050,    -- No
+															at0051]    -- Yes
+														}
+													}
+												}
+											}
+											ELEMENT[at0047] occurrences matches {0..1} matches {    -- Derealization
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0050,    -- No
+															at0051]    -- Yes
+														}
+													}
+												}
+											}
+										}
+									}
+									CLUSTER[at0048] occurrences matches {0..1} matches {    -- Delayed expression
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0049] occurrences matches {0..1} matches {    -- Full diagnostic criteria 6 months or later after the event
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0050,    -- No
+															at0051]    -- Yes
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0052] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"dsm 5 ptsd">
+					description = <"dsm 5 ptsd">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Exposure">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Direct experience">
+					description = <"Directly experiencing the traumatic event(s).">
+				>
+				["at0006"] = <
+					text = <"Witnessing the event">
+					description = <"Witnessing, in person, the event(s) as it occurred to others.">
+				>
+				["at0007"] = <
+					text = <"Traumatic event occurred to family or friend">
+					description = <"Learning that the traumatic event(s) occurred to a close family member or close friend. In cases of actual or threatened death of a family member or friend, the event(s) must have been violent or accidental.">
+				>
+				["at0008"] = <
+					text = <"Repetitive or extreme exposure">
+					description = <"Experiencing repeated or extreme exposure to aversive details of the traumatic event(s) (e.g., first responders collecting human remains; police officers repeatedly exposed to details of child abuse).
+
+Note: Criterion A4 does not apply to exposure through electronic media, television, movies, or pictures, unless this exposure is work related.">
+				>
+				["at0009"] = <
+					text = <"Exposure Score">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Intrusion symptoms">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Memories of the traumatic event">
+					description = <"Recurrent, involuntary, and intrusive distressing memories of the traumatic event(s).
+
+Note: In children older than 6 years, repetitive play may occur in which themes or aspects of the traumatic event(s) are expressed.">
+				>
+				["at0012"] = <
+					text = <"Distressing dreams of the traumatic event">
+					description = <"Recurrent distressing dreams in which the content and/or affect of the dream are related to the traumatic event(s).
+
+Note: In children, there may be frightening dreams without recognizable content.">
+				>
+				["at0013"] = <
+					text = <"Dissociative reactions">
+					description = <"Dissociative reactions (e.g., flashbacks) in which the individual feels or acts as if the traumatic event(s) were recurring. (Such reactions may occur on a continuum, with the most extreme expression being a complete loss of awareness of present surroundings.)
+
+Note: In children, trauma-specific reenactment may occur in play.">
+				>
+				["at0014"] = <
+					text = <"Intense or prolonged psychological distress at exposure">
+					description = <"Intense or prolonged psychological distress at exposure to internal or external cues that symbolize or resemble an aspect of the traumatic event(s).">
+				>
+				["at0015"] = <
+					text = <"Marked physiological reactions">
+					description = <"Marked physiological reactions to internal or external cues that symbolize or resemble an aspect of the traumatic event(s).">
+				>
+				["at0016"] = <
+					text = <"Intrusion symptoms Score">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Avoidance">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Efforts to avoid distressing memories thoughts or feelings">
+					description = <"Avoidance of or efforts to avoid distressing memories, thoughts, or feelings about or closely associated with the traumatic event(s).">
+				>
+				["at0019"] = <
+					text = <"Efforts to avoid external reminders">
+					description = <"Avoidance of or efforts to avoid external reminders (people, places, conversations, activities, objects, situations) that arouse distressing memories, thoughts, or feelings about or closely associated with the traumatic event(s).">
+				>
+				["at0020"] = <
+					text = <"Avoidance Score">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Altered mood">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Inability to remember">
+					description = <"Inability to remember an important aspect of the traumatic event(s) (typically due to dissociative amnesia and not to other factors such as head injury, alcohol, or drugs).">
+				>
+				["at0023"] = <
+					text = <"Persistent and exaggerated negative beliefs or expectations">
+					description = <"Persistent and exaggerated negative beliefs or expectations about oneself, others, or the world (e.g., “I am bad,” “No one can be trusted,” “The world is completely dangerous,” “My whole nervous system is permanently ruined”).">
+				>
+				["at0024"] = <
+					text = <"Persistent or distorted cognitions about the cause or consequences">
+					description = <"Persistent, distorted cognitions about the cause or consequences of the traumatic event(s) that lead the individual to blame himself/herself or others.">
+				>
+				["at0025"] = <
+					text = <"Persistent negative emotional state">
+					description = <"Persistent negative emotional state (e.g., fear, horror, anger, guilt, or shame).">
+				>
+				["at0026"] = <
+					text = <"Markedly diminished interest or participation in significant activities">
+					description = <"Markedly diminished interest or participation in significant activities.">
+				>
+				["at0027"] = <
+					text = <"Feelings of detachment or estrangement from others">
+					description = <"Feelings of detachment or estrangement from others.">
+				>
+				["at0028"] = <
+					text = <"Persistent inability to experience positive emotions">
+					description = <"Persistent inability to experience positive emotions (e.g., inability to experience happiness, satisfaction, or loving feelings).">
+				>
+				["at0029"] = <
+					text = <"Altered mood Score">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Altered reactivity">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Irritable behavior and angry outbursts">
+					description = <"Irritable behavior and angry outbursts (with little or no provocation) typically expressed as verbal or physical aggression toward people or objects.">
+				>
+				["at0032"] = <
+					text = <"Reckless or self-destructive behavior">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Hypervigilance">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Exaggerated startle response">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"Problems with concentration">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Sleep disturbance">
+					description = <"Sleep disturbance (e.g., difficulty falling or staying asleep or restless sleep).">
+				>
+				["at0037"] = <
+					text = <"Altered reactivity Score">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"Additional required criteria">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"Duration of the disturbance over 1 month">
+					description = <"Duration of the disturbance (Criteria B, C, D, and E) is more than 1 month.">
+				>
+				["at0040"] = <
+					text = <"Causes clinically significant distress or impairment">
+					description = <"disturbance causes clinically significant distress or impairment in social, occupational, or other important areas of functioning.">
+				>
+				["at0041"] = <
+					text = <"Not attributable to medication or medical condition">
+					description = <"The disturbance is not attributable to the physiological effects of a substance (e.g., medication, alcohol) or another medical condition.">
+				>
+				["at0042"] = <
+					text = <"Additional required criteria Score">
+					description = <"">
+				>
+				["at0043"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0044"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0045"] = <
+					text = <"Dissociative symptoms">
+					description = <"">
+				>
+				["at0046"] = <
+					text = <"Depersonalization">
+					description = <"Persistent or recurrent experiences of feeling detached from, and as if one were an outside observer of, one’s mental processes or body (e.g., feeling as though one were in a dream; feeling a sense of unreality of self or body or of time moving slowly).">
+				>
+				["at0047"] = <
+					text = <"Derealization">
+					description = <"Persistent or recurrent experiences of unreality of surroundings (e.g., the world around the individual is experienced as unreal, dreamlike, distant, or distorted).">
+				>
+				["at0048"] = <
+					text = <"Delayed expression">
+					description = <"">
+				>
+				["at0049"] = <
+					text = <"Full diagnostic criteria 6 months or later after the event">
+					description = <"If the full diagnostic criteria are not met until at least 6 months after the event (although the onset and expression of some symptoms may be immediate).">
+				>
+				["at0050"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0051"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0052"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+			>
+		>
+	>
