@@ -1,0 +1,87 @@
+archetype (adl_version=1.4; uid=eaac3491-84fc-4583-8d96-c29f58fd8a33)
+	openEHR-EHR-EVALUATION.tinetti_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2024-11-27">
+		["name"] = <"Konstantinos Kalliamvakos">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"konstantinos.kalliamvakos@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the assessment of the Tinetti score.">
+			keywords = <"Tinetti","POMA","performance","oriented","mobility","assessment","balance","gait">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"ce6daac9-58ef-37c8-bf0a-3961682d0d5b">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Tinetti assessment
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- Fall risk interpretation
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0003,    -- Low fall risk
+									at0004,    -- Moderate fall risk
+									at0005]    -- High fall risk
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Tinetti assessment">
+					description = <"poma assessment">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Fall risk interpretation">
+					description = <"">
+				>
+				["at0003"] = <
+					text = <"Low fall risk">
+					description = <"">
+				>
+				["at0004"] = <
+					text = <"Moderate fall risk">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"High fall risk">
+					description = <"">
+				>
+			>
+		>
+	>
