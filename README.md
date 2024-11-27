@@ -645,7 +645,7 @@ _Select a medical specialty below to view the available apps._
 
 * Tilburg frailty indicator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Tilburg_frailty_indicator/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Tilburg_frailty_indicator/1?language=sv))
 
-* Tinetti Balance Test - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Tinetti_Balance_Test_guideline/1?language=en))
+* Tinetti Balance Test - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Tinetti_Balance_Test/1?language=en))
 ----------
 
 ### Hematology
