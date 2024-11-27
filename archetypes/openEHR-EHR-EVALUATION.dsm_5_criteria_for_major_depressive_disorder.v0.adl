@@ -1,0 +1,86 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.dsm_5_criteria_for_major_depressive_disorder.v0
+
+concept
+	[at0000]	-- Dsm 5 criteria for major depressive disorder
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Maryam Razavi">
+		["email"] = <"maryam.razavi2009@gmail.com">
+		["organisation"] = <"CambioCDS">
+		["date"] = <"2020-03-26">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"The Fifth edition of the Diagnostic and Statistical Manual of Mental Disorders (DSM-5) criteria for Major Depressive Disorder is used to diagnose major depressive disorder (MDD).">
+			use = <"Diagnostic Result:
+Positive Diagnosis of MDD by DSM-5 Criteria=  ≥5 symptoms during the same two week period that are a change from previous functioning; depressed mood and/or loss of interest/pleasure must be present; exclude symptoms clearly attributable to another medical condition and Additional required criteriaMust have all 4. 
+Els = Not Positive Diagnosis of MDD by DSM-5 Criteria">
+			keywords = <"Major depression disorder (MDD)", "Diagnostic and Statistical Manual of Mental Disorders (DSM)">
+			misuse = <"Symptoms clearly attributable to another medical condition should be excluded. 
+In the criteria (No history of manic or hypomanic episode) exclusion does not apply if all manic-like or hypomanic-like episodes are substance-induced or are attributable to physiological effects of another medical condition).">
+			copyright = <"@CambioCDS">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"F6476BC93141F4476B985623B78137BD">
+		["references"] = <"American Psychiatric Association: Desk reference to the diagnostic criteria from DSM-5. Arlington, American Psychiatric Association, 2013. 
+American Psychiatric Association. (2013). Major depressive disorder and the ‘bereavement exclusion.’. Washington DC: American Psychiatric Association Washington.">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Dsm 5 criteria for major depressive disorder
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Result
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005, 	-- Positive Diagnosis of MDD by DSM-5 Criteria
+									at0006]	-- Not positive Diagnosis of MDD by DSM-5 Criteria
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Dsm 5 criteria for major depressive disorder">
+					description = <"Major Depressive Disorder (MDD) is a medical illness that affects how you feel, think and behave causing persistent feelings of sadness and loss of interest in previously enjoyed activities. Depression can
+lead to a variety of emotional and physical problems. It is a chronic illness that usually requires long term treatment. The Diagnostic and Statistical Manual of Mental Disorders—or “DSM,” as it is generally called—is the
+authoritative guide to the diagnosis of mental disorders for health care professionals around the world. 
+">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Result">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Positive Diagnosis of MDD by DSM-5 Criteria">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Not positive Diagnosis of MDD by DSM-5 Criteria">
+					description = <"*">
+				>
+			>
+		>
+	>
