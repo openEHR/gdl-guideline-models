@@ -1633,7 +1633,7 @@ _Select a medical specialty below to view the available apps._
 ### CDS App Challenge 2023 submissions
 
 ----------
-* ISWT (Incremental Shuttle Walk Test)  - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-app-challenge-2023/ISWT/16.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-app-challenge-2023/ISWT/16.1?language=sv))
+* ISWT (Incremental Shuttle Walk Test)  - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-app-challenge-2023/ISWT/16.3?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-app-challenge-2023/ISWT/16.3?language=sv))
 
 * DOWNES score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-app-challenge-2023/Downes_score/8.1.3?language=en))
   
