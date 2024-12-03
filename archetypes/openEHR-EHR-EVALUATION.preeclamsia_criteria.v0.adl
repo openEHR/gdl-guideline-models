@@ -1,0 +1,375 @@
+archetype (adl_version=1.4; uid=78af092d-0697-454f-9cf9-091ef7a11f8f)
+	openEHR-EHR-EVALUATION.preeclamsia_criteria.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2024-05-21">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Karolinska Institutet">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"designed to diagnose preeclampsia without severe features based on the ACOG guidelines">
+			keywords = <"preeclamsia", ...>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"b27792281bc40fb35a229bb41cd05a3f">
+		["build_uid"] = <"be8f771c-82c3-4321-b150-e668a71ad1c2">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- preeclamsia_criteria
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0014] occurrences matches {0..1} matches {    -- Proteinuria
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0015,    -- Present
+									at0018]    -- Absent
+								}
+							}
+						}
+					}
+					ELEMENT[at0007] occurrences matches {0..1} matches {    -- Thrombocytopenia
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0039,    -- Yes
+									at0040]    -- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0010] occurrences matches {0..1} matches {    -- Impaired liver function
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0041,    -- Yes
+									at0042]    -- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0008] occurrences matches {0..1} matches {    -- Acute Kidney injury
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0025,    -- Yes
+									at0055]    -- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0011] occurrences matches {0..1} matches {    -- Pulmonary edema
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0043,    -- Yes
+									at0044]    -- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0056] occurrences matches {0..1} matches {    -- Headache
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0057,    -- Yes
+									at0058]    -- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0012] occurrences matches {0..1} matches {    -- Visual Symptoms
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0034,    -- Yes
+									at0038]    -- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0013] occurrences matches {0..1} matches {    -- Generalized seizures
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0045,    -- Yes
+									at0046]    -- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0021] occurrences matches {0..1} matches {    -- Hemolysis
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0047,    -- Yes
+									at0048]    -- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0022] occurrences matches {0..1} matches {    -- Sudden increase in BP previously well controlled
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0049,    -- Yes
+									at0050]    -- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0023] occurrences matches {0..1} matches {    -- New onset proteinuria or a sudden increase in proteinuria
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0051,    -- Yes
+									at0052]    -- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0024] occurrences matches {0..1} matches {    -- New onset or worsening renal insufficency
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0053,    -- Yes
+									at0054]    -- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0027] occurrences matches {0..1} matches {    -- Hypertension diagnosed
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0028,    -- Before pregnancy
+									at0032,    -- After 12 weeks postpartum
+									at0029,    -- Before 20 weeks of pregnancy
+									at0030]    -- After 20 weeks of pregnancy
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0009] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"preeclamsia_criteria">
+					description = <"designed to diagnose preeclampsia without severe features based on the ACOG guidelines">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0007"] = <
+					text = <"Thrombocytopenia">
+					description = <"Thrombocytopenia (Plt < 100000/uL)">
+				>
+				["at0008"] = <
+					text = <"Acute Kidney injury">
+					description = <"Cr >1.1 mg/dL or doubling of Cr in absence of kidney disease">
+				>
+				["at0009"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0010"] = <
+					text = <"Impaired liver function">
+					description = <"Liver transaminases at least twice the upper limit of the normal concentrations for the local laboratory">
+				>
+				["at0011"] = <
+					text = <"Pulmonary edema">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Visual Symptoms">
+					description = <"Blurred vision, flashing lights or sparks, Scotomata">
+				>
+				["at0013"] = <
+					text = <"Generalized seizures">
+					description = <"Generalized seizures">
+				>
+				["at0014"] = <
+					text = <"Proteinuria">
+					description = <"The presence of excessive amounts of protein in the urine ( >=0.3 g in 24 hours OR Dipstick >=2+ OR Protein/creatinine ratio >=0.3)">
+				>
+				["at0015"] = <
+					text = <"Present">
+					description = <"Proteinuria">
+				>
+				["at0018"] = <
+					text = <"Absent">
+					description = <"No significant levels of protein detected in the urine. This indicates a normal result, ruling out pathological proteinuria based on clinical and laboratory assessments.">
+				>
+				["at0021"] = <
+					text = <"Hemolysis">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Sudden increase in BP previously well controlled">
+					description = <"
+Sudden increase in BP previously well controlled">
+				>
+				["at0023"] = <
+					text = <"New onset proteinuria or a sudden increase in proteinuria">
+					description = <"New onset protienuria or a sudden increase in proteinuria">
+				>
+				["at0024"] = <
+					text = <"New onset or worsening renal insufficency">
+					description = <"New onset or worsening renal insufficency">
+				>
+				["at0025"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Hypertension diagnosed">
+					description = <"Hypertension diagnosed before pregnancy, before 20 weeks of gestation, or for at least 12 weeks postpartum">
+				>
+				["at0028"] = <
+					text = <"Before pregnancy">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Before 20 weeks of pregnancy">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"After 20 weeks of pregnancy">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"After 12 weeks postpartum">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0043"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0044"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0045"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0046"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0047"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0048"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0049"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0050"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0051"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0052"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0053"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0054"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0055"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0056"] = <
+					text = <"Headache">
+					description = <"New-onset and persistent headache not accounted for by alternative diagnoses and not responding to usual doses of analgesics">
+				>
+				["at0057"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0058"] = <
+					text = <"No">
+					description = <"">
+				>
+			>
+		>
+	>
