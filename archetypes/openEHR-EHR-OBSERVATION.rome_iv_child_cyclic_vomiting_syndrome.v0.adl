@@ -1,0 +1,133 @@
+archetype (adl_version=1.4; uid=66e07d7f-15c6-4e35-a255-11337500bd92)
+	openEHR-EHR-OBSERVATION.rome_iv_child_cyclic_vomiting_syndrome.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-01-04">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"f36b48e6-b8bc-3ada-a733-f0b10edcd71e">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- rome_iv_child_cyclic_vomiting_syndrome
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- The occurrence of ≥2 periods of intense, unremitting nausea and paroxysmal vomiting, lasting hours to days within a 6-month period
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Episodes are stereotypical in each patient
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Episodes are separated by weeks to months with return to baseline health between episodes
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- After appropriate medical evaluation, the symptoms cannot be attributed to another condition
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Event time
+										value matches {
+											DV_DATE_TIME matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0011] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0012] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"rome_iv_child_cyclic_vomiting_syndrome">
+					description = <"rome_iv_child_cyclic_vomiting_syndrome">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0006"] = <
+					text = <"The occurrence of ≥2 periods of intense, unremitting nausea and paroxysmal vomiting, lasting hours to days within a 6-month period">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Episodes are stereotypical in each patient">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Episodes are separated by weeks to months with return to baseline health between episodes">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"After appropriate medical evaluation, the symptoms cannot be attributed to another condition">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Event time">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0012"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>
