@@ -1,0 +1,218 @@
+archetype (adl_version=1.4; uid=39bee36c-3b36-46ac-85c4-557dcaa551f2)
+	openEHR-EHR-OBSERVATION.hemodialysis_residual_renal_function_calculator.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-01-03">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"Kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To facilitate the recording and calculation of residual renal function in patients undergoing hemodialysis.">
+			keywords = <"hemodialysis, residual renal function, RR, kidney disease, urea clearance, creatinine clearance, end-stage renal disease, ESRD, dialysis prescription">
+			copyright = <"© Cambio CDS">
+			use = <"This archetype is intended for clinical and research applications where calculating residual renal function (RRF) is required for patients undergoing hemodialysis.
+
+Suitable for integration into electronic health records (EHRs) or dialysis-specific management systems to support treatment planning, fluid management, and medication dosing based on residual kidney function.
+
+Ensures standardization and reproducibility of RRF calculations using validated methods.">
+			misuse = <"Should not be used to assess kidney function in patients who are not on dialysis or those with acute kidney injuries.
+
+Not a replacement for broader kidney function assessments, such as eGFR or serum creatinine, outside of the hemodialysis context.
+
+Avoid using this archetype without adhering to evidence-based calculation methods.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Daugirdas JT, Ing TS. Handbook of Dialysis. Second Edition. 1994; pp 92-107.
+
+Wang AY, Lai KN. The importance of residual renal function in dialysis patients. Kidney Int. 2006 May;69(10):1726-32. doi:10.1038/sj.ki.5000357.
+
+Thomas J, Teitelbaum I. Preservation of residual renal function in dialysis patients. Adv Perit Dial. 2011;27:112-7.
+
+Moist LM, Port FK, Orzol SM, Young EW, Ostbye T, Wolfe RA, Hulbert-Shearon T, Jones CA, Bloembergen WE. Predictors of loss of residual renal function among new dialysis patients. J Am Soc Nephrol. 2000 Mar;11(3):556-64.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"b9e452194a64d4b2f6d488d7a7bf9c7d">
+		["build_uid"] = <"a1077843-0737-3cba-a775-2db7bed5333d">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Hemodialysis Residual Renal Function Calculator
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Interdialytic urine volume
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::129]>
+												list = <
+													["1"] = <
+														units = <"mL">
+														precision = <|3|>
+													>
+													["2"] = <
+														units = <"fL">
+													>
+													["3"] = <
+														units = <"L">
+														precision = <|3|>
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Hemodialysis Residual Renal Function Calculator">
+					description = <"Residual Renal Function (RRF) is the remaining capacity of the kidneys to filter and excrete waste products and maintain fluid and electrolyte balance in patients undergoing hemodialysis. RRF is often calculated using urine volume and solute clearance (e.g., urea and creatinine).">
+					comment = <"Calculated as an average of urea and creatinine clearance, based on 24-hour urine collections. Ensure units align with standardized renal function reporting (e.g., mL/min/1.73 m²).">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Interdialytic urine volume">
+					description = <"The total volume of urine excreted by the patient during the interdialytic period.">
+					comment = <"Use to record the urine volume collected between dialysis sessions, measured in milliliters (mL). Ensure accurate measurement using standardized collection methods.">
+				>
+				["at0007"] = <
+					text = <"Urine urea concentration">
+					description = <"The concentration of urea present in a urine sample.">
+					comment = <"Use to record urea concentration in urine, which is required for calculating residual renal function. Ensure that units are consistent with laboratory standards.">
+				>
+				["at0008"] = <
+					text = <"Interdialytic period">
+					description = <"The time interval between two consecutive hemodialysis sessions, typically measured in hours.">
+					comment = <"Use to record the duration of the interdialytic period, ensuring it aligns with the prescribed dialysis schedule for the patient.">
+				>
+				["at0009"] = <
+					text = <"BUN 1">
+					description = <"BUN 1 (after 1st dialysis of week). The blood urea nitrogen (BUN) level measured immediately after the first dialysis session of the week.">
+					comment = <"Use to record the post-dialysis BUN measurement following the initial weekly dialysis session. Ensure the sample is collected at the appropriate time to avoid errors.">
+				>
+				["at0010"] = <
+					text = <"BUN 2">
+					description = <"The blood urea nitrogen (BUN) level measured immediately before the second dialysis session of the week.">
+					comment = <"Use to record the pre-dialysis BUN measurement prior to the second weekly dialysis session. Ensure consistency in sample timing for accurate comparison.">
+				>
+				["at0011"] = <
+					text = <"Mean BUN measurement unit">
+					description = <"The unit of measurement used for calculating the mean blood urea nitrogen (BUN) level.">
+					comment = <"Use to define the measurement unit for mean BUN values, ensuring uniformity in documentation and calculations.">
+				>
+				["at0012"] = <
+					text = <"mg/L">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"g/dL">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"g/L">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"mcg/L">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"ng/L">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Residual renal function measurement unit">
+					description = <"The unit of measurement used to express residual renal function (RRF), typically in milliliters per minute per 1.73 m² (mL/min/1.73 m²).">
+					comment = <"Use to specify the measurement unit for residual renal function, ensuring it adheres to standard clinical and laboratory practices.">
+				>
+				["at0021"] = <
+					text = <"mL/min">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"mL/hr">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"mL/sec">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"L/min">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"L/sec">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Residual Renal Function">
+					description = <"The estimated remaining renal function of the patient, typically calculated using the average of urinary urea and creatinine clearance, and expressed in milliliters per minute per 1.73 m² (mL/min/1.73 m²).">
+					comment = <"Use to record the calculated residual renal function. This value is important for assessing the contribution of native kidney function in dialysis patients. Ensure accurate inputs for interdialytic urine volume and urea concentration to obtain reliable results.">
+				>
+				["at0027"] = <
+					text = <"Mean BUN">
+					description = <"The average blood urea nitrogen (BUN) level, calculated from multiple BUN measurements, typically expressed in milligrams per deciliter (mg/dL).">
+					comment = <"Use to record the mean BUN value, calculated as part of the residual renal function formula. This value is derived from post-dialysis (BUN 1) and pre-dialysis (BUN 2) measurements. Ensure that measurements are taken at consistent intervals for accurate averaging.">
+				>
+			>
+		>
+	>
