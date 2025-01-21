@@ -1,0 +1,256 @@
+archetype (adl_version=1.4; uid=273256f4-8aed-4788-af80-2f9aa5ea7fb6)
+	openEHR-EHR-OBSERVATION.lv_mass_index.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-01-07">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Use to record measurements of the left ventricular mass index for clinical evaluations, including cardiac hypertrophy diagnosis and cardiovascular risk assessment.">
+			keywords = <"left ventricular, mass, index, lvmi, cardiac hypertrophy, cardiovascular risk", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and the calculated LV Mass Index. Additional information might provide guidance to modellers or implementers about how to utilise the archetype in templates or clinical systems.">
+			misuse = <"Not to be used for recording information related to echocardiographic details beyond LV Mass Index calculations.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Lang RM, Badano LP, Mor-Avi V, et al. Recommendations for cardiac chamber quantification by echocardiography in adults: an update from the American Society of Echocardiography and the European Association of Cardiovascular Imaging. J Am Soc Echocardiogr. 2015 Jan;28(1):1-39.
+
+Galderisi M, Cosyns B, Edvardsen T, et al. Standardization of adult transthoracic echocardiography reporting in agreement with recent chamber quantification, diastolic function, and heart valve disease recommendations: an expert consensus document of the European Association of Cardiovascular Imaging. Eur Heart J Cardiovasc Imaging. 2017 Dec;18(12):1301-1310.
+
+Mizukoshi K, Takeuchi M, Nagata Y, et al. Normal Values of Left Ventricular Mass Index Assessed by Transthoracic Three-Dimensional Echocardiography. J Am Soc Echocardiogr. 2016 Jan;29(1):51-61.
+
+Hashem MS, Kalashyan H, Choy J, Chiew SK, Shawki AH, Dawood AH, Becher H. Left ventricular relative wall thickness versus left ventricular mass index in non-cardioembolic stroke patients. Medicine (Baltimore). 2015 May;94(20):e872.
+
+Maruyama K, Hasegawa S, Nakatani D, et al. Left ventricular mass index measured by quantitative gated myocardial SPECT with 99mTc-tetrofosmin: a comparison with echocardiography. Ann Nucl Med. 2003 Jan;17(1):31-39.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"b575e9e95a84bec5519c422ccf4f11e4">
+		["build_uid"] = <"f3f77335-265a-3abf-bfa5-baa5c840a5ef">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- LV Mass Index
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- LV end diastolic dimension
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::122]>
+												list = <
+													["1"] = <
+														units = <"mm">
+														magnitude = <|0.0..999.0|>
+														precision = <|3|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Interventricular septal end diastole
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::122]>
+												list = <
+													["1"] = <
+														units = <"mm">
+														magnitude = <|0.0..999.0|>
+														precision = <|3|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Posterior wall thickness at end-diastole
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::122]>
+												list = <
+													["1"] = <
+														units = <"mm">
+														magnitude = <|0.0..999.0|>
+														precision = <|3|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Do you know the Body Surface Area?
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0015,    -- Yes
+													at0016]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {    -- LV Mass
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::124]>
+												list = <
+													["1"] = <
+														units = <"kg">
+														magnitude = <|0.0..999.0|>
+														precision = <|3|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {    -- LVMI
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::349]>
+												list = <
+													["1"] = <
+														units = <"g/m2">
+														magnitude = <|0.0..999.0|>
+														precision = <|3|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- RWT
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0022] occurrences matches {0..1} matches {    -- Relative wall thickness
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0023,    -- Concentric hypertrophy
+													at0024]    -- Eccentric hypertrophy
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0018] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"LV Mass Index">
+					description = <"The Left Ventricular Mass Index (LVMI) represents the left ventricular mass normalized for body size, typically by body surface area or height. It is used to assess left ventricular hypertrophy and stratify cardiovascular risk.">
+					comment = <"This archetype is based on the method for calculating LV Mass Index first described in 1986 by Devereux RB et al. in Echocardiographic Assessment of Left Ventricular Hypertrophy: Comparison to Necropsy Findings.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0006"] = <
+					text = <"LV end diastolic dimension">
+					description = <"The linear measurement of the left ventricular cavity diameter at end-diastole, typically obtained via echocardiography or other imaging modalities.">
+					comment = <"This measurement is used to assess left ventricular size and function, particularly in evaluating conditions like dilated cardiomyopathy or volume overload. Ensure measurement methodology aligns with standard echocardiographic guidelines.">
+				>
+				["at0007"] = <
+					text = <"Interventricular septal end diastole">
+					description = <"The thickness of the interventricular septum measured at end-diastole, often determined via echocardiography.">
+					comment = <"This parameter helps assess septal hypertrophy, commonly seen in hypertrophic cardiomyopathy, or to monitor hypertrophy in response to pressure overload states such as hypertension or aortic stenosis.">
+				>
+				["at0009"] = <
+					text = <"Posterior wall thickness at end-diastole">
+					description = <"The thickness of the posterior wall of the left ventricle measured at end-diastole, typically via echocardiography.">
+					comment = <"This value is critical for assessing concentric hypertrophy and calculating left ventricular mass. Standardized measurement techniques should be followed to ensure reproducibility and accuracy.">
+				>
+				["at0011"] = <
+					text = <"Do you know the Body Surface Area?">
+					description = <"A question prompt to verify if the patient's Body Surface Area (BSA) is available for calculations, such as indexing left ventricular mass or other measurements.">
+					comment = <"The response to this query determines whether calculations indexed to BSA (e.g., LV mass index) can be performed. ">
+				>
+				["at0015"] = <
+					text = <"Yes">
+					description = <"know the Body Surface Area">
+				>
+				["at0016"] = <
+					text = <"No">
+					description = <"Do not know the Body Surface Area">
+				>
+				["at0018"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0019"] = <
+					text = <"LV Mass">
+					description = <"Left Ventricle Mass">
+				>
+				["at0020"] = <
+					text = <"LVMI">
+					description = <"LV Mass Indexed to Body Surface Area">
+				>
+				["at0021"] = <
+					text = <"RWT">
+					description = <"Relative Wall Thickness">
+				>
+				["at0022"] = <
+					text = <"Relative wall thickness">
+					description = <"Relative wall thickness (RWT) allows classification of LV mass increase as either">
+				>
+				["at0023"] = <
+					text = <"Concentric hypertrophy">
+					description = <"Concentric hypertrophy (RWT >0.42)">
+				>
+				["at0024"] = <
+					text = <"Eccentric hypertrophy">
+					description = <"Eccentric hypertrophy (RWT ≤0.42)">
+				>
+			>
+		>
+	>
