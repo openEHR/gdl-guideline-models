@@ -1,0 +1,245 @@
+archetype (adl_version=1.4; uid=0b24b1a4-51b5-4cc1-8cf4-ffd18df5e3b3)
+	openEHR-EHR-OBSERVATION.rome_iv_diagnostic_criteria_for_narcotic_bowel_syndrome.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-01-31">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the presence or absence of symptoms that meet the Rome IV diagnostic criteria for NBS, allowing clinicians to systematically document the diagnosis.">
+			keywords = <"rome IV criteria, narcotic bowel syndrome, bowel, criteria, opioid-induced abdominal pain, functional gastrointestinal disorder, opioid-induced hyperalgesia", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Applicable to patients with chronic abdominal pain and a history of prolonged opioid use.
+
+The clinician assesses symptoms according to the Rome IV criteria and records whether the patient meets the diagnostic threshold.">
+			misuse = <"Not to be used for diagnosing general functional gastrointestinal disorders outside of NBS.
+
+Not intended for opioid withdrawal assessment.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Keefer L, Drossman DA, Guthrie E, Simrén M, Tillisch K, Olden K, Whorwell PJ. Centrally Mediated Disorders of Gastrointestinal Pain. Gastroenterology. 2016 Feb 19:S0016-5085(16)00225-0. doi: 10.1053/j.gastro.2016.02.034. Epub ahead of print. PMID: 27144628.
+
+Kurlander J, Drossman D. Diagnosis and treatment of narcotic bowel syndrome. Nat Rev Gastroenterol Hepatol. 2014;11(7):410-418. doi:10.1038/nrgastro.2014.53.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"989a2775-6124-3d2f-9c9f-3a8ca3551937">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Rome IV Diagnostic Criteria for Narcotic Bowel Syndrome
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Chronic or frequently recurring abdominal pain
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0011,    -- Yes
+													at0012]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- Previous Gl diagnosis
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0014,    -- Yes
+													at0015]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- The pain worsening
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0020,    -- Yes
+													at0021]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Marked worsening
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Yes
+													at0019]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0022] occurrences matches {0..1} matches {    -- Progression of pain episodes
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0023,    -- Yes
+													at0024]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Diagnostic Result
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- Positive
+													at0008]    -- Negative
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Rome IV Diagnostic Criteria for Narcotic Bowel Syndrome">
+					description = <"A clinical evaluation model used to diagnose Narcotic Bowel Syndrome (NBS) based on Rome IV criteria. NBS is characterized by chronic or worsening abdominal pain associated with prolonged opioid use that improves with opioid reduction or cessation.">
+					comment = <"Original version, c 2016">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Diagnostic Result">
+					description = <"Diagnosis for narcotic bowel syndrome as per Rome IV criteria">
+				>
+				["at0007"] = <
+					text = <"Positive">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Negative">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Chronic or frequently recurring abdominal pain">
+					description = <"Chronic or frequently recurring abdominal pain (occurs most days) that is treated with acute high-dose or chronic narcotics">
+					comment = <"Must have the following: For 3 months prior with symptom onset ≥6 months ago">
+				>
+				["at0011"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Previous Gl diagnosis">
+					description = <"The nature and intensity of the pain is not explained by a current or previous Gl diagnosis
+">
+					comment = <"Must have the following: For 3 months prior with symptom onset ≥6 months ago">
+				>
+				["at0014"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"The pain worsening">
+					description = <"The pain worsens or incompletely resolves with continued or escalating dosages of narcotics">
+				>
+				["at0017"] = <
+					text = <"Marked worsening">
+					description = <"There is marked worsening of pain when the narcotic dose wanes and improvement when narcotics are re-instituted (soar and crash)">
+				>
+				["at0018"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Progression of pain episodes">
+					description = <"There is a progression of the frequency, duration, and intensity of pain episodes">
+				>
+				["at0023"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"No">
+					description = <"">
+				>
+			>
+		>
+	>
