@@ -1,0 +1,167 @@
+archetype (adl_version=1.4; uid=e5eca053-afb0-41b0-a226-ba323c827264)
+	openEHR-EHR-OBSERVATION.rome_iv_diagnostic_criteria_for_belching_disorders.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-02-08">
+		["name"] = <"Shweta Prasad Ghaisas">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"shwetaghaisas@gmail.com">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To make a diagnosis and guide the management of a a belching disorder based on subtype (supragastric belching vs gastric belching).">
+			keywords = <"belching, belching disorder, supragastric belching, gastric belching, GERD, gastroesophageal reflux disease", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Used to record the characteristics and fequency of the belching and make recommendations based on these.">
+			misuse = <"The diagnostic criteria should be used in conjunction with a physical assessment and clinical examination.  ">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Stanghellini V, Chan FK, Hasler WL, et al. Gastroduodenal disorders. Gastroenterology. 2016;150(6):1380-92. doi:10.1053/j.gastro.2016.02.038.
+Carbone F, Vanuytsel T, Tack J. Analysis of postprandial symptom patterns in subgroups of patients with Rome III or Rome IV functional dyspepsia. Clin Gastroenterol Hepatol. 2020;18(4):838-46.e3. doi:10.1016/j.cgh.2019.06.048.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"f7e50639b9c85093831ba364e0714410">
+		["build_uid"] = <"8ba874cf-4068-3f63-a84e-e6b2cf5c49b3">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Rome IV Diagnostic Criteria for Belching Disorders
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Bothersome (i.e., severe enough to impact on usual activities) belching from the esophagus more than 3 days a week
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0010,    -- Yes
+													at0011]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Bothersome (i.e., severe enough to impact on usual activities) belching from the stomach more than 3 days a week
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0008,    -- Yes
+													at0009]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Diagnosic Result
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0013,    -- Positive Diagnosis for excessive supragastric belching
+													at0014,    -- Negative Diagnosis for excessive supragastric belching
+													at0015,    -- Positive Diagnosis for excessive gastric belching
+													at0016]    -- Negative Diagnosis for excessive gastric belching
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Rome IV Diagnostic Criteria for Belching Disorders">
+					description = <"An assessment scale used to make a diagnosis of a belching disorder.">
+					comment = <"Original version, c 2016">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Bothersome (i.e., severe enough to impact on usual activities) belching from the esophagus more than 3 days a week">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Bothersome (i.e., severe enough to impact on usual activities) belching from the stomach more than 3 days a week">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Diagnosic Result">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Positive Diagnosis for excessive supragastric belching">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Negative Diagnosis for excessive supragastric belching">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Positive Diagnosis for excessive gastric belching">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Negative Diagnosis for excessive gastric belching">
+					description = <"">
+				>
+			>
+		>
+	>
