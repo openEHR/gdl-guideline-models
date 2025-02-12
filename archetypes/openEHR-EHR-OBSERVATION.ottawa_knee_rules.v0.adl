@@ -1,0 +1,132 @@
+archetype (adl_version=1.4; uid=fb9364df-b754-44e0-9f0e-bd2315e8ba63)
+	openEHR-EHR-OBSERVATION.ottawa_knee_rules.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-02-12">
+		["name"] = <"Aurelia Maria Ozora">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"aurelia.maria.ozora@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	other_contributors = <"Aurelia Maria Ozora", ...>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the Ottawa Knee Rules details.">
+			keywords = <"Ottawa, knee, rules, fracture, radiography", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the Ottawa Knee Rules details.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Emparanza JI, Aginaga JR; Estudio Multicéntro en Urgencias de Osakidetza: Reglas de Ottawa (EMUORO) Group. Validation of the Ottawa Knee Rules. Ann Emerg Med. 2001 Oct;38(4):364-8. doi: 10.1067/mem.2001.118011. PMID: 11574791.
+
+Stiell IG, Greenberg GH, Wells GA, McKnight RD, Cwinn AA, Cacciotti T, McDowell I, Smith NA. Derivation of a decision rule for the use of radiography in acute knee injuries. Ann Emerg Med. 1995 Oct;26(4):405-13. doi: 10.1016/s0196-0644(95)70106-0. PMID: 7574120.">
+		["build_uid"] = <"86032a91-5d92-3ba9-bb6a-131109a5a0b1">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Ottawa Knee Rules
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Age 55 years old or older
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Tenderness at the head of fibula
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Isolated tenderness of patella
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Unable to flex to 90°
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Unable to bear weight both immediately and in the ED (for 4 steps, limping is okay)
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0009] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Ottawa Knee Rules">
+					description = <"Ottawa Knee Rules">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Age 55 years old or older">
+					description = <"To record whether or not the patient is 55 years old or older.">
+				>
+				["at0005"] = <
+					text = <"Tenderness at the head of fibula">
+					description = <"To record whether or not the patient has tenderness at the head of fibula.">
+				>
+				["at0006"] = <
+					text = <"Isolated tenderness of patella">
+					description = <"To record whether or not the patient has tenderness only on patella.">
+				>
+				["at0007"] = <
+					text = <"Unable to flex to 90°">
+					description = <"To record whether or not the patient's knee is unable to flex to 90°.">
+				>
+				["at0008"] = <
+					text = <"Unable to bear weight both immediately and in the ED (for 4 steps, limping is okay)">
+					description = <"To record whether or not the patient is unable to bear weight both immediately and in the ED for more than four steps. If the patient is limping, it is still considered as able to bear weight.">
+				>
+				["at0009"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+			>
+		>
+	>
