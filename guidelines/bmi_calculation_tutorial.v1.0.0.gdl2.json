@@ -1,0 +1,164 @@
+{
+  "id": "bmi_calculation_tutorial.v1.0.0",
+  "gdl_version": "2.0",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Author name",
+      "email": "author_@email.com",
+      "organisation": "Cambio CDS",
+      "date": "2013-11-03"
+    },
+    "lifecycle_state": "Author draft",
+    "details": {
+      "en": {
+        "id": "en",
+        "copyright": "Cambio CDS",
+        "keywords": [
+          "obesity",
+          "body mass index",
+          "BMI",
+          "weight",
+          "height"
+        ],
+        "purpose": "To calculate the body mass index in kg/m² from the weight (kg) and height (cm) of an individual.",
+        "use": "Use for calculating the BMI in adults and children.",
+        "misuse": "Do not use for classifying the BMI into categories of weight such as obesity. This must be done in a different guideline that will use the result of this guideline as input for BMI classification."
+      }
+    },
+    "other_details": {
+      "references": "1. Clinical Guidelines on the Identification, Evaluation, and Treatment of Overweight and Obesity in Adults: The Evidence Report [Internet]. Bethesda (MD): National Heart, Lung, and Blood Institute; NIH Publication No. 98-4083, Sep 1998, [cited 2009 July 02].",
+      "en": "tutorial"
+    },
+    "other_contributors": [
+      "Contributor name 1",
+      "Contributor name 2",
+      "Contributor name 3"
+    ]
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "type": "INPUT",
+        "model_id": "openEHR-EHR-OBSERVATION.body_weight.v2",
+        "template_id": "openEHR-EHR-OBSERVATION.body_weight.v2",
+        "elements": {
+          "gt0003": {
+            "id": "gt0003",
+            "path": "/data[at0002]/events[at0003]/data[at0001]/items[at0004]"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "path": "/data/events/time"
+          }
+        },
+        "predicates": [
+          "max ( /data/events/time )"
+        ]
+      },
+      "gt0005": {
+        "id": "gt0005",
+        "type": "INPUT",
+        "model_id": "openEHR-EHR-OBSERVATION.height.v2",
+        "template_id": "openEHR-EHR-OBSERVATION.height.v2",
+        "elements": {
+          "gt0006": {
+            "id": "gt0006",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]"
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "path": "/data/events/time"
+          }
+        },
+        "predicates": [
+          "max ( /data/events/time )"
+        ]
+      },
+      "gt0008": {
+        "id": "gt0008",
+        "type": "OUTPUT",
+        "model_id": "openEHR-EHR-OBSERVATION.body_mass_index.v2",
+        "template_id": "openEHR-EHR-OBSERVATION.body_mass_index.v2",
+        "elements": {
+          "gt0009": {
+            "id": "gt0009",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]"
+          }
+        }
+      }
+    },
+    "templates": {},
+    "rules": {
+      "gt0010": {
+        "id": "gt0010",
+        "priority": 1,
+        "when": [
+          "$gt0003|Weight|.unit=='kg'",
+          "$gt0006|Height/Length|.unit=='cm'"
+        ],
+        "then": [
+          "$gt0009|Body mass index|.magnitude = $gt0003|Weight|.magnitude / ( $gt0006|Height/Length|.magnitude / 100 ) ^ 2",
+          "$gt0009|Body mass index|.unit='kg/m2'",
+          "$gt0009|Body mass index|.precision = 2"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "BMI calculation",
+            "description": "Body mass index (BMI) is a simple index of weight-for-height that is commonly used to classify overweight and obesity in adults. It is defined as a person's weight in kilograms divided by the square of their height in meters (kg/m²).\n\nThe frame of reference as defined by the World Health Organization (WHO):\n\n* Below 18.5 - underweight\n* 18.5 - 24.9 - normal weight\n* 25.0 - 29.9 - pre-obesity\n* 30.0 - 34.9 - obesity class I\n* 35.0 - 39.9 - obesity class II\n* Above 40.0 - obesity class III"
+          },
+          "gt0002": {
+            "id": "gt0002",
+            "text": "openEHR-EHR-OBSERVATION.body_weight.v2"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "Weight"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "Event time"
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "text": "openEHR-EHR-OBSERVATION.height.v2"
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "Height/Length"
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "Event time"
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "text": "openEHR-EHR-OBSERVATION.body_mass_index.v2"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "Body mass index"
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "Calculate BMI",
+            "description": ""
+          }
+        }
+      }
+    },
+    "term_bindings": {}
+  }
+}
