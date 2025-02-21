@@ -1,0 +1,217 @@
+archetype (adl_version=1.4; uid=5a679fd8-4e39-4206-af50-b78d18fc61ec)
+	openEHR-EHR-OBSERVATION.rome_iv_diagnostic_criteria_for_infant_functional_diarrhea.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-02-14">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the presence or absence of Rome IV-defined functional diarrhea criteria, assisting clinicians in differentiating benign infant diarrhea from pathological conditions.">
+			keywords = <"infant diarrhea, functional diarrhea, chronic watery stools, Rome IV criteria, pediatric gastroenterology", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Applicable to infants aged 6 to 60 months presenting with chronic, watery stools without signs of malnutrition or systemic illness.
+
+The clinician evaluates the frequency, consistency, and impact of diarrhea, ensuring no alarm signs of an underlying organic disorder.">
+			misuse = <"Not intended for acute infectious diarrhea or cases with failure to thrive, weight loss, or abnormal lab findings.
+
+Not to be used in older children or adults.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Benninga MA, Faure C, Hyman PE, St James Roberts I, Schechter NL, Nurko S. Childhood Functional Gastrointestinal Disorders: Neonate/Toddler. Gastroenterology. 2016 Feb 15:S0016-5085(16)00182-7. doi: 10.1053/j.gastro.2016.02.016. Epub ahead of print. PMID: 27144631.">
+		["build_uid"] = <"dd4811b0-396d-3e8f-87ec-c3d04a7e919e">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Rome IV Diagnostic Criteria for Infant Functional Diarrhea
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Daily, painless, recurrent passage of ≥4 large, unformed stools
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- Yes
+													at0008]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Symptoms last >4 weeks
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0010,    -- Yes
+													at0011]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Onset between 6 and 60 months of age
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0013,    -- Yes
+													at0014]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- No failure to thrive if caloric intake is adequate
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0016,    -- Yes
+													at0017]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Diagnostic result
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0019,    -- Positive
+													at0020]    -- Negative
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Rome IV Diagnostic Criteria for Infant Functional Diarrhea">
+					description = <"A clinical evaluation model used to diagnose functional diarrhea in infants based on Rome IV criteria. Functional diarrhea is a benign, non-infectious, and self-limiting disorder characterized by frequent watery stools without malabsorption, infection, or underlying disease.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Daily, painless, recurrent passage of ≥4 large, unformed stools">
+					description = <"Daily, painless, recurrent passage of ≥4 large, unformed stools
+">
+				>
+				["at0007"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Symptoms last >4 weeks">
+					description = <"Symptoms last >4 weeks">
+				>
+				["at0010"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Onset between 6 and 60 months of age">
+					description = <"Onset between 6 and 60 months of age">
+				>
+				["at0013"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"No failure to thrive if caloric intake is adequate">
+					description = <"No failure to thrive if caloric intake is adequate">
+				>
+				["at0016"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Diagnostic result">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Positive">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Negative">
+					description = <"">
+				>
+			>
+		>
+	>
