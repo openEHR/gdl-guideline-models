@@ -1,0 +1,172 @@
+archetype (adl_version=1.4; uid=e7229dba-8586-40f4-b589-8bda27e59e35)
+	openEHR-EHR-OBSERVATION.rome_iv_diagnostic_criteria_for_functional_gallbladder_disorder.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-02-21">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results of each Rome IV criteria for diagnosing functional gallbladder disorder, helping clinicians determine when to consider cholecystectomy or alternative management strategies.">
+			keywords = <"functional gallbladder disorder, Rome IV criteria, biliary pain, functional biliary disorder, gallbladder dyskinesia", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Adult patients with recurrent right upper quadrant or epigastric pain suggestive of biliary origin.
+
+No evidence of gallstones, cholecystitis, or other structural pathology on imaging (e.g., ultrasound, MRI, or HIDA scan).
+
+The clinician evaluates pain characteristics, supportive diagnostic criteria (e.g., gallbladder ejection fraction < 40% on HIDA scan), and absence of alternative causes.">
+			misuse = <"Do not use for patients with gallstones, bile duct obstruction, pancreatitis, or structural abnormalities.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Cotton PB, Elta GH, Carter CR, Pasricha PJ, Corazziari ES. Rome IV. Gallbladder and Sphincter of Oddi Disorders. Gastroenterology. 2016 Feb 19:S0016-5085(16)00224-9. doi: 10.1053/j.gastro.2016.02.033. Epub ahead of print. PMID: 27144629.">
+		["build_uid"] = <"b149956d-ff1d-3214-a707-30e30f6c5375">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Rome IV Diagnostic Criteria for Functional Gallbladder Disorder
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Biliary pain
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0006,    -- Yes
+													at0007]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Absence of gallstones or other structural pathology
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0008,    -- Yes
+													at0009]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Diagnostic result
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0011,    -- Positive
+													at0012]    -- Negative
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0013] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0014] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Rome IV Diagnostic Criteria for Functional Gallbladder Disorder">
+					description = <"A clinical evaluation model used to diagnose functional gallbladder disorder (FGBD) based on Rome IV criteria. FGBD is a disorder of gut-brain interaction, characterized by biliary-type pain without structural gallbladder disease (e.g., gallstones, inflammation, or obstruction).">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Biliary pain">
+					description = <"Biliary pain
+
+">
+				>
+				["at0005"] = <
+					text = <"Absence of gallstones or other structural pathology">
+					description = <"Absence of gallstones or other structural pathology">
+				>
+				["at0006"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Diagnostic result">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Positive">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Negative">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0014"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>
