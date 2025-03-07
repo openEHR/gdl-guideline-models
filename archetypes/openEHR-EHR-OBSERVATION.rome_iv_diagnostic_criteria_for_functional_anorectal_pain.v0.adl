@@ -1,0 +1,249 @@
+archetype (adl_version=1.4; uid=adf336c2-fe85-4d60-9605-049aeb723097)
+	openEHR-EHR-OBSERVATION.rome_iv_diagnostic_criteria_for_functional_anorectal_pain.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-03-06">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the diagnostic criteria components used to determine Functional Anorectal Pain according to the Rome IV criteria.">
+			keywords = <"functional anorectal pain, rome iv, proctalgia fugax, levator ani syndrome, anorectal disorder, chronic pelvic pain", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the presence or absence of the Rome IV diagnostic criteria for Functional Anorectal Pain, including symptom duration, type of pain (proctalgia fugax or levator ani syndrome), and exclusion of organic anorectal diseases.">
+			misuse = <"Not to be used for recording diagnoses related to organic anorectal disorders, such as hemorrhoids, rectal fissures, abscesses, infections, inflammatory bowel disease (IBD), or rectal cancer. Use instead openEHR-EHR-EVALUATION.anorectal_disorders.v0 or another appropriate archetype.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"20ac568f-e4f9-37d1-9c7d-18b578307db4">
+		["references"] = <"Rao SS, Bharucha AE, Chiarioni G, Felt-Bersma R, Knowles C, Malcolm A, Wald A. Functional Anorectal Disorders. Gastroenterology. 2016 Mar 25:S0016-5085(16)00175-X 10.1053/j.gastro.2016.02.009. doi: 10.1053/j.gastro.2016.02.009. Epub ahead of print. PMID: 27144630; PMCID: PMC5035713.
+
+Ooijevaar RE, Felt-Bersma RJF, Han-Geurts IJ, van Reijn D, Vollebregt PF, Molenaar CBH. Botox treatment in patients with chronic functional anorectal pain: experiences of a tertiary referral proctology clinic. Tech Coloproctol. 2019 Mar;23(3):239-244. doi: 10.1007/s10151-019-01945-8. Epub 2019 Feb 16. PMID: 30778784; PMCID: PMC6511340.
+
+">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Rome IV Diagnostic Criteria for Functional Anorectal Pain
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Chronic or recurrent rectal pain or aching
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0014,    -- Yes
+													at0015]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Episodes last ≥30 minutes
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0016,    -- Yes
+													at0017]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Tenderness during traction on the puborectalis
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Yes
+													at0019]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Exclusion of other causes of rectal pain, such as inflammatory bowel disease, intramuscular abscess and fissure, thrombosed hemorrhoids, prostatitis, coccygodynia, and major structural alterations of the pelvic floor
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0020,    -- Yes
+													at0021]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Symptom criteria for chronic levator ani syndrome but no tenderness during posterior traction on the puborectalis muscle
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0022,    -- Yes
+													at0023]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Diagnostic Result
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012,    -- Positive
+													at0013]    -- Negative
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Rome IV Diagnostic Criteria for Functional Anorectal Pain">
+					description = <"Functional Anorectal Pain (FAP) is a functional gastrointestinal disorder characterized by chronic or recurrent anorectal pain in the absence of structural, inflammatory, or neurological abnormalities. It includes proctalgia fugax and levator ani syndrome, as defined by the Rome IV criteria.">
+					comment = <"Original version, c 2016">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Chronic or recurrent rectal pain or aching">
+					description = <"Chronic or recurrent rectal pain or aching
+
+
+">
+					comment = <"For 3 months prior with symptom onset ≥6 months ago">
+				>
+				["at0007"] = <
+					text = <"Tenderness during traction on the puborectalis">
+					description = <"Tenderness during traction on the puborectalis">
+					comment = <"For 3 months prior with symptom onset ≥6 months ago">
+				>
+				["at0008"] = <
+					text = <"Exclusion of other causes of rectal pain, such as inflammatory bowel disease, intramuscular abscess and fissure, thrombosed hemorrhoids, prostatitis, coccygodynia, and major structural alterations of the pelvic floor">
+					description = <"Exclusion of other causes of rectal pain, such as inflammatory bowel disease, intramuscular abscess and fissure, thrombosed hemorrhoids, prostatitis, coccygodynia, and major structural alterations of the pelvic floor">
+					comment = <"For 3 months prior with symptom onset ≥6 months ago">
+				>
+				["at0009"] = <
+					text = <"Symptom criteria for chronic levator ani syndrome but no tenderness during posterior traction on the puborectalis muscle">
+					description = <"Symptom criteria for chronic levator ani syndrome but no tenderness during posterior traction on the puborectalis muscle">
+					comment = <"For 3 months prior with symptom onset ≥6 months ago">
+				>
+				["at0010"] = <
+					text = <"Episodes last ≥30 minutes">
+					description = <"Episodes last ≥30 minutes
+">
+					comment = <"For 3 months prior with symptom onset ≥6 months ago">
+				>
+				["at0011"] = <
+					text = <"Diagnostic Result">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Positive">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Negative">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"No">
+					description = <"">
+				>
+			>
+		>
+	>
