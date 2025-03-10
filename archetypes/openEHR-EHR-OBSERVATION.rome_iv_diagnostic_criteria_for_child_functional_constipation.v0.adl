@@ -1,0 +1,163 @@
+archetype (adl_version=1.4; uid=6828b13a-2b26-413f-b9b4-4f0e6f01c793)
+	openEHR-EHR-OBSERVATION.rome_iv_diagnostic_criteria_for_child_functional_constipation.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-03-10">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter.">
+			keywords = <"Rome, IV, Diagnostic, Criteria, Child, Functional, Constipation", ...>
+			use = <"Use to record the results for each component parameter.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Rasquin A, Di Lorenzo C, Forbes D, Guiraldes E, Hyams JS, Staiano A, Walker LS. Childhood functional gastrointestinal disorders: child/adolescent. Gastroenterology. 2006 Apr;130(5):1527-37. doi: 10.1053/j.gastro.2005.08.063. PMID: 16678566; PMCID: PMC7104693.
+
+Boronat AC, Ferreira-Maia AP, Matijasevich A, Wang YP. Epidemiology of functional gastrointestinal disorders in children and adolescents: A systematic review. World J Gastroenterol. 2017 Jun 7;23(21):3915-3927. doi: 10.3748/wjg.v23.i21.3915. PMID: 28638232; PMCID: PMC5467078.">
+		["build_uid"] = <"c9ac488b-87f2-31b8-ba5c-286c473a2094">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Rome IV Diagnostic Criteria for Child Functional Constipation
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- ≤2 defecations in the toilet per week in a child of a developmental age of at least 4 years
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- ≥1 episode of fecal incontinence per week
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {    -- History of retentive posturing or excessive volitional stool retention
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {    -- History of painful or hard bowel movements
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- Presence of a large fecal mass in the rectum
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0022] occurrences matches {0..1} matches {    -- History of large diameter stools which can obstruct the toilet
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0023] occurrences matches {0..1} matches {    -- After appropriate evaluation, the symptoms cannot be fully explained by another medical condition
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0024] occurrences matches {0..1} matches {    -- Occurring ≥1 time per week for a minimum of 1 month
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0025] occurrences matches {0..1} matches {    -- Insufficient criteria for a diagnosis of IBS
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0005] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Rome IV Diagnostic Criteria for Child Functional Constipation">
+					description = <"The Rome IV criteria provide symptom-based guidelines by which child and adolescent disorders of the gut-brain interaction (DGBI) such as functional constipation can be diagnosed. Prior iterations of the Rome criteria were based mostly on consensus, as research in child/adolescent DGBI was still largely lacking. Functional constipation is diagnosed based on typical history and physical examination. In the absence of alarm symptoms, no further diagnostic testing is routinely needed.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0016"] = <
+					text = <"≤2 defecations in the toilet per week in a child of a developmental age of at least 4 years">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"≥1 episode of fecal incontinence per week">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"History of retentive posturing or excessive volitional stool retention">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"History of painful or hard bowel movements">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Presence of a large fecal mass in the rectum">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"History of large diameter stools which can obstruct the toilet">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"After appropriate evaluation, the symptoms cannot be fully explained by another medical condition">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Occurring ≥1 time per week for a minimum of 1 month">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Insufficient criteria for a diagnosis of IBS">
+					description = <"">
+				>
+			>
+		>
+	>
