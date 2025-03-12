@@ -1,0 +1,122 @@
+archetype (adl_version=1.4; uid=8aaece45-d6c0-4771-81a7-02eb72cb1a5d)
+	openEHR-EHR-OBSERVATION.prague_c_and_m_classification_for_barretts_esophagus.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-03-12">
+		["name"] = <"Aurelia Maria Ozora">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"aurelia.maria.ozora@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	other_contributors = <"Aurelia Maria Ozora", ...>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter.">
+			keywords = <"Barret's, esophagus, gastroesophageal, prague, endoscopy, classification", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Sharma P, Dent J, Armstrong D, Bergman JJ, Gossner L, Hoshihara Y, Jankowski JA, Junghard O, Lundell L, Tytgat GN, Vieth M. The development and validation of an endoscopic grading system for Barrett's esophagus: the Prague C & M criteria. Gastroenterology. 2006 Nov;131(5):1392-9. doi: 10.1053/j.gastro.2006.08.032. Epub 2006 Aug 16. PMID: 17101315.
+
+Vahabzadeh B, Seetharam AB, Cook MB, Wani S, Rastogi A, Bansal A, Early DS, Sharma P. Validation of the Prague C & M criteria for the endoscopic grading of Barrett's esophagus by gastroenterology trainees: a multicenter study. Gastrointest Endosc. 2012 Feb;75(2):236-41. doi: 10.1016/j.gie.2011.09.017. PMID: 22248595; PMCID: PMC4547779.">
+		["revision"] = <"0">
+		["build_uid"] = <"d5178953-d809-32e6-bf7c-8d032097ab53">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Prague C and M Classification for Barretts Esophagus
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Circumferential extent of Barret's Esophagus above the gastroesophageal junction (C value)
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::122]>
+												list = <
+													["1"] = <
+														units = <"cm">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Maximal extent of Barret's Esophagus above the gastroesophageal junction (M value)
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::122]>
+												list = <
+													["1"] = <
+														units = <"cm">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Prague C & M classification
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Prague C and M Classification for Barretts Esophagus">
+					description = <"Barrett’s esophagus is the premalignant condition for adenocarcinoma of the esophagus and gastroesophageal junction. This classification stratifies severity of Barrett's esophagus based on endoscopic findings.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Circumferential extent of Barret's Esophagus above the gastroesophageal junction (C value)">
+					description = <"To record the distance measured from the gastroesophageal junction to the highest location where metaplasia is present, around the entire circumference of the esophagus.">
+				>
+				["at0005"] = <
+					text = <"Maximal extent of Barret's Esophagus above the gastroesophageal junction (M value)">
+					description = <"To record the distance measured from the gastroesophageal junction to the highest location of metaplasia.">
+				>
+				["at0006"] = <
+					text = <"Prague C & M classification">
+					description = <"">
+				>
+			>
+		>
+	>
