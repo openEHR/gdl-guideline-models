@@ -1,0 +1,280 @@
+archetype (adl_version=1.4; uid=6317e413-410f-49af-ada9-715599fa6740)
+	openEHR-EHR-OBSERVATION.mica_score.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-03-13">
+		["name"] = <"Shweta Prasad Ghaisas">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"S.Prasad.Ghaisas@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the risk of each component and the total risk that is used to calculate MICA score.">
+			keywords = <"perioperative risk, myocardial infarction, cardiac arrest, heart attack, Gupta perioperative risk, age, cardiac procedure, non-cardiac procedure, functional status, creatinine, cardiac event, ASA classification, MI", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and their total sum for the MICA score.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Gupta PK, Gupta H, Sundaram A, et al. Development and validation of a risk calculator for prediction of cardiac risk after surgery. Circulation. 2011;124(4):381-7.
+
+Fleisher LA, Fleischmann KE, Auerbach AD, et al. 2014 ACC/AHA guideline on perioperative cardiovascular evaluation and management of patients undergoing noncardiac surgery: a report of the American College of Cardiology/American Heart Association Task Force on practice guidelines. J Am Coll Cardiol. 2014;64(22):e77-137.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"337eedc6-6f60-3c55-8485-6e1e21785743">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- MICA_score
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Functional status
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0005,    -- Independent
+													at0006,    -- Partially dependent
+													at0007]    -- Totally dependent
+												}
+											}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Type of procedure
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0009,    -- Anorectal
+													at0010,    -- Aortic
+													at0011,    -- Bariatric
+													at0012,    -- Brain
+													at0013,    -- Breast
+													at0014,    -- Cardiac
+													at0015,    -- ENT (except thyroid/parathyroid)
+													at0016,    -- Foregut or hepatopancreatobiliary
+													at0017,    -- Gallbladder, appendix, adrenals, or spleen
+													at0018,    -- Hernia (ventral, inguinal, femoral)
+													at0019,    -- Intestinal
+													at0020,    -- Neck (thyroid/parathyroid)
+													at0021,    -- Obstetric/gynecologic
+													at0022,    -- Skin
+													at0023,    -- Spine
+													at0024,    -- Orthopedic and non-vascular extremity
+													at0025,    -- Vein
+													at0026,    -- Urology
+													at0027,    -- Other abdominal
+													at0028,    -- Peripheral vascular (Non-aortic, non-vein vascular surgeries)
+													at0029]    -- Non-esophageal thoracic
+												}
+											}
+										}
+									}
+									ELEMENT[at0030] occurrences matches {0..1} matches {    -- Creatinine
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0031,    -- Normal (≤1.5 mg/dL, 133 µmol/L)
+													at0032,    -- Elevated (>1.5 mg/dL, 133 µmol/L)
+													at0033]    -- Unknown
+												}
+											}
+										}
+									}
+									ELEMENT[at0036] occurrences matches {0..1} matches {    -- x
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0035] occurrences matches {0..1} matches {    -- Cardiac risk
+										value matches {
+											DV_PROPORTION matches {
+												type matches {2}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0034] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"MICA_score">
+					description = <"An assessment score to predict risk of MI or cardiac arrest after surgery.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Functional status">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Independent">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Partially dependent">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Totally dependent">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Type of procedure">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Anorectal">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Aortic">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Bariatric">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Brain">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Breast">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Cardiac">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"ENT (except thyroid/parathyroid)">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Foregut or hepatopancreatobiliary">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Gallbladder, appendix, adrenals, or spleen">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Hernia (ventral, inguinal, femoral)">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Intestinal">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Neck (thyroid/parathyroid)">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Obstetric/gynecologic">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Skin">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Spine">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Orthopedic and non-vascular extremity">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Vein">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Urology">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Other abdominal">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Peripheral vascular (Non-aortic, non-vein vascular surgeries)">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Non-esophageal thoracic">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Creatinine">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Normal (≤1.5 mg/dL, 133 µmol/L)">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Elevated (>1.5 mg/dL, 133 µmol/L)">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Unknown">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0035"] = <
+					text = <"Cardiac risk">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"x">
+					description = <"">
+				>
+			>
+		>
+	>
