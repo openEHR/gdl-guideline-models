@@ -110,7 +110,7 @@ _Select a medical specialty below to view the available apps._
 
 -----------
 
-[CDS App Challenge 2023 Submissions](https://github.com/openEHR/gdl-guideline-models#cds-app-challenge-2023-submissions)
+[CDS App Challenge 2023-2024 Submissions](https://github.com/openEHR/gdl-guideline-models#cds-app-challenge-2023-submissions)
 
 -----------
 
