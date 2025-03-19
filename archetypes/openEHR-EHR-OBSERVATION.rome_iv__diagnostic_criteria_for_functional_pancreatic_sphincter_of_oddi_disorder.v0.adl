@@ -1,0 +1,136 @@
+archetype (adl_version=1.4; uid=ffc60eae-dbd2-42fa-9c23-640044c2eeeb)
+	openEHR-EHR-OBSERVATION.rome_iv__diagnostic_criteria_for_functional_pancreatic_sphincter_of_oddi_disorder.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-03-19">
+		["name"] = <"Umiah Gohar">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"umiah.gohar@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter based on Rome IV diagnostic criteria.">
+			keywords = <"Rome","iv","diagnostic","criteria","functional">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter for the Rome IV diagnostic criteria.">
+			misuse = <"Not to be used for recording information regarding the Rome III diagnostic criteria">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Cotton PB, Elta GH, Carter CR, Pasricha PJ, Corazziari ES. Rome IV. Gallbladder and Sphincter of Oddi Disorders. Gastroenterology. 2016 Feb 19:S0016-5085(16)00224-9. doi: 10.1053/j.gastro.2016.02.033. Epub ahead of print. PMID: 27144629.
+
+Aziz I, Palsson OS, Törnblom H, Sperber AD, Whitehead WE, Simrén M. The Prevalence and Impact of Overlapping Rome IV-Diagnosed Functional Gastrointestinal Disorders on Somatization, Quality of Life, and Healthcare Utilization: A Cross-Sectional General Population Study in Three Countries. Am J Gastroenterol. 2018 Jan;113(1):86-96. doi: 10.1038/ajg.2017.421. Epub 2017 Nov 14. PMID: 29134969.">
+		["build_uid"] = <"5abc5505-f0bb-3644-a2ff-cdc0c212ea81">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Rome IV Diagnostic Criteria for Functional Pancreatic Sphincter of Oddi Disorder (SOD)
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Documented recurrent episodes of pancreatitis (typical pain with amylase or lipase >3 times normal and/or imaging evidence of acute pancreatitis)
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Other etiologies of pancreatitis excluded
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Negative endoscopic ultrasound
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Abnormal sphincter manometry
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0008] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0009] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Rome IV Diagnostic Criteria for Functional Pancreatic Sphincter of Oddi Disorder (SOD)">
+					description = <"An assessment criteria used to diagnose functional pancreatic Sphincter of Oddi Disorder (SOD).">
+					comment = <"Original version, c 2016">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Documented recurrent episodes of pancreatitis (typical pain with amylase or lipase >3 times normal and/or imaging evidence of acute pancreatitis)">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Other etiologies of pancreatitis excluded">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Negative endoscopic ultrasound">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Abnormal sphincter manometry">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0009"] = <
+					text = <"Extension">
+					description = <"After appropriate evaluation, the symptoms cannot be fully explained by another medical condition.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>
