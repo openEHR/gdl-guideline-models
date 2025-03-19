@@ -1,0 +1,128 @@
+archetype (adl_version=1.4; uid=a66a89ce-ded9-40e4-a6ae-bbb7ba263ea6)
+	openEHR-EHR-OBSERVATION.rome_iv_diagnostic_criteria_for_cyclic_vomiting_syndrome.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-03-19">
+		["name"] = <"Umiah Gohar">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"umiah.gohar@gmail.com">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the diagnostic result based on Rome IV diagnostic criteria.">
+			keywords = <"Rome","IV","diagnostic","criteria","functional","dysphagia">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter for the Rome IV diagnostic criteria.">
+			misuse = <"Not to be used for recording information regarding the Rome III diagnostic criteria. ">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Mearin F, Lacy BE, Chang L, Chey WD, Lembo AJ, Simren M, Spiller R. Bowel Disorders. Gastroenterology. 2016 Feb 18:S0016-5085(16)00222-5. doi: 10.1053/j.gastro.2016.02.031. Epub ahead of print. PMID: 27144627.
+
+Aziz I, Palsson OS, Whitehead WE, Sperber AD, Simrén M, Törnblom H. Epidemiology, Clinical Characteristics, and Associations for Rome IV Functional Nausea and Vomiting Disorders in Adults. Clin Gastroenterol Hepatol. 2019 Apr;17(5):878-886. doi: 10.1016/j.cgh.2018.05.020. Epub 2018 May 29. PMID: 29857155.
+
+">
+		["build_uid"] = <"f4db0a6d-5cbf-39dc-99cb-0cdec45acbb1">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Rome IV diagnostic criteria for cyclic vomiting syndrome
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Stereotypical episodes of vomiting regarding onset (acute) and duration (<1 week)
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- ≥3 discrete episodes in the prior year and 2 episodes in the past 6 months, occurring ≥1 week apart
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Absence of vomiting between episodes, but other milder symptoms can be present between cycles
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0007] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0008] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Rome IV diagnostic criteria for cyclic vomiting syndrome">
+					description = <"An assessment criteria used to diagnose cyclic vomiting syndrome.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Stereotypical episodes of vomiting regarding onset (acute) and duration (<1 week)">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"≥3 discrete episodes in the prior year and 2 episodes in the past 6 months, occurring ≥1 week apart">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Absence of vomiting between episodes, but other milder symptoms can be present between cycles">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0008"] = <
+					text = <"Extension">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>
