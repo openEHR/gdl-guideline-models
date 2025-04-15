@@ -1,0 +1,263 @@
+archetype (adl_version=1.4; uid=36a1085d-759b-4e08-9160-31b7548d3776)
+	openEHR-EHR-OBSERVATION.infant_scalp_score.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-04-15">
+		["name"] = <"Shweta Prasad Ghaisas">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"S.Prasad.Ghaisas@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To calculate and interpret the total sum for the Infant scalp score.">
+			keywords = <"infant, scalp, hematoma, hematoma size, hematoma location, parietal hematoma, temporal hematoma, frontal hematoma, occipital hematoma, traumatic brain injury, head injury, skull fracture, intracranial injury", ...>
+			copyright = <"© Cambio CDS">
+			use = <"The Infant scalp score is used in infants who are asymptomatic at the time of evaluation but who are at high risk of skull fracture. It can also assist the clinician in determining whether cranial radiology (head X-ray or head CT) is necessary in the workup of intracranial injury. This score assists in determining the risk of intracranial injury based on patient age and hematoma characteristics. If the patient is found to be low risk, head imaging may not be necessary.">
+			misuse = <"This tool was studied in patients who were asymptomatic and should be applied only to patients in that population.
+
+This tool should not be used in patients who have any of the following:
+1. Loss of consciousness.
+
+2. Lethargy or irritability.
+
+3. Seizures.
+
+4. Three or more episodes of emesis.
+
+5. Mental status changes.
+
+6. Bulging fontanel.
+
+7. Signs of neurologic injury.
+
+8. Abnormal vital signs.
+
+It should also not be used in infants who present with suspected nonaccidental trauma.
+
+Primary outcomes differed in various validation studies, with one using skull fracture and another using the outcome of clinically important traumatic brain injury (ciTBI).">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Greenes DS, Schutzman SA. Clinical significance of scalp abnormalities in asymptomatic head-injured infants. Pediatr Emerg Care. 2001 Apr;17(2):88–92. PMID: 11334100. doi: 10.1097/00006565-200104000-00002.
+
+Bin SS, Schutzman SA, Greenes DS. Validation of a clinical score to predict skull fracture in head-injured infants. Pediatr Emerg Care. 2010 Sep;26(9):633–9. PMID: 20805783. doi: 10.1097/PEC.0b013e3181ef0440.
+
+Schutzman SA, Nigrovic LE, Mannix R. The Infant Scalp Score: a validated tool to stratify risk of traumatic brain injury in infants with isolated scalp hematoma. Acad Emerg Med. 2021 Jan;28(1):92–7. Epub 2020 Aug 19. PMID: 32673432. doi: 10.1111/acem.14087.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"2e5a2532-eb5a-3d96-ae02-9ed73bcfdcde">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Infant scalp score
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Patient's age
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0006,    -- >12 months
+													at0007,    -- 6-11 months
+													at0008,    -- 3-5 months
+													at0009]    -- 0-2 months
+												}
+											}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Hematoma size
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0011,    -- None
+													at0012,    -- Small (barely palpable)
+													at0013,    -- Medium (easily palpable)
+													at0014]    -- Large (boggy consistency)
+												}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Hematoma location
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0016,    -- Frontal
+													at0017,    -- Occipital
+													at0018]    -- Temporal/ Parietal
+												}
+											}
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {    -- Age score
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- Hematoma size score
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0022] occurrences matches {0..1} matches {    -- Hematoma location score
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0024] occurrences matches {0..1} matches {    -- Assessment
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0025,    -- Low risk of Traumatic brain injury
+													at0026]    -- High risk of Traumatic brain injury
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Infant scalp score">
+					description = <"An assessment score used to evaluate risk of traumatic brain injury in infants with asymptomatic head injury.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Patient's age">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <">12 months">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"6-11 months">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"3-5 months">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"0-2 months">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Hematoma size">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"None">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Small (barely palpable)">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Medium (easily palpable)">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Large (boggy consistency)">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Hematoma location">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Frontal">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Occipital">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Temporal/ Parietal">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Total score">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Age score">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Hematoma size score">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Hematoma location score">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Assessment">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Low risk of Traumatic brain injury">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"High risk of Traumatic brain injury">
+					description = <"">
+				>
+			>
+		>
+	>
