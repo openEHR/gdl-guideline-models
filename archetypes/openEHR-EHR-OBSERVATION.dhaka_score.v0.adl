@@ -1,0 +1,223 @@
+archetype (adl_version=1.4; uid=e6bbd668-27b6-435e-85c6-7a42bc6e9484)
+	openEHR-EHR-OBSERVATION.dhaka_score.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-04-22">
+		["name"] = <"Aurelia Maria Ozora">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"aurelia.maria.ozora@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	other_contributors = <"Aurelia Maria Ozora", ...>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and their total sum for the DHAKA score.">
+			keywords = <"DHAKA, score, dehydration, kids, children, acute, diarrhea", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and their total sum for the DHAKA score.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["revision"] = <"0">
+		["references"] = <"Levine AC, Glavis-Bloom J, Modi P, Nasrin S, Rege S, Chu C, Schmid CH, Alam NH. Empirically Derived Dehydration Scoring and Decision Tree Models for Children With Diarrhea: Assessment and Internal Validation in a Prospective Cohort Study in Dhaka, Bangladesh. Glob Health Sci Pract. 2015 Aug 18;3(3):405-18. doi: 10.9745/GHSP-D-15-00097. PMID: 26374802; PMCID: PMC4570015.
+
+Levine AC, Glavis-Bloom J, Modi P, Nasrin S, Atika B, Rege S, Robertson S, Schmid CH, Alam NH. External validation of the DHAKA score and comparison with the current IMCI algorithm for the assessment of dehydration in children with diarrhoea: a prospective cohort study. Lancet Glob Health. 2016 Oct;4(10):e744-51. doi: 10.1016/S2214-109X(16)30150-4. Epub 2016 Aug 23. PMID: 27567350; PMCID: PMC5066390.">
+		["build_uid"] = <"de6035d2-3ea6-31ad-8d3a-cdc40d5edfb3">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- DHAKA Score
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Age
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"a">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- General Appearance
+										value matches {
+											0|[local::at0006],
+											2|[local::at0007],
+											4|[local::at0008]
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Tears
+										value matches {
+											0|[local::at0010],
+											1|[local::at0011],
+											2|[local::at0012]
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- Skin Pinch
+										value matches {
+											0|[local::at0014],
+											2|[local::at0015],
+											4|[local::at0016]
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Respiration
+										value matches {
+											0|[local::at0018],
+											2|[local::at0019]
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {    -- Total Score
+										value matches {
+											DV_COUNT matches {
+												magnitude matches {|0..12|}
+											}
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- Interpretation
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0022,    -- No dehydration
+													at0023,    -- Some dehydration
+													at0024]    -- Severe dehydration
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"DHAKA Score">
+					description = <"The  Dehydration: Assessing Kids Accurately (DHAKA) study produced the first empirically derived and internally validated diagnostic model for assessing dehydration in children with acute diarrhea by general practice nurses in a resource-limited setting. The DHAKA Score is a clinical tool that  assist nurses and other non-physician health workers to determine the best management strategy for children with acute diarrhea. ">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Age">
+					description = <"To record the age of the patient">
+				>
+				["at0005"] = <
+					text = <"General Appearance">
+					description = <"To record the general appearance of the patient">
+				>
+				["at0006"] = <
+					text = <"Normal">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Restless/irritable">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Lethargic/unconscious">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Tears">
+					description = <"To record whether the quantity of the patient's tears is normal">
+				>
+				["at0010"] = <
+					text = <"Normal">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Decreased">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Skin Pinch">
+					description = <"To record the patient's skin turgor">
+				>
+				["at0014"] = <
+					text = <"Normal">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Slow">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Very slow">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Respiration">
+					description = <"To record whether the patient's respiration is normal">
+				>
+				["at0018"] = <
+					text = <"Normal">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Deep">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Total Score">
+					description = <"To record the DHAKA total score">
+				>
+				["at0021"] = <
+					text = <"Interpretation">
+					description = <"To record the interpretation of DHAKA score">
+				>
+				["at0022"] = <
+					text = <"No dehydration">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Some dehydration">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Severe dehydration">
+					description = <"">
+				>
+			>
+		>
+	>
