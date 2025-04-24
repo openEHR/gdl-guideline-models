@@ -1,0 +1,468 @@
+archetype (adl_version=1.4; uid=26f73e47-3a22-4d8e-aa58-a083e3388cac)
+	openEHR-EHR-OBSERVATION.mipss70.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-04-17">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the component parameters and the total calculated scores for the MIPSS70 and MIPSS70+ v2.0 prognostic systems.">
+			keywords = <"mipss70, mipss70+, mutation-enhanced international prognostic score system, primary myelofibrosis, pmf, prefibrotic myelofibrosis, prognosis, risk score, hematology, oncology, asxl1, ezh2, srsf2, idh1, idh2, calr, u2af1", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the specific clinical findings, laboratory results thresholds, bone marrow fibrosis grade, and presence/absence/number of specific genetic mutations relevant to the MIPSS70 and MIPSS70+ v2.0 scores. Intended for use in patients diagnosed with prefibrotic/early or overt primary myelofibrosis. The GDL associated with this archetype will calculate the total score(s) and may provide risk stratification.">
+			misuse = <"Not to be used for calculating prognosis in other myeloproliferative neoplasms or hematological malignancies. Not to be used solely for recording individual parameters (e.g., Hemoglobin level) outside the context of calculating this specific score; use dedicated archetypes for those purposes (e.g., openEHR-EHR-OBSERVATION.lab_test-haematology). Do not use for DIPSS or other myelofibrosis scoring systems.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Guglielmelli P, Lasho TL, Rotunno G, Mudireddy M, Mannarelli C, Nicolosi M, Pacilli A, Pardanani A, Rumi E, Rosti V, Hanson CA, Mannelli F, Ketterling RP, Gangat N, Rambaldi A, Passamonti F, Barosi G, Barbui T, Cazzola M, Vannucchi AM, Tefferi A. MIPSS70: Mutation-Enhanced International Prognostic Score System for Transplantation-Age Patients With Primary Myelofibrosis. J Clin Oncol. 2018 Feb 1;36(4):310-318. doi: 10.1200/JCO.2017.76.4886. Epub 2017 Dec 9. PMID: 29226763.
+
+Tefferi A, Guglielmelli P, Lasho TL, Gangat N, Ketterling RP, Pardanani A, Vannucchi AM. MIPSS70+ Version 2.0: Mutation and Karyotype-Enhanced International Prognostic Scoring System for Primary Myelofibrosis. J Clin Oncol. 2018 Jun 10;36(17):1769-1770. doi: 10.1200/JCO.2018.78.9867. Epub 2018 Apr 30. PMID: 29708808.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"48a526f7-7520-35fa-be6e-05f895087d27">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- MIPSS70 Score
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0053] occurrences matches {0..1} matches {    -- Karyotype information
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0054,    -- Available
+													at0055]    -- Not available
+												}
+											}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Hemoglobin <10 g/dL
+										value matches {
+											0|[local::at0008],
+											1|[local::at0009]
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Platelet count <100,000 /µL
+										value matches {
+											0|[local::at0011],
+											2|[local::at0012]
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- Leukocyte count >25,000  /µL
+										value matches {
+											0|[local::at0014],
+											2|[local::at0015]
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Circulating blasts ≥2%
+										value matches {
+											0|[local::at0017],
+											1|[local::at0018]
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {    -- Fibrosis grade ≥2
+										value matches {
+											0|[local::at0020],
+											1|[local::at0021]
+										}
+									}
+									ELEMENT[at0022] occurrences matches {0..1} matches {    -- Constitutional symptoms
+										value matches {
+											0|[local::at0023],
+											1|[local::at0024]
+										}
+									}
+									ELEMENT[at0025] occurrences matches {0..1} matches {    -- Absence of CALR type 1-like mutation
+										value matches {
+											0|[local::at0026],
+											1|[local::at0027]
+										}
+									}
+									ELEMENT[at0028] occurrences matches {0..1} matches {    -- HMR category
+										value matches {
+											0|[local::at0029],
+											1|[local::at0030]
+										}
+									}
+									ELEMENT[at0031] occurrences matches {0..1} matches {    -- Two or more HMR mutations
+										value matches {
+											0|[local::at0032],
+											2|[local::at0033]
+										}
+									}
+									ELEMENT[at0034] occurrences matches {0..1} matches {    -- Hemoglobin, mg/dL
+										value matches {
+											0|[local::at0035],
+											1|[local::at0036],
+											2|[local::at0037]
+										}
+									}
+									ELEMENT[at0047] occurrences matches {0..1} matches {    -- Unfavorable karyotype
+										value matches {
+											0|[local::at0048],
+											3|[local::at0049]
+										}
+									}
+									ELEMENT[at0050] occurrences matches {0..1} matches {    -- Very high-risk karyotype
+										value matches {
+											0|[local::at0051],
+											4|[local::at0052]
+										}
+									}
+									ELEMENT[at0056] occurrences matches {0..1} matches {    -- Risk MIPSS70
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0057,    -- Very Low
+													at0058,    -- Low
+													at0059,    -- Intermediate
+													at0060,    -- High
+													at0061]    -- Very High
+												}
+											}
+										}
+									}
+									ELEMENT[at0062] occurrences matches {0..1} matches {    -- Median Overall Survival
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0063,    -- N/A
+													at0064,    -- 27.7
+													at0065,    -- 10.3
+													at0066,    -- 7.1
+													at0067,    -- 7.0
+													at0068,    -- 3.5
+													at0069,    -- 2.3
+													at0070]    -- 1.8
+												}
+											}
+										}
+									}
+									ELEMENT[at0071] occurrences matches {0..1} matches {    -- Score
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0072,    -- MIPSS70+ v2.0 Score
+													at0073]    -- MIPSS70
+												}
+											}
+										}
+									}
+									ELEMENT[at0074] occurrences matches {0..1} matches {    -- Total points
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"MIPSS70 Score">
+					description = <"Records the clinical, laboratory, and genetic parameters required to calculate the Mutation-Enhanced International Prognostic Score System (MIPSS70 and MIPSS70+ v2.0) for assessing prognosis in patients with prefibrotic/early or overt primary myelofibrosis (PMF).">
+					comment = <"Original version, c 2018.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0007"] = <
+					text = <"Hemoglobin <10 g/dL">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Platelet count <100,000 /µL">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Leukocyte count >25,000  /µL">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Circulating blasts ≥2%">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Fibrosis grade ≥2">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Constitutional symptoms">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Absence of CALR type 1-like mutation">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"HMR category">
+					description = <"Presence of a mutation in any of the following genes: ASXL1, EZH2, SRSF2, or IDH1/2">
+				>
+				["at0029"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Two or more HMR mutations">
+					description = <"Presence of two or more mutated genes among ASXL1, EZH2, SRSF2, and IDH1/2 i; two or more mutations in the same gene are counted as one.">
+				>
+				["at0032"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Hemoglobin, mg/dL">
+					description = <"">
+					comment = <"MIPSS70+ v2.0, Karyotype available.">
+				>
+				["at0035"] = <
+					text = <"≥11 mg/dL (men), ≥10 mg/dL (women)">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"9-10.9 mg/dL (men), 8-9.9 mg/dL (women)">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"<9 mg/dL (men), <8 mg/dL (women)">
+					description = <"">
+				>
+				["at0047"] = <
+					text = <"Unfavorable karyotype">
+					description = <" A complex karyotype or 1-2 abnormalities that include trisomy 8, 7/7q-,i(17q), 5/5q-, 12p-, inv(3), or 11q23 rearrangements.">
+				>
+				["at0048"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0049"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0050"] = <
+					text = <"Very high-risk karyotype">
+					description = <"single/multiple abnormalities of -7, i(17q), inv(3)/3q21, 12p-/12p11.2, 11q-/11q23, or other autosomal trisomies not including +8/+9">
+				>
+				["at0051"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0052"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0053"] = <
+					text = <"Karyotype information">
+					description = <"">
+				>
+				["at0054"] = <
+					text = <"Available">
+					description = <"">
+				>
+				["at0055"] = <
+					text = <"Not available">
+					description = <"">
+				>
+				["at0056"] = <
+					text = <"Risk MIPSS70">
+					description = <"">
+				>
+				["at0057"] = <
+					text = <"Very Low">
+					description = <"">
+				>
+				["at0058"] = <
+					text = <"Low">
+					description = <"">
+				>
+				["at0059"] = <
+					text = <"Intermediate">
+					description = <"">
+				>
+				["at0060"] = <
+					text = <"High">
+					description = <"">
+				>
+				["at0061"] = <
+					text = <"Very High">
+					description = <"">
+				>
+				["at0062"] = <
+					text = <"Median Overall Survival">
+					description = <"Median Overall Survival (years)">
+				>
+				["at0063"] = <
+					text = <"N/A">
+					description = <"">
+				>
+				["at0064"] = <
+					text = <"27.7">
+					description = <"">
+				>
+				["at0065"] = <
+					text = <"10.3">
+					description = <"">
+				>
+				["at0066"] = <
+					text = <"7.1">
+					description = <"">
+				>
+				["at0067"] = <
+					text = <"7.0">
+					description = <"">
+				>
+				["at0068"] = <
+					text = <"3.5">
+					description = <"">
+				>
+				["at0069"] = <
+					text = <"2.3">
+					description = <"">
+				>
+				["at0070"] = <
+					text = <"1.8">
+					description = <"">
+				>
+				["at0071"] = <
+					text = <"Score">
+					description = <"">
+				>
+				["at0072"] = <
+					text = <"MIPSS70+ v2.0 Score">
+					description = <"">
+				>
+				["at0073"] = <
+					text = <"MIPSS70">
+					description = <"">
+				>
+				["at0074"] = <
+					text = <"Total points">
+					description = <"">
+				>
+			>
+		>
+	>
