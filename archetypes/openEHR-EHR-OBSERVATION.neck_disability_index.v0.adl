@@ -33,7 +33,9 @@ Vernon H, Mior S. The Neck Disability Index: a study of reliability and validity
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"1f29d833d9d2df8adf11faaf47c41d4b">
 		["build_uid"] = <"c6ec6fec-a4a1-3a64-990f-ed986b4ae140">
+		["revision"] = <"1">
 	>
 
 definition
@@ -145,18 +147,11 @@ definition
 											5|[local::at0078]
 										}
 									}
-									ELEMENT[at0023] occurrences matches {0..1} matches {    -- Total score
+									ELEMENT[at0079] occurrences matches {0..1} matches {    -- Total score
 										value matches {
-											C_DV_QUANTITY <
-												property = <[openehr::507]>
-												list = <
-													["1"] = <
-														units = <"1">
-														magnitude = <|0.0..50.0|>
-														precision = <|0|>
-													>
-												>
-											>
+											DV_COUNT matches {
+												magnitude matches {|0..50|}
+											}
 										}
 									}
 									ELEMENT[at0024] occurrences matches {0..1} matches {    -- Percentage
@@ -181,7 +176,14 @@ definition
 			}
 		}
 		protocol matches {
-			ITEM_TREE[at0004] matches {*}    -- Item tree
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0080] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
 		}
 	}
 
@@ -192,6 +194,7 @@ ontology
 				["at0000"] = <
 					text = <"Neck Disability Index (NDI)">
 					description = <"Neck Disability Index (NDI) is an assessment that measures cervical pain and disability associated with the activities of daily living.">
+					comment = <"Original version, c 1992.">
 				>
 				["at0001"] = <
 					text = <"History">
@@ -199,7 +202,7 @@ ontology
 				>
 				["at0002"] = <
 					text = <"Any event">
-					description = <"@ internal @">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
 				>
 				["at0003"] = <
 					text = <"Tree">
@@ -272,10 +275,6 @@ ontology
 				["at0022"] = <
 					text = <"Recreation">
 					description = <"Perceived impairment to partaking in leisure activities.">
-				>
-				["at0023"] = <
-					text = <"Total score">
-					description = <"Total score from all the questionnaire components.">
 				>
 				["at0024"] = <
 					text = <"Percentage">
@@ -496,6 +495,15 @@ ontology
 				["at0078"] = <
 					text = <"I can't do any recreational activities due to neck pain">
 					description = <"">
+				>
+				["at0079"] = <
+					text = <"Total score">
+					description = <"Total score from all the questionnaire components.">
+				>
+				["at0080"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"local information requirements; or additional metadata to align with FHIR.">
 				>
 			>
 		>
