@@ -1,0 +1,312 @@
+{
+  "uuid": "882a5b87-1e6e-48de-9e37-f0c2ca5d3d74",
+  "id": "Neck_Disability_Index_calculation.v0.1.0",
+  "gdl_version": "2.1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Aurelia Maria Ozora",
+      "email": "aurelia.maria.ozora@cambio.se",
+      "organisation": "Cambio CDS",
+      "date": "2025-01-09"
+    },
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To calculate the total sum for the NDI.",
+        "keywords": [
+          "neck",
+          "disability",
+          "index",
+          "cervical",
+          "pain"
+        ],
+        "use": "Used to evaluate the degree of pain and disability in acute and chronic neck conditions, either from a musculoskeletal or neural source, and either stemming from a traumatic or non-traumatic injury.",
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "references": "MacDermid JC, Walton DM, Avery S, Blanchard A, Etruw E, McAlpine C, Goldsmith CH. Measurement properties of the neck disability index: a systematic review. J Orthop Sports Phys Ther. 2009 May;39(5):400-17. doi: 10.2519/jospt.2009.2930. PMID: 19521015.\n\nVernon H, Mior S. The Neck Disability Index: a study of reliability and validity. J Manipulative Physiol Ther. 1991 Sep;14(7):409-15. Erratum in: J Manipulative Physiol Ther 1992 Jan;15(1):followi. PMID: 1834753.",
+      "en": "Neck Disability Index (NDI) is an assessment that measures cervical pain and disability associated with the activities of daily living."
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0018": {
+        "id": "gt0018",
+        "model_id": "openEHR-EHR-OBSERVATION.neck_disability_index.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.neck_disability_index.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0019": {
+            "id": "gt0019",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0008|I have no neck pain at the moment|",
+              "1|local::at0009|The pain is very mild at the moment|",
+              "2|local::at0010|The pain is moderate at the moment|",
+              "3|local::at0011|The pain is fairly severe at the moment|",
+              "4|local::at0012|The pain is very severe at the moment|",
+              "5|local::at0013|The pain is the worst imaginable at the moment|"
+            ]
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0014]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0025|I can look after myself normally without causing extra neck pain|",
+              "1|local::at0026|I can look after myself normally, but it causes extra neck pain|",
+              "2|local::at0027|It is painful to look after myself, and I am slow and careful|",
+              "3|local::at0028|I need some help but manage most of my personal care|",
+              "4|local::at0029|I need help every day in most aspects of self-care|",
+              "5|local::at0030|I do not get dressed. I wash with difficulty and stay in bed|"
+            ]
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0015]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0031|I can lift heavy weights without causing extra neck pain|",
+              "1|local::at0032|I can lift heavy weights, but it gives me extra neck pain|",
+              "2|local::at0033|Neck pain prevents me from lifting heavy weights off the floor but I can manage if items are conveniently positioned, ie. on a table|",
+              "3|local::at0034|Neck pain prevents me from lifting heavy weights, but I can manage light weights if they are conveniently positioned|",
+              "4|local::at0035|I can lift only very light weights|",
+              "5|local::at0036|I cannot lift or carry anything at all|"
+            ]
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0016]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0037|I can do as much work as I want|",
+              "1|local::at0038|I can only do my usual work, but no more|",
+              "2|local::at0039|I can do most of my usual work, but no more|",
+              "3|local::at0040|I can't do my usual work|",
+              "4|local::at0041|I can hardly do any work at all|",
+              "5|local::at0042|I can't do any work at all|"
+            ]
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0017]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0043|I have no headaches at all|",
+              "1|local::at0044|I have slight headaches that come infrequently|",
+              "2|local::at0045|I have moderate headaches that come infrequently|",
+              "3|local::at0046|I have moderate headaches that come frequently|",
+              "4|local::at0047|I have severe headaches that come frequently|",
+              "5|local::at0048|I have headaches almost all the time|"
+            ]
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0018]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0049|I can concentrate fully without difficulty|",
+              "1|local::at0050|I can concentrate fully with slight difficulty|",
+              "2|local::at0051|I have a fair degree of difficulty concentrating|",
+              "3|local::at0052|I have a lot of difficulty concentrating|",
+              "4|local::at0053|I have a great deal of difficulty concentrating|",
+              "5|local::at0054|I can't concentrate at all|"
+            ]
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0019]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0055|I have no trouble sleeping|",
+              "1|local::at0056|My sleep is slightly disturbed for less than 1 hour|",
+              "2|local::at0057|My sleep is mildly disturbed for up to 1-2 hours|",
+              "3|local::at0058|My sleep is moderately disturbed for up to 2-3 hours|",
+              "4|local::at0059|My sleep is greatly disturbed for up to 3-5 hours|",
+              "5|local::at0060|My sleep is completely disturbed for up to 5-7 hours|"
+            ]
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0020]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0061|I can drive my car without neck pain|",
+              "1|local::at0062|I can drive my car with only slight neck pain|",
+              "2|local::at0063|I can drive as long as I want with moderate neck pain|",
+              "3|local::at0064|I can't drive as long as I want because of moderate neck pain|",
+              "4|local::at0065|I can hardly drive at all because of severe neck pain|",
+              "5|local::at0066|I can't drive my car at all because of neck pain|"
+            ]
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0021]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0067|I can read as much as I wawnt with no neck pain|",
+              "1|local::at0068|I can read as much as I want with slight neck pain|",
+              "2|local::at0069|I can read as much as I want with moderate neck pain|",
+              "3|local::at0070|I can't read as much as I want because of moderate neck pain|",
+              "4|local::at0071|I can't read as much as I want because of severe neck pain|",
+              "5|local::at0072|I can't read at all|"
+            ]
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0022]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0073|I have no neck pain during all recreational activities|",
+              "1|local::at0074|I have some neck pain with all recreational activities|",
+              "2|local::at0075|I have some neck pain with a few recreational activities|",
+              "3|local::at0076|I have neck pain with most recreational activities|",
+              "4|local::at0077|I can hardly do recreational activities due to neck pain|",
+              "5|local::at0078|I can't do any recreational activities due to neck pain|"
+            ]
+          }
+        }
+      },
+      "gt0029": {
+        "id": "gt0029",
+        "model_id": "openEHR-EHR-OBSERVATION.neck_disability_index.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.neck_disability_index.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0030": {
+            "id": "gt0030",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0079]",
+            "data_type": "DV_COUNT"
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0024]",
+            "data_type": "DV_QUANTITY",
+            "units": [
+              "%"
+            ]
+          }
+        }
+      }
+    },
+    "rules": {
+      "gt0032": {
+        "id": "gt0032",
+        "priority": 2,
+        "when": [
+          "$gt0019|Pain intensity|!=null",
+          "$gt0020|Personal care|!=null",
+          "$gt0021|Lifting|!=null",
+          "$gt0022|Work|!=null",
+          "$gt0023|Headaches|!=null",
+          "$gt0024|Concentration|!=null",
+          "$gt0025|Sleeping|!=null",
+          "$gt0026|Driving|!=null",
+          "$gt0027|Reading|!=null",
+          "$gt0028|Recreation|!=null"
+        ],
+        "then": [
+          "$gt0030|Total score|.magnitude=$gt0019|Pain intensity|.value+$gt0020|Personal care|.value+$gt0021|Lifting|.value+$gt0022|Work|.value+$gt0023|Headaches|.value+$gt0024|Concentration|.value+$gt0025|Sleeping|.value+$gt0026|Driving|.value+$gt0027|Reading|.value+$gt0028|Recreation|.value"
+        ]
+      },
+      "gt0033": {
+        "id": "gt0033",
+        "priority": 1,
+        "when": [
+          "$gt0030|Total score|!=null"
+        ],
+        "then": [
+          "$gt0031|Percentage|.magnitude=$gt0030|Total score|.magnitude*2",
+          "$gt0031|Percentage|.unit='%'"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Neck Disability Index (NDI) calculation",
+            "description": "Neck Disability Index (NDI) is an assessment that measures cervical pain and disability associated with the activities of daily living."
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "openEHR-EHR-OBSERVATION.neck_disability_index.v0"
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "Pain intensity"
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "Personal care"
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "Lifting"
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "Work"
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "Headaches"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "Concentration"
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "Sleeping"
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "Driving"
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "Reading"
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "Recreation"
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "openEHR-EHR-OBSERVATION.neck_disability_index.v0"
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "Total score"
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "text": "Percentage"
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "Set total score",
+            "description": ""
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "Set percentage",
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}
