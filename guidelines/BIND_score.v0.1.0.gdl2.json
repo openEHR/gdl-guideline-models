@@ -1,0 +1,244 @@
+{
+  "id": "BIND_score.v0.1.0",
+  "gdl_version": "2.0",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Aurelia Maria Ozora",
+      "email": "aurelia.maria.ozora@cambio.se",
+      "organisation": "Cambio CDS",
+      "date": "2025-03-24"
+    },
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To calculate and interpret the total sum for the BIND score",
+        "keywords": [
+          "bilirubin",
+          "induced",
+          "neurologic",
+          "dysfunction",
+          "jaundice",
+          "neonates",
+          "encephalopathy",
+          "score"
+        ],
+        "use": "Used for neonates. \n\nEach category is scored from 0 to 3. A total score of 0 indicates no acute bilirubin encephalopathy (ABE), while a score between 1 and 3 suggests mild ABE. Scores ranging from 4 to 6 indicate moderate ABE, and a score between 7 and 9 represents severe ABE.",
+        "misuse": "Not to be used for calculating or interpreting the modified BIND score.",
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "references": "Johnson LH, Brown AK, Bhutani VK. BIND - a clinical score for bilirubin-induced neurologic dysfunction in newborns. Pediatrics. 1999;199(3 part 3):746–7.\n\nEl Houchi SZ, Iskander I, Gamaleldin R, El Shenawy A, Seoud I, Abou-Youssef H, Wennberg RP. Prediction of 3- to 5-Month Outcomes from Signs of Acute Bilirubin Toxicity in Newborn Infants. J Pediatr. 2017 Apr;183:51-55.e1. doi: 10.1016/j.jpeds.2016.12.079. Epub 2017 Jan 25. PMID: 28131490.",
+      "en": "The BIND score (Bilirubin-Induced Neurologic Dysfunction score) is a clinical tool used to assess the severity of acute bilirubin toxicity in newborns, particularly in cases of kernicterus. It evaluates the neurological effects of severe hyperbilirubinemia by scoring three key domains, mental status, muscle tone, and cry pattern. "
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0014": {
+        "id": "gt0014",
+        "model_id": "openEHR-EHR-OBSERVATION.bind.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.bind.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0015": {
+            "id": "gt0015",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0010|Normal|",
+              "1|local::at0011|Sleepy, poor feeding|",
+              "2|local::at0012|Lethargic, irritable, jittery|",
+              "3|local::at0013|Unable to feed, apnea, seizures, coma|"
+            ]
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0014|Normal flexed tone (awake)|",
+              "1|local::at0015|Hypertonia alternating with hypotonia|",
+              "2|local::at0016|Neck stiffness, flexor spasm, beginning of neck and back|",
+              "3|local::at0017|Persistent retrocollis and opisthotonos, bicycling, twitching of hands and feet, fisting, severe hypotonia with limp posture|"
+            ]
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0018|Normal|",
+              "1|local::at0019|High pitched cry|",
+              "2|local::at0020|Shrill cry even if intermittent|",
+              "3|local::at0021|Weak or absent cry. Inconsolable cry|"
+            ]
+          }
+        }
+      },
+      "gt0018": {
+        "id": "gt0018",
+        "model_id": "openEHR-EHR-OBSERVATION.bind.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.bind.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0019": {
+            "id": "gt0019",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0009]",
+            "data_type": "DV_COUNT"
+          }
+        }
+      },
+      "gt0020": {
+        "id": "gt0020",
+        "model_id": "openEHR-EHR-EVALUATION.bind_score_assessment.v0",
+        "template_id": "openEHR-EHR-EVALUATION.bind_score_assessment.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0021": {
+            "id": "gt0021",
+            "path": "/data[at0003]/items[at0004]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0005|No acute bilirubin encephalopathy|",
+              "local::at0006|Mild acute bilirubin encephalopathy|",
+              "local::at0007|Moderate acute bilirubin encephalopathy|",
+              "local::at0008|Severe acute bilirubin encephalopathy|"
+            ]
+          }
+        }
+      }
+    },
+    "rules": {
+      "gt0022": {
+        "id": "gt0022",
+        "priority": 5,
+        "when": [
+          "$gt0015|Mental status|!=null",
+          "$gt0016|Muscle tone|!=null",
+          "$gt0017|Cry pattern|!=null"
+        ],
+        "then": [
+          "$gt0019|Total score|.magnitude=$gt0015|Mental status|.value+$gt0016|Muscle tone|.value+$gt0017|Cry pattern|.value"
+        ]
+      },
+      "gt0023": {
+        "id": "gt0023",
+        "priority": 4,
+        "when": [
+          "$gt0019|Total score|==0"
+        ],
+        "then": [
+          "$gt0021|Interpretation|=local::at0005|No acute bilirubin encephalopathy|"
+        ]
+      },
+      "gt0024": {
+        "id": "gt0024",
+        "priority": 3,
+        "when": [
+          "$gt0019|Total score|>0",
+          "$gt0019|Total score|<=3"
+        ],
+        "then": [
+          "$gt0021|Interpretation|=local::at0006|Mild acute bilirubin encephalopathy|"
+        ]
+      },
+      "gt0025": {
+        "id": "gt0025",
+        "priority": 2,
+        "when": [
+          "$gt0019|Total score|>3",
+          "$gt0019|Total score|<=6"
+        ],
+        "then": [
+          "$gt0021|Interpretation|=local::at0007|Moderate acute bilirubin encephalopathy|"
+        ]
+      },
+      "gt0026": {
+        "id": "gt0026",
+        "priority": 1,
+        "when": [
+          "$gt0019|Total score|>6"
+        ],
+        "then": [
+          "$gt0021|Interpretation|=local::at0008|Severe acute bilirubin encephalopathy|"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "BIND score",
+            "description": "The BIND score (Bilirubin-Induced Neurologic Dysfunction score) is a clinical tool used to assess the severity of acute bilirubin toxicity in newborns, particularly in cases of kernicterus. It evaluates the neurological effects of severe hyperbilirubinemia by scoring three key domains, mental status, muscle tone, and cry pattern. The BIND score helps clinicians assess the need for urgent interventions like phototherapy or exchange transfusion to prevent long-term complications such as cerebral palsy or hearing loss."
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "openEHR-EHR-OBSERVATION.bind.v0"
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "Mental status"
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "Muscle tone"
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "text": "Cry pattern"
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "openEHR-EHR-OBSERVATION.bind.v0"
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "Total score"
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "openEHR-EHR-EVALUATION.bind_score_assessment.v0"
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "Interpretation"
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "Set total score",
+            "description": ""
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "Set interpretation no acute bilirubin encephalopathy",
+            "description": ""
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "Set interpretation mild acute bilirubin encephalopathy",
+            "description": ""
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "Set interpretation moderate acute bilirubin encephalopathy",
+            "description": ""
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "Set interpretation severe acute bilirubin encephalopathy",
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}
