@@ -1,4 +1,4 @@
-archetype (adl_version=1.4; uid=884b6438-66d2-4ae7-a2e5-aea9786df0f5)
+archetype (adl_version=1.4; uid=9e460fc6-ae4b-482c-84b6-6f59eadb8547)
 	openEHR-EHR-OBSERVATION.rome_iv_diagnostic_criteria_for_child_cyclic_vomiting_syndrome.v0
 
 concept
@@ -9,25 +9,36 @@ language
 
 description
 	original_author = <
-		["date"] = <"2025-02-12">
+		["date"] = <"2025-02-13">
+		["name"] = <"Umiah Gohar">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"umiah.gohar@cambio.se">
 	>
-	lifecycle_state = <"unmanaged">
+	lifecycle_state = <"in_development">
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter for the Rome IV child cyclic vomiting syndrome.">
+			keywords = <"Rome IV","diagnostic","criteria","child","cyclic","vomiting","syndrome">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter for the  Rome IV child cyclic vomiting syndrome.">
 		>
 	>
 	other_details = <
 		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
 		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Rasquin A, Di Lorenzo C, Forbes D, Guiraldes E, Hyams JS, Staiano A, Walker LS. Childhood functional gastrointestinal disorders: child/adolescent. Gastroenterology. 2006 Apr;130(5):1527-37. doi: 10.1053/j.gastro.2005.08.063. PMID: 16678566; PMCID: PMC7104693.
+
+Ye Z, Xue A, Huang Y, Wu Q. Children with cyclic vomiting syndrome: phenotypes, disease burden and mitochondrial DNA analysis. BMC Gastroenterol. 2018 Jul 3;18(1):104. doi: 10.1186/s12876-018-0836-5. PMID: 29969994; PMCID: PMC6029397.">
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["build_uid"] = <"9ed9ecfd-274b-3107-ab15-b40d34146eb3">
+		["MD5-CAM-1.0.1"] = <"7008a9bc1dbd937a765ad53b8bd79e21">
+		["build_uid"] = <"c3821156-3d2d-35c4-9016-1d4a188a8484">
 	>
 
 definition
-	OBSERVATION[at0000] matches {    -- rome_iv_diagnostic_criteria_for_child_cyclic_vomiting_syndrome
+	OBSERVATION[at0000] matches {    -- Rome IV Diagnostic Criteria For Child Cyclic Vomiting Syndrome
 		data matches {
 			HISTORY[at0001] matches {    -- History
 				events cardinality matches {1..*; unordered} matches {
@@ -37,30 +48,24 @@ definition
 								items cardinality matches {0..*; unordered} matches {
 									CLUSTER[at0004] occurrences matches {0..1} matches {    -- Tree
 										items cardinality matches {1..*; unordered} matches {
-											ELEMENT[at0006] occurrences matches {0..1} matches {    -- Stereotypical episodes of vomiting regarding onset (acute) and duration (<1 week)
+											ELEMENT[at0006] occurrences matches {0..1} matches {    -- The occurrence of ≥2 periods of intense, unremitting nausea and paroxysmal vomiting, lasting hours to days within a 6-month period
 												value matches {
 													DV_BOOLEAN matches {*}
 												}
 											}
-											ELEMENT[at0008] occurrences matches {0..1} matches {    -- ≥3 discrete episodes in the prior year and 2 episodes in the past 6 months, occurring ≥1 week apart
+											ELEMENT[at0008] occurrences matches {0..1} matches {    -- Episodes are stereotypical in each patient
 												value matches {
 													DV_BOOLEAN matches {*}
 												}
 											}
-											ELEMENT[at0009] occurrences matches {0..1} matches {    -- Absence of vomiting between episodes, but other milder symptoms can be present between cycles.
+											ELEMENT[at0009] occurrences matches {0..1} matches {    -- Episodes are separated by weeks to months with return to baseline health between episodes
 												value matches {
 													DV_BOOLEAN matches {*}
 												}
 											}
-											ELEMENT[at0010] occurrences matches {0..1} matches {    -- Diagnostic result
+											ELEMENT[at0010] occurrences matches {0..1} matches {    -- After appropriate medical evaluation, the symptoms cannot be attributed to another condition
 												value matches {
-													DV_CODED_TEXT matches {
-														defining_code matches {
-															[local::
-															at0011,    -- Negative
-															at0012]    -- Positive
-														}
-													}
+													DV_BOOLEAN matches {*}
 												}
 											}
 										}
@@ -73,9 +78,9 @@ definition
 			}
 		}
 		protocol matches {
-			ITEM_TREE[at0013] matches {    -- Item tree
+			ITEM_TREE[at0011] matches {    -- Item tree
 				items cardinality matches {0..*; unordered} matches {
-					allow_archetype CLUSTER[at0014] occurrences matches {0..*} matches {    -- Extension
+					allow_archetype CLUSTER[at0012] occurrences matches {0..*} matches {    -- Extension
 						include
 							archetype_id/value matches {/.*/}
 					}
@@ -89,8 +94,9 @@ ontology
 		["en"] = <
 			items = <
 				["at0000"] = <
-					text = <"rome_iv_diagnostic_criteria_for_child_cyclic_vomiting_syndrome">
-					description = <"rome_iv_diagnostic_criteria_for_child_cyclic_vomiting_syndrome">
+					text = <"Rome IV Diagnostic Criteria For Child Cyclic Vomiting Syndrome">
+					description = <"An assessment scale used to make a diagnosis of the child cyclic vomiting syndrome.">
+					comment = <"Original version, c 2016">
 				>
 				["at0001"] = <
 					text = <"History">
@@ -99,6 +105,7 @@ ontology
 				["at0002"] = <
 					text = <"Any event">
 					description = <"@ internal @">
+					comment = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
 				>
 				["at0003"] = <
 					text = <"Tree">
@@ -109,34 +116,26 @@ ontology
 					description = <"">
 				>
 				["at0006"] = <
-					text = <"Stereotypical episodes of vomiting regarding onset (acute) and duration (<1 week)">
+					text = <"The occurrence of ≥2 periods of intense, unremitting nausea and paroxysmal vomiting, lasting hours to days within a 6-month period">
 					description = <"">
 				>
 				["at0008"] = <
-					text = <"≥3 discrete episodes in the prior year and 2 episodes in the past 6 months, occurring ≥1 week apart">
+					text = <"Episodes are stereotypical in each patient">
 					description = <"">
 				>
 				["at0009"] = <
-					text = <"Absence of vomiting between episodes, but other milder symptoms can be present between cycles.">
+					text = <"Episodes are separated by weeks to months with return to baseline health between episodes">
 					description = <"">
 				>
 				["at0010"] = <
-					text = <"Diagnostic result">
+					text = <"After appropriate medical evaluation, the symptoms cannot be attributed to another condition">
 					description = <"">
 				>
 				["at0011"] = <
-					text = <"Negative">
-					description = <"">
-				>
-				["at0012"] = <
-					text = <"Positive">
-					description = <"">
-				>
-				["at0013"] = <
 					text = <"Item tree">
 					description = <"@ internal @">
 				>
-				["at0014"] = <
+				["at0012"] = <
 					text = <"Extension">
 					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
 					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
