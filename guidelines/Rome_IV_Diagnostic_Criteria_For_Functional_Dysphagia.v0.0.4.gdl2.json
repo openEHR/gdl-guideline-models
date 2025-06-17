@@ -1,0 +1,155 @@
+{
+  "id": "Rome_IV_Diagnostic_Criteria_For_Functional_Dysphagia.v0.0.4",
+  "gdl_version": "2.0",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Umiah Gohar",
+      "email": "umiah.gohar@cambio.se",
+      "organisation": "Cambio CDS",
+      "date": "2025-03-19"
+    },
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To assess Rome IV diagnostic criteria for functional dysphagia. ",
+        "keywords": [
+          "rome",
+          "iv",
+          "diagnostic",
+          "criteria",
+          "functional",
+          "dysphagia"
+        ],
+        "use": "Used for patients presenting with symptoms of a recurrent sense of solid and/or liquid foods passing abnormally through the esophagus for at least 6 months, which are suggestive of functional dysphagia. The diagnosis of functional dysphagia should be made only after oropharyngeal mechanisms of dysphagia, structural lesions in the esophagus, gastroesophageal reflux disease, eosinophilic esophagitis, and major esophageal motility disorders have been excluded.\n\n- Helps to make a diagnosis of functional dysphagia when appropriate workup is otherwise nondiagnostic.\n- Helps to distinguish symptoms from other common disorders, such as complications of GERD (e.g. stricture) and major motility disorders.\n- Helps to guide management of symptoms once a diagnosis of functional dysphagia is established.",
+        "misuse": "Patients with any of the following features must be evaluated clinically for other diagnoses even though functional dysphagia may be present:\n\n- Odynophagia\n- Sore throat\n- Heartburn or esophageal reflux/regurgitation\n- Unexplained iron deficiency anemia\n- Unintentional weight loss\n- Palpable cervical lymphadenopathy on exam\n- Persistent vomiting",
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "en": "Official Rome IV criteria for the diagnosis of functional dysphagia.",
+      "references": "Aziz Q, Fass R, Gyawali CP, Miwa H, Pandolfino JE, Zerbib F. Functional Esophageal Disorders. Gastroenterology. 2016 Feb 15:S0016-5085(16)00178-5. doi: 10.1053/j.gastro.2016.02.012. Epub ahead of print. PMID: 27144625.\n\nJosefsson A, Palsson O, Simrén M, Sperber AD, Törnblom H, Whitehead W. Oesophageal symptoms are common and associated with other functional gastrointestinal disorders (FGIDs) in an English-speaking Western population. United European Gastroenterol J. 2018 Dec;6(10):1461-1469. doi: 10.1177/2050640618798894. Epub 2018 Sep 6. PMID: 30574316; PMCID: PMC6297932."
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "openEHR-EHR-OBSERVATION.rome_iv_diagnostic_criteria_for_functional_dysphagia.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.rome_iv_diagnostic_criteria_for_functional_dysphagia.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0003": {
+            "id": "gt0003",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0005]"
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0006]"
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0007]"
+          }
+        }
+      },
+      "gt0007": {
+        "id": "gt0007",
+        "model_id": "openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0",
+        "template_id": "openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0008": {
+            "id": "gt0008",
+            "path": "/data[at0001]/items[at0008]"
+          }
+        }
+      }
+    },
+    "rules": {
+      "gt0009": {
+        "id": "gt0009",
+        "priority": 2,
+        "when": [
+          "$gt0003|Sense of solid and/or liquid foods sticking, lodging, or passing abnormally through the esophagus|==true",
+          "$gt0004|Absence of evidence that esophageal mucosal or structural abnormality is the cause of the symptom|==true",
+          "$gt0005|Absence of evidence that gastroesophageal reflux or EoE is the cause of the symptom|==true",
+          "$gt0006|Absence of major esophageal motor disorders (achalasia/EGJ outflow obstruction, diffuse esophageal spasm, jackhammer esophagus, absent peristalsis)|==true"
+        ],
+        "then": [
+          "$gt0008|Diagnostic Result|=local::at0010|Positive|"
+        ]
+      },
+      "gt0010": {
+        "id": "gt0010",
+        "priority": 1,
+        "when": [
+          "$gt0003|Sense of solid and/or liquid foods sticking, lodging, or passing abnormally through the esophagus|!=true||$gt0004|Absence of evidence that esophageal mucosal or structural abnormality is the cause of the symptom|!=true||$gt0005|Absence of evidence that gastroesophageal reflux or EoE is the cause of the symptom|!=true||$gt0006|Absence of major esophageal motor disorders (achalasia/EGJ outflow obstruction, diffuse esophageal spasm, jackhammer esophagus, absent peristalsis)|!=true"
+        ],
+        "then": [
+          "$gt0008|Diagnostic Result|=local::at0009|Negative|"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Rome IV Diagnostic Criteria for Functional Dysphagia",
+            "description": "A diagnostic criteria for the diagnosis of functional dysphagia, used in patients with symptoms suggestive of functional dysphagia, such as a recurrent sense of solid and/or liquid foods passing abnormally through the esophagus, for at least 6 months.\n\nTo fulfill the Rome IV criteria for functional dysphagia, the patient must have the following (for 3 months prior with symptom onset ≥6 months ago with a frequency of at least once a week):\n\n- Sense of solid and/or liquid foods sticking, lodging, or passing abnormally through the esophagus.\n- Absence of evidence that esophageal mucosal or structural abnormality is the cause of the symptom.\n- Absence of evidence that gastroesophageal reflux or EoE is the cause of the symptom.\n- Absence of major esophageal motor disorders (achalasia/EGJ outflow obstruction, diffuse esophageal spasm, jackhammer esophagus, absent peristalsis)."
+          },
+          "gt0002": {
+            "id": "gt0002",
+            "text": "openEHR-EHR-OBSERVATION.rome_iv_diagnostic_criteria_for_functional_dysphagia.v0"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "Sense of solid and/or liquid foods sticking, lodging, or passing abnormally through the esophagus"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "Absence of evidence that esophageal mucosal or structural abnormality is the cause of the symptom"
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "text": "Absence of evidence that gastroesophageal reflux or EoE is the cause of the symptom"
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "Absence of major esophageal motor disorders (achalasia/EGJ outflow obstruction, diffuse esophageal spasm, jackhammer esophagus, absent peristalsis)"
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0"
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "text": "Diagnostic Result"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "Set Diagnostic result to Positive",
+            "description": ""
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "Set Diagnostic result to Negative",
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}
