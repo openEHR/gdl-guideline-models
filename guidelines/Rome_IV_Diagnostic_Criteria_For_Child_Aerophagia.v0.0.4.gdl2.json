@@ -1,0 +1,143 @@
+{
+  "id": "Rome_IV_Diagnostic_Criteria_For_Child_Aerophagia.v0.0.4",
+  "gdl_version": "2.0",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Umiah Gohar",
+      "email": "umiah.gohar@cambio.se",
+      "organisation": "Cambio CDS",
+      "date": "2025-03-19"
+    },
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To assess the Rome IV Diagnostic Criteria for Child Aerophagia.",
+        "keywords": [
+          "rome",
+          "iv",
+          "diagnostic",
+          "criteria",
+          "child",
+          "aerophagia"
+        ],
+        "use": "Use in a child or adolescent with symptoms suggestive of aerophagia, such as excessive air swallowing, abdominal distension which increases throughout the day, repetitive belching or increased flatus of at least 2 months duration.\n- Used to establish the diagnosis of aerophagia in children and adolescents who present with excessive swallowing of air and abdominal distension, belching and/or flatus after appropriate evaluation. \n- Can be used to discuss the diagnosis of aerophagia with patients and initiate treatment.\n- Making a diagnosis will help minimize unnecessary diagnostic evaluations and allow early treatment.",
+        "misuse": "Not to be used for adolescents or adults.",
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "en": "Official Rome IV criteria for the diagnosis of child aerophagia.\n\n",
+      "references": "Boronat AC, Ferreira-Maia AP, Matijasevich A, Wang YP. Epidemiology of functional gastrointestinal disorders in children and adolescents: A systematic review. World J Gastroenterol. 2017 Jun 7;23(21):3915-3927. doi: 10.3748/wjg.v23.i21.3915. PMID: 28638232; PMCID: PMC5467078.\n\nRasquin A, Di Lorenzo C, Forbes D, Guiraldes E, Hyams JS, Staiano A, Walker LS. Childhood functional gastrointestinal disorders: child/adolescent. Gastroenterology. 2006 Apr;130(5):1527-37. doi: 10.1053/j.gastro.2005.08.063. PMID: 16678566; PMCID: PMC7104693."
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "openEHR-EHR-OBSERVATION.rome_iv_diagnostic_criteria_for_child_aerophagia.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.rome_iv_diagnostic_criteria_for_child_aerophagia.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0003": {
+            "id": "gt0003",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0005]"
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0006]"
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0007]"
+          }
+        }
+      },
+      "gt0007": {
+        "id": "gt0007",
+        "model_id": "openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0",
+        "template_id": "openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0008": {
+            "id": "gt0008",
+            "path": "/data[at0001]/items[at0008]"
+          }
+        }
+      }
+    },
+    "default_actions": [
+      "$gt0008|Diagnostic Result|=local::at0009|Negative|"
+    ],
+    "rules": {
+      "gt0009": {
+        "id": "gt0009",
+        "priority": 1,
+        "when": [
+          "$gt0003|Excessive air swallowing|==true",
+          "$gt0004|Abdominal distention due to intraluminal air which increases during the day|==true",
+          "$gt0005|Repetitive belching and/or increased flatus|==true",
+          "$gt0006|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition|==true"
+        ],
+        "then": [
+          "$gt0008|Diagnostic Result|=local::at0010|Positive|"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Rome IV Diagnostic Criteria for Child Aerophagia",
+            "description": "Official Rome IV criteria for the diagnosis of child aerophagia.\n\nTo fulfill the Rome IV Criteria for child aerophagia, patient must have the following (for ≥2 months prior):\n- Excessive air swallowing.\n- Abdominal distention due to intraluminal air which increases during the day.\n- Repetitive belching and/or increased flatus.\n- After appropriate evaluation, the symptoms cannot be fully explained by another medical condition."
+          },
+          "gt0002": {
+            "id": "gt0002",
+            "text": "openEHR-EHR-OBSERVATION.rome_iv_diagnostic_criteria_for_child_aerophagia.v0"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "Excessive air swallowing"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "Abdominal distention due to intraluminal air which increases during the day"
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "text": "Repetitive belching and/or increased flatus"
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "After appropriate evaluation, the symptoms cannot be fully explained by another medical condition"
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0"
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "text": "Diagnostic Result"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "Set Diagnostic result to Positive",
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}
