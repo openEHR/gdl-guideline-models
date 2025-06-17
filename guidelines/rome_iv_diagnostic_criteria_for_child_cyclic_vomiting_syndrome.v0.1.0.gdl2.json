@@ -1,0 +1,176 @@
+{
+  "id" : "rome_iv_diagnostic_criteria_for_child_cyclic_vomiting_syndrome.v0.1.0",
+  "gdl_version" : "2.0",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Umiah Gohar",
+      "email" : "umiah.gohar@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2025-02-13"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To assess the Rome IV diagnostic criteria for child cyclic vomiting syndrome.",
+        "keywords" : [
+          "rome IV",
+          "diagnostic",
+          "criteria",
+          "child",
+          "cyclic",
+          "vomiting",
+          "syndrome"
+        ],
+        "use" : "Used for children or adolescents presenting with symptoms suggestive of cyclic vomiting for at least 6 months. \n\nTo fulfill the Rome IV criteria for child cyclic vomiting syndrome, patient must have the following:\n- The occurrence of ≥2 periods of intense, unremitting nausea and paroxysmal vomiting, lasting hours to days within a 6-month period.\n- Episodes are stereotypical in each patient.\n- Episodes are separated by weeks to months with return to baseline health between episodes.\n- After appropriate medical evaluation, the symptoms cannot be attributed to another condition.",
+        "misuse" : "Not to be used in patients that are typically quite ill during episodes and unable to participate in normal activities.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "en" : "Rome IV criteria for the diagnosis of child cyclic vomiting syndrome.",
+      "references" : "Rasquin A, Di Lorenzo C, Forbes D, Guiraldes E, Hyams JS, Staiano A, Walker LS. Childhood functional gastrointestinal disorders: child/adolescent. Gastroenterology. 2006 Apr;130(5):1527-37. doi: 10.1053/j.gastro.2005.08.063. PMID: 16678566; PMCID: PMC7104693.\n\nYe Z, Xue A, Huang Y, Wu Q. Children with cyclic vomiting syndrome: phenotypes, disease burden and mitochondrial DNA analysis. BMC Gastroenterol. 2018 Jul 3;18(1):104. doi: 10.1186/s12876-018-0836-5. PMID: 29969994; PMCID: PMC6029397."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.rome_iv_diagnostic_criteria_for_child_cyclic_vomiting_syndrome.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.rome_iv_diagnostic_criteria_for_child_cyclic_vomiting_syndrome.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0008]"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0009]"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0010]"
+          }
+        }
+      },
+      "gt0026" : {
+        "id" : "gt0026",
+        "model_id" : "openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0027" : {
+            "id" : "gt0027",
+            "path" : "/data[at0001]/items[at0008]"
+          }
+        }
+      },
+      "gt0028" : {
+        "id" : "gt0028",
+        "model_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0029" : {
+            "id" : "gt0029",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "a",
+              "mo",
+              "wk",
+              "d"
+            ]
+          }
+        }
+      }
+    },
+    "pre_conditions" : [
+      "$gt0029|Age|<=18,a"
+    ],
+    "default_actions" : [
+      "$gt0027|Diagnostic Result|=local::at0009|Negative|"
+    ],
+    "rules" : {
+      "gt0009" : {
+        "id" : "gt0009",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|The occurrence of ≥2 periods of intense, unremitting nausea and paroxysmal vomiting, lasting hours to days within a 6-month period|==true",
+          "$gt0004|Episodes are stereotypical in each patient|==true",
+          "$gt0005|Episodes are separated by weeks to months with return to baseline health between episodes|==true",
+          "$gt0006|After appropriate medical evaluation, the symptoms cannot be attributed to another condition|==true"
+        ],
+        "then" : [
+          "$gt0027|Diagnostic Result|=local::at0010|Positive|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Rome IV Diagnostic Criteria for Child Cyclic Vomiting Syndrome",
+            "description" : "A diagnostic criteria used to identify cyclic vomiting syndrome in patients with symptoms suggestive of cyclic vomiting such as intense, paroxysmal, stereotypical episodes of vomiting, separated by weeks or months of usual health."
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "The occurrence of ≥2 periods of intense, unremitting nausea and paroxysmal vomiting, lasting hours to days within a 6-month period"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Episodes are stereotypical in each patient"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Episodes are separated by weeks to months with return to baseline health between episodes"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "After appropriate medical evaluation, the symptoms cannot be attributed to another condition"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Set Diagnostic result to Positive",
+            "description" : ""
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.rome_iv_child_cyclic_vomiting_syndrome.v0"
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "text" : "openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0"
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "text" : "Diagnostic Result"
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "text" : "openEHR-EHR-OBSERVATION.basic_demographic.v1"
+          },
+          "gt0029" : {
+            "id" : "gt0029",
+            "text" : "Age"
+          }
+        }
+      }
+    }
+  },
+  "date" : "2025-02-13",
+  "tags" : [ ]
+}
