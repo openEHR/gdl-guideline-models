@@ -1,0 +1,107 @@
+archetype (adl_version=1.4; uid=26263e73-ae0c-4d1b-a1bd-ffa753978fc8)
+	openEHR-EHR-EVALUATION.who_diagnostic_criteria_for_polycythemia_vera_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-06-18">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To assess a patient against the WHO diagnostic criteria for Polycythemia Vera based on the individual components (Major and Minor criteria).">
+			keywords = <"polycythemia vera, pv, who, diagnosis, criteria, myeloproliferative, neoplasm, mpn, jak2, erythropoietin, epo, bone marrow, hemoglobin, hematocrit.", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to assess the components documented on the archetype openEHR-EHR-OBSERVATION.who_diagnostic_criteria_for_polycythemia_vera">
+			misuse = <"Not to be used for diagnosing other myeloproliferative neoplasms (e.g., Essential Thrombocythemia, Primary Myelofibrosis) or other hematological conditions. Not intended for staging, prognosis, or monitoring treatment response. Not to be used for recording the final diagnosis itself; use an appropriate EVALUATION archetype (e.g., EVALUATION.problem_diagnosis) for the confirmed diagnosis.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"faa61ab6-afc8-3703-9e8c-3aa150a33be2">
+		["references"] = <"Arber DA, Orazi A, Hasserjian R, Thiele J, Borowitz MJ, Le Beau MM, Bloomfield CD, Cazzola M, Vardiman JW. The 2016 revision to the World Health Organization classification of myeloid neoplasms and acute leukemia. Blood. 2016 May 19;127(20):2391-405. doi: 10.1182/blood-2016-03-643544. Epub 2016 Apr 11. PMID: 27069254.
+
+Swerdlow SH, Campo E, Pileri SA, Harris NL, Stein H, Siebert R, Advani R, Ghielmini M, Salles GA, Zelenetz AD, Jaffe ES. The 2016 revision of the World Health Organization classification of lymphoid neoplasms. Blood. 2016 May 19;127(20):2375-90. doi: 10.1182/blood-2016-01-643569. Epub 2016 Mar 15. PMID: 26980727; PMCID: PMC4874220.">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- WHO Diagnostic Criteria for Polycythemia Vera assessment
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0003] occurrences matches {0..1} matches {    -- Diagnostic result
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0004,    -- Does not meet WHO diagnostic criteria for polycythemia vera.
+									at0005]    -- Meets WHO diagnostic criteria for polycythemia vera.
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0002] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0006] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"WHO Diagnostic Criteria for Polycythemia Vera assessment">
+					description = <"Perform the assessment of the presence or absence of the World Health Organization diagnostic criteria for Polycythemia Vera (PV).">
+					comment = <"Original version, c 2017.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Diagnostic result">
+					description = <"">
+				>
+				["at0004"] = <
+					text = <"Does not meet WHO diagnostic criteria for polycythemia vera.">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Meets WHO diagnostic criteria for polycythemia vera.">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>
