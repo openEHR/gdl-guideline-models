@@ -9,12 +9,19 @@ language
 
 description
 	original_author = <
-		["date"] = <"2025-01-04">
+		["date"] = <"2025-02-13">
+		["name"] = <"Umiah Gohar">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"umiah.gohar@cambio.se">
 	>
-	lifecycle_state = <"unmanaged">
+	lifecycle_state = <"in_development">
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter for the Rome IV child cyclic vomiting syndrome.">
+			keywords = <"Rome IV","diagnostic","criteria","child","cyclic","vomiting","syndrome">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter for the  Rome IV child cyclic vomiting syndrome.">
 		>
 	>
 	other_details = <
@@ -23,11 +30,15 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"1db2f81e06446301bf4583bd7988ff14">
 		["build_uid"] = <"f36b48e6-b8bc-3ada-a733-f0b10edcd71e">
+		["references"] = <"Rasquin A, Di Lorenzo C, Forbes D, Guiraldes E, Hyams JS, Staiano A, Walker LS. Childhood functional gastrointestinal disorders: child/adolescent. Gastroenterology. 2006 Apr;130(5):1527-37. doi: 10.1053/j.gastro.2005.08.063. PMID: 16678566; PMCID: PMC7104693.
+
+Ye Z, Xue A, Huang Y, Wu Q. Children with cyclic vomiting syndrome: phenotypes, disease burden and mitochondrial DNA analysis. BMC Gastroenterol. 2018 Jul 3;18(1):104. doi: 10.1186/s12876-018-0836-5. PMID: 29969994; PMCID: PMC6029397.">
 	>
 
 definition
-	OBSERVATION[at0000] matches {    -- rome_iv_child_cyclic_vomiting_syndrome
+	OBSERVATION[at0000] matches {    -- Rome IV Diagnostic Criteria For Child Cyclic Vomiting Syndrome
 		data matches {
 			HISTORY[at0001] matches {    -- History
 				events cardinality matches {1..*; unordered} matches {
@@ -55,11 +66,6 @@ definition
 											DV_BOOLEAN matches {*}
 										}
 									}
-									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Event time
-										value matches {
-											DV_DATE_TIME matches {*}
-										}
-									}
 								}
 							}
 						}
@@ -84,8 +90,9 @@ ontology
 		["en"] = <
 			items = <
 				["at0000"] = <
-					text = <"rome_iv_child_cyclic_vomiting_syndrome">
-					description = <"rome_iv_child_cyclic_vomiting_syndrome">
+					text = <"Rome IV Diagnostic Criteria For Child Cyclic Vomiting Syndrome">
+					description = <"An assessment scale used to make a diagnosis of the child cyclic vomiting syndrome.">
+					comment = <"Original version, c 2016">
 				>
 				["at0001"] = <
 					text = <"History">
@@ -93,7 +100,7 @@ ontology
 				>
 				["at0002"] = <
 					text = <"Any event">
-					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+					description = <"@ internal @">
 				>
 				["at0003"] = <
 					text = <"Tree">
@@ -113,10 +120,6 @@ ontology
 				>
 				["at0009"] = <
 					text = <"After appropriate medical evaluation, the symptoms cannot be attributed to another condition">
-					description = <"">
-				>
-				["at0010"] = <
-					text = <"Event time">
 					description = <"">
 				>
 				["at0011"] = <
