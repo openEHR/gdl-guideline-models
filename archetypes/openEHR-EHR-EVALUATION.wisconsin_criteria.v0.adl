@@ -1,0 +1,178 @@
+archetype (adl_version=1.4; uid=791e636b-c091-4f46-ba72-395afaf42001)
+	openEHR-EHR-EVALUATION.wisconsin_criteria.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-06-27">
+		["name"] = <"Shweta Prasad Ghaisas">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"s.Prasad.Ghaisas@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the assessments used in Wisconsin criteria.">
+			keywords = <"criteria, Wisconsin, CT, maxillofacial injury, tooth absence, Glassgow Coma Scale, malocclusion, periorbital swelling, contusion, bony step-off,instability", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Used to record the results for each assessment used in the Wisconsin criteria and then record the final result.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Sitzman TJ, Hanson SE, Alsheik NH, Gentry LR, Doyle JF, Gutowski KA. Clinical criteria for obtaining maxillofacial computed tomographic scans in trauma patients. Plast Reconstr Surg. 2011 Mar;127(3):1270-8.
+
+Konik RD, Huang GS. Assessment of the “Wisconsin criteria” for obtaining maxillofacial computed tomography in trauma patients at a community trauma center. Plast Reconstr Surg Glob Open. 2020 Sep;8(9S):110-1.
+
+Stewart CN, Wood L, Barta RJ. Validation of the “Wisconsin criteria” for obtaining dedicated facial imaging and its financial impact at a level 1 trauma center. Craniomaxillofac Trauma Reconstr. 2020 Mar;13(1):4-8.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"a963e2c4-6c4f-3fb7-b627-4ee0677a60aa">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Wisconsin criteria
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Bony step-off or instability
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- Yes
+									at0006]    -- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0007] occurrences matches {0..1} matches {    -- Periorbital swelling or contusion
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- Yes
+									at0006]    -- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0008] occurrences matches {0..1} matches {    -- Glasgow Coma Scale score < 14
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- Yes
+									at0006]    -- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0009] occurrences matches {0..1} matches {    -- Malocclusion
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- Yes
+									at0006]    -- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0010] occurrences matches {0..1} matches {    -- Tooth absence
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- Yes
+									at0006]    -- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0011] occurrences matches {0..1} matches {    -- Wisconsin criteria
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0012,    -- Meets the criteria
+									at0013]    -- Does not meet the criteria
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Wisconsin criteria">
+					description = <"A criteria used to predict need for CT use after maxillofacial injury.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Bony step-off or instability">
+					description = <"A palpable or visible discontinuity in the bony structure of the face, specifically in the midface or mandible.">
+				>
+				["at0005"] = <
+					text = <"Yes">
+					description = <"Use when the condition exists in a patient.">
+				>
+				["at0006"] = <
+					text = <"No">
+					description = <"Use when the condition does not exist in a patient.">
+				>
+				["at0007"] = <
+					text = <"Periorbital swelling or contusion">
+					description = <"Puffiness around the eyes.">
+				>
+				["at0008"] = <
+					text = <"Glasgow Coma Scale score < 14">
+					description = <"Total score on the Glasgow Coma scale.">
+				>
+				["at0009"] = <
+					text = <"Malocclusion">
+					description = <"A condition where teeth don't align properly.">
+				>
+				["at0010"] = <
+					text = <"Tooth absence">
+					description = <"Missing teeth.">
+				>
+				["at0011"] = <
+					text = <"Wisconsin criteria">
+					description = <"Conclusion of evaluation based on the findings of physical examination.">
+				>
+				["at0012"] = <
+					text = <"Meets the criteria">
+					description = <"CT recommended.">
+				>
+				["at0013"] = <
+					text = <"Does not meet the criteria">
+					description = <"CT not recommended.">
+				>
+			>
+		>
+	>
