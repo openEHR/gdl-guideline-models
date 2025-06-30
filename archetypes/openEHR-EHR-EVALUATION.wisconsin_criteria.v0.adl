@@ -18,10 +18,10 @@ description
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"To record the assessments used in Wisconsin criteria.">
+			purpose = <"To record the assessment of Wisconsin criteria.">
 			keywords = <"criteria, Wisconsin, CT, maxillofacial injury, tooth absence, Glassgow Coma Scale, malocclusion, periorbital swelling, contusion, bony step-off,instability", ...>
 			copyright = <"© Cambio CDS">
-			use = <"Used to record the results for each assessment used in the Wisconsin criteria and then record the final result.">
+			use = <"Used to record the result of Wisconsin criteria assessment.">
 		>
 	>
 	other_details = <
@@ -35,6 +35,7 @@ Stewart CN, Wood L, Barta RJ. Validation of the “Wisconsin criteria” for obt
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"5ef8ee64fab3865fa17e81b3e9fe880e">
 		["build_uid"] = <"a963e2c4-6c4f-3fb7-b627-4ee0677a60aa">
 	>
 
@@ -43,61 +44,6 @@ definition
 		data matches {
 			ITEM_TREE[at0003] matches {    -- Item tree
 				items cardinality matches {0..*; unordered} matches {
-					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Bony step-off or instability
-						value matches {
-							DV_CODED_TEXT matches {
-								defining_code matches {
-									[local::
-									at0005,    -- Yes
-									at0006]    -- No
-								}
-							}
-						}
-					}
-					ELEMENT[at0007] occurrences matches {0..1} matches {    -- Periorbital swelling or contusion
-						value matches {
-							DV_CODED_TEXT matches {
-								defining_code matches {
-									[local::
-									at0005,    -- Yes
-									at0006]    -- No
-								}
-							}
-						}
-					}
-					ELEMENT[at0008] occurrences matches {0..1} matches {    -- Glasgow Coma Scale score < 14
-						value matches {
-							DV_CODED_TEXT matches {
-								defining_code matches {
-									[local::
-									at0005,    -- Yes
-									at0006]    -- No
-								}
-							}
-						}
-					}
-					ELEMENT[at0009] occurrences matches {0..1} matches {    -- Malocclusion
-						value matches {
-							DV_CODED_TEXT matches {
-								defining_code matches {
-									[local::
-									at0005,    -- Yes
-									at0006]    -- No
-								}
-							}
-						}
-					}
-					ELEMENT[at0010] occurrences matches {0..1} matches {    -- Tooth absence
-						value matches {
-							DV_CODED_TEXT matches {
-								defining_code matches {
-									[local::
-									at0005,    -- Yes
-									at0006]    -- No
-								}
-							}
-						}
-					}
 					ELEMENT[at0011] occurrences matches {0..1} matches {    -- Wisconsin criteria
 						value matches {
 							DV_CODED_TEXT matches {
@@ -132,34 +78,6 @@ ontology
 				["at0003"] = <
 					text = <"Item tree">
 					description = <"@ internal @">
-				>
-				["at0004"] = <
-					text = <"Bony step-off or instability">
-					description = <"A palpable or visible discontinuity in the bony structure of the face, specifically in the midface or mandible.">
-				>
-				["at0005"] = <
-					text = <"Yes">
-					description = <"Use when the condition exists in a patient.">
-				>
-				["at0006"] = <
-					text = <"No">
-					description = <"Use when the condition does not exist in a patient.">
-				>
-				["at0007"] = <
-					text = <"Periorbital swelling or contusion">
-					description = <"Puffiness around the eyes.">
-				>
-				["at0008"] = <
-					text = <"Glasgow Coma Scale score < 14">
-					description = <"Total score on the Glasgow Coma scale.">
-				>
-				["at0009"] = <
-					text = <"Malocclusion">
-					description = <"A condition where teeth don't align properly.">
-				>
-				["at0010"] = <
-					text = <"Tooth absence">
-					description = <"Missing teeth.">
 				>
 				["at0011"] = <
 					text = <"Wisconsin criteria">
