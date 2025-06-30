@@ -1,0 +1,427 @@
+{
+  "id": "NEWS2_score.v0.0.5-draft",
+  "gdl_version": "2.1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Kevin Arjona",
+      "email": "kevin.arjona@cambio.se",
+      "organisation": "Cambio CDS",
+      "date": "2024-12-19"
+    },
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To calculate the total NEWS2 score, and to stratify the patient's clinical risk according to NEWS2 guidelines.",
+        "keywords": [
+          "NEWS2",
+          "early",
+          "warning",
+          "score",
+          "national",
+          "vital signs",
+          "escalation",
+          "risk",
+          "interpretation",
+          "assessment",
+          "calculation",
+          "deterioration",
+          "respiratory rate",
+          "patient deterioration"
+        ],
+        "use": "Use to calculate NEWS 2 score in adult patients in hospital setting.  Each parameter is assigned a score, and the total score is calculated. Higher scores indicate more severe illness and a greater need for clinical intervention.\n\nInterpretation: \nThe total score helps identify the level of monitoring and interventions required. A higher NEWS2 score typically necessitates urgent medical attention.\n\nNEWS2 scoring thresholds:\n0-4: Low risk\n5-6: Medium risk\n7 or above: High risk",
+        "misuse": "Not to be used for diagnosing specific conditions. The NEWS2 score is a monitoring tool, not a diagnostic tool.\n\nNot applicable to pediatric patients.\n\nNot to be used as a standalone tool. It should be used in conjunction with clinical assessment and judgment.",
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "references": "Royal College of Physicians. National Early Warning Score (NEWS) 2. London: Royal College of Physicians; 2017. Available from: https://www.rcplondon.ac.uk/projects/outputs/national-early-warning-score-news-2",
+      "en": "The National Early Warning Score (NEWS2) is a clinical tool used to assess the severity of illness in patients by monitoring vital signs, including respiratory rate, oxygen saturation, temperature, systolic blood pressure, heart rate, and level of consciousness. "
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "openEHR-EHR-OBSERVATION.news2.v1",
+        "template_id": "openEHR-EHR-OBSERVATION.news2.v1",
+        "type": "INPUT",
+        "elements": {
+          "gt0003": {
+            "id": "gt0003",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "3|local::at0021|≤8|",
+              "1|local::at0019|9-11|",
+              "0|local::at0018|12-20|",
+              "2|local::at0020|21-24|",
+              "3|local::at0064|≥25|"
+            ]
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0029]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "3|local::at0033|≤91|",
+              "2|local::at0032|92-93|",
+              "1|local::at0031|94-95|",
+              "0|local::at0030|≥96|"
+            ]
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0047]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "3|local::at0061|≤83|",
+              "2|local::at0050|84-85|",
+              "1|local::at0049|86-87|",
+              "0|local::at0048|88-92 or ≥93 on air|",
+              "1|local::at0062|93-94 on oxygen|",
+              "2|local::at0063|95-96 on oxygen|",
+              "3|local::at0051|≥97 on oxygen|"
+            ]
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0034]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0036|Air|",
+              "2|local::at0037|Oxygen|"
+            ]
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "3|local::at0017|≤90|",
+              "2|local::at0016|91-100|",
+              "1|local::at0015|101-110|",
+              "0|local::at0014|111-219|",
+              "3|local::at0067|≥220|"
+            ]
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0024|Alert|",
+              "3|local::at0025|C, V, P or U|"
+            ]
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "3|local::at0039|≤35.0|",
+              "1|local::at0023|35.1-36.0|",
+              "0|local::at0022|36.1-38.0|",
+              "1|local::at0066|38.1-39.0|",
+              "2|local::at0038|≥39.1|"
+            ]
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "3|local::at0010|≤40|",
+              "1|local::at0012|41-50|",
+              "0|local::at0013|51-90|",
+              "1|local::at0068|91-110|",
+              "2|local::at0011|111-130|",
+              "3|local::at0065|≥131|"
+            ]
+          }
+        }
+      },
+      "gt0011": {
+        "id": "gt0011",
+        "model_id": "openEHR-EHR-OBSERVATION.news2.v1",
+        "template_id": "openEHR-EHR-OBSERVATION.news2.v1",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0012": {
+            "id": "gt0012",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0028]"
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0056]"
+          }
+        }
+      },
+      "gt0028": {
+        "id": "gt0028",
+        "model_id": "openEHR-EHR-EVALUATION.news_2_assessment.v0",
+        "template_id": "openEHR-EHR-EVALUATION.news_2_assessment.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0029": {
+            "id": "gt0029",
+            "path": "/data[at0003]/items[at0004]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0015|Yes|",
+              "local::at0016|No|"
+            ]
+          }
+        }
+      },
+      "gt0030": {
+        "id": "gt0030",
+        "model_id": "openEHR-EHR-EVALUATION.news_2_assessment.v0",
+        "template_id": "openEHR-EHR-EVALUATION.news_2_assessment.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0031": {
+            "id": "gt0031",
+            "path": "/data[at0003]/items[at0005]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0006|Every 12 hours|",
+              "local::at0007|Every 4-6 hours|",
+              "local::at0008|Every 1 hour|",
+              "local::at0009|Continuous monitoring|"
+            ]
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "path": "/data[at0003]/items[at0010]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0011|Emergent assessment by a clinical team or critical care team and usually transfer to higher level of care|",
+              "local::at0012|Urgent review by a ward-based doctor or acute team nurse, to decide if critical care team assessment is needed|",
+              "local::at0013|Urgent review by a ward-based doctor, to decide change in frequency of clinical monitoring or escalation of care|",
+              "local::at0014|Assessment by a competent registered nurse or equivalent, to decide change in frequency of clinical monitoring or escalation of care|"
+            ]
+          }
+        }
+      }
+    },
+    "rules": {
+      "gt0024": {
+        "id": "gt0024",
+        "priority": 7,
+        "when": [
+          "$gt0029|Hypercapnic respiratory failure|!=local::at0015|Yes|",
+          "$gt0003|Respiration rate|!=null&&$gt0005|SpO₂ Scale 2|!=null&&$gt0006|Air or oxygen?|!=null&&$gt0007|Systolic blood pressure|!=null&&$gt0008|Consciousness|!=null&&$gt0009|Temperature|!=null&&$gt0010|Pulse|!=null"
+        ],
+        "then": [
+          "$gt0012|Total score|.magnitude=$gt0003|Respiration rate|.value+$gt0005|SpO₂ Scale 2|.value+$gt0006|Air or oxygen?|.value+$gt0007|Systolic blood pressure|.value+$gt0008|Consciousness|.value+$gt0009|Temperature|.value+$gt0010|Pulse|.value"
+        ]
+      },
+      "gt0025": {
+        "id": "gt0025",
+        "priority": 6,
+        "when": [
+          "$gt0029|Hypercapnic respiratory failure|==local::at0015|Yes|",
+          "$gt0003|Respiration rate|!=null&&$gt0004|SpO₂ Scale 1|!=null&&$gt0006|Air or oxygen?|!=null&&$gt0007|Systolic blood pressure|!=null&&$gt0008|Consciousness|!=null&&$gt0009|Temperature|!=null&&$gt0010|Pulse|!=null"
+        ],
+        "then": [
+          "$gt0012|Total score|.magnitude=$gt0003|Respiration rate|.value+$gt0004|SpO₂ Scale 1|.value+$gt0006|Air or oxygen?|.value+$gt0007|Systolic blood pressure|.value+$gt0008|Consciousness|.value+$gt0009|Temperature|.value+$gt0010|Pulse|.value"
+        ]
+      },
+      "gt0019": {
+        "id": "gt0019",
+        "priority": 5,
+        "when": [
+          "$gt0012|Total score|>=1&&$gt0012|Total score|<5",
+          "$gt0003|Respiration rate|!=null&&$gt0004|SpO₂ Scale 1|!=null&&$gt0005|SpO₂ Scale 2|!=null&&$gt0006|Air or oxygen?|!=null&&$gt0007|Systolic blood pressure|!=null&&$gt0008|Consciousness|!=null&&$gt0009|Temperature|!=null&&$gt0010|Pulse|!=null&&$gt0029|Hypercapnic respiratory failure|!=null"
+        ],
+        "then": [
+          "$gt0013|Clinical risk category|=local::at0057|Low|",
+          "$gt0031|Frequency of monitoring|=local::at0007|Every 4-6 hours|",
+          "$gt0032|Response|=local::at0014|Assessment by a competent registered nurse or equivalent, to decide change in frequency of clinical monitoring or escalation of care|"
+        ]
+      },
+      "gt0022": {
+        "id": "gt0022",
+        "priority": 4,
+        "when": [
+          "$gt0012|Total score|==0",
+          "$gt0003|Respiration rate|!=null&&$gt0004|SpO₂ Scale 1|!=null&&$gt0005|SpO₂ Scale 2|!=null&&$gt0006|Air or oxygen?|!=null&&$gt0007|Systolic blood pressure|!=null&&$gt0008|Consciousness|!=null&&$gt0009|Temperature|!=null&&$gt0010|Pulse|!=null&&$gt0029|Hypercapnic respiratory failure|!=null"
+        ],
+        "then": [
+          "$gt0013|Clinical risk category|=local::at0057|Low|",
+          "$gt0031|Frequency of monitoring|=local::at0006|Every 12 hours|",
+          "$gt0032|Response|=local::at0014|Assessment by a competent registered nurse or equivalent, to decide change in frequency of clinical monitoring or escalation of care|"
+        ]
+      },
+      "gt0020": {
+        "id": "gt0020",
+        "priority": 3,
+        "when": [
+          "($gt0003|Respiration rate|.value>2)||($gt0004|SpO₂ Scale 1|.value>2)||($gt0005|SpO₂ Scale 2|.value>2)||($gt0007|Systolic blood pressure|.value>2)||($gt0008|Consciousness|.value>2)||($gt0009|Temperature|.value>2)||($gt0010|Pulse|.value>2)",
+          "$gt0003|Respiration rate|!=null&&$gt0004|SpO₂ Scale 1|!=null&&$gt0005|SpO₂ Scale 2|!=null&&$gt0006|Air or oxygen?|!=null&&$gt0007|Systolic blood pressure|!=null&&$gt0008|Consciousness|!=null&&$gt0009|Temperature|!=null&&$gt0010|Pulse|!=null&&$gt0029|Hypercapnic respiratory failure|!=null"
+        ],
+        "then": [
+          "$gt0013|Clinical risk category|=local::at0058|Low-medium|",
+          "$gt0031|Frequency of monitoring|=local::at0008|Every 1 hour|",
+          "$gt0032|Response|=local::at0013|Urgent review by a ward-based doctor, to decide change in frequency of clinical monitoring or escalation of care|"
+        ]
+      },
+      "gt0021": {
+        "id": "gt0021",
+        "priority": 2,
+        "when": [
+          "$gt0012|Total score|>=5&&$gt0012|Total score|<7",
+          "$gt0003|Respiration rate|!=null&&$gt0004|SpO₂ Scale 1|!=null&&$gt0005|SpO₂ Scale 2|!=null&&$gt0006|Air or oxygen?|!=null&&$gt0007|Systolic blood pressure|!=null&&$gt0008|Consciousness|!=null&&$gt0009|Temperature|!=null&&$gt0010|Pulse|!=null&&$gt0029|Hypercapnic respiratory failure|!=null"
+        ],
+        "then": [
+          "$gt0013|Clinical risk category|=local::at0059|Medium|",
+          "$gt0031|Frequency of monitoring|=local::at0008|Every 1 hour|",
+          "$gt0032|Response|=local::at0012|Urgent review by a ward-based doctor or acute team nurse, to decide if critical care team assessment is needed|"
+        ]
+      },
+      "gt0014": {
+        "id": "gt0014",
+        "priority": 1,
+        "when": [
+          "$gt0012|Total score|>=7",
+          "$gt0003|Respiration rate|!=null&&$gt0004|SpO₂ Scale 1|!=null&&$gt0005|SpO₂ Scale 2|!=null&&$gt0006|Air or oxygen?|!=null&&$gt0007|Systolic blood pressure|!=null&&$gt0008|Consciousness|!=null&&$gt0009|Temperature|!=null&&$gt0010|Pulse|!=null&&$gt0029|Hypercapnic respiratory failure|!=null"
+        ],
+        "then": [
+          "$gt0013|Clinical risk category|=local::at0060|High|",
+          "$gt0031|Frequency of monitoring|=local::at0009|Continuous monitoring|",
+          "$gt0023|Comment|='Emergent assessment by a clinical team or critical care team and usually transfer to higher level of care'"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "NEWS2 score",
+            "description": "Calculates the National Early Warning Score 2 (NEWS2) and determines the corresponding clinical risk category and recommended frequency of monitoring/escalation based on recorded physiological parameters."
+          },
+          "gt0002": {
+            "id": "gt0002",
+            "text": "openEHR-EHR-OBSERVATION.news2.v1"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "Respiration rate"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "SpO₂ Scale 1"
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "text": "SpO₂ Scale 2"
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "Air or oxygen?"
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "Systolic blood pressure"
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "text": "Consciousness"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "Temperature"
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "Pulse"
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "text": "openEHR-EHR-OBSERVATION.news2.v1"
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "Total score"
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "Clinical risk category"
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "High risk",
+            "description": "Score  >=7. monitoring. 'Continuous monitoring.' : 'Emergent assessment by a clinical team or critical care team and usually transfer to higher level of care'"
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "openEHR-EHR-EVALUATION.health_risk.v1"
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "Low risk",
+            "description": "Score 1-4 . Monitoring: 'Every 4-6 hours.' 'Assessment by a competent registered nurse or equivalent, to decide change in frequency of clinical monitoring or escalation of care'"
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "Low-medium risk",
+            "description": "3 in single parameter. Monitoring: 'Minimum 1 per hour.' 'Urgent review by a ward-based doctor or acute team nurse, to decide if critical care team assessment is needed'"
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "Medium risk",
+            "description": "Score >= 5. Monitoring: 'Minimum 1 per hour.' 'Urgent review by a ward-based doctor or acute team nurse, to decide if critical care team assessment is needed'"
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "Low risk 0",
+            "description": "Monitoring: 'Every 12 hours.' 'Assessment by a competent registered nurse or equivalent, to decide change in frequency of clinical monitoring or escalation of care'"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "Total score hypercapnic respiratory failure present",
+            "description": ""
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "Total score hypercapnic respiratory failure absent",
+            "description": ""
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "openEHR-EHR-EVALUATION.health_risk.v1"
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "openEHR-EHR-EVALUATION.news_2_assessment.v0"
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "Hypercapnic respiratory failure"
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "openEHR-EHR-EVALUATION.news_2_assessment.v0"
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "text": "Frequency of monitoring"
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "Response"
+          }
+        }
+      }
+    }
+  }
+}
