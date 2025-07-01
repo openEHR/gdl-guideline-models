@@ -1,0 +1,376 @@
+{
+  "id": "NEWS.v0.1.0",
+  "gdl_version": "2.1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Umiah Gohar",
+      "email": "umiah.gohar@cambio.se",
+      "organisation": "Cambio CDS",
+      "date": "2025-01-29"
+    },
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To calculate and assess the early signs of deterioration in patients by calculating the NEWS score.",
+        "keywords": [
+          "NEWS",
+          "patient deterioration",
+          "respiratory rate",
+          "early",
+          "warning",
+          "score",
+          "national"
+        ],
+        "use": "The NEWS can be used on all hospitalized patients to allow for the early detection of clinical deterioration and potential need for higher level of care.\n\nThe score is based on seven parameters, each contributing points to the total score:\n- Heart rate - 0 point for 51-90, 1 point for 41-50/91-110, 2 points for 111-130 and 3 points for ≤40/≥131\n- Systolic blood pressure - 0 point for 111-219, 1 point for 101-110, 2 points for 91-100 and 3 points for ≤90/≥220\n- Oxygen therapy - 2 points for use of supplemental oxygen\n- Saturation (SaO2) - 0point for ≥96, 1 point for 94-95, 2 points for 92-93 and 3 points for ≤91\n- AVPU - 0 point for A, 3 points for either V, P, or U\n- Body temperature - 0 point for 36.1-38.0, 1 point for 35.1-36.0/38.1-39.0, 2 points for ≥39.1 and 3 points for ≤35.0\n- Respiration rate - 0 point for 12-20, 1 point for 9-11, 2 points for 21-24 and 3 points for ≤8/≥25\n\nThe maximum score is 20points. \nThe score is evaluated as follows:\n- 0-4  - low clinical risk\n- 5-6  or &lt;5 but individual parameter scoring 3 - medium clinical risk\n- 7  or more - high clinical risk",
+        "misuse": "Not be used in patients under 16 years of age and pregnant women.\n\n",
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "en": "Determines the degree of illness of a patient and prompts critical care intervention.",
+      "references": "Williams B, Alberti G, Ball C, Bell D, Binks R, Durham L, et al. National Early Warning Score (NEWS): Standardising the Assessment of Acute-Illness Severity in the NHS. London: The Royal College of Physicians, 2012. \n\nRoyal College of Physicians. National Early Warning Score (NEWS). [Internet]. London, UK: Royal College of Physicians; 2015 May. Available from: https://www.rcplondon.ac.uk/projects/outputs/national-early-warning-score-news\n\nSmith GB, Prytherch DR, Meredith P, Schmidt PE, Featherstone PI. The ability of the National Early Warning Score (NEWS) to discriminate patients at risk of early cardiac arrest, unanticipated intensive care unit admission, and death. Resuscitation. 2013 Apr;84(4):465-70. doi: 10.1016/j.resuscitation.2012.12.016. Epub 2013 Jan 4. PMID: 23295778."
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0067": {
+        "id": "gt0067",
+        "model_id": "openEHR-EHR-OBSERVATION.news_uk_rcp.v1",
+        "template_id": "openEHR-EHR-OBSERVATION.news_uk_rcp.v1",
+        "type": "INPUT",
+        "elements": {
+          "gt0068": {
+            "id": "gt0068",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0018|12-20|",
+              "1|local::at0019|9-11|",
+              "2|local::at0020|21-24|",
+              "3|local::at0021|≤8 or ≥25|"
+            ]
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0029]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0030|≥96|",
+              "1|local::at0031|94-95|",
+              "2|local::at0032|92-93|",
+              "3|local::at0033|≤91|"
+            ]
+          },
+          "gt0070": {
+            "id": "gt0070",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0034]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0036|No|",
+              "2|local::at0037|Yes|"
+            ]
+          },
+          "gt0071": {
+            "id": "gt0071",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0022|36.1-38.0|",
+              "1|local::at0023|35.1-36.0 or 38.1-39.0|",
+              "2|local::at0038|≥39.1|",
+              "3|local::at0039|≤35.0|"
+            ]
+          },
+          "gt0072": {
+            "id": "gt0072",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0014|111-219|",
+              "1|local::at0015|101-110|",
+              "2|local::at0016|91-100|",
+              "3|local::at0017|≤90 or ≥220|"
+            ]
+          },
+          "gt0073": {
+            "id": "gt0073",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0013|51-90|",
+              "1|local::at0012|41-50 or 91-110|",
+              "2|local::at0011|111-130|",
+              "3|local::at0010|≤40 or ≥131|"
+            ]
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0024|A|",
+              "3|local::at0025|V, P or U|"
+            ]
+          }
+        }
+      },
+      "gt0075": {
+        "id": "gt0075",
+        "model_id": "openEHR-EHR-OBSERVATION.news_uk_rcp.v1",
+        "template_id": "openEHR-EHR-OBSERVATION.news_uk_rcp.v1",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0076": {
+            "id": "gt0076",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0028]",
+            "data_type": "DV_COUNT"
+          },
+          "gt0077": {
+            "id": "gt0077",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0044]",
+            "data_type": "DV_TEXT"
+          }
+        }
+      },
+      "gt0078": {
+        "id": "gt0078",
+        "model_id": "openEHR-EHR-EVALUATION.news_assessment.v1",
+        "template_id": "openEHR-EHR-EVALUATION.news_assessment.v1",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0079": {
+            "id": "gt0079",
+            "path": "/data[at0001]/items[at0002]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0004|Zero points|",
+              "1|local::at0005|Low-risk group|",
+              "2|local::at0006|Medium-risk group|",
+              "3|local::at0007|High-risk group|"
+            ]
+          }
+        }
+      }
+    },
+    "rules": {
+      "gt0090": {
+        "id": "gt0090",
+        "priority": 5,
+        "when": [
+          "$gt0068|Respiration rate|!=null&&$gt0069|Oxygen saturation|!=null&&$gt0070|Supplemental oxygen|!=null&&$gt0071|Body temperature|!=null&&$gt0072|Systolic blood pressure|!=null&&$gt0073|Heart rate|!=null&&$gt0074|Level of consciousness|!=null"
+        ],
+        "then": [
+          "$gt0076|Total score|.magnitude=$gt0068|Respiration rate|.value+$gt0069|Oxygen saturation|.value+$gt0070|Supplemental oxygen|.value+$gt0071|Body temperature|.value+$gt0072|Systolic blood pressure|.value+$gt0073|Heart rate|.value+$gt0074|Level of consciousness|.value"
+        ]
+      },
+      "gt0091": {
+        "id": "gt0091",
+        "priority": 4,
+        "when": [
+          "$gt0076|Total score|>=0&&$gt0076|Total score|<5"
+        ],
+        "then": [
+          "$gt0079|NEWS Assessment|=1|local::at0005|Low-risk group|",
+          "$gt0077|Comment|=$gt0089|Assessment by a competent registered nurse who should decide if a change to frequency of clinical monitoring or an escalation of clinical care is required|.term"
+        ]
+      },
+      "gt0092": {
+        "id": "gt0092",
+        "priority": 3,
+        "when": [
+          "$gt0076|Total score|>=5&&$gt0076|Total score|<7"
+        ],
+        "then": [
+          "$gt0079|NEWS Assessment|=2|local::at0006|Medium-risk group|",
+          "$gt0077|Comment|=$gt0087|Urgent review by a clinician skilled with competencies in the assessment of acute illness – usually a ward-based doctor or acute team nurse, who should consider whether escalation of care to a team with critical-care skills is required (ie critical care outreach team)|.term"
+        ]
+      },
+      "gt0096": {
+        "id": "gt0096",
+        "priority": 2,
+        "when": [
+          "($gt0076|Total score|>=5&&$gt0076|Total score|<7)&&($gt0068|Respiration rate|.code=='at0021'||$gt0069|Oxygen saturation|.code=='at0033'||$gt0071|Body temperature|.code=='at0039'||$gt0072|Systolic blood pressure|.code=='at0017'||$gt0073|Heart rate|.code=='at0010'||$gt0074|Level of consciousness|.code=='at0025')"
+        ],
+        "then": [
+          "$gt0079|NEWS Assessment|=2|local::at0006|Medium-risk group|",
+          "$gt0077|Comment|=$gt0094|Red score|.term+' ('+$gt0095|Assigned when an extreme variation in a single physiological parameter is present i.e., a score of 3 in any one physiological parameter.|.term+')'+'\n\n'+$gt0087|Urgent review by a clinician skilled with competencies in the assessment of acute illness – usually a ward-based doctor or acute team nurse, who should consider whether escalation of care to a team with critical-care skills is required (ie critical care outreach team)|.term"
+        ]
+      },
+      "gt0093": {
+        "id": "gt0093",
+        "priority": 1,
+        "when": [
+          "$gt0076|Total score|>=7"
+        ],
+        "then": [
+          "$gt0079|NEWS Assessment|=3|local::at0007|High-risk group|",
+          "$gt0077|Comment|=$gt0086|Emergency assessment by a clinical team/critical care outreach team with critical-care competencies and usually transfer of the patient to a higher dependency care area.|.term"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "NEWS (National Early Warning Score)",
+            "description": "An assessment score used to determine the degree of illness of a patient and prompts critical care intervention.\n"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "openEHR-EHR-OBSERVATION.respiration.v2"
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "text": "openEHR-EHR-OBSERVATION.lab_test-blood_gases.v1"
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "openEHR-EHR-OBSERVATION.oxygen_therapy.v1"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "openEHR-EHR-OBSERVATION.body_temperature.v2"
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "text": "openEHR-EHR-OBSERVATION.blood_pressure.v2"
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "openEHR-EHR-OBSERVATION.pulse.v2"
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "openEHR-EHR-OBSERVATION.avpu.v1"
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "text": "openEHR-EHR-OBSERVATION.news_uk_rcp.v1"
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "openEHR-EHR-EVALUATION.news_assessment.v1"
+          },
+          "gt0065": {
+            "id": "gt0065",
+            "text": "openEHR-EHR-EVALUATION.news2_assessment.v0"
+          },
+          "gt0066": {
+            "id": "gt0066",
+            "text": "openEHR-EHR-EVALUATION.health_risk.v1"
+          },
+          "gt0067": {
+            "id": "gt0067",
+            "text": "openEHR-EHR-OBSERVATION.news_uk_rcp.v1"
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "Respiration rate"
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "Oxygen saturation"
+          },
+          "gt0070": {
+            "id": "gt0070",
+            "text": "Supplemental oxygen"
+          },
+          "gt0071": {
+            "id": "gt0071",
+            "text": "Body temperature"
+          },
+          "gt0072": {
+            "id": "gt0072",
+            "text": "Systolic blood pressure"
+          },
+          "gt0073": {
+            "id": "gt0073",
+            "text": "Heart rate"
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "Level of consciousness"
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "openEHR-EHR-OBSERVATION.news_uk_rcp.v1"
+          },
+          "gt0076": {
+            "id": "gt0076",
+            "text": "Total score"
+          },
+          "gt0077": {
+            "id": "gt0077",
+            "text": "Comment"
+          },
+          "gt0078": {
+            "id": "gt0078",
+            "text": "openEHR-EHR-EVALUATION.news_assessment.v1"
+          },
+          "gt0079": {
+            "id": "gt0079",
+            "text": "NEWS Assessment"
+          },
+          "gt0086": {
+            "id": "gt0086",
+            "text": "Emergency assessment by a clinical team/critical care outreach team with critical-care competencies and usually transfer of the patient to a higher dependency care area."
+          },
+          "gt0087": {
+            "id": "gt0087",
+            "text": "Urgent review by a clinician skilled with competencies in the assessment of acute illness – usually a ward-based doctor or acute team nurse, who should consider whether escalation of care to a team with critical-care skills is required (ie critical care outreach team)"
+          },
+          "gt0088": {
+            "id": "gt0088",
+            "text": "A RED score refers to an extreme variation in a single physiological parameter is present (i.e., a score of 3 in any one physiological parameter)"
+          },
+          "gt0089": {
+            "id": "gt0089",
+            "text": "Assessment by a competent registered nurse who should decide if a change to frequency of clinical monitoring or an escalation of clinical care is required"
+          },
+          "gt0090": {
+            "id": "gt0090",
+            "text": "Total score ",
+            "description": ""
+          },
+          "gt0091": {
+            "id": "gt0091",
+            "text": "Low score ",
+            "description": "NEWS 1-4"
+          },
+          "gt0092": {
+            "id": "gt0092",
+            "text": "Medium score",
+            "description": "NEWS 5–6"
+          },
+          "gt0093": {
+            "id": "gt0093",
+            "text": "High score ",
+            "description": ""
+          },
+          "gt0094": {
+            "id": "gt0094",
+            "text": "Red score"
+          },
+          "gt0095": {
+            "id": "gt0095",
+            "text": "Assigned when an extreme variation in a single physiological parameter is present i.e., a score of 3 in any one physiological parameter."
+          },
+          "gt0096": {
+            "id": "gt0096",
+            "text": "Red score",
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}
