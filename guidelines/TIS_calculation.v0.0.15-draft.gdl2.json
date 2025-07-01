@@ -1,0 +1,585 @@
+{
+  "id": "TIS_calculation.v0.0.15-draft",
+  "gdl_version": "2.1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Gustaf Hultgren",
+      "email": "gustaf.hultgren@cambio.se",
+      "organisation": "Cambio CDS",
+      "date": "2021-02-17"
+    },
+    "other_contributors": [
+      "Shweta Prasad Ghaisas"
+    ],
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To evaluate trunk stability and mobility in patients with neurological deficits.",
+        "keywords": [
+          "trunk impairment scale",
+          "trunk",
+          "trunk impairment",
+          "stroke",
+          "hemiplegia",
+          "parkinson's disease",
+          "neurological",
+          "upper trunk",
+          "lower trunk",
+          "balance",
+          "coordination",
+          "static balance",
+          "dynamic balance"
+        ],
+        "use": "The Trunk Impairment Scale score is calculated based on evaluation of 3 areas: static balance, dynamic balance and coordination. Each of these 3 areas are evaluated based on certain components. The total score ranges from 0-23. Healthy individuals should achieve a perfect score of 23. The scores for the 3 areas range as follows:\n\nStatic balance: 0 - 7; evaluated with 3 components\n\nDynamic balance: 0 - 10; evaluated with 10 components\n\nCoordination: 0 - 6; evaluated with 4 components\n\nThe Trunk Impairment Scale has been shown to exhibit sufficient reliability, internal consistency and validity for use in clinical practice and research. It is mainly used to assess and quantify the trunk stability and mobility in patients who may have certain neurological deficits.",
+        "misuse": "The TIS score mainly evaluates the sitting balance and coordination of patients. It should not be used to draw insights about the patient's standing or movement balance.",
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "en": "Trunk impairment scale calculation helps to assess the balance and coordination of patients.",
+      "references": "Verheyden, G, Mertin, J, Preger, et al.  (2004). The Trunk Impairment Scale: A new tool to measure motor impairment of the trunk after stroke. Clinical Rehabilitation, 18, 326–334."
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "openEHR-EHR-OBSERVATION.trunk_impairment_scale.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.trunk_impairment_scale.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0003": {
+            "id": "gt0003",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0005|No|",
+              "2|local::at0006|Yes|"
+            ]
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0008|Falls or can’t maintain sitting position for 10 seconds without arm support|",
+              "2|local::at0009|Maintains sitting position for 10 seconds|"
+            ]
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0010]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0011|Falls|",
+              "1|local::at0012|Cannot cross legs without arm support|",
+              "2|local::at0013|Crosses legs but displaces trunk >10 cm backwards or assists crossing with hand|",
+              "3|local::at0014|Crosses legs without displacement or assistance|"
+            ]
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0016]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0017|Falls, needs support from upper extremity, or elbow does not touch the bed or table|",
+              "1|local::at0018|Moves actively without help, elbow touches bed or table|"
+            ]
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0019]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0020|No (or opposite) shortening/lengthening|",
+              "1|local::at0021|Appropriate shortening/lengthening|"
+            ]
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0022]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0023|Compensation (with upper extremity, hips, knees, or feet)|",
+              "1|local::at0024|Moves without compensation|"
+            ]
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0025]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0017|Falls, needs support from upper extremity, or elbow does not touch the bed or table|",
+              "1|local::at0018|Moves actively without help, elbow touches bed or table|"
+            ]
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0026]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0020|No (or opposite) shortening/lengthening|",
+              "1|local::at0021|Appropriate shortening/lengthening|"
+            ]
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0027]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0023|Compensation (with upper extremity, hips, knees, or feet)|",
+              "1|local::at0024|Moves without compensation|"
+            ]
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0028]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0020|No (or opposite) shortening/lengthening|",
+              "1|local::at0021|Appropriate shortening/lengthening|"
+            ]
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0029]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0030|Compensation (with upper extremity or foot)|",
+              "1|local::at0031|Moves without compensation|"
+            ]
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0032]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0020|No (or opposite) shortening/lengthening|",
+              "1|local::at0021|Appropriate shortening/lengthening|"
+            ]
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0033]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0030|Compensation (with upper extremity or foot)|",
+              "1|local::at0031|Moves without compensation|"
+            ]
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0035]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0036|Hemiplegic side not moved 3x|",
+              "1|local::at0037|Assymetrical rotation|",
+              "2|local::at0038|Symmetrical rotation|"
+            ]
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0039]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0040|Assymetrical rotation|",
+              "1|local::at0041|Symmetrical rotation|"
+            ]
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0042]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0036|Hemiplegic side not moved 3x|",
+              "1|local::at0037|Assymetrical rotation|",
+              "2|local::at0038|Symmetrical rotation|"
+            ]
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0049]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0040|Assymetrical rotation|",
+              "1|local::at0041|Symmetrical rotation|"
+            ]
+          }
+        }
+      },
+      "gt0020": {
+        "id": "gt0020",
+        "model_id": "openEHR-EHR-OBSERVATION.trunk_impairment_scale.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.trunk_impairment_scale.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0021": {
+            "id": "gt0021",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0015]"
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0034]"
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0043]"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0044]"
+          }
+        }
+      }
+    },
+    "default_actions": [
+      "$gt0021|Static balance score|=0",
+      "$gt0022|Dynamic Balance score|=0",
+      "$gt0023|Coordination score|=0"
+    ],
+    "rules": {
+      "gt0025": {
+        "id": "gt0025",
+        "priority": 13,
+        "when": [
+          "$gt0003|Maintains starting position|==0|local::at0005|No|"
+        ],
+        "then": [
+          "$gt0021|Static balance score|=0",
+          "$gt0022|Dynamic Balance score|=0",
+          "$gt0023|Coordination score|=0",
+          "$gt0024|Total score|=0"
+        ]
+      },
+      "gt0026": {
+        "id": "gt0026",
+        "priority": 12,
+        "when": [
+          "$gt0003|Maintains starting position|==2|local::at0006|Yes|",
+          "$gt0004|Therapist crosses unaffected leg|!=null",
+          "$gt0005|Patient crosses unaffected leg|!=null"
+        ],
+        "then": [
+          "$gt0021|Static balance score|.magnitude=$gt0003|Maintains starting position|.value+$gt0004|Therapist crosses unaffected leg|.value+$gt0005|Patient crosses unaffected leg|.value"
+        ]
+      },
+      "gt0027": {
+        "id": "gt0027",
+        "priority": 11,
+        "when": [
+          "$gt0003|Maintains starting position|==2|local::at0006|Yes|",
+          "$gt0006|Shortens hemiplegic side|!=null",
+          "$gt0009|Shortens unaffected side|!=null",
+          "$gt0012|Lifts pelvis hemiplegic side|!=null",
+          "$gt0014|Lifts pelvis unaffected side|!=null"
+        ],
+        "then": [
+          "$gt0022|Dynamic Balance score|.magnitude=$gt0006|Shortens hemiplegic side|.value+$gt0009|Shortens unaffected side|.value+$gt0012|Lifts pelvis hemiplegic side|.value+$gt0014|Lifts pelvis unaffected side|.value"
+        ]
+      },
+      "gt0028": {
+        "id": "gt0028",
+        "priority": 10,
+        "when": [
+          "$gt0003|Maintains starting position|==2|local::at0006|Yes|",
+          "$gt0006|Shortens hemiplegic side|==1|local::at0018|Moves actively without help, elbow touches bed or table|",
+          "$gt0007|Shortens hemiplegic side - repetition 1|!=null"
+        ],
+        "then": [
+          "$gt0022|Dynamic Balance score|.magnitude=$gt0007|Shortens hemiplegic side - repetition 1|.value+$gt0022|Dynamic Balance score|"
+        ]
+      },
+      "gt0029": {
+        "id": "gt0029",
+        "priority": 9,
+        "when": [
+          "$gt0003|Maintains starting position|==2|local::at0006|Yes|",
+          "$gt0006|Shortens hemiplegic side|==1|local::at0018|Moves actively without help, elbow touches bed or table|",
+          "$gt0007|Shortens hemiplegic side - repetition 1|==1|local::at0021|Appropriate shortening/lengthening|",
+          "$gt0008|Shortens hemiplegic side - repetition 2|!=null"
+        ],
+        "then": [
+          "$gt0022|Dynamic Balance score|.magnitude=$gt0022|Dynamic Balance score|+$gt0008|Shortens hemiplegic side - repetition 2|.value"
+        ]
+      },
+      "gt0030": {
+        "id": "gt0030",
+        "priority": 8,
+        "when": [
+          "$gt0003|Maintains starting position|==2|local::at0006|Yes|",
+          "$gt0009|Shortens unaffected side|==1|local::at0018|Moves actively without help, elbow touches bed or table|",
+          "$gt0010|Shorten unaffected side - repetition 1|!=null"
+        ],
+        "then": [
+          "$gt0022|Dynamic Balance score|.magnitude=$gt0022|Dynamic Balance score|+$gt0010|Shorten unaffected side - repetition 1|.value"
+        ]
+      },
+      "gt0031": {
+        "id": "gt0031",
+        "priority": 7,
+        "when": [
+          "$gt0003|Maintains starting position|==2|local::at0006|Yes|",
+          "$gt0009|Shortens unaffected side|==1|local::at0018|Moves actively without help, elbow touches bed or table|",
+          "$gt0010|Shorten unaffected side - repetition 1|==1|local::at0021|Appropriate shortening/lengthening|",
+          "$gt0011|Shorten unaffected side - repetition 2|!=null"
+        ],
+        "then": [
+          "$gt0022|Dynamic Balance score|=$gt0022|Dynamic Balance score|+$gt0011|Shorten unaffected side - repetition 2|.value"
+        ]
+      },
+      "gt0033": {
+        "id": "gt0033",
+        "priority": 6,
+        "when": [
+          "$gt0003|Maintains starting position|==2|local::at0006|Yes|",
+          "$gt0012|Lifts pelvis hemiplegic side|==1|local::at0021|Appropriate shortening/lengthening|",
+          "$gt0013|Lifts pelvis hemiplegic side - repetition 1|!=null"
+        ],
+        "then": [
+          "$gt0022|Dynamic Balance score|.magnitude=$gt0022|Dynamic Balance score|+$gt0013|Lifts pelvis hemiplegic side - repetition 1|.value"
+        ]
+      },
+      "gt0032": {
+        "id": "gt0032",
+        "priority": 5,
+        "when": [
+          "$gt0003|Maintains starting position|==2|local::at0006|Yes|",
+          "$gt0014|Lifts pelvis unaffected side|==1|local::at0021|Appropriate shortening/lengthening|",
+          "$gt0015|Lifts pelvis unaffected side - repetition 1|!=null"
+        ],
+        "then": [
+          "$gt0022|Dynamic Balance score|.magnitude=$gt0022|Dynamic Balance score|+$gt0015|Lifts pelvis unaffected side - repetition 1|.value"
+        ]
+      },
+      "gt0034": {
+        "id": "gt0034",
+        "priority": 4,
+        "when": [
+          "$gt0003|Maintains starting position|==2|local::at0006|Yes|",
+          "$gt0016|Rotates upper trunk|!=null",
+          "$gt0018|Rotates lower trunk|!=null"
+        ],
+        "then": [
+          "$gt0023|Coordination score|.magnitude=$gt0016|Rotates upper trunk|.value+$gt0018|Rotates lower trunk|.value"
+        ]
+      },
+      "gt0036": {
+        "id": "gt0036",
+        "priority": 3,
+        "when": [
+          "$gt0003|Maintains starting position|==2|local::at0006|Yes|",
+          "$gt0017|Rotates upper trunk - repetition 1|!=null",
+          "($gt0016|Rotates upper trunk|==1|local::at0037|Assymetrical rotation|)||($gt0016|Rotates upper trunk|==2|local::at0038|Symmetrical rotation|)"
+        ],
+        "then": [
+          "$gt0023|Coordination score|.magnitude=$gt0023|Coordination score|+$gt0017|Rotates upper trunk - repetition 1|.value"
+        ]
+      },
+      "gt0037": {
+        "id": "gt0037",
+        "priority": 2,
+        "when": [
+          "$gt0003|Maintains starting position|==2|local::at0006|Yes|",
+          "$gt0019|Rotates lower trunk - repetition 1|!=null",
+          "($gt0018|Rotates lower trunk|==1|local::at0037|Assymetrical rotation|)||($gt0018|Rotates lower trunk|==2|local::at0038|Symmetrical rotation|)"
+        ],
+        "then": [
+          "$gt0023|Coordination score|.magnitude=$gt0023|Coordination score|+$gt0019|Rotates lower trunk - repetition 1|.value"
+        ]
+      },
+      "gt0035": {
+        "id": "gt0035",
+        "priority": 1,
+        "when": [
+          "$gt0003|Maintains starting position|!=null",
+          "$gt0021|Static balance score|!=null",
+          "$gt0022|Dynamic Balance score|!=null",
+          "$gt0023|Coordination score|!=null"
+        ],
+        "then": [
+          "$gt0024|Total score|.magnitude=$gt0021|Static balance score|+$gt0022|Dynamic Balance score|+$gt0023|Coordination score|"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "TIS_calculation",
+            "description": "Trunk Impairment Scale (TIS) evaluates trunk mobility and stability in patients with neurological deficits."
+          },
+          "gt0002": {
+            "id": "gt0002",
+            "text": "openEHR-EHR-OBSERVATION.trunk_impairment_scale.v0"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "Maintains starting position"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "Therapist crosses unaffected leg"
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "text": "Patient crosses unaffected leg"
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "Shortens hemiplegic side"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "Shortens unaffected side"
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "Lifts pelvis hemiplegic side"
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "Lifts pelvis unaffected side"
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "Rotates upper trunk"
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "Rotates lower trunk"
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "openEHR-EHR-OBSERVATION.trunk_impairment_scale.v0"
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "Static balance score",
+            "description": "The individual scores of components of the TIS that assess static balance are added to give this score."
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "Dynamic Balance score",
+            "description": "The individual scores of components of the TIS that assess dynamic balance are added to give this score."
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "Coordination score",
+            "description": "The individual scores of components of the TIS that assess coordination are added to give this score."
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "Total score",
+            "description": "Addition of static balance score, dynamic balance score and coordination score."
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "Fails starting position.",
+            "description": "Checking the 1st item under static balance."
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "Calculate static balance score.",
+            "description": "This rule calculates the score for the area \"static balance\"."
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "Calculate dynamic balance score.",
+            "description": "This rule calculates the score for the area \"dynamic balance\"."
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "Add shortens hemiplegic side- repetition 1",
+            "description": "Evaluautes the 1st repetition of the component \"shortens hemiplegic side\"."
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "Add shortens hemiplegic side- repetition 2",
+            "description": "Evaluautes the 2nd repetition of the component \"shortens hemiplegic side\"."
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "Add shortens unaffected side- repetition 1",
+            "description": "Evaluautes the 1st repetition of the component \"shortens unaffected side\"."
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "text": "Add shortens unaffected side- repetition 2",
+            "description": "Evaluautes the 2nd repetition of the component \"shortens unaffected side\"."
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "Add lifts pelvis unaffected side- repetition 1",
+            "description": "Evaluautes the 1st repetition of the component \"lifts pelvis unaffected side\"."
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "Add lifts pelvis hemiplegic side- repetition 1",
+            "description": "Evaluautes the 1st repetition of the component \"lifts pelvis hemiplegic side\"."
+          },
+          "gt0034": {
+            "id": "gt0034",
+            "text": "Calculate coordination score.",
+            "description": "This rule calculates the score for the area \"coordination\"."
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "Calculate total score.",
+            "description": "This rule calculates the total score for TIS."
+          },
+          "gt0036": {
+            "id": "gt0036",
+            "text": "Add rotates upper trunk- repetition 1",
+            "description": "Evaluautes the 1st repetition of the component \"rotates upper trunk\"."
+          },
+          "gt0037": {
+            "id": "gt0037",
+            "text": "Add rotates lower trunk- repetition 1",
+            "description": "Evaluautes the 1st repetition of the component \"rotates lower trunk\"."
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "Shortens hemiplegic side - repetition 1"
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "text": "Shortens hemiplegic side - repetition 2"
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "Shorten unaffected side - repetition 1"
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "text": "Shorten unaffected side - repetition 2"
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "Lifts pelvis hemiplegic side - repetition 1"
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "Lifts pelvis unaffected side - repetition 1"
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "text": "Rotates upper trunk - repetition 1"
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "Rotates lower trunk - repetition 1"
+          }
+        }
+      }
+    }
+  }
+}
