@@ -1,0 +1,274 @@
+archetype (adl_version=1.4; uid=1cf85545-5695-3c56-bdaa-d6b5c96069e5)
+	openEHR-EHR-OBSERVATION.wells_criteria_for_pulmonary_embolism.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"Dennis Forslund">
+				["organisation"] = <"Cambio Healthcare Systems">
+			>
+		>
+	>
+
+description
+	original_author = <
+		["date"] = <"2017-03-25">
+		["name"] = <"Syeeda S Farruque">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"models@cambiocds.com">
+	>
+	lifecycle_state = <"AuthorDraft">
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"*För att registrera resultaten för varje komponentparameter och deras summa för brunnskriterierna.">
+			keywords = <"lung","emboli","CT angiogram","Wells">
+			copyright = <"© Cambio Healthcare Systems">
+			use = <"Används för att registrera resultaten för varje komponentparameter och deras totalsumma för brunnskriterierna.">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and their sum total for the Wells criteria.">
+			keywords = <"pulmonary","embolism","CT angiogram","Wells">
+			copyright = <"© Cambio Healthcare Systems">
+			use = <"Use to record the results for each component parameter and their sum total for the Wells criteria.">
+		>
+	>
+	other_details = <
+		["references"] = <"Wells PS, Anderson DR, Rodger M, Stiell I, Dreyer JF, Barnes D, Forgie M, Kovacs G, Ward J, Kovacs MJ. Excluding pulmonary embolism at the bedside without diagnostic imaging: management of patients with suspected pulmonary embolism presenting to the emergency department by using a simple clinical model and d-dimer. Ann Intern Med. 2001 Jul 17;135(2):98-107. PubMed PMID: 11453709.
+
+Wolf SJ, McCubbin TR, Feldhaus KM, Faragher JP, Adcock DM. Prospective validation of Wells Criteria in the evaluation of patients with suspected pulmonary embolism. Ann Emerg Med. 2004 Nov;44(5):503-10. PubMed PMID: 15520710
+">
+		["MD5-CAM-1.0.1"] = <"aaa1fff19f261995d2ea2e6be9ed29fd">
+		["build_uid"] = <"a19e6498-4b64-3c83-b5eb-f6ca3daf2a5b">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Wells criteria for Pulmonary Embolism
+		data matches {
+			HISTORY[at0001] matches {    -- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Clinical signs and symptoms of DVT
+										value matches {
+											0|[local::at0015],
+											6|[local::at0016]
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Is PE the number 1 diagnosis or equally likely
+										value matches {
+											0|[local::at0015],
+											6|[local::at0016]
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Heart rate more than 100 BPM
+										value matches {
+											0|[local::at0015],
+											3|[local::at0016]
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Immobilization at least 3 days or surgery in the Previous 4 weeks
+										value matches {
+											0|[local::at0015],
+											3|[local::at0016]
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Previous objectively diagnosed PE or DVT
+										value matches {
+											0|[local::at0015],
+											3|[local::at0016]
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Hemoptysis
+										value matches {
+											0|[local::at0015],
+											2|[local::at0016]
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Malignancy with treatment within 6 months or palliative
+										value matches {
+											0|[local::at0015],
+											2|[local::at0016]
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"1">
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0027] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0028] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Wells criteria for Pulmonary Embolism">
+					description = <"An assessment criteria to quantify the risk of Pulmonary Embolism (PE).">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Clinical signs and symptoms of DVT">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Is PE the number 1 diagnosis or equally likely">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Heart rate more than 100 BPM">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Immobilization at least 3 days or surgery in the Previous 4 weeks">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Previous objectively diagnosed PE or DVT">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Hemoptysis">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Malignancy with treatment within 6 months or palliative">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Total score">
+					description = <"Den totala poängen för varje enskild post läggs till och halveras sedan när de individuella poängen har fördubblats för att hantera decimaltal.">
+				>
+				["at0015"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0028"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Wells kriterier för lungemboli">
+					description = <"Ett bedömningskriterier för att kvantifiera risken för lungemboli (PE).">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Standard, ospecificerad tidpunkt eller intervallhändelse som kan vara explicit definierad i en mall eller vid körning.">
+				>
+				["at0003"] = <
+					text = <"Träd">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Kliniska tecken och symtom på DVT">
+					description = <"Har patienten kliniska tecken och symtom på djup ventrombos?">
+				>
+				["at0005"] = <
+					text = <"Är PE diagnos nummer 1 eller lika sannolikt">
+					description = <"Är lungemboli lika eller mer sannolik än annan diagnos?">
+				>
+				["at0006"] = <
+					text = <"Puls över 100 BPM">
+					description = <"Är patientens hjärtfrekvens över 100 slag per minut?">
+				>
+				["at0007"] = <
+					text = <"Immobilisering minst 3 dagar eller operation under de föregående 4 veckorna">
+					description = <"Har patienten varit immobiliserad minst tre dagar eller genomgått kirurgi senaste fyra veckorna?">
+				>
+				["at0008"] = <
+					text = <"Tidigare objektivt diagnostiserad PE eller DVT">
+					description = <"Har patienten tidigare diagnostiserats med DVT eller lungemboli?">
+				>
+				["at0009"] = <
+					text = <"Hemoptys">
+					description = <"Hostar patienten upp blod?">
+				>
+				["at0010"] = <
+					text = <"Malignitet med behandling inom 6 månader eller palliativ">
+					description = <"Pågående eller avslutad behandling inom 6 mån alternativt palliativ">
+				>
+				["at0011"] = <
+					text = <"Total poäng">
+					description = <"Den totala summan av varje komponentparameter för Wells-kriterierna.">
+				>
+				["at0015"] = <
+					text = <"Nej">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Ja">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0028"] = <
+					text = <"Förlängning">
+					description = <"Ytterligare information som krävs för att utöka modellen med lokalt innehåll eller för att anpassa sig till andra referensmodeller eller formalismer.">
+					comment = <"Till exempel: lokala informationskrav; eller ytterligare metadata för att anpassas till FHIR.">
+				>
+			>
+		>
+	>
