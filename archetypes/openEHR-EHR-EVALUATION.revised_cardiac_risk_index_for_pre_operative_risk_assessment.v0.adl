@@ -1,0 +1,122 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.revised_cardiac_risk_index_for_pre_operative_risk_assessment.v0
+
+concept
+	[at0000]	-- Revised cardiac risk index for pre operative risk
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Jack Msonkho">
+		["email"] = <"models@cambiocds.com">
+		["organisation"] = <"Cambio CDS">
+		["date"] = <"2020-03-08">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Revised Cardiac Risk Index for The Pre-Operative Risk estimates risk of cardiac complications after noncardiac surgery.">
+			use = <"Patients ≥45 years old (or 18-44 years old with significant cardiovascular disease) undergoing elective non-cardiac surgery or urgent/semi-urgent (non-emergent) non-cardiac surgery.
+
+Use with caution in emergency surgery patients, as the score is not as well validated in this population.
+
+Accurately risk-stratifies patients and helps patients understand individualized risk prior to undergoing surgery, which can be helpful in discussions of informed consent.
+
+In patients with elevated risk (RCRI ≥1, age ≥65, or age 45-64 with significant cardiovascular disease), helps direct further preoperative risk stratification (e.g. with serum NT-proBNP or BNP) and determine appropriate cardiac monitoring post-op (EKG, troponins).
+
+Alternative perioperative cardiac risk scores like the Myocardial Infarction and Cardiac Arrest (MICA) Score and the American College of Surgeons (ACS) National Surgical Quality Improvement Program (NSQIP) Score have been validated only retrospectively and therefore underestimate the risk of myocardial ischemia (Duceppe 2017, Rodseth 2014, Devereaux 2011) compared with the RCRI, which has been validated by multiple studies over the past 15 years
+
+Observation & Risk Calculation
+
+At each observation, several elements are assessed by using yes or no answers which either carry a zero point when the answer is No and a one point when the answer is Yes, as shwon below:
+
+
+Risk factor	Description	       Points
+High-risk surgery		        +1
+History of ischemic heart disease      +1
+History of congestive heart failure    +1
+History of cerebrovascular disease    +1
+Pre-operative treatment with insulin +1
+Pre-operative creatinine >2 mg/dL / 176.8 µmol/L +1
+
+Evaluation
+RCRI Score	Risk of major cardiac event (95% CI)*
+0	                   3.9% (2.8-5.4%)
+1	                   6.0% (4.9-7.4%)
+2	                  10.1% (8.1-12.6%)
+≥3	                  15% (11.1-20.0%)
+">
+			misuse = <"Includes a limited number of risk factors it includes, in part because the original studies could not include a sufficient number of patients for every important risk factor (e.g. underestimates hemodynamic and cardiovascular outcomes in valvular disease).
+
+Other patient important outcomes that are not assessed by this tool include risk of stroke, major bleeding, prolonged hospitalization, and ICU admission.
+">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"Goldman L, Caldera DL, Nussbaum SR, Southwick FS, Krogstad D, Murray B, Burke DS, O'Malley TA, Goroll AH, Caplan CH, Nolan J, Carabello B, Slater EE. Multifactorial index of cardiac risk in noncardiac surgical procedures. N Engl J Med. 1977 Oct 20;297(16):845-50.
+
+Validation
+Lee TH, Marcantonio ER, Mangione CM, Thomas EJ, Polanczyk CA, Cook EF, Sugarbaker DJ, Donaldson MC, Poss R, Ho KK, Ludwig LE, Pedan A, Goldman L. Derivation and prospective validation of a simple index for prediction of cardiac risk of major noncardiac surgery. Circulation. 1999 Sep 7;100(10):1043-9.
+
+VISION Pilot Study investigators, Devereaux PJ, Bradley D, Chan MT, et al. An international prospective cohort study evaluating major vascular complications among patients undergoing noncardiac surgery: the VISION Pilot Study. Open Med. 2011;5(4):e193-200.
+
+Ausset S, Auroy Y, Lambert E, et al. Cardiac troponin I release after hip surgery correlates with poor long-term cardiac outcome. Eur J Anaesthesiol. 2008;25(2):158-64.">
+		["MD5-CAM-1.0.1"] = <"9F117B4EC294E328931900B74ACF18B9">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Revised cardiac risk index for pre operative risk
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Risk of major cardiac event
+						value matches {
+							0|[local::at0003], 	-- 3.9%
+							1|[local::at0004], 	-- 6.0%
+							2|[local::at0005], 	-- 10.1%
+							3|[local::at0006]  	-- 15%
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Revised cardiac risk index for pre operative risk">
+					description = <"Revised Cardiac Risk Index for The Pre-Operative Risk estimates risk of cardiac complications after noncardiac surgery.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Risk of major cardiac event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"3.9%">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"6.0%">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"10.1%">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"15%">
+					description = <"*">
+				>
+			>
+		>
+	>
