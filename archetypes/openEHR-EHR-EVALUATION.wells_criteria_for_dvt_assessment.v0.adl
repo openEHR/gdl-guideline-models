@@ -1,0 +1,139 @@
+archetype (adl_version=1.4; uid=0e2d6025-d945-3329-b3e8-fff1673d1ad5)
+	openEHR-EHR-EVALUATION.wells_criteria_for_dvt_assessment.v0
+
+concept
+	[at0000]	-- Wells' criteria for DVT 
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"Dennis Forslund">
+				["organisation"] = <"Cambio Healthcare Systems">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Dennis Forslund">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2021-08-19">
+	>
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"Utvärdering av poäng genererad i enlighet med Wells kriterier för djup ventrombos (DVT). ">
+			use = <"Använd för utvärdering av poäng genererad i enlighet med Wells kriterier för djup ventrombos (DVT). 
+
+Wells DVT kriterier kan användas såväl inom öppenvården som på akutmottagningar. De bör endast appliceras efter noggrann anamnes och fysisk undersökning som resulterat i misstanke om djup ventrombos (DVT). 
+
+En poäng om under 2 tillsammans med negativ d-dimer indikerar låg sannolikhet för DVT.
+
+Poängen baseras på sju viktade kriterier:
+
+- Aktiv cancer
+- Förlamning, pares, eller nyligen orörlig i benen p.g.a. gips
+- Sängliggande nyligen i ≥3 dagar eller större operation inom 12 veckor
+- Lokaliserad ömhet längs det djupa vensystemet
+- Hela benet svullet
+- Svullen vad >3 cm jämfört med det andra benet
+- Pittingödem
+- Kollaterala ytliga vener (utan varicer)
+- Alternativ diagnos till DVT minst lika sannolikt
+
+Maximal poäng uppgår till 8p och en poäng om 2p eller mer indikerar hög sannolikhet för DVT.">
+			keywords = <"Wells", "Wells kriterier", "DVT", "djup ventrombos">
+			misuse = <"Får inte användas med någon annan formel eller andra kriterier för riskstratifiering av DVT.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the assessment of the score generated in accordance with Wells' criteria for risk of DVT.
+ ">
+			use = <"Use to record the assessment of the score generated in accordance with Wells' criteria for risk of DVT.
+
+The Wells’ DVT criteria can be used in outpatient as well as emergency department settings. They are only to be applied after a thorough history and physical examination resulting in a suspicion of DVT. 
+
+A low risk score (<2) along with a negative test result for d-dimer excludes the need for further examination with ultrasound. 
+
+The score is generated based on seven weighted criteria:
+
+- active cancer
+- paralysis, paresis, or recent plaster immobilisation of the legs
+- bedridden recently ≥3 days or major surgery within 12 weeks
+- localized tenderness along the deep venous system
+- entire leg swollen
+- calf swelling >3 cm compared to the other leg
+- pitting oedema 
+- collateral (nonvaricose) superficial veins
+- alternative diagnosis to DVT at least as likely
+
+The maximum score is 8p and a score of 2p or more suggests high probability of DVT. ">
+			keywords = <"Wells", "criteria", "DVT">
+			misuse = <"Not to be used with any other formula or criteria for DVT risk stratification.">
+			copyright = <"©Cambio CDS">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <"Mouna Ghannam", ...>
+	other_details = <
+		["references"] = <"Tovey C, Wyatt S. Diagnosis, investigation, and management of deep vein thrombosis. BMJ. 2003 May 31;326(7400):1180-4. doi: 10.1136/bmj.326.7400.1180. PMID: 12775619; PMCID: PMC1126050.
+
+Wells PS, Anderson DR, Rodger M, Forgie M, Kearon C, Dreyer J, Kovacs G, Mitchell M, Lewandowski B, Kovacs MJ. Evaluation of D-dimer in the diagnosis of suspected deep-vein thrombosis. N Engl J Med. 2003 Sep 25;349(13):1227-35. doi: 10.1056/NEJMoa023153. PMID: 14507948.">
+		["build_uid"] = <"724c25ff-f35e-375f-9bd2-9595464ccb63">
+		["MD5-CAM-1.0.1"] = <"BBC74AEAB630980F4634FFD2F5F1398D">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Wells' criteria for DVT 
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- DVT probability
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Wells' criteria for DVT ">
+					description = <"An assessment score used  to calculate risk of DVT based on clinical criteria.">
+					comment = <"Original version, c 2003.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"DVT probability">
+					description = <"Assessment of score generated in accordance with Wells' Criteria for risk of DVT.">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Wells' Criteria for DVT (en)">
+					description = <"*An assessment score used  to calculate risk of DVT based on clinical criteria.(en)">
+					comment = <"*Original version, c 2003.(en)">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Sannolikhet för DVT">
+					description = <"Utvärdering av poäng genererad i enlighet med Wells kriterier för djup ventrombos (DVT). ">
+				>
+			>
+		>
+	>
