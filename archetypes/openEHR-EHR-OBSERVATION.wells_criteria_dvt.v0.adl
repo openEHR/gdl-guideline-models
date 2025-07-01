@@ -1,0 +1,331 @@
+archetype (adl_version=1.4; uid=da463002-0add-3dde-a665-6a8c29961883)
+	openEHR-EHR-OBSERVATION.wells_criteria_dvt.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"Dennis Forslund">
+				["organisation"] = <"Cambio Healthcare Systems">
+				["email"] = <"models@cambiocds.com">
+			>
+		>
+	>
+
+description
+	original_author = <
+		["date"] = <"2021-08-19">
+		["name"] = <"Oskar Nielsen">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"models@cambiocds.com">
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <"Dennis Forslund, Cambio Healthcare Systems","Mouna Ghannam, Cambio CDS">
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"Att baserat på klinisk undersökning förutsäga sannolikhet för djup ventrombos (DVT), och därigenom minska överflödig vidare utredning.">
+			use = <"Wells DVT kriterier kan användas såväl inom öppenvården som på akutmottagningar. De bör endast appliceras efter noggrann anamnes och fysisk undersökning som resulterat i misstanke om djup ventrombos (DVT). 
+
+En poäng om under 2 tillsammans med negativ d-dimer indikerar låg sannolikhet för DVT.
+
+Poängen baseras på sju viktade kriterier:
+
+- Aktiv cancer
+- Förlamning, pares, eller nyligen orörlig i benen p.g.a. gips
+- Sängliggande nyligen i ≥3 dagar eller större operation inom 12 veckor
+- Lokaliserad ömhet längs det djupa vensystemet
+- Hela benet svullet
+- Svullen vad >3 cm jämfört med det andra benet
+- Pittingödem
+- Kollaterala ytliga vener (utan varicer)
+- Alternativ diagnos till DVT minst lika sannolikt
+
+Maximal poäng uppgår till 8p och en poäng om 2p eller mer indikerar hög sannolikhet för DVT.">
+			misuse = <"Får inte användas med någon annan formel eller andra kriterier för riskstratifiering av DVT.">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and their total sum for the Wells' score.">
+			keywords = <"DVT","Wells","criteria">
+			copyright = <"©CDS Cambio">
+			use = <"Use to record the results for each component parameter and their total sum for the Wells' score.
+
+The Wells’ DVT criteria can be used in outpatient as well as emergency department settings. They are only to be applied after a thorough history and physical examination resulting in a suspicion of DVT. ">
+			misuse = <"Not to be used with any other formula or criteria for DVT risk stratification.">
+		>
+	>
+	other_details = <
+		["references"] = <"Tovey C, Wyatt S. Diagnosis, investigation, and management of deep vein thrombosis. BMJ. 2003 May 31;326(7400):1180-4. doi: 10.1136/bmj.326.7400.1180. PMID: 12775619; PMCID: PMC1126050.
+
+Wells PS, Anderson DR, Rodger M, Forgie M, Kearon C, Dreyer J, Kovacs G, Mitchell M, Lewandowski B, Kovacs MJ. Evaluation of D-dimer in the diagnosis of suspected deep-vein thrombosis. N Engl J Med. 2003 Sep 25;349(13):1227-35. doi: 10.1056/NEJMoa023153. PMID: 14507948.">
+		["MD5-CAM-1.0.1"] = <"62b5fc980819f96abba5914c3ba96580">
+		["build_uid"] = <"c4eab0e9-9e64-33aa-b5ab-451c7d29b49b">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Wells’ criteria for DVT
+		data matches {
+			HISTORY[at0001] matches {    -- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any Event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Active cancer
+										value matches {
+											0|[local::at0005],
+											1|[local::at0006]
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Paralysis, paresis, or recent plaster immobilisation of the legs
+										value matches {
+											0|[local::at0005],
+											1|[local::at0006]
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Recently bedridden for 3 days or more, or major surgery within the previous 12 wk requiring general or regional anesthesia
+										value matches {
+											0|[local::at0005],
+											1|[local::at0006]
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- Localized tenderness along the distribution of the deep venous system
+										value matches {
+											0|[local::at0005],
+											1|[local::at0006]
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Entire leg swollen
+										value matches {
+											0|[local::at0005],
+											1|[local::at0006]
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {    -- Calf swelling at least 3 cm larger than that on the asymptomatic side
+										value matches {
+											0|[local::at0005],
+											1|[local::at0006]
+										}
+									}
+									ELEMENT[at0022] occurrences matches {0..1} matches {    -- Pitting oedema confined to the symptomatic leg
+										value matches {
+											0|[local::at0005],
+											1|[local::at0006]
+										}
+									}
+									ELEMENT[at0025] occurrences matches {0..1} matches {    -- Collateral superficial veins (nonvaricose)
+										value matches {
+											0|[local::at0005],
+											1|[local::at0006]
+										}
+									}
+									ELEMENT[at0034] occurrences matches {0..1} matches {    -- Previously documented DVT
+										value matches {
+											0|[local::at0005],
+											1|[local::at0006]
+										}
+									}
+									ELEMENT[at0028] occurrences matches {0..1} matches {    -- Alternative diagnosis at least as likely as DVT
+										value matches {
+											-2|[local::at0006],
+											0|[local::at0005]
+										}
+									}
+									ELEMENT[at0029] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											DV_COUNT matches {
+												magnitude matches {|-2..9|}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0032] matches {    -- Tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0033] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Wells’ criteria for DVT">
+					description = <"Ett bedömningspoäng som används för att beräkna risken för DVT baserat på kliniska kriterier.">
+					comment = <"Original version, c 2003.">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any Event">
+					description = <"Standard, ospecificerad tidpunkt eller intervallhändelse som kan vara explicit definierad i en mall eller vid körning.">
+				>
+				["at0003"] = <
+					text = <"Träd">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Aktiv cancer">
+					description = <"Patient som får behandling för cancer under de senaste 6 månaderna eller som för närvarande får palliativ behandling.">
+				>
+				["at0005"] = <
+					text = <"Frånvarande">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Närvarande">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Förlamning, pares eller nyligen gipsimmobilisering av benen">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Nyligen sängliggande i 3 dagar eller mer, eller större operation under de senaste 12 veckorna som kräver allmän eller regional anestesi">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Lokaliserad ömhet längs fördelningen av det djupa vensystemet">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Hela benet svullet">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Vadsvullnad minst 3 cm större än på den asymptomatiska sidan">
+					description = <"Uppmätt 10 cm under tibial tuberositet.">
+				>
+				["at0022"] = <
+					text = <"Pittingödem begränsat till det symtomatiska benet">
+					description = <"Större i det symptomatiska benet.">
+				>
+				["at0025"] = <
+					text = <"Kollaterala ytliga vener (icke åderbråck)">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Alternativ diagnos minst lika sannolikt som DVT">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Total poäng">
+					description = <"Summan av alla faktorer.">
+				>
+				["at0032"] = <
+					text = <"Träd">
+					description = <"@ internal @">
+				>
+				["at0033"] = <
+					text = <"Klunga">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Tidigare dokumenterad DVT">
+					description = <"">
+				>
+			>
+		>
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Wells’ criteria for DVT">
+					description = <"An assessment score used  to calculate risk of DVT based on clinical criteria.">
+					comment = <"Original version, c 2003.">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any Event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Active cancer">
+					description = <"Patient receiving treatment for cancer within the previous 6 months or currently receiving palliative treatment.">
+				>
+				["at0005"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Paralysis, paresis, or recent plaster immobilisation of the legs">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Recently bedridden for 3 days or more, or major surgery within the previous 12 wk requiring general or regional anesthesia">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Localized tenderness along the distribution of the deep venous system">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Entire leg swollen">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Calf swelling at least 3 cm larger than that on the asymptomatic side">
+					description = <"Measured 10 cm below the tibial tuberosity.">
+				>
+				["at0022"] = <
+					text = <"Pitting oedema confined to the symptomatic leg">
+					description = <"Greater in the symptomatic leg.">
+				>
+				["at0025"] = <
+					text = <"Collateral superficial veins (nonvaricose)">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Alternative diagnosis at least as likely as DVT">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Total score">
+					description = <"Sum of all factors.">
+				>
+				["at0032"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0033"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0034"] = <
+					text = <"Previously documented DVT">
+					description = <"">
+				>
+			>
+		>
+	>
