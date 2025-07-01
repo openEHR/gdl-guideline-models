@@ -1,0 +1,153 @@
+archetype (adl_version=1.4; uid=dc213434-49cd-49b2-a4dc-4ed3e09a4100)
+	openEHR-EHR-EVALUATION.crb_65.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-07-01">
+		["name"] = <"Shweta Prasad Ghaisas">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"s.prasad.ghaisas@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record results for level of risk of community-acquired pneumonia, recommendation in terms of care level and 30-day mortality.">
+			keywords = <"risk, mortality, community-acquired, pneumonia, hospital, admission, death, ICU, crb 65, low, moderate, severe", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Used to record the results for level of risk of community-acquired pneumonia, recommendation in terms of care level and 30-day mortality based on CRB 65 score.">
+			misuse = <"Not to be used for calculating and recording the total score for CRB 65.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"McNally M, Curtain J, O'Brien K, Dimitrov B, Fahey T. Validity of British Thoracic Society guidance (the CRB-65 rule) for predicting the severity of pneumonia in general practice: systematic review and meta-analysis. Br J Gen Pract. 2010 Oct;60(579):e423-33.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"a83218c9-2d58-3f51-a763-3f8865a0fef9">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- crb 65 assessment
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- Risk assessment
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- Low risk
+									at0006,    -- Moderate risk
+									at0007]    -- Severe risk
+								}
+							}
+						}
+					}
+					ELEMENT[at0003] occurrences matches {0..1} matches {    -- Recommendation
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0008,    -- Consider home treatment
+									at0009,    -- Consider hospital care
+									at0010]    -- Urgent hospital admission
+								}
+							}
+						}
+					}
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- 30-day mortality
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0011,    -- 1.2%
+									at0012,    -- 8.2%
+									at0013]    -- 31.3%
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0014] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"crb 65 assessment">
+					description = <"An assessment used to record risk of community-acquired pneumonia and accordingly record the care level and 30-day mortality based on CRB 65 score.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Risk assessment">
+					description = <"">
+				>
+				["at0003"] = <
+					text = <"Recommendation">
+					description = <"">
+				>
+				["at0004"] = <
+					text = <"30-day mortality">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Low risk">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Moderate risk">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Severe risk">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Consider home treatment">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Consider hospital care">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Urgent hospital admission">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"1.2%">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"8.2%">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"31.3%">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+			>
+		>
+	>
