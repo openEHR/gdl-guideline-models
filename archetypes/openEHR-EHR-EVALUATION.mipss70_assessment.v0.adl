@@ -1,0 +1,175 @@
+archetype (adl_version=1.4; uid=98177d38-8707-4fdd-922f-d3a66cdedfb4)
+	openEHR-EHR-EVALUATION.mipss70_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-06-18">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To assess the components recorded for the MIPSS70 and MIPSS70+ v2.0 prognostic systems.">
+			keywords = <"mipss70, mipss70+, mutation-enhanced international prognostic score system, primary myelofibrosis, pmf, prefibrotic myelofibrosis, prognosis, risk score, hematology, oncology, asxl1, ezh2, srsf2, idh1, idh2, calr, u2af1", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to assess the components documented on the archetype openEHR-EHR-OBSERVATION.mipss70.">
+			misuse = <"Not to be used for calculating prognosis in other myeloproliferative neoplasms or hematological malignancies. Not to be used solely for recording individual parameters (e.g., Hemoglobin level) outside the context of calculating this specific score; use dedicated archetypes for those purposes (e.g., openEHR-EHR-OBSERVATION.lab_test-haematology). Do not use for DIPSS or other myelofibrosis scoring systems.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Guglielmelli P, Lasho TL, Rotunno G, Mudireddy M, Mannarelli C, Nicolosi M, Pacilli A, Pardanani A, Rumi E, Rosti V, Hanson CA, Mannelli F, Ketterling RP, Gangat N, Rambaldi A, Passamonti F, Barosi G, Barbui T, Cazzola M, Vannucchi AM, Tefferi A. MIPSS70: Mutation-Enhanced International Prognostic Score System for Transplantation-Age Patients With Primary Myelofibrosis. J Clin Oncol. 2018 Feb 1;36(4):310-318. doi: 10.1200/JCO.2017.76.4886. Epub 2017 Dec 9. PMID: 29226763.
+
+Tefferi A, Guglielmelli P, Lasho TL, Gangat N, Ketterling RP, Pardanani A, Vannucchi AM. MIPSS70+ Version 2.0: Mutation and Karyotype-Enhanced International Prognostic Scoring System for Primary Myelofibrosis. J Clin Oncol. 2018 Jun 10;36(17):1769-1770. doi: 10.1200/JCO.2018.78.9867. Epub 2018 Apr 30. PMID: 29708808.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"e8808edcf79d2e1bfe46be186485054c">
+		["build_uid"] = <"8aa1281d-9ec1-3bff-a76a-0962b1924489">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- mipps70 assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Risk MIPSS70
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0008,    -- Very Low
+									at0009,    -- Low
+									at0010,    -- Intermediate
+									at0011,    -- High
+									at0012]    -- Very High
+								}
+							}
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {    -- Median Overall Survival
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0013,    -- N/A
+									at0014,    -- 27.7
+									at0015,    -- 10.3
+									at0016,    -- 7.1
+									at0017,    -- 7.0
+									at0018,    -- 3.5
+									at0019,    -- 2.3
+									at0020]    -- 1.8
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"mipps70 assessment">
+					description = <"Assess the prognosis in patients with prefibrotic/early or overt primary myelofibrosis (PMF) based on the parameters required to calculate the Mutation-Enhanced International Prognostic Score System (MIPSS70 and MIPSS70+ v2.0).">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Risk MIPSS70">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Median Overall Survival">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Very Low">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Low">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Intermediate">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"High">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Very High">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"N/A">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"27.7">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"10.3">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"7.1">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"7.0">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"3.5">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"2.3">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"1.8">
+					description = <"">
+				>
+			>
+		>
+	>
