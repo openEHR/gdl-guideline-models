@@ -1,0 +1,369 @@
+{
+  "id": "TIMI_risk_score_for_UA_NSTEMI.v0.0.1",
+  "gdl_version": "2.1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Rosario Silva Sepulveda",
+      "email": "rosario.silva.s@outlook.com",
+      "organisation": "Cambio CDS",
+      "date": "2021-08-31"
+    },
+    "other_contributors": [
+      "Dennis Forslund",
+      "Jimmy Axelsson",
+      "Daniel Keszthelyi",
+      "Syeeda S Farruque",
+      "Aurelia Maria Ozora"
+    ],
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To calculate and interpret the total sum for the TIMI Risk Score for Unstable Angina/NSTEMI.",
+        "keywords": [
+          "thrombolysis",
+          "myocardial",
+          "infarction",
+          "risk",
+          "score",
+          "UA",
+          "unstable",
+          "angina",
+          "NSTEMI",
+          "non-ST",
+          "elevation",
+          "stenosis",
+          "CAD",
+          "coronary",
+          "artery",
+          "disease",
+          "cardiac",
+          "marker",
+          "EKG",
+          "electrokardiogram",
+          "ECG",
+          "electrocardiogram",
+          "timi"
+        ],
+        "use": "Seven criteria are used to calculate the risk score, including age ≥ 65 years old, ≥ 3 CAD Risk Factors, known CAD (stenosis ≥ 50%), Use of aspirin in the last 7 days, severe angina (≥ 2 episodes in 24 hrs), EKG ST changes ≥ 0.5mm,  and elevated serum cardiac marker. The scores range from 0 to 7.\n\nRisk stratification is as follows:\n- 0-1 points: 5% risk at 14 days of all-cause mortality\n- 2 points: 8% risk at 14 days of all-cause mortality\n- 3 points: 13% risk at 14 days of all-cause mortality\n- 4 points: 20% risk at 14 days of all-cause mortality\n- 5 points: 26% risk at 14 days of all-cause mortality\n- ≥ 6 points: 41% risk at 14 days of all-cause mortality",
+        "misuse": "Not to be used for assessment of the TIMI Risk Score for STEMI.",
+        "copyright": "Cambio CDS"
+      }
+    },
+    "other_details": {
+      "references": "Antman EM, Cohen M, Bernink PJ, McCabe CH, Horacek T, Papuchis G, Mautner B, Corbalan R, Radley D, Braunwald E. The TIMI risk score for unstable angina/non-ST elevation MI: A method for prognostication and therapeutic decision making. JAMA. 2000 Aug 16;284(7):835-42. doi: 10.1001/jama.284.7.835. PMID: 10938172.",
+      "en": "The TIMI Risk Score for Unstable Angina/NSTEMI is a risk stratification tool used to evaluate patients with UA/NSTEMI."
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "openEHR-EHR-OBSERVATION.timi_ua_nstemi.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.timi_ua_nstemi.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0003": {
+            "id": "gt0003",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0013]"
+          }
+        }
+      },
+      "gt0004": {
+        "id": "gt0004",
+        "model_id": "openEHR-EHR-EVALUATION.timi_ua_nstemi_assessment.v0",
+        "template_id": "openEHR-EHR-EVALUATION.timi_ua_nstemi_assessment.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0005": {
+            "id": "gt0005",
+            "path": "/data[at0001]/items[at0002]",
+            "data_type": "DV_TEXT"
+          }
+        }
+      },
+      "gt0006": {
+        "id": "gt0006",
+        "model_id": "openEHR-EHR-OBSERVATION.timi_ua_nstemi.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.timi_ua_nstemi.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0007": {
+            "id": "gt0007",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0011|No|",
+              "1|local::at0012|Yes|"
+            ]
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0011|No|",
+              "1|local::at0012|Yes|"
+            ]
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0011|No|",
+              "1|local::at0012|Yes|"
+            ]
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0011|No|",
+              "1|local::at0012|Yes|"
+            ]
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0011|No|",
+              "1|local::at0012|Yes|"
+            ]
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0009]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0011|No|",
+              "1|local::at0012|Yes|"
+            ]
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0010]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0011|No|",
+              "1|local::at0012|Yes|"
+            ]
+          }
+        }
+      }
+    },
+    "rules": {
+      "gt0021": {
+        "id": "gt0021",
+        "priority": 7,
+        "when": [
+          "$gt0007|Age ≥ 65|!=null",
+          "$gt0008|≥ 3 CAD risk factors|!=null",
+          "$gt0009|Significant coronary stenosis|!=null",
+          "$gt0010|ST deviation|!=null",
+          "$gt0011|Severe anginal symptoms|!=null",
+          "$gt0012|Use of aspirin in last 7 days|!=null",
+          "$gt0013|Elevated serum cardiac markers|!=null"
+        ],
+        "then": [
+          "$gt0003|Total score|.magnitude=$gt0007.value+$gt0008.value+$gt0009.value+$gt0010.value+$gt0011.value+$gt0012.value+$gt0013.value"
+        ]
+      },
+      "gt0022": {
+        "id": "gt0022",
+        "priority": 6,
+        "when": [
+          "$gt0003|Total score|<=1"
+        ],
+        "then": [
+          "$gt0005|Interpretation|.value=$gt0014.term+' '+$gt0020.term"
+        ]
+      },
+      "gt0023": {
+        "id": "gt0023",
+        "priority": 5,
+        "when": [
+          "$gt0003|Total score|==2"
+        ],
+        "then": [
+          "$gt0005|Interpretation|.value=$gt0015.term+' '+$gt0020.term"
+        ]
+      },
+      "gt0024": {
+        "id": "gt0024",
+        "priority": 4,
+        "when": [
+          "$gt0003|Total score|==3"
+        ],
+        "then": [
+          "$gt0005|Interpretation|.value=$gt0016.term+' '+$gt0020.term"
+        ]
+      },
+      "gt0025": {
+        "id": "gt0025",
+        "priority": 3,
+        "when": [
+          "$gt0003|Total score|==4"
+        ],
+        "then": [
+          "$gt0005|Interpretation|.value=$gt0017.term+' '+$gt0020.term"
+        ]
+      },
+      "gt0026": {
+        "id": "gt0026",
+        "priority": 2,
+        "when": [
+          "$gt0003|Total score|==5"
+        ],
+        "then": [
+          "$gt0005|Interpretation|.value=$gt0018.term+' '+$gt0020.term"
+        ]
+      },
+      "gt0027": {
+        "id": "gt0027",
+        "priority": 1,
+        "when": [
+          "$gt0003|Total score|>5",
+          "$gt0003|Total score|<=7"
+        ],
+        "then": [
+          "$gt0005|Interpretation|.value=$gt0019.term+' '+$gt0020.term"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "TIMI Risk Score for UA/NSTEMI",
+            "description": "The TIMI Risk Score for Unstable Angina/NSTEMI is a risk stratification tool used to evaluate patients with UA/NSTEMI. It provides a prognostic framework that helps clinicians assess a patient's risk of death and ischemic events during the initial evaluation."
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "Total score",
+            "description": "The total sum of each component parameter for the TIMI Risk Score for UA/NSTEMI."
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "text": "Interpretation"
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "Age ≥ 65"
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "text": "≥ 3 CAD risk factors"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "Significant coronary stenosis"
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "ST deviation"
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "text": "Severe anginal symptoms"
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "Use of aspirin in last 7 days"
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "Elevated serum cardiac markers"
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "5%",
+            "description": ""
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "8%",
+            "description": ""
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "13%",
+            "description": ""
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "text": "20%",
+            "description": ""
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "26%",
+            "description": ""
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "41%",
+            "description": ""
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "risk at 14 days of: all-cause mortality, new or recurrent MI, or severe recurrent ischemia requiring urgent revascularization.",
+            "description": ""
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "Calculate total score"
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "Set interpretation when total score is 1 or less"
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "Set interpretation when total score is 2"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "Set interpretation when total score is 3"
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "Set interpretation when total score is 4"
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "Set interpretation when total score is 5",
+            "description": ""
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "Set interpretation when total score is 6 or 7",
+            "description": ""
+          },
+          "gt0002": {
+            "id": "gt0002",
+            "text": "openEHR-EHR-OBSERVATION.timi_ua_nstemi.v0"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "openEHR-EHR-EVALUATION.timi_ua_nstemi_assessment.v0"
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "openEHR-EHR-OBSERVATION.timi_ua_nstemi.v0"
+          }
+        }
+      }
+    }
+  }
+}
