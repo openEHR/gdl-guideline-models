@@ -1,0 +1,1646 @@
+{
+  "id": "ISTH_SSC_bleeding_assessment_tool.v0.0.9",
+  "gdl_version": "2.1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Shweta Prasad Ghaisas",
+      "email": "S.Prasad.Ghaisas@cambio.se",
+      "organisation": "Cambio CDS",
+      "date": "2025-04-16"
+    },
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To calculate and interpret the total score of the ISTH-SCC bleeding assessment tool.",
+        "keywords": [
+          "bleeding",
+          "bleeding assessment",
+          "thrombosis",
+          "haemostasis",
+          "scientific standardization committee",
+          "international society on thrombosis and haemostasis",
+          "bleeding disorder",
+          "epistaxis",
+          "postpartum hemorrhage",
+          "gastrointestinal bleeding",
+          "hematuria",
+          "oral cavity bleeding",
+          "bleeding from minor  wounds",
+          "cutaneous bleeding",
+          "tooth extraction",
+          "bleeding from surgery ",
+          "menorrhagia",
+          "muscle hematomas",
+          "hemarthrosis",
+          "central nervous system bleeding"
+        ],
+        "use": "This tool assesses the presence and severity of bleeding symptoms and can serve as a screening tool to determine which patients require additional laboratory evaluation.\n\nIt has been validated in various inherited bleeding disorder populations, including von Willebrand disease, hemophilia, and platelet disorders.\n\nResults may inform the need for further diagnostic workup in patients with a suspected inherited bleeding disorder.\n- Low scores are associated with a low likelihood of a bleeding disorder, and additional evaluation may not be warranted.\n- Elevated scores indicate an increased risk of bleeding; further evaluation for an underlying inherited bleeding disorder is appropriate (e.g., laboratory studies, specialty consultation).\n\nDistinction between 0 and 1 is of critical importance. Score 1 means that the symptom is judged as present in the patient’s history by the interviewer but does not qualify for a score 2 or more.\n\n* Consultation only: the patient sought medical evaluation and was either referred to a specialist or offered detailed laboratory investigation.\n\n** E.g., 1 extraction/surgery resulting in bleeding (100%): the score to be assigned is 2;\n\n2 extractions/surgeries, 1 resulting in bleeding (50%): the score to be assigned is 2;\n\n3 extractions/surgeries, 1 resulting in bleeding (33%): the score to be assigned is 2;\n\n4 extractions/surgeries, 1 resulting in bleeding (25%): the score to be assigned is 1.",
+        "misuse": "The tool has been validated for use in adults and children, although sensitivity is lower in pediatric populations.\n\nIt has low sensitivity for acquired bleeding disorders.\n\nFor the calculation, only symptoms and treatment BEFORE and AT diagnosis should be considered.\n\nResults are not intended to be diagnostic but should be used as part of a comprehensive evaluation in conjunction with clinical judgment and specialty consultation.",
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "en": "An assessment tool used to evaluate patients with a suspected inherited bleeding disorder.",
+      "references": "Rodeghiero F, et al. ISTH/SSC bleeding assessment tool: a standardized questionnaire and a proposal for a new bleeding score for inherited bleeding disorders. J Thromb Haemost. 2010 Sep;8(9):2063–5.\n\nElbatarny M, Mollah S, Grabell J, et al. Normal range of bleeding scores for the ISTH-BAT: adult and pediatric data from the merging project. Haemophilia. 2014 Nov;20(6):831–5.\n\nBorhany M, Fatima N, Abid M, Shamsi T, Othman M. Application of the ISTH bleeding score in hemophilia. Transfus Apher Sci. 2018 Aug;57(4):556–60.\n\nGresele P, Orsini S, Noris P, et al. Validation of the ISTH/SSC bleeding assessment tool for inherited platelet disorders: a communication from the Platelet Physiology SSC. J Thromb Haemost. 2020 Mar;18(3):732–9.\n\nKalot MA, Husainat N, Tayiem S, et al. Bleeding assessment tools in the diagnosis of VWD in adults and children: a systematic review and meta-analysis of test accuracy. Blood Adv. 2021 Dec 14;5(23):5023–31.\n\nRezende SM, Neumann I, Angchaisuksiri P, et al. International Society on Thrombosis and Haemostasis clinical practice guideline for treatment of congenital hemophilia A and B based on the Grading of Recommendations Assessment, Development, and Evaluation methodology. J Thromb Haemost. 2024 Sep;22(9):2629–52."
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "openEHR-EHR-OBSERVATION.isth_scc_bleeding_assessment_tool.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.isth_scc_bleeding_assessment_tool.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0003": {
+            "id": "gt0003",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0005|>= 18|",
+              "local::at0006|< 18|"
+            ]
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0008|Male|",
+              "local::at0009|Female|"
+            ]
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0011]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0012|No/ trivial|",
+              "local::at0013|>5 /year or >10 minutes|",
+              "local::at0014|Consultation only|",
+              "local::at0015|Packing, cauterization, or antifibrinolytic agents|",
+              "local::at0016|Blood transfusion, replacement therapy, or desmopressin|"
+            ]
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0017]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0018|No/ trivial|",
+              "local::at0019|≥5 bruises (>1 cm) in exposed areas|",
+              "local::at0020|Consultation only|",
+              "local::at0021|Extensive|",
+              "local::at0022|Spontaneous hematoma requiring blood transfusion|"
+            ]
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0023]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0024|No/ trivial|",
+              "local::at0025|>5 /year or >10 minutes|",
+              "local::at0026|Consultation only|",
+              "local::at0027|Surgical hemostasis|",
+              "local::at0028|Blood transfusion, replacement therapy, or desmopressin|"
+            ]
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0029]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0030|No/ trivial|",
+              "local::at0031|Present|",
+              "local::at0032|Consultation only|",
+              "local::at0033|Surgical hemostasis or antifibrinolytic required|",
+              "local::at0034|Blood transfusion, replacement therapy, or desmopressin|"
+            ]
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0035]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0045|No/ trivial|",
+              "local::at0046|Present (not associated with ulcer, portal hypertension, hemorrhoids, angiodysplasia)|",
+              "local::at0047|Consultation only|",
+              "local::at0048|Surgical hemostasis or antifibrinolytic required|",
+              "local::at0049|Blood transfusion, replacement therapy, or desmopressin|"
+            ]
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0036]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0050|No/ trivial|",
+              "local::at0051|Present (macroscopic)|",
+              "local::at0052|Consultation only|",
+              "local::at0053|Surgical hemostasis or iron therapy|",
+              "local::at0054|Blood transfusion, replacement therapy, or desmopressin|"
+            ]
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0037]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0055|No/ trivial or none done|",
+              "local::at0056|Reported in ≤25% of all procedures, no intervention|",
+              "local::at0057|Reported in >25% of all procedures, no intervention|",
+              "local::at0058|Resuturing or packing|",
+              "local::at0059|Blood transfusion, replacement therapy, or desmopressin|"
+            ]
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0038]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0060|No/ trivial or none done|",
+              "local::at0061|Reported in ≤25% of all procedures, no intervention|",
+              "local::at0062|Reported in >25% of all procedures, no intervention|",
+              "local::at0063|Surgical hemostasis or antifibrinolytic|",
+              "local::at0064|Blood transfusion, replacement therapy, or desmopressin|"
+            ]
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0039]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0065|No/ trivial|",
+              "local::at0066|Consultation only, changing pads more frequently than every 2 hours, clot and flooding, or PBAC score>100|",
+              "local::at0067|Time off work/school >2 /year, requiring antifibrinolytics, or hormonal/iron therapy|",
+              "local::at0068|Requiring combined treatment with antifibrinolytics and hormonal therapy or menorrhagia present since menarche and >12 months|",
+              "local::at0069|Acute menorrhagia requiring hospital admission and emergency treatment, requiring blood transfusion/replacement therapy/desmopressin, requiring dilatation&curettage/endometrial ablation, or hysterectomy|"
+            ]
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0040]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0070|No/ trivial or no deliveries|",
+              "local::at0071|Consultation only, use of oxytocin, or lochia >6 weeks|",
+              "local::at0072|Iron therapy or antifibrinolytics|",
+              "local::at0073|Requiring blood transfusion, replacement therapy, desmopressin, or requiring examination under anesthesia and/or the use of uterine balloon/package to tamponade the uterus|",
+              "local::at0074|Any procedure requiring critical care or surgical intervention|"
+            ]
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0041]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0075|Never|",
+              "local::at0076|Post trauma or no therapy|",
+              "local::at0077|Spontaneous or no therapy|",
+              "local::at0078|Spontaneous or traumatic, requiring desmopressin or replacement therapy|",
+              "local::at0079|Spontaneous or traumatic, requiring surgical intervention or blood transfusion|"
+            ]
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0042]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0080|Never|",
+              "local::at0081|Post trauma or no therapy|",
+              "local::at0082|Spontaneous or no therapy|",
+              "local::at0083|Spontaneous or traumatic, requiring desmopressin or replacement therapy|",
+              "local::at0084|Spontaneous or traumatic, requiring surgical intervention or blood transfusion|"
+            ]
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0043]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0085|Never|",
+              "local::at0086|Subdural or any intervention|",
+              "local::at0087|Intracerebral or any intervention|"
+            ]
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0044]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0088|Never|",
+              "local::at0089|Present|",
+              "local::at0090|Consultation only|",
+              "local::at0091|Surgical hemostasis or antifibrinolytics|",
+              "local::at0092|Blood transfusion, replacement therapy, or desmopressin|"
+            ]
+          }
+        }
+      },
+      "gt0019": {
+        "id": "gt0019",
+        "model_id": "openEHR-EHR-OBSERVATION.isth_scc_bleeding_assessment_tool.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.isth_scc_bleeding_assessment_tool.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0020": {
+            "id": "gt0020",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0103]",
+            "data_type": "DV_QUANTITY"
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0104]",
+            "data_type": "DV_QUANTITY"
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0105]",
+            "data_type": "DV_QUANTITY"
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0106]",
+            "data_type": "DV_QUANTITY"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0107]",
+            "data_type": "DV_QUANTITY"
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0108]",
+            "data_type": "DV_QUANTITY"
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0109]",
+            "data_type": "DV_QUANTITY"
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0110]",
+            "data_type": "DV_QUANTITY"
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0111]",
+            "data_type": "DV_QUANTITY"
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0112]",
+            "data_type": "DV_QUANTITY"
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0113]",
+            "data_type": "DV_QUANTITY"
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0114]",
+            "data_type": "DV_QUANTITY"
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0115]",
+            "data_type": "DV_QUANTITY"
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0116]",
+            "data_type": "DV_QUANTITY"
+          },
+          "gt0034": {
+            "id": "gt0034",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0093]",
+            "data_type": "DV_QUANTITY"
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0094]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0095|Typical in adult males|",
+              "local::at0096|Atypical in adult males|",
+              "local::at0097|Typical in adult females|",
+              "local::at0098|Atypical in adult females|",
+              "local::at0099|Typical in children|",
+              "local::at0100|Atypical in children|",
+              "local::at0101|Typical|",
+              "local::at0102|Atypical|"
+            ]
+          }
+        }
+      }
+    },
+    "rules": {
+      "gt0036": {
+        "id": "gt0036",
+        "priority": 75,
+        "when": [
+          "$gt0005|Epistaxis|==local::at0012|No/ trivial|"
+        ],
+        "then": [
+          "$gt0020|Epistaxis score|.magnitude=0"
+        ]
+      },
+      "gt0037": {
+        "id": "gt0037",
+        "priority": 74,
+        "when": [
+          "$gt0005|Epistaxis|==local::at0013|>5 /year or >10 minutes|"
+        ],
+        "then": [
+          "$gt0020|Epistaxis score|.magnitude=1"
+        ]
+      },
+      "gt0038": {
+        "id": "gt0038",
+        "priority": 73,
+        "when": [
+          "$gt0005|Epistaxis|==local::at0014|Consultation only|"
+        ],
+        "then": [
+          "$gt0020|Epistaxis score|.magnitude=2"
+        ]
+      },
+      "gt0039": {
+        "id": "gt0039",
+        "priority": 72,
+        "when": [
+          "$gt0005|Epistaxis|==local::at0015|Packing, cauterization, or antifibrinolytic agents|"
+        ],
+        "then": [
+          "$gt0020|Epistaxis score|.magnitude=3"
+        ]
+      },
+      "gt0040": {
+        "id": "gt0040",
+        "priority": 71,
+        "when": [
+          "$gt0005|Epistaxis|==local::at0016|Blood transfusion, replacement therapy, or desmopressin|"
+        ],
+        "then": [
+          "$gt0020|Epistaxis score|.magnitude=4"
+        ]
+      },
+      "gt0041": {
+        "id": "gt0041",
+        "priority": 70,
+        "when": [
+          "$gt0006|Cutaneous|==local::at0018|No/ trivial|"
+        ],
+        "then": [
+          "$gt0021|Cutaneous bleeding score|.magnitude=0"
+        ]
+      },
+      "gt0045": {
+        "id": "gt0045",
+        "priority": 69,
+        "when": [
+          "$gt0006|Cutaneous|==local::at0019|≥5 bruises (>1 cm) in exposed areas|"
+        ],
+        "then": [
+          "$gt0021|Cutaneous bleeding score|.magnitude=1"
+        ]
+      },
+      "gt0044": {
+        "id": "gt0044",
+        "priority": 68,
+        "when": [
+          "$gt0006|Cutaneous|==local::at0020|Consultation only|"
+        ],
+        "then": [
+          "$gt0021|Cutaneous bleeding score|.magnitude=2"
+        ]
+      },
+      "gt0043": {
+        "id": "gt0043",
+        "priority": 67,
+        "when": [
+          "$gt0006|Cutaneous|==local::at0021|Extensive|"
+        ],
+        "then": [
+          "$gt0021|Cutaneous bleeding score|.magnitude=3"
+        ]
+      },
+      "gt0042": {
+        "id": "gt0042",
+        "priority": 66,
+        "when": [
+          "$gt0006|Cutaneous|==local::at0022|Spontaneous hematoma requiring blood transfusion|"
+        ],
+        "then": [
+          "$gt0021|Cutaneous bleeding score|.magnitude=4"
+        ]
+      },
+      "gt0046": {
+        "id": "gt0046",
+        "priority": 65,
+        "when": [
+          "$gt0007|Bleeding from minor wounds|==local::at0024|No/ trivial|"
+        ],
+        "then": [
+          "$gt0022|Bleeding from minor wounds score|.magnitude=0"
+        ]
+      },
+      "gt0050": {
+        "id": "gt0050",
+        "priority": 64,
+        "when": [
+          "$gt0007|Bleeding from minor wounds|==local::at0025|>5 /year or >10 minutes|"
+        ],
+        "then": [
+          "$gt0022|Bleeding from minor wounds score|.magnitude=1"
+        ]
+      },
+      "gt0049": {
+        "id": "gt0049",
+        "priority": 63,
+        "when": [
+          "$gt0007|Bleeding from minor wounds|==local::at0026|Consultation only|"
+        ],
+        "then": [
+          "$gt0022|Bleeding from minor wounds score|.magnitude=2"
+        ]
+      },
+      "gt0048": {
+        "id": "gt0048",
+        "priority": 62,
+        "when": [
+          "$gt0007|Bleeding from minor wounds|==local::at0027|Surgical hemostasis|"
+        ],
+        "then": [
+          "$gt0022|Bleeding from minor wounds score|.magnitude=3"
+        ]
+      },
+      "gt0047": {
+        "id": "gt0047",
+        "priority": 61,
+        "when": [
+          "$gt0007|Bleeding from minor wounds|==local::at0028|Blood transfusion, replacement therapy, or desmopressin|"
+        ],
+        "then": [
+          "$gt0022|Bleeding from minor wounds score|.magnitude=4"
+        ]
+      },
+      "gt0051": {
+        "id": "gt0051",
+        "priority": 60,
+        "when": [
+          "$gt0008|Oral cavity|==local::at0030|No/ trivial|"
+        ],
+        "then": [
+          "$gt0023|Oral cavity bleeding score|.magnitude=0"
+        ]
+      },
+      "gt0055": {
+        "id": "gt0055",
+        "priority": 59,
+        "when": [
+          "$gt0008|Oral cavity|==local::at0031|Present|"
+        ],
+        "then": [
+          "$gt0023|Oral cavity bleeding score|.magnitude=1"
+        ]
+      },
+      "gt0054": {
+        "id": "gt0054",
+        "priority": 58,
+        "when": [
+          "$gt0008|Oral cavity|==local::at0032|Consultation only|"
+        ],
+        "then": [
+          "$gt0023|Oral cavity bleeding score|.magnitude=2"
+        ]
+      },
+      "gt0053": {
+        "id": "gt0053",
+        "priority": 57,
+        "when": [
+          "$gt0008|Oral cavity|==local::at0033|Surgical hemostasis or antifibrinolytic required|"
+        ],
+        "then": [
+          "$gt0023|Oral cavity bleeding score|.magnitude=3"
+        ]
+      },
+      "gt0052": {
+        "id": "gt0052",
+        "priority": 56,
+        "when": [
+          "$gt0008|Oral cavity|==local::at0034|Blood transfusion, replacement therapy, or desmopressin|"
+        ],
+        "then": [
+          "$gt0023|Oral cavity bleeding score|.magnitude=4"
+        ]
+      },
+      "gt0056": {
+        "id": "gt0056",
+        "priority": 55,
+        "when": [
+          "$gt0009|GI bleeding|==local::at0045|No/ trivial|"
+        ],
+        "then": [
+          "$gt0024|GI bleeding score|.magnitude=0"
+        ]
+      },
+      "gt0057": {
+        "id": "gt0057",
+        "priority": 54,
+        "when": [
+          "$gt0009|GI bleeding|==local::at0046|Present (not associated with ulcer, portal hypertension, hemorrhoids, angiodysplasia)|"
+        ],
+        "then": [
+          "$gt0024|GI bleeding score|.magnitude=1"
+        ]
+      },
+      "gt0058": {
+        "id": "gt0058",
+        "priority": 53,
+        "when": [
+          "$gt0009|GI bleeding|==local::at0047|Consultation only|"
+        ],
+        "then": [
+          "$gt0024|GI bleeding score|.magnitude=2"
+        ]
+      },
+      "gt0059": {
+        "id": "gt0059",
+        "priority": 52,
+        "when": [
+          "$gt0009|GI bleeding|==local::at0048|Surgical hemostasis or antifibrinolytic required|"
+        ],
+        "then": [
+          "$gt0024|GI bleeding score|.magnitude=3"
+        ]
+      },
+      "gt0060": {
+        "id": "gt0060",
+        "priority": 51,
+        "when": [
+          "$gt0009|GI bleeding|==local::at0049|Blood transfusion, replacement therapy, or desmopressin|"
+        ],
+        "then": [
+          "$gt0024|GI bleeding score|.magnitude=4"
+        ]
+      },
+      "gt0061": {
+        "id": "gt0061",
+        "priority": 50,
+        "when": [
+          "$gt0010|Hematuria|==local::at0050|No/ trivial|"
+        ],
+        "then": [
+          "$gt0025|Hematuria score|.magnitude=0"
+        ]
+      },
+      "gt0062": {
+        "id": "gt0062",
+        "priority": 49,
+        "when": [
+          "$gt0010|Hematuria|==local::at0051|Present (macroscopic)|"
+        ],
+        "then": [
+          "$gt0025|Hematuria score|.magnitude=1"
+        ]
+      },
+      "gt0063": {
+        "id": "gt0063",
+        "priority": 48,
+        "when": [
+          "$gt0010|Hematuria|==local::at0052|Consultation only|"
+        ],
+        "then": [
+          "$gt0025|Hematuria score|.magnitude=2"
+        ]
+      },
+      "gt0064": {
+        "id": "gt0064",
+        "priority": 47,
+        "when": [
+          "$gt0010|Hematuria|==local::at0053|Surgical hemostasis or iron therapy|"
+        ],
+        "then": [
+          "$gt0025|Hematuria score|.magnitude=3"
+        ]
+      },
+      "gt0065": {
+        "id": "gt0065",
+        "priority": 46,
+        "when": [
+          "$gt0010|Hematuria|==local::at0054|Blood transfusion, replacement therapy, or desmopressin|"
+        ],
+        "then": [
+          "$gt0025|Hematuria score|.magnitude=4"
+        ]
+      },
+      "gt0066": {
+        "id": "gt0066",
+        "priority": 45,
+        "when": [
+          "$gt0011|Tooth extraction|==local::at0055|No/ trivial or none done|"
+        ],
+        "then": [
+          "$gt0026|Tooth extraction score|.magnitude=0"
+        ]
+      },
+      "gt0067": {
+        "id": "gt0067",
+        "priority": 44,
+        "when": [
+          "$gt0011|Tooth extraction|==local::at0056|Reported in ≤25% of all procedures, no intervention|"
+        ],
+        "then": [
+          "$gt0026|Tooth extraction score|.magnitude=1"
+        ]
+      },
+      "gt0068": {
+        "id": "gt0068",
+        "priority": 43,
+        "when": [
+          "$gt0011|Tooth extraction|==local::at0057|Reported in >25% of all procedures, no intervention|"
+        ],
+        "then": [
+          "$gt0026|Tooth extraction score|.magnitude=2"
+        ]
+      },
+      "gt0069": {
+        "id": "gt0069",
+        "priority": 42,
+        "when": [
+          "$gt0011|Tooth extraction|==local::at0058|Resuturing or packing|"
+        ],
+        "then": [
+          "$gt0026|Tooth extraction score|.magnitude=3"
+        ]
+      },
+      "gt0070": {
+        "id": "gt0070",
+        "priority": 41,
+        "when": [
+          "$gt0011|Tooth extraction|==local::at0059|Blood transfusion, replacement therapy, or desmopressin|"
+        ],
+        "then": [
+          "$gt0026|Tooth extraction score|.magnitude=4"
+        ]
+      },
+      "gt0071": {
+        "id": "gt0071",
+        "priority": 40,
+        "when": [
+          "$gt0012|Surgery|==local::at0060|No/ trivial or none done|"
+        ],
+        "then": [
+          "$gt0027|Surgery score|.magnitude=0"
+        ]
+      },
+      "gt0072": {
+        "id": "gt0072",
+        "priority": 39,
+        "when": [
+          "$gt0012|Surgery|==local::at0061|Reported in ≤25% of all procedures, no intervention|"
+        ],
+        "then": [
+          "$gt0027|Surgery score|.magnitude=1"
+        ]
+      },
+      "gt0073": {
+        "id": "gt0073",
+        "priority": 38,
+        "when": [
+          "$gt0012|Surgery|==local::at0062|Reported in >25% of all procedures, no intervention|"
+        ],
+        "then": [
+          "$gt0027|Surgery score|.magnitude=2"
+        ]
+      },
+      "gt0074": {
+        "id": "gt0074",
+        "priority": 37,
+        "when": [
+          "$gt0012|Surgery|==local::at0063|Surgical hemostasis or antifibrinolytic|"
+        ],
+        "then": [
+          "$gt0027|Surgery score|.magnitude=3"
+        ]
+      },
+      "gt0075": {
+        "id": "gt0075",
+        "priority": 36,
+        "when": [
+          "$gt0012|Surgery|==local::at0064|Blood transfusion, replacement therapy, or desmopressin|"
+        ],
+        "then": [
+          "$gt0027|Surgery score|.magnitude=4"
+        ]
+      },
+      "gt0076": {
+        "id": "gt0076",
+        "priority": 35,
+        "when": [
+          "$gt0013|Menorrhagia|==local::at0065|No/ trivial|"
+        ],
+        "then": [
+          "$gt0028|Menorrhagia score|.magnitude=0"
+        ]
+      },
+      "gt0077": {
+        "id": "gt0077",
+        "priority": 34,
+        "when": [
+          "$gt0013|Menorrhagia|==local::at0066|Consultation only, changing pads more frequently than every 2 hours, clot and flooding, or PBAC score>100|"
+        ],
+        "then": [
+          "$gt0028|Menorrhagia score|.magnitude=1"
+        ]
+      },
+      "gt0078": {
+        "id": "gt0078",
+        "priority": 33,
+        "when": [
+          "$gt0013|Menorrhagia|==local::at0067|Time off work/school >2 /year, requiring antifibrinolytics, or hormonal/iron therapy|"
+        ],
+        "then": [
+          "$gt0028|Menorrhagia score|.magnitude=2"
+        ]
+      },
+      "gt0079": {
+        "id": "gt0079",
+        "priority": 32,
+        "when": [
+          "$gt0013|Menorrhagia|==local::at0068|Requiring combined treatment with antifibrinolytics and hormonal therapy or menorrhagia present since menarche and >12 months|"
+        ],
+        "then": [
+          "$gt0028|Menorrhagia score|.magnitude=3"
+        ]
+      },
+      "gt0080": {
+        "id": "gt0080",
+        "priority": 31,
+        "when": [
+          "$gt0013|Menorrhagia|==local::at0069|Acute menorrhagia requiring hospital admission and emergency treatment, requiring blood transfusion/replacement therapy/desmopressin, requiring dilatation&curettage/endometrial ablation, or hysterectomy|"
+        ],
+        "then": [
+          "$gt0028|Menorrhagia score|.magnitude=4"
+        ]
+      },
+      "gt0081": {
+        "id": "gt0081",
+        "priority": 30,
+        "when": [
+          "$gt0014|Postpartum hemorrhage|==local::at0070|No/ trivial or no deliveries|"
+        ],
+        "then": [
+          "$gt0029|Postpartum hemorrhage score|.magnitude=0"
+        ]
+      },
+      "gt0082": {
+        "id": "gt0082",
+        "priority": 29,
+        "when": [
+          "$gt0014|Postpartum hemorrhage|==local::at0071|Consultation only, use of oxytocin, or lochia >6 weeks|"
+        ],
+        "then": [
+          "$gt0029|Postpartum hemorrhage score|.magnitude=1"
+        ]
+      },
+      "gt0083": {
+        "id": "gt0083",
+        "priority": 28,
+        "when": [
+          "$gt0014|Postpartum hemorrhage|==local::at0072|Iron therapy or antifibrinolytics|"
+        ],
+        "then": [
+          "$gt0029|Postpartum hemorrhage score|.magnitude=2"
+        ]
+      },
+      "gt0084": {
+        "id": "gt0084",
+        "priority": 27,
+        "when": [
+          "$gt0014|Postpartum hemorrhage|==local::at0073|Requiring blood transfusion, replacement therapy, desmopressin, or requiring examination under anesthesia and/or the use of uterine balloon/package to tamponade the uterus|"
+        ],
+        "then": [
+          "$gt0029|Postpartum hemorrhage score|.magnitude=3"
+        ]
+      },
+      "gt0085": {
+        "id": "gt0085",
+        "priority": 26,
+        "when": [
+          "$gt0014|Postpartum hemorrhage|==local::at0074|Any procedure requiring critical care or surgical intervention|"
+        ],
+        "then": [
+          "$gt0029|Postpartum hemorrhage score|.magnitude=4"
+        ]
+      },
+      "gt0086": {
+        "id": "gt0086",
+        "priority": 25,
+        "when": [
+          "$gt0015|Muscle hematomas|==local::at0075|Never|"
+        ],
+        "then": [
+          "$gt0030|Muscle heatomas score|.magnitude=0"
+        ]
+      },
+      "gt0087": {
+        "id": "gt0087",
+        "priority": 24,
+        "when": [
+          "$gt0015|Muscle hematomas|==local::at0076|Post trauma or no therapy|"
+        ],
+        "then": [
+          "$gt0030|Muscle heatomas score|.magnitude=1"
+        ]
+      },
+      "gt0088": {
+        "id": "gt0088",
+        "priority": 23,
+        "when": [
+          "$gt0015|Muscle hematomas|==local::at0077|Spontaneous or no therapy|"
+        ],
+        "then": [
+          "$gt0030|Muscle heatomas score|.magnitude=2"
+        ]
+      },
+      "gt0089": {
+        "id": "gt0089",
+        "priority": 22,
+        "when": [
+          "$gt0015|Muscle hematomas|==local::at0078|Spontaneous or traumatic, requiring desmopressin or replacement therapy|"
+        ],
+        "then": [
+          "$gt0030|Muscle heatomas score|.magnitude=3"
+        ]
+      },
+      "gt0090": {
+        "id": "gt0090",
+        "priority": 21,
+        "when": [
+          "$gt0015|Muscle hematomas|==local::at0079|Spontaneous or traumatic, requiring surgical intervention or blood transfusion|"
+        ],
+        "then": [
+          "$gt0030|Muscle heatomas score|.magnitude=4"
+        ]
+      },
+      "gt0091": {
+        "id": "gt0091",
+        "priority": 20,
+        "when": [
+          "$gt0016|Hemarthrosis|==local::at0080|Never|"
+        ],
+        "then": [
+          "$gt0031|Hemarthrosis score|.magnitude=0"
+        ]
+      },
+      "gt0092": {
+        "id": "gt0092",
+        "priority": 19,
+        "when": [
+          "$gt0016|Hemarthrosis|==local::at0081|Post trauma or no therapy|"
+        ],
+        "then": [
+          "$gt0031|Hemarthrosis score|.magnitude=1"
+        ]
+      },
+      "gt0093": {
+        "id": "gt0093",
+        "priority": 18,
+        "when": [
+          "$gt0016|Hemarthrosis|==local::at0082|Spontaneous or no therapy|"
+        ],
+        "then": [
+          "$gt0031|Hemarthrosis score|.magnitude=2"
+        ]
+      },
+      "gt0094": {
+        "id": "gt0094",
+        "priority": 17,
+        "when": [
+          "$gt0016|Hemarthrosis|==local::at0083|Spontaneous or traumatic, requiring desmopressin or replacement therapy|"
+        ],
+        "then": [
+          "$gt0031|Hemarthrosis score|.magnitude=3"
+        ]
+      },
+      "gt0095": {
+        "id": "gt0095",
+        "priority": 16,
+        "when": [
+          "$gt0016|Hemarthrosis|==local::at0084|Spontaneous or traumatic, requiring surgical intervention or blood transfusion|"
+        ],
+        "then": [
+          "$gt0031|Hemarthrosis score|.magnitude=4"
+        ]
+      },
+      "gt0096": {
+        "id": "gt0096",
+        "priority": 15,
+        "when": [
+          "$gt0017|CNS bleeding|==local::at0085|Never|"
+        ],
+        "then": [
+          "$gt0032|CNS bleeding score|.magnitude=0"
+        ]
+      },
+      "gt0097": {
+        "id": "gt0097",
+        "priority": 14,
+        "when": [
+          "$gt0017|CNS bleeding|==local::at0086|Subdural or any intervention|"
+        ],
+        "then": [
+          "$gt0032|CNS bleeding score|.magnitude=3"
+        ]
+      },
+      "gt0098": {
+        "id": "gt0098",
+        "priority": 13,
+        "when": [
+          "$gt0017|CNS bleeding|==local::at0087|Intracerebral or any intervention|"
+        ],
+        "then": [
+          "$gt0032|CNS bleeding score|.magnitude=4"
+        ]
+      },
+      "gt0099": {
+        "id": "gt0099",
+        "priority": 12,
+        "when": [
+          "$gt0018|Other bleeding|==local::at0088|Never|"
+        ],
+        "then": [
+          "$gt0033|Other bleeding score|.magnitude=0"
+        ]
+      },
+      "gt0100": {
+        "id": "gt0100",
+        "priority": 11,
+        "when": [
+          "$gt0018|Other bleeding|==local::at0089|Present|"
+        ],
+        "then": [
+          "$gt0033|Other bleeding score|.magnitude=1"
+        ]
+      },
+      "gt0101": {
+        "id": "gt0101",
+        "priority": 10,
+        "when": [
+          "$gt0018|Other bleeding|==local::at0090|Consultation only|"
+        ],
+        "then": [
+          "$gt0033|Other bleeding score|.magnitude=2"
+        ]
+      },
+      "gt0102": {
+        "id": "gt0102",
+        "priority": 9,
+        "when": [
+          "$gt0018|Other bleeding|==local::at0091|Surgical hemostasis or antifibrinolytics|"
+        ],
+        "then": [
+          "$gt0033|Other bleeding score|.magnitude=3"
+        ]
+      },
+      "gt0103": {
+        "id": "gt0103",
+        "priority": 8,
+        "when": [
+          "$gt0018|Other bleeding|==local::at0092|Blood transfusion, replacement therapy, or desmopressin|"
+        ],
+        "then": [
+          "$gt0033|Other bleeding score|.magnitude=4"
+        ]
+      },
+      "gt0104": {
+        "id": "gt0104",
+        "priority": 7,
+        "when": [
+          "$gt0020|Epistaxis score|!=null",
+          "$gt0021|Cutaneous bleeding score|!=null",
+          "$gt0022|Bleeding from minor wounds score|!=null",
+          "$gt0023|Oral cavity bleeding score|!=null",
+          "$gt0024|GI bleeding score|!=null",
+          "$gt0025|Hematuria score|!=null",
+          "$gt0026|Tooth extraction score|!=null",
+          "$gt0027|Surgery score|!=null",
+          "$gt0028|Menorrhagia score|!=null",
+          "$gt0029|Postpartum hemorrhage score|!=null",
+          "$gt0030|Muscle heatomas score|!=null",
+          "$gt0031|Hemarthrosis score|!=null",
+          "$gt0032|CNS bleeding score|!=null",
+          "$gt0033|Other bleeding score|!=null"
+        ],
+        "then": [
+          "$gt0034|Total score|.magnitude=$gt0020|Epistaxis score|.magnitude+$gt0021|Cutaneous bleeding score|.magnitude+$gt0022|Bleeding from minor wounds score|.magnitude+$gt0023|Oral cavity bleeding score|.magnitude+$gt0024|GI bleeding score|.magnitude+$gt0025|Hematuria score|.magnitude+$gt0026|Tooth extraction score|.magnitude+$gt0027|Surgery score|.magnitude+$gt0028|Menorrhagia score|.magnitude+$gt0029|Postpartum hemorrhage score|.magnitude+$gt0030|Muscle heatomas score|.magnitude+$gt0031|Hemarthrosis score|.magnitude+$gt0032|CNS bleeding score|.magnitude+$gt0033|Other bleeding score|.magnitude"
+        ]
+      },
+      "gt0105": {
+        "id": "gt0105",
+        "priority": 6,
+        "when": [
+          "$gt0003|Age, in years|==local::at0005|>= 18|",
+          "$gt0004|Sex|==local::at0008|Male|",
+          "$gt0034|Total score|.magnitude<=3"
+        ],
+        "then": [
+          "$gt0035|Interpretation|=local::at0095|Typical in adult males|"
+        ]
+      },
+      "gt0106": {
+        "id": "gt0106",
+        "priority": 5,
+        "when": [
+          "$gt0003|Age, in years|==local::at0005|>= 18|",
+          "$gt0004|Sex|==local::at0008|Male|",
+          "$gt0034|Total score|.magnitude>=4"
+        ],
+        "then": [
+          "$gt0035|Interpretation|=local::at0096|Atypical in adult males|"
+        ]
+      },
+      "gt0108": {
+        "id": "gt0108",
+        "priority": 4,
+        "when": [
+          "$gt0003|Age, in years|==local::at0005|>= 18|",
+          "$gt0004|Sex|==local::at0009|Female|",
+          "$gt0034|Total score|.magnitude<=3"
+        ],
+        "then": [
+          "$gt0035|Interpretation|=local::at0097|Typical in adult females|"
+        ]
+      },
+      "gt0107": {
+        "id": "gt0107",
+        "priority": 3,
+        "when": [
+          "$gt0003|Age, in years|==local::at0005|>= 18|",
+          "$gt0004|Sex|==local::at0009|Female|",
+          "$gt0034|Total score|.magnitude>=4"
+        ],
+        "then": [
+          "$gt0035|Interpretation|=local::at0098|Atypical in adult females|"
+        ]
+      },
+      "gt0109": {
+        "id": "gt0109",
+        "priority": 2,
+        "when": [
+          "$gt0003|Age, in years|==local::at0006|< 18|",
+          "$gt0034|Total score|.magnitude<=2"
+        ],
+        "then": [
+          "$gt0035|Interpretation|=local::at0099|Typical in children|"
+        ]
+      },
+      "gt0110": {
+        "id": "gt0110",
+        "priority": 1,
+        "when": [
+          "$gt0003|Age, in years|==local::at0006|< 18|",
+          "$gt0034|Total score|.magnitude>=4"
+        ],
+        "then": [
+          "$gt0035|Interpretation|=local::at0100|Atypical in children|"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "ISTH-SSC bleeding assessment tool",
+            "description": "An assessment tool given by the International Society on Thrombosis and Haemostasis- Scientific Standardization Committee, which can be used to evaluate patients with a suspected inherited bleeding disorder."
+          },
+          "gt0002": {
+            "id": "gt0002",
+            "text": "openEHR-EHR-OBSERVATION.isth_scc_bleeding_assessment_tool.v0"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "Age, in years"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "Sex"
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "text": "Epistaxis"
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "Cutaneous"
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "Bleeding from minor wounds"
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "text": "Oral cavity"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "GI bleeding"
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "Hematuria"
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "text": "Tooth extraction"
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "Surgery"
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "Menorrhagia"
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "Postpartum hemorrhage"
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "Muscle hematomas"
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "Hemarthrosis"
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "text": "CNS bleeding"
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "Other bleeding"
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "openEHR-EHR-OBSERVATION.isth_scc_bleeding_assessment_tool.v0"
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "Epistaxis score"
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "Cutaneous bleeding score"
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "Bleeding from minor wounds score"
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "Oral cavity bleeding score"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "GI bleeding score"
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "Hematuria score"
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "Tooth extraction score"
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "Surgery score"
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "Menorrhagia score"
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "Postpartum hemorrhage score"
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "Muscle heatomas score"
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "text": "Hemarthrosis score"
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "CNS bleeding score"
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "Other bleeding score"
+          },
+          "gt0034": {
+            "id": "gt0034",
+            "text": "Total score"
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "Interpretation"
+          },
+          "gt0036": {
+            "id": "gt0036",
+            "text": "Epistaxis score: 0",
+            "description": "Based on the grade of epistaxis, a score is assigned."
+          },
+          "gt0037": {
+            "id": "gt0037",
+            "text": "Epistaxis score: 1",
+            "description": "Based on the grade of epistaxis, a score is assigned."
+          },
+          "gt0038": {
+            "id": "gt0038",
+            "text": "Epistaxis score: 2",
+            "description": "Based on the grade of epistaxis, a score is assigned."
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "Epistaxis score: 3",
+            "description": "Based on the grade of epistaxis, a score is assigned."
+          },
+          "gt0040": {
+            "id": "gt0040",
+            "text": "Epistaxis score: 4",
+            "description": "Based on the grade of epistaxis, a score is assigned."
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "Cutaneous: 0",
+            "description": "Based on the grade of cutaneous bleeding, a score is assigned."
+          },
+          "gt0042": {
+            "id": "gt0042",
+            "text": "Cutaneous: 4",
+            "description": "Based on the grade of cutaneous bleeding, a score is assigned."
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "Cutaneous: 3",
+            "description": "Based on the grade of cutaneous bleeding, a score is assigned."
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "Cutaneous: 2",
+            "description": "Based on the grade of cutaneous bleeding, a score is assigned."
+          },
+          "gt0045": {
+            "id": "gt0045",
+            "text": "Cutaneous: 1",
+            "description": "Based on the grade of cutaneous bleeding, a score is assigned."
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "Bleeding from minor wounds: 0",
+            "description": "Based on the grade of bleeding from minor wounds, a score is assigned."
+          },
+          "gt0047": {
+            "id": "gt0047",
+            "text": "Bleeding from minor wounds: 4",
+            "description": "Based on the grade of bleeding from minor wounds, a score is assigned."
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "Bleeding from minor wounds: 3",
+            "description": "Based on the grade of bleeding from minor wounds, a score is assigned."
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "Bleeding from minor wounds: 2",
+            "description": "Based on the grade of bleeding from minor wounds, a score is assigned."
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "Bleeding from minor wounds: 1",
+            "description": "Based on the grade of bleeding from minor wounds, a score is assigned."
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "Oral cavity: 0",
+            "description": "Based on the grade of bleeding from oral cavity, a score is assigned."
+          },
+          "gt0052": {
+            "id": "gt0052",
+            "text": "Oral cavity: 4",
+            "description": "Based on the grade of bleeding from oral cavity, a score is assigned."
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "Oral cavity: 3",
+            "description": "Based on the grade of bleeding from oral cavity, a score is assigned."
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "Oral cavity: 2",
+            "description": "Based on the grade of bleeding from oral cavity, a score is assigned."
+          },
+          "gt0055": {
+            "id": "gt0055",
+            "text": "Oral cavity: 1",
+            "description": "Based on the grade of bleeding from oral cavity, a score is assigned."
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "GI bleeding: 0",
+            "description": "Based on the grade of bleeding from GI system, a score is assigned."
+          },
+          "gt0057": {
+            "id": "gt0057",
+            "text": "GI bleeding: 1",
+            "description": "Based on the grade of bleeding from GI system, a score is assigned."
+          },
+          "gt0058": {
+            "id": "gt0058",
+            "text": "GI bleeding: 2",
+            "description": "Based on the grade of bleeding from GI system, a score is assigned."
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "GI bleeding: 3",
+            "description": "Based on the grade of bleeding from GI system, a score is assigned."
+          },
+          "gt0060": {
+            "id": "gt0060",
+            "text": "GI bleeding: 4",
+            "description": "Based on the grade of bleeding from GI system, a score is assigned."
+          },
+          "gt0061": {
+            "id": "gt0061",
+            "text": "Hematuria: 0",
+            "description": "Based on the grade of hematuria, a score is assigned."
+          },
+          "gt0062": {
+            "id": "gt0062",
+            "text": "Hematuria: 1",
+            "description": "Based on the grade of hematuria, a score is assigned."
+          },
+          "gt0063": {
+            "id": "gt0063",
+            "text": "Hematuria: 2",
+            "description": "Based on the grade of hematuria, a score is assigned."
+          },
+          "gt0064": {
+            "id": "gt0064",
+            "text": "Hematuria: 3",
+            "description": "Based on the grade of hematuria, a score is assigned."
+          },
+          "gt0065": {
+            "id": "gt0065",
+            "text": "Hematuria: 4",
+            "description": "Based on the grade of hematuria, a score is assigned."
+          },
+          "gt0066": {
+            "id": "gt0066",
+            "text": "Tooth extraction: 0",
+            "description": "Based on the grade of bleeding after tooth extraction, a score is assigned."
+          },
+          "gt0067": {
+            "id": "gt0067",
+            "text": "Tooth extraction: 1",
+            "description": "Based on the grade of bleeding after tooth extraction, a score is assigned."
+          },
+          "gt0068": {
+            "id": "gt0068",
+            "text": "Tooth extraction: 2",
+            "description": "Based on the grade of bleeding after tooth extraction, a score is assigned."
+          },
+          "gt0069": {
+            "id": "gt0069",
+            "text": "Tooth extraction: 3",
+            "description": "Based on the grade of bleeding after tooth extraction, a score is assigned."
+          },
+          "gt0070": {
+            "id": "gt0070",
+            "text": "Tooth extraction: 4",
+            "description": "Based on the grade of bleeding after tooth extraction, a score is assigned."
+          },
+          "gt0071": {
+            "id": "gt0071",
+            "text": "Surgery: 0",
+            "description": "Based on the grade of bleeding after surgery, a score is assigned."
+          },
+          "gt0072": {
+            "id": "gt0072",
+            "text": "Surgery: 1",
+            "description": "Based on the grade of bleeding after surgery, a score is assigned."
+          },
+          "gt0073": {
+            "id": "gt0073",
+            "text": "Surgery: 2",
+            "description": "Based on the grade of bleeding after surgery, a score is assigned."
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "Surgery: 3",
+            "description": "Based on the grade of bleeding after surgery, a score is assigned."
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "Surgery: 4",
+            "description": "Based on the grade of bleeding after surgery, a score is assigned."
+          },
+          "gt0076": {
+            "id": "gt0076",
+            "text": "Menorrhagia: 0",
+            "description": "Based on the grade of menorrhagia, a score is assigned."
+          },
+          "gt0077": {
+            "id": "gt0077",
+            "text": "Menorrhagia: 1",
+            "description": "Based on the grade of menorrhagia, a score is assigned."
+          },
+          "gt0078": {
+            "id": "gt0078",
+            "text": "Menorrhagia: 2",
+            "description": "Based on the grade of menorrhagia, a score is assigned."
+          },
+          "gt0079": {
+            "id": "gt0079",
+            "text": "Menorrhagia: 3",
+            "description": "Based on the grade of menorrhagia, a score is assigned."
+          },
+          "gt0080": {
+            "id": "gt0080",
+            "text": "Menorrhagia: 4",
+            "description": "Based on the grade of menorrhagia, a score is assigned."
+          },
+          "gt0081": {
+            "id": "gt0081",
+            "text": "Postpartum hemorrhage: 0",
+            "description": "Based on the grade of postpartum hemorrhage, a score is assigned."
+          },
+          "gt0082": {
+            "id": "gt0082",
+            "text": "Postpartum hemorrhage: 1",
+            "description": "Based on the grade of postpartum hemorrhage, a score is assigned."
+          },
+          "gt0083": {
+            "id": "gt0083",
+            "text": "Postpartum hemorrhage: 2",
+            "description": "Based on the grade of postpartum hemorrhage, a score is assigned."
+          },
+          "gt0084": {
+            "id": "gt0084",
+            "text": "Postpartum hemorrhage: 3",
+            "description": "Based on the grade of postpartum hemorrhage, a score is assigned."
+          },
+          "gt0085": {
+            "id": "gt0085",
+            "text": "Postpartum hemorrhage: 4",
+            "description": "Based on the grade of postpartum hemorrhage, a score is assigned."
+          },
+          "gt0086": {
+            "id": "gt0086",
+            "text": "Muscle hematomas: 0",
+            "description": "Based on the grade of muscle hematomas, a score is assigned."
+          },
+          "gt0087": {
+            "id": "gt0087",
+            "text": "Muscle hematomas: 1",
+            "description": "Based on the grade of muscle hematomas, a score is assigned."
+          },
+          "gt0088": {
+            "id": "gt0088",
+            "text": "Muscle hematomas: 2",
+            "description": "Based on the grade of muscle hematomas, a score is assigned."
+          },
+          "gt0089": {
+            "id": "gt0089",
+            "text": "Muscle hematomas: 3",
+            "description": "Based on the grade of muscle hematomas, a score is assigned."
+          },
+          "gt0090": {
+            "id": "gt0090",
+            "text": "Muscle hematomas: 4",
+            "description": "Based on the grade of muscle hematomas, a score is assigned."
+          },
+          "gt0091": {
+            "id": "gt0091",
+            "text": "Hemarthrosis: 0",
+            "description": "Based on the grade of hemarthrosis, a score is assigned."
+          },
+          "gt0092": {
+            "id": "gt0092",
+            "text": "Hemarthrosis: 1",
+            "description": "Based on the grade of hemarthrosis, a score is assigned."
+          },
+          "gt0093": {
+            "id": "gt0093",
+            "text": "Hemarthrosis: 2",
+            "description": "Based on the grade of hemarthrosis, a score is assigned."
+          },
+          "gt0094": {
+            "id": "gt0094",
+            "text": "Hemarthrosis: 3",
+            "description": "Based on the grade of hemarthrosis, a score is assigned."
+          },
+          "gt0095": {
+            "id": "gt0095",
+            "text": "Hemarthrosis: 4",
+            "description": "Based on the grade of hemarthrosis, a score is assigned."
+          },
+          "gt0096": {
+            "id": "gt0096",
+            "text": "CNS bleeding: 0",
+            "description": "Based on the grade of CNS bleeding, a score is assigned."
+          },
+          "gt0097": {
+            "id": "gt0097",
+            "text": "CNS bleeding: 3",
+            "description": "Based on the grade of CNS bleeding, a score is assigned."
+          },
+          "gt0098": {
+            "id": "gt0098",
+            "text": "CNS bleeding: 4",
+            "description": "Based on the grade of CNS bleeding, a score is assigned."
+          },
+          "gt0099": {
+            "id": "gt0099",
+            "text": "Other bleeding: 0",
+            "description": "Based on the grade of Umbilical stump bleeding, cephalohematoma, cheek hematoma caused by sucking during breast/bottle feeding, conjunctival hemorrhage or excessive bleeding following circumcision/venipuncture, a score is assigned."
+          },
+          "gt0100": {
+            "id": "gt0100",
+            "text": "Other bleeding: 1",
+            "description": "Based on the grade of Umbilical stump bleeding, cephalohematoma, cheek hematoma caused by sucking during breast/bottle feeding, conjunctival hemorrhage or excessive bleeding following circumcision/venipuncture, a score is assigned."
+          },
+          "gt0101": {
+            "id": "gt0101",
+            "text": "Other bleeding: 2",
+            "description": "Based on the grade of Umbilical stump bleeding, cephalohematoma, cheek hematoma caused by sucking during breast/bottle feeding, conjunctival hemorrhage or excessive bleeding following circumcision/venipuncture, a score is assigned."
+          },
+          "gt0102": {
+            "id": "gt0102",
+            "text": "Other bleeding: 3",
+            "description": "Based on the grade of Umbilical stump bleeding, cephalohematoma, cheek hematoma caused by sucking during breast/bottle feeding, conjunctival hemorrhage or excessive bleeding following circumcision/venipuncture, a score is assigned."
+          },
+          "gt0103": {
+            "id": "gt0103",
+            "text": "Other bleeding: 4",
+            "description": "Based on the grade of Umbilical stump bleeding, cephalohematoma, cheek hematoma caused by sucking during breast/bottle feeding, conjunctival hemorrhage or excessive bleeding following circumcision/venipuncture, a score is assigned."
+          },
+          "gt0104": {
+            "id": "gt0104",
+            "text": "Total score",
+            "description": "The total score is calculated by adding all other individual scores"
+          },
+          "gt0105": {
+            "id": "gt0105",
+            "text": "Interpretation_1",
+            "description": "Adult males_typical"
+          },
+          "gt0106": {
+            "id": "gt0106",
+            "text": "Interpretation_2",
+            "description": "Adult males_atypical"
+          },
+          "gt0107": {
+            "id": "gt0107",
+            "text": "Interpretation_4",
+            "description": "Adult females_atypical"
+          },
+          "gt0108": {
+            "id": "gt0108",
+            "text": "Interpretation_3",
+            "description": "Adult females_typical"
+          },
+          "gt0109": {
+            "id": "gt0109",
+            "text": "Interpretation_5",
+            "description": "children_typical"
+          },
+          "gt0110": {
+            "id": "gt0110",
+            "text": "Interpretation_6",
+            "description": "children_atypical"
+          }
+        }
+      }
+    }
+  }
+}
