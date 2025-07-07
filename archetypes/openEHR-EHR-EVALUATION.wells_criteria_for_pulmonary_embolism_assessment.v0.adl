@@ -1,0 +1,136 @@
+archetype (adl_version=1.4; uid=d0aa401a-d787-416a-8fe1-773569e84500)
+	openEHR-EHR-EVALUATION.wells_criteria_for_pulmonary_embolism_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-07-07">
+		["name"] = <"Aurelia Maria Ozora">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"aurelia.maria.ozora@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the assessment of the Wells Criteria for pulmonary embolism.">
+			keywords = <"wells, criteria, pulmonary, embolism, pe, dvt, assessment", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the assessment of the Wells Criteria for pulmonary embolism.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Wells PS, Anderson DR, Rodger M, Ginsberg JS, Kearon C, Gent M, Turpie AG, Bormanis J, Weitz J, Chamberlain M, Bowie D, Barnes D, Hirsh J. Derivation of a simple clinical model to categorize patients probability of pulmonary embolism: increasing the models utility with the SimpliRED D-dimer. Thromb Haemost. 2000 Mar;83(3):416-20. PMID: 10744147.
+
+Lucassen W, Geersing GJ, Erkens PM, Reitsma JB, Moons KG, Büller H, van Weert HC. Clinical decision rules for excluding pulmonary embolism: a meta-analysis. Ann Intern Med. 2011 Oct 4;155(7):448-60. doi: 10.7326/0003-4819-155-7-201110040-00007. PMID: 21969343.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"384f2c97df334881cbd9eec0d5b3b9f6">
+		["build_uid"] = <"f15276ab-92c8-3a1c-9009-3bd3af12ff6d">
+		["revision"] = <"0">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Wells Criteria for Pulmonary Embolism Assessment
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Two level clinical probability
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0006,    -- Pulmonary embolism unlikely
+									at0007]    -- Pulmonary embolism likely
+								}
+							}
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {    -- Three level clinical probability
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0008,    -- Low
+									at0009,    -- Moderate
+									at0010]    -- High
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0011] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0012] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Wells Criteria for Pulmonary Embolism Assessment">
+					description = <"Assessment of Wells Criteria for pulmonary embolism.">
+					comment = <"Original version, c 2000.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Two level clinical probability">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Three level clinical probability">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Pulmonary embolism unlikely">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Pulmonary embolism likely">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Low">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Moderate">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"High">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0012"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>
