@@ -18,31 +18,25 @@ description
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"To estimate the pH of a buffer solution when the Ka numerical value of the acid dissociation constant is known.">
+			purpose = <"To record the results of the acid dissociation constant, concentration of base, and concentration of acid and use these to estimate the pH of a buffer solution.">
 			keywords = <"solution, pH, acid, base, acid dissociation constant, buffer", ...>
 			copyright = <"© Cambio CDS">
-			use = <"The Henderson-Hasselbalch equation is derived from the definition of the acid dissociation constant and relates the pH of a solution containing a mixture of the two components to the acid dissociation constant, Ka, and the concentrations of the two components.
-
-pH = pKa + log10([A−] / [HA])
-
-Where: pKa = - log10 (Ka)">
-			misuse = <"There are some assumptions to be made when using the equation:
-It does not take into account the self-dissociation of water, which becomes increasingly important in dilute solutions. This assumption is not valid with pH values more than about 10. For such instances the mass-balance equation for hydrogen must be extended to take account of the self-ionization of water. The acid is monobasic and dissociates according to the equation: HA = H+ + A- where H+ stands for hydrated hydronium ion. The salt MA is completely dissociated in solution.
-">
+			use = <"Used to record the results of the acid dissociation constant, concentration of base, and concentration of acid and use these to estimate the pH of a buffer solution.">
 		>
 	>
 	other_details = <
 		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
 		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Henderson LJ. Concerning the relationship between the strength of acids and their capacity to preserve neutrality. Am J Physiol. 1908;21(2):173–179.">
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["references"] = <"Henderson LJ. Concerning the relationship between the strength of acids and their capacity to preserve neutrality. Am J Physiol. 1908;21(2):173–179.">
+		["MD5-CAM-1.0.1"] = <"e3b625a2b0d5635022f8c9845f3675c6">
 		["build_uid"] = <"370d46d1-e956-31fd-b371-c473fb16b590">
 	>
 
 definition
-	OBSERVATION[at0000] matches {    -- Henderson Hasselbalch equation
+	OBSERVATION[at0000] matches {    -- Henderson Hasselbalch equation calculator
 		data matches {
 			HISTORY[at0001] matches {    -- History
 				events cardinality matches {1..*; unordered} matches {
@@ -53,11 +47,10 @@ definition
 									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Acid dissociation contant (Ka)
 										value matches {
 											C_DV_QUANTITY <
-												
+												property = <[openehr::380]>
 												list = <
 													["1"] = <
-														units = <"mol/L">
-														precision = <|2|>
+														units = <"1">
 													>
 												>
 											>
@@ -90,12 +83,26 @@ definition
 									}
 									ELEMENT[at0009] occurrences matches {0..1} matches {    -- pKa
 										value matches {
-											DV_QUANTITY matches {*}
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"1">
+													>
+												>
+											>
 										}
 									}
 									ELEMENT[at0008] occurrences matches {0..1} matches {    -- pH
 										value matches {
-											DV_QUANTITY matches {*}
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"1">
+													>
+												>
+											>
 										}
 									}
 								}
@@ -115,7 +122,7 @@ ontology
 		["en"] = <
 			items = <
 				["at0000"] = <
-					text = <"Henderson Hasselbalch equation">
+					text = <"Henderson Hasselbalch equation calculator">
 					description = <"An equation to estimate the pH of a buffer solution when the Ka numerical value of the acid dissociation constant is known.">
 				>
 				["at0001"] = <
