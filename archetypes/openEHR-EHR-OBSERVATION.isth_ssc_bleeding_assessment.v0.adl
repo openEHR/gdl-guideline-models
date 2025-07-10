@@ -18,10 +18,10 @@ description
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"To record the results for each component parameter and their total sum for the ISTH_SCC bleeding assessment tool.">
+			purpose = <"To record the results for each component parameter and their total sum for the ISTH/SSC bleeding assessment tool.">
 			keywords = <"bleeding, assessment, thrombosis, haemostasis, scientific standardization committee, international society on thrombosis and haemostasis, disorder, epistaxis, postpartum hemorrhage, gastrointestinal bleeding, hematuria, oral cavity bleeding, bleeding from minor wounds, cutaneous bleeding, tooth extraction, bleeding from surgery, menorrhagia, muscle hematomas, hemarthrosis, central nervous system bleeding", ...>
 			copyright = <"© Cambio CDS">
-			use = <"Used to record the results for each component parameter and their total sum and its interpretation for the ISTH_SSC bleeding assessment tool.">
+			use = <"Used to record the results for each component parameter and their total sum and its interpretation for the ISTH/SSC bleeding assessment tool.">
 		>
 	>
 	other_details = <
@@ -41,16 +41,16 @@ Rezende SM, Neumann I, Angchaisuksiri P, et al. International Society on Thrombo
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"f9f1afbaaccdaa3a023e1c30a2b53386">
+		["MD5-CAM-1.0.1"] = <"92bc74330f9a04047ddebc01c908cbb7">
 		["build_uid"] = <"ee0dd04d-53a2-3283-89de-06d0213abd35">
 	>
 
 definition
-	OBSERVATION[at0000] matches {    -- International Society on Thrombosis and Haemostasis- Scientific Standardization Committee bleeding assessment tool
+	OBSERVATION[at0000] matches {    -- ISTH/SSC bleeding assessment tool
 		data matches {
 			HISTORY[at0001] matches {    -- History
 				events cardinality matches {1..*; unordered} matches {
-					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+					POINT_EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
 						data matches {
 							ITEM_TREE[at0003] matches {    -- Tree
 								items cardinality matches {0..*; unordered} matches {
@@ -65,7 +65,7 @@ definition
 											}
 										}
 									}
-									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Sex
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Gender
 										value matches {
 											DV_CODED_TEXT matches {
 												defining_code matches {
@@ -191,7 +191,7 @@ definition
 											2|[local::at0085]
 										}
 									}
-									ELEMENT[at0086] occurrences matches {0..1} matches {    -- Other bleeding (Umbilical stump bleeding, cephalohematoma, cheek hematoma caused by sucking during breast/bottle feeding, conjunctival hemorrhage or excessive bleeding following circumcision/venipuncture)
+									ELEMENT[at0086] occurrences matches {0..1} matches {    -- Other bleeding
 										value matches {
 											0|[local::at0087],
 											1|[local::at0088],
@@ -202,12 +202,24 @@ definition
 									}
 									ELEMENT[at0092] occurrences matches {0..1} matches {    -- Total score
 										value matches {
-											DV_COUNT matches {*}
+											DV_COUNT matches {
+												magnitude matches {|0..56|}
+											}
 										}
 									}
 								}
 							}
 						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0093] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0094] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
 					}
 				}
 			}
@@ -219,8 +231,9 @@ ontology
 		["en"] = <
 			items = <
 				["at0000"] = <
-					text = <"International Society on Thrombosis and Haemostasis- Scientific Standardization Committee bleeding assessment tool">
-					description = <"ISTH- SSC bleeding assessment tool evaluates bleeding symptoms in patients with inherited bleeding disorders.">
+					text = <"ISTH/SSC bleeding assessment tool">
+					description = <"International Society on Thrombosis and Haemostasis/ Scientific Standardization Committee (ISTH/SSC) bleeding assessment tool evaluates bleeding symptoms in patients with inherited bleeding disorders.">
+					comment = <"Original version, c 2010">
 				>
 				["at0001"] = <
 					text = <"History">
@@ -228,7 +241,7 @@ ontology
 				>
 				["at0002"] = <
 					text = <"Any event">
-					description = <"@ internal @">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
 				>
 				["at0003"] = <
 					text = <"Tree">
@@ -251,7 +264,7 @@ ontology
 					description = <"">
 				>
 				["at0008"] = <
-					text = <"Sex">
+					text = <"Gender">
 					description = <"">
 				>
 				["at0009"] = <
@@ -563,8 +576,8 @@ ontology
 					description = <"">
 				>
 				["at0086"] = <
-					text = <"Other bleeding (Umbilical stump bleeding, cephalohematoma, cheek hematoma caused by sucking during breast/bottle feeding, conjunctival hemorrhage or excessive bleeding following circumcision/venipuncture)">
-					description = <"">
+					text = <"Other bleeding">
+					description = <"This may include the following: umbilical stump bleeding, cephalohematoma, cheek hematoma caused by sucking during breast/bottle feeding, conjunctival hemorrhage or excessive bleeding following circumcision/venipuncture">
 				>
 				["at0087"] = <
 					text = <"No/ trivial">
@@ -588,7 +601,16 @@ ontology
 				>
 				["at0092"] = <
 					text = <"Total score">
-					description = <"">
+					description = <"The total sum of each component parameter for the ISTH/SSC bleeding assessment tool.">
+				>
+				["at0093"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0094"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
 				>
 			>
 		>
