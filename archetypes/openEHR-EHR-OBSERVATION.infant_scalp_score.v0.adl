@@ -36,7 +36,7 @@ Schutzman SA, Nigrovic LE, Mannix R. The Infant Scalp Score: a validated tool to
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"a2f495178edd1104fc00cef0255b488e">
+		["MD5-CAM-1.0.1"] = <"b15b2accc1834f711258b95f7d17f3e5">
 		["build_uid"] = <"b1d858ad-eb6d-3860-a8c6-f420cf25270a">
 	>
 
@@ -45,7 +45,7 @@ definition
 		data matches {
 			HISTORY[at0001] matches {    -- History
 				events cardinality matches {1..*; unordered} matches {
-					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+					POINT_EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
 						data matches {
 							ITEM_TREE[at0003] matches {    -- Tree
 								items cardinality matches {0..*; unordered} matches {
@@ -87,7 +87,14 @@ definition
 			}
 		}
 		protocol matches {
-			ITEM_TREE[at0004] matches {*}    -- Item tree
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0020] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
 		}
 	}
 
@@ -98,7 +105,7 @@ ontology
 				["at0000"] = <
 					text = <"Infant Scalp Score">
 					description = <"An assessment score used to evaluate risk of traumatic brain injury in infants with asymptomatic head injury.">
-					comment = <"c 2001">
+					comment = <"Original version, c 2001">
 				>
 				["at0001"] = <
 					text = <"History">
@@ -175,6 +182,11 @@ ontology
 				["at0019"] = <
 					text = <"Temporal/ Parietal">
 					description = <"Temporal/ Parietal lobe of the brain.">
+				>
+				["at0020"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
 				>
 			>
 		>
