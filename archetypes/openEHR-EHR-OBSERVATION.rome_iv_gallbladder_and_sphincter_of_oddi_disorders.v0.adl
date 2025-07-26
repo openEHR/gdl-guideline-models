@@ -1,0 +1,304 @@
+archetype (adl_version=1.4; uid=ca78762c-e69c-4204-a585-6d01d0b16ac6)
+	openEHR-EHR-OBSERVATION.rome_iv_gallbladder_and_sphincter_of_oddi_disorders.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-07-23">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the individual symptom characteristics, exclusionary findings, and specific investigational results required to assess a patient against the various Rome IV criteria for functional gallbladder and Sphincter of Oddi disorders.">
+			keywords = <"rome iv, biliary pain,bp, gallbladder, disorder, fgd, functional, biliary, sphincter of oddi, disorder, pancreatic, fgid, diagnostic criteria, gastroenterology", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to document the criteria for one or more specific functional biliary disorders. ">
+			misuse = <"Not to be used for diagnosing disorders outside of this Rome IV category (e.g., Bowel or Gastroduodenal disorders) or for clear organic causes of pain like cholelithiasis, pancreatitis, or peptic ulcer disease. Not intended for recording the final diagnosis itself; use an appropriate EVALUATION.problem_diagnosis archetype for the confirmed diagnosis.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Cotton PB, Elta GH, Carter CR, Pasricha PJ, Corazziari ES. Rome IV. Gallbladder and Sphincter of Oddi Disorders. Gastroenterology. 2016 Feb 19:S0016-5085(16)00224-9. doi: 10.1053/j.gastro.2016.02.033. Epub ahead of print. PMID: 27144629.
+
+Cotton PB, Durkalski V, Romagnuolo J, Pauls Q, Fogel E, Tarnasky P, Aliperti G, Freeman M, Kozarek R, Jamidar P, Wilcox M, Serrano J, Brawman-Mintzer O, Elta G, Mauldin P, Thornhill A, Hawes R, Wood-Williams A, Orrell K, Drossman D, Robuck P. Effect of endoscopic sphincterotomy for suspected sphincter of Oddi dysfunction on pain-related disability following cholecystectomy: the EPISOD randomized clinical trial. JAMA. 2014 May;311(20):2101-9. doi: 10.1001/jama.2014.5220. PMID: 24867013; PMCID: PMC4428324.
+
+Cotton PB, Elta GH, Carter CR, Pasricha PJ, Corazziari ES. Rome IV. Gallbladder and Sphincter of Oddi Disorders. Gastroenterology. 2016 Feb 19:S0016-5085(16)00224-9. doi: 10.1053/j.gastro.2016.02.033. Epub ahead of print. PMID: 27144629.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"7568ea4a-02b1-31ba-b1a9-e28f12bb61ed">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Rome IV Gallbladder and Sphincter of Oddi Disorders
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									CLUSTER[at0006] occurrences matches {0..1} matches {    -- E1. BILIARY PAIN
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0007] occurrences matches {0..1} matches {    -- Pain located in the epigastrium and/or right upper quadrant
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0008,    -- Yes
+															at0009]    -- No
+														}
+													}
+												}
+											}
+											ELEMENT[at0010] occurrences matches {0..1} matches {    -- Builds up to a steady level and lasting 30 minutes or longer
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0011,    -- Yes
+															at0012]    -- No
+														}
+													}
+												}
+											}
+											ELEMENT[at0013] occurrences matches {0..1} matches {    -- Occurs at different intervals (not daily)
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0014,    -- Yes
+															at0015]    -- No
+														}
+													}
+												}
+											}
+											ELEMENT[at0016] occurrences matches {0..1} matches {    -- Severe enough to interrupt daily activities or lead to an emergency department visit
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0017,    -- Yes
+															at0018]    -- No
+														}
+													}
+												}
+											}
+											ELEMENT[at0019] occurrences matches {0..1} matches {    -- Not significantly (<20%) related to bowel movements
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0020,    -- Yes
+															at0021]    -- No
+														}
+													}
+												}
+											}
+											ELEMENT[at0022] occurrences matches {0..1} matches {    -- Not significantly (<20%) relieved by postural change or acid suppression
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0023,    -- Yes
+															at0024]    -- No
+														}
+													}
+												}
+											}
+										}
+									}
+									CLUSTER[at0025] occurrences matches {0..1} matches {    -- E1a. Functional Gallbladder Disorder
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0026] occurrences matches {0..1} matches {    -- Biliary pain
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0027,    -- Yes
+															at0028]    -- No
+														}
+													}
+												}
+											}
+											ELEMENT[at0029] occurrences matches {0..1} matches {    -- Absence of gallstones or other structural pathology
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0030,    -- Yes
+															at0031]    -- No
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Rome IV Gallbladder and Sphincter of Oddi Disorders">
+					description = <"Records the presence or absence of specific findings relevant to the Rome IV diagnostic criteria for Gallbladder and Sphincter of Oddi disorders. Group criteria for specific subcategories, including Functional Gallbladder Disorder, Functional Biliary Sphincter of Oddi Disorder, and Functional Pancreatic Sphincter of Oddi Disorder.">
+					comment = <"Original version, c 2016">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"E1. BILIARY PAIN">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Pain located in the epigastrium and/or right upper quadrant">
+					description = <"Pain located in the epigastrium and/or right upper quadrant">
+				>
+				["at0008"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Builds up to a steady level and lasting 30 minutes or longer">
+					description = <"Builds up to a steady level and lasting 30 minutes or longer">
+				>
+				["at0011"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Occurs at different intervals (not daily)">
+					description = <"Occurs at different intervals (not daily)">
+				>
+				["at0014"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Severe enough to interrupt daily activities or lead to an emergency department visit">
+					description = <"Severe enough to interrupt daily activities or lead to an emergency department visit">
+				>
+				["at0017"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Not significantly (<20%) related to bowel movements">
+					description = <"Not significantly (<20%) related to bowel movements">
+				>
+				["at0020"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Not significantly (<20%) relieved by postural change or acid suppression">
+					description = <"Not significantly (<20%) relieved by postural change or acid suppression">
+				>
+				["at0023"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"E1a. Functional Gallbladder Disorder">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Biliary pain">
+					description = <"Biliary pain
+
+">
+				>
+				["at0027"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Absence of gallstones or other structural pathology">
+					description = <"Absence of gallstones or other structural pathology">
+				>
+				["at0030"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"No">
+					description = <"">
+				>
+			>
+		>
+	>
