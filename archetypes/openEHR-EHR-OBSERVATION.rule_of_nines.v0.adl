@@ -1,0 +1,283 @@
+archetype (adl_version=1.4; uid=a8ab3ae9-2a12-44bc-9854-d21656aad6fb)
+	openEHR-EHR-OBSERVATION.rule_of_nines.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-08-04">
+		["name"] = <"Kevin Arjona">
+		["email"] = <"kevin.arjona@cambio.se">
+		["organisation"] = <"Cambio CDS">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"rule, nines, burn, tbsa, thermal, injury, emergency, trauma, resuscitation,bsa, surface, area, burns, assessment, skin">
+			keywords = <"To record the estimated burn percentage for each major body area and the calculated total TBSA.", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use in patients with second-degree (partial-thickness) or third-degree (full-thickness) thermal burns to estimate the extent of injury. This estimation guides fluid resuscitation protocols (e.g., using the Parkland formula) and transfer-to-burn-center decisions.">
+			misuse = <"Not to be used to record the measured or calculated body surface area of an individual - use the OBSERVATION.body_surface_area for this purpose.
+
+Not to be used to record the estimated proportion of body surface area affected by other conditions of the skin - use the parent archetype OBSERVATION.affected_body_surface_area for this purpose.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Wallace, A. B. (1951). The exposure treatment of burns. The Lancet, 257(6653), 501–504. https://doi.org/10.1016/S0140‑6736(51)91975‑7
+
+Moore RA, Popowicz P, Burns B. Rule of Nines. 2024 Feb 12. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2025 Jan–. PMID: 30020659.
+
+">
+		["build_uid"] = <"95e2bdde-51b8-3e11-afbe-8e29b6767aca">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Rule of Nines Assessment
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0019] occurrences matches {0..1} matches {    -- Head and face
+										value matches {
+											0|[local::at0020],
+											4|[local::at0021],
+											9|[local::at0022]
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Torso
+										value matches {
+											0|[local::at0012],
+											9|[local::at0013],
+											18|[local::at0014]
+										}
+									}
+									ELEMENT[at0034] occurrences matches {0..1} matches {    -- Back
+										value matches {
+											0|[local::at0035],
+											9|[local::at0036],
+											18|[local::at0037]
+										}
+									}
+									ELEMENT[at0023] occurrences matches {0..1} matches {    -- Right arm
+										value matches {
+											0|[local::at0024],
+											4|[local::at0025],
+											9|[local::at0026]
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Left arm
+										value matches {
+											0|[local::at0008],
+											4|[local::at0009],
+											9|[local::at0010]
+										}
+									}
+									ELEMENT[at0027] occurrences matches {0..1} matches {    -- Genital area
+										value matches {
+											0|[local::at0028],
+											1|[local::at0029]
+										}
+									}
+									ELEMENT[at0030] occurrences matches {0..1} matches {    -- Right leg
+										value matches {
+											0|[local::at0031],
+											9|[local::at0032],
+											18|[local::at0033]
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Left leg
+										value matches {
+											0|[local::at0016],
+											9|[local::at0017],
+											18|[local::at0018]
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Rule of Nines Assessment">
+					description = <"Records the estimated Total Body Surface Area (TBSA) percentage affected by burns, based on the Rule of Nines. The model accounts for anatomical proportion differences between adults and children.">
+					comment = <"Original version, c 1951">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Left arm">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"0 %">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"4.5 %">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"9 %">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Torso">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"0 %">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"9 %">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"18 %">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Left leg">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"0 %">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"9 %">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"18 %">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Head and face">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"0 %">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"4.5 %">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"9 %">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Right arm">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"0 %">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"4.5 %">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"9 %">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Genital area">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"0 %">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"1 %">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Right leg">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"0 %">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"9 %">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"18 %">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Back">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"0 %">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"9 %">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"18 %">
+					description = <"">
+				>
+			>
+		>
+	>
