@@ -1,0 +1,267 @@
+{
+  "id": "BALL_Score.v0.0.1",
+  "gdl_version": "2.1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Kevin Arjona",
+      "email": "kevin.arjona@cambio.se",
+      "organisation": "Cambio CDS",
+      "date": "2025-08-05"
+    },
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To calculate the BALL score and predict complete response rate based on the recorded clinical parameters.",
+        "keywords": [
+          "response",
+          "prognosis",
+          "chemoimmunotherapy",
+          "relapsed",
+          "refractory",
+          "leukemia",
+          "cll",
+          "score",
+          "ball"
+        ],
+        "use": "In patients with relapsed or refractory Chronic Lymphocytic Leukemia (CLL) to support treatment decisions.",
+        "misuse": "Not to be used for initial diagnosis of CLL, staging, or for predicting response to novel agents (e.g., BTK inhibitors, BCL-2 inhibitors).",
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "en": "Calculates the BALL score and provides the corresponding estimated probability of complete response to chemoimmunotherapy.",
+      "references": "Soumerai JD, Ni A, Darif M, Londhe A, Xing G, Mun Y, Kay NE, Shanafelt TD, Rabe KG, Byrd JC, Chanan-Khan AA, Furman RR, Hillmen P, Jones J, Seymour JF, Sharman JP, Ferrante L, Mobasher M, Stark T, Reddy V, Dreiling LK, Bhargava P, Howes A, James DF, Zelenetz AD. Prognostic risk score for patients with relapsed or refractory chronic lymphocytic leukaemia treated with targeted therapies or chemoimmunotherapy: a retrospective, pooled cohort study with external validations. Lancet Haematol. 2019 Jul;6(7):e366-e374. doi: 10.1016/S2352-3026(19)30085-7. Epub 2019 May 17. Erratum in: Lancet Haematol. 2019 Jul;6(7):e348. doi: 10.1016/S2352-3026(19)30116-4. PMID: 31109827; PMCID: PMC6620111.\n\nMolica S, Baumann TS, Lentini M, Levato L, Delgado J, Montserrat E. The BALL prognostic score identifies relapsed/refractory CLL patients who benefit the most from single-agent ibrutinib therapy. Leuk Res. 2020 Aug;95:106401. doi: 10.1016/j.leukres.2020.106401. Epub 2020 Jun 10. PMID: 32562875."
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "openEHR-EHR-OBSERVATION.ball_score.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.ball_score.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0003": {
+            "id": "gt0003",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0007|< 5 mg/dL|",
+              "1|local::at0008|≥ 5 mg/dL|"
+            ]
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0009]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0010|No|",
+              "1|local::at0011|Yes|"
+            ]
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0012]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0013|≤ Upper limit of normal|",
+              "1|local::at0014|> Upper limit of normal|"
+            ]
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0015]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0016|≥ 24 months|",
+              "1|local::at0017|< 24 months|"
+            ]
+          }
+        }
+      },
+      "gt0007": {
+        "id": "gt0007",
+        "model_id": "openEHR-EHR-EVALUATION.health_risk.v1",
+        "template_id": "openEHR-EHR-EVALUATION.health_risk.v1",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0008": {
+            "id": "gt0008",
+            "path": "/data[at0001]/items[at0003]",
+            "data_type": "DV_TEXT"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "path": "/data[at0001]/items[at0015]",
+            "data_type": "DV_TEXT"
+          }
+        }
+      },
+      "gt0011": {
+        "id": "gt0011",
+        "model_id": "openEHR-EHR-OBSERVATION.total_score.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.total_score.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0012": {
+            "id": "gt0012",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type": "DV_COUNT"
+          }
+        }
+      }
+    },
+    "rules": {
+      "gt0010": {
+        "id": "gt0010",
+        "priority": 4,
+        "when": [
+          "$gt0003|β2-microglobulin|!=null",
+          "$gt0004|Anemia|!=null",
+          "$gt0005|LDH|!=null",
+          "$gt0006|Last therapy|!=null"
+        ],
+        "then": [
+          "$gt0012|Total score|=$gt0003|β2-microglobulin|.value+$gt0004|Anemia|.value+$gt0005|LDH|.value+$gt0006|Last therapy|.value"
+        ]
+      },
+      "gt0013": {
+        "id": "gt0013",
+        "priority": 3,
+        "when": [
+          "$gt0012|Total score|<=1"
+        ],
+        "then": [
+          "$gt0008|Risk assessment|=$gt0016|Low risk|.term",
+          "$gt0009|24-Month Overall Survival|=$gt0019|89.7%|.term"
+        ]
+      },
+      "gt0014": {
+        "id": "gt0014",
+        "priority": 2,
+        "when": [
+          "$gt0012|Total score|>=2",
+          "$gt0012|Total score|<=3"
+        ],
+        "then": [
+          "$gt0008|Risk assessment|=$gt0014|Intermediate risk|.term",
+          "$gt0009|24-Month Overall Survival|=$gt0020|79.5%|.term"
+        ]
+      },
+      "gt0015": {
+        "id": "gt0015",
+        "priority": 1,
+        "when": [
+          "$gt0012|Total score|==4"
+        ],
+        "then": [
+          "$gt0008|Risk assessment|=$gt0018|High risk|.term",
+          "$gt0009|24-Month Overall Survival|=$gt0021|55.8%|.term"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "BALL Score",
+            "description": "Calculates the BALL score and provides the corresponding estimated probability of complete response to chemoimmunotherapy."
+          },
+          "gt0002": {
+            "id": "gt0002",
+            "text": "openEHR-EHR-OBSERVATION.ball_score.v0"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "β2-microglobulin"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "Anemia"
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "text": "LDH"
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "Last therapy"
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "openEHR-EHR-EVALUATION.health_risk.v1"
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "text": "Risk assessment"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "24-Month Overall Survival"
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "Total Score",
+            "description": ""
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "text": "openEHR-EHR-OBSERVATION.total_score.v0"
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "Total score"
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "Low risk",
+            "description": ""
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "Intermediate risk",
+            "description": ""
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "High risk",
+            "description": ""
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "Low risk"
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "text": "Intermediate risk"
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "High risk"
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "89.7%"
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "79.5%"
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "55.8%"
+          }
+        }
+      }
+    }
+  }
+}
