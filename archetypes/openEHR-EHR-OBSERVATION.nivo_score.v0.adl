@@ -1,0 +1,213 @@
+archetype (adl_version=1.4; uid=dcb23307-88ac-4181-947c-3d60cd6c8088)
+	openEHR-EHR-OBSERVATION.nivo_score.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-08-06">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the specific clinical and laboratory parameters required to calculate the NIVO score.">
+			keywords = <"nivo, score, niv, noninvasive, ventilation, respiratory, failure, mortality, prognosis", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use in patients with acute respiratory failure initiated on noninvasive ventilation to support clinical decision-making regarding escalation of care.">
+			misuse = <"Not to be used for patients not receiving NIV or for conditions other than acute respiratory failure. Individual data elements should not be stored solely within this archetype; use dedicated archetypes such as openEHR-EHR-OBSERVATION.lab_test-blood_gases.v0 for PaCO₂, openEHR-EHR-EVALUATION.problem_diagnosis.v1 for documenting pneumonia or cancer, and openEHR-EHR-OBSERVATION.glasgow_coma_scale.v0 for the GCS score.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Hartley T, Lane ND, Steer J, Elliott MW, Sovani MP, Curtis HJ, Fuller ER, Murphy PB, Shrikrishna D, Lewis KE, Ward NR, Turnbull CD, Hart N, Bourke SC. The Noninvasive Ventilation Outcomes (NIVO) score: prediction of in-hospital mortality in exacerbations of COPD requiring assisted ventilation. Eur Respir J. 2021 Aug 12;58(2):2004042. doi: 10.1183/13993003.04042-2020. Erratum in: Eur Respir J. 2021 Nov 11;58(5):2054042. doi: 10.1183/13993003.54042-2020. PMID: 33479109; PMCID: PMC8358235.
+
+Alzaabi O, Guerot E, Planquette B, Diehl JL, Soumagne T. Predicting outcomes in patients with exacerbation of COPD requiring mechanical ventilation. Ann Intensive Care. 2024 Oct 20;14(1):159. doi: 10.1186/s13613-024-01394-z. PMID: 39427276; PMCID: PMC11491423.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"cd301845-20fb-3c39-9991-403792b54618">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- NIVO Score
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Chest radiograph consolidation
+										value matches {
+											0|[local::at0012],
+											1|[local::at0013]
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Glasgow Coma Scale
+										value matches {
+											0|[local::at0014],
+											1|[local::at0015]
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Atrial fibrillation
+										value matches {
+											0|[local::at0016],
+											1|[local::at0017]
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- pH
+										value matches {
+											0|[local::at0018],
+											1|[local::at0019]
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Time to acidemia
+										value matches {
+											0|[local::at0020],
+											2|[local::at0021]
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Extended MRC dyspnea scale (eMRCD)
+										value matches {
+											0|[local::at0022],
+											2|[local::at0023],
+											3|[local::at0024]
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"NIVO Score">
+					description = <"Records the clinical parameters required to calculate the Noninvasive Ventilation Outcomes (NIVO) score. The score predicts the risk of in-hospital mortality for patients with acute respiratory failure immediately after initiating noninvasive ventilation (NIV).">
+					comment = <"Original version, c 2021">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Chest radiograph consolidation">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Glasgow Coma Scale">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Atrial fibrillation">
+					description = <"Atrial fibrillation (AF) should be positively scored if: persistent AF, new AF or paroxysmal AF (even if in sinus rhythm at initiation of ventilation).">
+				>
+				["at0009"] = <
+					text = <"pH">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Time to acidemia">
+					description = <"Time to acidaemia >12 h should be positively scored if: >12 h have elapsed between arrival at hospital and index episode of acidemia.">
+				>
+				["at0011"] = <
+					text = <"Extended MRC dyspnea scale (eMRCD)">
+					description = <"On a good day, within the last 3 months">
+				>
+				["at0012"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"15">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"≤ 14">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"≥ 7.25">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"< 7.25">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"≤ 12 h">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"> 12 h">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Not too dyspneic to leave house (eMRCD 1-4)">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Too dyspneic to leave house but independent with washing/dressing (eMRCD 5a)">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Too dyspneic to leave house and wash/dress (eMRCD 5b)">
+					description = <"">
+				>
+			>
+		>
+	>
