@@ -1,0 +1,227 @@
+{
+  "id": "Rule_of_Nines.v0.0.1-draft",
+  "gdl_version": "2.1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Kevin Arjona",
+      "email": "kevin.arjona@cambio.se",
+      "organisation": "Cambio CDS",
+      "date": "2025-08-21"
+    },
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To calculate the total body surface area (TBSA) affected by burns based on the Rule of Nines.",
+        "keywords": [
+          "rule",
+          "nines",
+          "burn",
+          "tbsa",
+          "thermal",
+          "injury",
+          "emergency",
+          "trauma",
+          "resuscitation"
+        ],
+        "use": "In patients with second-degree (partial-thickness) or third-degree (full-thickness) thermal burns to estimate the extent of injury. This estimation guides fluid resuscitation protocols (e.g., using the Parkland formula) and transfer-to-burn-center decisions.",
+        "misuse": "Not intended for superficial (first-degree) burns. The Lund-Browder chart is more accurate, especially in the pediatric population, and is preferred when time and expertise permit. The Rule of Nines may be inaccurate in individuals with body proportions that differ significantly from the norm, such as in cases of morbid obesity.",
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "references": "Wallace, A. B. (1951). The exposure treatment of burns. The Lancet, 257(6653), 501–504. https://doi.org/10.1016/S0140‑6736(51)91975‑7\n\nMoore RA, Popowicz P, Burns B. Rule of Nines. 2024 Feb 12. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2025 Jan–. PMID: 30020659.\n",
+      "en": "Records the estimated Total Body Surface Area (TBSA) percentage affected by burns, based on the Rule of Nines."
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "openEHR-EHR-OBSERVATION.rule_of_nines.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.rule_of_nines.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0003": {
+            "id": "gt0003",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0019]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0020",
+              "4|local::at0021",
+              "9|local::at0022"
+            ]
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0011]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0012",
+              "18|local::at0014",
+              "9|local::at0013"
+            ]
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0034]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0035",
+              "18|local::at0037",
+              "9|local::at0036"
+            ]
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0023]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0024",
+              "4|local::at0025",
+              "9|local::at0026"
+            ]
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0008",
+              "4|local::at0009",
+              "9|local::at0010"
+            ]
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0027]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0028",
+              "1|local::at0029"
+            ]
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0030]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0031",
+              "18|local::at0033",
+              "9|local::at0032"
+            ]
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0015]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0016",
+              "18|local::at0018",
+              "9|local::at0017"
+            ]
+          }
+        }
+      },
+      "gt0011": {
+        "id": "gt0011",
+        "model_id": "openEHR-EHR-OBSERVATION.affected_body_surface_area-burn.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.affected_body_surface_area-burn.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0012": {
+            "id": "gt0012",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0015]/items[at0017]"
+          }
+        }
+      }
+    },
+    "rules": {
+      "gt0013": {
+        "id": "gt0013",
+        "priority": 1,
+        "when": [
+          "$gt0003|Head and face|!=null",
+          "$gt0004|Torso|!=null",
+          "$gt0005|Back|!=null",
+          "$gt0006|Right arm|!=null",
+          "$gt0007|Left arm|!=null",
+          "$gt0008|Genital area|!=null",
+          "$gt0009|Right leg|!=null",
+          "$gt0010|Left leg|!=null"
+        ],
+        "then": [
+          "$gt0012|Total body surface area affected|.magnitude=$gt0003|Head and face|.value+$gt0004|Torso|.value+$gt0005|Back|.value+$gt0006|Right arm|.value+$gt0007|Left arm|.value+$gt0008|Genital area|.value+$gt0009|Right leg|.value+$gt0010|Left leg|.value",
+          "$gt0012|Total body surface area affected|.precision=1"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Rule of Nines Calculation",
+            "description": "Calculates the total body surface area (TBSA) affected by burns by summing the percentages entered for individual body parts."
+          },
+          "gt0002": {
+            "id": "gt0002",
+            "text": "openEHR-EHR-OBSERVATION.rule_of_nines.v0"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "Head and face"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "Torso"
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "text": "Back"
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "Right arm"
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "Left arm"
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "text": "Genital area"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "Right leg"
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "Left leg"
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "text": "openEHR-EHR-OBSERVATION.affected_body_surface_area-burn.v0"
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "Total body surface area affected"
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "Total score",
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}
