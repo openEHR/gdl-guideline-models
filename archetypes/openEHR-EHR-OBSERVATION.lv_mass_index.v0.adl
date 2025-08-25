@@ -19,7 +19,7 @@ description
 		["en"] = <
 			language = <[ISO_639-1::en]>
 			purpose = <"Use to record measurements of the left ventricular mass index for clinical evaluations, including cardiac hypertrophy diagnosis and cardiovascular risk assessment.">
-			keywords = <"left ventricular, mass, index, lvmi, cardiac hypertrophy, cardiovascular risk", ...>
+			keywords = <"ventricular, mass, index, lvmi, cardiac, hypertrophy, cardiovascular, risk", ...>
 			copyright = <"© Cambio CDS">
 			use = <"Use to record the results for each component parameter and the calculated LV Mass Index. Additional information might provide guidance to modellers or implementers about how to utilise the archetype in templates or clinical systems.">
 			misuse = <"Not to be used for recording information related to echocardiographic details beyond LV Mass Index calculations.">
@@ -40,7 +40,7 @@ Maruyama K, Hasegawa S, Nakatani D, et al. Left ventricular mass index measured 
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"b575e9e95a84bec5519c422ccf4f11e4">
+		["MD5-CAM-1.0.1"] = <"1a59afc619277c0af5bdb54d5f261004">
 		["build_uid"] = <"f3f77335-265a-3abf-bfa5-baa5c840a5ef">
 	>
 
@@ -112,7 +112,7 @@ definition
 												property = <[openehr::124]>
 												list = <
 													["1"] = <
-														units = <"kg">
+														units = <"g">
 														magnitude = <|0.0..999.0|>
 														precision = <|3|>
 													>
@@ -136,10 +136,19 @@ definition
 									}
 									ELEMENT[at0021] occurrences matches {0..1} matches {    -- RWT
 										value matches {
-											DV_QUANTITY matches {*}
+											C_DV_QUANTITY <
+												property = <[openehr::507]>
+												list = <
+													["1"] = <
+														units = <"1">
+														magnitude = <|0.0..999.0|>
+														precision = <|3|>
+													>
+												>
+											>
 										}
 									}
-									ELEMENT[at0022] occurrences matches {0..1} matches {    -- Relative wall thickness
+									ELEMENT[at0022] occurrences matches {0..1} matches {    -- Classification of LV mass increase
 										value matches {
 											DV_CODED_TEXT matches {
 												defining_code matches {
@@ -176,7 +185,7 @@ ontology
 				["at0000"] = <
 					text = <"LV Mass Index">
 					description = <"The Left Ventricular Mass Index (LVMI) represents the left ventricular mass normalized for body size, typically by body surface area or height. It is used to assess left ventricular hypertrophy and stratify cardiovascular risk.">
-					comment = <"This archetype is based on the method for calculating LV Mass Index first described in 1986 by Devereux RB et al. in Echocardiographic Assessment of Left Ventricular Hypertrophy: Comparison to Necropsy Findings.">
+					comment = <"original version, c 1986">
 				>
 				["at0001"] = <
 					text = <"History">
@@ -240,7 +249,7 @@ ontology
 					description = <"Relative Wall Thickness">
 				>
 				["at0022"] = <
-					text = <"Relative wall thickness">
+					text = <"Classification of LV mass increase">
 					description = <"Relative wall thickness (RWT) allows classification of LV mass increase as either">
 				>
 				["at0023"] = <
