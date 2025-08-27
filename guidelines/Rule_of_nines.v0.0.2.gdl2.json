@@ -1,0 +1,683 @@
+{
+  "id": "Rule_of_nines.v0.0.2",
+  "gdl_version": "2.1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Kevin Arjona",
+      "email": "kevin.arjona@cambio.se",
+      "organisation": "Cambio CDS",
+      "date": "2025-08-21"
+    },
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To calculate the total body surface area (TBSA) affected by burns based on the Rule of Nines.",
+        "keywords": [
+          "rule",
+          "nines",
+          "burn",
+          "tbsa",
+          "thermal",
+          "injury",
+          "emergency",
+          "trauma",
+          "resuscitation"
+        ],
+        "use": "In patients with second-degree (partial-thickness) or third-degree (full-thickness) thermal burns to estimate the extent of injury. This estimation guides fluid resuscitation protocols (e.g., using the Parkland formula) and transfer-to-burn-center decisions.",
+        "misuse": "Not intended for superficial (first-degree) burns. The Lund-Browder chart is more accurate, especially in the pediatric population, and is preferred when time and expertise permit. The Rule of Nines may be inaccurate in individuals with body proportions that differ significantly from the norm, such as in cases of morbid obesity.",
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "references": "Wallace, A. B. (1951). The exposure treatment of burns. The Lancet, 257(6653), 501–504. https://doi.org/10.1016/S0140‑6736(51)91975‑7\n\nMoore RA, Popowicz P, Burns B. Rule of Nines. 2024 Feb 12. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2025 Jan–. PMID: 30020659.\n",
+      "en": "Records the estimated Total Body Surface Area (TBSA) percentage affected by burns, based on the Rule of Nines."
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0014": {
+        "id": "gt0014",
+        "model_id": "openEHR-EHR-OBSERVATION.rule_of_nines.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.rule_of_nines.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0015": {
+            "id": "gt0015",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0013",
+              "local::at0014",
+              "local::at0015"
+            ]
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0016",
+              "local::at0017",
+              "local::at0018"
+            ]
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0019",
+              "local::at0020",
+              "local::at0021"
+            ]
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0022",
+              "local::at0023",
+              "local::at0024"
+            ]
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0009]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0025",
+              "local::at0026",
+              "local::at0027"
+            ]
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0010]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0028",
+              "local::at0029"
+            ]
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0011]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0030",
+              "local::at0031",
+              "local::at0032"
+            ]
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0012]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0033",
+              "local::at0034",
+              "local::at0035"
+            ]
+          }
+        }
+      },
+      "gt0023": {
+        "id": "gt0023",
+        "model_id": "openEHR-EHR-OBSERVATION.rule_of_nines.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.rule_of_nines.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0024": {
+            "id": "gt0024",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0036]",
+            "data_type": "DV_QUANTITY",
+            "units": [
+              "%"
+            ]
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0037]",
+            "data_type": "DV_QUANTITY",
+            "units": [
+              "%"
+            ]
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0038]",
+            "data_type": "DV_QUANTITY",
+            "units": [
+              "%"
+            ]
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0039]",
+            "data_type": "DV_QUANTITY",
+            "units": [
+              "%"
+            ]
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0040]",
+            "data_type": "DV_QUANTITY",
+            "units": [
+              "%"
+            ]
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0041]",
+            "data_type": "DV_QUANTITY",
+            "units": [
+              "%"
+            ]
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0042]",
+            "data_type": "DV_QUANTITY",
+            "units": [
+              "%"
+            ]
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0043]",
+            "data_type": "DV_QUANTITY",
+            "units": [
+              "%"
+            ]
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0044]",
+            "data_type": "DV_QUANTITY",
+            "units": [
+              "%"
+            ]
+          }
+        }
+      }
+    },
+    "pre_conditions": [
+      "$gt0015|Head and face|!=null",
+      "$gt0016|Torso|!=null",
+      "$gt0017|Back|!=null",
+      "$gt0018|Right arm|!=null",
+      "$gt0019|Left arm|!=null",
+      "$gt0020|Genital area|!=null",
+      "$gt0021|Right leg|!=null",
+      "$gt0022|Left leg|!=null"
+    ],
+    "rules": {
+      "gt0033": {
+        "id": "gt0033",
+        "priority": 24,
+        "when": [
+          "$gt0015|Head and face|.code=='at0013'"
+        ],
+        "then": [
+          "$gt0024|Head and face burn area|=0,%"
+        ]
+      },
+      "gt0034": {
+        "id": "gt0034",
+        "priority": 23,
+        "when": [
+          "$gt0015|Head and face|.code=='at0014'"
+        ],
+        "then": [
+          "$gt0024|Head and face burn area|=4.5,%"
+        ]
+      },
+      "gt0035": {
+        "id": "gt0035",
+        "priority": 22,
+        "when": [
+          "$gt0015|Head and face|.code=='at0015'"
+        ],
+        "then": [
+          "$gt0024|Head and face burn area|=9,%"
+        ]
+      },
+      "gt0036": {
+        "id": "gt0036",
+        "priority": 21,
+        "when": [
+          "$gt0016|Torso|.code=='at0016'"
+        ],
+        "then": [
+          "$gt0025|Torso burn area|=0,%"
+        ]
+      },
+      "gt0037": {
+        "id": "gt0037",
+        "priority": 20,
+        "when": [
+          "$gt0016|Torso|.code=='at0017'"
+        ],
+        "then": [
+          "$gt0025|Torso burn area|=9,%"
+        ]
+      },
+      "gt0038": {
+        "id": "gt0038",
+        "priority": 19,
+        "when": [
+          "$gt0016|Torso|.code=='at0018'"
+        ],
+        "then": [
+          "$gt0025|Torso burn area|=18,%"
+        ]
+      },
+      "gt0041": {
+        "id": "gt0041",
+        "priority": 18,
+        "when": [
+          "$gt0017|Back|.code=='at0019'"
+        ],
+        "then": [
+          "$gt0026|Back burn area|=0,%"
+        ]
+      },
+      "gt0042": {
+        "id": "gt0042",
+        "priority": 17,
+        "when": [
+          "$gt0017|Back|.code=='at0020'"
+        ],
+        "then": [
+          "$gt0026|Back burn area|=9,%"
+        ]
+      },
+      "gt0040": {
+        "id": "gt0040",
+        "priority": 16,
+        "when": [
+          "$gt0017|Back|.code=='at0021'"
+        ],
+        "then": [
+          "$gt0026|Back burn area|=18,%"
+        ]
+      },
+      "gt0043": {
+        "id": "gt0043",
+        "priority": 15,
+        "when": [
+          "$gt0018|Right arm|.code=='at0022'"
+        ],
+        "then": [
+          "$gt0027|Right arm burn area|=0,%"
+        ]
+      },
+      "gt0044": {
+        "id": "gt0044",
+        "priority": 14,
+        "when": [
+          "$gt0018|Right arm|.code=='at0023'"
+        ],
+        "then": [
+          "$gt0027|Right arm burn area|=4.5,%"
+        ]
+      },
+      "gt0046": {
+        "id": "gt0046",
+        "priority": 13,
+        "when": [
+          "$gt0018|Right arm|.code=='at0024'"
+        ],
+        "then": [
+          "$gt0027|Right arm burn area|=9,%"
+        ]
+      },
+      "gt0047": {
+        "id": "gt0047",
+        "priority": 12,
+        "when": [
+          "$gt0019|Left arm|.code=='at0025'"
+        ],
+        "then": [
+          "$gt0028|Left arm burn area|=0,%"
+        ]
+      },
+      "gt0048": {
+        "id": "gt0048",
+        "priority": 11,
+        "when": [
+          "$gt0019|Left arm|.code=='at0026'"
+        ],
+        "then": [
+          "$gt0028|Left arm burn area|=4.5,%"
+        ]
+      },
+      "gt0049": {
+        "id": "gt0049",
+        "priority": 10,
+        "when": [
+          "$gt0019|Left arm|.code=='at0027'"
+        ],
+        "then": [
+          "$gt0028|Left arm burn area|=9,%"
+        ]
+      },
+      "gt0050": {
+        "id": "gt0050",
+        "priority": 9,
+        "when": [
+          "$gt0020|Genital area|.code=='at0028'"
+        ],
+        "then": [
+          "$gt0029|Genital burn area|=0,%"
+        ]
+      },
+      "gt0051": {
+        "id": "gt0051",
+        "priority": 8,
+        "when": [
+          "$gt0020|Genital area|.code=='at0029'"
+        ],
+        "then": [
+          "$gt0029|Genital burn area|=1,%"
+        ]
+      },
+      "gt0052": {
+        "id": "gt0052",
+        "priority": 7,
+        "when": [
+          "$gt0021|Right leg|.code=='at0030'"
+        ],
+        "then": [
+          "$gt0030|Right leg burn area|=0,%"
+        ]
+      },
+      "gt0053": {
+        "id": "gt0053",
+        "priority": 6,
+        "when": [
+          "$gt0021|Right leg|.code=='at0031'"
+        ],
+        "then": [
+          "$gt0030|Right leg burn area|=9,%"
+        ]
+      },
+      "gt0054": {
+        "id": "gt0054",
+        "priority": 5,
+        "when": [
+          "$gt0021|Right leg|.code=='at0032'"
+        ],
+        "then": [
+          "$gt0030|Right leg burn area|=18,%"
+        ]
+      },
+      "gt0055": {
+        "id": "gt0055",
+        "priority": 4,
+        "when": [
+          "$gt0022|Left leg|.code=='at0033'"
+        ],
+        "then": [
+          "$gt0031|Left leg burn area|=0,%"
+        ]
+      },
+      "gt0056": {
+        "id": "gt0056",
+        "priority": 3,
+        "when": [
+          "$gt0022|Left leg|.code=='at0034'"
+        ],
+        "then": [
+          "$gt0031|Left leg burn area|=9,%"
+        ]
+      },
+      "gt0057": {
+        "id": "gt0057",
+        "priority": 2,
+        "when": [
+          "$gt0022|Left leg|.code=='at0035'"
+        ],
+        "then": [
+          "$gt0031|Left leg burn area|=18,%"
+        ]
+      },
+      "gt0039": {
+        "id": "gt0039",
+        "priority": 1,
+        "when": [
+          "$gt0024|Head and face burn area|!=null",
+          "$gt0025|Torso burn area|!=null",
+          "$gt0026|Back burn area|!=null",
+          "$gt0027|Right arm burn area|!=null",
+          "$gt0028|Left arm burn area|!=null",
+          "$gt0029|Genital burn area|!=null",
+          "$gt0030|Right leg burn area|!=null",
+          "$gt0031|Left leg burn area|!=null"
+        ],
+        "then": [
+          "$gt0032|Total body surface area affect by burns|.magnitude=$gt0024|Head and face burn area|.magnitude+$gt0025|Torso burn area|.magnitude+$gt0026|Back burn area|.magnitude+$gt0027|Right arm burn area|.magnitude+$gt0028|Left arm burn area|.magnitude+$gt0029|Genital burn area|.magnitude+$gt0030|Right leg burn area|.magnitude+$gt0031|Left leg burn area|.magnitude",
+          "$gt0032|Total body surface area affect by burns|.unit='%'",
+          "$gt0032|Total body surface area affect by burns|.precision=1"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Rule of Nines Calculation",
+            "description": "Calculates the total body surface area (TBSA) affected by burns by summing the percentages entered for individual body parts."
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "openEHR-EHR-OBSERVATION.rule_of_nines.v0"
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "Head and face"
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "Torso"
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "text": "Back"
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "Right arm"
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "Left arm"
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "Genital area"
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "Right leg"
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "Left leg"
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "openEHR-EHR-OBSERVATION.rule_of_nines.v0"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "Head and face burn area"
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "Torso burn area"
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "Back burn area"
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "Right arm burn area"
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "Left arm burn area"
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "Genital burn area"
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "Right leg burn area"
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "text": "Left leg burn area"
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "Total body surface area affect by burns"
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "Set head and face burn area to 0%",
+            "description": ""
+          },
+          "gt0034": {
+            "id": "gt0034",
+            "text": "Set head and face burn area to 4.5%",
+            "description": ""
+          },
+          "gt0035": {
+            "id": "gt0035",
+            "text": "Set head and face burn area to 9%",
+            "description": ""
+          },
+          "gt0036": {
+            "id": "gt0036",
+            "text": "Set torso burn area to 0%",
+            "description": ""
+          },
+          "gt0037": {
+            "id": "gt0037",
+            "text": "Set torso burn area to 9%",
+            "description": ""
+          },
+          "gt0038": {
+            "id": "gt0038",
+            "text": "Set torso burn area to 18%",
+            "description": ""
+          },
+          "gt0039": {
+            "id": "gt0039",
+            "text": "Calculate total body surface area affected by burns",
+            "description": ""
+          },
+          "gt0040": {
+            "id": "gt0040",
+            "text": "Set Back burn area to 18%",
+            "description": ""
+          },
+          "gt0041": {
+            "id": "gt0041",
+            "text": "Set back burn area to 0%",
+            "description": ""
+          },
+          "gt0042": {
+            "id": "gt0042",
+            "text": "Set back burn area to 9%",
+            "description": ""
+          },
+          "gt0043": {
+            "id": "gt0043",
+            "text": "Set right arm burn area to 0%",
+            "description": ""
+          },
+          "gt0044": {
+            "id": "gt0044",
+            "text": "Set right arm burn area to 4.5%",
+            "description": ""
+          },
+          "gt0046": {
+            "id": "gt0046",
+            "text": "Set right arm burn area to 9%",
+            "description": ""
+          },
+          "gt0047": {
+            "id": "gt0047",
+            "text": "Set left arm burn area to 0%",
+            "description": ""
+          },
+          "gt0048": {
+            "id": "gt0048",
+            "text": "Set left arm burn area to 4.5%",
+            "description": ""
+          },
+          "gt0049": {
+            "id": "gt0049",
+            "text": "Set left arm burn area to 9%",
+            "description": ""
+          },
+          "gt0050": {
+            "id": "gt0050",
+            "text": "Set genital burn area to 0%",
+            "description": ""
+          },
+          "gt0051": {
+            "id": "gt0051",
+            "text": "Set genital burn area to 1%",
+            "description": ""
+          },
+          "gt0052": {
+            "id": "gt0052",
+            "text": "Set right leg burn area to 0%",
+            "description": ""
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "Set right leg burn area to 9%",
+            "description": ""
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "Set right leg burn area to 18%",
+            "description": ""
+          },
+          "gt0055": {
+            "id": "gt0055",
+            "text": "Set left leg burn area to 0%",
+            "description": ""
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "Set left leg burn area to 9%",
+            "description": ""
+          },
+          "gt0057": {
+            "id": "gt0057",
+            "text": "Set left leg burn area to 18%",
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}
