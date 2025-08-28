@@ -1,1 +1,162 @@
-{"id":"BSA_dubois_calculation.v0.0.1","gdl_version":"2.0","concept":"gt0001","language":{"original_language":"ISO_639-1::en"},"description":{"original_author":{"name":"Umiah Gohar","email":"umiah.gohar@cambio.se","organisation":"Cambio CDS","date":"2025-01-09"},"lifecycle_state":"Author draft","details":{"en":{"id":"en","copyright":"© Cambio CDS","keywords":["BSA","body","surface","area","Du Bois","formula","weight","height"],"purpose":" To calculate estimated estimated body surface area using the Du Bois formula.","use":"Use the most recent height and weight measurements to ensure accuracy.\n\nUse in conjunction with other assessments and patient history.\n\nUse of this formula is less precise in obese patients.\n\nUse for calculating the BSA based on the DuBois formula. The formula expresses BSA in squared meters (m2) and uses a person's weight in kilograms (kg) and height/length in centimeters (cm). \n\nThe formula, BSA (m2) = weight (kg)^0.425 × height (cm)^0.725 × 0.007184","misuse":"Not to be used for calculating BSA based on other formulas."}},"other_details":{"references":"Du Bois D, Du Bois EF. A formula to estimate the approximate surface area if height and weight be known. 1916. Nutrition. 1989 Sep-Oct;5(5):303-11; discussion 312-3. PMID: 2520314.","en":"To calculate estimated BSA using the Du Bois formula."},"other_contributors":[]},"definition":{"data_bindings":{"gt0002":{"id":"gt0002","type":"INPUT","model_id":"openEHR-EHR-OBSERVATION.body_weight.v2","template_id":"openEHR-EHR-OBSERVATION.body_weight.v2","elements":{"gt0003":{"id":"gt0003","path":"/data[at0002]/events[at0003]/data[at0001]/items[at0004]"}}},"gt0004":{"id":"gt0004","type":"INPUT","model_id":"openEHR-EHR-OBSERVATION.height.v2","template_id":"openEHR-EHR-OBSERVATION.height.v2","elements":{"gt0005":{"id":"gt0005","path":"/data[at0001]/events[at0002]/data[at0003]/items[at0004]"}}},"gt0006":{"id":"gt0006","type":"OUTPUT","model_id":"openEHR-EHR-OBSERVATION.body_surface_area.v1","template_id":"openEHR-EHR-OBSERVATION.body_surface_area.v1","elements":{"gt0007":{"id":"gt0007","path":"/data[at0001]/events[at0002]/data[at0003]/items[at0004]"}}}},"templates":{},"rules":{"gt0009":{"id":"gt0009","priority":2,"then":["$gt0007|Body Surface Area|.magnitude = ( ( $gt0003|Weight|.magnitude ^ 0.425 ) * ( $gt0005|Height/Length|.magnitude ^ 0.725 ) ) * 0.007184","$gt0007|Body Surface Area|.precision = 2","$gt0007|Body Surface Area|.unit = 'm2'"],"when":["$gt0003|Weight|.unit == 'kg'","$gt0005|Height/Length|.unit == 'cm'"]},"gt0010":{"id":"gt0010","priority":1,"then":["$gt0007|Body Surface Area|.magnitude = ( ( $gt0003|Weight|.magnitude ^ 0.425 ) * ( $gt0005|Height/Length|.magnitude ^ 0.725 ) ) * 0.007184","$gt0007|Body Surface Area|.precision = 2","$gt0007|Body Surface Area|.unit = '[ft_i]2'"],"when":["$gt0003|Weight|.unit == '[lb_av]'","$gt0005|Height/Length|.unit == '[in_i]'"]}}},"ontology":{"term_definitions":{"en":{"id":"en","terms":{"gt0001":{"text":"Body Surface Area (BSA) calculation - Du Bois formula","description":"A  calculation score used to estimate an individual's total external surface area using the Du Bois formula. ","id":"gt0001"},"gt0002":{"id":"gt0002","text":"openEHR-EHR-OBSERVATION.body_weight.v2"},"gt0003":{"text":"Weight","description":"The weight of the individual.","id":"gt0003"},"gt0004":{"id":"gt0004","text":"openEHR-EHR-OBSERVATION.height.v2"},"gt0005":{"text":"Height/Length","description":"The length of the body from crown of head to sole of foot.","id":"gt0005"},"gt0006":{"id":"gt0006","text":"openEHR-EHR-OBSERVATION.body_surface_area.v1"},"gt0007":{"text":"Body Surface Area","description":"The calculated body surface area.","id":"gt0007"},"gt0009":{"id":"gt0009","text":"BSA calculation using metric units","description":""},"gt0010":{"id":"gt0010","text":"BSA calculation using Imperial units","description":""}}}},"term_bindings":{}}}
+{
+  "id": "BSA_dubois_calculation.v0.0.1",
+  "gdl_version": "2.0",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Umiah Gohar",
+      "email": "umiah.gohar@cambio.se",
+      "organisation": "Cambio CDS",
+      "date": "2025-01-09"
+    },
+    "lifecycle_state": "Author draft",
+    "details": {
+      "en": {
+        "id": "en",
+        "copyright": "© Cambio CDS",
+        "keywords": [
+          "BSA",
+          "body",
+          "surface",
+          "area",
+          "Du Bois",
+          "formula",
+          "weight",
+          "height"
+        ],
+        "purpose": " To calculate estimated estimated body surface area using the Du Bois formula.",
+        "use": "Use the most recent height and weight measurements to ensure accuracy.\n\nUse in conjunction with other assessments and patient history.\n\nUse of this formula is less precise in obese patients.\n\nUse for calculating the BSA based on the DuBois formula. The formula expresses BSA in squared meters (m2) and uses a person's weight in kilograms (kg) and height/length in centimeters (cm). \n\nThe formula, BSA (m2) = weight (kg)^0.425 × height (cm)^0.725 × 0.007184",
+        "misuse": "Not to be used for calculating BSA based on other formulas."
+      }
+    },
+    "other_details": {
+      "references": "Du Bois D, Du Bois EF. A formula to estimate the approximate surface area if height and weight be known. 1916. Nutrition. 1989 Sep-Oct;5(5):303-11; discussion 312-3. PMID: 2520314.",
+      "en": "To calculate estimated BSA using the Du Bois formula."
+    },
+    "other_contributors": []
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "type": "INPUT",
+        "model_id": "openEHR-EHR-OBSERVATION.body_weight.v2",
+        "template_id": "openEHR-EHR-OBSERVATION.body_weight.v2",
+        "elements": {
+          "gt0003": {
+            "id": "gt0003",
+            "path": "/data[at0002]/events[at0003]/data[at0001]/items[at0004]"
+          }
+        }
+      },
+      "gt0004": {
+        "id": "gt0004",
+        "type": "INPUT",
+        "model_id": "openEHR-EHR-OBSERVATION.height.v2",
+        "template_id": "openEHR-EHR-OBSERVATION.height.v2",
+        "elements": {
+          "gt0005": {
+            "id": "gt0005",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]"
+          }
+        }
+      },
+      "gt0006": {
+        "id": "gt0006",
+        "type": "OUTPUT",
+        "model_id": "openEHR-EHR-OBSERVATION.body_surface_area.v1",
+        "template_id": "openEHR-EHR-OBSERVATION.body_surface_area.v1",
+        "elements": {
+          "gt0007": {
+            "id": "gt0007",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]"
+          }
+        }
+      }
+    },
+    "templates": {},
+    "rules": {
+      "gt0009": {
+        "id": "gt0009",
+        "priority": 2,
+        "then": [
+          "$gt0007|Body Surface Area|.magnitude = ( ( $gt0003|Weight|.magnitude ^ 0.425 ) * ( $gt0005|Height/Length|.magnitude ^ 0.725 ) ) * 0.007184",
+          "$gt0007|Body Surface Area|.precision = 2",
+          "$gt0007|Body Surface Area|.unit = 'm2'"
+        ],
+        "when": [
+          "$gt0003|Weight|.unit == 'kg'",
+          "$gt0005|Height/Length|.unit == 'cm'"
+        ]
+      },
+      "gt0010": {
+        "id": "gt0010",
+        "priority": 1,
+        "then": [
+          "$gt0007|Body Surface Area|.magnitude = ( ( $gt0003|Weight|.magnitude ^ 0.425 ) * ( $gt0005|Height/Length|.magnitude ^ 0.725 ) ) * 0.007184",
+          "$gt0007|Body Surface Area|.precision = 2",
+          "$gt0007|Body Surface Area|.unit = '[ft_i]2'"
+        ],
+        "when": [
+          "$gt0003|Weight|.unit == '[lb_av]'",
+          "$gt0005|Height/Length|.unit == '[in_i]'"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "text": "Body Surface Area (BSA) calculation - Du Bois formula",
+            "description": "A  calculation score used to estimate an individual's total external surface area using the Du Bois formula. ",
+            "id": "gt0001"
+          },
+          "gt0002": {
+            "id": "gt0002",
+            "text": "openEHR-EHR-OBSERVATION.body_weight.v2"
+          },
+          "gt0003": {
+            "text": "Weight",
+            "description": "The weight of the individual.",
+            "id": "gt0003"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "openEHR-EHR-OBSERVATION.height.v2"
+          },
+          "gt0005": {
+            "text": "Height/Length",
+            "description": "The length of the body from crown of head to sole of foot.",
+            "id": "gt0005"
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "openEHR-EHR-OBSERVATION.body_surface_area.v1"
+          },
+          "gt0007": {
+            "text": "Body Surface Area",
+            "description": "The calculated body surface area.",
+            "id": "gt0007"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "BSA calculation using metric units",
+            "description": ""
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "BSA calculation using Imperial units",
+            "description": ""
+          }
+        }
+      }
+    },
+    "term_bindings": {}
+  }
+}
