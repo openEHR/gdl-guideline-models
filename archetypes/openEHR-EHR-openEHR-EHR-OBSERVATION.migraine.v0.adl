@@ -1,0 +1,926 @@
+archetype (adl_version=1.4; uid=3047e48b-84a0-30dc-9887-4eead12465a3)
+	openEHR-EHR-OBSERVATION.migraine.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+			>
+		>
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			author = <
+			>
+		>
+		["es"] = <
+			language = <[ISO_639-1::es]>
+			author = <
+			>
+		>
+		["fr"] = <
+			language = <[ISO_639-1::fr]>
+			author = <
+			>
+		>
+		["ca"] = <
+			language = <[ISO_639-1::ca]>
+			author = <
+			>
+		>
+	>
+
+description
+	original_author = <
+		["name"] = <"">
+	>
+	lifecycle_state = <"0">
+	details = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			copyright = <"© openEHR Foundation">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			copyright = <"© openEHR Foundation">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To asssist the health care person in diagnosis of migraine">
+			use = <"Diagnosis of migraine">
+			misuse = <"Not ruling out the secondary headache when diagnosing migraine">
+		>
+		["fr"] = <
+			language = <[ISO_639-1::fr]>
+			copyright = <"© openEHR Foundation">
+		>
+		["ca"] = <
+			language = <[ISO_639-1::ca]>
+			copyright = <"© openEHR Foundation">
+		>
+		["es"] = <
+			language = <[ISO_639-1::es]>
+			copyright = <"© openEHR Foundation">
+		>
+	>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"C604AF049EA71B9497913430FD8E1692">
+		["build_uid"] = <"d8e3522f-1b17-3f09-8c16-275f9028962e">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Migraine
+		data matches {
+			HISTORY[at0001] matches {    -- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- At least 5 or more headache attacks in lifetime
+										value matches {
+											0|[local::at0005],
+											1|[local::at0006]
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Headache attack lasting 4-72 hrs
+										value matches {
+											0|[local::at0008],
+											1|[local::at0009]
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- At least 2 out of 4 features
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- unilateral location
+										value matches {
+											0|[local::at0014],
+											1|[local::at0015]
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- pulsating/throbbing quality
+										value matches {
+											0|[local::at0017],
+											1|[local::at0018]
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {    -- moderate-severe intensity
+										value matches {
+											0|[local::at0020],
+											1|[local::at0021]
+										}
+									}
+									ELEMENT[at0022] occurrences matches {0..1} matches {    -- aggravation by/causing avoidance of routine physical activity
+										value matches {
+											0|[local::at0023],
+											1|[local::at0024]
+										}
+									}
+									ELEMENT[at0025] occurrences matches {0..1} matches {    -- At least 1 out of 2 features
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+									ELEMENT[at0028] occurrences matches {0..1} matches {    -- nausea and/or vomiting
+										value matches {
+											0|[local::at0029],
+											1|[local::at0030]
+										}
+									}
+									ELEMENT[at0031] occurrences matches {0..1} matches {    -- photophobia and phonophobia
+										value matches {
+											0|[local::at0032],
+											1|[local::at0033]
+										}
+									}
+									ELEMENT[at0034] occurrences matches {0..1} matches {    -- Remark
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Migraine">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"At least 5 or more headache attacks in lifetime">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Headache attack lasting 4-72 hrs">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"At least 2 out of 4 features">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"unilateral location">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"pulsating/throbbing quality">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"moderate-severe intensity">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"aggravation by/causing avoidance of routine physical activity">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"At least 1 out of 2 features">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"nausea and/or vomiting">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"photophobia and phonophobia">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"Remark">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Migraine (en)">
+					description = <"*unknown (en)">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"*Any event (en)">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"*At least 5 or more headache attacks in lifetime (en)">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"*Headache attack lasting 4-72 hrs (en)">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"*At least 2 out of 4 features (en)">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"*unilateral location (en)">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"*pulsating/throbbing quality (en)">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"*moderate-severe intensity (en)">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"*aggravation by/causing avoidance of routine physical activity (en)">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"*At least 1 out of 2 features (en)">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"*nausea and/or vomiting (en)">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"*photophobia and phonophobia (en)">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"*Remark (en)">
+					description = <"*">
+				>
+			>
+		>
+		["de"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Migraine (en)">
+					description = <"*unknown (en)">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"*Any event (en)">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"*At least 5 or more headache attacks in lifetime (en)">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"*Headache attack lasting 4-72 hrs (en)">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"*At least 2 out of 4 features (en)">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"*unilateral location (en)">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"*pulsating/throbbing quality (en)">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"*moderate-severe intensity (en)">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"*aggravation by/causing avoidance of routine physical activity (en)">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"*At least 1 out of 2 features (en)">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"*nausea and/or vomiting (en)">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"*photophobia and phonophobia (en)">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"*Remark (en)">
+					description = <"*">
+				>
+			>
+		>
+		["es"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Migraine (en)">
+					description = <"*unknown (en)">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"*Any event (en)">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"*At least 5 or more headache attacks in lifetime (en)">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"*Headache attack lasting 4-72 hrs (en)">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"*At least 2 out of 4 features (en)">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"*unilateral location (en)">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"*pulsating/throbbing quality (en)">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"*moderate-severe intensity (en)">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"*aggravation by/causing avoidance of routine physical activity (en)">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"*At least 1 out of 2 features (en)">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"*nausea and/or vomiting (en)">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"*photophobia and phonophobia (en)">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"*Remark (en)">
+					description = <"*">
+				>
+			>
+		>
+		["fr"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Migraine (en)">
+					description = <"*unknown (en)">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"*Any event (en)">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"*At least 5 or more headache attacks in lifetime (en)">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"*Headache attack lasting 4-72 hrs (en)">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"*At least 2 out of 4 features (en)">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"*unilateral location (en)">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"*pulsating/throbbing quality (en)">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"*moderate-severe intensity (en)">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"*aggravation by/causing avoidance of routine physical activity (en)">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"*At least 1 out of 2 features (en)">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"*nausea and/or vomiting (en)">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"*photophobia and phonophobia (en)">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"*Remark (en)">
+					description = <"*">
+				>
+			>
+		>
+		["ca"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Migraine (en)">
+					description = <"*unknown (en)">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"*Any event (en)">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"*At least 5 or more headache attacks in lifetime (en)">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"*Headache attack lasting 4-72 hrs (en)">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"*At least 2 out of 4 features (en)">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"*unilateral location (en)">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"*pulsating/throbbing quality (en)">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"*moderate-severe intensity (en)">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"*aggravation by/causing avoidance of routine physical activity (en)">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"*At least 1 out of 2 features (en)">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"*nausea and/or vomiting (en)">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"*photophobia and phonophobia (en)">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"*No (en)">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"*Yes (en)">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"*Remark (en)">
+					description = <"*">
+				>
+			>
+		>
+	>

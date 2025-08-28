@@ -1,0 +1,1013 @@
+﻿archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.lab_test-fractional_sodium_excretion.v1
+specialize
+	openEHR-EHR-OBSERVATION.lab_test-urea_and_electrolytes.v1
+
+concept
+	[at0000.1.1]	-- Fractional excretion of sodium (FENa)
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["da"] = <
+			language = <[ISO_639-1::da]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+		["el"] = <
+			language = <[ISO_639-1::el]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+		["si"] = <
+			language = <[ISO_639-1::si]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["organisation"] = <"Cambio Healthcare Systems">
+				["name"] = <"Jimmy Axelsson">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Eneimi Allwell-Brown">
+		["email"] = <"models@cambiocds.com">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2017-01-14">
+	>
+	details = <
+		["da"] = <
+			language = <[ISO_639-1::da]>
+			purpose = <"*To record a standard electrolyte or 'metabolic; biochemistry panel.(en)">
+			use = <"*(en)">
+			keywords = <"lab", "pathology", "biochemistry", "laboratory", "metabolic", "U & E">
+			misuse = <"*(en)">
+			copyright = <"© openEHR Foundation">
+		>
+		["el"] = <
+			language = <[ISO_639-1::el]>
+			purpose = <"Η καταγραφή των τυπικών ηλεκτρολυτικών ή μεταβολικών δεικτών.">
+			use = <"">
+			keywords = <"lab", "pathology", "biochemistry", "laboratory", "metabolic", "U & E">
+			misuse = <"">
+			copyright = <"© openEHR Foundation">
+		>
+		["si"] = <
+			language = <[ISO_639-1::si]>
+			purpose = <"*To record a standard electrolyte or 'metabolic; biochemistry panel.(en)">
+			use = <"*(en)">
+			keywords = <"lab", "pathology", "biochemistry", "laboratory", "metabolic", "U & E">
+			misuse = <"*(en)">
+			copyright = <"© openEHR Foundation">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record fractional excretion of sodium and its component variables.">
+			use = <"To record the test results of sodium and creatinine in serum and urine samples, as well as fractional excretion of sodium.">
+			keywords = <"FENa", "acute kidney injury", "AKI", "acute renal failure", "acute azotemia">
+			misuse = <"Not intended to record information regarding other laboratory tests. ">
+			copyright = <"© openEHR Foundation">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"Att registrera en typisk provsvarspanel innehållande urea och elektrolyter. ">
+			use = <"Använd för att registrera provsvar för elektrolyter och urea. ">
+			keywords = <"lab", "pathology", "biochemistry", "laboratory", "metabolic", "U & E">
+			misuse = <"Inte avsedd för att registrera information om andra provsvar. ">
+			copyright = <"© openEHR Foundation">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <"Heather Leslie AEG / Ocean Infomatics", "Sam Heard Ocean Informatics", "Dr Ian McNicoll openEHR Archetype Editorial Group / Ocean Informatics">
+	other_details = <
+		["references"] = <"Steiner RW. Interpreting the fractional excretion of sodium. The American journal of medicine. 1984 Oct 31;77(4):699-702.">
+		["MD5-CAM-1.0.1"] = <"2C98EF4B696B291D660D3C2D237DEDA3">
+	>
+
+definition
+	OBSERVATION[at0000.1.1] matches {	-- Fractional excretion of sodium (FENa)
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0078.5.1] occurrences matches {0..1} matches {	-- serum Sodium (sNa)
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::119]>
+												list = <
+													["1"] = <
+														units = <"mmol/l">
+														magnitude = <|>=0.0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0078.4.1] occurrences matches {0..1} matches {	-- urine Sodium (uNa)
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::119]>
+												list = <
+													["1"] = <
+														units = <"mmol/l">
+														magnitude = <|>=0.0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0078.3.1] occurrences matches {0..1} matches {	-- serum Creatinine (sCr)
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::119]>
+												list = <
+													["1"] = <
+														units = <"umol/l">
+														magnitude = <|>=0.0|>
+													>
+													["2"] = <
+														units = <"mg/dl">
+														magnitude = <|>=0.0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0078.2.1] occurrences matches {0..1} matches {	-- urine Creatinine (uCr)
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::119]>
+												list = <
+													["1"] = <
+														units = <"umol/l">
+														magnitude = <|>=0.0|>
+													>
+													["2"] = <
+														units = <"mg/dl">
+														magnitude = <|>=0.0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0078.1.1] occurrences matches {0..1} matches {	-- Fractional excretion of sodium (FENa)
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::507]>
+												list = <
+													["1"] = <
+														units = <"%">
+														magnitude = <|>=0.0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0057.0.1] occurrences matches {0..1} matches {	-- Comment
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["da"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Laboratory test(en)">
+					description = <"*To record the result of a laboratory test which may be used to record a single valued test but will often be specialised or templated to represent multiple value or 'panel' tests.
+This archetype also acts as the parent for specialisations appropriate for more specific laboratory tests microbiology, histopathology.(en)">
+				>
+				["at0000.1"] = <
+					text = <"Urea and electrolytes">
+					description = <"*To record a typical biochemistry Urea and electrolytes panel.(en)">
+				>
+				["at0000.1.1"] = <
+					text = <"*Fractional excretion of sodium (FENa)(en)">
+					description = <"*Fractional excretion of sodium (FENa) is the percentage of the sodium filtered by the kidney which is excreted in the urine. FENa helps distinguish between prerenal, intrinsic renal and postrenal causes of renal failure, and is widely used to differentiate prerenal disease (decreased renal perfusion) from acute tubular necrosis (ATN) as the cause of acute kidney injury (AKI). The calculation requires serum (sNa) and urine (uNa) sodium concentrations (mmol/L), and serum (sCr) and urine (uCr) creatinine concentrations (mg/dl). FENa < 1% and uNa < 20mmol/L suggests kidney injury of prerenal etiology; FENa > 1% and uNa > 40mmol/L suggests an intrinsic renal etiology; while FENa > 4% and uNa > 40mmol/L suggests a postrenal etiology.(en)">
+				>
+				["at0001"] = <
+					text = <"*Event Series(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"*Any event(en)">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0004"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0005"] = <
+					text = <"Test navn">
+					description = <"*Specific identifier for this lab test. e.g. Full blood count , blood glucose, urine microbiology.  May equate to the result name for a single value result. Commonly a coded term e.g from LOINC or SNOMED-CT.(en)">
+				>
+				["at0010"] = <
+					text = <"*Multimedia representation(en)">
+					description = <"*Representations of the whole test in mutlimedia e.g image, audio, video.(en)">
+				>
+				["at0013"] = <
+					text = <"*Test identification(en)">
+					description = <"*Unique identifiers used in delivery of the care process.(en)">
+				>
+				["at0017"] = <
+					text = <"*Laboratory details  (en)">
+					description = <"*Demographic details of the laboratory with responsibility for the test. Details of secondary laboratories may also be included.(en)">
+				>
+				["at0037"] = <
+					text = <"*Interim(en)">
+					description = <"*This is an initial or interim result - further updates are anticipated(en)">
+				>
+				["at0038"] = <
+					text = <"*Final(en)">
+					description = <"*This is the final result. No further alterations are anticipated(en)">
+				>
+				["at0039"] = <
+					text = <"*Supplementary(en)">
+					description = <"*This is a supplememtary result in addition to the Interim result(en)">
+				>
+				["at0040"] = <
+					text = <"*Corrected (amended)(en)">
+					description = <"*This is a Correction which should replace any previous results(en)">
+				>
+				["at0057"] = <
+					text = <"*Overall interpretation(en)">
+					description = <"*An overall interpretative comment on this test.(en)">
+				>
+				["at0057.0.1"] = <
+					text = <"*! - Overall interpretation(en)">
+					description = <"*An overall interpretative comment on this test.(en)">
+				>
+				["at0062"] = <
+					text = <"*Placer order identifier(en)">
+					description = <"*The ID assigned to the order by the order requester. Equivalent to the NEHTA Requester Order Identifier.(en)">
+				>
+				["at0063"] = <
+					text = <"*Filler order Identifier(en)">
+					description = <"*The ID assigned to the test order by the order filler, usually by the (LIS) Laboratory Information System. Equivalent to the DICOM Accession Number and NEHTA Laboratory Request Identifier.(en)">
+				>
+				["at0065"] = <
+					text = <"*Specimen detail(en)">
+					description = <"*Details of the specimen being reported where all individual results are derived from the same specimen(en)">
+				>
+				["at0068"] = <
+					text = <"*Laboratory test result identifier(en)">
+					description = <"*The identifier given to the laboratory test result of a pathology 
+investigation.(en)">
+				>
+				["at0073"] = <
+					text = <"Test status">
+					description = <"*The status of the lab test as a whole.(en)">
+				>
+				["at0074"] = <
+					text = <"*Aborted(en)">
+					description = <"**(en)">
+				>
+				["at0075"] = <
+					description = <"*The date and/or time that the result was issued for the recorded 
+‘test status’. (en)">
+					text = <"*Datetime result issued(en)">
+					comment = <"*The date and time related to the results status is
+useful for version control and cumulative results for the report.(en)">
+				>
+				["at0077"] = <
+					text = <"*Diagnostic service(en)">
+					description = <"*The type of high-level diagnostic service e.g. biochemistry, haematology. (en)">
+				>
+				["at0078"] = <
+					text = <"*Result(en)">
+					description = <"*The result of the test.(en)">
+				>
+				["at0078.1"] = <
+					text = <"Urea">
+					description = <"*Urea level in this specimen.(en)">
+				>
+				["at0078.1.1"] = <
+					text = <"*Fractional excretion of sodium (FENa)(en)">
+					description = <"*(en)">
+				>
+				["at0078.2"] = <
+					text = <"Bicarbonat">
+					description = <"*Bicarbonate level in this specimen.(en)">
+				>
+				["at0078.2.1"] = <
+					text = <"*! - Bicarbonate(en)">
+					description = <"*Bicarbonate level in this specimen.(en)">
+				>
+				["at0078.3"] = <
+					text = <"Chloride">
+					description = <"*Chloride level in this specimen.(en)">
+				>
+				["at0078.3.1"] = <
+					text = <"*! - Chloride(en)">
+					description = <"*Chloride level in this specimen.(en)">
+				>
+				["at0078.4"] = <
+					text = <"Kalium">
+					description = <"*Potassium level in this specimen.(en)">
+				>
+				["at0078.4.1"] = <
+					text = <"*! - Potassium(en)">
+					description = <"*Potassium level in this specimen.(en)">
+				>
+				["at0078.5"] = <
+					text = <"Natrium">
+					description = <"*Sodium level in this specimen.(en)">
+				>
+				["at0078.5.1"] = <
+					text = <"*! - Sodium(en)">
+					description = <"*Sodium level in this specimen.(en)">
+				>
+				["at0078.7"] = <
+					text = <"Creatinin">
+					description = <"*Creatinine level in this specimen(en)">
+				>
+				["at0079"] = <
+					text = <"*Never performed(en)">
+					description = <"*The test was never performed.(en)">
+				>
+				["at0089"] = <
+					text = <"*Per-result annotation(en)">
+					description = <"*Slot to allow an annotation to be added to a particular test result at run-time.(en)">
+				>
+			>
+		>
+		["el"] = <
+			items = <
+				["at0000"] = <
+					text = <"Εργαστηριακή εξέταση">
+					description = <"*To record the result of a laboratory test which may be used to record a single valued test but will often be specialised or templated to represent multiple value or 'panel' tests.
+This archetype also acts as the parent for specialisations appropriate for more specific laboratory tests microbiology, histopathology.(en)">
+				>
+				["at0000.1"] = <
+					text = <"Ουρία και ηλεκτρολύτες">
+					description = <"Καταγραφή των τυπικών βιοχημικών δεικτών ουρίας και ηλεκτρολυτών.">
+				>
+				["at0000.1.1"] = <
+					text = <"*Fractional excretion of sodium (FENa)(en)">
+					description = <"*Fractional excretion of sodium (FENa) is the percentage of the sodium filtered by the kidney which is excreted in the urine. FENa helps distinguish between prerenal, intrinsic renal and postrenal causes of renal failure, and is widely used to differentiate prerenal disease (decreased renal perfusion) from acute tubular necrosis (ATN) as the cause of acute kidney injury (AKI). The calculation requires serum (sNa) and urine (uNa) sodium concentrations (mmol/L), and serum (sCr) and urine (uCr) creatinine concentrations (mg/dl). FENa < 1% and uNa < 20mmol/L suggests kidney injury of prerenal etiology; FENa > 1% and uNa > 40mmol/L suggests an intrinsic renal etiology; while FENa > 4% and uNa > 40mmol/L suggests a postrenal etiology.(en)">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"*@ internal @(en)">
+				>
+				["at0004"] = <
+					text = <"Tree">
+					description = <"*@ internal @(en)">
+				>
+				["at0005"] = <
+					text = <"Όνομα εργαστηριακής εξέτασης">
+					description = <"*Specific identifier for this lab test. e.g. Full blood count , blood glucose, urine microbiology.  May equate to the result name for a single value result. Commonly a coded term e.g from LOINC or SNOMED-CT.(en)">
+				>
+				["at0010"] = <
+					text = <"Προβολή μέσω πολυμέσων">
+					description = <"*Representations of the whole test in mutlimedia e.g image, audio, video.(en)">
+				>
+				["at0013"] = <
+					text = <"*Test identification(en)">
+					description = <"*Unique identifiers used in delivery of the care process.(en)">
+				>
+				["at0017"] = <
+					text = <"Λεπτομέρειες εργαστηρίου">
+					description = <"*Demographic details of the laboratory with responsibility for the test. Details of secondary laboratories may also be included.(en)">
+				>
+				["at0037"] = <
+					text = <"Προσωρινή">
+					description = <"*This is an initial or interim result - further updates are anticipated(en)">
+				>
+				["at0038"] = <
+					text = <"Τελική">
+					description = <"*This is the final result. No further alterations are anticipated(en)">
+				>
+				["at0039"] = <
+					text = <"Συμπληρωματική">
+					description = <"*This is a supplememtary result in addition to the Interim result(en)">
+				>
+				["at0040"] = <
+					text = <"Διορθώθηκε (τροποποιημένη)">
+					description = <"*This is a Correction which should replace any previous results(en)">
+				>
+				["at0057"] = <
+					text = <"Γενική ερμηνεία αποτελέσματος">
+					description = <"*An overall interpretative comment on this test.(en)">
+				>
+				["at0057.0.1"] = <
+					text = <"*! - Overall interpretation(en)">
+					description = <"*An overall interpretative comment on this test.(en)">
+				>
+				["at0062"] = <
+					text = <"*Placer order identifier(en)">
+					description = <"*The ID assigned to the order by the order requester. Equivalent to the NEHTA Requester Order Identifier.(en)">
+				>
+				["at0063"] = <
+					text = <"*Filler order Identifier(en)">
+					description = <"*The ID assigned to the test order by the order filler, usually by the (LIS) Laboratory Information System. Equivalent to the DICOM Accession Number and NEHTA Laboratory Request Identifier.(en)">
+				>
+				["at0065"] = <
+					text = <"Λεπτομέρειες δείγματος">
+					description = <"*Details of the specimen being reported where all individual results are derived from the same specimen(en)">
+				>
+				["at0068"] = <
+					text = <"*Laboratory test result identifier(en)">
+					description = <"*The identifier given to the laboratory test result of a pathology 
+investigation.(en)">
+				>
+				["at0073"] = <
+					text = <"Φάση εργαστηριακής εξέτασης">
+					description = <"*The status of the lab test as a whole.(en)">
+				>
+				["at0074"] = <
+					text = <"Ακυρώθηκε">
+					description = <"**(en)">
+				>
+				["at0075"] = <
+					description = <"*The date and/or time that the result was issued for the recorded 
+‘test status’. (en)">
+					text = <"Ημερομηνία και ώρα έκδοσης αποτελέσματος">
+					comment = <"*The date and time related to the results status is
+useful for version control and cumulative results for the report.(en)">
+				>
+				["at0077"] = <
+					text = <"Διαγνωστική υπηρεσία">
+					description = <"*The type of high-level diagnostic service e.g. biochemistry, haematology. (en)">
+				>
+				["at0078"] = <
+					text = <"Αποτέλεσμα">
+					description = <"*The result of the test.(en)">
+				>
+				["at0078.1"] = <
+					text = <"Ουρία">
+					description = <"*Urea level in this specimen.(en)">
+				>
+				["at0078.1.1"] = <
+					text = <"*Fractional excretion of sodium (FENa)(en)">
+					description = <"*(en)">
+				>
+				["at0078.2"] = <
+					text = <"Διτταναθρακικό">
+					description = <"*Bicarbonate level in this specimen.(en)">
+				>
+				["at0078.2.1"] = <
+					text = <"*! - Bicarbonate(en)">
+					description = <"*Bicarbonate level in this specimen.(en)">
+				>
+				["at0078.3"] = <
+					text = <"Χλώριο">
+					description = <"*Chloride level in this specimen.(en)">
+				>
+				["at0078.3.1"] = <
+					text = <"*! - Chloride(en)">
+					description = <"*Chloride level in this specimen.(en)">
+				>
+				["at0078.4"] = <
+					text = <"Κάλιο">
+					description = <"*Potassium level in this specimen.(en)">
+				>
+				["at0078.4.1"] = <
+					text = <"*! - Potassium(en)">
+					description = <"*Potassium level in this specimen.(en)">
+				>
+				["at0078.5"] = <
+					text = <"Νάτριο">
+					description = <"*Sodium level in this specimen.(en)">
+				>
+				["at0078.5.1"] = <
+					text = <"*! - Sodium(en)">
+					description = <"*Sodium level in this specimen.(en)">
+				>
+				["at0078.7"] = <
+					text = <"Κρεατινίνη">
+					description = <"*Creatinine level in this specimen(en)">
+				>
+				["at0079"] = <
+					text = <"Δεν έχει πραγματοποιηθεί">
+					description = <"*The test was never performed.(en)">
+				>
+				["at0089"] = <
+					text = <"*Per-result annotation(en)">
+					description = <"*Slot to allow an annotation to be added to a particular test result at run-time.(en)">
+				>
+			>
+		>
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Laboratory test">
+					description = <"To record the result of a laboratory test which may be used to record a single valued test but will often be specialised or templated to represent multiple value or 'panel' tests.
+This archetype also acts as the parent for specialisations appropriate for more specific laboratory tests microbiology, histopathology.">
+				>
+				["at0000.1"] = <
+					text = <"Urea and electrolytes">
+					description = <"To record a typical biochemistry urea and electrolytes panel.">
+				>
+				["at0000.1.1"] = <
+					text = <"Fractional excretion of sodium (FENa)">
+					description = <"Fractional excretion of sodium (FENa) is the percentage of the sodium filtered by the kidney which is excreted in the urine. FENa helps distinguish between prerenal, intrinsic renal and postrenal causes of renal failure, and is widely used to differentiate prerenal disease (decreased renal perfusion) from acute tubular necrosis (ATN) as the cause of acute kidney injury (AKI). The calculation requires serum (sNa) and urine (uNa) sodium concentrations (mmol/L), and serum (sCr) and urine (uCr) creatinine concentrations (umol/L or mg/dl). FENa < 1% and uNa < 20mmol/L suggests kidney injury of prerenal etiology; FENa > 1% and uNa > 40mmol/L suggests an intrinsic renal etiology; while FENa > 4% and uNa > 40mmol/L suggests a postrenal etiology.">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Test name">
+					description = <"Specific identifier for this lab test. e.g. Full blood count , blood glucose, urine microbiology. May equate to the result name for a single value result. Commonly a coded term e.g from LOINC or SNOMED-CT.">
+				>
+				["at0010"] = <
+					text = <"Multimedia representation">
+					description = <"Representations of the whole test in mutlimedia e.g image, audio, video.">
+				>
+				["at0013"] = <
+					text = <"Test identification">
+					description = <"Unique identifiers used in delivery of the care process.">
+				>
+				["at0017"] = <
+					text = <"Laboratory details  ">
+					description = <"Demographic details of the laboratory with responsibility for the test. Details of secondary laboratories may also be included.">
+				>
+				["at0037"] = <
+					text = <"Interim">
+					description = <"This is an initial or interim result - further updates are anticipated.">
+				>
+				["at0038"] = <
+					text = <"Final">
+					description = <"This is the final result. No further alterations are anticipated.">
+				>
+				["at0039"] = <
+					text = <"Supplementary">
+					description = <"This is a supplememtary result in addition to the Interim result.">
+				>
+				["at0040"] = <
+					text = <"Corrected (amended)">
+					description = <"This is a Correction which should replace any previous results.">
+				>
+				["at0057"] = <
+					text = <"Overall interpretation">
+					description = <"An overall interpretative comment on this test.">
+				>
+				["at0057.0.1"] = <
+					text = <"Comment">
+					description = <"Additional information about any of the recorded variables.">
+				>
+				["at0062"] = <
+					text = <"Placer order identifier">
+					description = <"The ID assigned to the order by the order requester. Equivalent to the NEHTA Requester Order Identifier.">
+				>
+				["at0063"] = <
+					text = <"Filler order Identifier">
+					description = <"The ID assigned to the test order by the order filler, usually by the (LIS) Laboratory Information System. Equivalent to the DICOM Accession Number and NEHTA Laboratory Request Identifier.">
+				>
+				["at0065"] = <
+					text = <"Specimen detail">
+					description = <"Details of the specimen being reported where all individual results are derived from the same specimen.">
+				>
+				["at0068"] = <
+					text = <"Laboratory test result identifier">
+					description = <"The identifier given to the laboratory test result of a pathology 
+investigation.">
+				>
+				["at0073"] = <
+					text = <"Test status">
+					description = <"The status of the lab test as a whole.">
+				>
+				["at0074"] = <
+					text = <"Aborted">
+					description = <"*">
+				>
+				["at0075"] = <
+					comment = <"The date and time related to the results status is
+useful for version control and cumulative results for the report.">
+					text = <"Datetime result issued">
+					description = <"The date and/or time that the result was issued for the recorded 
+‘test status’. ">
+				>
+				["at0077"] = <
+					text = <"Diagnostic service">
+					description = <"The type of high-level diagnostic service e.g. biochemistry, haematology. ">
+				>
+				["at0078"] = <
+					text = <"Result">
+					description = <"The result of the test.">
+				>
+				["at0078.1"] = <
+					text = <"Urea">
+					description = <"Urea level in this specimen.">
+				>
+				["at0078.1.1"] = <
+					text = <"Fractional excretion of sodium (FENa)">
+					description = <"Percentage of filtered sodium that is excreted in the urine.">
+				>
+				["at0078.2"] = <
+					text = <"Bicarbonate">
+					description = <"Bicarbonate level in this specimen.">
+				>
+				["at0078.2.1"] = <
+					text = <"urine Creatinine (uCr)">
+					description = <"Bicarbonate level in this specimen.">
+				>
+				["at0078.3"] = <
+					text = <"Chloride">
+					description = <"Chloride level in this specimen.">
+				>
+				["at0078.3.1"] = <
+					text = <"serum Creatinine (sCr)">
+					description = <"Creatinine level in this specimen">
+				>
+				["at0078.4"] = <
+					text = <"Potassium">
+					description = <"Potassium level in this specimen.">
+				>
+				["at0078.4.1"] = <
+					text = <"urine Sodium (uNa)">
+					description = <"Sodium level in this specimen.">
+				>
+				["at0078.5"] = <
+					text = <"Sodium">
+					description = <"Sodium level in this specimen.">
+				>
+				["at0078.5.1"] = <
+					text = <"serum Sodium (sNa)">
+					description = <"Sodium level in this specimen.">
+				>
+				["at0078.7"] = <
+					text = <"Creatinine">
+					description = <"Creatinine level in this specimen">
+				>
+				["at0079"] = <
+					text = <"Never performed">
+					description = <"The test was never performed.">
+				>
+				["at0089"] = <
+					text = <"Per-result annotation">
+					description = <"Slot to allow an annotation to be added to a particular test result at run-time.">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Laboratorietest">
+					description = <"För att registrera resultatet av ett laboratorietest. Kan användas för att registrera ett enskilt värde för ett provresultat men kommer ofta bli specialiserad eller inkluderad i en template för att representera multipla provresultat eller s.k. 'testpaneler'. Denna arketyp kan även fungera som mall för specialiseringar för mer specifika laboratorieprover så som mikrobiologi eller histopatologi.">
+				>
+				["at0000.1"] = <
+					text = <"Urea och elektrolyter">
+					description = <"För registrering av en typisk provsvarspanel innehållande urea och elektrolyter. ">
+				>
+				["at0000.1.1"] = <
+					text = <"Natriumutsöndring (Fractional excretion of sodium - FENa)">
+					description = <"*Fractional excretion of sodium (FENa) is the percentage of the sodium filtered by the kidney which is excreted in the urine. FENa helps distinguish between prerenal, intrinsic renal and postrenal causes of renal failure, and is widely used to differentiate prerenal disease (decreased renal perfusion) from acute tubular necrosis (ATN) as the cause of acute kidney injury (AKI). The calculation requires serum (sNa) and urine (uNa) sodium concentrations (mmol/L), and serum (sCr) and urine (uCr) creatinine concentrations (mg/dl). FENa < 1% and uNa < 20mmol/L suggests kidney injury of prerenal etiology; FENa > 1% and uNa > 40mmol/L suggests an intrinsic renal etiology; while FENa > 4% and uNa > 40mmol/L suggests a postrenal etiology.(en)">
+				>
+				["at0001"] = <
+					text = <"Händelseförlopp">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Händelse">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Träd">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Träd">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Testnamn">
+					description = <"Specifikt namn för detta laboratorietest. Exempelvis generell blodpanel, B-glukos eller mikrobiologi urinodling. Kan vara namnet för det enskilda provet. Vanligen en kodad term från exempelvis LOINC eller SNOMED-CT.">
+				>
+				["at0010"] = <
+					text = <"Multimedia">
+					description = <"Visning av hela testet i multimediaform - exempelvis bild, ljud eller video.">
+				>
+				["at0013"] = <
+					text = <"Test ID">
+					description = <"Unik identifikation av testet som används av vårdgivaren.">
+				>
+				["at0017"] = <
+					text = <"Detaljer om laboratoriet">
+					description = <"Demografisk information om det laboratorium som är ansvariga för provanalysen. Detaljer om sekundära laboratorier kan också inkluderas. ">
+				>
+				["at0037"] = <
+					text = <"Delresultat">
+					description = <"Detta är ett initialt resultat alternativt ett delresultat - framtida uppdatering förväntas ske. ">
+				>
+				["at0038"] = <
+					text = <"Slutgiltigt">
+					description = <"Detta är ett slutgiltigt provresultat - inga framtida förändringar eller uppdateringar förväntas ske.">
+				>
+				["at0039"] = <
+					text = <"Kompletterande">
+					description = <"Detta är ett kompletterande svar till ett tidigare delresultat.">
+				>
+				["at0040"] = <
+					text = <"Korrigerat">
+					description = <"Detta är ett korrigerat resultat som ersätter tidigare svar.">
+				>
+				["at0057"] = <
+					text = <"Allmän tolkning">
+					description = <"En övergripande tolkning av provresultatet.">
+				>
+				["at0057.0.1"] = <
+					text = <"Sammanfattande tolkning">
+					description = <"Sammanfattande tolkning av provsvar, i text">
+				>
+				["at0062"] = <
+					text = <"Order ID beställare">
+					description = <"ID som tilldelats provbeställningen av beställaren. Motsvarar NEHTA Requester Order Identifier.">
+				>
+				["at0063"] = <
+					text = <"Order ID mottagare">
+					description = <"ID som tilldelats provbeställningen av mottagaren, vanligtvis görs detta av Laboratory Information System (LIS). Motsvarar DICOM Accession Number och NEHTA Laboratory Request Identifier.">
+				>
+				["at0065"] = <
+					text = <"Provdetaljer">
+					description = <"Detaljer rörande det aktuella provexemplaret som skickats där alla individuella resultat härstammar från samma provmaterial.">
+				>
+				["at0068"] = <
+					text = <"Laboratorietest ID">
+					description = <"ID som givits till laboratorietestresultatet under utredning för misstänkt patologi.">
+				>
+				["at0073"] = <
+					text = <"Teststatus">
+					description = <"Status för laboratorietestet.">
+				>
+				["at0074"] = <
+					text = <"Avbrutet">
+					description = <"*">
+				>
+				["at0075"] = <
+					description = <"Datum och tid när provresultatet publicerades.">
+					text = <"Datum och tid för provsvar ">
+					comment = <"*The date and time related to the results status is
+useful for version control and cumulative results for the report.(en)">
+				>
+				["at0077"] = <
+					text = <"Diagnostisk tjänst">
+					description = <"Typ av högspecialiserad diagnostisk tjänst - exempelvis biokemi eller hematologi.">
+				>
+				["at0078"] = <
+					text = <"Resultat">
+					description = <"Resultatet av provet.">
+				>
+				["at0078.1"] = <
+					text = <"Urea">
+					description = <"Ureanivån i detta provexemplar.">
+				>
+				["at0078.1.1"] = <
+					text = <"Natriumutsöndring (FENa)">
+					description = <"Natriumutsöndring - Fractional Excretion of Sodium, FENa">
+				>
+				["at0078.2"] = <
+					text = <"Bikarbonat">
+					description = <"Bikarbonatnivå i detta provexemplar.">
+				>
+				["at0078.2.1"] = <
+					text = <"Bikarbonat">
+					description = <"Koncentration bikarbonat">
+				>
+				["at0078.3"] = <
+					text = <"Klorid">
+					description = <"Kloridnivå i detta provexemplar.">
+				>
+				["at0078.3.1"] = <
+					text = <"Klorid">
+					description = <"Koncentration klorid">
+				>
+				["at0078.4"] = <
+					text = <"Kalium">
+					description = <"Kaliumnivå i detta provexemplar.">
+				>
+				["at0078.4.1"] = <
+					text = <"Kalium">
+					description = <"Koncentration kalium, angivet i mmol/l">
+				>
+				["at0078.5"] = <
+					text = <"Natrium">
+					description = <"Natriumnivå i detta provexemplar.">
+				>
+				["at0078.5.1"] = <
+					text = <"Natrium">
+					description = <"Koncentration natrium, angivet i mmol/l">
+				>
+				["at0078.7"] = <
+					text = <"Kreatinin">
+					description = <"Kreatininnivå i detta provexemplar.">
+				>
+				["at0079"] = <
+					text = <"Aldrig utfört">
+					description = <"Detta test har aldrig utförts.">
+				>
+				["at0089"] = <
+					text = <"Kommentar om provresultatet">
+					description = <"Särskilt utrymme avsatt för att möjliggöra kommentering av provet och kan skrivas in under körtiden.">
+				>
+			>
+		>
+		["si"] = <
+			items = <
+				["at0000"] = <
+					text = <"Laboratory test">
+					description = <"To record the result of a laboratory test which may be used to record a single valued test but will often be specialised or templated to represent multiple value or 'panel' tests.
+This archetype also acts as the parent for specialisations appropriate for more specific laboratory tests microbiology, histopathology.">
+				>
+				["at0000.1"] = <
+					text = <"යූරියා හා ලවණ">
+					description = <"To record a typical biochemistry Urea and electrolytes panel.">
+				>
+				["at0000.1.1"] = <
+					text = <"*Fractional excretion of sodium (FENa)(en)">
+					description = <"*Fractional excretion of sodium (FENa) is the percentage of the sodium filtered by the kidney which is excreted in the urine. FENa helps distinguish between prerenal, intrinsic renal and postrenal causes of renal failure, and is widely used to differentiate prerenal disease (decreased renal perfusion) from acute tubular necrosis (ATN) as the cause of acute kidney injury (AKI). The calculation requires serum (sNa) and urine (uNa) sodium concentrations (mmol/L), and serum (sCr) and urine (uCr) creatinine concentrations (mg/dl). FENa < 1% and uNa < 20mmol/L suggests kidney injury of prerenal etiology; FENa > 1% and uNa > 40mmol/L suggests an intrinsic renal etiology; while FENa > 4% and uNa > 40mmol/L suggests a postrenal etiology.(en)">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Test name">
+					description = <"Specific identifier for this lab test. e.g. Full blood count , blood glucose, urine microbiology.  May equate to the result name for a single value result. Commonly a coded term e.g from LOINC or SNOMED-CT.">
+				>
+				["at0010"] = <
+					text = <"Multimedia representation">
+					description = <"Representations of the whole test in mutlimedia e.g image, audio, video.">
+				>
+				["at0013"] = <
+					text = <"Test identification">
+					description = <"Unique identifiers used in delivery of the care process.">
+				>
+				["at0017"] = <
+					text = <"Laboratory details  ">
+					description = <"Demographic details of the laboratory with responsibility for the test. Details of secondary laboratories may also be included.">
+				>
+				["at0037"] = <
+					text = <"Interim">
+					description = <"This is an initial or interim result - further updates are anticipated">
+				>
+				["at0038"] = <
+					text = <"Final">
+					description = <"This is the final result. No further alterations are anticipated">
+				>
+				["at0039"] = <
+					text = <"Supplementary">
+					description = <"This is a supplememtary result in addition to the Interim result">
+				>
+				["at0040"] = <
+					text = <"Corrected (amended)">
+					description = <"This is a Correction which should replace any previous results">
+				>
+				["at0057"] = <
+					text = <"Overall interpretation">
+					description = <"An overall interpretative comment on this test.">
+				>
+				["at0057.0.1"] = <
+					text = <"*! - Overall interpretation(en)">
+					description = <"*An overall interpretative comment on this test.(en)">
+				>
+				["at0062"] = <
+					text = <"Placer order identifier">
+					description = <"The ID assigned to the order by the order requester. Equivalent to the NEHTA Requester Order Identifier.">
+				>
+				["at0063"] = <
+					text = <"Filler order Identifier">
+					description = <"The ID assigned to the test order by the order filler, usually by the (LIS) Laboratory Information System. Equivalent to the DICOM Accession Number and NEHTA Laboratory Request Identifier.">
+				>
+				["at0065"] = <
+					text = <"Specimen detail">
+					description = <"Details of the specimen being reported where all individual results are derived from the same specimen">
+				>
+				["at0068"] = <
+					text = <"Laboratory test result identifier">
+					description = <"The identifier given to the laboratory test result of a pathology 
+investigation.">
+				>
+				["at0073"] = <
+					text = <"Test status">
+					description = <"The status of the lab test as a whole.">
+				>
+				["at0074"] = <
+					text = <"Aborted">
+					description = <"*">
+				>
+				["at0075"] = <
+					description = <"The date and/or time that the result was issued for the recorded 
+‘test status’. ">
+					text = <"Datetime result issued">
+					comment = <"The date and time related to the results status is
+useful for version control and cumulative results for the report.">
+				>
+				["at0077"] = <
+					text = <"Diagnostic service">
+					description = <"The type of high-level diagnostic service e.g. biochemistry, haematology. ">
+				>
+				["at0078"] = <
+					text = <"Result">
+					description = <"The result of the test.">
+				>
+				["at0078.1"] = <
+					text = <"Urea">
+					description = <"Urea level in this specimen.">
+				>
+				["at0078.1.1"] = <
+					text = <"*Fractional excretion of sodium (FENa)(en)">
+					description = <"*(en)">
+				>
+				["at0078.2"] = <
+					text = <"Bicarbonate">
+					description = <"Bicarbonate level in this specimen.">
+				>
+				["at0078.2.1"] = <
+					text = <"*! - Bicarbonate(en)">
+					description = <"*Bicarbonate level in this specimen.(en)">
+				>
+				["at0078.3"] = <
+					text = <"Chloride">
+					description = <"Chloride level in this specimen.">
+				>
+				["at0078.3.1"] = <
+					text = <"*! - Chloride(en)">
+					description = <"*Chloride level in this specimen.(en)">
+				>
+				["at0078.4"] = <
+					text = <"Potassium">
+					description = <"Potassium level in this specimen.">
+				>
+				["at0078.4.1"] = <
+					text = <"*! - Potassium(en)">
+					description = <"*Potassium level in this specimen.(en)">
+				>
+				["at0078.5"] = <
+					text = <"Sodum">
+					description = <"Sodium level in this specimen.">
+				>
+				["at0078.5.1"] = <
+					text = <"*! - Sodium(en)">
+					description = <"*Sodium level in this specimen.(en)">
+				>
+				["at0078.7"] = <
+					text = <"Creatinine">
+					description = <"Creatinine level in this specimen">
+				>
+				["at0079"] = <
+					text = <"Never performed">
+					description = <"The test was never performed.">
+				>
+				["at0089"] = <
+					text = <"Per-result annotation">
+					description = <"Slot to allow an annotation to be added to a particular test result at run-time.">
+				>
+			>
+		>
+	>
