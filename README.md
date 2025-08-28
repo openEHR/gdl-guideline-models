@@ -1630,7 +1630,7 @@ _Select a medical specialty below to view the available apps._
 * tPA Contraindications for Ischemic Stroke - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/tPA_Contraindications_for_Ischemic_Stroke_guideline/0?language=en))
 -----------
 
-### CDS App Challenge 2023 submissions
+### CDS App Challenge 2023 - 2024 submissions
 
 ----------
 * ISWT (Incremental Shuttle Walk Test)  - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISWT/16.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISWT/16.1?language=sv))
