@@ -1,0 +1,114 @@
+archetype (adl_version=1.4; uid=c78f4403-e3c8-4e35-b633-1bdfb5573c7e)
+	openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-02-27">
+		["name"] = <"Umiah Gohar">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"umiah.gohar@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the diagnostic result based on Rome IV diagnostic criteria.">
+			keywords = <"Rome iv","diagnostic","criteria","assessment","result">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter for the  Rome IV diagnostic criteria.">
+			misuse = <"Not to be used for recording information regarding the Rome III diagnostic criteria. ">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Drossman, D. A., et al. (2016). Rome IV Diagnostic Criteria for Functional Gastrointestinal Disorders. Gastroenterology.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"a44f4939acd1fd4a1911755c88f19ed3">
+		["build_uid"] = <"55732e2c-84cb-3d73-9112-15e9bd654234">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Rome IV diagnostic criteria assessment
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0008] occurrences matches {0..1} matches {    -- Diagnostic Result
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0009,    -- Negative
+									at0010]    -- Positive
+								}
+							}
+						}
+					}
+					ELEMENT[at0011] occurrences matches {0..1} matches {    -- Comments
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0002] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0003] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Rome IV diagnostic criteria assessment">
+					description = <"An assessment criteria used to evaluate the diagnostic results based on Rome IV diagnostic criteria.">
+					comment = <"Original version, c 2016">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0008"] = <
+					text = <"Diagnostic Result">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Negative">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Positive">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Comments">
+					description = <"">
+				>
+			>
+		>
+	>

@@ -1,0 +1,173 @@
+archetype (adl_version=1.4; uid=ace5e761-f70f-4c71-98e7-9194280b7682)
+	openEHR-EHR-OBSERVATION.ball_score.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-08-05">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the specific clinical and laboratory parameters required to calculate the BALL score.">
+			keywords = <"ball, score, cll, leukemia, refractory, relapsed, chemoimmunotherapy, prognosis, response", ...>
+			copyright = <"© Cambio CDS">
+			use = <"In patients with relapsed or refractory Chronic Lymphocytic Leukemia (CLL) being considered for chemoimmunotherapy, to estimate the probability of treatment response.">
+			misuse = <"Not to be used for storing individual lab results outside the context of this score; use dedicated archetypes such as openEHR-EHR-OBSERVATION.lab_test-serology.v0 for β2-microglobulin or openEHR-EHR-OBSERVATION.lab_test-chemistry.v0 for LDH instead.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Soumerai JD, Ni A, Darif M, Londhe A, Xing G, Mun Y, Kay NE, Shanafelt TD, Rabe KG, Byrd JC, Chanan-Khan AA, Furman RR, Hillmen P, Jones J, Seymour JF, Sharman JP, Ferrante L, Mobasher M, Stark T, Reddy V, Dreiling LK, Bhargava P, Howes A, James DF, Zelenetz AD. Prognostic risk score for patients with relapsed or refractory chronic lymphocytic leukaemia treated with targeted therapies or chemoimmunotherapy: a retrospective, pooled cohort study with external validations. Lancet Haematol. 2019 Jul;6(7):e366-e374. doi: 10.1016/S2352-3026(19)30085-7. Epub 2019 May 17. Erratum in: Lancet Haematol. 2019 Jul;6(7):e348. doi: 10.1016/S2352-3026(19)30116-4. PMID: 31109827; PMCID: PMC6620111.
+
+Molica S, Baumann TS, Lentini M, Levato L, Delgado J, Montserrat E. The BALL prognostic score identifies relapsed/refractory CLL patients who benefit the most from single-agent ibrutinib therapy. Leuk Res. 2020 Aug;95:106401. doi: 10.1016/j.leukres.2020.106401. Epub 2020 Jun 10. PMID: 32562875.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"0725a54fe3f0430522be008afa22529f">
+		["build_uid"] = <"d7f5c2f2-896a-37f2-89ff-3400903c23a4">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- BALL Score
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- β2-microglobulin
+										value matches {
+											0|[local::at0007],
+											1|[local::at0008]
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Anemia
+										value matches {
+											0|[local::at0010],
+											1|[local::at0011]
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- LDH
+										value matches {
+											0|[local::at0013],
+											1|[local::at0014]
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Last therapy
+										value matches {
+											0|[local::at0016],
+											1|[local::at0017]
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"BALL Score">
+					description = <"Records the clinical parameters used to calculate the BALL score, which predicts the likelihood of achieving a complete response (CR) to chemoimmunotherapy in patients with relapsed or refractory Chronic Lymphocytic Leukemia (CLL).">
+					comment = <"Original version, c 2019">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"β2-microglobulin">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"< 5 mg/dL">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"≥ 5 mg/dL">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Anemia">
+					description = <"Hgb <12 g/dL (<120 g/L) for men; <11 g/dL (<110 g/L) for women">
+				>
+				["at0010"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"LDH">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"≤ Upper limit of normal">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"> Upper limit of normal">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Last therapy">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"≥ 24 months">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"< 24 months">
+					description = <"">
+				>
+			>
+		>
+	>

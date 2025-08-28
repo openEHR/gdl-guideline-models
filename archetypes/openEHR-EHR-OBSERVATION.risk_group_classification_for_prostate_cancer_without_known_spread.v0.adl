@@ -1,0 +1,347 @@
+archetype (adl_version=1.4; uid=1ef0a8bb-51ce-4230-978e-ce1bc35b05a8)
+	openEHR-EHR-OBSERVATION.risk_group_classification_for_prostate_cancer_without_known_spread.v0
+
+concept
+	[at0000]	-- Risk group classification for prostate cancer without known spread.
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Kevin Arjona">
+		["email"] = <"kevin.arjona@cambio.se">
+		["organisation"] = <"Cambio CDS">
+		["date"] = <"2025-07-15">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the necessary input parameters (T-stage, Gleason score, PSA) and the resulting risk group classification for patients with localized prostate cancer.">
+			use = <"Use to document the risk factors in patients with prostate cancer confirmed to be without distant metastases to determine the patient's risk group ">
+			keywords = <"prostate, cancer, risk, classification, T-stage, Gleason, score, ISUP, PSA, RCC, national guidelines, TNM.", ...>
+			misuse = <"Not to be used for patients with known metastatic disease, recurrent prostate cancer after primary treatment, or for assessing the risk of other types of cancer. Do not use if any of the mandatory input parameters are unknown.">
+			copyright = <"© Cambio CDS">
+		>
+	>
+	lifecycle_state = <"NotSet">
+	other_contributors = <>
+	other_details = <
+		["original_publisher"] = <"openEHR Foundation">
+		["build_uid"] = <"dd51d5cb-6665-4466-967c-c597dab2b3b7">
+		["original_namespace"] = <"org.openehr">
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["references"] = <"Zumsteg ZS, Spratt DE, Pei I, Zhang Z, Yamada Y, Kollmeier M, Zelefsky MJ. A new risk classification system for therapeutic decision making with intermediate-risk prostate cancer patients undergoing dose-escalated external-beam radiation therapy. Eur Urol. 2013 Dec;64(6):895-902. doi: 10.1016/j.eururo.2013.03.033. Epub 2013 Mar 23. PMID: 23541457.
+
+Gnanapragasam VJ, Bratt O, Muir K, Lee LS, Huang HH, Stattin P, Lophatananon A. The Cambridge Prognostic Groups for improved prediction of disease mortality at diagnosis in primary non-metastatic prostate cancer: a validation study. BMC Med. 2018 Feb 28;16(1):31. doi: 10.1186/s12916-018-1019-5. PMID: 29490658; PMCID: PMC5831573.
+
+">
+		["MD5-CAM-1.0.1"] = <"D271A6EF28DF9C0C576CF75C42E11A72">
+		["custodian_namespace"] = <"org.openehr">
+		["custodian_organisation"] = <"openEHR Foundation">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Risk group classification for prostate cancer without known spread.
+		data matches {
+			HISTORY[at0001] matches {	-- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {	-- T-stage
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0008, 	-- T1-T2a
+													at0009, 	-- T2b/T2c
+													at0010, 	-- T3a
+													at0011, 	-- T3b/T4
+													at0035]	-- T1c
+												}
+											}
+										}
+									}
+									ELEMENT[at0039] occurrences matches {0..1} matches {	-- Strong suspicion of extraprostatic growth on MRI (EPE/SVI 5)
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0040, 	-- Yes
+													at0041]	-- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {	-- Gleason score
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0013, 	-- 6 (ISUP 1)
+													at0014, 	-- 7 (3+4) (ISUP 2)
+													at0015, 	-- 7 (4+3) (ISUP 3)
+													at0016, 	-- 8 (ISUP 4)
+													at0017]	-- 9-10 (ISUP 5)
+												}
+											}
+										}
+									}
+									ELEMENT[at0036] occurrences matches {0..1} matches {	-- Histological findings ≤ 8 mm cancer in total in 1–4 of 8–12 systematic biopsy cores
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0037, 	-- Yes
+													at0038]	-- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {	-- Gleason score consistent in more than half of biopsy specimens
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0024, 	-- Yes
+													at0025]	-- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0042] occurrences matches {0..1} matches {	-- PSA
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0043, 	-- < 10 µg/l
+													at0044, 	-- 10–19 µg/l
+													at0045, 	-- 20–39 µg/l
+													at0046]	-- ≥ 40 µg/l
+												}
+											}
+										}
+									}
+									ELEMENT[at0032] occurrences matches {0..1} matches {	-- PSA density < 0.15 ug/l/cm3
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0033, 	-- Yes
+													at0034]	-- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0023] occurrences matches {0..1} matches {	-- Risk group classification
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0026, 	-- Very low risk
+													at0027, 	-- Low risk
+													at0028, 	-- Favorable intermediate risk
+													at0029, 	-- Unfavorable intermediate risk
+													at0030, 	-- High risk
+													at0031]	-- Very high risk
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {	-- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {	-- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Risk group classification for prostate cancer without known spread.">
+					description = <"Records the clinical parameters required to classify the risk group for newly diagnosed, localized prostate cancer according to the Swedish National Guidelines (Regionala cancercentrum i samverkan).">
+					comment = <"Original version, c 2022. ">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"T-stage">
+					description = <"The clinical T-stage of the prostate tumor.">
+					comment = <"T-stage is categorized solely by palpation, but MRI findings should be considered when choosing treatment.">
+				>
+				["at0008"] = <
+					text = <"T1-T2a">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"T2b/T2c">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"T3a">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"T3b/T4">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Gleason score">
+					description = <"The Gleason score from the diagnostic biopsy, with corresponding ISUP Grade Group.">
+				>
+				["at0013"] = <
+					text = <"6 (ISUP 1)">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"7 (3+4) (ISUP 2)">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"7 (4+3) (ISUP 3)">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"8 (ISUP 4)">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"9-10 (ISUP 5)">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"Gleason score consistent in more than half of biopsy specimens">
+					description = <"The total number of biopsy cores that are positive for cancer with a Gleason score.">
+				>
+				["at0023"] = <
+					text = <"Risk group classification">
+					description = <"The final risk group as determined by the combination of T-stage, Gleason score, and PSA.">
+				>
+				["at0024"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"Very low risk">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"Low risk">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"Favorable intermediate risk">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"Unfavorable intermediate risk">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"High risk">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"Very high risk">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"PSA density < 0.15 ug/l/cm3">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"T1c">
+					description = <"*">
+				>
+				["at0036"] = <
+					text = <"Histological findings ≤ 8 mm cancer in total in 1–4 of 8–12 systematic biopsy cores">
+					description = <"*">
+				>
+				["at0037"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0038"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0039"] = <
+					text = <"Strong suspicion of extraprostatic growth on MRI (EPE/SVI 5)">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0041"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0042"] = <
+					text = <"PSA">
+					description = <"*">
+				>
+				["at0043"] = <
+					text = <"< 10 µg/l">
+					description = <"*">
+				>
+				["at0044"] = <
+					text = <"10–19 µg/l">
+					description = <"*">
+				>
+				["at0045"] = <
+					text = <"20–39 µg/l">
+					description = <"*">
+				>
+				["at0046"] = <
+					text = <"≥ 40 µg/l">
+					description = <"*">
+				>
+			>
+		>
+	>

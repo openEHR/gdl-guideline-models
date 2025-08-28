@@ -1,0 +1,384 @@
+archetype (adl_version=1.4; uid=cd5f63ee-7339-420f-abc2-a87f91c531b3)
+	openEHR-EHR-OBSERVATION.gds_15.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-06-17">
+		["name"] = <"Aurelia Maria Ozora">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"aurelia.maria.ozora@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and the score for the GDS-15.">
+			keywords = <"geriatric, depression, scale, 15, gds, screening", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and the score for the GDS-15.">
+			misuse = <"Not to be used for recording information related to GDS-30.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Yesavage JA, Brink TL, Rose TL, Lum O, Huang V, Adey M, Leirer VO. Development and validation of a geriatric depression screening scale: a preliminary report. J Psychiatr Res. 1982-1983;17(1):37-49. doi: 10.1016/0022-3956(82)90033-4. PMID: 7183759.
+
+Almeida OP, Almeida SA. Short versions of the geriatric depression scale: a study of their validity for the diagnosis of a major depressive episode according to ICD-10 and DSM-IV. Int J Geriatr Psychiatry. 1999 Oct;14(10):858-65. doi: 10.1002/(sici)1099-1166(199910)14:10<858::aid-gps35>3.0.co;2-8. PMID: 10521885.
+
+Shin C, Park MH, Lee SH, Ko YH, Kim YK, Han KM, Jeong HG, Han C. Usefulness of the 15-item geriatric depression scale (GDS-15) for classifying minor and major depressive disorders among community-dwelling elders. J Affect Disord. 2019 Dec 1;259:370-375. doi: 10.1016/j.jad.2019.08.053. Epub 2019 Aug 20. PMID: 31470180.">
+		["revision"] = <"1">
+		["build_uid"] = <"2f87b7c4-7aee-337e-8028-50a71ab0424b">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Geriatric Depression Scale 15 (GDS-15)
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Are you basically satisfied with your life?
+										value matches {
+											0|[local::at0022],
+											1|[local::at0023]
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Have you dropped many of your activities and interests?
+										value matches {
+											0|[local::at0024],
+											1|[local::at0025]
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Do you feel that your life is empty?
+										value matches {
+											0|[local::at0026],
+											1|[local::at0027]
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Do you often get bored?
+										value matches {
+											0|[local::at0028],
+											1|[local::at0029]
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Are you in good spirits most of the time?
+										value matches {
+											0|[local::at0030],
+											1|[local::at0031]
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Are you afraid that something bad is going to happen to you?
+										value matches {
+											0|[local::at0032],
+											1|[local::at0033]
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Do you feel happy most of the time?
+										value matches {
+											0|[local::at0034],
+											1|[local::at0035]
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- Do you often feel helpless?
+										value matches {
+											0|[local::at0036],
+											1|[local::at0037]
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Do you prefer to stay at home, rather than going out and doing new things?
+										value matches {
+											0|[local::at0038],
+											1|[local::at0039]
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Do you feel you have more problems with memory than most?
+										value matches {
+											0|[local::at0040],
+											1|[local::at0041]
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Do you think it is wonderful to be alive now?
+										value matches {
+											0|[local::at0042],
+											1|[local::at0043]
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Do you feel pretty worthless the way you are now?
+										value matches {
+											0|[local::at0044],
+											1|[local::at0045]
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Do you feel full of energy?
+										value matches {
+											0|[local::at0046],
+											1|[local::at0047]
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {    -- Do you feel that your situation is hopeless?
+										value matches {
+											0|[local::at0048],
+											1|[local::at0049]
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {    -- Do you think that most people are better off than you are?
+										value matches {
+											0|[local::at0050],
+											1|[local::at0051]
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											DV_COUNT matches {
+												magnitude matches {|0..15|}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Geriatric Depression Scale 15 (GDS-15)">
+					description = <"The 15-item Geriatric Depression Scale (GDS-15) is a shortened version of the original GDS, designed to screen for, assess, and help diagnose depression in older adults. In addition to screening, the GDS-15 can be useful for monitoring depressive symptoms and evaluating the effectiveness of treatment over time.">
+					comment = <"Original version, c 1982.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Are you basically satisfied with your life?">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Have you dropped many of your activities and interests?">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Do you feel that your life is empty?">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Do you often get bored?">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Are you in good spirits most of the time?">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Are you afraid that something bad is going to happen to you?">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Do you feel happy most of the time?">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Do you often feel helpless?">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Do you prefer to stay at home, rather than going out and doing new things?">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Do you feel you have more problems with memory than most?">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Do you think it is wonderful to be alive now?">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Do you feel pretty worthless the way you are now?">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Do you feel full of energy?">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Do you feel that your situation is hopeless?">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Do you think that most people are better off than you are?">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Total score">
+					description = <"Total score of the GDS-15.">
+				>
+				["at0022"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0043"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0044"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0045"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0046"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0047"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0048"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0049"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0050"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0051"] = <
+					text = <"Yes">
+					description = <"">
+				>
+			>
+		>
+	>

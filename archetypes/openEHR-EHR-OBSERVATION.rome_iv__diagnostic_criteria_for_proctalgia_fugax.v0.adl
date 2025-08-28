@@ -1,0 +1,136 @@
+archetype (adl_version=1.4; uid=68e12b00-7e5b-4c96-882d-ab0f81a9c695)
+	openEHR-EHR-OBSERVATION.rome_iv__diagnostic_criteria_for_proctalgia_fugax.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-03-19">
+		["name"] = <"Umiah Gohar">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"umiah.gohar@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter based on Rome IV diagnostic criteria.">
+			keywords = <"Rome","iv","diagnostic","criteria","functional">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter for the Rome IV diagnostic criteria.">
+			misuse = <"Not to be used for recording information regarding the Rome III diagnostic criteria.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Rao SS, Bharucha AE, Chiarioni G, Felt-Bersma R, Knowles C, Malcolm A, Wald A. Functional Anorectal Disorders. Gastroenterology. 2016 Mar 25:S0016-5085(16)00175-X 10.1053/j.gastro.2016.02.009. doi: 10.1053/j.gastro.2016.02.009. Epub ahead of print. PMID: 27144630; PMCID: PMC5035713.
+
+Bharucha AE, Lee TH. Anorectal and Pelvic Pain. Mayo Clin Proc. 2016 Oct;91(10):1471-1486. doi: 10.1016/j.mayocp.2016.08.011. PMID: 27712641; PMCID: PMC5123821.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"fdf71baa-67bf-3d6b-a82d-e31a1f978930">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Rome IV Diagnostic Criteria for Proctalgia Fugax
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Recurrent episodes of pain localized to the rectum and unrelated to defecation
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Episodes last from seconds to minutes, with a maximum duration of 30 minutes
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- There is no anorectal pain between episodes
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Exclusion of other causes of rectal pain, such as inflammatory bowel disease, intramuscular abscess and fissure, thrombosed hemorrhoids, prostatitis, coccygodynia, and major structural alterations of the pelvic floor
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0008] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0009] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Rome IV Diagnostic Criteria for Proctalgia Fugax">
+					description = <"An assessment criteria used to diagnose Proctalgia Fugax.">
+					comment = <"Original version, c 2016">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Recurrent episodes of pain localized to the rectum and unrelated to defecation">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Episodes last from seconds to minutes, with a maximum duration of 30 minutes">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"There is no anorectal pain between episodes">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Exclusion of other causes of rectal pain, such as inflammatory bowel disease, intramuscular abscess and fissure, thrombosed hemorrhoids, prostatitis, coccygodynia, and major structural alterations of the pelvic floor">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0009"] = <
+					text = <"Extension">
+					description = <"After appropriate evaluation, the symptoms cannot be fully explained by another medical condition.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>

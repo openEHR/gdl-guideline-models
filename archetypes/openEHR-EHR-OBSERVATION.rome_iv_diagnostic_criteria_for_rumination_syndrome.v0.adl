@@ -1,0 +1,172 @@
+archetype (adl_version=1.4; uid=1a1b9a38-00dc-484e-b55a-a8b10eeb5c06)
+	openEHR-EHR-OBSERVATION.rome_iv_diagnostic_criteria_for_rumination_syndrome.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-02-28">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To establish a structured diagnostic framework for Rumination Syndrome in clinical practice, guiding assessment and differentiation from other upper gastrointestinal disorders.">
+			keywords = <"rumination Syndrome, rome IV criteria, functional GI disorder, postprandial regurgitation, behavioral therapy", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to document the symptoms acording to the Rome IV Diagnostic Criteria for Rumination Syndrome
+">
+			misuse = <"Should not be used to document symptoms in patients with mechanical obstruction, GERD, or eating disorders.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Stanghellini V, Chan FK, Hasler WL, Malagelada JR, Suzuki H, Tack J, Talley NJ. Gastroduodenal Disorders. Gastroenterology. 2016 May;150(6):1380-92. doi: 10.1053/j.gastro.2016.02.011. PMID: 27147122.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"a6f86eb59924dadc7a383c1c6b4ae9cf">
+		["build_uid"] = <"ba30b1c8-a082-3f33-8808-72b9a357b07e">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Rome IV Diagnostic Criteria for Rumination Syndrome
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Persistent or recurrent regurgitation of recently ingested food into the mouth with subsequent spitting or remastication and swallowing
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0008,    -- Yes
+													at0009]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Regurgitation is not preceded by retching
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0010,    -- Yes
+													at0011]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Diagnostic Result
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0013,    -- Positive
+													at0014]    -- Negative
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0006] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0016] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Rome IV Diagnostic Criteria for Rumination Syndrome">
+					description = <"Rumination Syndrome is a functional gastrointestinal disorder characterized by the effortless regurgitation of recently ingested food, which may be re-chewed, re-swallowed, or spit out. The Rome IV criteria provide a standardized approach to diagnosis based on symptomatology and exclusion of other disorders.">
+					comment = <"Original version, c 2016">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Persistent or recurrent regurgitation of recently ingested food into the mouth with subsequent spitting or remastication and swallowing">
+					description = <"Persistent or recurrent regurgitation of recently ingested food into the mouth with subsequent spitting or remastication and swallowing
+">
+					comment = <"For 3 months prior with symptom onset ≥6 months ago">
+				>
+				["at0005"] = <
+					text = <"Regurgitation is not preceded by retching">
+					description = <"Regurgitation is not preceded by retching">
+					comment = <"For 3 months prior with symptom onset ≥6 months ago">
+				>
+				["at0006"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0008"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Diagnostic Result">
+					description = <"Diagnosis for rumination syndrome as per Rome IV criteria">
+				>
+				["at0013"] = <
+					text = <"Positive">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Negative">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>

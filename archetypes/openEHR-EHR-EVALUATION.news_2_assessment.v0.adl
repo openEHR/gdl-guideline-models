@@ -1,0 +1,173 @@
+archetype (adl_version=1.4; uid=88edc7b3-f1e4-4207-9eb9-82e96809f7dd)
+	openEHR-EHR-EVALUATION.news_2_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-05-21">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the individual physiological measurements, use of supplemental oxygen, level of consciousness, selected oxygen saturation scale, and the total calculated NEWS2 score.
+">
+			keywords = <"news2, national early warning score, vital signs, deterioration, acute illness, sepsis, early warning, physiological score, rcp", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to periodically record a patient's vital signs and other parameters included in the NEWS2 assessment. Intended for use in adult patients (typically ≥16 years) in acute hospital settings or pre-hospital care.">
+			misuse = <"Not to be used in children (<16 years) or during pregnancy where physiological responses differ. Does not replace clinical judgment. Not to be used as the sole determinant for specific diagnoses (e.g., sepsis), although it can be a key indicator.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Royal College of Physicians. National Early Warning Score (NEWS) 2: Standardising the assessment of acute-illness severity in the NHS. Updated report of a working party. London: RCP, 2017.
+Williams B. The National Early Warning Score 2 (NEWS2) in patients with hypercapnic respiratory failure. Clin Med (Lond). 2019 Jan;19(1):94-95. doi: 10.7861/clinmedicine.19-1-94. PMID: 30651271; PMCID: PMC6399647.">
+		["build_uid"] = <"3a3e8ccc-c341-328d-9cc7-26603b653a49">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- NEWS 2 assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Hypercapnic respiratory failure
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0015,    -- Yes
+									at0016]    -- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {    -- Frequency of monitoring
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0006,    -- Every 12 hours
+									at0007,    -- Every 4-6 hours
+									at0008,    -- Every 1 hour
+									at0009]    -- Continuous monitoring
+								}
+							}
+						}
+					}
+					ELEMENT[at0010] occurrences matches {0..1} matches {    -- Response
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0011,    -- Emergent assessment by a clinical team or critical care team and usually transfer to higher level of care
+									at0012,    -- Urgent review by a ward-based doctor or acute team nurse, to decide if critical care team assessment is needed
+									at0013,    -- Urgent review by a ward-based doctor, to decide change in frequency of clinical monitoring or escalation of care
+									at0014]    -- Assessment by a competent registered nurse or equivalent, to decide change in frequency of clinical monitoring or escalation of care
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"NEWS 2 assessment">
+					description = <"Assess the physiological parameters and calculated total score for the National Early Warning Score 2 (NEWS2). NEWS2 is a system for detecting and responding to acute clinical deterioration in adult patients.">
+					comment = <"Original version, c 2019.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Hypercapnic respiratory failure">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Frequency of monitoring">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Every 12 hours">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Every 4-6 hours">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Every 1 hour">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Continuous monitoring">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Response">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Emergent assessment by a clinical team or critical care team and usually transfer to higher level of care">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Urgent review by a ward-based doctor or acute team nurse, to decide if critical care team assessment is needed">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Urgent review by a ward-based doctor, to decide change in frequency of clinical monitoring or escalation of care">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Assessment by a competent registered nurse or equivalent, to decide change in frequency of clinical monitoring or escalation of care">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"No">
+					description = <"">
+				>
+			>
+		>
+	>

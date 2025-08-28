@@ -1,0 +1,156 @@
+archetype (adl_version=1.4; uid=dd289a1d-16d7-4e9d-9092-f5dfa67faf87)
+	openEHR-EHR-OBSERVATION.rome_iv_gastroduodenal_disorders.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-07-09">
+		["name"] = <"Konstantinos Kalliamvakos">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"konstantinos.kalliamvakos@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	other_contributors = <"Kevin Arjona","kevin.arjona@cambio.se","Cambio CDS">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the individual symptom characteristics and exclusionary findings required to assess a patient against the various Rome IV diagnostic criteria for functional gastroduodenal disorders.">
+			keywords = <"rome iv, gastroduodenal disorders, functional dyspepsia, pds, eps, rumination syndrome, cyclic vomiting syndrome, belching, nausea, fgid, diagnostic, criteria, gastroenterology", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to document the criteria for one or more specific functional gastroduodenal disorders within a single observation.">
+			misuse = <"Not to be used for diagnosing disorders outside of the Rome IV Gastroduodenal Disorders category (e.g., Esophageal or Bowel disorders). Not intended for recording the final diagnosis itself; use an appropriate EVALUATION.problem_diagnosis archetype for the confirmed diagnosis.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Drossman DA, Hasler WL. Rome IV-Functional GI Disorders: Disorders of Gut-Brain Interaction. Gastroenterology. 2016 May;150(6):1257-61. doi: 10.1053/j.gastro.2016.03.035. PMID: 27147121.
+
+Tack J, Talley NJ, Camilleri M, Holtmann G, Hu P, Malagelada JR, Stanghellini V. Functional gastroduodenal disorders. Gastroenterology. 2006 Apr;130(5):1466-79. doi: 10.1053/j.gastro.2005.11.059. Erratum in: Gastroenterology. 2006 Jul;131(1):336. PMID: 16678560.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"24142bec46217d22ed2ad4925afc7621">
+		["build_uid"] = <"c2353378-c215-32d5-93c2-8ba9a3547882">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Rome IV Gastroduodenal Disorders Criteria
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									CLUSTER[at0004] occurrences matches {0..1} matches {    -- B4. RUMINATION SYNDROME
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0005] occurrences matches {0..1} matches {    -- Persistent or recurrent regurgitation of recently ingested food into the mouth with subsequent spitting or remastication and swallowing
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0006,    -- Yes
+															at0007]    -- No
+														}
+													}
+												}
+											}
+											ELEMENT[at0008] occurrences matches {0..1} matches {    -- Regurgitation is not preceded by retching
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0009,    -- Yes
+															at0010]    -- No
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0012] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0013] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Rome IV Gastroduodenal Disorders Criteria">
+					description = <"Records the presence or absence of specific findings relevant to the Rome IV diagnostic criteria for functional gastroduodenal disorders. This includes subcategories such as Functional Dyspepsia, Belching Disorders, Nausea and Vomiting Disorders, and Rumination Syndrome.">
+					comment = <"Original version, c 2016">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"B4. RUMINATION SYNDROME">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Persistent or recurrent regurgitation of recently ingested food into the mouth with subsequent spitting or remastication and swallowing">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Regurgitation is not preceded by retching">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0013"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>

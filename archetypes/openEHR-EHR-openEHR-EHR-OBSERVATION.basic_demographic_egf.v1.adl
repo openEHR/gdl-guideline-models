@@ -1,0 +1,548 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.basic_demographic_egf.v1
+
+concept
+	[at0000]	-- Basic demographic
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["da"] = <
+			language = <[ISO_639-1::da]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+		["el"] = <
+			language = <[ISO_639-1::el]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+		["si"] = <
+			language = <[ISO_639-1::si]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"Jimmy Axelsson">
+				["organisation"] = <"Cambio Healthcare Systems">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["email"] = <"models@cambiocds.com">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2015-02-24">
+	>
+	details = <
+		["da"] = <
+			language = <[ISO_639-1::da]>
+			purpose = <"To record the basic personal information of patients such as gender, birthdate or place of residence.">
+			use = <"">
+			keywords = <"demographics", "patient", "age", "gender", "residence", "birthdate">
+			misuse = <"">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["el"] = <
+			language = <[ISO_639-1::el]>
+			purpose = <"*To record the basic personal information of patients such as gender, birthdate or place of residence.(en)">
+			use = <"*(en)">
+			keywords = <"demographics", "patient", "age", "gender", "residence", "birthdate">
+			misuse = <"*(en)">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["si"] = <
+			language = <[ISO_639-1::si]>
+			purpose = <"To record the basic personal information of patients such as gender, birthdate or place of residence.">
+			use = <"">
+			keywords = <"demographics", "patient", "age", "gender", "residence", "birthdate">
+			misuse = <"">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record basic information about patients such as gender, birthdate or place of residence and death.">
+			use = <"For storing non-medical basic information about patients which usually is part of every medical record.">
+			keywords = <"demographics", "patient", "age", "gender", "residence", "birthdate", "death">
+			misuse = <"Not to be used for recording basic medical information about patients  such as allergies or major diagnoses.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera grundläggande information om patienter såsom kön, födelsedatum, bostadsort eller död.">
+			use = <"För lagring av icke-medicinsk grundläggande information om patienter vilken vanligtvis är en del av varje journal.">
+			keywords = <"demografi", "patient", "ålder", "kön", "bostadsort", "födelsedatum", "död">
+			misuse = <"Skall ej användas för registrering av grundläggande medicinsk information om patienterna, såsom allergier eller allvarligare diagnoser.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <"Syeeda S Farruque", ...>
+	other_details = <
+		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems, Konstantinos.Kalliamvakos@cambio.se">
+		["MD5-CAM-1.0.1"] = <"682C93164BA9895E78AB0222E5603DBA">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Basic demographic
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Gender
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0005, 	-- Male
+													at0006]	-- Female
+												}
+											}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {	-- Birthdate
+										value matches {
+											DV_DATE_TIME matches {*}
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..*} matches {	-- Languages
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {	-- Place of residence
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {	-- Postal code
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {	-- County
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {	-- Municipality
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {	-- Age
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"a">
+														precision = <|0|>
+													>
+													["2"] = <
+														units = <"mo">
+													>
+													["3"] = <
+														units = <"wk">
+													>
+													["4"] = <
+														units = <"d">
+													>
+												>
+											>
+										}
+									}
+									CLUSTER[at0015] occurrences matches {0..1} matches {	-- Death information
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0016] occurrences matches {0..1} matches {	-- Date/time of death
+												value matches {
+													DV_DATE_TIME matches {*}
+												}
+											}
+											ELEMENT[at0017] occurrences matches {0..1} matches {	-- Cause of death
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["da"] = <
+			items = <
+				["at0000"] = <
+					text = <"Basic demographic">
+					description = <"*Demographic information about patients such as gender, date of birth or place of residence(en)">
+				>
+				["at0001"] = <
+					text = <"*Event Series(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"*Any event(en)">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0004"] = <
+					text = <"Køn">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Hankøn">
+					description = <"*Male(en)">
+				>
+				["at0006"] = <
+					text = <"Hunkøn">
+					description = <"*Female(en)">
+				>
+				["at0008"] = <
+					text = <"Fødselsdato">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"Sprog">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"Bopæl">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"Region">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"Kommune">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"*Death information(en)">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"*Date/time of death(en)">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"*Cause of death(en)">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"*Postal code(en)">
+					description = <"**(en)">
+				>
+			>
+		>
+		["el"] = <
+			items = <
+				["at0000"] = <
+					text = <"Δημογραφικά δεδομένα">
+					description = <"*Demographic information about patients such as gender, date of birth or place of residence(en)">
+				>
+				["at0001"] = <
+					text = <"*Event Series(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"*Any event(en)">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0004"] = <
+					text = <"Φύλο">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Άρρεν">
+					description = <"Άντρας">
+				>
+				["at0006"] = <
+					text = <"Θήλυ">
+					description = <"Γυναίκα">
+				>
+				["at0008"] = <
+					text = <"Χρονολογία γέννησης">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"Γλώσσες">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"Τόπος διαμονής">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"Περιφέρεια">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"Δήμος">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"Πληροφορίες Θανάτου">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Ημερομηνία/Ώρα Θανάτου">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Αιτία θανάτου">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Ταχυδρομικός κώδικας">
+					description = <"*">
+				>
+			>
+		>
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Basic demographic">
+					description = <"Demographic information about patients.">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Gender">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Male">
+					description = <"Male">
+				>
+				["at0006"] = <
+					text = <"Female">
+					description = <"Female">
+				>
+				["at0008"] = <
+					text = <"Birthdate">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Languages">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Place of residence">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"County">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Municipality">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Age">
+					description = <"Age in years, and for babies: months, weeks or days">
+				>
+				["at0015"] = <
+					text = <"Death information">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Date/time of death">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Cause of death">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Postal code">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Grundläggande demografi">
+					description = <"Demografisk information om patienter.">
+				>
+				["at0001"] = <
+					text = <"Händelser">
+					description = <"@ intern@">
+				>
+				["at0002"] = <
+					text = <"Alla händelser">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"Träd">
+					description = <"@ intern@">
+				>
+				["at0004"] = <
+					text = <"Kön">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Man">
+					description = <"Man">
+				>
+				["at0006"] = <
+					text = <"Kvinna">
+					description = <"Kvinna">
+				>
+				["at0008"] = <
+					text = <"Födelsedatum">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"Språk">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"Bostadsort">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"Län/Region">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"Kommun">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"Information om dödsfallet">
+					description = <"**(en)">
+				>
+				["at0016"] = <
+					text = <"Datum/tid för dödsfallet">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Dödsorsak">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Postnummer">
+					description = <"*">
+				>
+			>
+		>
+		["si"] = <
+			items = <
+				["at0000"] = <
+					text = <"රොගියෙකුගේ මුලික තොරතුරු - ස්ත්‍රී පුරුශ භාවය ,  උපන් දිනය, උපන් ස්ථානය">
+					description = <"රොගියෙකුගේ මුලික තොරතුරු - ස්ත්‍රී පුරුශ භාවය ,  උපන් දිනය, උපන් ස්ථානය ">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"ස්ත්‍රී පුරුශ භාවය">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"පුරුශ">
+					description = <"පුරුශ">
+				>
+				["at0006"] = <
+					text = <"ස්ත්‍රී">
+					description = <"ස්ත්‍රී">
+				>
+				["at0008"] = <
+					text = <"උපන් දිනය">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"භාෂාව">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"පදිංචිය">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"උපන් රට ">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"මහ නගර සභාව ">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"*Death information(en)">
+					description = <"**(en)">
+				>
+				["at0016"] = <
+					text = <"*Date/time of death(en)">
+					description = <"**(en)">
+				>
+				["at0017"] = <
+					text = <"*Cause of death(en)">
+					description = <"**(en)">
+				>
+				["at0018"] = <
+					text = <"*Postal code(en)">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

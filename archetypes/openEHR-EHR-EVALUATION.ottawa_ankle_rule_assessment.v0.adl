@@ -1,0 +1,115 @@
+archetype (adl_version=1.4; uid=66452cc4-4646-4aa0-a11f-2996ac457bf1)
+	openEHR-EHR-EVALUATION.ottawa_ankle_rule_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-06-27">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To assess the physical examination findings recorded in the OAR archetype required to apply the OAR.">
+			keywords = <"ottawa ankle rule, ankle injury, foot injury, fracture, radiography, x-ray, decision rule, emergency medicine, orthopedics", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use in patients with acute ankle or midfoot injuries (typically within 10 days of injury) to assess the need for radiographic imaging.">
+			misuse = <"Not intended for patients with injuries older than 10 days, isolated skin injuries (abrasions, lacerations), or re-evaluation of an already imaged injury. Caution is advised in patients with distracting injuries, intoxication, diminished sensation in the legs, or gross swelling that prevents palpation of bony landmarks. ">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Stiell IG, Greenberg GH, McKnight RD, Nair RC, McDowell I, Worthington JR. A study to develop clinical decision rules for the use of radiography in acute ankle injuries. Ann Emerg Med. 1992 Apr;21(4):384-90. doi: 10.1016/s0196-0644(05)82656-3. PMID: 1554175.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"bf13b6b9-ba21-358c-9cc5-6528e894a676">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- ottawa_ankle_rule assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Diagnostic result
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- Ankle x-ray series not indicated.
+									at0006,    -- Ankle x-ray series indicated.
+									at0007,    -- Foot x-ray series not indicated.
+									at0008]    -- Foot x-ray series indicated.
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"ottawa_ankle_rule assessment">
+					description = <"Assess the clinical findings relevant to the Ottawa Ankle Rule (OAR), a decision rule used to determine if radiography is indicated for patients with acute ankle injuries.">
+					comment = <"Original version, c 1992.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Diagnostic result">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Ankle x-ray series not indicated.">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Ankle x-ray series indicated.">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Foot x-ray series not indicated.">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Foot x-ray series indicated.">
+					description = <"">
+				>
+			>
+		>
+	>

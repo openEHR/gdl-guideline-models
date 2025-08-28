@@ -1,0 +1,145 @@
+archetype (adl_version=1.4; uid=b14f083d-68a5-3031-ae1b-145cf170fb74)
+	openEHR-EHR-EVALUATION.wells_criteria_for_dvt_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"Dennis Forslund">
+				["organisation"] = <"Cambio Healthcare Systems">
+			>
+		>
+	>
+
+description
+	original_author = <
+		["date"] = <"2021-08-19">
+		["name"] = <"Dennis Forslund">
+		["organisation"] = <"Cambio CDS">
+	>
+	lifecycle_state = <"in_development">
+	other_contributors = <"Mouna Ghannam","Umiah Gohar">
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"Utvärdering av poäng genererad i enlighet med Wells kriterier för djup ventrombos (DVT). ">
+			keywords = <"*Wells (en)","*criteria (en)","*deep (en)","*vein (en)","*thrombosis (en)","*DVT (en)">
+			copyright = <"Cambio Healthcare Systems">
+			use = <"*Use to record the assessment of the score generated in accordance with Wells' criteria for risk of DVT.
+
+The Wells’ DVT criteria can be used in outpatient as well as emergency department settings and should be applied after a thorough history and physical examination, resulting in a suspicion of DVT.
+
+A low risk score (<2) along with a negative test result for d-dimer excludes the need for further examination with ultrasound. 
+
+The score is generated based on seven weighted criteria:
+
+- active cancer
+- paralysis, paresis, or recent plaster immobilisation of the legs
+- bedridden recently ≥3 days or major surgery within 12 weeks
+- localized tenderness along the deep venous system
+- entire leg swollen
+- calf swelling >3 cm compared to the other leg
+- pitting oedema 
+- collateral (nonvaricose) superficial veins
+- alternative diagnosis to DVT at least as likely
+
+The maximum score is 8p and a score of 2p or more suggests high probability of DVT.  (en)">
+			misuse = <"*Not be used to record information regarding the Well’s criteria for pulmonary embolism. (en)">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the assessment of the score generated in accordance with Wells' criteria for risk of DVT.
+ ">
+			keywords = <"Wells","criteria","deep","vein","thrombosis","DVT">
+			copyright = <"©Cambio CDS">
+			use = <"Use to record the assessment of the score generated in accordance with Wells' criteria for risk of DVT.
+
+The Wells’ DVT criteria can be used in outpatient as well as emergency department settings and should be applied after a thorough history and physical examination, resulting in a suspicion of DVT.
+
+A low risk score (<2) along with a negative test result for d-dimer excludes the need for further examination with ultrasound. 
+
+The score is generated based on seven weighted criteria:
+
+- active cancer
+- paralysis, paresis, or recent plaster immobilisation of the legs
+- bedridden recently ≥3 days or major surgery within 12 weeks
+- localized tenderness along the deep venous system
+- entire leg swollen
+- calf swelling >3 cm compared to the other leg
+- pitting oedema 
+- collateral (nonvaricose) superficial veins
+- alternative diagnosis to DVT at least as likely
+
+The maximum score is 8p and a score of 2p or more suggests high probability of DVT. ">
+			misuse = <"Not be used to record information regarding the Well’s criteria for pulmonary embolism.">
+		>
+	>
+	other_details = <
+		["references"] = <"Wells PS, Hirsh J, Anderson DR, Lensing AW, Foster G, Kearon C, Weitz J, D'Ovidio R, Cogo A, Prandoni P. Accuracy of clinical assessment of deep-vein thrombosis. Lancet. 1995 May 27;345(8961):1326-30. doi: 10.1016/s0140-6736(95)92535-x. Erratum in: Lancet 1995 Aug 19;346(8973):516. PMID: 7752753.
+
+Wells PS, Anderson DR, Bormanis J, Guy F, Mitchell M, Gray L, Clement C, Robinson KS, Lewandowski B. Value of assessment of pretest probability of deep-vein thrombosis in clinical management. Lancet. 1997 Dec 20-27;350(9094):1795-8. doi: 10.1016/S0140-6736(97)08140-3. PMID: 9428249.
+
+Wells PS, Anderson DR, Rodger M, Forgie M, Kearon C, Dreyer J, Kovacs G, Mitchell M, Lewandowski B, Kovacs MJ. Evaluation of D-dimer in the diagnosis of suspected deep-vein thrombosis. N Engl J Med. 2003 Sep 25;349(13):1227-35. doi: 10.1056/NEJMoa023153. PMID: 14507948.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["MD5-CAM-1.0.1"] = <"ac689726c39d8dadfd9a45277bcc591b">
+		["build_uid"] = <"724c25ff-f35e-375f-9bd2-9595464ccb63">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Wells' criteria for DVT
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- DVT probability
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Wells' criteria for DVT">
+					description = <"An assessment score used  to calculate risk of Deep Vein Thrombosis (DVT) based on clinical criteria.">
+					comment = <"Original version, c 2003.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"DVT probability">
+					description = <"Assessment of score generated in accordance with Wells' Criteria for risk of DVT.">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Wells' Criteria for DVT (en)">
+					description = <"*An assessment score used  to calculate risk of Deep Vein Thrombosis (DVT) based on clinical criteria. (en)">
+					comment = <"*Original version, c 2003.(en)">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Sannolikhet för DVT">
+					description = <"Utvärdering av poäng genererad i enlighet med Wells kriterier för djup ventrombos (DVT). ">
+				>
+			>
+		>
+	>

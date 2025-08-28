@@ -1,0 +1,117 @@
+archetype (adl_version=1.4; uid=63f1b33b-6174-4e77-ae6c-a584a2a734de)
+	openEHR-EHR-EVALUATION.bind_score_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-06-11">
+		["name"] = <"Aurelia Maria Ozora">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"aurelia.maria.ozora@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the assessment of the BIND score.">
+			keywords = <"bilirubin, induced, neurologic, dysfunction, jaundice, encephalopathy, acute, neonates, assessment", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the assessment of the Aldrete score.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Johnson LH, Brown AK, Bhutani VK. BIND - a clinical score for bilirubin-induced neurologic dysfunction in newborns. Pediatrics. 1999;199(3 part 3):746–7.
+
+El Houchi SZ, Iskander I, Gamaleldin R, El Shenawy A, Seoud I, Abou-Youssef H, Wennberg RP. Prediction of 3- to 5-Month Outcomes from Signs of Acute Bilirubin Toxicity in Newborn Infants. J Pediatr. 2017 Apr;183:51-55.e1. doi: 10.1016/j.jpeds.2016.12.079. Epub 2017 Jan 25. PMID: 28131490.">
+		["revision"] = <"0">
+		["build_uid"] = <"9016ab6b-2ceb-363a-83be-854fd40fcdbf">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Bilirubin-Induced Neurologic Dysfunction (BIND) score assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Interpretation
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- No acute bilirubin encephalopathy
+									at0006,    -- Mild acute bilirubin encephalopathy
+									at0007,    -- Moderate acute bilirubin encephalopathy
+									at0008]    -- Severe acute bilirubin encephalopathy
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0009] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Bilirubin-Induced Neurologic Dysfunction (BIND) score assessment">
+					description = <"Assessment of the BIND score.">
+					comment = <"Original version, c 1999.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Interpretation">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"No acute bilirubin encephalopathy">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Mild acute bilirubin encephalopathy">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Moderate acute bilirubin encephalopathy">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Severe acute bilirubin encephalopathy">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>

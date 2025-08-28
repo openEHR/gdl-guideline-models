@@ -1,0 +1,177 @@
+archetype (adl_version=1.4; uid=831510a8-fe5e-4a6a-9c92-65596e8104be)
+	openEHR-EHR-OBSERVATION.ideal_body_weight.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-01-26">
+		["name"] = <"Shweta Prasad Ghaisas">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"S.Prasad.Ghaisas@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	other_contributors = <"Konstantinos Kalliamvakos", ...>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the ideal body weight of the patient which is calculated from their height using various formulas.">
+			keywords = <"ideal body weight","body weight","height","obesity">
+			copyright = <"© Cambio CDS">
+			use = <"Used to record the ideal body weight of the patient which is calculated from their height using various formulas.">
+			misuse = <"Not to be used for recording the height and weight of the patients.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"82a8834149f0da65df502ac24024ebc9">
+		["build_uid"] = <"24f7d286-1faf-3620-9004-0d5a7640a578">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Ideal Body Weight
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Formula
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0005,    -- Devine Formula
+													at0006,    -- Hamwi Formula
+													at0007,    -- Miller Formula
+													at0008,    -- Robinson Formula
+													at0009,    -- Broca Index
+													at0010,    -- Peterson Formula
+													at0011,    -- Adjusted Body Weight (AdjBW)
+													at0012,    -- Lean Body Weight (LBW) Formula
+													at0013,    -- WHO BMI-Based Ideal Weight
+													at0014]    -- J. D. Robinson (Modified Broca)
+												}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Ideal body weight
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::124]>
+												list = <
+													["1"] = <
+														units = <"[lb_av]">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Comment
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0018] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Ideal Body Weight">
+					description = <"Ideal body weight is defined as weight for height at the lowest risk of mortality. It is calculated from the height of a person using various formulas.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Formula">
+					description = <"There are many formulas available to calculate ideal body weight and they are usually named in honour of the person who formulated them. This field stores the names of the formulas used for calculating ideal body weight.">
+				>
+				["at0005"] = <
+					text = <"Devine Formula">
+					description = <"Ideal Body Weight (Devine formula): 
+Ideal body weight (IBW) (men) = 50 kg + 2.3 kg x (height, in - 60)
+Ideal body weight (IBW) (women) = 45.5 kg + 2.3 kg x (height, in - 60)">
+					comment = <"Original version, c 1974">
+				>
+				["at0006"] = <
+					text = <"Hamwi Formula">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Miller Formula">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Robinson Formula">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Broca Index">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Peterson Formula">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Adjusted Body Weight (AdjBW)">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Lean Body Weight (LBW) Formula">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"WHO BMI-Based Ideal Weight">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"J. D. Robinson (Modified Broca)">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Ideal body weight">
+					description = <"This quantity will be calculated using the formulas and expressed in lbs.">
+				>
+				["at0017"] = <
+					text = <"Comment">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+			>
+		>
+	>

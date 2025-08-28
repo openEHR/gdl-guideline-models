@@ -1,0 +1,520 @@
+{
+  "id" : "Calculate_score2_op.v1.3.0",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Rong Chen",
+      "email" : "rong.chen@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2025-01-16"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To estimate incident cardiovascular event risk in older persons",
+        "keywords" : [
+          "SCORE2"
+        ],
+        "use" : "To estimate incident cardiovascular event risk in older persons"
+      }
+    },
+    "other_details" : {
+      "references" : "1. SCORE2-OP risk prediction algorithms: estimating incident cardiovascular event risk in older persons in four geographical risk regions SCORE2-OP working group and ESC Cardiovascular risk collaboration European Heart Journal, Volume 42, Issue 25, 1 July 2021, Pages 2455–2467, https://doi.org/10.1093/eurheartj/ehab312",
+      "en" : "Tested agains reference calculator"
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0005|Male|",
+              "local::at0006|Female|"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "a",
+              "mo",
+              "wk",
+              "d"
+            ]
+          }
+        }
+      },
+      "gt0005" : {
+        "id" : "gt0005",
+        "model_id" : "openEHR-EHR-OBSERVATION.blood_pressure.v2",
+        "template_id" : "openEHR-EHR-OBSERVATION.blood_pressure.v2",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0001]/events[at0006]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mm[Hg]"
+            ]
+          }
+        }
+      },
+      "gt0007" : {
+        "id" : "gt0007",
+        "model_id" : "openEHR-EHR-EVALUATION.score2_diabetes.v1",
+        "template_id" : "openEHR-EHR-EVALUATION.score2_diabetes.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0008" : {
+            "id" : "gt0008",
+            "path" : "/data[at0001]/items[at0002]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0004",
+              "1|local::at0003"
+            ]
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "path" : "/data[at0001]/items[at0005]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mmol/L"
+            ]
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "path" : "/data[at0001]/items[at0006]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mmol/L"
+            ]
+          },
+          "gt0062" : {
+            "id" : "gt0062",
+            "path" : "/data[at0001]/items[at0007]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0009",
+              "1|local::at0008"
+            ]
+          }
+        }
+      },
+      "gt0015" : {
+        "id" : "gt0015",
+        "model_id" : "openEHR-EHR-EVALUATION.score2_diabetes.v1",
+        "template_id" : "openEHR-EHR-EVALUATION.score2_diabetes.v1",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0016" : {
+            "id" : "gt0016",
+            "path" : "/data[at0001]/items[at0010]"
+          }
+        }
+      }
+    },
+    "pre_conditions" : [
+      "$gt0004|Age|.unit=='a'",
+      "$gt0006|SBP|.unit=='mm[Hg]'",
+      "$gt0010|Total cholesterol |.unit=='mmol/L'",
+      "$gt0011|HDL cholesterol |.unit=='mmol/L'"
+    ],
+    "rules" : {
+      "gt0058" : {
+        "id" : "gt0058",
+        "priority" : 16,
+        "when" : [
+          "$gt0003|Gender|.code=='at0005'"
+        ],
+        "then" : [
+          "$gt0057|scale1|=0.01",
+          "$gt0056|scale2|=1.25"
+        ]
+      },
+      "gt0059" : {
+        "id" : "gt0059",
+        "priority" : 15,
+        "when" : [
+          "$gt0003|Gender|.code=='at0006'"
+        ],
+        "then" : [
+          "$gt0057|scale1|=0-0.1",
+          "$gt0056|scale2|=1.1"
+        ]
+      },
+      "gt0050" : {
+        "id" : "gt0050",
+        "priority" : 14,
+        "when" : [
+          "$gt0004|Age|!=null"
+        ],
+        "then" : [
+          "$gt0018|cage|=$gt0004|Age|.magnitude-73"
+        ]
+      },
+      "gt0033" : {
+        "id" : "gt0033",
+        "priority" : 13,
+        "when" : [
+          "$gt0006|SBP|!=null"
+        ],
+        "then" : [
+          "$gt0019|csbp|=$gt0006|SBP|.magnitude-150"
+        ]
+      },
+      "gt0034" : {
+        "id" : "gt0034",
+        "priority" : 12,
+        "when" : [
+          "$gt0010|Total cholesterol |!=null"
+        ],
+        "then" : [
+          "$gt0020|ctchol|=$gt0010|Total cholesterol |.magnitude-6"
+        ]
+      },
+      "gt0035" : {
+        "id" : "gt0035",
+        "priority" : 11,
+        "when" : [
+          "$gt0011|HDL cholesterol |!=null"
+        ],
+        "then" : [
+          "$gt0021|chdl|=$gt0011|HDL cholesterol |.magnitude-1.4"
+        ]
+      },
+      "gt0036" : {
+        "id" : "gt0036",
+        "priority" : 9,
+        "when" : [
+          "$gt0008|Smoking|!=null"
+        ],
+        "then" : [
+          "$gt0022|cage x smoking|=$gt0018|cage|*$gt0008|Smoking|.value"
+        ]
+      },
+      "gt0037" : {
+        "id" : "gt0037",
+        "priority" : 8,
+        "when" : [
+          "$gt0004|Age|!=null",
+          "$gt0006|SBP|!=null"
+        ],
+        "then" : [
+          "$gt0023|cage x csbp|=$gt0018|cage|*$gt0019|csbp|"
+        ]
+      },
+      "gt0039" : {
+        "id" : "gt0039",
+        "priority" : 7,
+        "then" : [
+          "$gt0025|cage x ctchol|=$gt0018|cage|*$gt0020|ctchol|"
+        ]
+      },
+      "gt0040" : {
+        "id" : "gt0040",
+        "priority" : 6,
+        "then" : [
+          "$gt0026|cage x chdl|=$gt0018|cage|*$gt0021|chdl|"
+        ]
+      },
+      "gt0052" : {
+        "id" : "gt0052",
+        "priority" : 5,
+        "when" : [
+          "$gt0003|Gender|.code=='at0005'"
+        ],
+        "then" : [
+          "$gt0051|Linear predictor|=$gt0018|cage|*0.0634+$gt0008|Smoking|.value*0.3524+$gt0019|csbp|*0.0094+$gt0020|ctchol|*0.085-$gt0021|chdl|*0.3564-$gt0022|cage x smoking|*0.0247-$gt0023|cage x csbp|*5.04+$gt0025|cage x ctchol|*0.0073+$gt0026|cage x chdl|*0.0091-$gt0024|cage x diabetes|*0.0174"
+        ]
+      },
+      "gt0060" : {
+        "id" : "gt0060",
+        "priority" : 4,
+        "when" : [
+          "$gt0003|Gender|.code=='at0006'"
+        ],
+        "then" : [
+          "$gt0051|Linear predictor|=$gt0018|cage|*0.0789+$gt0008|Smoking|.value*0.4921+$gt0019|csbp|*0.0102+$gt0020|ctchol|*0.0605-$gt0021|chdl|*0.304-$gt0022|cage x smoking|*0.0255-$gt0023|cage x csbp|*4.04-$gt0025|cage x ctchol|*9.04+$gt0026|cage x chdl|*0.0154-$gt0024|cage x diabetes|*0.0107"
+        ]
+      },
+      "gt0053" : {
+        "id" : "gt0053",
+        "priority" : 3,
+        "when" : [
+          "$gt0051|Linear predictor|!=null",
+          "$gt0003|Gender|.code=='at0005'"
+        ],
+        "then" : [
+          "$gt0054|calculate un-calibrated 10-year risk|=1-0.7576^exp($gt0051|Linear predictor|-0.0929)"
+        ]
+      },
+      "gt0061" : {
+        "id" : "gt0061",
+        "priority" : 2,
+        "when" : [
+          "$gt0051|Linear predictor|!=null",
+          "$gt0003|Gender|.code=='at0006'"
+        ],
+        "then" : [
+          "$gt0054|calculate un-calibrated 10-year risk|=1-0.8082^exp($gt0051|Linear predictor|-0.229)"
+        ]
+      },
+      "gt0055" : {
+        "id" : "gt0055",
+        "priority" : 1,
+        "then" : [
+          "$gt0016|10-year risk |.precision=1",
+          "$gt0016|10-year risk |.magnitude=(1-exp(0-exp($gt0057|scale1|+$gt0056|scale2|*log(0-log(1-$gt0054|calculate un-calibrated 10-year risk|)))))*100",
+          "$gt0016|10-year risk |.unit='%'"
+        ]
+      },
+      "gt0063" : {
+        "id" : "gt0063",
+        "priority" : 10,
+        "when" : [
+          "$gt0062|Diabetes|!=null"
+        ],
+        "then" : [
+          "$gt0024|cage x diabetes|=$gt0018|cage|*$gt0062|Diabetes|.value"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Calculate SCORE2 OP",
+            "description" : "A recalibrated prediction model SCORE2 to estimate the 10-year risk of cardiovascular disease (CVD) in older persons."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.basic_demographic.v1"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Gender"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Age"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "openEHR-EHR-OBSERVATION.blood_pressure.v2"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "SBP"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "openEHR-EHR-EVALUATION.score2_diabetes.v1"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Smoking"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Total cholesterol "
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "HDL cholesterol "
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "openEHR-EHR-EVALUATION.score2_diabetes.v1"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "10-year risk "
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "cage"
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "csbp"
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "ctchol"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "chdl"
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "cage x smoking"
+          },
+          "gt0023" : {
+            "id" : "gt0023",
+            "text" : "cage x csbp"
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "text" : "cage x diabetes"
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "text" : "cage x ctchol"
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "text" : "cage x chdl"
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "text" : "cagediab"
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "text" : "chba1c"
+          },
+          "gt0029" : {
+            "id" : "gt0029",
+            "text" : "clnegfr"
+          },
+          "gt0030" : {
+            "id" : "gt0030",
+            "text" : "clnegfr* clnegfr"
+          },
+          "gt0031" : {
+            "id" : "gt0031",
+            "text" : "chba1c*cage"
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "text" : "clnegfr*cage"
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "text" : "calculate csbp",
+            "description" : ""
+          },
+          "gt0034" : {
+            "id" : "gt0034",
+            "text" : "calculate ctchol",
+            "description" : ""
+          },
+          "gt0035" : {
+            "id" : "gt0035",
+            "text" : "calculate chdl",
+            "description" : ""
+          },
+          "gt0036" : {
+            "id" : "gt0036",
+            "text" : "calculate cage x smoking",
+            "description" : ""
+          },
+          "gt0037" : {
+            "id" : "gt0037",
+            "text" : "calculate cage x csbp",
+            "description" : ""
+          },
+          "gt0039" : {
+            "id" : "gt0039",
+            "text" : "calculate cage x ctchol",
+            "description" : ""
+          },
+          "gt0040" : {
+            "id" : "gt0040",
+            "text" : "calculate cage x chdl",
+            "description" : ""
+          },
+          "gt0050" : {
+            "id" : "gt0050",
+            "text" : "calculate cage",
+            "description" : ""
+          },
+          "gt0051" : {
+            "id" : "gt0051",
+            "text" : "Linear predictor"
+          },
+          "gt0052" : {
+            "id" : "gt0052",
+            "text" : "calculate linear predictor men",
+            "description" : ""
+          },
+          "gt0053" : {
+            "id" : "gt0053",
+            "text" : "calculate un-calibrated 10-year risk men",
+            "description" : ""
+          },
+          "gt0054" : {
+            "id" : "gt0054",
+            "text" : "un-calibrated 10-year risk"
+          },
+          "gt0055" : {
+            "id" : "gt0055",
+            "text" : "calculate calibrated 10-year risk ",
+            "description" : ""
+          },
+          "gt0056" : {
+            "id" : "gt0056",
+            "text" : "scale2"
+          },
+          "gt0057" : {
+            "id" : "gt0057",
+            "text" : "scale1"
+          },
+          "gt0058" : {
+            "id" : "gt0058",
+            "text" : "set scale1 and scale 2 for men in moderate risk region (Sweden)",
+            "description" : ""
+          },
+          "gt0059" : {
+            "id" : "gt0059",
+            "text" : "set scale1 and scale 2 for women in moderate risk region (Sweden)",
+            "description" : ""
+          },
+          "gt0060" : {
+            "id" : "gt0060",
+            "text" : "calculate linear predictor women",
+            "description" : ""
+          },
+          "gt0061" : {
+            "id" : "gt0061",
+            "text" : "calculate un-calibrated 10-year risk women",
+            "description" : ""
+          },
+          "gt0062" : {
+            "id" : "gt0062",
+            "text" : "Diabetes"
+          },
+          "gt0063" : {
+            "id" : "gt0063",
+            "text" : "Calculate cage x diabetes",
+            "description" : ""
+          }
+        }
+      }
+    }
+  },
+  "uuid" : "54cd7998-ab8e-4d69-91de-383bf9bc279b",
+  "date" : "2025-01-16",
+  "tags" : [ ]
+}

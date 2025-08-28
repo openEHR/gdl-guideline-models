@@ -1,0 +1,119 @@
+archetype (adl_version=1.4; uid=9f05940e-2d33-4a5f-bb3a-a839bd2e0ade)
+	openEHR-EHR-EVALUATION.gds_15_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-06-17">
+		["name"] = <"Aurelia Maria Ozora">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"aurelia.maria.ozora@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the assessment of the Geriatric Depression Scale-15 (GDS-15).">
+			keywords = <"geriatric, depression, scale, 15, gds, screening", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the assessment of the Geriatric Depression Scale-15 (GDS-15).">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Yesavage JA, Brink TL, Rose TL, Lum O, Huang V, Adey M, Leirer VO. Development and validation of a geriatric depression screening scale: a preliminary report. J Psychiatr Res. 1982-1983;17(1):37-49. doi: 10.1016/0022-3956(82)90033-4. PMID: 7183759.
+
+Almeida OP, Almeida SA. Short versions of the geriatric depression scale: a study of their validity for the diagnosis of a major depressive episode according to ICD-10 and DSM-IV. Int J Geriatr Psychiatry. 1999 Oct;14(10):858-65. doi: 10.1002/(sici)1099-1166(199910)14:10<858::aid-gps35>3.0.co;2-8. PMID: 10521885.
+
+Shin C, Park MH, Lee SH, Ko YH, Kim YK, Han KM, Jeong HG, Han C. Usefulness of the 15-item geriatric depression scale (GDS-15) for classifying minor and major depressive disorders among community-dwelling elders. J Affect Disord. 2019 Dec 1;259:370-375. doi: 10.1016/j.jad.2019.08.053. Epub 2019 Aug 20. PMID: 31470180.">
+		["revision"] = <"0">
+		["build_uid"] = <"4e47ae48-52a3-3274-81bf-b3f0a3f18e2c">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Geriatric Depression Scale-15 (GDS-15) Assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Interpretation
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- Absence of clinically significant depressive symptoms
+									at0006,    -- Suggests mild depression
+									at0007,    -- Suggests moderate depression
+									at0008]    -- Suggests severe depression
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Geriatric Depression Scale-15 (GDS-15) Assessment">
+					description = <"Assessment of Geriatric Depression Scale-15 (GDS-15).">
+					comment = <"Original version, c 2021">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Interpretation">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Absence of clinically significant depressive symptoms">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Suggests mild depression">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Suggests moderate depression">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Suggests severe depression">
+					description = <"">
+				>
+			>
+		>
+	>

@@ -1,0 +1,179 @@
+archetype (adl_version=1.4; uid=6adb90b8-d523-414e-ada9-9606d7aa7bbe)
+	openEHR-EHR-OBSERVATION.nyha.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-01-31">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"Kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To assess and classify the functional capacity of patients with heart failure by determining the level of physical activity they can perform without experiencing symptoms. This classification helps guide treatment plans, monitor disease progression, and evaluate treatment outcomes.">
+			keywords = <"NYHA, heart failure, heart, association, New York,functional capacity, heart disease severity,nyha classification.", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Used in patients diagnosed with heart failure to evaluate their functional status and severity of symptoms. It is applicable to both chronic and acute heart failure cases.
+Usage: The NYHA classification is performed by evaluating the patient's reported symptoms and exercise tolerance. The classification is divided into four classes:
+
+Class I: No limitation of physical activity. Ordinary physical activity does not cause symptoms.
+
+Class II: Slight limitation of physical activity. Comfortable at rest, but ordinary physical activity results in fatigue, palpitations, or shortness of breath.
+
+Class III: Marked limitation of physical activity. Comfortable at rest, but less than ordinary physical activity causes symptoms.
+
+Class IV: Inability to carry on any physical activity without discomfort. Symptoms may be present even at rest.
+
+The classification helps physicians determine the severity of the patient's heart failure and tailor interventions accordingly.">
+			misuse = <"Not to be used as a heart failure diagnostic tool or for assessment of non-cardiac conditions. The NYHA classification is specific to heart failure and should not be applied to assess other cardiovascular diseases or non-cardiac conditions.
+
+Not to be used as a diagnostic tool. It is used for functional classification and symptom assessment in known heart failure patients, not for diagnosing heart failure itself.
+
+">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Stamp KD, Prasun MA, McCoy TP, Rathman L. Providers' assignment of NYHA functional class in patients with heart failure: A vignette study. Heart Lung. 2022 Jan-Feb;51:87-93. doi: 10.1016/j.hrtlng.2021.07.009. Epub 2021 Aug 14. PMID: 34399995.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"446a58ef-8551-3fbe-8921-5cf5e33e5cbd">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- New York Heart Association (NYHA) Functional Classification
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Physical activity limitation
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- No limitation of physical activity; ordinary physical activity does not cause undue fatigue, palpitation, or dyspnea
+													at0008,    -- Slight limitation of physical activity; comfortable at rest; ordinary physical activity results in fatigue, palpitation, or dyspnea
+													at0009,    -- Marked limitation of physical activity; comfortable at rest; less than ordinary activity causes fatigue, palpitation, or dyspnea
+													at0010]    -- Unable to carry on any physical activity without discomfort; symptoms of heart failure at rest; if any physical activity is undertaken, discomfort increases
+												}
+											}
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Functional capacity
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012,    -- Class I
+													at0013,    -- Class II
+													at0014,    -- Class III
+													at0015]    -- Class VI
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"New York Heart Association (NYHA) Functional Classification">
+					description = <"The New York Heart Association (NYHA) Functional Classification is a clinical tool used to assess the severity of symptoms and the functional limitations in patients with heart failure. It categorizes patients into four classes based on their ability to perform physical activity and the presence of symptoms such as fatigue, shortness of breath, and palpitations.">
+					comment = <"Original version, c 1994">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Physical activity limitation">
+					description = <"Physical activity limitation">
+				>
+				["at0007"] = <
+					text = <"No limitation of physical activity; ordinary physical activity does not cause undue fatigue, palpitation, or dyspnea">
+					description = <"Class I">
+				>
+				["at0008"] = <
+					text = <"Slight limitation of physical activity; comfortable at rest; ordinary physical activity results in fatigue, palpitation, or dyspnea">
+					description = <"Class II">
+				>
+				["at0009"] = <
+					text = <"Marked limitation of physical activity; comfortable at rest; less than ordinary activity causes fatigue, palpitation, or dyspnea">
+					description = <"Class III">
+				>
+				["at0010"] = <
+					text = <"Unable to carry on any physical activity without discomfort; symptoms of heart failure at rest; if any physical activity is undertaken, discomfort increases">
+					description = <"Class IV">
+				>
+				["at0011"] = <
+					text = <"Functional capacity">
+					description = <"Functional capacity class">
+				>
+				["at0012"] = <
+					text = <"Class I">
+					description = <"NYHA Heart Failure Classification">
+				>
+				["at0013"] = <
+					text = <"Class II">
+					description = <"NYHA Heart Failure Classification">
+				>
+				["at0014"] = <
+					text = <"Class III">
+					description = <"NYHA Heart Failure Classification">
+				>
+				["at0015"] = <
+					text = <"Class VI">
+					description = <"NYHA Heart Failure Classification">
+				>
+			>
+		>
+	>

@@ -1,0 +1,137 @@
+archetype (adl_version=1.4; uid=4c3a0a59-c48a-4f46-b8eb-c2e2b8087356)
+	openEHR-EHR-OBSERVATION.score2.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-07-08">
+		["name"] = <"Shweta Prasad Ghaisas">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"s.prasad.ghaisas@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for smoking, total cholesterol, HDL cholesterol for SCORE2 assessment.">
+			keywords = <"coronary, score2, risk, smoking, cholesterol, HDL, age, gender, smoking, risk region, blood pressure, CVD", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Used to record the results for smoking, total cholesterol, HDL cholesterol for SCORE2 assessment.">
+			misuse = <"Do not use to record results of Total and HDL cholesterol in mg/dL">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"c8d9857a-50a7-3900-8e13-6998a724c147">
+		["references"] = <"SCORE2 working group and ESC Cardiovascular Risk Collaboration. SCORE2 risk prediction algorithms: new models to estimate 10-year risk of cardiovascular disease in Europe. Eur Heart J. 2021 Jun 13;42(25):2439–54. doi: 10.1093/eurheartj/ehab309.">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Systematic Coronary Risk Evaluation 2
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Smoking
+										value matches {
+											0|[local::at0005],
+											1|[local::at0006]
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Total cholesterol
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mmol/L">
+														magnitude = <|>=3.9|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- HDL cholesterol
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mmol/L">
+														magnitude = <|>0.0|>
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0009] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Systematic Coronary Risk Evaluation 2">
+					description = <"A recalibrated prediction model SCORE2 to estimate the 10-year risk of cardiovascular disease (CVD) in individuals in Europe.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Smoking">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Other">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Current">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Total cholesterol">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"HDL cholesterol">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+			>
+		>
+	>

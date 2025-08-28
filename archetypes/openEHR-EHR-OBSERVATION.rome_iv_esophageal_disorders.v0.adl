@@ -1,0 +1,200 @@
+archetype (adl_version=1.4; uid=3a0c923a-1371-4810-af29-3dac51cc4bdb)
+	openEHR-EHR-OBSERVATION.rome_iv_esophageal_disorders.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-07-24">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the individual symptom characteristics and exclusionary findings required to assess a patient against the various Rome IV criteria for functional esophageal disorders.">
+			keywords = <"rome iv, esophageal, disorders, functional, chest, pain, heartburn, reflux, hypersensitivity, globus, dysphagia, fgid, diagnostic, criteria", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to document the criteria for one or more specific functional esophageal disorders.">
+			misuse = <"Not to be used for diagnosing disorders from other Rome IV categories (e.g., Gastroduodenal or Bowel disorders) or for clear organic causes of symptoms like GERD, eosinophilic esophagitis, or achalasia (these are exclusionary criteria). Not intended for recording the final diagnosis itself; use an appropriate EVALUATION.problem_diagnosis archetype.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Aziz Q, Fass R, Gyawali CP, Miwa H, Pandolfino JE, Zerbib F. Functional Esophageal Disorders. Gastroenterology. 2016 Feb 15:S0016-5085(16)00178-5. doi: 10.1053/j.gastro.2016.02.012. Epub ahead of print. PMID: 27144625.
+
+Mahoney LB, Nurko S, Rosen R. The Prevalence of Rome IV Nonerosive Esophageal Phenotypes in Children. J Pediatr. 2017 Oct;189:86-91. doi: 10.1016/j.jpeds.2017.06.019. Epub 2017 Jul 12. PMID: 28711175; PMCID: PMC6158020.">
+		["build_uid"] = <"d5df9641-928b-3849-90d0-d7f6bec2c9d9">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Rome IV Esophageal Disorders
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									CLUSTER[at0006] occurrences matches {0..1} matches {    -- A2. FUNCTIONAL HEARTBURN
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0007] occurrences matches {0..1} matches {    -- Burning retrosternal discomfort or pain
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0008,    -- Yes
+															at0009]    -- No
+														}
+													}
+												}
+											}
+											ELEMENT[at0010] occurrences matches {0..1} matches {    -- No symptom relief despite optimal antisecretory therapy
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0011,    -- Yes
+															at0012]    -- No
+														}
+													}
+												}
+											}
+											ELEMENT[at0013] occurrences matches {0..1} matches {    -- Absence of evidence that gastroesophageal reflux or EOE is the cause of symptoms
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0014,    -- Yes
+															at0015]    -- No
+														}
+													}
+												}
+											}
+											ELEMENT[at0016] occurrences matches {0..1} matches {    -- Absence of major esophageal motor disorders
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0017,    -- Yes
+															at0018]    -- No
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Rome IV Esophageal Disorders">
+					description = <" Records the presence or absence of specific findings relevant to the Rome IV diagnostic criteria for functional esophageal disorders. Group criteria for specific subcategories, including Functional Chest Pain, Functional Heartburn, Reflux Hypersensitivity, Globus, and Functional Dysphagia.">
+					comment = <"Original version, c 2016">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"A2. FUNCTIONAL HEARTBURN">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Burning retrosternal discomfort or pain">
+					description = <"Burning retrosternal discomfort or pain">
+				>
+				["at0008"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"No symptom relief despite optimal antisecretory therapy">
+					description = <"No symptom relief despite optimal antisecretory therapy">
+				>
+				["at0011"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Absence of evidence that gastroesophageal reflux or EOE is the cause of symptoms">
+					description = <"Absence of evidence that gastroesophageal reflux (abnormal acid exposure and symptom reflux association) or EOE is the cause of symptoms">
+				>
+				["at0014"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Absence of major esophageal motor disorders">
+					description = <"Absence of major esophageal motor disorders (achalasia/EGJ outflow obstruction, diffuse esophageal spasm, jackhammer esophagus, absent peristalsis)">
+				>
+				["at0017"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"No">
+					description = <"">
+				>
+			>
+		>
+	>

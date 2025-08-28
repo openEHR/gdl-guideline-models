@@ -1,0 +1,176 @@
+{
+  "id": "Ottawa_Knee_Rules_Assessment.v0.1.0",
+  "gdl_version": "2.1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Aurelia Maria Ozora",
+      "email": "aurelia.maria.ozora@cambio.se",
+      "organisation": "Cambio CDS",
+      "date": "2025-02-12"
+    },
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To assess Ottawa Knee Rules.",
+        "keywords": [
+          "ottawa",
+          "knee",
+          "rules",
+          "radiography",
+          "fracture"
+        ],
+        "use": "Used in patients with acute injuries lasting less than 7 days. Patients should be followed up if their pain does not improve within 5–7 days after the initial assessment determining that a knee radiograph is not required.",
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "references": "Emparanza JI, Aginaga JR; Estudio Multicéntro en Urgencias de Osakidetza: Reglas de Ottawa (EMUORO) Group. Validation of the Ottawa Knee Rules. Ann Emerg Med. 2001 Oct;38(4):364-8. doi: 10.1067/mem.2001.118011. PMID: 11574791.\n\nStiell IG, Greenberg GH, Wells GA, McKnight RD, Cwinn AA, Cacciotti T, McDowell I, Smith NA. Derivation of a decision rule for the use of radiography in acute knee injuries. Ann Emerg Med. 1995 Oct;26(4):405-13. doi: 10.1016/s0196-0644(95)70106-0. PMID: 7574120.",
+      "en": "The Ottawa Knee Rules is a clinical decision rule that helps clinicians determine whether a patient needs a knee radiograph following an acute knee injury. The purpose of this rule is to reduce unnecessary radiography."
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0021": {
+        "id": "gt0021",
+        "model_id": "openEHR-EHR-OBSERVATION.ottawa_knee_rules.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.ottawa_knee_rules.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0022": {
+            "id": "gt0022",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0015]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0016|Yes|",
+              "local::at0017|No|"
+            ]
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0018]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0019|Yes|",
+              "local::at0020|No|"
+            ]
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0021]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0022|Yes|",
+              "local::at0023|No|"
+            ]
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0024]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0025|Yes|",
+              "local::at0026|No|"
+            ]
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0027]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0028|Yes|",
+              "local::at0029|No|"
+            ]
+          }
+        }
+      },
+      "gt0030": {
+        "id": "gt0030",
+        "model_id": "openEHR-EHR-OBSERVATION.ottawa_knee_rules.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.ottawa_knee_rules.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0031": {
+            "id": "gt0031",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0010]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0011|Required|",
+              "local::at0012|Not required|"
+            ]
+          }
+        }
+      }
+    },
+    "default_actions": [
+      "$gt0031|Knee radiograph|=local::at0012|Not required|"
+    ],
+    "rules": {
+      "gt0027": {
+        "id": "gt0027",
+        "priority": 1,
+        "when": [
+          "$gt0022|Age 55 years old or older|==local::at0016|Yes|||$gt0023|Tenderness at the head of fibula|==local::at0019|Yes|||$gt0024|Isolated tenderness of patella|==local::at0022|Yes|||$gt0025|Unable to flex to 90°|==local::at0025|Yes|||$gt0026|Unable to bear weight both immediately and in the ED (four steps)|==local::at0028|Yes|"
+        ],
+        "then": [
+          "$gt0031|Knee radiograph|=local::at0011|Required|"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Ottawa Knee Rules Assessment",
+            "description": "The Ottawa Knee Rules is a clinical decision rule that helps clinicians determine whether a patient needs a knee radiograph following an acute knee injury. The purpose of this rule is to reduce unnecessary radiography."
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "openEHR-EHR-OBSERVATION.ottawa_knee_rules.v0"
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "Age 55 years old or older"
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "Tenderness at the head of fibula"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "Isolated tenderness of patella"
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "Unable to flex to 90°"
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "Unable to bear weight both immediately and in the ED (four steps)"
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "Set knee radiograph required",
+            "description": ""
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "openEHR-EHR-OBSERVATION.ottawa_knee_rules.v0"
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "text": "Knee radiograph"
+          }
+        }
+      }
+    }
+  }
+}

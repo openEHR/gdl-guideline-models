@@ -1,0 +1,106 @@
+current_datetime: 2024-05-24T14:00:00+02:00
+guidelines:
+  "1": ISWT.v16.1
+test_cases:
+  - id: "001"
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 32,a
+        gt0006|Height/Length: 156,cm
+        gt0039|Event time: 2024-05-24T12:24:13+02:00
+        gt0008|Weight: 56,kg
+        gt0038|Event time: 2024-05-24T12:24:13+02:00
+        gt0037|Distance_Walked: 700,m
+    expected_output:
+      "1":
+        gt0011|Body mass index: 23.01,kg/m2
+        gt0041|Predicted_Distance: 1051.437,m
+        gt0042|%of_Predicted_Distance: "66.6"
+        gt0043|VO2 Peak: 984.19,ml/min
+        gt0044|Peak Exercise Capacity: 108.19,W
+  - id: "002: age below 18"
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0004|Age: 14,a
+        gt0006|Height/Length: 145,cm
+        gt0039|Event time: 2024-05-24T10:00+02:00
+        gt0008|Weight: 65,kg
+        gt0038|Event time: 2024-05-24T10:00+02:00
+        gt0037|Distance_Walked: 900,m
+    expected_output:
+      "1": {}
+  - id: "003"
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0004|Age: 46,a
+        gt0006|Height/Length: 168,cm
+        gt0039|Event time: 2024-05-24T10:00+02:00
+        gt0008|Weight: 80,kg
+        gt0038|Event time: 2024-05-24T10:00+02:00
+        gt0037|Distance_Walked: 500,m
+    expected_output:
+      "1":
+        gt0011|Body mass index: 28.34,kg/m2
+        gt0041|Predicted_Distance: 1129.044,m
+        gt0042|%of_Predicted_Distance: "44.3"
+        gt0043|VO2 Peak: 1004.19,ml/min
+        gt0044|Peak Exercise Capacity: 110.19,W
+  - id: "004"
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 30,a
+        gt0006|Height/Length: 160,cm
+        gt0039|Event time: 2024-05-24T12:00+02:00
+        gt0008|Weight: 58,kg
+        gt0038|Event time: 2024-05-24T12:00+02:00
+        gt0037|Distance_Walked: 1000,m
+    expected_output:
+      "1":
+        gt0011|Body mass index: 22.66,kg/m2
+        gt0041|Predicted_Distance: 1074.907,m
+        gt0042|%of_Predicted_Distance: "93.0"
+        gt0043|VO2 Peak: 1454.19,ml/min
+        gt0044|Peak Exercise Capacity: 155.19,W
+  - id: "005"
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 74,a
+        gt0006|Height/Length: 168,cm
+        gt0039|Event time: 2024-05-24T14:08:51+02:00
+        gt0008|Weight: 78,kg
+        gt0038|Event time: 2024-05-24T14:08:51+02:00
+        gt0037|Distance_Walked: 300,m
+    expected_output:
+      "1":
+        gt0011|Body mass index: 27.64,kg/m2
+        gt0041|Predicted_Distance: 558.567,m
+        gt0042|%of_Predicted_Distance: "53.7"
+        gt0043|VO2 Peak: 589.19,ml/min
+        gt0044|Peak Exercise Capacity: 68.69,
+  - id: Gender empty
+    input:
+      "1":
+        gt0004|Age: 66,a
+        gt0006|Height/Length: 170,cm
+        gt0039|Event time: 2024-05-24T14:29:14+02:00
+        gt0008|Weight: 85,kg
+        gt0038|Event time: 2024-05-24T14:29:14+02:00
+        gt0037|Distance_Walked: 900,m
+    expected_output:
+      "1": {}
+  - id: Age empty
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0006|Height/Length: 170,cm
+        gt0039|Event time: 2024-05-24T14:30:44+02:00
+        gt0008|Weight: 85,kg
+        gt0038|Event time: 2024-05-24T14:30:44+02:00
+        gt0037|Distance_Walked: 900,m
+    expected_output:
+      "1": {}

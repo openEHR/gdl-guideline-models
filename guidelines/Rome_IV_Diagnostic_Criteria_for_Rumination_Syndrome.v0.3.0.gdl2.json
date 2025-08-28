@@ -1,0 +1,151 @@
+{
+  "id": "Rome_IV_Diagnostic_Criteria_for_Rumination_Syndrome.v0.3.0",
+  "gdl_version": "2.1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Kevin Arjona",
+      "email": "kevin.arjona@cambio.se",
+      "organisation": "Cambio CDS",
+      "date": "2025-03-06"
+    },
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To provide clear diagnostic criteria and differential diagnosis guidance for Rumination Syndrome, avoiding misdiagnosis with conditions such as GERD, gastroparesis, and eating disorders.",
+        "keywords": [
+          "rumination",
+          "ROME IV",
+          "criteria",
+          "GI",
+          "disorder",
+          "regurgitation",
+          "syndrome",
+          "gastrointestinal",
+          "diagnostic"
+        ],
+        "use": "Use in patients with symptoms present for ≥3 months, onset at least 6 months before diagnosis and no evidence of structural abnormalities.",
+        "misuse": "Do not use in patients with Rule out GERD, gastroparesis, cyclic vomiting, and eating disorders.\n",
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "references": "Stanghellini V, Chan FK, Hasler WL, Malagelada JR, Suzuki H, Tack J, Talley NJ. Gastroduodenal Disorders. Gastroenterology. 2016 May;150(6):1380-92. doi: 10.1053/j.gastro.2016.02.011. PMID: 27147122.\n\nBruni A. Rumination syndrome in ethiopia: a case study. Prim Care Companion CNS Disord. 2014 Sep 25;16(5):10.4088/PCC.14br01651. doi: 10.4088/PCC.14br01651. PMID: 25667799; PMCID: PMC4321004.",
+      "en": "Clinical guideline to assist in the diagnosis of Rumination Syndrome using the Rome IV criteria."
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0055": {
+        "id": "gt0055",
+        "model_id": "openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0",
+        "template_id": "openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0056": {
+            "id": "gt0056",
+            "path": "/data[at0001]/items[at0008]",
+            "data_type": "DV_CODED_TEXT"
+          }
+        }
+      },
+      "gt0057": {
+        "id": "gt0057",
+        "model_id": "openEHR-EHR-OBSERVATION.rome_iv_gastroduodenal_disorders.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.rome_iv_gastroduodenal_disorders.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0058": {
+            "id": "gt0058",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]/items[at0005]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0006",
+              "local::at0007"
+            ]
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]/items[at0008]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0009",
+              "local::at0010"
+            ]
+          }
+        }
+      }
+    },
+    "pre_conditions": [
+      "$gt0058|Persistent or recurrent regurgitation of recently ingested food into the mouth with subsequent spitting or remastication and swallowing|!=null",
+      "$gt0059|Regurgitation is not preceded by retching|!=null"
+    ],
+    "default_actions": [
+      "$gt0056|Diagnostic Result|=local::at0009|Negative|"
+    ],
+    "rules": {
+      "gt0007": {
+        "id": "gt0007",
+        "priority": 1,
+        "when": [
+          "$gt0058|Persistent or recurrent regurgitation of recently ingested food into the mouth with subsequent spitting or remastication and swallowing|==local::at0006|Yes|",
+          "$gt0059|Regurgitation is not preceded by retching|==local::at0009|Yes|"
+        ],
+        "then": [
+          "$gt0056|Diagnostic Result|=local::at0010|Positive|"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Rome IV Diagnostic Criteria for Rumination Syndrome",
+            "description": "Clinical guideline to assist in the diagnosis of Rumination Syndrome using the Rome IV criteria, ensuring standardization in gastroenterology and primary care settings."
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "Set positive diagnosis",
+            "description": "All criteria are met "
+          },
+          "gt0053": {
+            "id": "gt0053",
+            "text": "Positive"
+          },
+          "gt0054": {
+            "id": "gt0054",
+            "text": "Negative"
+          },
+          "gt0055": {
+            "id": "gt0055",
+            "text": "openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0"
+          },
+          "gt0056": {
+            "id": "gt0056",
+            "text": "Diagnostic Result"
+          },
+          "gt0057": {
+            "id": "gt0057",
+            "text": "openEHR-EHR-OBSERVATION.rome_iv_gastroduodenal_disorders.v0"
+          },
+          "gt0058": {
+            "id": "gt0058",
+            "text": "Persistent or recurrent regurgitation of recently ingested food into the mouth with subsequent spitting or remastication and swallowing"
+          },
+          "gt0059": {
+            "id": "gt0059",
+            "text": "Regurgitation is not preceded by retching"
+          }
+        }
+      }
+    }
+  }
+}

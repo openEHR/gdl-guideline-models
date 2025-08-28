@@ -1,0 +1,510 @@
+archetype (adl_version=1.4; uid=16696be2-a948-4924-b4f4-9c3b02b592e4)
+	openEHR-EHR-OBSERVATION.neck_disability_index.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-01-09">
+		["name"] = <"Aurelia Maria Ozora">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"aurelia.maria.ozora@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the result for each component parameter and the total score for the Neck Disability Index (NDI).">
+			keywords = <"neck, disability, index, cervical", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the result for each component parameter and the total score for the Neck Disability Index (NDI).">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"MacDermid JC, Walton DM, Avery S, Blanchard A, Etruw E, McAlpine C, Goldsmith CH. Measurement properties of the neck disability index: a systematic review. J Orthop Sports Phys Ther. 2009 May;39(5):400-17. doi: 10.2519/jospt.2009.2930. PMID: 19521015.
+
+Vernon H, Mior S. The Neck Disability Index: a study of reliability and validity. J Manipulative Physiol Ther. 1991 Sep;14(7):409-15. Erratum in: J Manipulative Physiol Ther 1992 Jan;15(1):followi. PMID: 1834753.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"1f29d833d9d2df8adf11faaf47c41d4b">
+		["build_uid"] = <"c6ec6fec-a4a1-3a64-990f-ed986b4ae140">
+		["revision"] = <"1">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Neck Disability Index (NDI)
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Pain intensity
+										value matches {
+											0|[local::at0008],
+											1|[local::at0009],
+											2|[local::at0010],
+											3|[local::at0011],
+											4|[local::at0012],
+											5|[local::at0013]
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Personal care
+										value matches {
+											0|[local::at0025],
+											1|[local::at0026],
+											2|[local::at0027],
+											3|[local::at0028],
+											4|[local::at0029],
+											5|[local::at0030]
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Lifting
+										value matches {
+											0|[local::at0031],
+											1|[local::at0032],
+											2|[local::at0033],
+											3|[local::at0034],
+											4|[local::at0035],
+											5|[local::at0036]
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Work
+										value matches {
+											0|[local::at0037],
+											1|[local::at0038],
+											2|[local::at0039],
+											3|[local::at0040],
+											4|[local::at0041],
+											5|[local::at0042]
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Headaches
+										value matches {
+											0|[local::at0043],
+											1|[local::at0044],
+											2|[local::at0045],
+											3|[local::at0046],
+											4|[local::at0047],
+											5|[local::at0048]
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Concentration
+										value matches {
+											0|[local::at0049],
+											1|[local::at0050],
+											2|[local::at0051],
+											3|[local::at0052],
+											4|[local::at0053],
+											5|[local::at0054]
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {    -- Sleeping
+										value matches {
+											0|[local::at0055],
+											1|[local::at0056],
+											2|[local::at0057],
+											3|[local::at0058],
+											4|[local::at0059],
+											5|[local::at0060]
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {    -- Driving
+										value matches {
+											0|[local::at0061],
+											1|[local::at0062],
+											2|[local::at0063],
+											3|[local::at0064],
+											4|[local::at0065],
+											5|[local::at0066]
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- Reading
+										value matches {
+											0|[local::at0067],
+											1|[local::at0068],
+											2|[local::at0069],
+											3|[local::at0070],
+											4|[local::at0071],
+											5|[local::at0072]
+										}
+									}
+									ELEMENT[at0022] occurrences matches {0..1} matches {    -- Recreation
+										value matches {
+											0|[local::at0073],
+											1|[local::at0074],
+											2|[local::at0075],
+											3|[local::at0076],
+											4|[local::at0077],
+											5|[local::at0078]
+										}
+									}
+									ELEMENT[at0079] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											DV_COUNT matches {
+												magnitude matches {|0..50|}
+											}
+										}
+									}
+									ELEMENT[at0024] occurrences matches {0..1} matches {    -- Percentage
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::507]>
+												list = <
+													["1"] = <
+														units = <"%">
+														magnitude = <|0.0..100.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0080] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Neck Disability Index (NDI)">
+					description = <"Neck Disability Index (NDI) is an assessment that measures cervical pain and disability associated with the activities of daily living.">
+					comment = <"Original version, c 1992.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0007"] = <
+					text = <"Pain intensity">
+					description = <"Pain occurrence and perceived severity.">
+				>
+				["at0008"] = <
+					text = <"I have no neck pain at the moment">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"The pain is very mild at the moment">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"The pain is moderate at the moment">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"The pain is fairly severe at the moment">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"The pain is very severe at the moment">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"The pain is the worst imaginable at the moment">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Personal care">
+					description = <"Ability to care for oneself and degree of perceived accuracy in doing so.">
+				>
+				["at0015"] = <
+					text = <"Lifting">
+					description = <"Capacity to lift different weights with or without pain.">
+				>
+				["at0016"] = <
+					text = <"Work">
+					description = <"Comparison between current and past work capacity.">
+				>
+				["at0017"] = <
+					text = <"Headaches">
+					description = <"Frequency and perceived severity of recurrent headaches.">
+				>
+				["at0018"] = <
+					text = <"Concentration">
+					description = <"Degree of difficulty encountered when trying to concentrate.">
+				>
+				["at0019"] = <
+					text = <"Sleeping">
+					description = <"Quantification of sleep disturbance.">
+				>
+				["at0020"] = <
+					text = <"Driving">
+					description = <"Ability to drive and length of time to drive before pain occurs.">
+				>
+				["at0021"] = <
+					text = <"Reading">
+					description = <"Degree of experienced pain in the neck during and in different reading positions.">
+				>
+				["at0022"] = <
+					text = <"Recreation">
+					description = <"Perceived impairment to partaking in leisure activities.">
+				>
+				["at0024"] = <
+					text = <"Percentage">
+					description = <"Total score from all the questionnaire components in percentage.">
+				>
+				["at0025"] = <
+					text = <"I can look after myself normally without causing extra neck pain">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"I can look after myself normally, but it causes extra neck pain">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"It is painful to look after myself, and I am slow and careful">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"I need some help but manage most of my personal care">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"I need help every day in most aspects of self-care">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"I do not get dressed. I wash with difficulty and stay in bed">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"I can lift heavy weights without causing extra neck pain">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"I can lift heavy weights, but it gives me extra neck pain">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Neck pain prevents me from lifting heavy weights off the floor but I can manage if items are conveniently positioned, ie. on a table">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Neck pain prevents me from lifting heavy weights, but I can manage light weights if they are conveniently positioned">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"I can lift only very light weights">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"I cannot lift or carry anything at all">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"I can do as much work as I want">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"I can only do my usual work, but no more">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"I can do most of my usual work, but no more">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"I can't do my usual work">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"I can hardly do any work at all">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"I can't do any work at all">
+					description = <"">
+				>
+				["at0043"] = <
+					text = <"I have no headaches at all">
+					description = <"">
+				>
+				["at0044"] = <
+					text = <"I have slight headaches that come infrequently">
+					description = <"">
+				>
+				["at0045"] = <
+					text = <"I have moderate headaches that come infrequently">
+					description = <"">
+				>
+				["at0046"] = <
+					text = <"I have moderate headaches that come frequently">
+					description = <"">
+				>
+				["at0047"] = <
+					text = <"I have severe headaches that come frequently">
+					description = <"">
+				>
+				["at0048"] = <
+					text = <"I have headaches almost all the time">
+					description = <"">
+				>
+				["at0049"] = <
+					text = <"I can concentrate fully without difficulty">
+					description = <"">
+				>
+				["at0050"] = <
+					text = <"I can concentrate fully with slight difficulty">
+					description = <"">
+				>
+				["at0051"] = <
+					text = <"I have a fair degree of difficulty concentrating">
+					description = <"">
+				>
+				["at0052"] = <
+					text = <"I have a lot of difficulty concentrating">
+					description = <"">
+				>
+				["at0053"] = <
+					text = <"I have a great deal of difficulty concentrating">
+					description = <"">
+				>
+				["at0054"] = <
+					text = <"I can't concentrate at all">
+					description = <"">
+				>
+				["at0055"] = <
+					text = <"I have no trouble sleeping">
+					description = <"">
+				>
+				["at0056"] = <
+					text = <"My sleep is slightly disturbed for less than 1 hour">
+					description = <"">
+				>
+				["at0057"] = <
+					text = <"My sleep is mildly disturbed for up to 1-2 hours">
+					description = <"">
+				>
+				["at0058"] = <
+					text = <"My sleep is moderately disturbed for up to 2-3 hours">
+					description = <"">
+				>
+				["at0059"] = <
+					text = <"My sleep is greatly disturbed for up to 3-5 hours">
+					description = <"">
+				>
+				["at0060"] = <
+					text = <"My sleep is completely disturbed for up to 5-7 hours">
+					description = <"">
+				>
+				["at0061"] = <
+					text = <"I can drive my car without neck pain">
+					description = <"">
+				>
+				["at0062"] = <
+					text = <"I can drive my car with only slight neck pain">
+					description = <"">
+				>
+				["at0063"] = <
+					text = <"I can drive as long as I want with moderate neck pain">
+					description = <"">
+				>
+				["at0064"] = <
+					text = <"I can't drive as long as I want because of moderate neck pain">
+					description = <"">
+				>
+				["at0065"] = <
+					text = <"I can hardly drive at all because of severe neck pain">
+					description = <"">
+				>
+				["at0066"] = <
+					text = <"I can't drive my car at all because of neck pain">
+					description = <"">
+				>
+				["at0067"] = <
+					text = <"I can read as much as I wawnt with no neck pain">
+					description = <"">
+				>
+				["at0068"] = <
+					text = <"I can read as much as I want with slight neck pain">
+					description = <"">
+				>
+				["at0069"] = <
+					text = <"I can read as much as I want with moderate neck pain">
+					description = <"">
+				>
+				["at0070"] = <
+					text = <"I can't read as much as I want because of moderate neck pain">
+					description = <"">
+				>
+				["at0071"] = <
+					text = <"I can't read as much as I want because of severe neck pain">
+					description = <"">
+				>
+				["at0072"] = <
+					text = <"I can't read at all">
+					description = <"">
+				>
+				["at0073"] = <
+					text = <"I have no neck pain during all recreational activities">
+					description = <"">
+				>
+				["at0074"] = <
+					text = <"I have some neck pain with all recreational activities">
+					description = <"">
+				>
+				["at0075"] = <
+					text = <"I have some neck pain with a few recreational activities">
+					description = <"">
+				>
+				["at0076"] = <
+					text = <"I have neck pain with most recreational activities">
+					description = <"">
+				>
+				["at0077"] = <
+					text = <"I can hardly do recreational activities due to neck pain">
+					description = <"">
+				>
+				["at0078"] = <
+					text = <"I can't do any recreational activities due to neck pain">
+					description = <"">
+				>
+				["at0079"] = <
+					text = <"Total score">
+					description = <"Total score from all the questionnaire components.">
+				>
+				["at0080"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>

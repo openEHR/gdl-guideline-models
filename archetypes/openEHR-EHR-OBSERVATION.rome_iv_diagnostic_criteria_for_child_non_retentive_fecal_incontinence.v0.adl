@@ -1,0 +1,133 @@
+archetype (adl_version=1.4; uid=662816e7-dceb-4560-9d04-8c834987083e)
+	openEHR-EHR-OBSERVATION.rome_iv_diagnostic_criteria_for_child_non_retentive_fecal_incontinence.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-03-10">
+		["name"] = <"Aurelia Maria Ozora">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"aurelia.maria.ozora@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	other_contributors = <"Aurelia Maria Ozora", ...>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter.">
+			keywords = <"Rome, IV, diagnostic, criteria, child, non retentive, fecal, incontinence", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Rasquin A, Di Lorenzo C, Forbes D, Guiraldes E, Hyams JS, Staiano A, Walker LS. Childhood functional gastrointestinal disorders: child/adolescent. Gastroenterology. 2006 Apr;130(5):1527-37. doi: 10.1053/j.gastro.2005.08.063. PMID: 16678566; PMCID: PMC7104693.
+
+Boronat AC, Ferreira-Maia AP, Matijasevich A, Wang YP. Epidemiology of functional gastrointestinal disorders in children and adolescents: A systematic review. World J Gastroenterol. 2017 Jun 7;23(21):3915-3927. doi: 10.3748/wjg.v23.i21.3915. PMID: 28638232; PMCID: PMC5467078.">
+		["revision"] = <"0">
+		["build_uid"] = <"e1cb06d8-f62b-35ba-aa54-b05c4620fa3c">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Rome IV Diagnostic Criteria for Child Non retentive Fecal Incontinence
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Age
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"a">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Defecation in places inappropriate to the sociocultural context
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- No evidence of fecal retention
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- After appropriate evaluation, the fecal incontinence cannot be explained by another medical condition
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- The symptoms have lasted for at least one month.
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Rome IV Diagnostic Criteria for Child Non retentive Fecal Incontinence">
+					description = <"The Rome IV criteria provide symptom-based guidelines by which child and adolescent disorders of the gut-brain interaction (DGBI) such as nonretentive fecal incontinence can be diagnosed. Prior iterations of the Rome criteria were based mostly on consensus, as research in child/adolescent DGBI was still largely lacking. The diagnosis of nonretentive fecal incontinence should be made by clinical history, positive symptom criteria, physical examination, and minimal diagnostic testing as clinically indicated.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Age">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Defecation in places inappropriate to the sociocultural context">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"No evidence of fecal retention">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"After appropriate evaluation, the fecal incontinence cannot be explained by another medical condition">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"The symptoms have lasted for at least one month.">
+					description = <"">
+				>
+			>
+		>
+	>

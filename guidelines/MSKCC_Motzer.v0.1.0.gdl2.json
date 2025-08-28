@@ -1,0 +1,272 @@
+{
+  "id": "MSKCC_Motzer.v0.1.0",
+  "gdl_version": "2.1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Shweta Prasad Ghaisas",
+      "email": "s.prasad.ghaisas@cambio.se",
+      "organisation": "Cambio CDS",
+      "date": "2025-02-13"
+    },
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To calculate and interpret the total sum for the MSKCC/Motzer score.",
+        "keywords": [
+          "renal cell carcinoma",
+          "renal cell cancer",
+          "carcinoma",
+          "cancer",
+          "metastatic renal cell carcinoma",
+          "metastatic carcinoma",
+          "hemoglobin",
+          "calcium",
+          "Memorial Sloan-Kettering Cancer Center",
+          "Motzer score",
+          "LDH",
+          "l-lactate dehydrogenase",
+          "performance status",
+          "time from diagnosis to systemic treatment"
+        ],
+        "use": "The guideline is used to calculate the Total score and/or the interpretation of the calculated Total score in the form of \"risk group\" and \"median survival 4 months\" in patients with metastatic renal cell carcinoma undergoing systemic therapy. It can be used to identify patients being considered for clinical trial enrollment, and in clinical practice for the estimation of prognosis. The risk here refers to the risk to survival. The Total score is stratified for risk and median survival as follows:\n\n1. Score: 0, Risk: Good, Median survival: 20 months\n\n2. Score: 1-2, Risk: Intermediate, Median survival: 10 months\n\n3. Score: ≥3, Risk: High, Median survival: 4 months",
+        "misuse": "Not to be used for making decisions about treatment for metastatic renal cell carcinoma.",
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "en": "An assessment score to predict survival based on clinical and laboratory data in metastatic renal cell carcinoma patients.",
+      "references": "Motzer RJ, Mazumdar M, Bacik J, Berg W, Amsterdam A, Ferrara J. Survival and prognostic stratification of 670 patients with advanced renal cell carcinoma. J Clin Oncol. 1999;17(8):2530-40.\n\nMotzer RJ, Bacik J, Murphy BA, Russo P, Mazumdar M. Interferon-alfa as a comparative treatment for clinical trials of new therapies against advanced renal cell carcinoma. J Clin Oncol. 2002 Jan 1;20(1):289-96.\n\nMotzer RJ, Bacik J, Schwartz LH, et al. Prognostic factors for survival in previously treated patients with metastatic renal cell carcinoma. J Clin Oncol. 2004;22(3):454-63.\n\nMotzer RJ, Hutson TE, Tomczak P, et al. Overall survival and updated results for sunitinib compared with interferon alfa in patients with metastatic renal cell carcinoma. J Clin Oncol. 2009;27(22):3584-90."
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0023": {
+        "id": "gt0023",
+        "model_id": "openEHR-EHR-OBSERVATION.mskcc_motzer.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.mskcc_motzer.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0024": {
+            "id": "gt0024",
+            "path": "/data[at0001]/events[at0002]/data[at0006]/items[at0007]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0008|No|",
+              "1|local::at0009|Yes|"
+            ]
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "path": "/data[at0001]/events[at0002]/data[at0006]/items[at0010]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0011|No|",
+              "1|local::at0012|Yes|"
+            ]
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "path": "/data[at0001]/events[at0002]/data[at0006]/items[at0013]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0014|No|",
+              "1|local::at0015|Yes|"
+            ]
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "path": "/data[at0001]/events[at0002]/data[at0006]/items[at0016]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0017|No|",
+              "1|local::at0018|Yes|"
+            ]
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "path": "/data[at0001]/events[at0002]/data[at0006]/items[at0019]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0020|No|",
+              "1|local::at0021|Yes|"
+            ]
+          }
+        }
+      },
+      "gt0029": {
+        "id": "gt0029",
+        "model_id": "openEHR-EHR-OBSERVATION.mskcc_motzer.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.mskcc_motzer.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0030": {
+            "id": "gt0030",
+            "path": "/data[at0001]/events[at0002]/data[at0006]/items[at0022]",
+            "data_type": "DV_COUNT"
+          }
+        }
+      },
+      "gt0031": {
+        "id": "gt0031",
+        "model_id": "openEHR-EHR-EVALUATION.health_risk.v1",
+        "template_id": "openEHR-EHR-EVALUATION.health_risk.v1",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0032": {
+            "id": "gt0032",
+            "path": "/data[at0001]/items[at0023]"
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "path": "/data[at0001]/items[at0003]",
+            "data_type": "DV_TEXT"
+          }
+        }
+      }
+    },
+    "rules": {
+      "gt0013": {
+        "id": "gt0013",
+        "priority": 4,
+        "when": [
+          "$gt0024|Time from diagnosis to systemic treatment <1 year|!=null",
+          "$gt0025|Hemoglobin < Lower Limit of Normal|!=null",
+          "$gt0026|Calcium >10mg/dL (>2.5 mmol/L)|!=null",
+          "$gt0027|LDH > 1.5x Upper Limit of Normal|!=null",
+          "$gt0028|Performance status <80% (Karnofsky)|!=null"
+        ],
+        "then": [
+          "$gt0030|Total score|.magnitude=$gt0024|Time from diagnosis to systemic treatment <1 year|.value+$gt0025|Hemoglobin < Lower Limit of Normal|.value+$gt0026|Calcium >10mg/dL (>2.5 mmol/L)|.value+$gt0027|LDH > 1.5x Upper Limit of Normal|.value+$gt0028|Performance status <80% (Karnofsky)|.value"
+        ]
+      },
+      "gt0014": {
+        "id": "gt0014",
+        "priority": 3,
+        "when": [
+          "$gt0030|Total score|==0"
+        ],
+        "then": [
+          "$gt0032|Median survival (months)|=20",
+          "$gt0033|Risk|=$gt0020.term"
+        ]
+      },
+      "gt0015": {
+        "id": "gt0015",
+        "priority": 2,
+        "when": [
+          "$gt0030|Total score|>0&&$gt0030|Total score|<=2"
+        ],
+        "then": [
+          "$gt0032|Median survival (months)|=10",
+          "$gt0033|Risk|=$gt0021.term"
+        ]
+      },
+      "gt0016": {
+        "id": "gt0016",
+        "priority": 1,
+        "when": [
+          "$gt0030|Total score|>=3"
+        ],
+        "then": [
+          "$gt0032|Median survival (months)|=4",
+          "$gt0033|Risk|=$gt0022.term"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "MSKCC/Motzer score for metastatic renal cell carcinoma",
+            "description": "An assessment score to predict survival based on clinical and laboratory data in metastatic renal cell carcinoma patients."
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "Calculate Total score",
+            "description": "The rule adds individual scores of all input fields to give a total score."
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "Set interpretation for Total score = 0",
+            "description": "When the total score is 0, the risk is good or favorable."
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "Set interpretation for Total score = 1 or 2",
+            "description": "When the total score is 1 or 2, the risk is intermediate."
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "Set interpretation for total score is more than or equal to 3",
+            "description": "When the total score is 3 or more, the risk to survival is high."
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "Risk to survival is Good."
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "Risk to survival is Intermediate."
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "Risk to survival is High."
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "openEHR-EHR-OBSERVATION.mskcc_motzer.v0"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "Time from diagnosis to systemic treatment <1 year"
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "Hemoglobin < Lower Limit of Normal"
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "Calcium >10mg/dL (>2.5 mmol/L)"
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "LDH > 1.5x Upper Limit of Normal"
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "Performance status <80% (Karnofsky)"
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "openEHR-EHR-OBSERVATION.mskcc_motzer.v0"
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "Total score"
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "text": "openEHR-EHR-EVALUATION.health_risk.v1"
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "Median survival (months)"
+          },
+          "gt0033": {
+            "id": "gt0033",
+            "text": "Risk"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,183 @@
+archetype (adl_version=1.4; uid=184ffee0-49c4-4326-a877-239a96c30128)
+	openEHR-EHR-EVALUATION.gipss_for_pmf_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-06-17">
+		["name"] = <"Aurelia Maria Ozora">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"aurelia.maria.ozora@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the assessment of  GIPSS for PMF.">
+			keywords = <"genetically, inspired, prognostic, scoring, system, gipss, primary, myelofibrosis, pmf", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the assessment of  GIPSS for PMF.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Tefferi A, Guglielmelli P, Nicolosi M, Mannelli F, Mudireddy M, Bartalucci N, Finke CM, Lasho TL, Hanson CA, Ketterling RP, Begna KH, Naseema Gangat, Pardanani A, Vannucchi AM. GIPSS: genetically inspired prognostic scoring system for primary myelofibrosis. Leukemia. 2018 Jul;32(7):1631-1642. doi: 10.1038/s41375-018-0107-z. Epub 2018 Mar 23. PMID: 29654267; PMCID: PMC6035151.
+
+Kuykendall AT, Talati C, Padron E, Sweet K, Sallman D, List AF, Lancet JE, Komrokji RS. Genetically inspired prognostic scoring system (GIPSS) outperforms dynamic international prognostic scoring system (DIPSS) in myelofibrosis patients. Am J Hematol. 2019 Jan;94(1):87-92. doi: 10.1002/ajh.25335. Epub 2018 Nov 25. PMID: 30390311.">
+		["revision"] = <"0">
+		["build_uid"] = <"49d3d183-4dab-32c8-b886-ac78c6b5618a">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Genetically Inspired Prognostic Scoring System (GIPSS) for Primary Myelofibrosis (PMF) Assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Risk
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0007,    -- Low
+									at0008,    -- Intermediate-1
+									at0009,    -- Intermediate-2
+									at0010]    -- High
+								}
+							}
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {    -- 5-year overall survival
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0011,    -- 94%
+									at0012,    -- 73%
+									at0013,    -- 40%
+									at0014]    -- 14%
+								}
+							}
+						}
+					}
+					ELEMENT[at0006] occurrences matches {0..1} matches {    -- Median overall survival
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0015,    -- 26.4 years
+									at0016,    -- 8.0 years
+									at0017,    -- 4.2 years
+									at0018]    -- 2 years
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Genetically Inspired Prognostic Scoring System (GIPSS) for Primary Myelofibrosis (PMF) Assessment">
+					description = <"Assessment of GIPSS for PMF.">
+					comment = <"Original version, c 2018.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Risk">
+					description = <"The interpretation of the GIPPS score.">
+				>
+				["at0005"] = <
+					text = <"5-year overall survival">
+					description = <"5-year overall survival indicates the percentage of patients who are still alive five years after being diagnosed.">
+				>
+				["at0006"] = <
+					text = <"Median overall survival">
+					description = <"Median overall survival is the time point at which 50% of the patients are still alive and 50% have died.">
+				>
+				["at0007"] = <
+					text = <"Low">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Intermediate-1">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Intermediate-2">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"High">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"94%">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"73%">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"40%">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"14%">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"26.4 years">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"8.0 years">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"4.2 years">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"2 years">
+					description = <"">
+				>
+			>
+		>
+	>

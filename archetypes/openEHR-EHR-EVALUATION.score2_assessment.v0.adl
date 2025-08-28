@@ -1,0 +1,78 @@
+archetype (adl_version=1.4; uid=fd192c8e-a394-4cc7-b430-2ba9d5e3fedb)
+	openEHR-EHR-EVALUATION.score2_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-07-08">
+		["name"] = <"Shweta Prasad Ghaisas">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"s.prasad.ghaisas@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record results of the 10-year CVD risk derived from SCORE2.">
+			keywords = <"score2, CVD, risk, coronary, cholesterol, smoking, HDL, age, gender, smoking, risk region, blood pressure", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Used to record results of the 10-year CVD risk derived from SCORE2.">
+			misuse = <"Do not use to record observations of component parameters used in SCORE2.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"SCORE2 working group and ESC Cardiovascular Risk Collaboration. SCORE2 risk prediction algorithms: new models to estimate 10-year risk of cardiovascular disease in Europe. Eur Heart J. 2021 Jun 13;42(25):2439–54. doi: 10.1093/eurheartj/ehab309.">
+		["build_uid"] = <"8622dac3-3a19-34db-9362-4e639cda1c83">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- score2_assessment
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- 10-year risk of CVD
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::507]>
+								list = <
+									["1"] = <
+										units = <"%">
+									>
+								>
+							>
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"score2_assessment">
+					description = <"score2_assessment is used to record the 10-year CVD risk.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"10-year risk of CVD">
+					description = <"">
+				>
+			>
+		>
+	>

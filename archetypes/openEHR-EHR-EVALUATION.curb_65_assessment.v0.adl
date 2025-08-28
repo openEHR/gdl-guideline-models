@@ -1,0 +1,164 @@
+archetype (adl_version=1.4; uid=2c5f32f8-e2ff-4b09-86e1-13a6849fd569)
+	openEHR-EHR-EVALUATION.curb_65_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-06-30">
+		["name"] = <"Shweta Prasad Ghaisas">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"s.prasad.ghaisas@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record results for level of risk of community-acquired pneumonia, recommendation in terms of care level and 30-day mortality.">
+			keywords = <"risk, mortality, community-acquired, pneumonia, hospital, admission, death, ICU, curb 65", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Used to record the results for level of risk of community-acquired pneumonia, recommendation in terms of care level and 30-day mortality based on CURB 65 score.">
+			misuse = <"Not to be used for calculating and recording the total score for CURB 65.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Lim W, van der Eerden MM, Laing R, Boersma W, Karalus N, Town G, Lewis S, Macfarlane J. Defining community acquired pneumonia severity on presentation to hospital: an international derivation and validation study. Thorax. 2003 May;58(5):377–82. doi: 10.1136/thorax.58.5.377.
+
+Lim WS, Baudouin SV, George RC, et al. BTS guidelines for the management of community acquired pneumonia in adults: update 2009. Thorax. 2009;64(Suppl 3):iii1–iii55.
+
+NICE Guideline 191: Pneumonia: Diagnosis and management of community- and hospitalacquired pneumonia in adults https://www.nice.org.uk/guidance/cg191
+
+Lim WS, Smith D, Wise M, Welham S. Annotated BTS Guideline for the management of CAP in adults (2009). 2015. https://www.brit-thoracic.org.uk/document-library/guidelines/pneumonia-adults/annotated-bts-cap-guideline-summary-of-recommendations/">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"02bf7d5e-33d0-31c8-b5b7-a045793b6d75">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- CURB 65 assessment
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- Risk assessment
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0003,    -- Low risk
+									at0004,    -- Moderate risk
+									at0005]    -- Severe risk
+								}
+							}
+						}
+					}
+					ELEMENT[at0006] occurrences matches {0..1} matches {    -- Recommendation
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0011,    -- Home treatment
+									at0012,    -- Short-stay inpatient treatment or hospital-supervised outpatient treatment
+									at0013,    -- Review by a senior physician to refine disease severity assessment, Managed as having high severity pneumonia
+									at0014]    -- Transfer to a critical care unit (high dependency unit or intensive care unit)
+								}
+							}
+						}
+					}
+					ELEMENT[at0007] occurrences matches {0..1} matches {    -- 30-day mortality
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0008,    -- less than 3%
+									at0009,    -- 9%
+									at0010]    -- 15-40%
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0015] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"CURB 65 assessment">
+					description = <"An assessment used to record risk of community-acquired pneumonia and accordingly record the care level and 30-day mortality based on CURB 65 score.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Risk assessment">
+					description = <"">
+				>
+				["at0003"] = <
+					text = <"Low risk">
+					description = <"">
+				>
+				["at0004"] = <
+					text = <"Moderate risk">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Severe risk">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Recommendation">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"30-day mortality">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"less than 3%">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"9%">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"15-40%">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Home treatment">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Short-stay inpatient treatment or hospital-supervised outpatient treatment">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Review by a senior physician to refine disease severity assessment, Managed as having high severity pneumonia">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Transfer to a critical care unit (high dependency unit or intensive care unit)">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+			>
+		>
+	>

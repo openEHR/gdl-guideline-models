@@ -1,0 +1,267 @@
+archetype (adl_version=1.4; uid=7011870b-1b00-45bc-a9a8-4705ca2ffa44)
+	openEHR-EHR-OBSERVATION.rome_iv_diagnostic_criteria_for_biliary_pain.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-01-31">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the presence or absence of Rome IV-defined biliary pain criteria, supporting clinicians in the diagnosis of functional biliary disorders.">
+			keywords = <"biliary pain, functional gallbladder disorder, sphincter of Oddi dysfunction, rome IV criteria, right upper quadrant pain", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Applicable to patients experiencing episodic right upper quadrant or epigastric pain, with no evidence of gallstones or obstructive biliary pathology on imaging.
+
+The clinician evaluates the patient against Rome IV criteria and determines if the pattern of symptoms is consistent with functional biliary pain.">
+			misuse = <"Not to be used for diagnosing biliary pain secondary to gallstones, cholecystitis, or pancreatitis.
+
+Not intended for general abdominal pain assessment.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Cotton PB, Elta GH, Carter CR, Pasricha PJ, Corazziari ES. Rome IV. Gallbladder and Sphincter of Oddi Disorders. Gastroenterology. 2016 Feb 19:S0016-5085(16)00224-9. doi: 10.1053/j.gastro.2016.02.033. Epub ahead of print. PMID: 27144629.
+
+Cotton PB, Durkalski V, Romagnuolo J, Pauls Q, Fogel E, Tarnasky P, Aliperti G, Freeman M, Kozarek R, Jamidar P, Wilcox M, Serrano J, Brawman-Mintzer O, Elta G, Mauldin P, Thornhill A, Hawes R, Wood-Williams A, Orrell K, Drossman D, Robuck P. Effect of endoscopic sphincterotomy for suspected sphincter of Oddi dysfunction on pain-related disability following cholecystectomy: the EPISOD randomized clinical trial. JAMA. 2014 May;311(20):2101-9. doi: 10.1001/jama.2014.5220. PMID: 24867013; PMCID: PMC4428324.
+
+">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"76874614-f34c-3c65-957e-80b6f667082b">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Rome IV Diagnostic Criteria for Biliary Pain
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Pain located in the epigastrium and/or right upper quadrant
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0015,    -- Yes
+													at0016]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Builds up to a steady level and lasting 30 minutes or longer
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0017,    -- Yes
+													at0018]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Occurs at different intervals (not daily)
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0019,    -- Yes
+													at0020]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Severe enough to interrupt daily activities or lead to an emergency department visit
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0021,    -- Yes
+													at0022]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Not significantly (<20%) related to bowel movements
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0023,    -- Yes
+													at0024]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Not significantly (<20%) relieved by postural change or acid suppression
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0025,    -- Yes
+													at0026]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Diagnostic Result
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0013,    -- Negative
+													at0014]    -- Positive
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Rome IV Diagnostic Criteria for Biliary Pain">
+					description = <"A clinical evaluation model used to diagnose functional biliary pain based on Rome IV criteria. This diagnosis applies to patients with episodic upper abdominal pain in the absence of gallstones or structural biliary disease, suggestive of functional gallbladder or sphincter of Oddi dysfunction.">
+					comment = <"Original version, c 2016">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Builds up to a steady level and lasting 30 minutes or longer">
+					description = <"Builds up to a steady level and lasting 30 minutes or longer">
+				>
+				["at0007"] = <
+					text = <"Occurs at different intervals (not daily)">
+					description = <"Occurs at different intervals (not daily)">
+				>
+				["at0008"] = <
+					text = <"Severe enough to interrupt daily activities or lead to an emergency department visit">
+					description = <"Severe enough to interrupt daily activities or lead to an emergency department visit">
+				>
+				["at0009"] = <
+					text = <"Not significantly (<20%) related to bowel movements">
+					description = <"Not significantly (<20%) related to bowel movements">
+				>
+				["at0010"] = <
+					text = <"Not significantly (<20%) relieved by postural change or acid suppression">
+					description = <"Not significantly (<20%) relieved by postural change or acid suppression">
+				>
+				["at0011"] = <
+					text = <"Pain located in the epigastrium and/or right upper quadrant">
+					description = <"Pain located in the epigastrium and/or right upper quadrant">
+				>
+				["at0012"] = <
+					text = <"Diagnostic Result">
+					description = <"Diagnosis for biliary pain as per Rome IV criteria">
+				>
+				["at0013"] = <
+					text = <"Negative">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Positive">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"No">
+					description = <"">
+				>
+			>
+		>
+	>

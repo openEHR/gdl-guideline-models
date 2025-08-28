@@ -1,0 +1,216 @@
+archetype (adl_version=1.4; uid=d148248a-4e08-44c9-8494-dd854ee9eeec)
+	openEHR-EHR-OBSERVATION.who_diagnostic_criteria_for_polycythemia_vera.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-05-21">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the individual components (Major and Minor criteria) required to assess a patient against the WHO diagnostic criteria for Polycythemia Vera.">
+			keywords = <"polycythemia vera, pv, who, diagnosis, diagnostic criteria, myeloproliferative neoplasm, mpn, jak2, erythropoietin, epo, bone marrow, hemoglobin, hematocrit, red cell mass", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to document whether each of the WHO diagnostic criteria for Polycythemia Vera has been met. This includes hematological parameters, bone marrow morphology findings, JAK2 mutation status, and serum erythropoietin levels. Designed to be used in conjunction with a GDL guideline (WHO_PV_Dx.v0.0.1) to determine if the overall diagnostic criteria are met.">
+			misuse = <"Not to be used for diagnosing other myeloproliferative neoplasms (e.g., Essential Thrombocythemia, Primary Myelofibrosis) or other hematological conditions. Not intended for staging, prognosis, or monitoring treatment response. Not to be used for recording the final diagnosis itself; use an appropriate EVALUATION archetype (e.g., EVALUATION.problem_diagnosis) for the confirmed diagnosis.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Arber DA, Orazi A, Hasserjian R, Thiele J, Borowitz MJ, Le Beau MM, Bloomfield CD, Cazzola M, Vardiman JW. The 2016 revision to the World Health Organization classification of myeloid neoplasms and acute leukemia. Blood. 2016 May 19;127(20):2391-405. doi: 10.1182/blood-2016-03-643544. Epub 2016 Apr 11. PMID: 27069254.
+
+Swerdlow SH, Campo E, Pileri SA, Harris NL, Stein H, Siebert R, Advani R, Ghielmini M, Salles GA, Zelenetz AD, Jaffe ES. The 2016 revision of the World Health Organization classification of lymphoid neoplasms. Blood. 2016 May 19;127(20):2375-90. doi: 10.1182/blood-2016-01-643569. Epub 2016 Mar 15. PMID: 26980727; PMCID: PMC4874220.">
+		["build_uid"] = <"07914584-d13d-3de2-b971-dc02b17eebb7">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- WHO Diagnostic Criteria for Polycythemia Vera
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Hemoglobin >16.5 g/dL in men or >16.0 g/dL in women, or hematocrit >49% in men or >48% in women
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- Yes
+													at0008]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Bone marrow biopsy showing age-adjusted hypercellularity with trilineage growth (panmyelosis), including prominent erythroid, granulocytic, and megakaryocytic proliferation, with pleomorphic, mature megakaryocytes (differences in size)
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012,    -- Yes
+													at0013]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Presence of JAK2 V617F or JAK2 exon 12 mutation
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0014,    -- Yes
+													at0015]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Subnormal serum erythropoietin level
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0016,    -- Yes
+													at0017]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Diagnostic result
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0019,    -- Does not meet WHO diagnostic criteria for polycythemia vera.
+													at0020]    -- Meets WHO diagnostic criteria for polycythemia vera.
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"WHO Diagnostic Criteria for Polycythemia Vera">
+					description = <"Records the presence or absence of specific findings relevant to the World Health Organization (WHO 2016/2017 revision) diagnostic criteria for Polycythemia Vera (PV).">
+					comment = <"Original version, c 2017.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Hemoglobin >16.5 g/dL in men or >16.0 g/dL in women, or hematocrit >49% in men or >48% in women">
+					description = <"Hemoglobin >16.5 g/dL in men or >16.0 g/dL in women, or hematocrit >49% in men or >48% in women">
+				>
+				["at0007"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Bone marrow biopsy showing age-adjusted hypercellularity with trilineage growth (panmyelosis), including prominent erythroid, granulocytic, and megakaryocytic proliferation, with pleomorphic, mature megakaryocytes (differences in size)">
+					description = <"Bone marrow biopsy showing age-adjusted hypercellularity with trilineage growth (panmyelosis), including prominent erythroid, granulocytic, and megakaryocytic proliferation, with pleomorphic, mature megakaryocytes (differences in size)">
+				>
+				["at0010"] = <
+					text = <"Presence of JAK2 V617F or JAK2 exon 12 mutation">
+					description = <"Presence of JAK2 V617F or JAK2 exon 12 mutation
+">
+				>
+				["at0011"] = <
+					text = <"Subnormal serum erythropoietin level">
+					description = <"<2.6 mU/mL, reference value may vary by laboratory">
+				>
+				["at0012"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Diagnostic result">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Does not meet WHO diagnostic criteria for polycythemia vera.">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Meets WHO diagnostic criteria for polycythemia vera.">
+					description = <"">
+				>
+			>
+		>
+	>

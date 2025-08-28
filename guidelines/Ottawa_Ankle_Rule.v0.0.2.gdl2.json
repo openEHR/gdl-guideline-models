@@ -1,0 +1,266 @@
+{
+  "id": "Ottawa_Ankle_Rule.v0.0.2",
+  "gdl_version": "2.1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Kevin Arjona",
+      "email": "kevin.arjona@cambio.se",
+      "organisation": "Cambio CDS",
+      "date": "2025-02-21"
+    },
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To determine the need for radiography in acute ankle and midfoot injuries based on the Ottawa Ankle Rule",
+        "keywords": [
+          "ottawa ankle rule",
+          "ankle fracture ",
+          "clinical decision rule ",
+          "emergency medicine ",
+          "radiographic criteria",
+          "foot",
+          "x-ray",
+          "ankle pain",
+          "ankle trauma"
+        ],
+        "use": "Patient presents with acute ankle or midfoot pain following trauma.\n\nPerform physical examination following Ottawa Ankle Rule criteria.\n\nOrder radiographs only if one or more of the following apply:\n\nAnkle X-ray indications:\n\nBone tenderness at the posterior lateral malleolus.\n\nBone tenderness at the posterior medial malleolus.\n\nInability to bear weight immediately and take four steps.\n\nFoot X-ray indications:\n\nBone tenderness at the base of the 5th metatarsal.\n\nBone tenderness at the navicular bone.\n\nInability to bear weight immediately and take four steps.",
+        "misuse": "Should not be applied in pediatric patients (&lt;18 years).\n\nNot suitable for patients with polytrauma, intoxication, or altered mental status.\n\nNot applicable if required input data is missing.",
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "en": "Guideline for applying the Ottawa Ankle Rule (OAR) in assessing the need for ankle and foot X-rays in patients with acute ankle trauma.",
+      "references": "Stiell IG, Greenberg GH, McKnight RD, Nair RC, McDowell I, Worthington JR. A study to develop clinical decision rules for the use of radiography in acute ankle injuries. Ann Emerg Med. 1992 Apr;21(4):384-90. doi: 10.1016/s0196-0644(05)82656-3. PMID: 1554175.\n\nStiell IG, Greenberg GH, McKnight RD, Nair RC, McDowell I, Reardon M, Stewart JP, Maloney J. Decision rules for the use of radiography in acute ankle injuries. Refinement and prospective validation. JAMA. 1993 Mar 3;269(9):1127-32. doi: 10.1001/jama.269.9.1127. PMID: 8433468."
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "openEHR-EHR-OBSERVATION.ottawa_ankle_rule.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.ottawa_ankle_rule.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0003": {
+            "id": "gt0003",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0007|Malleolar|",
+              "local::at0008|Midfoot|"
+            ]
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0009]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0010|Yes|",
+              "local::at0011|No|"
+            ]
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0012]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0013|Yes|",
+              "local::at0014|No|"
+            ]
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0015]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0016|Yes|",
+              "local::at0017|No|"
+            ]
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0018]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0019|Yes|",
+              "local::at0020|No|"
+            ]
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0021]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0022|Yes|",
+              "local::at0023|No|"
+            ]
+          }
+        }
+      },
+      "gt0009": {
+        "id": "gt0009",
+        "model_id": "openEHR-EHR-OBSERVATION.ottawa_ankle_rule.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.ottawa_ankle_rule.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0010": {
+            "id": "gt0010",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0024]"
+          }
+        }
+      },
+      "gt0015": {
+        "id": "gt0015",
+        "model_id": "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "template_id": "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "type": "INPUT",
+        "elements": {
+          "gt0016": {
+            "id": "gt0016",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type": "DV_QUANTITY",
+            "units": [
+              "a",
+              "mo",
+              "wk",
+              "d"
+            ]
+          }
+        }
+      }
+    },
+    "pre_conditions": [
+      "$gt0016|Age|.magnitude>=18",
+      "$gt0016|Age|.unit=='a'"
+    ],
+    "rules": {
+      "gt0014": {
+        "id": "gt0014",
+        "priority": 4,
+        "when": [
+          "$gt0003|Location of pain|==local::at0007|Malleolar|",
+          "$gt0004|Bone tenderness at A (Posterior edge or tip of lateral malleolus)|==local::at0010|Yes|||$gt0005|Bone tenderness at B (Posterior edge or tip of medial malleolus)|==local::at0013|Yes|||$gt0006|Inability to bear weight both immediately after injury AND in ED (Patient unable to take four steps)|==local::at0016|Yes|"
+        ],
+        "then": [
+          "$gt0010|Diagnostic result|=local::at0026|Ankle x-ray series indicated.|"
+        ]
+      },
+      "gt0013": {
+        "id": "gt0013",
+        "priority": 3,
+        "when": [
+          "$gt0003|Location of pain|==local::at0007|Malleolar|",
+          "$gt0004|Bone tenderness at A (Posterior edge or tip of lateral malleolus)|!=local::at0010|Yes|&&$gt0005|Bone tenderness at B (Posterior edge or tip of medial malleolus)|!=local::at0013|Yes|&&$gt0006|Inability to bear weight both immediately after injury AND in ED (Patient unable to take four steps)|!=local::at0016|Yes|"
+        ],
+        "then": [
+          "$gt0010|Diagnostic result|=local::at0025|Ankle x-ray series not indicated.|"
+        ]
+      },
+      "gt0012": {
+        "id": "gt0012",
+        "priority": 2,
+        "when": [
+          "$gt0003|Location of pain|==local::at0008|Midfoot|",
+          "$gt0007|Bone tenderness at C (base of 5th metatarsal)|==local::at0019|Yes|||$gt0008|Bone tenderness at D (Navicular)|==local::at0022|Yes|||$gt0006|Inability to bear weight both immediately after injury AND in ED (Patient unable to take four steps)|==local::at0016|Yes|"
+        ],
+        "then": [
+          "$gt0010|Diagnostic result|=local::at0028|Foot x-ray series indicated.|"
+        ]
+      },
+      "gt0011": {
+        "id": "gt0011",
+        "priority": 1,
+        "when": [
+          "$gt0003|Location of pain|==local::at0008|Midfoot|",
+          "$gt0007|Bone tenderness at C (base of 5th metatarsal)|!=local::at0019|Yes|&&$gt0008|Bone tenderness at D (Navicular)|!=local::at0022|Yes|&&$gt0006|Inability to bear weight both immediately after injury AND in ED (Patient unable to take four steps)|!=local::at0016|Yes|"
+        ],
+        "then": [
+          "$gt0010|Diagnostic result|=local::at0027|Foot x-ray series not indicated.|"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Ottawa Ankle Rule (OAR) ",
+            "description": "Applies the Ottawa Ankle Rule based on recorded clinical findings to determine if an ankle X-ray series and/or a foot X-ray series is indicated."
+          },
+          "gt0002": {
+            "id": "gt0002",
+            "text": "openEHR-EHR-OBSERVATION.ottawa_ankle_rule.v0"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "Location of pain"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "Bone tenderness at A (Posterior edge or tip of lateral malleolus)"
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "text": "Bone tenderness at B (Posterior edge or tip of medial malleolus)"
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "Inability to bear weight both immediately after injury AND in ED (Patient unable to take four steps)"
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "Bone tenderness at C (base of 5th metatarsal)"
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "text": "Bone tenderness at D (Navicular)"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "openEHR-EHR-OBSERVATION.ottawa_ankle_rule.v0"
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "Diagnostic result"
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "text": "Foot x-ray series not indicated.",
+            "description": "A foot x-ray series is only required if there is pain in the midfoot zone AND any of these findings: Bone tenderness at C (base of 5th metatarsal), OR Bone tenderness at D (navicular), OR Inability to bear weight both immediately after injury AND in ED."
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "Foot x-ray series indicated.",
+            "description": "A foot x-ray series is only required if there is pain in the midfoot zone AND any of these findings: Bone tenderness at C (base of 5th metatarsal), OR Bone tenderness at D (navicular), OR Inability to bear weight both immediately after injury AND in ED."
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "Ankle x-ray series not indicated.",
+            "description": "An ankle x-ray series is only required if there is pain in the malleolar zone AND any of these findings: Bone tenderness at A (posterior edge or tip of lateral malleolus), OR Bone tenderness at B (posterior edge or tip of medial malleolus), OR Inability to bear weight both immediately after injury AND in ED."
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "Ankle x-ray series indicated.",
+            "description": "An ankle x-ray series is only required if there is pain in the malleolar zone AND any of these findings: Bone tenderness at A (posterior edge or tip of lateral malleolus), OR Bone tenderness at B (posterior edge or tip of medial malleolus), OR Inability to bear weight both immediately after injury AND in ED."
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "openEHR-EHR-OBSERVATION.basic_demographic.v1"
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "Age"
+          }
+        }
+      }
+    }
+  }
+}

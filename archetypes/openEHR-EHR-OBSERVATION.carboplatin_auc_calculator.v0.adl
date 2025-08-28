@@ -1,0 +1,143 @@
+archetype (adl_version=1.4; uid=acbae519-9553-4575-ade8-3b26e2468da3)
+	openEHR-EHR-OBSERVATION.carboplatin_auc_calculator.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-05-13">
+		["name"] = <"Shweta Prasad Ghaisas">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"S.Prasad.Ghaisas@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To estimate the total Carboplatin dose (in mg) based on the Cockcroft Gault equation.
+">
+			keywords = <"drug dosage, creatinine clearance, carboplatin, area under curve, Calvert formula, Cockcroft and Gault equations", ...>
+			copyright = <"© Cambio CDS">
+			misuse = <"It is important to note that in some cases with fluctuant serum creatinine, the estimation may not be as exact, thus it won’t lead to an accurate Carboplatin dose either.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"76a854ac-2f84-39f6-8a06-7d364c9f66d8">
+		["references"] = <"Cockcroft DW, Gault MH. Prediction of creatinine clearance from serum creatinine. Nephron. 1976;16(1):31-41.
+
+Calvert AH, Newell DR, Gumbrell LA, Siddik ZH, O'Reilly S, Burnell M, et al. Carboplatin dosage: prospective evaluation of a simple formula based on renal function. J Clin Oncol. 1989 Jul;7(11):1748-56.
+
+Devine BJ. Gentamicin therapy. DICP. 1974;8(11):650-5.">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Carboplatin_AUC_calculator
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Serum Creatinine
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"umol/L">
+														precision = <|2|>
+													>
+													["2"] = <
+														units = <"mg/dL">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- CrCl
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::126]>
+												list = <
+													["1"] = <
+														units = <"ml/min">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Dosage
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::124]>
+												list = <
+													["1"] = <
+														units = <"mg">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Target AUC
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Carboplatin_AUC_calculator">
+					description = <"An assessment tool that estimates the total Carboplatin dose (in mg) based on the Cockcroft Gault equation which provides the estimated creatinine clearance level which is then adjusted by the target AUC (area under the free carboplatin plasma concentration versus time curve).">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Serum Creatinine">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"CrCl">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Dosage">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Target AUC">
+					description = <"The unit is mg/mL/min.">
+				>
+			>
+		>
+	>

@@ -1,0 +1,109 @@
+archetype (adl_version=1.4; uid=e9ebb96d-147a-400d-983d-18f2fc8be171)
+	openEHR-EHR-EVALUATION.berg_balance_scale_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-08-04">
+		["name"] = <"Aurelia Maria Ozora">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"aurelia.maria.ozora@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the assessment of the Berg Balance Scale.">
+			keywords = <"Berg, balance, scale, functional, stroke, Parkinson, multiple, sclerosis, traumatic, brain, injury, neurology, lower, extremity, amputation, rehabilitation, assessment", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the assessment of the Berg Balance Scale.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Bogle Thorbahn LD, Newton RA. Use of the Berg Balance Test to predict falls in elderly persons. Phys Ther. 1996 Jun;76(6):576-83; discussion 584-5. doi: 10.1093/ptj/76.6.576. PMID: 8650273.
+
+Berg KO, Wood-Dauphinee SL, Williams JI, Maki B. Measuring balance in the elderly: validation of an instrument. Can J Public Health. 1992 Jul-Aug;83 Suppl 2:S7-11. PMID: 1468055.
+
+Miranda N, Tiu TK. Berg Balance Testing. 2023 Feb 17. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2025 Jan–. PMID: 34662032.">
+		["revision"] = <"0">
+		["build_uid"] = <"d759b347-b6ef-382d-be16-77eda01eab73">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Berg Balance Scale Assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Fall risk
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- Increased
+									at0006]    -- Not increased
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Berg Balance Scale Assessment">
+					description = <"Assessment of the Berg Balance Scale.">
+					comment = <"Original version, c 1989.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Fall risk">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Increased">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Not increased">
+					description = <"">
+				>
+			>
+		>
+	>

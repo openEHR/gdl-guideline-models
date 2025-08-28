@@ -1,0 +1,181 @@
+archetype (adl_version=1.4; uid=4d0396f9-8934-41ce-a24b-cb8423440c31)
+	openEHR-EHR-OBSERVATION.henderson_hasselbalch_equation.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-07-14">
+		["name"] = <"Shweta Prasad Ghaisas">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"s.prasad.ghaisas@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results of the acid dissociation constant, concentration of base, and concentration of acid and use these to estimate the pH of a buffer solution.">
+			keywords = <"solution, pH, acid, base, acid dissociation constant, buffer", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Used to record the results of the acid dissociation constant, concentration of base, and concentration of acid and use these to estimate the pH of a buffer solution.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Henderson LJ. Concerning the relationship between the strength of acids and their capacity to preserve neutrality. Am J Physiol. 1908;21(2):173–179.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"d4681b2efa1f44d8a171416fd34f5b7c">
+		["build_uid"] = <"370d46d1-e956-31fd-b371-c473fb16b590">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Henderson Hasselbalch equation calculator
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					POINT_EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Acid dissociation contant (Ka)
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"1">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Concentration of base [A]
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mol/L">
+														precision = <|2|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Concentration of acid [HA]
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mol/L">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- pKa
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"1">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- pH
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"1">
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0010] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Henderson Hasselbalch equation calculator">
+					description = <"An equation to estimate the pH of a buffer solution when the Ka numerical value of the acid dissociation constant is known.">
+					comment = <"Original version, c 1916">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Acid dissociation contant (Ka)">
+					description = <"The acid dissociation constant (Ka) is a measure of the extent to which an acid dissociates in solution and therefore its strength. The less an acid dissociates, the smaller the value of Ka. The stronger the acid, the higher the value of Ka.">
+				>
+				["at0006"] = <
+					text = <"Concentration of base [A]">
+					description = <"Concentration of base refers to the amount of base present in a given amount of solution.">
+				>
+				["at0007"] = <
+					text = <"Concentration of acid [HA]">
+					description = <"Acid Concentration represents the amount of acid dissolved in a solvent. It is measured in molarity ( the number of moles of acid in 1 L of acid solution), parts per million or percentage.">
+				>
+				["at0008"] = <
+					text = <"pH">
+					description = <"A figure expressing the acidity or alkalinity of a solution on a logarithmic scale on which 7 is neutral, lower values are more acid and higher values more alkaline. The pH is equal to −log10 c, where c is the hydrogen ion concentration in moles per litre.">
+				>
+				["at0009"] = <
+					text = <"pKa">
+					description = <"pKa is a measure of the acidity of a substance, specifically how easily it can donate a proton (H⁺) in a chemical reaction. It stands for \"acid dissociation constant\" and is the negative logarithm of the equilibrium constant (Ka) for the dissociation of an acid in water.
+Mathematically:
+𝑝𝐾𝑎= −log10(Ka)">
+				>
+				["at0010"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>

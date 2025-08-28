@@ -1,0 +1,277 @@
+archetype (adl_version=1.4; uid=c9426bf2-2e7e-4bca-b928-194fcfe2b101)
+	openEHR-EHR-OBSERVATION.ottawa_ankle_rule.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-02-21">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the symptoms of the acute ankle trauma evaluation and the need of x-rays">
+			keywords = <"Ottawa Ankle Rule, ankle fracture, clinical decision rule, emergency medicine, radiographic criteria, x-rays", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Patients ≥18 years old presenting with acute ankle trauma.
+
+Pain in the malleolar or midfoot region.">
+			misuse = <"Not applicable for pediatric patients (<18 years).
+
+Should not be used if the patient is unconscious, intoxicated, or has multiple injuries.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Stiell IG, Greenberg GH, McKnight RD, Nair RC, McDowell I, Worthington JR. A study to develop clinical decision rules for the use of radiography in acute ankle injuries. Ann Emerg Med. 1992 Apr;21(4):384-90. doi: 10.1016/s0196-0644(05)82656-3. PMID: 1554175.
+
+">
+		["build_uid"] = <"2dda0211-85a1-3108-aada-214d3c4f127c">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Ottawa Ankle Rule
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Location of pain
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- Malleolar
+													at0008]    -- Midfoot
+												}
+											}
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Bone tenderness at A
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0010,    -- Yes
+													at0011]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Bone tenderness at B
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0013,    -- Yes
+													at0014]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Inability to bear weight both immediately after injury AND in ED
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0016,    -- Yes
+													at0017]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Bone tenderness at C
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0019,    -- Yes
+													at0020]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- Bone tenderness at D
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0022,    -- Yes
+													at0023]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0024] occurrences matches {0..1} matches {    -- Diagnostic result
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0025,    -- Ankle x-ray series not indicated.
+													at0026,    -- Ankle x-ray series indicated.
+													at0027,    -- Foot x-ray series not indicated.
+													at0028]    -- Foot x-ray series indicated.
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Ottawa Ankle Rule">
+					description = <"A clinical decision rule used to determine the need for ankle and foot radiographs in patients with acute ankle injuries. The Ottawa Ankle Rule (OAR) aims to reduce unnecessary X-rays, improving efficiency in emergency and primary care settings.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Location of pain">
+					description = <"Malleolar or Midfoot">
+				>
+				["at0007"] = <
+					text = <"Malleolar">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Midfoot">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Bone tenderness at A">
+					description = <"Posterior edge or tip of lateral malleolus
+
+">
+				>
+				["at0010"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Bone tenderness at B">
+					description = <"Posterior edge or tip of medial malleolus
+">
+				>
+				["at0013"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Inability to bear weight both immediately after injury AND in ED">
+					description = <"Patient unable to take four steps">
+				>
+				["at0016"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Bone tenderness at C">
+					description = <"Base of 5th metatarsal">
+				>
+				["at0019"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Bone tenderness at D">
+					description = <"Navicular">
+				>
+				["at0022"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Diagnostic result">
+					description = <"X-ray series indication">
+				>
+				["at0025"] = <
+					text = <"Ankle x-ray series not indicated.">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Ankle x-ray series indicated.">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Foot x-ray series not indicated.">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Foot x-ray series indicated.">
+					description = <"">
+				>
+			>
+		>
+	>

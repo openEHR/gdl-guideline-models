@@ -1,0 +1,238 @@
+{
+  "id": "Aldrete_score.v0.0.4",
+  "gdl_version": "2.1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Umiah Gohar",
+      "email": "umiah.gohar@cambio.se",
+      "organisation": "Cambio CDS",
+      "date": "2024-12-24"
+    },
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To calculate the total sum for the Aldrete score to assess the anesthesia recovery phases and patient readiness to be discharged from PACU.",
+        "keywords": [
+          "Aldrete",
+          "score",
+          "recovery",
+          "anesthesia",
+          "PACU",
+          "post-anesthesia",
+          "care",
+          "unit",
+          "discharge"
+        ],
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "references": "Aldrete JA, Kroulik D. A postanesthetic recovery score. Anesth Analg. 1970 Nov-Dec;49(6):924-34. PMID: 5534693.",
+      "en": "To evaluate recovery after anesthesia and patient readiness to be discharged from PACU."
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "openEHR-EHR-OBSERVATION.aldrete.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.aldrete.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0003": {
+            "id": "gt0003",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]/items[at0005]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0006|Not responding|",
+              "1|local::at0007|Arousable|",
+              "2|local::at0008|Fully awake|"
+            ]
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]/items[at0009]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0010|Able to move 0 extremities|",
+              "1|local::at0011|Able to move two extremities|",
+              "2|local::at0012|Able to move four extremities|"
+            ]
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]/items[at0013]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0014|Apnea|",
+              "1|local::at0015|Dyspnea|",
+              "2|local::at0016|Able to breathe deeply|"
+            ]
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]/items[at0017]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0018|Systemic BP ≠ 50% of the preanesthetic level (0 points)|",
+              "1|local::at0019|Systemic BP between 20% and 49% of the preanesthetic level (1 point)|",
+              "2|local::at0020|Systemic BP ≠ 20% of the preanesthetic level (2 points)|"
+            ]
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]/items[at0021]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0022|Cyanotic|",
+              "1|local::at0023|Pale, jaundiced, blotchy|",
+              "2|local::at0024|Normal|"
+            ]
+          }
+        }
+      },
+      "gt0008": {
+        "id": "gt0008",
+        "model_id": "openEHR-EHR-OBSERVATION.aldrete.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.aldrete.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0009": {
+            "id": "gt0009",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0025]"
+          }
+        }
+      },
+      "gt0010": {
+        "id": "gt0010",
+        "model_id": "openEHR-EHR-EVALUATION.aldrete_score_assessment.v0",
+        "template_id": "openEHR-EHR-EVALUATION.aldrete_score_assessment.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0011": {
+            "id": "gt0011",
+            "path": "/data[at0001]/items[at0002]"
+          }
+        }
+      }
+    },
+    "rules": {
+      "gt0012": {
+        "id": "gt0012",
+        "priority": 3,
+        "when": [
+          "$gt0003|Consciousness|!=null",
+          "$gt0004|Mobility|!=null",
+          "$gt0005|Breathing|!=null",
+          "$gt0006|Circulation|!=null",
+          "$gt0007|Color|!=null"
+        ],
+        "then": [
+          "$gt0009|Total score|=$gt0003|Consciousness|.value+$gt0004|Mobility|.value+$gt0005|Breathing|.value+$gt0006|Circulation|.value+$gt0007|Color|.value"
+        ]
+      },
+      "gt0013": {
+        "id": "gt0013",
+        "priority": 2,
+        "when": [
+          "$gt0009|Total score|<=8"
+        ],
+        "then": [
+          "$gt0011|Interpretation|=$gt0014|Not safe to discharge from PACU unit.|.term"
+        ]
+      },
+      "gt0016": {
+        "id": "gt0016",
+        "priority": 1,
+        "when": [
+          "$gt0009|Total score|>=9"
+        ],
+        "then": [
+          "$gt0011|Interpretation|=$gt0015|Safe to discharge from PACU unit.|.term"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Aldrete score",
+            "description": "An assessment score used to evaluate recovery after anesthesia and patient readiness to be discharged from the post-anesthesia care unit (PACU) in the hospitals.\n"
+          },
+          "gt0002": {
+            "id": "gt0002",
+            "text": "openEHR-EHR-OBSERVATION.aldrete.v0"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "Consciousness"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "Mobility"
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "text": "Breathing"
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "Circulation"
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "Color"
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "text": "openEHR-EHR-OBSERVATION.aldrete.v0"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "Total score"
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "openEHR-EHR-EVALUATION.aldrete_score_assessment.v0"
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "text": "Interpretation"
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "Calculate total score",
+            "description": ""
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "Set interpretation for score <= 8",
+            "description": ""
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "Not safe to discharge from PACU unit."
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "Safe to discharge from PACU unit."
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "Set interpretation for score >= 9",
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}

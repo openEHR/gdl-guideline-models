@@ -1,0 +1,244 @@
+archetype (adl_version=1.4; uid=d08ce49c-72a3-45ed-a465-55bc3b9b94b7)
+	openEHR-EHR-OBSERVATION.simplified_nirudak_score.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-04-22">
+		["name"] = <"Aurelia Maria Ozora">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"aurelia.maria.ozora@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	other_contributors = <"Aurelia Maria Ozora", ...>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and their total sum for the simplified NIRUDAK score.">
+			keywords = <"NIRUDAK, simplified, acute, diarrhea, children, kids, dehydration", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and their total sum for the simplified NIRUDAK score.">
+			misuse = <"Not to be used for recording information related to full NIRUDAK score or age-specific NIRUDAK score.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Levine AC, Gainey M, Qu K, Nasrin S, Sharif MB, Noor SS, Barry MA, Garbern SC, Schmid CH, Rosen RK, Nelson EJ, Alam NH. A comparison of the NIRUDAK models and WHO algorithm for dehydration assessment in older children and adults with acute diarrhoea: a prospective, observational study. Lancet Glob Health. 2023 Nov;11(11):e1725-e1733. doi: 10.1016/S2214-109X(23)00403-5. Epub 2023 Sep 27. PMID: 37776870; PMCID: PMC10593153.
+
+Levine AC, Barry MA, Gainey M, Nasrin S, Qu K, Schmid CH, Nelson EJ, Garbern SC, Monjory M, Rosen R, Alam NH. Derivation of the first clinical diagnostic models for dehydration severity in patients over five years with acute diarrhea. PLoS Negl Trop Dis. 2021 Mar 10;15(3):e0009266. doi: 10.1371/journal.pntd.0009266. Erratum in: PLoS Negl Trop Dis. 2022 Dec 30;16(12):e0011026. doi: 10.1371/journal.pntd.0011026. PMID: 33690646; PMCID: PMC7984611.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"294c98be-84c4-3c2e-983d-64837ac1677b">
+		["revision"] = <"0">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Simplified NIRUDAK Score
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Age
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"a">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Skin Pinch
+										value matches {
+											0|[local::at0006],
+											2|[local::at0007],
+											4|[local::at0008]
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Eye Level
+										value matches {
+											0|[local::at0010],
+											2|[local::at0011]
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Respiration Depth
+										value matches {
+											0|[local::at0013],
+											2|[local::at0014]
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Urine Output
+										value matches {
+											0|[local::at0016],
+											1|[local::at0017],
+											2|[local::at0018]
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {    -- Radial Pulse
+										value matches {
+											0|[local::at0020],
+											1|[local::at0021],
+											4|[local::at0022]
+										}
+									}
+									ELEMENT[at0027] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											DV_COUNT matches {
+												magnitude matches {|0..14|}
+											}
+										}
+									}
+									ELEMENT[at0023] occurrences matches {0..1} matches {    -- Interpretation
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0024,    -- No dehydration
+													at0025,    -- Some dehydration
+													at0026]    -- Severe dehydration
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Simplified NIRUDAK Score">
+					description = <"Novel, Innovative Research for Understanding Dehydration in Adults and Kids (NIRUDAK, or “dehydrated” in Bangla) study empirically derived two new clinical diagnostic models (the full NIRUDAK and simplified NIRDAK models) for dehydration severity in patients aged 5 years or older with acute diarrhea. The Simplified NIRUDAK model is intended for assessing dehydration in patients over five years of age presenting
+with acute diarrhea and includes the following clinical signs: eye level, skin pinch, respiration depth, radial pulse,
+and urine output. A total score greater than 6 would be categorized as having severe dehydration, a total score of 4-6 would categorize the patient as having some dehydration, and a total score less than 4 would categorize the patient as having no dehydration.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Age">
+					description = <"To record the of the patient">
+				>
+				["at0005"] = <
+					text = <"Skin Pinch">
+					description = <"To record the skin turgor of the patient">
+				>
+				["at0006"] = <
+					text = <"Rapid">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Slow">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Very slow">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Eye Level">
+					description = <"To record whether the patient has sunken eyes">
+				>
+				["at0010"] = <
+					text = <"Normal">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Sunken">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Respiration Depth">
+					description = <"To record whether the patient has abnormal respiration">
+				>
+				["at0013"] = <
+					text = <"Normal">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Deep">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Urine Output">
+					description = <"To record the quality of patient's urine output">
+				>
+				["at0016"] = <
+					text = <"Normal">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Decreased or dark">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Minimal or none">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Radial Pulse">
+					description = <"To record the quality of patient's radial pulse">
+				>
+				["at0020"] = <
+					text = <"Strong">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Decreased">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Interpretation">
+					description = <"To record the interpretation of the simplified NIRUDAK score">
+				>
+				["at0024"] = <
+					text = <"No dehydration">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Some dehydration">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Severe dehydration">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Total score">
+					description = <"To record the total score of the simplified NIRUDAK score">
+				>
+			>
+		>
+	>

@@ -1,0 +1,278 @@
+{
+  "uuid": "65a6e9e4-b882-4cab-9c64-1063e18614c0",
+  "id": "CRB_65.v0.1.0",
+  "gdl_version": "2.1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Shweta Ghaisas",
+      "email": "s.prasad.ghaisas@cambio.se",
+      "organisation": "Cambio CDS",
+      "date": "2025-07-01"
+    },
+    "other_contributors": [
+      "Jimmy Axelsson",
+      "Aulia Zahrina Qashri",
+      "Dennis Forslund"
+    ],
+    "lifecycle_state": "IN_REVIEW",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To assess severity of community-acquired pneumonia measured as 30-day mortality, and aid in determining care level.",
+        "keywords": [
+          "CRB-65",
+          "confusion",
+          "respiratory rate",
+          "age",
+          "blood pressure",
+          "systolic blood pressure",
+          "diastolic blood pressure",
+          "pneumonia",
+          "community acquired pneumonia",
+          "risk",
+          "mortality",
+          "treatment"
+        ],
+        "use": "CRB-65 is an acronym for Confusion, Respiratory rate, Blood pressure and age (over or equal to) 65.\n\nThese form the input fields and when present, each factor contributes one (1) additional point to the total score.\n\nTotal score ranges from 0-4 and is associated with a risk level, which is in turn associated with certain care level recommendations and a 30-days mortality prediction, as follows:\n\n0 points, low risk group. Consider home treatment. 30-day mortality: 1.2 %.\n\n1-2 points, moderate risk group. Consider hospital admission. 30-day mortality: 8.2 %.\n\n3-4 points, severe risk group. Urgent hospital admission. 30-day mortality: 31.3 %.\n\nCRB-65 score is fast to compute, requires likely already-available patient information, and provides an excellent risk stratification of community acquired pneumonia. It can facilitate better utilization of resources and treatment initiation especially in emergency care settings.\n\nThe CRB-65 score includes points for confusion, which in the acutely ill elderly patient, could be due to a variety of factors and therefore should be considered with caution while assigning scores. The score does not consider comorbid factors that may affect the mortality due to community-acquired pneumonia.",
+        "misuse": "The score should be used with caution in community setting as most validation studies are hospital based. Study results show accurate performance in hospital settings and suggest a possible over-prediction in community settings.",
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "references": "McNally M, Curtain J, O'Brien K, Dimitrov B, Fahey T. Validity of British Thoracic Society guidance (the CRB-65 rule) for predicting the severity of pneumonia in general practice: systematic review and meta-analysis. Br J Gen Pract. 2010 Oct;60(579):e423-33.\n\n\t\nLim WS, van der Eerden MM, Laing R, Boersma WG, Karalus N, Town GI, Lewis SA, Macfarlane JT. Defining community acquired pneumonia severity on presentation to hospital: an international derivation and validation study. Thorax. 2003 May;58(5):377-82. doi: 10.1136/thorax.58.5.377. PubMed PMID: 12728155; PubMed Central PMCID: PMC1746657.\n\nLim WS, Baudouin SV, George RC, Hill AT, Jamieson C, Le Jeune I, Macfarlane JT, Read RC, Roberts HJ, Levy ML, Wani M, Woodhead MA. BTS guidelines for the management of community acquired pneumonia in adults: update 2009. Thorax. 2009 Oct;64 Suppl 3:iii1-55. doi: 10.1136/thx.2009.121434. PubMed PMID: 19783532. Available from: https://www.brit-thoracic.org.uk/quality-improvement/guidelines/pneumonia-adults/.",
+      "en": "Estimates mortality of community-acquired pneumonia to help determine inpatient vs. outpatient treatment."
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0007": {
+        "id": "gt0007",
+        "model_id": "openEHR-EHR-OBSERVATION.crb_65.v1",
+        "template_id": "openEHR-EHR-OBSERVATION.crb_65.v1",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0008": {
+            "id": "gt0008",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0013]"
+          }
+        }
+      },
+      "gt0017": {
+        "id": "gt0017",
+        "model_id": "openEHR-EHR-OBSERVATION.crb_65.v1",
+        "template_id": "openEHR-EHR-OBSERVATION.crb_65.v1",
+        "type": "INPUT",
+        "elements": {
+          "gt0018": {
+            "id": "gt0018",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0009]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0011|Absent|",
+              "1|local::at0012|Present|"
+            ]
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0014]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0017|Absent|",
+              "1|local::at0018|Present|"
+            ]
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0015]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0019|Absent|",
+              "1|local::at0020|Present|"
+            ]
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0016]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0021|Absent|",
+              "1|local::at0022|Present|"
+            ]
+          }
+        }
+      },
+      "gt0022": {
+        "id": "gt0022",
+        "model_id": "openEHR-EHR-EVALUATION.crb_65_assessment.v0",
+        "template_id": "openEHR-EHR-EVALUATION.crb_65_assessment.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0023": {
+            "id": "gt0023",
+            "path": "/data[at0001]/items[at0002]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0005|Low risk|",
+              "local::at0006|Moderate risk|",
+              "local::at0007|Severe risk|"
+            ]
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "path": "/data[at0001]/items[at0003]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0008|Consider home treatment|",
+              "local::at0009|Consider hospital care|",
+              "local::at0010|Urgent hospital admission|"
+            ]
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "path": "/data[at0001]/items[at0004]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0011|1.2%|",
+              "local::at0012|8.2%|",
+              "local::at0013|31.3%|"
+            ]
+          }
+        }
+      }
+    },
+    "rules": {
+      "gt0013": {
+        "id": "gt0013",
+        "priority": 4,
+        "when": [
+          "$gt0018|Confusion|!=null",
+          "$gt0019|Hypotension (SBP < 90 mm Hg or DBP<= 60 mm Hg)|!=null",
+          "$gt0020|Age >= 65 years|!=null",
+          "$gt0021|Respiratory rate >= 30/min|!=null"
+        ],
+        "then": [
+          "$gt0008|Total score|.magnitude=$gt0020|Age >= 65 years|.value+$gt0018|Confusion|.value+$gt0021|Respiratory rate >= 30/min|.value+$gt0019|Hypotension (SBP < 90 mm Hg or DBP<= 60 mm Hg)|.value"
+        ]
+      },
+      "gt0014": {
+        "id": "gt0014",
+        "priority": 3,
+        "when": [
+          "$gt0008|Total score|==0"
+        ],
+        "then": [
+          "$gt0023|Risk assessment|=local::at0005|Low risk|",
+          "$gt0024|Recommendation|=local::at0008|Consider home treatment|",
+          "$gt0025|30-day mortality|=local::at0011|1.2%|"
+        ]
+      },
+      "gt0015": {
+        "id": "gt0015",
+        "priority": 2,
+        "when": [
+          "($gt0008|Total score|==1)||($gt0008|Total score|==2)"
+        ],
+        "then": [
+          "$gt0023|Risk assessment|=local::at0006|Moderate risk|",
+          "$gt0024|Recommendation|=local::at0009|Consider hospital care|",
+          "$gt0025|30-day mortality|=local::at0012|8.2%|"
+        ]
+      },
+      "gt0016": {
+        "id": "gt0016",
+        "priority": 1,
+        "when": [
+          "($gt0008|Total score|==3)||($gt0008|Total score|==4)"
+        ],
+        "then": [
+          "$gt0023|Risk assessment|=local::at0007|Severe risk|",
+          "$gt0024|Recommendation|=local::at0010|Urgent hospital admission|",
+          "$gt0025|30-day mortality|=local::at0013|31.3%|"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "CRB-65 score",
+            "description": "CRB-65 score is used to predict severity of community-acquired pneumonia, measured as 30-day mortality. It is mainly used for risk stratification to decide further course of treatment."
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "openEHR-EHR-OBSERVATION.crb_65.v1"
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "text": "Total score",
+            "description": "Scores of all the input fields are added up to get a total score."
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "Calculate total score",
+            "description": "This rule sums all the individual scores of the input fields to give a total score."
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "CDS risk group low",
+            "description": "This rule helps to stratify the patients to a \"low\" risk group based on the total score."
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "CDS risk group moderate",
+            "description": "This rule helps to stratify the patients to a \"moderate\" risk group based on the total score."
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "CDS risk group severe",
+            "description": "This rule helps to stratify the patients to a \"severe\" risk group based on the total score."
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "text": "openEHR-EHR-OBSERVATION.crb_65.v1"
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "Confusion"
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "Hypotension (SBP < 90 mm Hg or DBP<= 60 mm Hg)"
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "Age >= 65 years"
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "Respiratory rate >= 30/min"
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "openEHR-EHR-EVALUATION.crb_65_assessment.v0"
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "Risk assessment"
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "Recommendation"
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "30-day mortality"
+          }
+        }
+      }
+    }
+  }
+}

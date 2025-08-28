@@ -1,0 +1,397 @@
+archetype (adl_version=1.4; uid=e0b373e5-7be2-4f58-8090-f8eea1d9b489)
+	openEHR-EHR-OBSERVATION.icc_pmf_criteria.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-04-18">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the individual findings relevant to the major and minor diagnostic criteria for PMF as specified by the ICC guidelines.">
+			keywords = <"icc, international consensus classification, primary myelofibrosis, pmf, diagnosis, diagnostic criteria, myeloproliferative neoplasm, mpn, bone marrow, morphology, jak2, calr, mpl, asxl1, ezh2, tet2, idh1, idh2, srsf2, sf3b1, anemia, leukocytosis, splenomegaly, ldh, leukoerythroblastosis", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to document the components required to assess the ICC criteria for PMF diagnosis. This includes specific bone marrow morphology findings, confirmation of exclusion of other myeloid neoplasms, relevant genetic mutation status, presence/absence of anemia, leukocytosis threshold, palpable splenomegaly, LDH level status, and leukoerythroblastosis. Designed to be used in conjunction with a GDL guideline (ICC_PMF_Dx.v0.0.1) to determine if the overall diagnostic criteria are met.">
+			misuse = <"Not to be used for recording the diagnostic criteria of other myeloproliferative neoplasms (e.g., Polycythemia Vera, Essential Thrombocythemia) or other hematological conditions. Not intended for staging, prognosis, or treatment monitoring (use specific scoring systems like MIPSS70 or treatment response criteria archetypes for those purposes). Not to be used for recording the final diagnosis itself; use an appropriate EVALUATION archetype (e.g., EVALUATION.problem_diagnosis) for the confirmed diagnosis.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Arber DA, Orazi A, Hasserjian RP, Borowitz MJ, Calvo KR, Kvasnicka HM, Wang SA, Bagg A, Barbui T, Branford S, Bueso-Ramos CE, Cortes JE, Dal Cin P, DiNardo CD, Dombret H, Duncavage EJ, Ebert BL, Estey EH, Facchetti F, Foucar K, Gangat N, Gianelli U, Godley LA, Gökbuget N, Gotlib J, Hellström-Lindberg E, Hobbs GS, Hoffman R, Jabbour EJ, Kiladjian JJ, Larson RA, Le Beau MM, Loh ML, Löwenberg B, Macintyre E, Malcovati L, Mullighan CG, Niemeyer C, Odenike OM, Ogawa S, Orfao A, Papaemmanuil E, Passamonti F, Porkka K, Pui CH, Radich JP, Reiter A, Rozman M, Rudelius M, Savona MR, Schiffer CA, Schmitt-Graeff A, Shimamura A, Sierra J, Stock WA, Stone RM, Tallman MS, Thiele J, Tien HF, Tzankov A, Vannucchi AM, Vyas P, Wei AH, Weinberg OK, Wierzbowska A, Cazzola M, Döhner H, Tefferi A. International Consensus Classification of Myeloid Neoplasms and Acute Leukemias: integrating morphologic, clinical, and genomic data. Blood. 2022 Sep 15;140(11):1200-1228. doi: 10.1182/blood.2022015850. PMID: 35767897; PMCID: PMC9479031.">
+		["build_uid"] = <"54c4db62-9459-38a8-93fc-edeef8a1f6d6">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- ICC Diagnostic Criteria for Primary Myelofibrosis
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Bone marrow biopsy showing megakaryocytic proliferation and atypia, bone marrow fibrosis grade <2, increased age-adjusted BM cellularity, granulocytic proliferation, and decreased erythropoiesis
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- Yes
+													at0008]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Bone marrow biopsy showing megakaryocytic proliferation and atypia, accompanied by reticulin and/or collagen fibrosis grades 2 or 3
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0010,    -- Yes
+													at0011]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- JAK2, CALR, or MPL mutation or presence of another clonal marker
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0013,    -- Yes
+													at0014]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Absence of reactive bone marrow reticulin fibrosis
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0016,    -- Yes
+													at0017]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Absence of reactive myelofibrosis
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0019,    -- Yes
+													at0020]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- Diagnostic criteria for ET, PV, BCR::ABL1-positive CML, myelodysplastic syndrome, or other myeloid neoplasms are not met
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0022,    -- Yes
+													at0023]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0024] occurrences matches {0..1} matches {    -- Anemia not attributed to a comorbid condition
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0025,    -- Yes
+													at0026]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0027] occurrences matches {0..1} matches {    -- Leukocytosis ≥11 × 109/L
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0028,    -- Yes
+													at0029]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0030] occurrences matches {0..1} matches {    -- Palpable splenomegaly
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0031,    -- Yes
+													at0032]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0033] occurrences matches {0..1} matches {    -- Lactate dehydrogenase level above the reference range
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0034,    -- Yes
+													at0035]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0036] occurrences matches {0..1} matches {    -- Leukoerythroblastosis
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0037,    -- Yes
+													at0038]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0039] occurrences matches {0..1} matches {    -- PMF, Early/Prefibrotic Stage (Pre-PMF)
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0040,    -- Meets criteria
+													at0041]    -- Does not meet criteria
+												}
+											}
+										}
+									}
+									ELEMENT[at0042] occurrences matches {0..1} matches {    -- PMF, Overt Fibrotic Stage
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0043,    -- Meets criteria
+													at0044]    -- Does not meet criteria
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"ICC Diagnostic Criteria for Primary Myelofibrosis">
+					description = <"Records the presence or absence of the specific major and minor criteria defined by the International Consensus Classification (ICC, 2022) for the diagnosis of prefibrotic/early and overt primary myelofibrosis (PMF).">
+					comment = <"Original version, c 2022. ">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Bone marrow biopsy showing megakaryocytic proliferation and atypia, bone marrow fibrosis grade <2, increased age-adjusted BM cellularity, granulocytic proliferation, and decreased erythropoiesis">
+					description = <"Bone marrow biopsy showing megakaryocytic proliferation and atypia, bone marrow fibrosis grade <2, increased age-adjusted BM cellularity, granulocytic proliferation, and (often) decreased erythropoiesis">
+				>
+				["at0007"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Bone marrow biopsy showing megakaryocytic proliferation and atypia, accompanied by reticulin and/or collagen fibrosis grades 2 or 3">
+					description = <"Bone marrow biopsy showing megakaryocytic proliferation and atypia, accompanied by reticulin and/or collagen fibrosis grades 2 or 3">
+				>
+				["at0010"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"JAK2, CALR, or MPL mutation or presence of another clonal marker">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Absence of reactive bone marrow reticulin fibrosis">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Absence of reactive myelofibrosis">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Diagnostic criteria for ET, PV, BCR::ABL1-positive CML, myelodysplastic syndrome, or other myeloid neoplasms are not met">
+					description = <"Diagnostic criteria for ET, PV, BCR::ABL1-positive CML, myelodysplastic syndrome, or other myeloid neoplasms are not met">
+				>
+				["at0022"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Anemia not attributed to a comorbid condition">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Leukocytosis ≥11 × 109/L">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Palpable splenomegaly">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Lactate dehydrogenase level above the reference range">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Leukoerythroblastosis">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"PMF, Early/Prefibrotic Stage (Pre-PMF)">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"Meets criteria">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"Does not meet criteria">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"PMF, Overt Fibrotic Stage">
+					description = <"">
+				>
+				["at0043"] = <
+					text = <"Meets criteria">
+					description = <"">
+				>
+				["at0044"] = <
+					text = <"Does not meet criteria">
+					description = <"">
+				>
+			>
+		>
+	>

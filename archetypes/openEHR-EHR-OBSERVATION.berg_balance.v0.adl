@@ -1,0 +1,575 @@
+archetype (adl_version=1.4; uid=a989142c-c5d6-4faf-8d46-f68d2a2fea8d)
+	openEHR-EHR-OBSERVATION.berg_balance.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-08-04">
+		["name"] = <"Aurelia Maria Ozora">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"aurelia.maria.ozora@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and their total sum for the Berg Balance Scale.">
+			keywords = <"Berg, balance, scale, functional, stroke, Parkinson, multiple, sclerosis, traumatic, brain, injury, neurology, lower, extremity, amputation, rehabilitation", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and their total sum for the Berg Balance Scale.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Bogle Thorbahn LD, Newton RA. Use of the Berg Balance Test to predict falls in elderly persons. Phys Ther. 1996 Jun;76(6):576-83; discussion 584-5. doi: 10.1093/ptj/76.6.576. PMID: 8650273.
+
+Berg KO, Wood-Dauphinee SL, Williams JI, Maki B. Measuring balance in the elderly: validation of an instrument. Can J Public Health. 1992 Jul-Aug;83 Suppl 2:S7-11. PMID: 1468055.
+
+Miranda N, Tiu TK. Berg Balance Testing. 2023 Feb 17. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2025 Jan–. PMID: 34662032.">
+		["revision"] = <"0">
+		["build_uid"] = <"5faa5cde-3b1d-3469-97bd-b1fe1b8bd57b">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Berg Balance Scale
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Sitting unsupported
+										value matches {
+											0|[local::at0007],
+											1|[local::at0008],
+											2|[local::at0009],
+											3|[local::at0010],
+											4|[local::at0011]
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Standing unsupported
+										value matches {
+											0|[local::at0013],
+											1|[local::at0014],
+											2|[local::at0015],
+											3|[local::at0016],
+											4|[local::at0017]
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Standing with eyes closed
+										value matches {
+											0|[local::at0019],
+											1|[local::at0020],
+											2|[local::at0021],
+											3|[local::at0022],
+											4|[local::at0023]
+										}
+									}
+									ELEMENT[at0024] occurrences matches {0..1} matches {    -- Standing with feet together
+										value matches {
+											0|[local::at0025],
+											1|[local::at0026],
+											2|[local::at0027],
+											3|[local::at0028],
+											4|[local::at0029]
+										}
+									}
+									ELEMENT[at0030] occurrences matches {0..1} matches {    -- Standing on one foot
+										value matches {
+											0|[local::at0031],
+											1|[local::at0032],
+											2|[local::at0033],
+											3|[local::at0034],
+											4|[local::at0035]
+										}
+									}
+									ELEMENT[at0036] occurrences matches {0..1} matches {    -- Turning to look behind
+										value matches {
+											0|[local::at0037],
+											1|[local::at0038],
+											2|[local::at0039],
+											3|[local::at0040],
+											4|[local::at0041]
+										}
+									}
+									ELEMENT[at0042] occurrences matches {0..1} matches {    -- Grab an object from the floor
+										value matches {
+											0|[local::at0043],
+											1|[local::at0044],
+											2|[local::at0045],
+											3|[local::at0046],
+											4|[local::at0047]
+										}
+									}
+									ELEMENT[at0048] occurrences matches {0..1} matches {    -- Reaching forward with outstretched arms while standing
+										value matches {
+											0|[local::at0049],
+											1|[local::at0050],
+											2|[local::at0051],
+											3|[local::at0052],
+											4|[local::at0053]
+										}
+									}
+									ELEMENT[at0054] occurrences matches {0..1} matches {    -- Placing one foot in front of the other
+										value matches {
+											0|[local::at0055],
+											1|[local::at0056],
+											2|[local::at0057],
+											3|[local::at0058],
+											4|[local::at0059]
+										}
+									}
+									ELEMENT[at0060] occurrences matches {0..1} matches {    -- Going from sitting to standing
+										value matches {
+											0|[local::at0061],
+											1|[local::at0062],
+											2|[local::at0063],
+											3|[local::at0064],
+											4|[local::at0065]
+										}
+									}
+									ELEMENT[at0066] occurrences matches {0..1} matches {    -- Going from standing to sitting
+										value matches {
+											0|[local::at0067],
+											1|[local::at0068],
+											2|[local::at0069],
+											3|[local::at0070],
+											4|[local::at0071]
+										}
+									}
+									ELEMENT[at0072] occurrences matches {0..1} matches {    -- Transfer from a seat with an armrest to a seat without an armrest
+										value matches {
+											0|[local::at0073],
+											1|[local::at0074],
+											2|[local::at0075],
+											3|[local::at0076],
+											4|[local::at0077]
+										}
+									}
+									ELEMENT[at0078] occurrences matches {0..1} matches {    -- Turn 360 degrees
+										value matches {
+											0|[local::at0079],
+											1|[local::at0080],
+											2|[local::at0081],
+											3|[local::at0082],
+											4|[local::at0083]
+										}
+									}
+									ELEMENT[at0084] occurrences matches {0..1} matches {    -- Place alternating foot on a step or stool while standing unsupported
+										value matches {
+											0|[local::at0085],
+											1|[local::at0086],
+											2|[local::at0087],
+											3|[local::at0088],
+											4|[local::at0089]
+										}
+									}
+									ELEMENT[at0090] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											DV_COUNT matches {
+												magnitude matches {|0..56|}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Berg Balance Scale">
+					description = <"The Berg Balance Scale is a test used to assess functional balance. It can be used to assess patients with stroke or various neurological conditions, such as Parkinson’s disease, multiple sclerosis, traumatic brain injury, as well as acquired conditions like lower extremity amputation.">
+					comment = <"Original version, c 1989.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Sitting unsupported">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Unable to sit  without support 10 seconds">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Able to sit 10 seconds">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Able to sit 30 seconds">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"able to sit 2 minutes under supervision">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"able to sit safely and securely for 2 minutes">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Standing unsupported">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Unable to stand 30 seconds unsupported">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Needs several tries to stand 30 seconds unsupported">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Able to stand 30 seconds unsupported">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Able to stand 2 minutes with supervision">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Able to stand safely for 2 minutes">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Standing with eyes closed">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Needs help to keep from falling">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Unable to keep eyes closed 3 seconds but stands safely">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Able to stand 3 seconds">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Able to stand 10 seconds with supervision">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Able to stand 10 seconds safely">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Standing with feet together">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Needs help to attain position and is unable to hold for 15 seconds">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Needs help to attain position but is able to stand 15 seconds feet together">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Able to place feet together independently but unable to hold for 30 seconds">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Able to place feet together independently and stand 1 minute with supervision">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Able to place feet together independently and stand 1 minute safely">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Standing on one foot">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Unable to try of needs assist to prevent fall">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Tries to lift a leg, unable to hold 3 seconds but remains standing independently.">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Able to lift leg independently and hold ≥ 3 seconds">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Able to lift leg independently and hold  5-10 seconds">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"Able to lift leg independently and hold > 10 seconds">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Turning to look behind">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"Needs assistance to keep from losing balance or falling">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"Needs supervision when turning">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"Turns sideways only but maintains balance">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"Looks behind one side only other side shows less weight shift">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"Looks behind from both sides and weight shifts well">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"Grab an object from the floor">
+					description = <"">
+				>
+				["at0043"] = <
+					text = <"Unable to try/needs assistance to keep from losing balance or falling">
+					description = <"">
+				>
+				["at0044"] = <
+					text = <"Unable to pick up and needs supervision while trying">
+					description = <"">
+				>
+				["at0045"] = <
+					text = <"Unable to pick up but reaches 1-2 inches from slipper and keeps balance independently">
+					description = <"">
+				>
+				["at0046"] = <
+					text = <"Able to pick up slipper but needs supervision">
+					description = <"">
+				>
+				["at0047"] = <
+					text = <"Able to pick up slipper safely and easily">
+					description = <"">
+				>
+				["at0048"] = <
+					text = <"Reaching forward with outstretched arms while standing">
+					description = <"">
+				>
+				["at0049"] = <
+					text = <"Loses balance while trying/requires external support">
+					description = <"">
+				>
+				["at0050"] = <
+					text = <"Reaches forward but needs supervision">
+					description = <"">
+				>
+				["at0051"] = <
+					text = <"Can reach forward 2 inches">
+					description = <"">
+				>
+				["at0052"] = <
+					text = <"Can reach forward 5 inches">
+					description = <"">
+				>
+				["at0053"] = <
+					text = <"Can reach forward confidently 10 inches">
+					description = <"">
+				>
+				["at0054"] = <
+					text = <"Placing one foot in front of the other">
+					description = <"">
+				>
+				["at0055"] = <
+					text = <"Loses balance while stepping or standing">
+					description = <"">
+				>
+				["at0056"] = <
+					text = <"Needs help to step but can hold 15 seconds">
+					description = <"">
+				>
+				["at0057"] = <
+					text = <"Able to take a small step independently and hold 30 seconds">
+					description = <"">
+				>
+				["at0058"] = <
+					text = <"Able to place foot ahead independently and hold 30 seconds">
+					description = <"">
+				>
+				["at0059"] = <
+					text = <"Able to place foot tandem independently and hold 30 seconds">
+					description = <"">
+				>
+				["at0060"] = <
+					text = <"Going from sitting to standing">
+					description = <"">
+				>
+				["at0061"] = <
+					text = <"Needs moderate or maximal assist to stand">
+					description = <"">
+				>
+				["at0062"] = <
+					text = <"Needs minimal aid to stand or stabilize">
+					description = <"">
+				>
+				["at0063"] = <
+					text = <"Able to stand using hands after several tries">
+					description = <"">
+				>
+				["at0064"] = <
+					text = <"Able to stand independently using hands">
+					description = <"">
+				>
+				["at0065"] = <
+					text = <"Able to stand without using hands and stabilize independently">
+					description = <"">
+				>
+				["at0066"] = <
+					text = <"Going from standing to sitting">
+					description = <"">
+				>
+				["at0067"] = <
+					text = <"Needs assistance to sit">
+					description = <"">
+				>
+				["at0068"] = <
+					text = <"Sits independently but has uncontrolled descent">
+					description = <"">
+				>
+				["at0069"] = <
+					text = <"Uses the back of their legs against the chair to control their descent">
+					description = <"">
+				>
+				["at0070"] = <
+					text = <"Controls descent by using hands">
+					description = <"">
+				>
+				["at0071"] = <
+					text = <"Sits safely with minimal use of hands">
+					description = <"">
+				>
+				["at0072"] = <
+					text = <"Transfer from a seat with an armrest to a seat without an armrest">
+					description = <"">
+				>
+				["at0073"] = <
+					text = <"Needs two people to assist or supervise to be safe">
+					description = <"">
+				>
+				["at0074"] = <
+					text = <"Needs one person to assist">
+					description = <"">
+				>
+				["at0075"] = <
+					text = <"Able to transfer with verbal cueing and/or supervision">
+					description = <"">
+				>
+				["at0076"] = <
+					text = <"Able to transfer safely definite need of hands">
+					description = <"">
+				>
+				["at0077"] = <
+					text = <"Able to transfer safely with minor use of hands">
+					description = <"">
+				>
+				["at0078"] = <
+					text = <"Turn 360 degrees">
+					description = <"">
+				>
+				["at0079"] = <
+					text = <"Needs assistance while turning">
+					description = <"">
+				>
+				["at0080"] = <
+					text = <"Needs close supervision or verbal cueing">
+					description = <"">
+				>
+				["at0081"] = <
+					text = <"Able to turn 360 degrees safely but slowly">
+					description = <"">
+				>
+				["at0082"] = <
+					text = <"Able to turn 360 degrees safely one side only 4 seconds or less">
+					description = <"">
+				>
+				["at0083"] = <
+					text = <"Able to turn 360 degrees safely in 4 seconds or less">
+					description = <"">
+				>
+				["at0084"] = <
+					text = <"Place alternating foot on a step or stool while standing unsupported">
+					description = <"">
+				>
+				["at0085"] = <
+					text = <"Needs assistance to keep from falling/unable to try">
+					description = <"">
+				>
+				["at0086"] = <
+					text = <"Able to complete > 2 steps needs minimal assist">
+					description = <"">
+				>
+				["at0087"] = <
+					text = <"Able to complete 4 steps without aid with supervision">
+					description = <"">
+				>
+				["at0088"] = <
+					text = <"Able to stand independently and complete 8 steps in > 20 seconds">
+					description = <"">
+				>
+				["at0089"] = <
+					text = <"Able to stand independently and safely and complete 8 steps in 20 seconds">
+					description = <"">
+				>
+				["at0090"] = <
+					text = <"Total score">
+					description = <"The total sum of each component parameter for the Berg Balance Scale.">
+				>
+			>
+		>
+	>

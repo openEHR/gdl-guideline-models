@@ -1,0 +1,128 @@
+archetype (adl_version=1.4; uid=0c49ba53-74f9-463c-9b6e-d6cedbc5d072)
+	openEHR-EHR-EVALUATION.icc_pmf_criteria_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-06-18">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To assess a patient against the ICC Diagnostic Criteria for Primary Myelofibrosis based on the individual components.">
+			keywords = <"icc, international consensus classification, primary myelofibrosis, pmf, diagnosis, diagnostic criteria, myeloproliferative neoplasm, mpn, bone marrow, morphology, jak2, calr, mpl, asxl1, ezh2, tet2, idh1, idh2, srsf2, sf3b1, anemia, leukocytosis, splenomegaly, ldh, leukoerythroblastosis", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to assess the components documented on the archetype openEHR-EHR-OBSERVATION.icc_pmf_criteria.">
+			misuse = <"Not to be used for recording the diagnostic criteria of other myeloproliferative neoplasms (e.g., Polycythemia Vera, Essential Thrombocythemia) or other hematological conditions. Not intended for staging, prognosis, or treatment monitoring (use specific scoring systems like MIPSS70 or treatment response criteria archetypes for those purposes). Not to be used for recording the final diagnosis itself; use an appropriate EVALUATION archetype (e.g., EVALUATION.problem_diagnosis) for the confirmed diagnosis.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Arber DA, Orazi A, Hasserjian RP, Borowitz MJ, Calvo KR, Kvasnicka HM, Wang SA, Bagg A, Barbui T, Branford S, Bueso-Ramos CE, Cortes JE, Dal Cin P, DiNardo CD, Dombret H, Duncavage EJ, Ebert BL, Estey EH, Facchetti F, Foucar K, Gangat N, Gianelli U, Godley LA, Gökbuget N, Gotlib J, Hellström-Lindberg E, Hobbs GS, Hoffman R, Jabbour EJ, Kiladjian JJ, Larson RA, Le Beau MM, Loh ML, Löwenberg B, Macintyre E, Malcovati L, Mullighan CG, Niemeyer C, Odenike OM, Ogawa S, Orfao A, Papaemmanuil E, Passamonti F, Porkka K, Pui CH, Radich JP, Reiter A, Rozman M, Rudelius M, Savona MR, Schiffer CA, Schmitt-Graeff A, Shimamura A, Sierra J, Stock WA, Stone RM, Tallman MS, Thiele J, Tien HF, Tzankov A, Vannucchi AM, Vyas P, Wei AH, Weinberg OK, Wierzbowska A, Cazzola M, Döhner H, Tefferi A. International Consensus Classification of Myeloid Neoplasms and Acute Leukemias: integrating morphologic, clinical, and genomic data. Blood. 2022 Sep 15;140(11):1200-1228. doi: 10.1182/blood.2022015850. PMID: 35767897; PMCID: PMC9479031.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"a9b79d9f-1e55-3c39-a1d7-185b40be6b38">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- ICC Diagnostic Criteria for Primary Myelofibrosis assessment
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- PMF, Early/Prefibrotic Stage (Pre-PMF)
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0004,    -- Meets criteria
+									at0005]    -- Does not meet criteria
+								}
+							}
+						}
+					}
+					ELEMENT[at0003] occurrences matches {0..1} matches {    -- PMF, Overt Fibrotic Stage
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0006,    -- Meets criteria
+									at0007]    -- Does not meet criteria
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0008] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0009] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"ICC Diagnostic Criteria for Primary Myelofibrosis assessment">
+					description = <"Assess the major and minor criteria defined by the International Consensus Classification (ICC, 2022) for the diagnosis of prefibrotic/early and overt primary myelofibrosis (PMF).">
+					comment = <"Original version, c 2022. ">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"PMF, Early/Prefibrotic Stage (Pre-PMF)">
+					description = <"">
+				>
+				["at0003"] = <
+					text = <"PMF, Overt Fibrotic Stage">
+					description = <"">
+				>
+				["at0004"] = <
+					text = <"Meets criteria">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Does not meet criteria">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Meets criteria">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Does not meet criteria">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0009"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>

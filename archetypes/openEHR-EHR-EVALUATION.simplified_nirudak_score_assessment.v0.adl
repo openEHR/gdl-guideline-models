@@ -1,0 +1,113 @@
+archetype (adl_version=1.4; uid=d70465b7-bfcc-4213-bf59-94427e662d35)
+	openEHR-EHR-EVALUATION.simplified_nirudak_score_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-06-09">
+		["name"] = <"Aurelia Maria Ozora">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"aurelia.maria.ozora@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the assessment of the simplified NIRUDAK score.">
+			keywords = <"NIRUDAK, simplified, acute, diarrhea, children, kids, adult, dehydration, assessment", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the assessment of the simplified NIRUDAK score.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Levine AC, Gainey M, Qu K, Nasrin S, Sharif MB, Noor SS, Barry MA, Garbern SC, Schmid CH, Rosen RK, Nelson EJ, Alam NH. A comparison of the NIRUDAK models and WHO algorithm for dehydration assessment in older children and adults with acute diarrhoea: a prospective, observational study. Lancet Glob Health. 2023 Nov;11(11):e1725-e1733. doi: 10.1016/S2214-109X(23)00403-5. Epub 2023 Sep 27. PMID: 37776870; PMCID: PMC10593153.
+
+Levine AC, Barry MA, Gainey M, Nasrin S, Qu K, Schmid CH, Nelson EJ, Garbern SC, Monjory M, Rosen R, Alam NH. Derivation of the first clinical diagnostic models for dehydration severity in patients over five years with acute diarrhea. PLoS Negl Trop Dis. 2021 Mar 10;15(3):e0009266. doi: 10.1371/journal.pntd.0009266. Erratum in: PLoS Negl Trop Dis. 2022 Dec 30;16(12):e0011026. doi: 10.1371/journal.pntd.0011026. PMID: 33690646; PMCID: PMC7984611.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"c17d877ae4384b3b9d6d95daacd6b2c6">
+		["build_uid"] = <"f54956ae-4302-3df3-9049-1dd70e07b8b2">
+		["revision"] = <"0">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- simplified_nirudak_score_assessment
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- Interpretation
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0003,    -- No dehydration
+									at0004,    -- Some dehydration
+									at0005]    -- Severe dehydration
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0006] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0007] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"simplified_nirudak_score_assessment">
+					description = <"Assessment of simplified NIRUDAK score.">
+					comment = <"Original version, c 2021.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Interpretation">
+					description = <"To record the interpretation of the simplified NIRUDAK score.">
+				>
+				["at0003"] = <
+					text = <"No dehydration">
+					description = <"">
+				>
+				["at0004"] = <
+					text = <"Some dehydration">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Severe dehydration">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0007"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>

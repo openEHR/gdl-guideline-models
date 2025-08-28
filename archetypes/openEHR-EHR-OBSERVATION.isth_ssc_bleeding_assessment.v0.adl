@@ -1,0 +1,617 @@
+archetype (adl_version=1.4; uid=da9e16c1-7c1f-4922-8f73-df7ce0c37531)
+	openEHR-EHR-OBSERVATION.isth_ssc_bleeding_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-07-06">
+		["name"] = <"Shweta Prasad Ghaisas">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"s.prasad.ghaisas@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and their total sum for the ISTH/SSC bleeding assessment tool.">
+			keywords = <"bleeding, assessment, thrombosis, haemostasis, scientific standardization committee, international society on thrombosis and haemostasis, disorder, epistaxis, postpartum hemorrhage, gastrointestinal bleeding, hematuria, oral cavity bleeding, bleeding from minor wounds, cutaneous bleeding, tooth extraction, bleeding from surgery, menorrhagia, muscle hematomas, hemarthrosis, central nervous system bleeding", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Used to record the results for each component parameter and their total sum and its interpretation for the ISTH/SSC bleeding assessment tool.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Rodeghiero F, et al. ISTH/SSC bleeding assessment tool: a standardized questionnaire and a proposal for a new bleeding score for inherited bleeding disorders. J Thromb Haemost. 2010 Sep;8(9):2063–5.
+
+Elbatarny M, Mollah S, Grabell J, et al. Normal range of bleeding scores for the ISTH-BAT: adult and pediatric data from the merging project. Haemophilia. 2014 Nov;20(6):831–5.
+
+Borhany M, Fatima N, Abid M, Shamsi T, Othman M. Application of the ISTH bleeding score in hemophilia. Transfus Apher Sci. 2018 Aug;57(4):556–60.
+
+Gresele P, Orsini S, Noris P, et al. Validation of the ISTH/SSC bleeding assessment tool for inherited platelet disorders: a communication from the Platelet Physiology SSC. J Thromb Haemost. 2020 Mar;18(3):732–9.
+
+Kalot MA, Husainat N, Tayiem S, et al. Bleeding assessment tools in the diagnosis of VWD in adults and children: a systematic review and meta-analysis of test accuracy. Blood Adv. 2021 Dec 14;5(23):5023–31.
+
+Rezende SM, Neumann I, Angchaisuksiri P, et al. International Society on Thrombosis and Haemostasis clinical practice guideline for treatment of congenital hemophilia A and B based on the Grading of Recommendations Assessment, Development, and Evaluation methodology. J Thromb Haemost. 2024 Sep;22(9):2629–52.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"92bc74330f9a04047ddebc01c908cbb7">
+		["build_uid"] = <"ee0dd04d-53a2-3283-89de-06d0213abd35">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- ISTH/SSC bleeding assessment tool
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					POINT_EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Age (in years)
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0005,    -- >= 18
+													at0006]    -- < 18
+												}
+											}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Gender
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0009,    -- Male
+													at0010]    -- Female
+												}
+											}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Epistaxis
+										value matches {
+											0|[local::at0014],
+											1|[local::at0015],
+											2|[local::at0016],
+											3|[local::at0017],
+											4|[local::at0018]
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Cutaneous
+										value matches {
+											0|[local::at0019],
+											1|[local::at0020],
+											2|[local::at0021],
+											3|[local::at0022],
+											4|[local::at0023]
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Bleeding from minor wounds
+										value matches {
+											0|[local::at0024],
+											1|[local::at0025],
+											2|[local::at0026],
+											3|[local::at0027],
+											4|[local::at0028]
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- Oral cavity
+										value matches {
+											0|[local::at0029],
+											1|[local::at0030],
+											2|[local::at0031],
+											3|[local::at0032],
+											4|[local::at0033]
+										}
+									}
+									ELEMENT[at0034] occurrences matches {0..1} matches {    -- GI bleeding
+										value matches {
+											0|[local::at0043],
+											1|[local::at0044],
+											2|[local::at0045],
+											3|[local::at0046],
+											4|[local::at0047]
+										}
+									}
+									ELEMENT[at0035] occurrences matches {0..1} matches {    -- Hematuria
+										value matches {
+											0|[local::at0048],
+											1|[local::at0049],
+											2|[local::at0050],
+											3|[local::at0051],
+											4|[local::at0052]
+										}
+									}
+									ELEMENT[at0036] occurrences matches {0..1} matches {    -- Tooth extraction
+										value matches {
+											0|[local::at0053],
+											1|[local::at0054],
+											2|[local::at0055],
+											3|[local::at0056],
+											4|[local::at0057]
+										}
+									}
+									ELEMENT[at0037] occurrences matches {0..1} matches {    -- Surgery
+										value matches {
+											0|[local::at0038],
+											1|[local::at0039],
+											2|[local::at0040],
+											3|[local::at0041],
+											4|[local::at0042]
+										}
+									}
+									ELEMENT[at0058] occurrences matches {0..1} matches {    -- Menorrhagia
+										value matches {
+											0|[local::at0059],
+											1|[local::at0060],
+											2|[local::at0061],
+											3|[local::at0062],
+											4|[local::at0063]
+										}
+									}
+									ELEMENT[at0064] occurrences matches {0..1} matches {    -- Postpartum hemorrhage
+										value matches {
+											0|[local::at0065],
+											1|[local::at0066],
+											2|[local::at0067],
+											3|[local::at0068],
+											4|[local::at0069]
+										}
+									}
+									ELEMENT[at0070] occurrences matches {0..1} matches {    -- Muscle hematomas
+										value matches {
+											0|[local::at0071],
+											1|[local::at0072],
+											2|[local::at0073],
+											3|[local::at0074],
+											4|[local::at0075]
+										}
+									}
+									ELEMENT[at0076] occurrences matches {0..1} matches {    -- Hemarthrosis
+										value matches {
+											0|[local::at0077],
+											1|[local::at0078],
+											2|[local::at0079],
+											3|[local::at0080],
+											4|[local::at0081]
+										}
+									}
+									ELEMENT[at0082] occurrences matches {0..1} matches {    -- CNS bleeding
+										value matches {
+											0|[local::at0083],
+											1|[local::at0084],
+											2|[local::at0085]
+										}
+									}
+									ELEMENT[at0086] occurrences matches {0..1} matches {    -- Other bleeding
+										value matches {
+											0|[local::at0087],
+											1|[local::at0088],
+											2|[local::at0089],
+											3|[local::at0090],
+											4|[local::at0091]
+										}
+									}
+									ELEMENT[at0092] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											DV_COUNT matches {
+												magnitude matches {|0..56|}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0093] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0094] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"ISTH/SSC bleeding assessment tool">
+					description = <"International Society on Thrombosis and Haemostasis/ Scientific Standardization Committee (ISTH/SSC) bleeding assessment tool evaluates bleeding symptoms in patients with inherited bleeding disorders.">
+					comment = <"Original version, c 2010">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Age (in years)">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <">= 18">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"< 18">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Epistaxis">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Gender">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Male">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Female">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Cutaneous">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Bleeding from minor wounds">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Oral cavity">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"No/ trivial">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"> 5 /year or > 10 minutes">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Consultaion only">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Packing, cauterization, or antifibrinolytic agents">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Blood transfusion, replacement therapy, or desmopressin">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"No/ trivial">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"≥5 bruises (>1 cm) in exposed areas">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Consultation only">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Extensive">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Spontaneous hematoma requiring blood transfusion">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"No/ trivial">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <">5 /year or >10 minutes">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Consultation only">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Surgical hemostasis">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Blood transfusion, replacement therapy, or desmopressin">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"No/ trivial">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Consultation only">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Surgical hemostasis or antifibrinolytic required">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Blood transfusion, replacement therapy, or desmopressin">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"GI bleeding">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"Hematuria">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Tooth extraction">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"Surgery">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"No/trivial or none done">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"Reported in ≤25% of all procedures, no intervention">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"Reported in >25% of all procedures, no intervention">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"Surgical hemostasis or antifibrinolytic">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"Blood transfusion, replacement therapy, or desmopressin">
+					description = <"">
+				>
+				["at0043"] = <
+					text = <"No/ trivial">
+					description = <"">
+				>
+				["at0044"] = <
+					text = <"Present (not associated with ulcer, portal hypertension, hemorrhoids, angiodysplasia)">
+					description = <"">
+				>
+				["at0045"] = <
+					text = <"Consultation only">
+					description = <"">
+				>
+				["at0046"] = <
+					text = <"Surgical hemostasis or antifibrinolytic required">
+					description = <"">
+				>
+				["at0047"] = <
+					text = <"Blood transfusion, replacement therapy, or desmopressin">
+					description = <"">
+				>
+				["at0048"] = <
+					text = <"No/ trivial">
+					description = <"">
+				>
+				["at0049"] = <
+					text = <"Present (macroscopic)">
+					description = <"">
+				>
+				["at0050"] = <
+					text = <"Consultation only">
+					description = <"">
+				>
+				["at0051"] = <
+					text = <"Surgical hemostasis or iron therapy">
+					description = <"">
+				>
+				["at0052"] = <
+					text = <"Blood transfusion, replacement therapy, or desmopressin">
+					description = <"">
+				>
+				["at0053"] = <
+					text = <"No/trivial or none done">
+					description = <"">
+				>
+				["at0054"] = <
+					text = <"Reported in ≤25% of all procedures, no intervention">
+					description = <"">
+				>
+				["at0055"] = <
+					text = <"Reported in >25% of all procedures, no intervention">
+					description = <"">
+				>
+				["at0056"] = <
+					text = <"Resuturing or packing">
+					description = <"">
+				>
+				["at0057"] = <
+					text = <"Blood transfusion, replacement therapy, or desmopressin">
+					description = <"">
+				>
+				["at0058"] = <
+					text = <"Menorrhagia">
+					description = <"">
+				>
+				["at0059"] = <
+					text = <"No/ trivial">
+					description = <"">
+				>
+				["at0060"] = <
+					text = <"Consultation only, changing pads more frequently than every 2 hours, clot and flooding, or PBAC score>100">
+					description = <"">
+				>
+				["at0061"] = <
+					text = <"Time off work/school >2 /year, requiring antifibrinolytics, or hormonal/iron therapy">
+					description = <"">
+				>
+				["at0062"] = <
+					text = <"Requiring combined treatment with antifibrinolytics and hormonal therapy or menorrhagia present since menarche and >12 months">
+					description = <"">
+				>
+				["at0063"] = <
+					text = <"Acute menorrhagia requiring hospital admission and emergency treatment, requiring blood transfusion/replacement therapy/desmopressin, requiring dilatation&curettage/endometrial ablation, or hysterectomy">
+					description = <"">
+				>
+				["at0064"] = <
+					text = <"Postpartum hemorrhage">
+					description = <"">
+				>
+				["at0065"] = <
+					text = <"No/trivial or no deliveries">
+					description = <"">
+				>
+				["at0066"] = <
+					text = <"Consultation only, use of oxytocin, or lochia >6 weeks">
+					description = <"">
+				>
+				["at0067"] = <
+					text = <"Iron therapy or antifibrinolytics">
+					description = <"">
+				>
+				["at0068"] = <
+					text = <"Requiring blood transfusion, replacement therapy, desmopressin, or requiring examination under anesthesia and/or the use of uterine balloon/package to tamponade the uterus">
+					description = <"">
+				>
+				["at0069"] = <
+					text = <"Any procedure requiring critical care or surgical intervention">
+					description = <"">
+				>
+				["at0070"] = <
+					text = <"Muscle hematomas">
+					description = <"">
+				>
+				["at0071"] = <
+					text = <"Never">
+					description = <"">
+				>
+				["at0072"] = <
+					text = <"Post trauma or no therapy">
+					description = <"">
+				>
+				["at0073"] = <
+					text = <"Spontaneous or no therapy">
+					description = <"">
+				>
+				["at0074"] = <
+					text = <"Spontaneous or traumatic, requiring desmopressin or replacement therapy">
+					description = <"">
+				>
+				["at0075"] = <
+					text = <"Spontaneous or traumatic, requiring surgical intervention or blood transfusion">
+					description = <"">
+				>
+				["at0076"] = <
+					text = <"Hemarthrosis">
+					description = <"">
+				>
+				["at0077"] = <
+					text = <"Never">
+					description = <"">
+				>
+				["at0078"] = <
+					text = <"Post trauma or no therapy">
+					description = <"">
+				>
+				["at0079"] = <
+					text = <"Spontaneous or no therapy">
+					description = <"">
+				>
+				["at0080"] = <
+					text = <"Spontaneous or traumatic, requiring desmopressin or replacement therapy">
+					description = <"">
+				>
+				["at0081"] = <
+					text = <"Spontaneous or traumatic, requiring surgical intervention or blood transfusion">
+					description = <"">
+				>
+				["at0082"] = <
+					text = <"CNS bleeding">
+					description = <"">
+				>
+				["at0083"] = <
+					text = <"Never">
+					description = <"">
+				>
+				["at0084"] = <
+					text = <"Subdural or any intervention">
+					description = <"">
+				>
+				["at0085"] = <
+					text = <"Intracerebral or any intervention">
+					description = <"">
+				>
+				["at0086"] = <
+					text = <"Other bleeding">
+					description = <"This may include the following: umbilical stump bleeding, cephalohematoma, cheek hematoma caused by sucking during breast/bottle feeding, conjunctival hemorrhage or excessive bleeding following circumcision/venipuncture">
+				>
+				["at0087"] = <
+					text = <"No/ trivial">
+					description = <"">
+				>
+				["at0088"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0089"] = <
+					text = <"Consultation only">
+					description = <"">
+				>
+				["at0090"] = <
+					text = <"Surgical hemostasis or antifibrinolytics">
+					description = <"">
+				>
+				["at0091"] = <
+					text = <"Blood transfusion, replacement therapy, or desmopressin">
+					description = <"">
+				>
+				["at0092"] = <
+					text = <"Total score">
+					description = <"The total sum of each component parameter for the ISTH/SSC bleeding assessment tool.">
+				>
+				["at0093"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0094"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>

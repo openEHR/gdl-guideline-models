@@ -1,0 +1,250 @@
+{
+  "uuid": "",
+  "id": "Modified_Minnesota_Detoxification_Scale_mMINDS_Calculation.v0.0.1",
+  "gdl_version": "2.1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Aurelia Maria Ozora",
+      "email": "aurelia.maria.ozora@cambio.se",
+      "organisation": "Cambio CDS",
+      "date": "2025-07-28"
+    },
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To calculate the total sum for the Modified Minnesota Detoxification Scale (mMINDS).",
+        "keywords": [
+          "modified",
+          "Minnesota",
+          "detoxification",
+          "scale",
+          "mMINDS",
+          "ICU",
+          "intensive",
+          "care",
+          "critical",
+          "alcohol",
+          "withdrawal",
+          "symptom"
+        ],
+        "use": "The mMINDS assesses 9 parameteres  to determine the severity of alcohol withdrawal symptoms:\n- pulse\n- diastolic blood pressure\n- the presence of tremor\n- sweating\n- hallucinations\n- agitation : measured using the Richmond Agitation-Sedation Scale (RASS)\n- disorientation \n- delusions\n- seizures \n\nThe maximum score is 46.\n\nThe mMINDS does not require the patient to answer questions or follow commands, making it well-suited for patients with alcohol withdrawal severe enough to require ICU-level care.",
+        "misuse": "Not to be used for calculation of the original Minnesota Detoxification Scale (MINDS).",
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "references": "Littlefield AJ, Heavner MS, Eng CC, Cooper DA, Heavner JJ, Kurtz JM, Pisani MA. Correlation Between mMINDS and CIWA-Ar Scoring Tools in Patients With Alcohol Withdrawal Syndrome. Am J Crit Care. 2018 Jul;27(4):280-286. doi: 10.4037/ajcc2018547. PMID: 29961663.\n\nDeCarolis DD, Rice KL, Ho L, Willenbring ML, Cassaro S. Symptom-driven lorazepam protocol for treatment of severe alcohol withdrawal delirium in the intensive care unit. Pharmacotherapy. 2007 Apr;27(4):510-8. doi: 10.1592/phco.27.4.510. PMID: 17381377.\n\nTrojand T, Morgan J, Shamoun CJ. Using the Modified Minnesota Detoxification Scale to Evaluate Alcohol Withdrawal Syndrome: An Integrative Review. Crit Care Nurse. 2025 Apr 1;45(2):60-68. doi: 10.4037/ccn2025568. PMID: 40168010.",
+      "en": "The Modified Minnesota Detoxification Scale (mMINDS) is used to assess the severity of alcohol withdrawal symptoms. The score helps guide pharmacologic interventions for managing withdrawal. "
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0002": {
+        "id": "gt0002",
+        "model_id": "openEHR-EHR-OBSERVATION.mminds.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.mminds.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0003": {
+            "id": "gt0003",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0007|<90 bpm|",
+              "1|local::at0008|90-110 bpm|",
+              "2|local::at0009|>110 bpm|"
+            ]
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0010]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0011|<90 mmHg|",
+              "1|local::at0012|90-110 mmHg|",
+              "2|local::at0013|>110 mmHg|"
+            ]
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0014]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0015|No sweat visible|",
+              "2|local::at0016|Barely, moist palms|",
+              "4|local::at0017|Beads of sweat visible|",
+              "6|local::at0018|Drenching|"
+            ]
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0019]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0020|None|",
+              "1|local::at0021|Mild—mostly lucid, sporadic/rare hallucinations|",
+              "2|local::at0022|Moderate/intermittent—hallucinating at times|",
+              "3|local::at0023|Severe, continuous while awake|"
+            ]
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0024]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0025|Normal activity, RASS score 0 or less|",
+              "3|local::at0026|Somewhat more than normal, RASS score +1|",
+              "6|local::at0027|Moderately fidgety, RASS score +2|",
+              "9|local::at0028|Pacing, thrashing, RASS score +3 or greater|"
+            ]
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0029]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0030|Absent|",
+              "6|local::at0031|Present|"
+            ]
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0032]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0033|None|",
+              "2|local::at0034|Slightly variable or can be felt fingertip to fingertip|",
+              "4|local::at0035|Visible with arms extended|",
+              "6|local::at0036|Severe, noticeable even without arms extended|"
+            ]
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0037]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0038|Absent|",
+              "6|local::at0039|Present|"
+            ]
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0040]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0041|Oriented x3 (time, place, person)|",
+              "2|local::at0042|Oriented x2|",
+              "4|local::at0043|Oriented x1|",
+              "6|local::at0044|Disoriented|"
+            ]
+          }
+        }
+      },
+      "gt0012": {
+        "id": "gt0012",
+        "model_id": "openEHR-EHR-OBSERVATION.mminds.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.mminds.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0013": {
+            "id": "gt0013",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0045]",
+            "data_type": "DV_COUNT"
+          }
+        }
+      }
+    },
+    "rules": {
+      "gt0014": {
+        "id": "gt0014",
+        "priority": 1,
+        "when": [
+          "$gt0003|Pulse|!=null",
+          "$gt0004|Diastolic Blood Pressure|!=null",
+          "$gt0005|Sweating|!=null",
+          "$gt0006|Hallucinations|!=null",
+          "$gt0007|Agitation|!=null",
+          "$gt0008|Delusions|!=null",
+          "$gt0009|Tremor|!=null",
+          "$gt0010|Seizures|!=null",
+          "$gt0011|Orientation|!=null"
+        ],
+        "then": [
+          "$gt0013|Total score|.magnitude=$gt0003|Pulse|.value+$gt0004|Diastolic Blood Pressure|.value+$gt0005|Sweating|.value+$gt0006|Hallucinations|.value+$gt0007|Agitation|.value+$gt0008|Delusions|.value+$gt0009|Tremor|.value+$gt0010|Seizures|.value+$gt0011|Orientation|.value"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Modified Minnesota Detoxification Scale (mMINDS) Calculation",
+            "description": "The Modified Minnesota Detoxification Scale (mMINDS) is used to assess the severity of alcohol withdrawal symptoms. The score helps guide pharmacologic interventions for managing withdrawal. "
+          },
+          "gt0002": {
+            "id": "gt0002",
+            "text": "openEHR-EHR-OBSERVATION.mminds.v0"
+          },
+          "gt0003": {
+            "id": "gt0003",
+            "text": "Pulse"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "Diastolic Blood Pressure"
+          },
+          "gt0005": {
+            "id": "gt0005",
+            "text": "Sweating"
+          },
+          "gt0006": {
+            "id": "gt0006",
+            "text": "Hallucinations"
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "Agitation"
+          },
+          "gt0008": {
+            "id": "gt0008",
+            "text": "Delusions"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "Tremor"
+          },
+          "gt0010": {
+            "id": "gt0010",
+            "text": "Seizures"
+          },
+          "gt0011": {
+            "id": "gt0011",
+            "text": "Orientation"
+          },
+          "gt0012": {
+            "id": "gt0012",
+            "text": "openEHR-EHR-OBSERVATION.mminds.v0"
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "Total score"
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "Set total score",
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}
