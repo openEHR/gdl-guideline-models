@@ -1,0 +1,451 @@
+archetype (adl_version=1.4; uid=16cd53fa-8128-4374-8666-9daa7c6dc092)
+	openEHR-EHR-EVALUATION.prostate_cancer_risk_category_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+			>
+		>
+	>
+
+description
+	original_author = <
+		["date"] = <"2025-08-26">
+		["name"] = <"Rashmi Damodaran">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"rashmi.damodaran@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	other_contributors = <"Kevin Arjona", ...>
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			copyright = <"© openEHR Foundation">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the input parameters (T-stage, Gleason score, PSA) and the resulting risk group classification for patients with localized prostate cancer.">
+			keywords = <"prostate, cancer, risk, classification, T-stage, Gleason, score, ISUP, PSA, RCC, TNM.", ...>
+			use = <"Use to document the risk factors in patients with prostate cancer confirmed to be without distant metastases to determine the patient's risk group.">
+			misuse = <"Not to be used for patients with known metastatic disease, recurrent prostate cancer after primary treatment, or for assessing the risk of other types of cancer. Do not use if any of the mandatory input parameters are unknown.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Regional Cancer Center Sweden [Internet]. Knowledge bank: Risk categorization of prostate cancer. Available from https://kunskapsbanken.cancercentrum.se/diagnoser/prostatacancer/vardprogram/kategorisering-av-tumoren/
+
+Zumsteg ZS, Spratt DE, Pei I, Zhang Z, Yamada Y, Kollmeier M, Zelefsky MJ. A new risk classification system for therapeutic decision making with intermediate-risk prostate cancer patients undergoing dose-escalated external-beam radiation therapy. Eur Urol. 2013 Dec;64(6):895-902. doi: 10.1016/j.eururo.2013.03.033. Epub 2013 Mar 23. PMID: 23541457.
+
+Gnanapragasam VJ, Bratt O, Muir K, Lee LS, Huang HH, Stattin P, Lophatananon A. The Cambridge Prognostic Groups for improved prediction of disease mortality at diagnosis in primary non-metastatic prostate cancer: a validation study. BMC Med. 2018 Feb 28;16(1):31. doi: 10.1186/s12916-018-1019-5. PMID: 29490658; PMCID: PMC5831573.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"261b85238288b04aa134d4efb9bd09b1">
+		["build_uid"] = <"0a364094-2338-3399-a7b0-581587a1dbea">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Prostate cancer risk category assessment
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- T-stage
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0003,    -- cT1c
+									at0004,    -- cT1-cT2a
+									at0005,    -- cT2b/cT2c
+									at0006,    -- cT3a
+									at0007]    -- cT3b/cT4
+								}
+							}
+						}
+					}
+					ELEMENT[at0008] occurrences matches {0..1} matches {    -- Gleason score
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0009,    -- 6 (ISUP 1)
+									at0010,    -- 7 (3+4) (ISUP 2)
+									at0011,    -- 7 (3+4) (ISUP 2)  in more than half of systematic biopsy specimens
+									at0012,    -- 7 (4+3) (ISUP 3)
+									at0013,    -- 8 (ISUP 4)
+									at0014]    -- 9–10 (ISUP 5)
+								}
+							}
+						}
+					}
+					ELEMENT[at0015] occurrences matches {0..1} matches {    -- PSA
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0016,    -- <10 µg/l
+									at0017,    -- 10-19 µg/l
+									at0018,    -- 20-39 µg/l
+									at0019]    -- ≥40 µg/l
+								}
+							}
+						}
+					}
+					ELEMENT[at0020] occurrences matches {0..1} matches {    -- PSA density < 0.15  µg/l/cm3
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0021,    -- Yes
+									at0022]    -- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0038] occurrences matches {0..1} matches {    -- PSA density (µg/l/cm3)
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::350]>
+								list = <
+									["1"] = <
+										units = <"ug/L/cm3">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0023] occurrences matches {0..1} matches {    -- Histological findings ≤ 8 mm cancer in total in 1–4 of 8–12 systematic biopsy cores
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0021,    -- Yes
+									at0022]    -- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0026] occurrences matches {0..1} matches {    -- Strong suspicion of extraprostatic growth on MRI (EPE/SVI 5)
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0021,    -- Yes
+									at0022]    -- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0030] occurrences matches {0..1} matches {    -- Risk group
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0031,    -- Very low risk
+									at0032,    -- Low risk
+									at0033,    -- Favorable intermediate risk
+									at0034,    -- Unfavorable intermediate risk
+									at0035,    -- High risk
+									at0036]    -- Very high risk
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0037] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Prostate cancer risk category assessment">
+					description = <"Assessment of risk group for newly diagnosed, localized prostate cancer according to the Swedish National Guidelines (Regionala cancercentrum i samverkan).">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"T-stage">
+					description = <"">
+				>
+				["at0003"] = <
+					text = <"cT1c">
+					description = <"">
+				>
+				["at0004"] = <
+					text = <"cT1-cT2a">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"cT2b/cT2c">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"cT3a">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"cT3b/cT4">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Gleason score">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"6 (ISUP 1)">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"7 (3+4) (ISUP 2)">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"7 (3+4) (ISUP 2)  in more than half of systematic biopsy specimens">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"7 (4+3) (ISUP 3)">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"8 (ISUP 4)">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"9–10 (ISUP 5)">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"PSA">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"<10 µg/l">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"10-19 µg/l">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"20-39 µg/l">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"≥40 µg/l">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"PSA density < 0.15  µg/l/cm3">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Histological findings ≤ 8 mm cancer in total in 1–4 of 8–12 systematic biopsy cores">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Strong suspicion of extraprostatic growth on MRI (EPE/SVI 5)">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Risk group">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Very low risk">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Low risk">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Favorable intermediate risk">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Unfavorable intermediate risk">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"High risk">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Very high risk">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0038"] = <
+					text = <"PSA density (µg/l/cm3)">
+					description = <"">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Bedömning av riskgrupp för prostatacancer">
+					description = <"Bedömning av riskgrupp för nydiagnostiserad, lokaliserad prostatacancer enligt de svenska nationella riktlinjerna (Regionala cancercentrum i samverkan).">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"T-stadium">
+					description = <"">
+				>
+				["at0003"] = <
+					text = <"cT1c">
+					description = <"">
+				>
+				["at0004"] = <
+					text = <"cT1-cT2a">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"cT2b/cT2c">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"cT3a">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"cT3b/cT4">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Gleasonsumma">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"6 (ISUP 1)">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"7 (3+4) (ISUP 2)">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"7 (3+4) (ISUP 2) i fler än hälften av systematiska biopsikolvar">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"7 (4+3) (ISUP 3)">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"8 (ISUP 4)">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"9–10 (ISUP 5)">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"PSA">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"<10 µg/l">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"10-19 µg/l">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"20-39 µg/l">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"≥40 µg/l">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"PSA-densitet < 0.15  µg/l/cm3">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Ja">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Nej">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"≤ 8 mm cancer totalt i 1–4 av 8–12 systematiska biopsikolvar">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Stark misstanke om extraprostatisk växt på MRT (EPE/SVI 5)">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Riskgrupp">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Mycket låg risk">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Lågrisk">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Gynnsam mellanrisk">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Ogynnsam mellanrisk">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"Högrisk">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Mycket hög risk">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0038"] = <
+					text = <"PSA-densitet (µg/l/cm3)">
+					description = <"">
+				>
+			>
+		>
+	>
