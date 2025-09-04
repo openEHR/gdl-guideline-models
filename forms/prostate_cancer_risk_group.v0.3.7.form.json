@@ -1,0 +1,496 @@
+{
+  "authors" : [
+    {
+      "name" : "Rashmi Damodaran",
+      "email" : "rashmi.damodaran@cambio.se"
+    }
+  ],
+  "updated" : "2025-09-04T00:33:10+02:00",
+  "name" : "Prostate cancer risk group",
+  "description" : "",
+  "id" : "prostate_cancer_risk_group",
+  "version" : "0.3.7",
+  "format" : "CambioForm.v1.1",
+  "templates" : [
+    {
+      "alias" : "T0",
+      "id" : "prostate_cancer_risk_group_classification",
+      "version" : "0.1.0",
+      "type" : "openEhrOpt14Template"
+    }
+  ],
+  "actions" : [
+    {
+      "condition" : "T0_risk_group",
+      "assignments" : [
+        "risk_group_display_text.text = result_text.text + ' ' + T0_risk_group.text",
+        "result_text.hidden = true",
+        "risk_group_display_text.hidden = false"
+      ],
+      "otherwise" : [
+        "risk_group_display_text.hidden = true",
+        "result_text.hidden = false"
+      ],
+      "name" : "Risk group display"
+    }
+  ],
+  "guidelines" : [
+    {
+      "condition" : "true",
+      "execution" : [
+        {
+          "id" : "Prostate_cancer_risk_group_assessment",
+          "version" : "0.0.8"
+        }
+      ]
+    }
+  ],
+  "elements" : [
+    {
+      "type" : "form",
+      "children" : [
+        {
+          "type" : "layout",
+          "children" : [
+            {
+              "type" : "header",
+              "id" : "header"
+            },
+            {
+              "type" : "container",
+              "children" : [
+                {
+                  "type" : "row",
+                  "children" : [
+                    {
+                      "type" : "column",
+                      "spanlarge" : 6,
+                      "spanmedium" : 4,
+                      "spansmall" : 2,
+                      "children" : [
+                        {
+                          "type" : "card",
+                          "children" : [
+                            {
+                              "type" : "text",
+                              "textalign" : "start",
+                              "id" : "text_1"
+                            },
+                            {
+                              "type" : "reset-button",
+                              "size" : "m",
+                              "justify" : "end",
+                              "quiet" : true,
+                              "id" : "reset_button",
+                              "slot" : "footer"
+                            },
+                            {
+                              "type" : "input-quantity",
+                              "name" : "T0_psa_g_l",
+                              "unitoptions" : [
+                                {
+                                  "unit" : "ug/L"
+                                }
+                              ]
+                            },
+                            {
+                              "type" : "input-quantity",
+                              "name" : "T0_psa_density_g_l_cm3",
+                              "unitoptions" : [
+                                {
+                                  "unit" : "ug/L/cm3"
+                                }
+                              ]
+                            },
+                            {
+                              "type" : "input-select",
+                              "name" : "T0_t_stage",
+                              "clearable" : true,
+                              "display" : "buttons"
+                            },
+                            {
+                              "type" : "input-select",
+                              "name" : "T0_gleason_score",
+                              "clearable" : true,
+                              "display" : "buttons"
+                            },
+                            {
+                              "type" : "input-select",
+                              "name" : "T0_histological_findings_8_mm",
+                              "clearable" : true,
+                              "display" : "buttons"
+                            },
+                            {
+                              "type" : "input-select",
+                              "name" : "T0_strong_suspicion_of",
+                              "clearable" : true,
+                              "display" : "buttons"
+                            },
+                            {
+                              "type" : "input-text",
+                              "name" : "T0_test_name",
+                              "hidden" : true,
+                              "defaultValue" : "PSA lab value"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type" : "column",
+                      "spanlarge" : 6,
+                      "spanmedium" : 4,
+                      "spansmall" : 2,
+                      "children" : [
+                        {
+                          "type" : "card",
+                          "children" : [
+                            {
+                              "type" : "text",
+                              "textalign" : "start",
+                              "id" : "text_2"
+                            },
+                            {
+                              "type" : "card",
+                              "children" : [
+                                {
+                                  "type" : "text",
+                                  "textalign" : "start",
+                                  "id" : "result_text"
+                                },
+                                {
+                                  "type" : "text",
+                                  "textalign" : "start",
+                                  "id" : "risk_group_display_text"
+                                }
+                              ]
+                            },
+                            {
+                              "type" : "text",
+                              "textalign" : "start",
+                              "id" : "refernce_text"
+                            }
+                          ]
+                        },
+                        {
+                          "type" : "input-select",
+                          "name" : "T0_risk_group",
+                          "clearable" : true,
+                          "display" : "dropdown",
+                          "hidden" : true
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type" : "footer",
+              "id" : "footer",
+              "children" : [
+                {
+                  "type" : "inline",
+                  "aligncontent" : "start",
+                  "justifycontent" : "end",
+                  "children" : [
+                    {
+                      "type" : "submit-button",
+                      "size" : "m",
+                      "justify" : "end",
+                      "id" : "submit_button"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "locales" : {
+    "en" : {
+      "#text_1" : {
+        "text" : "## Risk assessment"
+      },
+      "#text_2" : {
+        "text" : "## Results"
+      },
+      "#refernce_text" : {
+        "text" : "**Reference link: **[Swedish national guidelines for risk group classification for prostate cancer](https://kunskapsbanken.cancercentrum.se/diagnoser/prostatacancer/vardprogram/kategorisering-av-tumoren/#chapter-8-3-Riskgruppsindelning-for-prostatacancer-utan-kand-spridning)"
+      },
+      "#result_text" : {
+        "text" : "**Risk group:**"
+      },
+      "#header" : {
+        "heading" : "Prostate cancer risk group classification"
+      },
+      "#submit_button" : {
+        "label" : "Submit"
+      },
+      "#reset_button" : {
+        "label" : "Reset"
+      },
+      "[name='T0_psa_g_l']" : {
+        "label" : "PSA (µg/l)"
+      },
+      "[name='T0_psa_density_g_l_cm3']" : {
+        "label" : "PSA density (µg/l/cm3)"
+      },
+      "[name='T0_t_stage']" : {
+        "label" : "T-stage",
+        "options" : [
+          {
+            "text" : "cT1c",
+            "value" : "at0003"
+          },
+          {
+            "text" : "cT1-cT2a",
+            "value" : "at0004"
+          },
+          {
+            "text" : "cT2b/cT2c",
+            "value" : "at0005"
+          },
+          {
+            "text" : "cT3a",
+            "value" : "at0006"
+          },
+          {
+            "text" : "cT3b/cT4",
+            "value" : "at0007"
+          }
+        ]
+      },
+      "[name='T0_gleason_score']" : {
+        "label" : "Gleason score",
+        "options" : [
+          {
+            "text" : "6 (ISUP 1)",
+            "value" : "at0009"
+          },
+          {
+            "text" : "7 (3+4) (ISUP 2)",
+            "value" : "at0010"
+          },
+          {
+            "text" : "7 (3+4) (ISUP 2)  in more than half of systematic biopsy specimens",
+            "value" : "at0011"
+          },
+          {
+            "text" : "7 (4+3) (ISUP 3)",
+            "value" : "at0012"
+          },
+          {
+            "text" : "8 (ISUP 4)",
+            "value" : "at0013"
+          },
+          {
+            "text" : "9–10 (ISUP 5)",
+            "value" : "at0014"
+          }
+        ]
+      },
+      "[name='T0_histological_findings_8_mm']" : {
+        "label" : "Histological findings ≤ 8 mm cancer in total in 1–4 of 8–12 systematic biopsy cores",
+        "options" : [
+          {
+            "text" : "Yes",
+            "value" : "at0021"
+          },
+          {
+            "text" : "No",
+            "value" : "at0022"
+          }
+        ]
+      },
+      "[name='T0_strong_suspicion_of']" : {
+        "label" : "Strong suspicion of extraprostatic growth on MRI (EPE/SVI 5)",
+        "options" : [
+          {
+            "text" : "Yes",
+            "value" : "at0021"
+          },
+          {
+            "text" : "No",
+            "value" : "at0022"
+          }
+        ]
+      },
+      "[name='T0_risk_group']" : {
+        "label" : "Risk group",
+        "options" : [
+          {
+            "text" : "Very low risk",
+            "value" : "at0031"
+          },
+          {
+            "text" : "Low risk",
+            "value" : "at0032"
+          },
+          {
+            "text" : "Favorable intermediate risk",
+            "value" : "at0033"
+          },
+          {
+            "text" : "Unfavorable intermediate risk",
+            "value" : "at0034"
+          },
+          {
+            "text" : "High risk",
+            "value" : "at0035"
+          },
+          {
+            "text" : "Very high risk",
+            "value" : "at0036"
+          }
+        ]
+      },
+      "[name='T0_test_name']" : {
+        "label" : "Test name"
+      }
+    },
+    "sv" : {
+      "#text_1" : {
+        "text" : "## Riskbedömning"
+      },
+      "#text_2" : {
+        "text" : "## Resultat"
+      },
+      "#refernce_text" : {
+        "text" : "**Referens: **[Svenska nationella riktlinje för riskgruppsindelning för prostatacancer](https://kunskapsbanken.cancercentrum.se/diagnoser/prostatacancer/vardprogram/kategorisering-av-tumoren/#chapter-8-3-Riskgruppsindelning-for-prostatacancer-utan-kand-spridning)"
+      },
+      "#result_text" : {
+        "text" : "**Riskgrupp: **"
+      },
+      "#submit_button" : {
+        "label" : "Skicka"
+      },
+      "#reset_button" : {
+        "label" : "Återställ"
+      },
+      "#header" : {
+        "heading" : "Riskgruppsindelning för prostatacancer"
+      },
+      "[name='T0_psa_g_l']" : {
+        "label" : "PSA (µg/l)"
+      },
+      "[name='T0_psa_density_g_l_cm3']" : {
+        "label" : "PSA-densitet (µg/l/cm3)"
+      },
+      "[name='T0_t_stage']" : {
+        "label" : "T-stadium",
+        "options" : [
+          {
+            "text" : "cT1c",
+            "value" : "at0003"
+          },
+          {
+            "text" : "cT1-cT2a",
+            "value" : "at0004"
+          },
+          {
+            "text" : "cT2b/cT2c",
+            "value" : "at0005"
+          },
+          {
+            "text" : "cT3a",
+            "value" : "at0006"
+          },
+          {
+            "text" : "cT3b/cT4",
+            "value" : "at0007"
+          }
+        ]
+      },
+      "[name='T0_gleason_score']" : {
+        "label" : "Gleasonsumma",
+        "options" : [
+          {
+            "text" : "6 (ISUP 1)",
+            "value" : "at0009"
+          },
+          {
+            "text" : "7 (3+4) (ISUP 2)",
+            "value" : "at0010"
+          },
+          {
+            "text" : "7 (3+4) (ISUP 2) i fler än hälften av systematiska biopsikolvar",
+            "value" : "at0011"
+          },
+          {
+            "text" : "7 (4+3) (ISUP 3)",
+            "value" : "at0012"
+          },
+          {
+            "text" : "8 (ISUP 4)",
+            "value" : "at0013"
+          },
+          {
+            "text" : "9–10 (ISUP 5)",
+            "value" : "at0014"
+          }
+        ]
+      },
+      "[name='T0_histological_findings_8_mm']" : {
+        "label" : "≤ 8 mm cancer totalt i 1–4 av 8–12 systematiska biopsikolvar",
+        "options" : [
+          {
+            "text" : "Ja",
+            "value" : "at0021"
+          },
+          {
+            "text" : "Nej",
+            "value" : "at0022"
+          }
+        ]
+      },
+      "[name='T0_strong_suspicion_of']" : {
+        "label" : "Stark misstanke om extraprostatisk växt på MRT (EPE/SVI 5)",
+        "options" : [
+          {
+            "text" : "Ja",
+            "value" : "at0021"
+          },
+          {
+            "text" : "Nej",
+            "value" : "at0022"
+          }
+        ]
+      },
+      "[name='T0_risk_group']" : {
+        "label" : "Riskgrupp",
+        "options" : [
+          {
+            "text" : "Mycket låg risk",
+            "value" : "at0031"
+          },
+          {
+            "text" : "Lågrisk",
+            "value" : "at0032"
+          },
+          {
+            "text" : "Gynnsam mellanrisk",
+            "value" : "at0033"
+          },
+          {
+            "text" : "Ogynnsam mellanrisk",
+            "value" : "at0034"
+          },
+          {
+            "text" : "Högrisk",
+            "value" : "at0035"
+          },
+          {
+            "text" : "Mycket hög risk",
+            "value" : "at0036"
+          }
+        ]
+      },
+      "[name='T0_test_name']" : {
+        "label" : "Undersökningsnamn"
+      }
+    }
+  }
+}
