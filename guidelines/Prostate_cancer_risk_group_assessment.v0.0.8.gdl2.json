@@ -1,0 +1,433 @@
+{
+  "id" : "Prostate_cancer_risk_group_assessment.v0.0.8",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Rashmi Damodaran",
+      "email" : "rashmi.damodaran@cambio.se",
+      "organisation" : "Cambio CDS"
+    },
+    "other_contributors" : [
+      "Kevin Arjona"
+    ],
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To assess the risk group for prostate cancer based on Swedish national guidelines.",
+        "keywords" : [
+          "prostate",
+          "cancer",
+          "risk",
+          "T stage",
+          "Gleason",
+          "PSA"
+        ],
+        "use" : "Use to categorize the risk group for prostate cancer with no distant metastases.",
+        "misuse" : "Not to be used for prostate cancer with metastases."
+      }
+    },
+    "other_details" : {
+      "en" : "Prostate cancer risk group classification with PSA and PSA density lab values.",
+      "references" : "Regional Cancer Center Sweden [Internet]. Knowledge bank: Risk categorization of prostate cancer. Available from https://kunskapsbanken.cancercentrum.se/diagnoser/prostatacancer/vardprogram/kategorisering-av-tumoren/\n\nZumsteg ZS, Spratt DE, Pei I, Zhang Z, Yamada Y, Kollmeier M, Zelefsky MJ. A new risk classification system for therapeutic decision making with intermediate-risk prostate cancer patients undergoing dose-escalated external-beam radiation therapy. Eur Urol. 2013 Dec;64(6):895-902. doi: 10.1016/j.eururo.2013.03.033. Epub 2013 Mar 23. PMID: 23541457.\n\nGnanapragasam VJ, Bratt O, Muir K, Lee LS, Huang HH, Stattin P, Lophatananon A. The Cambridge Prognostic Groups for improved prediction of disease mortality at diagnosis in primary non-metastatic prostate cancer: a validation study. BMC Med. 2018 Feb 28;16(1):31. doi: 10.1186/s12916-018-1019-5. PMID: 29490658; PMCID: PMC5831573.",
+      "sv" : "Risk group classification for prostate cancer."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-EVALUATION.prostate_cancer_risk_category_assessment.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.prostate_cancer_risk_category_assessment.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/items[at0002]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0003",
+              "local::at0004",
+              "local::at0005",
+              "local::at0006",
+              "local::at0007"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/items[at0008]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0009",
+              "local::at0010",
+              "local::at0011",
+              "local::at0012",
+              "local::at0013",
+              "local::at0014"
+            ]
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/items[at0015]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0016",
+              "local::at0017",
+              "local::at0018",
+              "local::at0019"
+            ]
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0001]/items[at0020]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0021",
+              "local::at0022"
+            ]
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0001]/items[at0023]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0021",
+              "local::at0022"
+            ]
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "path" : "/data[at0001]/items[at0026]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0021",
+              "local::at0022"
+            ]
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "path" : "/data[at0001]/items[at0038]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "ug/L/cm3"
+            ]
+          }
+        }
+      },
+      "gt0009" : {
+        "id" : "gt0009",
+        "model_id" : "openEHR-EHR-EVALUATION.prostate_cancer_risk_category_assessment.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.prostate_cancer_risk_category_assessment.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0010" : {
+            "id" : "gt0010",
+            "path" : "/data[at0001]/items[at0030]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      },
+      "gt0017" : {
+        "id" : "gt0017",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0018" : {
+            "id" : "gt0018",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "ug/L"
+            ]
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0011" : {
+        "id" : "gt0011",
+        "priority" : 6,
+        "when" : [
+          "$gt0003|T-stage|==local::at0003|cT1c|",
+          "$gt0004|Gleason score|==local::at0009|6 (ISUP 1)|",
+          "$gt0005|PSA|==local::at0016|< 10 µg/l|||$gt0018|PSA (µg/l)|<10,ug/L",
+          "$gt0006|PSA density < 0.15 ug/l/cm3|==local::at0021|Yes|||$gt0024|PSA density (µg/l/cm3)|<0.15,ug/L/cm3",
+          "$gt0007|Histological findings ≤ 8 mm cancer in total in 1–4 of 8–12 systematic biopsy cores|==local::at0021|Yes|"
+        ],
+        "then" : [
+          "$gt0010|Risk group|=local::at0031|Very low risk|"
+        ]
+      },
+      "gt0012" : {
+        "id" : "gt0012",
+        "priority" : 5,
+        "when" : [
+          "$gt0003|T-stage|==local::at0004|cT1-cT2a|",
+          "$gt0004|Gleason score|==local::at0009|6 (ISUP 1)|",
+          "$gt0005|PSA|==local::at0016|< 10 µg/l|||$gt0018|PSA (µg/l)|<10,ug/L",
+          "$gt0006|PSA density < 0.15 ug/l/cm3|==local::at0022|No|||$gt0024|PSA density (µg/l/cm3)|>=0.15,ug/L/cm3",
+          "$gt0007|Histological findings ≤ 8 mm cancer in total in 1–4 of 8–12 systematic biopsy cores|==local::at0022|No|"
+        ],
+        "then" : [
+          "$gt0010|Risk group|=local::at0032|Low risk|"
+        ]
+      },
+      "gt0013" : {
+        "id" : "gt0013",
+        "priority" : 4,
+        "when" : [
+          "$gt0003|T-stage|==local::at0005|cT2b/cT2c|||$gt0004|Gleason score|==local::at0010|7 (3+4) (ISUP 2)|||$gt0005|PSA|==local::at0017|10–19 µg/l|||($gt0018|PSA (µg/l)|>=10,ug/L&&$gt0018|PSA (µg/l)|<=19,ug/L)"
+        ],
+        "then" : [
+          "$gt0010|Risk group|=local::at0033|Favorable intermediate risk|"
+        ]
+      },
+      "gt0014" : {
+        "id" : "gt0014",
+        "priority" : 3,
+        "when" : [
+          "($gt0003|T-stage|==local::at0005|cT2b/cT2c|&&$gt0004|Gleason score|==local::at0010|7 (3+4) (ISUP 2)|)||($gt0003|T-stage|==local::at0005|cT2b/cT2c|&&$gt0005|PSA|==local::at0017|10–19 µg/l|)||($gt0003|T-stage|==local::at0005|cT2b/cT2c|&&$gt0018|PSA (µg/l)|>=10,ug/L&&$gt0018|PSA (µg/l)|<=19,ug/L)||($gt0004|Gleason score|==local::at0010|7 (3+4) (ISUP 2)|&&$gt0005|PSA|==local::at0017|10–19 µg/l|)||($gt0004|Gleason score|==local::at0010|7 (3+4) (ISUP 2)|&&$gt0018|PSA (µg/l)|>=10,ug/L&&$gt0018|PSA (µg/l)|<=19,ug/L)||$gt0004|Gleason score|==local::at0012|7 (4+3) (ISUP 3)|||$gt0004|Gleason score|==local::at0011|7 (3+4) (ISUP 2)  in more than half of systematic biopsy specimens|"
+        ],
+        "then" : [
+          "$gt0010|Risk group|=local::at0034|Unfavorable intermediate risk|"
+        ]
+      },
+      "gt0015" : {
+        "id" : "gt0015",
+        "priority" : 2,
+        "when" : [
+          "$gt0003|T-stage|==local::at0006|cT3a|||$gt0008|Strong suspicion of extraprostatic growth on MRI (EPE/SVI 5)|==local::at0021|Yes|||$gt0004|Gleason score|==local::at0013|8 (ISUP 4)|||$gt0005|PSA|==local::at0018|20–39 µg/l|||($gt0018|PSA (µg/l)|>=20,ug/L&&$gt0018|PSA (µg/l)|<=39,ug/L)"
+        ],
+        "then" : [
+          "$gt0010|Risk group|=local::at0035|High risk|"
+        ]
+      },
+      "gt0016" : {
+        "id" : "gt0016",
+        "priority" : 1,
+        "when" : [
+          "($gt0003|T-stage|==local::at0006|cT3a|&&$gt0008|Strong suspicion of extraprostatic growth on MRI (EPE/SVI 5)|==local::at0021|Yes|)||($gt0003|T-stage|==local::at0006|cT3a|&&$gt0004|Gleason score|==local::at0013|8 (ISUP 4)|)||($gt0003|T-stage|==local::at0006|cT3a|&&$gt0005|PSA|==local::at0018|20–39 µg/l|)||($gt0003|T-stage|==local::at0006|cT3a|&&$gt0018|PSA (µg/l)|>=20,ug/L&&$gt0018|PSA (µg/l)|<=39,ug/L)||($gt0008|Strong suspicion of extraprostatic growth on MRI (EPE/SVI 5)|==local::at0021|Yes|&&$gt0004|Gleason score|==local::at0013|8 (ISUP 4)|)||($gt0008|Strong suspicion of extraprostatic growth on MRI (EPE/SVI 5)|==local::at0021|Yes|&&$gt0005|PSA|==local::at0018|20–39 µg/l|)||($gt0008|Strong suspicion of extraprostatic growth on MRI (EPE/SVI 5)|==local::at0021|Yes|&&$gt0018|PSA (µg/l)|>=20,ug/L&&$gt0018|PSA (µg/l)|<=39,ug/L)||($gt0004|Gleason score|==local::at0013|8 (ISUP 4)|&&$gt0005|PSA|==local::at0018|20–39 µg/l|)||($gt0004|Gleason score|==local::at0013|8 (ISUP 4)|&&$gt0018|PSA (µg/l)|>=20,ug/L&&$gt0018|PSA (µg/l)|<=39,ug/L)||$gt0003|T-stage|==local::at0007|T3b/T4|||$gt0004|Gleason score|==local::at0014|9–10 (ISUP 5)|||$gt0005|PSA|==local::at0019|≥ 40 µg/l|||$gt0018|PSA (µg/l)|>=40,ug/L"
+        ],
+        "then" : [
+          "$gt0010|Risk group|=local::at0036|Very high risk|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Prostate cancer risk category assessment",
+            "description" : "An assessment tool to categorize the risk group for prostate cancer without distant metastases to assist with prognosis and treatment plan."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-EVALUATION.prostate_cancer_risk_category_assessment.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "T-stage"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Gleason score"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "PSA"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "PSA density < 0.15 ug/l/cm3"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Histological findings ≤ 8 mm cancer in total in 1–4 of 8–12 systematic biopsy cores"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Strong suspicion of extraprostatic growth on MRI (EPE/SVI 5)"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "openEHR-EHR-EVALUATION.prostate_cancer_risk_category_assessment.v0"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Risk group"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Set very low risk  ",
+            "description" : ""
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Set low risk",
+            "description" : ""
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Set favorable intermediate risk",
+            "description" : ""
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Set unfavorable intermediate risk",
+            "description" : ""
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "Set high risk",
+            "description" : ""
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "Set very high risk",
+            "description" : ""
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "PSA (µg/l)"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "PSA code"
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "PSA density"
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "text" : "PSA density (µg/l/cm3)"
+          }
+        }
+      },
+      "sv" : {
+        "id" : "sv",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Bedömning av riskgrupp för prostatacancer",
+            "description" : "Ett bedömningsverktyg för att kategorisera riskgruppen för prostatacancer utan fjärrmetastaser för att underlätta prognos och behandlingsplan."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-EVALUATION.prostate_cancer_risk_category_assessment.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "T-stadium"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Gleasonsumma"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "PSA"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "PSA-densitet < 0,15 µg/l/cm3"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "≤ 8 mm cancer totalt i 1–4 av 8–12 systematiska biopsikolvar"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Stark misstanke om extraprostatisk växt på MRT (EPE/SVI 5)"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "openEHR-EHR-EVALUATION.prostate_cancer_risk_category_assessment.v0"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Riskgrupp"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Ställ in mycket låg risk",
+            "description" : ""
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Ställ in låg risk",
+            "description" : ""
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Ställ in gynnsam mellanrisk",
+            "description" : ""
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Ställ in ogynnsam mellanrisk",
+            "description" : ""
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "Ställ in hög risk",
+            "description" : ""
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "Ställ in mycket hög risk",
+            "description" : ""
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "PSA (µg/l)"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "PSA kod"
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "PSA-densitet"
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "text" : "PSA-densitet (µg/l/cm3)"
+          }
+        }
+      }
+    },
+    "term_bindings" : {
+      "NPU" : {
+        "id" : "NPU",
+        "bindings" : {
+          "gt0021" : {
+            "codes" : [
+              "NPU::NPU08669"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "uuid" : "8bb1b85b-99a8-4201-b912-73bb83e3a087",
+  "date" : "2025-09-03",
+  "tags" : [ ]
+}
