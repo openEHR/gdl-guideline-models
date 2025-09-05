@@ -1,0 +1,215 @@
+{
+  "id": "Rome_IV_Diagnostic_Criteria_for_Functional_Heartburn.v0.2.0",
+  "gdl_version": "2.1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Kevin Arjona",
+      "email": "kevin.arjona@cambio.se",
+      "organisation": "Cambio CDS",
+      "date": "2025-03-15"
+    },
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To provide decision support for diagnosing Functional Heartburn by applying the Rome IV diagnostic criteria in clinical practice.",
+        "keywords": [
+          "heartburn",
+          "esophageal",
+          "disorder",
+          "non-gerd",
+          "reflux",
+          "fgid",
+          "diagnostic",
+          "criteria",
+          "gastroenterology",
+          "ppi",
+          "rome",
+          "iv",
+          "hypersensitivity"
+        ],
+        "use": "Use to record the structured evaluation of patients suspected of having Functional Heartburn, including:\n\nSymptom presence for ≥3 months, onset ≥6 months before diagnosis.\n\nAbsence of GERD on endoscopy or reflux monitoring.\n\nNormal findings on esophageal manometry.\n\nLack of response to acid suppression therapy.",
+        "misuse": "Not to be used for GERD, non-cardiac chest pain, or other esophageal disorders. Use instead the appropriate guideline for those conditions.",
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "en": "Clinical guideline to assist in recording and evaluating the Rome IV criteria for Functional Heartburn by documenting relevant symptoms, diagnostic exclusions, and responses to therapy.",
+      "references": "Aziz Q, Fass R, Gyawali CP, Miwa H, Pandolfino JE, Zerbib F. Functional Esophageal Disorders. Gastroenterology. 2016 Feb 15:S0016-5085(16)00178-5. doi: 10.1053/j.gastro.2016.02.012. Epub ahead of print. PMID: 27144625.\n\nMahoney LB, Nurko S, Rosen R. The Prevalence of Rome IV Nonerosive Esophageal Phenotypes in Children. J Pediatr. 2017 Oct;189:86-91. doi: 10.1016/j.jpeds.2017.06.019. Epub 2017 Jul 12. PMID: 28711175; PMCID: PMC6158020.\n\nJosefsson A, Palsson O, Simrén M, Sperber AD, Törnblom H, Whitehead W. Oesophageal symptoms are common and associated with other functional gastrointestinal disorders (FGIDs) in an English-speaking Western population. United European Gastroenterol J. 2018 Dec;6(10):1461-1469. doi: 10.1177/2050640618798894. Epub 2018 Sep 6. PMID: 30574316; PMCID: PMC6297932."
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0018": {
+        "id": "gt0018",
+        "model_id": "openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0",
+        "template_id": "openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0019": {
+            "id": "gt0019",
+            "path": "/data[at0001]/items[at0008]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0009|Negative|",
+              "local::at0010|Positive|"
+            ]
+          }
+        }
+      },
+      "gt0025": {
+        "id": "gt0025",
+        "model_id": "openEHR-EHR-OBSERVATION.rome_iv_esophageal_disorders.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.rome_iv_esophageal_disorders.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0026": {
+            "id": "gt0026",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0006]/items[at0007]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0008",
+              "local::at0009"
+            ]
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0006]/items[at0010]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0011",
+              "local::at0012"
+            ]
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0006]/items[at0013]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0014",
+              "local::at0015"
+            ]
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0006]/items[at0016]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0017",
+              "local::at0018"
+            ]
+          }
+        }
+      },
+      "gt0030": {
+        "id": "gt0030",
+        "model_id": "openEHR-EHR-EVALUATION.health_risk.v1",
+        "template_id": "openEHR-EHR-EVALUATION.health_risk.v1",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0031": {
+            "id": "gt0031",
+            "path": "/data[at0001]/items[at0003]",
+            "data_type": "DV_TEXT"
+          }
+        }
+      }
+    },
+    "pre_conditions": [
+      "$gt0026|Burning retrosternal discomfort or pain|!=null",
+      "$gt0027|No symptom relief despite optimal antisecretory therapy|!=null",
+      "$gt0028|Absence of evidence that gastroesophageal reflux or EOE is the cause of symptoms|!=null",
+      "$gt0029|Absence of major esophageal motor disorders|!=null"
+    ],
+    "default_actions": [
+      "$gt0019|Diagnostic Result|=local::at0009|Negative|",
+      "$gt0031|Diagnostic criteria|=$gt0032|Functional Heartburn|.term"
+    ],
+    "rules": {
+      "gt0002": {
+        "id": "gt0002",
+        "priority": 1,
+        "when": [
+          "$gt0026|Burning retrosternal discomfort or pain|==local::at0008|Yes|",
+          "$gt0027|No symptom relief despite optimal antisecretory therapy|==local::at0011|Yes|",
+          "$gt0028|Absence of evidence that gastroesophageal reflux or EOE is the cause of symptoms|==local::at0014|Yes|",
+          "$gt0029|Absence of major esophageal motor disorders|==local::at0017|Yes|"
+        ],
+        "then": [
+          "$gt0019|Diagnostic Result|=local::at0010|Positive|"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Rome IV Diagnostic Criteria for Functional Heartburn",
+            "description": "Clinical guideline to assist in recording and evaluating the Rome IV criteria for Functional Heartburn by documenting relevant symptoms, diagnostic exclusions, and responses to therapy."
+          },
+          "gt0002": {
+            "id": "gt0002",
+            "text": "Set to Positive for FH",
+            "description": "Symptoms for 3 months prior with symptom onset ≥6 months ago with a frequency of at least twice a week"
+          },
+          "gt0004": {
+            "id": "gt0004",
+            "text": "openEHR-EHR-OBSERVATION.rome_iv_diagnosis_criteria_for_functional_heartburn.v0"
+          },
+          "gt0009": {
+            "id": "gt0009",
+            "text": "openEHR-EHR-OBSERVATION.rome_iv_diagnosis_criteria_for_functional_heartburn.v0"
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0"
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "Diagnostic Result"
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "openEHR-EHR-OBSERVATION.rome_iv_esophageal_disorders.v0"
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "Burning retrosternal discomfort or pain"
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "No symptom relief despite optimal antisecretory therapy"
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "Absence of evidence that gastroesophageal reflux or EOE is the cause of symptoms"
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "Absence of major esophageal motor disorders"
+          },
+          "gt0030": {
+            "id": "gt0030",
+            "text": "openEHR-EHR-EVALUATION.health_risk.v1"
+          },
+          "gt0031": {
+            "id": "gt0031",
+            "text": "Diagnostic criteria"
+          },
+          "gt0032": {
+            "id": "gt0032",
+            "text": "Functional Heartburn"
+          }
+        }
+      }
+    }
+  }
+}
