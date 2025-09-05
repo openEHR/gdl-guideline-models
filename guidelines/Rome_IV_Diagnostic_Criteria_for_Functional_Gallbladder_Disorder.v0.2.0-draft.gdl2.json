@@ -1,0 +1,178 @@
+{
+  "id": "Rome_IV_Diagnostic_Criteria_for_Functional_Gallbladder_Disorder.v0.2.0-draft",
+  "gdl_version": "2.1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Kevin Arjona",
+      "email": "kevin.arjona01@cambio.se",
+      "organisation": "Cambio CDS",
+      "date": "2025-02-14"
+    },
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To apply Rome IV criteria for diagnosing functional gallbladder disorder, helping clinicians determine when to consider cholecystectomy or alternative management strategies.",
+        "keywords": [
+          "criteria",
+          "gallbladder",
+          "disorder",
+          "biliary",
+          "dyskinesia",
+          "chronic",
+          "pain",
+          "cholescintigraphy",
+          "gastroenterology",
+          "diagnostic",
+          "fgid",
+          "fgbd",
+          "rome",
+          "iv"
+        ],
+        "use": "Adult patients with recurrent biliary pain in the absence of gallstones, inflammation, or obstruction.\n\nDiagnosis requires all of the following Rome IV criteria:\n\nEpisodes of biliary pain (located in the epigastrium or right upper quadrant).\n\nPain lasts at least 30 minutes, occurs at variable intervals (not daily), and is severe enough to interrupt daily activities or require medical attention.\n\nNo structural abnormalities (e.g., gallstones, cholecystitis, biliary obstruction) detected on imaging.\n\nAbnormal gallbladder function (e.g., gallbladder ejection fraction &lt; 40% on HIDA scan).\n\nNegative endoscopic, laboratory, and imaging findings ruling out other causes.",
+        "misuse": "Should not be applied to patients with evidence of organic gallbladder disease.\n\nNot to be used in patients with extra-biliary causes of pain (e.g., peptic ulcers, pancreatitis, functional dyspepsia).",
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "references": "Cotton PB, Elta GH, Carter CR, Pasricha PJ, Corazziari ES. Rome IV. Gallbladder and Sphincter of Oddi Disorders. Gastroenterology. 2016 Feb 19:S0016-5085(16)00224-9. doi: 10.1053/j.gastro.2016.02.033. Epub ahead of print. PMID: 27144629.\n\nAziz I, Palsson OS, Törnblom H, Sperber AD, Whitehead WE, Simrén M. The Prevalence and Impact of Overlapping Rome IV-Diagnosed Functional Gastrointestinal Disorders on Somatization, Quality of Life, and Healthcare Utilization: A Cross-Sectional General Population Study in Three Countries. Am J Gastroenterol. 2018 Jan;113(1):86-96. doi: 10.1038/ajg.2017.421. Epub 2017 Nov 14. PMID: 29134969.",
+      "en": "A clinical decision support guideline assisting healthcare providers in diagnosing Rome IV-defined functional gallbladder disorder"
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0013": {
+        "id": "gt0013",
+        "model_id": "openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0",
+        "template_id": "openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0014": {
+            "id": "gt0014",
+            "path": "/data[at0001]/items[at0008]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0009|Negative|",
+              "local::at0010|Positive|"
+            ]
+          }
+        }
+      },
+      "gt0015": {
+        "id": "gt0015",
+        "model_id": "openEHR-EHR-OBSERVATION.rome_iv_gallbladder_and_sphincter_of_oddi_disorders.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.rome_iv_gallbladder_and_sphincter_of_oddi_disorders.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0016": {
+            "id": "gt0016",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0025]/items[at0026]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0027",
+              "local::at0028"
+            ]
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0025]/items[at0029]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0030",
+              "local::at0031"
+            ]
+          }
+        }
+      },
+      "gt0018": {
+        "id": "gt0018",
+        "model_id": "openEHR-EHR-EVALUATION.health_risk.v1",
+        "template_id": "openEHR-EHR-EVALUATION.health_risk.v1",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0019": {
+            "id": "gt0019",
+            "path": "/data[at0001]/items[at0003]",
+            "data_type": "DV_TEXT"
+          }
+        }
+      }
+    },
+    "pre_conditions": [
+      "$gt0016|Biliary pain|!=null",
+      "$gt0017|Absence of gallstones or other structural pathology|!=null"
+    ],
+    "default_actions": [
+      "$gt0014|Diagnostic Result|=local::at0009|Negative|",
+      "$gt0019|Diagnostic Criteria|=$gt0020|Functional Gallbladder Disorder|.term"
+    ],
+    "rules": {
+      "gt0007": {
+        "id": "gt0007",
+        "priority": 1,
+        "when": [
+          "$gt0016|Biliary pain|==local::at0027|Yes|",
+          "$gt0017|Absence of gallstones or other structural pathology|==local::at0030|Yes|"
+        ],
+        "then": [
+          "$gt0014|Diagnostic Result|=local::at0010|Positive|"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Rome IV Diagnostic Criteria for Functional Gallbladder Disorder (FGBD)",
+            "description": "A clinical decision support guideline assisting healthcare providers in diagnosing Rome IV-defined functional gallbladder disorder, a condition characterized by biliary-type pain in the absence of structural gallbladder disease."
+          },
+          "gt0007": {
+            "id": "gt0007",
+            "text": "Set to Positive for FGD",
+            "description": "All criteria for FGD"
+          },
+          "gt0013": {
+            "id": "gt0013",
+            "text": "openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0"
+          },
+          "gt0014": {
+            "id": "gt0014",
+            "text": "Diagnostic Result"
+          },
+          "gt0015": {
+            "id": "gt0015",
+            "text": "openEHR-EHR-OBSERVATION.rome_iv_gallbladder_and_sphincter_of_oddi_disorders.v0"
+          },
+          "gt0016": {
+            "id": "gt0016",
+            "text": "Biliary pain"
+          },
+          "gt0017": {
+            "id": "gt0017",
+            "text": "Absence of gallstones or other structural pathology"
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "openEHR-EHR-EVALUATION.health_risk.v1"
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "Diagnostic Criteria"
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "Functional Gallbladder Disorder"
+          }
+        }
+      }
+    }
+  }
+}
