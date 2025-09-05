@@ -1,0 +1,218 @@
+{
+  "id": "rome_IV_criteria_for_nbs.v0.2.0",
+  "gdl_version": "2.1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Kevin Arjona",
+      "email": "kevin.arjona@cambio.se",
+      "organisation": "Cambio CDS ",
+      "date": "2025-02-01"
+    },
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "en": {
+        "id": "en",
+        "purpose": "To apply the Rome IV criteria for diagnosing NBS.",
+        "keywords": [
+          "narcotic bowel syndrome",
+          "NBS",
+          "rome iv",
+          "criteria",
+          "pain",
+          "chronic",
+          "disorder",
+          "gastroenterology",
+          "abdominal",
+          "opioid"
+        ],
+        "use": "Use in patients presenting with chronic abdominal pain and a history of opioid use for ≥3 months.\n",
+        "misuse": "Do not use for diagnosing opioid withdrawal syndrome.\n\n",
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "references": "Keefer L, Drossman DA, Guthrie E, Simrén M, Tillisch K, Olden K, Whorwell PJ. Centrally Mediated Disorders of Gastrointestinal Pain. Gastroenterology. 2016 Feb 19:S0016-5085(16)00225-0. doi: 10.1053/j.gastro.2016.02.034. Epub ahead of print. PMID: 27144628.\n\nKurlander J, Drossman D. Diagnosis and treatment of narcotic bowel syndrome. Nat Rev Gastroenterol Hepatol. 2014;11(7):410-418. doi:10.1038/nrgastro.2014.53.",
+      "en": "A clinical  guideline to diagnose NBS using Rome IV criteria."
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0018": {
+        "id": "gt0018",
+        "model_id": "openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0",
+        "template_id": "openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0019": {
+            "id": "gt0019",
+            "path": "/data[at0001]/items[at0008]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0009|Negative|",
+              "local::at0010|Positive|"
+            ]
+          }
+        }
+      },
+      "gt0020": {
+        "id": "gt0020",
+        "model_id": "openEHR-EHR-OBSERVATION.rome_iv_centrally_mediated_disorders_of_gi_pain.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.rome_iv_centrally_mediated_disorders_of_gi_pain.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0021": {
+            "id": "gt0021",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0015]/items[at0006]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0007",
+              "local::at0008"
+            ]
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0015]/items[at0009]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0010",
+              "local::at0011"
+            ]
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0015]/items[at0012]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0013",
+              "local::at0014"
+            ]
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0015]/items[at0016]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0017",
+              "local::at0018"
+            ]
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0015]/items[at0019]",
+            "data_type": "DV_CODED_TEXT",
+            "allowed_values": [
+              "local::at0020",
+              "local::at0021"
+            ]
+          }
+        }
+      },
+      "gt0027": {
+        "id": "gt0027",
+        "model_id": "openEHR-EHR-EVALUATION.health_risk.v1",
+        "template_id": "openEHR-EHR-EVALUATION.health_risk.v1",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0028": {
+            "id": "gt0028",
+            "path": "/data[at0001]/items[at0003]",
+            "data_type": "DV_TEXT"
+          }
+        }
+      }
+    },
+    "pre_conditions": [
+      "$gt0021|Chronic or frequently recurring abdominal pain that is treated with acute high-dose or chronic narcotics.|!=null",
+      "$gt0022|The nature and intensity of the pain is not explained by a current or previous GI diagnosis.|!=null",
+      "$gt0023|The pain worsens or incompletely resolves with continued or escalating dosages of narcotics.|!=null",
+      "$gt0024|There is marked worsening of pain when the narcotic dose wanes and improvement when narcotics are re-instituted (soar and crash).|!=null",
+      "$gt0025|There is a progression of the frequency, duration, and intensity of pain episodes.|!=null"
+    ],
+    "default_actions": [
+      "$gt0019|Diagnostic Result|=local::at0009|Negative|",
+      "$gt0028|Diagnostic criteria|=$gt0029|Narcotic Bowel Syndrome|.term"
+    ],
+    "rules": {
+      "gt0026": {
+        "id": "gt0026",
+        "priority": 1,
+        "when": [
+          "$gt0021|Chronic or frequently recurring abdominal pain that is treated with acute high-dose or chronic narcotics.|==local::at0007|Yes|",
+          "$gt0022|The nature and intensity of the pain is not explained by a current or previous GI diagnosis.|==local::at0010|Yes|",
+          "($gt0023|The pain worsens or incompletely resolves with continued or escalating dosages of narcotics.|==local::at0013|Yes|&&$gt0024|There is marked worsening of pain when the narcotic dose wanes and improvement when narcotics are re-instituted (soar and crash).|==local::at0017|Yes|&&$gt0025|There is a progression of the frequency, duration, and intensity of pain episodes.|==local::at0020|Yes|)||($gt0023|The pain worsens or incompletely resolves with continued or escalating dosages of narcotics.|==local::at0013|Yes|&&($gt0024|There is marked worsening of pain when the narcotic dose wanes and improvement when narcotics are re-instituted (soar and crash).|==local::at0017|Yes|||$gt0025|There is a progression of the frequency, duration, and intensity of pain episodes.|==local::at0020|Yes|))||($gt0024|There is marked worsening of pain when the narcotic dose wanes and improvement when narcotics are re-instituted (soar and crash).|==local::at0017|Yes|&&$gt0025|There is a progression of the frequency, duration, and intensity of pain episodes.|==local::at0020|Yes|)"
+        ],
+        "then": [
+          "$gt0019|Diagnostic Result|=local::at0010|Positive|"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "Rome IV Diagnostic Criteria for Narcotic Bowel Syndrome (NBS)",
+            "description": "A clinical decision support guideline to diagnose NBS using Rome IV criteria. The guideline  is based on the criteria for centrally mediated abdominal pain syndrome"
+          },
+          "gt0018": {
+            "id": "gt0018",
+            "text": "openEHR-EHR-EVALUATION.rome_iv_diagnostic_criteria_assessment.v0"
+          },
+          "gt0019": {
+            "id": "gt0019",
+            "text": "Diagnostic Result"
+          },
+          "gt0020": {
+            "id": "gt0020",
+            "text": "openEHR-EHR-OBSERVATION.rome_iv_centrally_mediated_disorders_of_gi_pain.v0"
+          },
+          "gt0021": {
+            "id": "gt0021",
+            "text": "Chronic or frequently recurring abdominal pain that is treated with acute high-dose or chronic narcotics."
+          },
+          "gt0022": {
+            "id": "gt0022",
+            "text": "The nature and intensity of the pain is not explained by a current or previous GI diagnosis."
+          },
+          "gt0023": {
+            "id": "gt0023",
+            "text": "The pain worsens or incompletely resolves with continued or escalating dosages of narcotics."
+          },
+          "gt0024": {
+            "id": "gt0024",
+            "text": "There is marked worsening of pain when the narcotic dose wanes and improvement when narcotics are re-instituted (soar and crash)."
+          },
+          "gt0025": {
+            "id": "gt0025",
+            "text": "There is a progression of the frequency, duration, and intensity of pain episodes."
+          },
+          "gt0026": {
+            "id": "gt0026",
+            "text": "Set to Positive for NBS",
+            "description": "Diagnostic result is positive, fulfill the criteria for NBS."
+          },
+          "gt0027": {
+            "id": "gt0027",
+            "text": "openEHR-EHR-EVALUATION.health_risk.v1"
+          },
+          "gt0028": {
+            "id": "gt0028",
+            "text": "Diagnostic criteria"
+          },
+          "gt0029": {
+            "id": "gt0029",
+            "text": "Narcotic Bowel Syndrome",
+            "description": "diagnostic criteria"
+          }
+        }
+      }
+    }
+  }
+}
