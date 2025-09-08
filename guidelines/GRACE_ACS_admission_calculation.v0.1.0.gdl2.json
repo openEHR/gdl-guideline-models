@@ -1,0 +1,330 @@
+{
+  "id": "GRACE_ACS_admission_calculation.v0.1.0",
+  "gdl_version": "2.1",
+  "concept": "gt0001",
+  "language": {
+    "original_language": "ISO_639-1::en"
+  },
+  "description": {
+    "original_author": {
+      "name": "Syeeda S Farruque",
+      "email": "models@cambiocds.com",
+      "organisation": "Cambio CDS",
+      "date": "2017-02-18"
+    },
+    "other_contributors": [
+      "Dennis Forslund",
+      "Jimmy Axelsson",
+      "Daniel Keszthelyi",
+      "Aurelia Maria Ozora"
+    ],
+    "lifecycle_state": "DRAFTED",
+    "details": {
+      "sv": {
+        "id": "sv",
+        "purpose": "Att uppskatta 6-månadersmortalitet hos nyligen mottagna patienter med akut koronart syndrom.\r\n",
+        "keywords": [
+          "GRACE ACS Risk score",
+          "STEMI",
+          "NSTEMI",
+          "akut koronart syndrom",
+          "akut kranskärlssjukdom",
+          "kardiologi"
+        ],
+        "use": "Använd för att uppskatta 6-månadersmortalitet hos nyligen mottagna patienter med akut koronart syndrom. Instrumentet baseras på följande åtta faktorer:\r\n\r\nÅlder\r\nHjärtfrekvens\r\nSystoliskt blodtryck\r\nKreatininvärde, angivet i mg/dl\r\nHjärtstopp vid ankomst till sjukhus\r\nPatologiska ST-förändringar på EKG\r\nFörhöjda/avvikande hjärtmarkörer\r\nKillip-klassificering (Klass I - ingen hjärtsvikt, klass II - rassel och/eller halsvenstas, klass III - lungödem, klass IV - kardiogen chock)\r\n\r\nResultatet uppgår till maximalt 372p - för detaljerad beskrivning av poängsystemet vänligen se (1). Resultatet tolkas enligt:\r\n\r\nNon-STEMI inlagd på sjukhus:\r\n1-108p - låg risk (<1% risk att avlida på sjukhuset)\r\n109-140p - mellanrisk (1-3% risk att avlida på sjukhuset)\r\n141-372p - hög risk (>3% risk att avlida på sjukhuset)\r\n\r\nFör detaljerad beskrivning av denna tolkning, vänligen se (2).",
+        "misuse": "Instrumentet är ej avsett för att identifiera patienter med akut koronart syndrom och ska endast användas i samråd med utförlig klinisk utredning.",
+        "copyright": "© Cambio Healthcare Systems"
+      },
+      "en": {
+        "id": "en",
+        "purpose": "To calculate the total sum for the GRACE ACS admission risk score.\n",
+        "keywords": [
+          "STEMI",
+          "NSTEMI",
+          "Acute Coronary Syndrome",
+          "cardiology",
+          "GRACE",
+          "score",
+          "risk",
+          "ACS",
+          "admission",
+          "in-hospital",
+          "mortality"
+        ],
+        "use": "GRACE (Global Registry of Acute Coronary Events) acute coronary syndrome (ACS) risk score comprised of eight variables and was designed to predict in-hospital mortality. These variables included Killip class, age, blood pressure, resuscitated cardiac arrest, elevated cardiac biomarkers, creatinine level, ST-segment deviation, and heart rate. Each item was given a weighted score based on its predictive value. ",
+        "misuse": "Not to be used for calculating the follow-up GRACE score recorded at discharge or the GRACE 2.0 score.",
+        "copyright": "© Cambio CDS"
+      }
+    },
+    "other_details": {
+      "references": "Fox KA, Dabbous OH, Goldberg RJ, Pieper KS, Eagle KA, Van de Werf F, Avezum A,Goodman SG, Flather MD, Anderson FA Jr, Granger CB. Prediction of risk of death and myocardial infarction in the six months after presentation with acute coronary syndrome: prospective multinational observational study (GRACE). BMJ. 2006 Nov 25;333(7578):1091. Epub 2006 Oct 10. PubMed PMID: 17032691; PubMed Central PMCID: PMC1661748.\n\nGranger CB, Goldberg RJ, Dabbous O, Pieper KS, Eagle KA, Cannon CP, Van De Werf F, Avezum A, Goodman SG, Flather MD, Fox KA; Global Registry of Acute Coronary Events Investigators. Predictors of hospital mortality in the global registry of acute coronary events. Arch Intern Med. 2003 Oct 27;163(19):2345-53. doi: 10.1001/archinte.163.19.2345. PMID: 14581255.",
+      "en": "The GRACE (Global Registry of Acute Coronary Events) risk score for acute coronary syndrome (ACS) admission is designed to predict in-hospital mortality. It should be calculated at the time of presentation or admission."
+    }
+  },
+  "definition": {
+    "data_bindings": {
+      "gt0074": {
+        "id": "gt0074",
+        "model_id": "openEHR-EHR-OBSERVATION.grace_admission.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.grace_admission.v0",
+        "type": "INPUT",
+        "elements": {
+          "gt0075": {
+            "id": "gt0075",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0014",
+              "100|local::at0021",
+              "25|local::at0016",
+              "41|local::at0017",
+              "58|local::at0018",
+              "75|local::at0019",
+              "8|local::at0015",
+              "91|local::at0020"
+            ]
+          },
+          "gt0076": {
+            "id": "gt0076",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0022",
+              "15|local::at0025",
+              "24|local::at0026",
+              "38|local::at0027",
+              "3|local::at0023",
+              "46|local::at0028",
+              "9|local::at0024"
+            ]
+          },
+          "gt0077": {
+            "id": "gt0077",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0029",
+              "10|local::at0030",
+              "24|local::at0031",
+              "34|local::at0032",
+              "43|local::at0033",
+              "53|local::at0034",
+              "58|local::at0035"
+            ]
+          },
+          "gt0078": {
+            "id": "gt0078",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0036",
+              "10|local::at0040",
+              "13|local::at0041",
+              "1|local::at0037",
+              "21|local::at0042",
+              "28|local::at0043",
+              "4|local::at0038",
+              "7|local::at0039"
+            ]
+          },
+          "gt0079": {
+            "id": "gt0079",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0044",
+              "39|local::at0045"
+            ]
+          },
+          "gt0080": {
+            "id": "gt0080",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0009]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0046",
+              "28|local::at0047"
+            ]
+          },
+          "gt0081": {
+            "id": "gt0081",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0010]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0048",
+              "14|local::at0049"
+            ]
+          },
+          "gt0082": {
+            "id": "gt0082",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0011]",
+            "data_type": "DV_ORDINAL",
+            "allowed_values": [
+              "0|local::at0050",
+              "20|local::at0051",
+              "39|local::at0052",
+              "59|local::at0053"
+            ]
+          }
+        }
+      },
+      "gt0083": {
+        "id": "gt0083",
+        "model_id": "openEHR-EHR-OBSERVATION.grace_admission.v0",
+        "template_id": "openEHR-EHR-OBSERVATION.grace_admission.v0",
+        "type": "OUTPUT",
+        "elements": {
+          "gt0084": {
+            "id": "gt0084",
+            "path": "/data[at0001]/events[at0002]/data[at0003]/items[at0012]",
+            "data_type": "DV_COUNT"
+          }
+        }
+      }
+    },
+    "rules": {
+      "gt0085": {
+        "id": "gt0085",
+        "priority": 1,
+        "when": [
+          "$gt0075|Age|!=null",
+          "$gt0076|Heart rate|!=null",
+          "$gt0077|Systolic blood pressure|!=null",
+          "$gt0078|Creatinine level|!=null",
+          "$gt0079|Cardiac arrest at admission|!=null",
+          "$gt0080|ST segment deviation on ECG|!=null",
+          "$gt0081|Elevated/abnormal cardiac enzymes|!=null",
+          "$gt0082|Killip class|!=null"
+        ],
+        "then": [
+          "$gt0084|Total score|.magnitude=$gt0075|Age|.value+$gt0076|Heart rate|.value+$gt0077|Systolic blood pressure|.value+$gt0078|Creatinine level|.value+$gt0079|Cardiac arrest at admission|.value+$gt0080|ST segment deviation on ECG|.value+$gt0081|Elevated/abnormal cardiac enzymes|.value+$gt0082|Killip class|.value"
+        ]
+      }
+    }
+  },
+  "ontology": {
+    "term_definitions": {
+      "sv": {
+        "id": "sv",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "GRACE ACS Score",
+            "description": "Global Registry of Acute Coronary Events (GRACE) Acute Coronary Syndrome (ACS) Risk Score används för att uppskatta 6-månadersmortalitet hos nyligen mottagna patienter med akut koronart syndrom."
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "openEHR-EHR-OBSERVATION.grace_admission.v0"
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "Ålder"
+          },
+          "gt0076": {
+            "id": "gt0076",
+            "text": "Hjärtfrekvens"
+          },
+          "gt0077": {
+            "id": "gt0077",
+            "text": "Systoliskt blodtryck"
+          },
+          "gt0078": {
+            "id": "gt0078",
+            "text": "Kreatininnivå"
+          },
+          "gt0079": {
+            "id": "gt0079",
+            "text": "Hjärtstopp vid inläggning"
+          },
+          "gt0080": {
+            "id": "gt0080",
+            "text": "ST-segmentavvikelse på EKG"
+          },
+          "gt0081": {
+            "id": "gt0081",
+            "text": "Förhöjda/onormala hjärtenzymer"
+          },
+          "gt0082": {
+            "id": "gt0082",
+            "text": "Killip-klass"
+          },
+          "gt0083": {
+            "id": "gt0083",
+            "text": "openEHR-EHR-OBSERVATION.grace_admission.v0"
+          },
+          "gt0084": {
+            "id": "gt0084",
+            "text": "Totalpoäng"
+          },
+          "gt0085": {
+            "id": "gt0085",
+            "text": "Ange totalpoäng",
+            "description": ""
+          }
+        }
+      },
+      "en": {
+        "id": "en",
+        "terms": {
+          "gt0001": {
+            "id": "gt0001",
+            "text": "GRACE ACS Admission Risk Score Calculation",
+            "description": "The GRACE (Global Registry of Acute Coronary Events) risk score for acute coronary syndrome (ACS) admission is designed to predict in-hospital mortality. It should be calculated at the time of presentation or admission."
+          },
+          "gt0036": {
+            "id": "gt0036",
+            "text": "Set Creatinine level for score 0"
+          },
+          "gt0074": {
+            "id": "gt0074",
+            "text": "openEHR-EHR-OBSERVATION.grace_admission.v0"
+          },
+          "gt0075": {
+            "id": "gt0075",
+            "text": "Age"
+          },
+          "gt0076": {
+            "id": "gt0076",
+            "text": "Heart rate"
+          },
+          "gt0077": {
+            "id": "gt0077",
+            "text": "Systolic blood pressure"
+          },
+          "gt0078": {
+            "id": "gt0078",
+            "text": "Creatinine level"
+          },
+          "gt0079": {
+            "id": "gt0079",
+            "text": "Cardiac arrest at admission"
+          },
+          "gt0080": {
+            "id": "gt0080",
+            "text": "ST segment deviation on ECG"
+          },
+          "gt0081": {
+            "id": "gt0081",
+            "text": "Elevated/abnormal cardiac enzymes"
+          },
+          "gt0082": {
+            "id": "gt0082",
+            "text": "Killip class"
+          },
+          "gt0083": {
+            "id": "gt0083",
+            "text": "openEHR-EHR-OBSERVATION.grace_admission.v0"
+          },
+          "gt0084": {
+            "id": "gt0084",
+            "text": "Total score"
+          },
+          "gt0085": {
+            "id": "gt0085",
+            "text": "Set total score",
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}
