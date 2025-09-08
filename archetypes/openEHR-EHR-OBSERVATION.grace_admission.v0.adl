@@ -1,8 +1,9 @@
-﻿archetype (adl_version=1.4; uid=257241b5-1d45-40f8-88ca-a2f4d4d1f3fe)
+archetype (adl_version=1.4; uid=257241b5-1d45-40f8-88ca-a2f4d4d1f3fe)
 	openEHR-EHR-OBSERVATION.grace_admission.v0
 
 concept
-	[at0000]	-- GRACE score (admission)
+	[at0000]
+
 language
 	original_language = <[ISO_639-1::en]>
 	translations = <
@@ -14,17 +15,22 @@ language
 			>
 		>
 	>
+
 description
 	original_author = <
+		["date"] = <"2017-02-18">
 		["name"] = <"Syeeda Farruque">
 		["organisation"] = <"Cambio Healthcare Systems">
 		["email"] = <"models@cambiocds.com">
-		["date"] = <"2017-02-18">
 	>
+	lifecycle_state = <"in_development">
+	other_contributors = <"Heather Leslie, Atomica Informatics, Australia", ...>
 	details = <
 		["sv"] = <
 			language = <[ISO_639-1::sv]>
 			purpose = <"Att uppskatta 6-månadersmortalitet hos nyligen mottagna patienter med akut koronart syndrom.">
+			keywords = <"GRACE ACS Risk Score","GRACE","STEMI","NSTEMI","akut koronart syndrom","akut kranskärlssjukdom","kardiologi">
+			copyright = <"© Cambio Healthcare Systems, openEHR Foundation">
 			use = <"Använd för att uppskatta 6-månadersmortalitet hos nyligen mottagna patienter med akut koronart syndrom. Instrumentet baseras på följande åtta faktorer:
 
 Ålder
@@ -44,23 +50,19 @@ Non-STEMI inlagd på sjukhus:
 141-372p - hög risk (>3% risk att avlida på sjukhuset)
 
 För detaljerad beskrivning av denna tolkning, vänligen se (2).">
-			keywords = <"GRACE ACS Risk Score", "GRACE", "STEMI", "NSTEMI", "akut koronart syndrom", "akut kranskärlssjukdom", "kardiologi">
 			misuse = <"Instrumentet är ej avsett för att identifiera patienter med akut koronart syndrom och ska endast användas i samråd med utförlig klinisk utredning.">
-			copyright = <"© Cambio Healthcare Systems, openEHR Foundation">
 		>
 		["en"] = <
 			language = <[ISO_639-1::en]>
 			purpose = <"To record the results for each component parameter, the total sum and grade for the GRACE score recorded at presentation or on admission.">
+			keywords = <"GRACE","ACS","Risk","score","STEMI","NSTEMI","ACS","Acute Coronary Syndrome","cardiology">
+			copyright = <"© Apperta Foundation / Wales Cardiac Network, openEHR Foundation">
 			use = <"Use to record the results for each component parameter, the total sum and grade for the GRACE score recorded at presentation or on admission.">
-			keywords = <"GRACE", "ACS", "Risk", "score", "STEMI", "NSTEMI", "ACS", "Acute Coronary Syndrome", "cardiology">
 			misuse = <"Not to be used to record details about the followup GRACE score recorded at discharge - use the OBSERVATION.grace_discharge for this purpose.
 
 Not to be used to record details about the GRACE 2.0 score.">
-			copyright = <"© Apperta Foundation / Wales Cardiac Network, openEHR Foundation">
 		>
 	>
-	lifecycle_state = <"in_development">
-	other_contributors = <"Heather Leslie, Atomica Informatics, Australia", ...>
 	other_details = <
 		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
 		["custodian_organisation"] = <"openEHR Foundation">
@@ -183,7 +185,6 @@ definition
 			}
 		}
 	}
-
 
 ontology
 	term_definitions = <
@@ -416,52 +417,52 @@ ontology
 		["sv"] = <
 			items = <
 				["at0000"] = <
-					text = <"*GRACE admission score (en)">
-					description = <"*The original 8 variable version of an assessment tool used to risk stratify patients with diagnosed Acute Coronary Syndrome to estimate their in-hospital to 6 month mortality. (en)">
+					text = <"GRACE antagningspoäng">
+					description = <"Den ursprungliga 8-variablerversionen av ett bedömningsverktyg som används för att riskstratifiera patienter med diagnostiserat akut koronart syndrom för att uppskatta deras dödlighet från sjukhusvistelse till 6 månader.">
 					comment = <"*GRACE is an acronym for Global Registry of Acute Coronary Events. (en)">
 				>
 				["at0001"] = <
-					text = <"*Event Series(en)">
+					text = <"Event Series">
 					description = <"*@ internal @(en)">
 				>
 				["at0002"] = <
-					text = <"*Any point in time event (en)">
+					text = <"Händelse vid vilken tidpunkt som helst">
 					description = <"*Default, unspecified point in time event which may be explicitly defined in a template or at run-time. (en)">
 				>
 				["at0003"] = <
-					text = <"*Tree(en)">
+					text = <"Tree">
 					description = <"*@ internal @(en)">
 				>
 				["at0004"] = <
-					text = <"*Age (en)">
+					text = <"Ålder">
 					description = <"*Age at admission. (en)">
 				>
 				["at0005"] = <
-					text = <"*Heart rate (en)">
+					text = <"Hjärtfrekvens">
 					description = <"*Category of heart rate on admission. (en)">
 				>
 				["at0006"] = <
-					text = <"*Systolic blood pressure (en)">
+					text = <"Systoliskt blodtryck">
 					description = <"*Category of systolic blood pressure on admission. (en)">
 				>
 				["at0007"] = <
-					text = <"*Creatinine level (en)">
+					text = <"Kreatininnivå">
 					description = <"*Category of creatinine measurement on admission. (en)">
 				>
 				["at0008"] = <
-					text = <"*Cardiac arrest at admission (en)">
+					text = <"Hjärtstopp vid inläggning">
 					description = <"*Resuscitated after cardiac arrest at admission. (en)">
 				>
 				["at0009"] = <
-					text = <"*ST segment deviation on ECG (en)">
+					text = <"ST-segmentavvikelse på EKG">
 					description = <"*ST segment deviation on admission. (en)">
 				>
 				["at0010"] = <
-					text = <"*Elevated/abnormal cardiac enzymes (en)">
+					text = <"Förhöjda/onormala hjärtenzymer">
 					description = <"*Cardiac enzymes out of normal range on admission. (en)">
 				>
 				["at0011"] = <
-					text = <"*Killip class (en)">
+					text = <"Killip-klass">
 					description = <"*Killip Classification at admission. (en)">
 				>
 				["at0012"] = <
@@ -629,13 +630,13 @@ ontology
 					description = <"*">
 				>
 				["at0054"] = <
-					text = <"*Item tree (en)">
+					text = <"Item tree">
 					description = <"@ internal @">
 				>
 				["at0055"] = <
-					text = <"*Extension (en)">
-					description = <"*Additional information required to extend the model with local content or to align with other reference models/formalisms. (en)">
-					comment = <"*For example: local information requirements; or additional metadata to align with FHIR. (en)">
+					text = <"Extension">
+					description = <"Ytterligare information krävs för att utöka modellen med lokalt innehåll eller för att anpassa den till andra referensmodeller/formalismer.">
+					comment = <"Till exempel: lokala informationskrav; eller ytterligare metadata för att anpassa sig till FHIR.">
 				>
 			>
 		>
