@@ -1,0 +1,230 @@
+archetype (adl_version=1.4; uid=09ef1b8f-fe87-4179-ba46-d8ef2efae9fb)
+	openEHR-EHR-OBSERVATION.height.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+			>
+		>
+	>
+
+description
+	original_author = <
+		["date"] = <"2025-09-09">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			copyright = <"© openEHR Foundation">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"37e72659-a666-3b4a-8151-a4b3b492283a">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- height
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Height
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::122]>
+												list = <
+													["1"] = <
+														units = <"cm">
+													>
+													["2"] = <
+														units = <"[in_i]">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Weight
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::124]>
+												list = <
+													["1"] = <
+														units = <"kg">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- DV_CODED_TEXT
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- Yes
+													at0008]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- test
+										value matches {
+											0|[local::at0010],
+											2|[local::at0011],
+											1|[local::at0012]
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"height">
+					description = <"height">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Height">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Weight">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"DV_CODED_TEXT">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"test">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Limp">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Active">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"flexion">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Total score">
+					description = <"">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Längd">
+					description = <"*height (en)">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"*Height (en)">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"*Weight (en)">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"*DV_CODED_TEXT (en)">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"*Yes (en)">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"*No (en)">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"*test (en)">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"*0-1 (en)">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"*2-6 (en)">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"*6-9 (en)">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"*Total score (en)">
+					description = <"">
+				>
+			>
+		>
+	>
