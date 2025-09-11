@@ -1,0 +1,180 @@
+archetype (adl_version=1.4; uid=d16de6b5-9674-42b8-82ca-fa1acec8b75c)
+	openEHR-EHR-OBSERVATION.mets_ir.v4
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-07-08">
+		["name"] = <"Zsolt Fehér">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"This tool can be used to detect insulin resistance at early stages, allowing clinicians to implement preventive strategies. Unlike other similar calculators, this tool does not require insulin measurements, making it more practical and convenient with reduced variability.">
+			keywords = <"mets-ir","type 2 diabetes","insulin resistance","diabetes prediction","score">
+			use = <"To use in outpatient, primary care settings where it can be applied during routine clinic visits to assess patients at risk of developing type 2 diabetes mellitus (T2DM).
+
+METS-IR = (ln((2 × G0) + TG0) × BMI) / (ln(HDL-c))">
+			misuse = <"This tool is not intended to diagnose T2DM. Clinicians should still integrate other standard clinical assessments and markers, such as HbA1c levels, into their diagnostic and screening process.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Bello-Chavolla OY, Almeda-Valdes P, Gomez-Velasco D, et al. METS-IR, a novel score to evaluate insulin sensitivity, is predictive of visceral adiposity and incident type 2 diabetes. Eur J Endocrinol. 2018;178(5):533-544.
+
+Bello-Chavolla OY, Antonio-Villa NE, Vargas-Vázquez A, et al. Prediction of incident hypertension and arterial stiffness using the non-insulin-based metabolic score for insulin resistance (METS-IR) index. J Clin Hypertens . 2019;21(8):1063-1070.
+
+Yang W, Cai X, Hu J, et al. The Metabolic Score for Insulin Resistance (METS-IR) Predicts Cardiovascular Disease and Its Subtypes in Patients with Hypertension and Obstructive Sleep Apnea. Clin Epidemiol. 2023;15:177-189.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"f9e444560f2a61854812e5c6289c4ba5">
+		["build_uid"] = <"b15e0e14-27b6-3b9c-b158-97e8dd83d84f">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- METS-IR
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Fasting Glucose
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mg/dL">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Triglyceride concentration
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mg/dL">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Body Mass Index
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::349]>
+												list = <
+													["1"] = <
+														units = <"kg/m2">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- HDL-c
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mg/dL">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- METS-IR score
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- METS-IR Interpretation
+										value matches {
+											1|[local::at0011],
+											2|[local::at0012]
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"METS-IR">
+					description = <"The Metabolic Score for Insulin Resistance (METS-IR) is a novel, non-insulin-based metabolic index developed to quantify peripheral insulin sensitivity and assess the risk of insulin resistance and related cardiometabolic diseases in humans. Unlike traditional methods that require direct insulin measurement, METS-IR uses routinely available clinical data—fasting plasma glucose, triglycerides, high-density lipoprotein cholesterol (HDL-C), and body mass index (BMI)—to provide a simple and cost-effective alternative for evaluating insulin resistance">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Fasting Glucose">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Triglyceride concentration">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Body Mass Index">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"HDL-c">
+					description = <"HDL cholesterol">
+				>
+				["at0009"] = <
+					text = <"METS-IR score">
+					description = <"Metabolic Score for Insulin Resistance">
+				>
+				["at0010"] = <
+					text = <"METS-IR Interpretation">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Low">
+					description = <"≤50.39">
+				>
+				["at0012"] = <
+					text = <"High">
+					description = <">50.39">
+				>
+			>
+		>
+	>
