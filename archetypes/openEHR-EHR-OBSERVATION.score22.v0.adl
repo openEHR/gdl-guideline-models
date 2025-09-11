@@ -1,0 +1,227 @@
+archetype (adl_version=1.4; uid=c48f173d-6aa3-43df-a9ee-ae5223fa7859)
+	openEHR-EHR-OBSERVATION.score22.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-09-11">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"e1a84f06-726e-3e88-aa27-a2ad124a0443">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- SCORE22
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Age
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"a">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Sex
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0009,    -- Female
+													at0010]    -- Male
+												}
+											}
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Systolic Blood Pressure
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::125]>
+												list = <
+													["1"] = <
+														units = <"mm[Hg]">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Total Cholesterol
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mg/dL">
+													>
+													["2"] = <
+														units = <"mmol/L">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- HDL Cholesterol
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mg/dL">
+													>
+													["2"] = <
+														units = <"mmol/L">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Cigarette smoking
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0016,    -- Yes
+													at0017]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Non-HDL
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mg/dL">
+													>
+													["2"] = <
+														units = <"mmol/L">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- 10 year risk score
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::507]>
+												list = <
+													["1"] = <
+														units = <"%">
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"SCORE22">
+					description = <"SCORE22">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0006"] = <
+					text = <"Age">
+					description = <"The age of the patient in years, should be between 40 and 69 years. ">
+				>
+				["at0008"] = <
+					text = <"Sex">
+					description = <"The sex of the patient">
+				>
+				["at0009"] = <
+					text = <"Female">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Male">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Systolic Blood Pressure">
+					description = <"The pressure in the arteries when the heart contracts and is the first measure within blood pressure">
+				>
+				["at0012"] = <
+					text = <"Total Cholesterol">
+					description = <"A measure of the total amount of cholesterol in your blood">
+				>
+				["at0013"] = <
+					text = <"HDL Cholesterol">
+					description = <"High-density lipoprotein">
+				>
+				["at0014"] = <
+					text = <"Non-HDL">
+					description = <"Blood fat marker used to assess the risk of heart disease, it si calculated as Non-HDL Cholesterol = Total Cholesterol - HDL Cholesterol">
+				>
+				["at0015"] = <
+					text = <"Cigarette smoking">
+					description = <"Statement about current smoking behaviour ">
+				>
+				["at0016"] = <
+					text = <"Yes">
+					description = <"Smoking">
+				>
+				["at0017"] = <
+					text = <"No">
+					description = <"Non Smoking">
+				>
+				["at0018"] = <
+					text = <"10 year risk score">
+					description = <"Statement about current smoking behaviour ">
+				>
+			>
+		>
+	>
