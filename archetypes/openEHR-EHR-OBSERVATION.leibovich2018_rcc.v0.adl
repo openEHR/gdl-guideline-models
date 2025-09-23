@@ -1,0 +1,585 @@
+archetype (adl_version=1.4; uid=0034d557-f44a-4ccb-85d3-94536848c9f3)
+	openEHR-EHR-OBSERVATION.leibovich2018_rcc.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-09-22">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and their total sum for the 2018 Leibovich model for renal cell carcinoma (RCC).">
+			keywords = <"Leibovich model","RCC","renal","cell","carcinoma">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and their total sum for the 2018 Leibovich model for renal cell carcinoma (RCC).">
+			misuse = <"Not to be used for recording information related to other renal cell carcinoma prognostic models.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Leibovich BC, Lohse CM, Cheville JC, Zaid HB, Boorjian SA, Frank I, Thompson RH, Parker WP. Predicting Oncologic Outcomes in Renal Cell Carcinoma After Surgery. Eur Urol. 2018 May;73(5):772-780. doi: 10.1016/j.eururo.2018.01.005. Epub 2018 Feb 3. PMID: 29398265.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"215a33c95605bccc4cfb0fb79d11fe8e">
+		["build_uid"] = <"4224506f-8546-4c0f-acd5-e54c57e7f1dc">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- 2018 Leibovich Model for Renal Cell Carcinoma (RCC)
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0113] occurrences matches {0..1} matches {    -- Type of RCC
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0114,    -- Clear cell RCC (ccRCC)
+													at0115,    -- Papillary RCC (papRCC)
+													at0116]    -- Chromophobe RCC (chrRCC)
+												}
+											}
+										}
+									}
+									CLUSTER[at0127] occurrences matches {0..1} matches {    -- Clear cell RCC
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0128] occurrences matches {0..1} matches {    -- Age at surgery, years
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0129,    -- <60
+															at0130]    -- >=60
+														}
+													}
+												}
+											}
+											ELEMENT[at0131] occurrences matches {0..1} matches {    -- ECOG status
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0132,    -- 0
+															at0133]    -- >=1
+														}
+													}
+												}
+											}
+											ELEMENT[at0134] occurrences matches {0..1} matches {    -- Constitutional symptoms
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0135] occurrences matches {0..1} matches {    -- Adrenalectomy
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0136] occurrences matches {0..1} matches {    -- Surgical margins
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0137,    -- Negative
+															at0138]    -- Positive
+														}
+													}
+												}
+											}
+											ELEMENT[at0139] occurrences matches {0..1} matches {    -- Tumor grade
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0140,    -- 1
+															at0141,    -- 2
+															at0142,    -- 3
+															at0143]    -- 4
+														}
+													}
+												}
+											}
+											ELEMENT[at0144] occurrences matches {0..1} matches {    -- Coagulative necrosis
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0145] occurrences matches {0..1} matches {    -- Sarcomatoid differentiation
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0146] occurrences matches {0..1} matches {    -- Tumor size, cm
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0147,    -- <=4
+															at0148,    -- >4 to <=7
+															at0149,    -- >7 to <=10
+															at0150]    -- >10
+														}
+													}
+												}
+											}
+											ELEMENT[at0151] occurrences matches {0..1} matches {    -- Perinephric/renal sinus fat invasion
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0152] occurrences matches {0..1} matches {    -- Tumor thrombus
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0153,    -- No
+															at0154,    -- Level 0
+															at0155]    -- Level 1-4
+														}
+													}
+												}
+											}
+											ELEMENT[at0156] occurrences matches {0..1} matches {    -- Extension beyond kidney
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0157] occurrences matches {0..1} matches {    -- Nodal involvement
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0158,    -- No nodal dissection
+															at0159,    -- No
+															at0160]    -- Yes
+														}
+													}
+												}
+											}
+											ELEMENT[at0117] occurrences matches {0..1} matches {    -- ccRCC (CSS) score
+												value matches {
+													DV_COUNT matches {*}
+												}
+											}
+											ELEMENT[at0118] occurrences matches {0..1} matches {    -- ccRCC (PFS) score
+												value matches {
+													DV_COUNT matches {*}
+												}
+											}
+										}
+									}
+									CLUSTER[at0013] occurrences matches {0..1} matches {    -- Papillary RCC
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0051] occurrences matches {0..1} matches {    -- Tumor grade
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0052,    -- Tumor grade 1
+															at0053,    -- Tumor grade 2
+															at0054,    -- Tumor grade 3
+															at0055]    -- Tumor grade 4
+														}
+													}
+												}
+											}
+											ELEMENT[at0019] occurrences matches {0..1} matches {    -- Perinephric/renal sinus fat invasion
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0020] occurrences matches {0..1} matches {    -- Tumor thrombus
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0021,    -- No
+															at0022,    -- Level 0
+															at0023]    -- Level 1-4
+														}
+													}
+												}
+											}
+											ELEMENT[at0119] occurrences matches {0..1} matches {    -- papRCC risk group
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0120,    -- Group 1
+															at0121,    -- Group 2
+															at0122]    -- Group 3
+														}
+													}
+												}
+											}
+										}
+									}
+									CLUSTER[at0024] occurrences matches {0..1} matches {    -- Chromophobe RCC
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0025] occurrences matches {0..1} matches {    -- Sarcomatoid differentiation
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0026] occurrences matches {0..1} matches {    -- Perinephric/renal sinus fat invasion
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0027] occurrences matches {0..1} matches {    -- Nodal involvement
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0028,    -- No nodal dissection
+															at0029,    -- No
+															at0030]    -- Yes
+														}
+													}
+												}
+											}
+											ELEMENT[at0123] occurrences matches {0..1} matches {    -- chrRCC risk group
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0124,    -- Group 1
+															at0125,    -- Group 2
+															at0126]    -- Group 3
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0111] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"2018 Leibovich Model for Renal Cell Carcinoma (RCC)">
+					description = <"An assessment score used to predict progression-free and cancer-specific survival in patients with renal cell carcinoma (RCC).">
+					comment = <"Original version, c 2018">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0013"] = <
+					text = <"Papillary RCC">
+					description = <"Papillary RCC (papRCC)">
+				>
+				["at0019"] = <
+					text = <"Perinephric/renal sinus fat invasion">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Tumor thrombus">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Level 0">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Level 1-4">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Chromophobe RCC">
+					description = <"Chromophobe RCC (chrRCC)">
+				>
+				["at0025"] = <
+					text = <"Sarcomatoid differentiation">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Perinephric/renal sinus fat invasion">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Nodal involvement">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"No nodal dissection">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0051"] = <
+					text = <"Tumor grade">
+					description = <"">
+				>
+				["at0052"] = <
+					text = <"Tumor grade 1">
+					description = <"">
+				>
+				["at0053"] = <
+					text = <"Tumor grade 2">
+					description = <"">
+				>
+				["at0054"] = <
+					text = <"Tumor grade 3">
+					description = <"">
+				>
+				["at0055"] = <
+					text = <"Tumor grade 4">
+					description = <"">
+				>
+				["at0111"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0113"] = <
+					text = <"Type of RCC">
+					description = <"Type of Renal Cell Carcinoma (RCC)">
+				>
+				["at0114"] = <
+					text = <"Clear cell RCC (ccRCC)">
+					description = <"">
+				>
+				["at0115"] = <
+					text = <"Papillary RCC (papRCC)">
+					description = <"">
+				>
+				["at0116"] = <
+					text = <"Chromophobe RCC (chrRCC)">
+					description = <"">
+				>
+				["at0117"] = <
+					text = <"ccRCC (CSS) score">
+					description = <"">
+				>
+				["at0118"] = <
+					text = <"ccRCC (PFS) score">
+					description = <"">
+				>
+				["at0119"] = <
+					text = <"papRCC risk group">
+					description = <"">
+				>
+				["at0120"] = <
+					text = <"Group 1">
+					description = <"">
+				>
+				["at0121"] = <
+					text = <"Group 2">
+					description = <"">
+				>
+				["at0122"] = <
+					text = <"Group 3">
+					description = <"">
+				>
+				["at0123"] = <
+					text = <"chrRCC risk group">
+					description = <"">
+				>
+				["at0124"] = <
+					text = <"Group 1">
+					description = <"">
+				>
+				["at0125"] = <
+					text = <"Group 2">
+					description = <"">
+				>
+				["at0126"] = <
+					text = <"Group 3">
+					description = <"">
+				>
+				["at0127"] = <
+					text = <"Clear cell RCC">
+					description = <"">
+				>
+				["at0128"] = <
+					text = <"Age at surgery, years">
+					description = <"">
+				>
+				["at0129"] = <
+					text = <"<60">
+					description = <"">
+				>
+				["at0130"] = <
+					text = <">=60">
+					description = <"">
+				>
+				["at0131"] = <
+					text = <"ECOG status">
+					description = <"">
+				>
+				["at0132"] = <
+					text = <"0">
+					description = <"">
+				>
+				["at0133"] = <
+					text = <">=1">
+					description = <"">
+				>
+				["at0134"] = <
+					text = <"Constitutional symptoms">
+					description = <"">
+				>
+				["at0135"] = <
+					text = <"Adrenalectomy">
+					description = <"">
+				>
+				["at0136"] = <
+					text = <"Surgical margins">
+					description = <"">
+				>
+				["at0137"] = <
+					text = <"Negative">
+					description = <"">
+				>
+				["at0138"] = <
+					text = <"Positive">
+					description = <"">
+				>
+				["at0139"] = <
+					text = <"Tumor grade">
+					description = <"">
+				>
+				["at0140"] = <
+					text = <"1">
+					description = <"">
+				>
+				["at0141"] = <
+					text = <"2">
+					description = <"">
+				>
+				["at0142"] = <
+					text = <"3">
+					description = <"">
+				>
+				["at0143"] = <
+					text = <"4">
+					description = <"">
+				>
+				["at0144"] = <
+					text = <"Coagulative necrosis">
+					description = <"">
+				>
+				["at0145"] = <
+					text = <"Sarcomatoid differentiation">
+					description = <"">
+				>
+				["at0146"] = <
+					text = <"Tumor size, cm">
+					description = <"">
+				>
+				["at0147"] = <
+					text = <"<=4">
+					description = <"">
+				>
+				["at0148"] = <
+					text = <">4 to <=7">
+					description = <"">
+				>
+				["at0149"] = <
+					text = <">7 to <=10">
+					description = <"">
+				>
+				["at0150"] = <
+					text = <">10">
+					description = <"">
+				>
+				["at0151"] = <
+					text = <"Perinephric/renal sinus fat invasion">
+					description = <"">
+				>
+				["at0152"] = <
+					text = <"Tumor thrombus">
+					description = <"">
+				>
+				["at0153"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0154"] = <
+					text = <"Level 0">
+					description = <"">
+				>
+				["at0155"] = <
+					text = <"Level 1-4">
+					description = <"">
+				>
+				["at0156"] = <
+					text = <"Extension beyond kidney">
+					description = <"">
+				>
+				["at0157"] = <
+					text = <"Nodal involvement">
+					description = <"">
+				>
+				["at0158"] = <
+					text = <"No nodal dissection">
+					description = <"">
+				>
+				["at0159"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0160"] = <
+					text = <"Yes">
+					description = <"">
+				>
+			>
+		>
+	>
