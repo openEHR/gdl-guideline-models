@@ -1105,6 +1105,8 @@ _Select a medical specialty below to view the available apps._
 
 * Height Potential - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Height_potential/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Height_potential/1?language=sv))
 
+* Infant Scalp Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Infant_scalp_score/1?language=en))
+
 * Kawasaki Disease Diagnostic Criteria - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Kawasaki_Disease_Diagnostic_Criteria_guideline/1?language=en))
 
 * Lansky Play-Performance Scale - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Lansky_play_performance/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Lansky_play_performance/1?language=sv))
