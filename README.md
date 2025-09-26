@@ -11,22 +11,22 @@ We've gathered all of the available applications in one place and organized them
 
 If you would like to test an app, simply click on "ENG" to access the English version, and "SWE" for the Swedish version. To view a detailed description of the app and its components, click on the application name.
 
-### *Published Apps: 670*
+### *Published Apps: 671*
 
 ----------
 
 ### Latest added
 
-1. ISWT (Incremental Shuttle Walk Test)  - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISWT/16.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISWT/16.1?language=sv))
-2. DOWNES score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Downes_score/8.1.3?language=en))
-3. Diagnostic criteria for preeclampsia - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=en))/([_GER_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=de))/([_ES_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=es))/([_CAT_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=ca))/([_FR_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=fr))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=sv))
-4. MELD_3_0 - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MELD_3_0/3.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MELD_3_0/3.1?language=sv))
-5. Trauma Injury Severity Score (TRISS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/TRISS/1?language=en))
-6. Villalta Score for Post-thrombotic Syndrome (PTS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/villalta_score/1?language=en))
-7. Elderly Mobility Scale (EMS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/EMS/1?language=en))
-8. Pediatric Trauma BIG Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Pediatric_trauma_BIG_score/1?language=en))
-9. MAGGIC Risk Calculator for Heart Failure - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MAGGIC_Risk_Calculator_for_Heart_Failure_guideline/1?language=en))
-10. Acute Decompensated Heart Failure National Registry (ADHERE) Algorithm - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Acute_decompensated_heart_failure_national_registry_adhere_algorithm.v0.gdl2/0?language=en))
+1. Mayo Alliance Prognostic System (MAPS) Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Mayo_Alliance_Prognostic_System_MAPS_Score/0.1.0?language=en))
+2. ISWT (Incremental Shuttle Walk Test)  - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISWT/16.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISWT/16.1?language=sv))
+3. DOWNES score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Downes_score/8.1.3?language=en))
+4. Diagnostic criteria for preeclampsia - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=en))/([_GER_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=de))/([_ES_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=es))/([_CAT_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=ca))/([_FR_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=fr))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=sv))
+5. MELD_3_0 - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MELD_3_0/3.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MELD_3_0/3.1?language=sv))
+6. Trauma Injury Severity Score (TRISS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/TRISS/1?language=en))
+7. Villalta Score for Post-thrombotic Syndrome (PTS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/villalta_score/1?language=en))
+8. Elderly Mobility Scale (EMS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/EMS/1?language=en))
+9. Pediatric Trauma BIG Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Pediatric_trauma_BIG_score/1?language=en))
+10. MAGGIC Risk Calculator for Heart Failure - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MAGGIC_Risk_Calculator_for_Heart_Failure_guideline/1?language=en))
 
 ----------
 
@@ -681,6 +681,8 @@ _Select a medical specialty below to view the available apps._
 * HScore for Reactive Hemophagocytic Syndrome - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/HScore/1?language=en))
 
 * Intrauterine RBC Transfusion Dosage - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Intrauterine_RBC_Transfusion_Dosage_guideline/1?language=en))
+
+* Mayo Alliance Prognostic System (MAPS) Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Mayo_Alliance_Prognostic_System_MAPS_Score/0.1.0?language=en))
 
 * Neutrophil-Lymphocyte Ratio (NLR) Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Neutrophil_Lymphocyte_Ratio_NLR_Calculator/1?language=en))
 
