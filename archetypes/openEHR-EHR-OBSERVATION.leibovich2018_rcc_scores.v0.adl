@@ -1,0 +1,117 @@
+archetype (adl_version=1.4; uid=62609d14-1b2f-460f-ac7d-b74829159ceb)
+	openEHR-EHR-OBSERVATION.leibovich2018_rcc_scores.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-09-26">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the calculated total scores for progression-free survival (PFS) and cancer-specific survival (CSS) according to the 2018 Leibovich model for renal cell carcinoma (RCC).">
+			keywords = <"Leibovich model","RCC","renal","cell","carcinoma","score">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the total scores for progression-free survival (PFS) and cancer-specific survival (CSS) from the 2018 Leibovich model for renal cell carcinoma (RCC).">
+			misuse = <"Not to be used for recording the individual clinical or pathological input parameters of the 2018 Leibovich model. Use instead: openEHR-EHR-OBSERVATION.leibovich2018_rcc.v0.
+Not to be used for recording results from other renal cell carcinoma prognostic models.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Leibovich BC, Lohse CM, Cheville JC, Zaid HB, Boorjian SA, Frank I, Thompson RH, Parker WP. Predicting Oncologic Outcomes in Renal Cell Carcinoma After Surgery. Eur Urol. 2018 May;73(5):772-780. doi: 10.1016/j.eururo.2018.01.005. Epub 2018 Feb 3. PMID: 29398265.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"3be10466c37e1cc887ad8d23203c70f1">
+		["build_uid"] = <"7780b1db-aeff-4143-a0a6-0bb382198fe6">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- 2018 Leibovich Model Renal Cell Carcinoma (RCC) Scores
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Progression-free survival score for ccRCC
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Cancer-specific survival score for ccRCC
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"2018 Leibovich Model Renal Cell Carcinoma (RCC) Scores">
+					description = <"An assessment score used to predict progression-free and cancer-specific survival in patients with renal cell carcinoma (RCC).">
+					comment = <"Original version, c 2018">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Progression-free survival score for ccRCC">
+					description = <"Progression-free survival (PFS) score for clear cell Renal Cell Carcinoma (ccRCC)">
+				>
+				["at0007"] = <
+					text = <"Cancer-specific survival score for ccRCC">
+					description = <"Cancer-specific survival (CSS) score for clear cell Renal Cell Carcinoma (ccRCC)">
+				>
+			>
+		>
+	>
