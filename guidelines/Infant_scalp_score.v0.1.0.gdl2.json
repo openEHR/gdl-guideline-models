@@ -1,0 +1,219 @@
+{
+  "uuid" : "85ac59bc-4050-4ae9-a4b0-d8046226498f",
+  "id" : "Infant_scalp_score.v0.1.0",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Shweta Prasad Ghaisas",
+      "email" : "s.prasad.ghaisas@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2025-04-15"
+    },
+    "lifecycle_state" : "REVIEWED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate and interpret the total sum for the Infant scalp score.",
+        "keywords" : [
+          "infant",
+          "scalp",
+          "hematoma",
+          "hematoma size",
+          "hematoma location",
+          "frontal hematoma",
+          "occipital hematoma",
+          "temporal hematoma",
+          "parietal hematoma",
+          "traumatic brain injury",
+          "head injury",
+          "intracranial injury",
+          "skull fracture"
+        ],
+        "use" : "The Infant scalp score is used in infants who are asymptomatic at the time of evaluation but who are at high risk of skull fracture. It can also assist the clinician in determining whether cranial radiology (head X-ray or head CT) is necessary in the workup of intracranial injury. This score assists in determining the risk of intracranial injury based on patient age and hematoma characteristics. If the patient is found to be low risk, head imaging may not be necessary. ",
+        "misuse" : "This tool was studied in patients who were asymptomatic and should be applied only to patients in that population.\n\nThis tool should not be used in patients who have any of the following:\n1. Loss of consciousness.\n\n2. Lethargy or irritability.\n\n3. Seizures.\n\n4. Three or more episodes of emesis.\n\n5. Mental status changes.\n\n6. Bulging fontanel.\n\n7. Signs of neurologic injury.\n\n8. Abnormal vital signs.\n\nIt should also not be used in infants who present with suspected nonaccidental trauma.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "en" : "An assessment score used to evaluate risk of traumatic brain injury in infants with asymptomatic head injury.",
+      "references" : "Greenes DS, Schutzman SA. Clinical significance of scalp abnormalities in asymptomatic head-injured infants. Pediatr Emerg Care. 2001 Apr;17(2):88–92. PMID: 11334100. doi: 10.1097/00006565-200104000-00002.\n\nBin SS, Schutzman SA, Greenes DS. Validation of a clinical score to predict skull fracture in head-injured infants. Pediatr Emerg Care. 2010 Sep;26(9):633–9. PMID: 20805783. doi: 10.1097/PEC.0b013e3181ef0440.\n\nSchutzman SA, Nigrovic LE, Mannix R. The Infant Scalp Score: a validated tool to stratify risk of traumatic brain injury in infants with isolated scalp hematoma. Acad Emerg Med. 2021 Jan;28(1):92–7. Epub 2020 Aug 19. PMID: 32673432. doi: 10.1111/acem.14087."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0008" : {
+        "id" : "gt0008",
+        "model_id" : "openEHR-EHR-EVALUATION.health_risk.v1",
+        "template_id" : "openEHR-EHR-EVALUATION.health_risk.v1",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0009" : {
+            "id" : "gt0009",
+            "path" : "/data[at0001]/items[at0003]",
+            "data_type" : "DV_TEXT"
+          }
+        }
+      },
+      "gt0015" : {
+        "id" : "gt0015",
+        "model_id" : "openEHR-EHR-OBSERVATION.infant_scalp_score.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.infant_scalp_score.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0016" : {
+            "id" : "gt0016",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0009|> 12|",
+              "1|local::at0010|6-11|",
+              "2|local::at0011|3-5|",
+              "3|local::at0012|0-2|"
+            ]
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0013|None|",
+              "1|local::at0014|Small (barely palpable)|",
+              "2|local::at0015|Medium (easily palpable)|",
+              "3|local::at0016|Large (boggy consistency)|"
+            ]
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0017|Frontal|",
+              "1|local::at0018|Occipital|",
+              "2|local::at0019|Temporal/ Parietal|"
+            ]
+          }
+        }
+      },
+      "gt0019" : {
+        "id" : "gt0019",
+        "model_id" : "openEHR-EHR-OBSERVATION.infant_scalp_score.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.infant_scalp_score.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0020" : {
+            "id" : "gt0020",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type" : "DV_COUNT"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0010" : {
+        "id" : "gt0010",
+        "priority" : 3,
+        "when" : [
+          "$gt0016|Patient's age (months)|!=null",
+          "$gt0017|Hematoma size|!=null",
+          "$gt0018|Hematoma location|!=null"
+        ],
+        "then" : [
+          "$gt0020|Total score|.magnitude=$gt0016|Patient's age (months)|.value+$gt0017|Hematoma size|.value+$gt0018|Hematoma location|.value"
+        ]
+      },
+      "gt0013" : {
+        "id" : "gt0013",
+        "priority" : 2,
+        "when" : [
+          "$gt0020|Total score|<4"
+        ],
+        "then" : [
+          "$gt0009|Risk assessment|=$gt0011.term"
+        ]
+      },
+      "gt0014" : {
+        "id" : "gt0014",
+        "priority" : 1,
+        "when" : [
+          "$gt0020|Total score|>=4"
+        ],
+        "then" : [
+          "$gt0009|Risk assessment|=$gt0012.term"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Infant scalp score",
+            "description" : "An assessment score used to evaluate risk of traumatic brain injury in infants with asymptomatic head injury."
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "openEHR-EHR-EVALUATION.health_risk.v1"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Risk assessment"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Calculate Total score",
+            "description" : "Add individual component scores to get total score."
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Low risk of traumatic brain injury"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "High risk of traumatic brain injury"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Set Risk to Low",
+            "description" : "This gives the \"Low\" risk assessment based on \"Total score\"."
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Set Risk to High",
+            "description" : "This gives the \"High\" risk assessment based on \"Total score\"."
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "openEHR-EHR-OBSERVATION.infant_scalp_score.v0"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "Patient's age (months)"
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "Hematoma size"
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "Hematoma location"
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "openEHR-EHR-OBSERVATION.infant_scalp_score.v0"
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "Total score"
+          }
+        }
+      }
+    }
+  }
+}
