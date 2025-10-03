@@ -1,0 +1,138 @@
+archetype (adl_version=1.4; uid=f914feb1-186f-4f99-83a9-0abddb9465be)
+	openEHR-EHR-OBSERVATION.nrpe_results.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-10-03">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the calculated outputs from the Natriuretic Response Prediction Equation (NRPE).">
+			keywords = <"NRPE","natriuretic","response","prediction","equation","ADHF","acute","decompensated","heart","failure">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the calculated outputs from the Natriuretic Response Prediction Equation (NRPE).">
+			misuse = <"Not to be used for recording laboratory analyte results (e.g., serum creatinine, urine creatinine, urine sodium). Use instead openEHR-EHR-OBSERVATION.laboratory_test_result.v1 with CLUSTER.laboratory_test_analyte.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Testani JM, Hanberg JS, Cheng S, Rao V, Onyebeke C, Laur O, Kula A, Chen M, Wilson FP, Darlington A, Bellumkonda L, Jacoby D, Tang WH, Parikh CR. Rapid and Highly Accurate Prediction of Poor Loop Diuretic Natriuretic Response in Patients With Heart Failure. Circ Heart Fail. 2016 Jan;9(1):e002370. doi: 10.1161/CIRCHEARTFAILURE.115.002370. PMID: 26721915; PMCID: PMC4741370.">
+		["build_uid"] = <"81e19be0-a43b-41e7-81d6-002fc2ab7ab9">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Natriuretic Response Prediction Equation (NRPE) results
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Predicted 6-hour sodium (Na) output
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::384]>
+												list = <
+													["1"] = <
+														units = <"mmol">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Predicted 6-hour urine output
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::129]>
+												list = <
+													["1"] = <
+														units = <"mL">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Response Category
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Natriuretic Response Prediction Equation (NRPE) results">
+					description = <"An assessment equation used to predict early natriuretic response in adults hospitalized with acute decompensated heart failure (ADHF) receiving intravenous loop diuretics.">
+					comment = <"Original version, c 2016">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Predicted 6-hour sodium (Na) output">
+					description = <"Calculated total sodium excreted over 6 hours predicted by the NRPE.">
+				>
+				["at0007"] = <
+					text = <"Predicted 6-hour urine output">
+					description = <"Calculated urine volume over 6 hours predicted by the NRPE.">
+				>
+				["at0008"] = <
+					text = <"Response Category">
+					description = <"Categorical interpretation of the predicted 6-hour sodium output. Used to classify patients into poor, suboptimal, or excellent natriuretic response groups, based on mmol Na thresholds.">
+				>
+			>
+		>
+	>
