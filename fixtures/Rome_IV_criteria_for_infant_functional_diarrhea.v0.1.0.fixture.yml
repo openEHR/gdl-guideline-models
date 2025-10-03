@@ -1,0 +1,77 @@
+guidelines:
+  "1": Rome_IV_criteria_for_infant_functional_diarrhea.v0.1.0
+test_cases:
+  - id: 01. No input, test default action (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1":
+        gt0012|Diagnostic Result: local::at0009|Negative|
+  - id: 02. Daily, painless, recurrent passage of ≥4 large, unformed stools missing
+      (negative test).
+    input:
+      "1":
+        gt0006|Symptoms last >4 weeks: local::at0007|Yes|
+        gt0007|Onset between 6 and 60 months of age: local::at0007|Yes|
+        gt0008|No failure to thrive if caloric intake is adequate: local::at0007|Yes|
+    expected_output:
+      "1":
+        gt0012|Diagnostic Result: local::at0009|Negative|
+  - id: 03. Symptoms last >4 weeks missing (negative test).
+    input:
+      "1":
+        "gt0005|Daily, painless, recurrent passage of ≥4 large, unformed stools": local::at0007|Yes|
+        gt0007|Onset between 6 and 60 months of age: local::at0007|Yes|
+        gt0008|No failure to thrive if caloric intake is adequate: local::at0007|Yes|
+    expected_output:
+      "1":
+        gt0012|Diagnostic Result: local::at0009|Negative|
+  - id: 04. Onset between 6 and 60 months of age missing (negative test).
+    input:
+      "1":
+        "gt0005|Daily, painless, recurrent passage of ≥4 large, unformed stools": local::at0007|Yes|
+        gt0006|Symptoms last >4 weeks: local::at0007|Yes|
+        gt0008|No failure to thrive if caloric intake is adequate: local::at0007|Yes|
+    expected_output:
+      "1":
+        gt0012|Diagnostic Result: local::at0009|Negative|
+  - id: 05. No failure to thrive if caloric intake is adequate missing (negative
+      test).
+    input:
+      "1":
+        "gt0005|Daily, painless, recurrent passage of ≥4 large, unformed stools": local::at0007|Yes|
+        gt0006|Symptoms last >4 weeks: local::at0007|Yes|
+        gt0007|Onset between 6 and 60 months of age: local::at0007|Yes|
+    expected_output:
+      "1":
+        gt0012|Diagnostic Result: local::at0009|Negative|
+  - id: 06. All criteria for infant functional diarrea present.
+    input:
+      "1":
+        "gt0005|Daily, painless, recurrent passage of ≥4 large, unformed stools": local::at0007|Yes|
+        gt0006|Symptoms last >4 weeks: local::at0007|Yes|
+        gt0007|Onset between 6 and 60 months of age: local::at0007|Yes|
+        gt0008|No failure to thrive if caloric intake is adequate: local::at0007|Yes|
+    expected_output:
+      "1":
+        gt0012|Diagnostic Result: local::at0010|Positive|
+  - id: 07. None criterion present
+    input:
+      "1":
+        "gt0005|Daily, painless, recurrent passage of ≥4 large, unformed stools": local::at0008|No|
+        gt0006|Symptoms last >4 weeks: local::at0008|No|
+        gt0007|Onset between 6 and 60 months of age: local::at0008|No|
+        gt0008|No failure to thrive if caloric intake is adequate: local::at0008|No|
+    expected_output:
+      "1":
+        gt0012|Diagnostic Result: local::at0009|Negative|
+  - id: 08. Not all criteria for infant functional diarrea present.
+    input:
+      "1":
+        "gt0005|Daily, painless, recurrent passage of ≥4 large, unformed stools": local::at0008|No|
+        gt0006|Symptoms last >4 weeks: local::at0007|Yes|
+        gt0007|Onset between 6 and 60 months of age: local::at0007|Yes|
+        gt0008|No failure to thrive if caloric intake is adequate: local::at0007|Yes|
+    expected_output:
+      "1":
+        gt0012|Diagnostic Result: local::at0009|Negative|
