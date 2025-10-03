@@ -1,0 +1,77 @@
+guidelines:
+  "1": Rome_IV_Diagnostic_Criteria_for_Functional_Heartburn.v0.1.0
+test_cases:
+  - id: 01. No input, test default action (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1":
+        gt0019|Diagnostic Result: local::at0009|Negative|
+  - id: 02. Burning retrosternal discomfort or pain missing (negative test).
+    input:
+      "1":
+        gt0022|No symptom relief despite optimal antisecretory therapy: local::at0013|Yes|
+        gt0023|Absence of evidence that gastroesophageal reflux or EOE is the cause of symptoms: local::at0013|Yes|
+        gt0024|Absence of major esophageal motor disorders: local::at0013|Yes|
+    expected_output:
+      "1":
+        gt0019|Diagnostic Result: local::at0009|Negative|
+  - id: 03. No symptom relief despite optimal antisecretory therapy missing
+      (negative test).
+    input:
+      "1":
+        gt0021|Burning retrosternal discomfort or pain: local::at0013|Yes|
+        gt0023|Absence of evidence that gastroesophageal reflux or EOE is the cause of symptoms: local::at0013|Yes|
+        gt0024|Absence of major esophageal motor disorders: local::at0013|Yes|
+    expected_output:
+      "1":
+        gt0019|Diagnostic Result: local::at0009|Negative|
+  - id: 04. Absence of evidence that gastroesophageal reflux or EOE is the cause of
+      symptoms missing (negative test).
+    input:
+      "1":
+        gt0021|Burning retrosternal discomfort or pain: local::at0013|Yes|
+        gt0022|No symptom relief despite optimal antisecretory therapy: local::at0013|Yes|
+        gt0024|Absence of major esophageal motor disorders: local::at0013|Yes|
+    expected_output:
+      "1":
+        gt0019|Diagnostic Result: local::at0009|Negative|
+  - id: 05. Absence of major esophageal motor disorders missing (negative test).
+    input:
+      "1":
+        gt0021|Burning retrosternal discomfort or pain: local::at0013|Yes|
+        gt0022|No symptom relief despite optimal antisecretory therapy: local::at0013|Yes|
+        gt0023|Absence of evidence that gastroesophageal reflux or EOE is the cause of symptoms: local::at0013|Yes|
+    expected_output:
+      "1":
+        gt0019|Diagnostic Result: local::at0009|Negative|
+  - id: 06. All criteria for functional heartburn present.
+    input:
+      "1":
+        gt0021|Burning retrosternal discomfort or pain: local::at0013|Yes|
+        gt0022|No symptom relief despite optimal antisecretory therapy: local::at0013|Yes|
+        gt0023|Absence of evidence that gastroesophageal reflux or EOE is the cause of symptoms: local::at0013|Yes|
+        gt0024|Absence of major esophageal motor disorders: local::at0013|Yes|
+    expected_output:
+      "1":
+        gt0019|Diagnostic Result: local::at0010|Positive|
+  - id: 07. None criterion present
+    input:
+      "1":
+        gt0021|Burning retrosternal discomfort or pain: local::at0014|No|
+        gt0022|No symptom relief despite optimal antisecretory therapy: local::at0014|No|
+        gt0023|Absence of evidence that gastroesophageal reflux or EOE is the cause of symptoms: local::at0014|No|
+        gt0024|Absence of major esophageal motor disorders: local::at0014|No|
+    expected_output:
+      "1":
+        gt0019|Diagnostic Result: local::at0009|Negative|
+  - id: 08. Not all criteria for functional heartburn present.
+    input:
+      "1":
+        gt0021|Burning retrosternal discomfort or pain: local::at0013|Yes|
+        gt0022|No symptom relief despite optimal antisecretory therapy: local::at0013|Yes|
+        gt0023|Absence of evidence that gastroesophageal reflux or EOE is the cause of symptoms: local::at0013|Yes|
+        gt0024|Absence of major esophageal motor disorders: local::at0014|No|
+    expected_output:
+      "1":
+        gt0019|Diagnostic Result: local::at0009|Negative|
