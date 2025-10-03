@@ -1,0 +1,45 @@
+guidelines:
+  "1": Rome_IV_Diagnostic_Criteria_for_Functional_Gallbladder_Disorder.v0.1.0
+test_cases:
+  - id: 01. No input, test default action (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Biliary pain missing (negative test).
+    input:
+      "1":
+        gt0017|Absence of gallstones or other structural pathology: local::at0030|Yes|
+    expected_output:
+      "1": {}
+  - id: 03. Absence of gallstones or other structural pathology missing (negative
+      test).
+    input:
+      "1":
+        gt0016|Biliary pain: local::at0027|Yes|
+    expected_output:
+      "1": {}
+  - id: 04. All criteria for  functional gallbladder disorder present.
+    input:
+      "1":
+        gt0016|Biliary pain: local::at0027|Yes|
+        gt0017|Absence of gallstones or other structural pathology: local::at0030|Yes|
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 05. None criterion present
+    input:
+      "1":
+        gt0016|Biliary pain: local::at0028|No|
+        gt0017|Absence of gallstones or other structural pathology: local::at0031|No|
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0009|Negative|
+  - id: 06. Not all criteria for functional gallbladder disorder present.
+    input:
+      "1":
+        gt0016|Biliary pain: local::at0028|No|
+        gt0017|Absence of gallstones or other structural pathology: local::at0030|Yes|
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0009|Negative|
