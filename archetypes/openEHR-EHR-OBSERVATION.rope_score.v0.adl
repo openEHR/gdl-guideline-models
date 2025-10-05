@@ -1,0 +1,228 @@
+archetype (adl_version=1.4; uid=c5500203-6927-4c45-9756-3cd2b2476f29)
+	openEHR-EHR-OBSERVATION.rope_score.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-10-02">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the specific risk factors and calculate the RoPE score and its corresponding PFO Attributable Fraction.">
+			keywords = <"rope, score, pfo, stroke, cryptogenic, embolism, neurology, cardiology", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the clinical parameters required to calculate the Risk of Paradoxical Embolism (RoPE) score.">
+			misuse = <"Not to be used for diagnosing a PFO or a stroke. Do not use this archetype as the primary repository for patient history or diagnoses; use dedicated archetypes such as openEHR-EHR-EVALUATION.problem_diagnosis.v1 to record diagnoses.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Kent DM, Ruthazer R, Weimar C, Mas JL, Serena J, Homma S, Di Angelantonio E, Di Tullio MR, Lutz JS, Elkind MS, Griffith J, Jaigobin C, Mattle HP, Michel P, Mono ML, Nedeltchev K, Papetti F, Thaler DE. An index to identify stroke-related vs incidental patent foramen ovale in cryptogenic stroke. Neurology. 2013 Aug 13;81(7):619-25. doi: 10.1212/WNL.0b013e3182a08d59. Epub 2013 Jul 17. PMID: 23864310; PMCID: PMC3775694.
+
+Prefasi D, Martínez-Sánchez P, Fuentes B, Díez-Tejedor E. The utility of the RoPE score in cryptogenic stroke patients ≤50 years in predicting a stroke-related patent foramen ovale. Int J Stroke. 2016 Jan;11(1):NP7-8. doi: 10.1177/1747493015607505. PMID: 26763040.">
+		["build_uid"] = <"ddc6d9c1-0e21-3bc5-a8d8-0e08cea8e691">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- RoPE Score
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- History of hypertension
+										value matches {
+											0|[local::at0019],
+											1|[local::at0020]
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- History of diabetes
+										value matches {
+											0|[local::at0013],
+											1|[local::at0014]
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- History of stroke or TIA
+										value matches {
+											0|[local::at0016],
+											1|[local::at0017]
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- Smoker
+										value matches {
+											0|[local::at0022],
+											1|[local::at0023]
+										}
+									}
+									ELEMENT[at0024] occurrences matches {0..1} matches {    -- Cortical infarct on imaging
+										value matches {
+											1|[local::at0025],
+											0|[local::at0026]
+										}
+									}
+									ELEMENT[at0031] occurrences matches {0..1} matches {    -- Age in years
+										value matches {
+											5|[local::at0032],
+											4|[local::at0033],
+											3|[local::at0034],
+											2|[local::at0035],
+											1|[local::at0036],
+											0|[local::at0037]
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"RoPE Score">
+					description = <"Records the clinical parameters required to calculate the Risk of Paradoxical Embolism (RoPE) score. The score estimates the probability that a cryptogenic stroke is attributable to a patent foramen ovale (PFO).">
+					comment = <"Original version, c 2013">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0012"] = <
+					text = <"History of diabetes">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"History of stroke or TIA">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"History of hypertension">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Smoker">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Cortical infarct on imaging">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Age in years">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"18-29">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"30-39">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"40-49">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"50-59">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"60-69">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"≥70">
+					description = <"">
+				>
+			>
+		>
+	>
