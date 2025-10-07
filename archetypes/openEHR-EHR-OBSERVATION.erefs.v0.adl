@@ -1,0 +1,229 @@
+archetype (adl_version=1.4; uid=9f3ed77d-73c7-445f-be22-be1586f29930)
+	openEHR-EHR-OBSERVATION.erefs.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-10-07">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and their total sum for the Eosinophilic Esophagitis Endoscopic Reference Score (EREFS).">
+			keywords = <"eosinophilic","esophagitis","endoscopic","reference","score","erefs","edema","rings","exudates","furrows","strictures">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and their total sum for the Eosinophilic Esophagitis Endoscopic Reference Score (EREFS).">
+			misuse = <"Not to be used for recording histologic findings, patient symptoms, or other endoscopic classification systems unrelated to eosinophilic esophagitis.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Hirano I, Moy N, Heckman MG, Thomas CS, Gonsalves N, Achem SR. Endoscopic assessment of the oesophageal features of eosinophilic oesophagitis: validation of a novel classification and grading system. Gut. 2013 Apr;62(4):489-95. doi: 10.1136/gutjnl-2011-301817. Epub 2012 May 22. PMID: 22619364.">
+		["build_uid"] = <"620e5020-0a4e-45a4-b2fa-a9b0eebefc25">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Eosinophilic Esophagitis Endoscopic Reference Score (EREFS)
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Edema
+										value matches {
+											0|[local::at0007],
+											1|[local::at0008]
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Rings
+										value matches {
+											0|[local::at0010],
+											1|[local::at0011],
+											2|[local::at0012],
+											3|[local::at0013]
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Exudates
+										value matches {
+											0|[local::at0015],
+											1|[local::at0016],
+											2|[local::at0017]
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Furrows
+										value matches {
+											0|[local::at0019],
+											1|[local::at0020]
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- Strictures
+										value matches {
+											0|[local::at0022],
+											1|[local::at0023]
+										}
+									}
+									ELEMENT[at0024] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+									ELEMENT[at0025] occurrences matches {0..1} matches {    -- Inflammatory subscore
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+									ELEMENT[at0026] occurrences matches {0..1} matches {    -- Fibrostenotic subscore
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Eosinophilic Esophagitis Endoscopic Reference Score (EREFS)">
+					description = <"An assessment score used to evaluate the severity of endoscopic findings in patients with eosinophilic esophagitis (EoE).">
+					comment = <"Original version, c 2012">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Edema">
+					description = <"Loss of normal vascular markings; pallor or decreased transparency">
+				>
+				["at0007"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Rings">
+					description = <"Trachealization/feline esophagus; concentric esophageal rings">
+				>
+				["at0010"] = <
+					text = <"None">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Mild (subtle)">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Moderate">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Severe (fixed rings)">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Exudates">
+					description = <"White plaques on mucosa">
+				>
+				["at0015"] = <
+					text = <"None">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Mild (≤10% mucosal surface)">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Severe (>10%)">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Furrows">
+					description = <"Vertical lines or creases along the esophageal wall">
+				>
+				["at0019"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Strictures">
+					description = <"Fixed narrowings requiring small-caliber scope or causing resistance">
+				>
+				["at0022"] = <
+					text = <"None">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Total score">
+					description = <"The total sum of each component parameter for the Eosinophilic Esophagitis Endoscopic Reference Score (EREFS).">
+				>
+				["at0025"] = <
+					text = <"Inflammatory subscore">
+					description = <"The sum of the following component parameters: edema, exudates, furrows">
+				>
+				["at0026"] = <
+					text = <"Fibrostenotic subscore">
+					description = <"The sum of the following component parameters: rings, strictures">
+				>
+			>
+		>
+	>
