@@ -1,0 +1,222 @@
+archetype (adl_version=1.4; uid=25c2dbc2-57be-4384-bb34-973db23d3d51)
+	openEHR-EHR-OBSERVATION.gmaws.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-10-08">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and their total sum for the Glasgow Modified Alcohol Withdrawal Scale (GMAWS).">
+			keywords = <"glasgow","modified","alcohol","withdrawal","scale","GMAWS","tremor","sweating","hallucinations","orientation","agitation">
+			copyright = <"Original version, c 2012">
+			use = <"Use to record the results for each component parameter and their total sum for the Glasgow Modified Alcohol Withdrawal Scale (GMAWS).">
+			misuse = <"Not to be used for assessing patients who are acutely intoxicated or for outpatient alcohol withdrawal assessment.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"McPherson A, Benson G, Forrest EH. Appraisal of the Glasgow assessment and management of alcohol guideline: a comprehensive alcohol management protocol for use in general hospitals. QJM. 2012 Jul;105(7):649-56. doi: 10.1093/qjmed/hcs020. Epub 2012 Feb 10. PMID: 22328545.
+Schonewald B, Hunter K, Ely AV, Heil J, Ganetsky V, Milburn C, Rafeq R, Salzman M. Impact of an alcohol withdrawal screening and treatment protocol for hospitalized patients. J Subst Use Addict Treat. 2024 Sep;164:209443. doi: 10.1016/j.josat.2024.209443. Epub 2024 Jun 12. PMID: 38871256.">
+		["build_uid"] = <"d5914ef6-0a7b-44b6-9947-4a35d25a3da4">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Glasgow Modified Alcohol Withdrawal Scale (GMAWS)
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Tremor
+										value matches {
+											0|[local::at0007],
+											1|[local::at0008],
+											2|[local::at0009]
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Sweating
+										value matches {
+											0|[local::at0011],
+											1|[local::at0012],
+											2|[local::at0013]
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Hallucinations
+										value matches {
+											0|[local::at0015],
+											1|[local::at0016],
+											2|[local::at0017]
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Orientation
+										value matches {
+											0|[local::at0019],
+											1|[local::at0020],
+											2|[local::at0021]
+										}
+									}
+									ELEMENT[at0022] occurrences matches {0..1} matches {    -- Agitation
+										value matches {
+											0|[local::at0023],
+											1|[local::at0024],
+											2|[local::at0025]
+										}
+									}
+									ELEMENT[at0026] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Glasgow Modified Alcohol Withdrawal Scale (GMAWS)">
+					description = <"An assessment scale used to evaluate and monitor the severity of alcohol withdrawal symptoms (AWS) in hospitalized adult patients.">
+					comment = <"Original version, c 2012">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Tremor">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"None">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Present with arms extended">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Present with arms at rest">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Sweating">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"None">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Moist skin">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Drenching sweat">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Hallucinations">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"None">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Uncertain, or patient reports but not distressed">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Present and distressed">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Orientation">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Orientated">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Uncertain or disoriented in one domain">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Disoriented in ≥2 domains">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Agitation">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"None">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Anxious/restless">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Distressed or pacing">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Total score">
+					description = <"The total sum of each component parameter for the Glasgow Modified Alcohol Withdrawal Scale (GMAWS).">
+				>
+			>
+		>
+	>
