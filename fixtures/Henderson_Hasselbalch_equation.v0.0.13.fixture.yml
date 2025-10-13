@@ -1,0 +1,62 @@
+current_datetime: 2025-02-21T10:00:00+01:00
+guidelines:
+  "1": Henderson_Hasselbalch_equation.v0.0.13
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Acid dissociation contant (Ka) input missing (negative test)
+    input:
+      "1":
+        "gt0004|Concentration of base [A]": 0.0098,mol/L
+        "gt0005|Concentration of acid [HA]": 0.897,mol/L
+    expected_output:
+      "1": {}
+  - id: 3. Concentration of base [A] input missing (negative test)
+    input:
+      "1":
+        gt0003|Acid dissociation contant (Ka): 0.000016,1
+        "gt0005|Concentration of acid [HA]": 0.897,mol/L
+    expected_output:
+      "1":
+        gt0012|pKa: "4.795880017344075"
+  - id: 4. Concentration of acid [HA] input missing (negative test)
+    input:
+      "1":
+        gt0003|Acid dissociation contant (Ka): 0.000016,1
+        "gt0004|Concentration of base [A]": 0.0098,mol/L
+    expected_output:
+      "1":
+        gt0012|pKa: "4.795880017344075"
+  - id: 5. All inputs, decimals
+    input:
+      "1":
+        gt0003|Acid dissociation contant (Ka): 0.000016,1
+        "gt0004|Concentration of base [A]": 0.0098,mol/L
+        "gt0005|Concentration of acid [HA]": 0.897,mol/L
+    expected_output:
+      "1":
+        gt0012|pKa: "4.795880017344075"
+        gt0008|pH: "2.8372727025023"
+  - id: 6. All inputs, whole numbers
+    input:
+      "1":
+        gt0003|Acid dissociation contant (Ka): 16,1
+        "gt0004|Concentration of base [A]": 8,mol/L
+        "gt0005|Concentration of acid [HA]": 7,mol/L
+    expected_output:
+      "1":
+        gt0012|pKa: "-1.2041199826559248"
+        gt0008|pH: "-1.146073752260643"
+  - id: 7. All inputs, whole numbers
+    input:
+      "1":
+        gt0003|Acid dissociation contant (Ka): 100,1
+        "gt0004|Concentration of base [A]": 76,mol/L
+        "gt0005|Concentration of acid [HA]": 200,mol/L
+    expected_output:
+      "1":
+        gt0012|pKa: "-2.0"
+        gt0008|pH: "-2.42021640338319"
