@@ -1,0 +1,145 @@
+{
+  "uuid" : "db6e8eda-dbe5-4db5-b123-31e5c5bca175",
+  "id" : "playwright_bmi_calculation.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Konstantinos Kalliamvakos",
+      "email" : "konstantinos.kalliamvakos@cambio.se",
+      "organisation" : "Cambio Healthcare Systems",
+      "date" : "2025-10-14"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To test with playwright",
+        "keywords" : [
+          "playwright",
+          "BMI"
+        ],
+        "use" : "Use for testing with playwright",
+        "copyright" : "Cambio Healthcare Systems"
+      }
+    },
+    "other_details" : {
+      "en" : "Playwright test"
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.playwright_weight.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.playwright_weight.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "kg"
+            ]
+          }
+        }
+      },
+      "gt0004" : {
+        "id" : "gt0004",
+        "model_id" : "openEHR-EHR-OBSERVATION.playwright_height.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.playwright_height.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "cm"
+            ]
+          }
+        }
+      },
+      "gt0006" : {
+        "id" : "gt0006",
+        "model_id" : "openEHR-EHR-OBSERVATION.playwright_bmi.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.playwright_bmi.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "kg/m2"
+            ]
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0008" : {
+        "id" : "gt0008",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|Weight|!=null",
+          "$gt0005|Height|!=null"
+        ],
+        "then" : [
+          "$gt0007|BMI|.magnitude=$gt0003|Weight|.magnitude/($gt0005|Height|.magnitude/100)^2",
+          "$gt0007|BMI|.precision=1",
+          "$gt0007|BMI|.unit='kg/m2'"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "playwright_bmi_calculation",
+            "description" : "Test with playwright"
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.playwright_weight.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Weight"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "openEHR-EHR-OBSERVATION.playwright_height.v0"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Height"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "openEHR-EHR-OBSERVATION.playwright_bmi.v0"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "BMI"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Calculate BMI",
+            "description" : ""
+          }
+        }
+      }
+    }
+  },
+  "date" : "2025-10-14",
+  "tags" : [ ]
+}
