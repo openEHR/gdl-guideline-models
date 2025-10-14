@@ -1,0 +1,257 @@
+archetype (adl_version=1.4; uid=9f7c4a09-4f9a-481a-af85-f0fca52fc0d9)
+	openEHR-EHR-OBSERVATION.score23.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-10-14">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"2587118f-bfdd-396e-9f63-b26122edd626">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- SCORE23
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Age
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"a">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Sex
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0006,    -- Female
+													at0007]    -- Male
+												}
+											}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Systolic Blood Pressure
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::125]>
+												list = <
+													["1"] = <
+														units = <"mm[Hg]">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Total Cholesterol
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mmol/L">
+													>
+													["2"] = <
+														units = <"mg/dL">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- HDL Cholesterol
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mg/dL">
+													>
+													["2"] = <
+														units = <"mmol/L">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Cigarrete smoking
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012,    -- Yes
+													at0013]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- 10 year risk score
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::507]>
+												list = <
+													["1"] = <
+														units = <"%">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Interpretation: Patients <50 years old
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0017,    -- Low to moderate risk
+													at0018,    -- High risk
+													at0019]    -- Very high risk
+												}
+											}
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {    -- Interpretation: Patients 50-69 years old
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0021,    -- Low to moderate risk
+													at0022,    -- High risk
+													at0023]    -- Very high risk
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"SCORE23">
+					description = <"SCORE23">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Age">
+					description = <"The age of the patient in years, should be between 40 and 69 years. ">
+				>
+				["at0005"] = <
+					text = <"Sex">
+					description = <"The sex of the patient">
+				>
+				["at0006"] = <
+					text = <"Female">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Male">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Systolic Blood Pressure">
+					description = <"The pressure in the arteries when the heart contracts and is the first measure within blood pressure">
+				>
+				["at0009"] = <
+					text = <"Total Cholesterol">
+					description = <"A measure of the total amount of cholesterol in your blood">
+				>
+				["at0010"] = <
+					text = <"HDL Cholesterol">
+					description = <"High-density lipoprotein">
+				>
+				["at0011"] = <
+					text = <"Cigarrete smoking">
+					description = <"Statement about current smoking behaviour ">
+				>
+				["at0012"] = <
+					text = <"Yes">
+					description = <"Smoking">
+				>
+				["at0013"] = <
+					text = <"No">
+					description = <"Non Smoking">
+				>
+				["at0015"] = <
+					text = <"10 year risk score">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Interpretation: Patients <50 years old">
+					description = <"Interpretation of the risk score for patients between 45 and 50 years old">
+				>
+				["at0017"] = <
+					text = <"Low to moderate risk">
+					description = <"<2.5%">
+				>
+				["at0018"] = <
+					text = <"High risk">
+					description = <"2.5% to <7.5%">
+				>
+				["at0019"] = <
+					text = <"Very high risk">
+					description = <"≥7.5%">
+				>
+				["at0020"] = <
+					text = <"Interpretation: Patients 50-69 years old">
+					description = <"Interpretation of risk score for patient between ages 50 and 69 years old ">
+				>
+				["at0021"] = <
+					text = <"Low to moderate risk">
+					description = <"<5%">
+				>
+				["at0022"] = <
+					text = <"High risk">
+					description = <"5% to <10%">
+				>
+				["at0023"] = <
+					text = <"Very high risk">
+					description = <"≥10%">
+				>
+			>
+		>
+	>
