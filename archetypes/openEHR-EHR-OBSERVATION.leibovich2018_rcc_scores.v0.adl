@@ -32,7 +32,7 @@ Not to be used for recording results from other renal cell carcinoma prognostic 
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"3be10466c37e1cc887ad8d23203c70f1">
+		["MD5-CAM-1.0.1"] = <"ee14a60d119c8c03311fa761ed9ad96c">
 		["build_uid"] = <"7780b1db-aeff-4143-a0a6-0bb382198fe6">
 	>
 
@@ -47,12 +47,26 @@ definition
 								items cardinality matches {0..*; unordered} matches {
 									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Progression-free survival score for ccRCC
 										value matches {
-											DV_QUANTITY matches {*}
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"1">
+													>
+												>
+											>
 										}
 									}
 									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Cancer-specific survival score for ccRCC
 										value matches {
-											DV_QUANTITY matches {*}
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"1">
+													>
+												>
+											>
 										}
 									}
 								}
