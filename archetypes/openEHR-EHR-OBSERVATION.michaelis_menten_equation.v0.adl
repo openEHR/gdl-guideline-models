@@ -23,7 +23,7 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"a5f608c6323346350cf6f0785d6f68df">
+		["MD5-CAM-1.0.1"] = <"b098371a6390f6c1038d8226c5ffa944">
 		["build_uid"] = <"12cf9ee9-8ebb-35ea-90d8-fcb34ce2e7bf">
 	>
 
@@ -54,7 +54,7 @@ definition
 									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Substrate concentration [S]
 										value matches {
 											C_DV_QUANTITY <
-												property = <[openehr::384]>
+												
 												list = <
 													["1"] = <
 														units = <"molars (M)">
@@ -108,6 +108,16 @@ definition
 											>
 										}
 									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- holding unit
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- comment field
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
 								}
 							}
 						}
@@ -147,7 +157,7 @@ ontology
 				>
 				["at0004"] = <
 					text = <"Substrate concentration [S]">
-					description = <"Substrate concentration">
+					description = <"">
 				>
 				["at0005"] = <
 					text = <"Maximum Rate (Vmax)">
@@ -169,6 +179,14 @@ ontology
 					text = <"Extension">
 					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
 					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0012"] = <
+					text = <"comment field">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"holding unit">
+					description = <"">
 				>
 			>
 		>
