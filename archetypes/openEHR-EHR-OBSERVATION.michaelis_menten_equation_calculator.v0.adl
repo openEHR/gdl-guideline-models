@@ -1,0 +1,277 @@
+archetype (adl_version=1.4; uid=67bf9948-3070-4efe-91b6-20368f0f1e0b)
+	openEHR-EHR-OBSERVATION.michaelis_menten_equation_calculator.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-10-13">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"9517039ee97c52691c8c59edcaf77981">
+		["build_uid"] = <"12cf9ee9-8ebb-35ea-90d8-fcb34ce2e7bf">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- michaelis_menten_equation_calculator
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Reaction Rate (V0)
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"1/sec">
+													>
+													["2"] = <
+														units = <"1/min">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Substrate concentration [S]
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"molars (M)">
+													>
+													["2"] = <
+														units = <"milimolars (mM)">
+													>
+													["3"] = <
+														units = <"micromolars (μM)">
+													>
+													["4"] = <
+														units = <"nanomolars (nM)">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Maximum Rate (Vmax)
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"1/sec">
+													>
+													["2"] = <
+														units = <"1/min">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Michaelis constant (Km)
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::384]>
+												list = <
+													["1"] = <
+														units = <"molars (M)">
+													>
+													["2"] = <
+														units = <"milimolars (mM)">
+													>
+													["3"] = <
+														units = <"micromolars (μM)">
+													>
+													["4"] = <
+														units = <"nanomolars (nM)">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- holding unit 1
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"molars (M)">
+													>
+													["2"] = <
+														units = <"milimolars (mM)">
+													>
+													["3"] = <
+														units = <"micromolars (μM)">
+													>
+													["4"] = <
+														units = <"nanomolars (nM)">
+													>
+													["5"] = <
+														units = <"1/sec">
+													>
+													["6"] = <
+														units = <"1/min">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- holding unit 2
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::384]>
+												list = <
+													["1"] = <
+														units = <"molars (M)">
+													>
+													["2"] = <
+														units = <"milimolars (mM)">
+													>
+													["3"] = <
+														units = <"micromolars (μM)">
+													>
+													["4"] = <
+														units = <"nanomolars (nM)">
+													>
+													["5"] = <
+														units = <"1/sec">
+													>
+													["6"] = <
+														units = <"1/min">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- holding unit 3
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::384]>
+												list = <
+													["1"] = <
+														units = <"molars (M)">
+													>
+													["2"] = <
+														units = <"milimolars (mM)">
+													>
+													["3"] = <
+														units = <"micromolars (μM)">
+													>
+													["4"] = <
+														units = <"nanomolars (nM)">
+													>
+													["5"] = <
+														units = <"1/sec">
+													>
+													["6"] = <
+														units = <"1/min">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- comment field
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0009] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					CLUSTER[at0010] occurrences matches {0..1} matches {*}    -- Extension
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"michaelis_menten_equation_calculator">
+					description = <"An equation to estimate the reaction rate of enzyme-catalyzed processes when substrate concentration and kinetic parameters are known.">
+					comment = <"Original version, c 2011">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Substrate concentration [S]">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Maximum Rate (Vmax)">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Michaelis constant (Km)">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Reaction Rate (V0)">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0010"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0012"] = <
+					text = <"comment field">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"holding unit 1">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"holding unit 2">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"holding unit 3">
+					description = <"">
+				>
+			>
+		>
+	>
