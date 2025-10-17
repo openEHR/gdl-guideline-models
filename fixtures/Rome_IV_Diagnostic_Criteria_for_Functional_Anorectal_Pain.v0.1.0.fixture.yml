@@ -1,0 +1,64 @@
+guidelines:
+  "1": Rome_IV_Diagnostic_Criteria_for_Functional_Anorectal_Pain.v0.1.0
+test_cases:
+  - id: 01. No input, test default action (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1":
+        gt0013|Diagnostic Result: local::at0009|Negative|
+  - id: 02. Chronic or recurrent rectal pain or aching missing (negative test).
+    input:
+      "1":
+        gt0004|Episodes last ≥30 minutes (For 3 months prior with symptom onset ≥6 months ago): local::at0016|Yes|
+        gt0005|Tenderness during traction on the puborectalis (For 3 months prior with symptom onset ≥6 months ago): local::at0019|No|
+        "gt0006|Exclusion of other causes of rectal pain, such as inflammatory bowel disease, intramuscular abscess and fissure, thrombosed hemorrhoids, prostatitis, coccygodynia, and major structural alterations of the pelvic floor (For 3 months prior with symptom onset ≥6 months ago)": local::at0021|No|
+        gt0007|Symptom criteria for chronic levator ani syndrome but no tenderness during posterior traction on the puborectalis muscle: local::at0023|No|
+    expected_output:
+      "1":
+        gt0013|Diagnostic Result: local::at0009|Negative|
+  - id: 03. Episodes last ≥30 minutes missing (negative test).
+    input:
+      "1":
+        gt0003|Chronic or recurrent rectal pain or aching (For 3 months prior with symptom onset ≥6 months ago): local::at0015|No|
+        gt0005|Tenderness during traction on the puborectalis (For 3 months prior with symptom onset ≥6 months ago): local::at0019|No|
+        "gt0006|Exclusion of other causes of rectal pain, such as inflammatory bowel disease, intramuscular abscess and fissure, thrombosed hemorrhoids, prostatitis, coccygodynia, and major structural alterations of the pelvic floor (For 3 months prior with symptom onset ≥6 months ago)": local::at0021|No|
+        gt0007|Symptom criteria for chronic levator ani syndrome but no tenderness during posterior traction on the puborectalis muscle: local::at0023|No|
+    expected_output:
+      "1":
+        gt0013|Diagnostic Result: local::at0009|Negative|
+  - id: 04. Tenderness during traction on the puborectalis missing (negative test).
+    input:
+      "1":
+        gt0003|Chronic or recurrent rectal pain or aching (For 3 months prior with symptom onset ≥6 months ago): local::at0015|No|
+        gt0004|Episodes last ≥30 minutes (For 3 months prior with symptom onset ≥6 months ago): local::at0017|No|
+        "gt0006|Exclusion of other causes of rectal pain, such as inflammatory bowel disease, intramuscular abscess and fissure, thrombosed hemorrhoids, prostatitis, coccygodynia, and major structural alterations of the pelvic floor (For 3 months prior with symptom onset ≥6 months ago)": local::at0021|No|
+        gt0007|Symptom criteria for chronic levator ani syndrome but no tenderness during posterior traction on the puborectalis muscle: local::at0023|No|
+    expected_output:
+      "1":
+        gt0013|Diagnostic Result: local::at0009|Negative|
+  - id: 05. Exclusion of other causes of rectal pain, such as inflammatory bowel
+      disease, intramuscular abscess and fissure, thrombosed hemorrhoids,
+      prostatitis, coccygodynia, and major structural alterations of the pelvic
+      floor missing (negative test).
+    input:
+      "1":
+        gt0003|Chronic or recurrent rectal pain or aching (For 3 months prior with symptom onset ≥6 months ago): local::at0015|No|
+        gt0004|Episodes last ≥30 minutes (For 3 months prior with symptom onset ≥6 months ago): local::at0017|No|
+        gt0005|Tenderness during traction on the puborectalis (For 3 months prior with symptom onset ≥6 months ago): local::at0019|No|
+        gt0007|Symptom criteria for chronic levator ani syndrome but no tenderness during posterior traction on the puborectalis muscle: local::at0023|No|
+    expected_output:
+      "1":
+        gt0013|Diagnostic Result: local::at0009|Negative|
+  - id: 06. Symptom criteria for chronic levator ani syndrome but no tenderness
+      during posterior traction on the puborectalis muscle missing (negative
+      test).
+    input:
+      "1":
+        gt0003|Chronic or recurrent rectal pain or aching (For 3 months prior with symptom onset ≥6 months ago): local::at0015|No|
+        gt0004|Episodes last ≥30 minutes (For 3 months prior with symptom onset ≥6 months ago): local::at0017|No|
+        gt0005|Tenderness during traction on the puborectalis (For 3 months prior with symptom onset ≥6 months ago): local::at0019|No|
+        "gt0006|Exclusion of other causes of rectal pain, such as inflammatory bowel disease, intramuscular abscess and fissure, thrombosed hemorrhoids, prostatitis, coccygodynia, and major structural alterations of the pelvic floor (For 3 months prior with symptom onset ≥6 months ago)": local::at0021|No|
+    expected_output:
+      "1":
+        gt0013|Diagnostic Result: local::at0009|Negative|
