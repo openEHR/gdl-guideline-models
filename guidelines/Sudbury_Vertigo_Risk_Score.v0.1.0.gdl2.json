@@ -1,0 +1,307 @@
+{
+  "uuid" : "2d6bc89b-5a11-4462-833f-c143bd8c3db7",
+  "id" : "Sudbury_Vertigo_Risk_Score.v0.1.0",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Katja Mariko Wilde",
+      "email" : "katja-wilde@t-online.de",
+      "organisation" : "Cambio CDS",
+      "date" : "2025-10-07"
+    },
+    "lifecycle_state" : "REVIEWED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate the total sum for the Sudbury Vertigo Risk Score to estimate the probability of a serious central cause of vertigo, dizziness, or imbalance in adult patients presenting to emergency or urgent-care settings.",
+        "keywords" : [
+          "sudbury",
+          "vertigo",
+          "risk",
+          "score",
+          "dizziness",
+          "imbalance"
+        ],
+        "use" : "Use to stratify the risk of a serious central cause of vertigo in adult patients (≥18 years) presenting to an emergency department or urgent-care setting within 14 days of symptom onset.\nApply only if the patient is:\nAlert (Glasgow Coma Scale = 15)\nHaemodynamically stable (SBP ≥ 90 mmHg)\nWithout recent head or neck trauma, syncope, or active cancer\n\nThe score is calculated by adding the points of the individual variables: \nMale: No 0 points, Yes 1 point\nAge > 65 years: No 0 points, Yes 1 point\nDiabetes: No 0 points, Yes 1 point\nHypertension: No 0 points, Yes 3 points\nMotor or sensory deficit: No 0 points, Yes 5 points\nCerebellar deficit (diplopia, dysarthria, dysphagia, dysmetria, or ataxia): No 0 points, Yes 6 points\nBPPV diagnosis (protective): No 0 points, Yes -5 points\n\nThe total score estimates the probability of a central cause of vertigo and guides the need for further evaluation or neuroimaging.",
+        "misuse" : "Not to be used for recording information related to other vertigo or dizziness risk assessment tools or for patients who do not meet the clinical criteria for Sudbury Vertigo Risk Score application (e.g., altered mental status, unstable vitals, or recent trauma).",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Ohle R, Savage DW, Roy D, McIsaac S, Singh R, Lelli D, Tse D, Johns P, Yadav K, Perry JJ. Development of a Clinical Risk Score to Risk Stratify for a Serious Cause of Vertigo in Patients Presenting to the Emergency Department. Ann Emerg Med. 2025 Feb;85(2):122-131. doi: 10.1016/j.annemergmed.2024.06.003. Epub 2024 Aug 1. PMID: 39093245.",
+      "en" : "An assessment score used to estimate the risk of a serious central cause of vertigo in adult patients."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.sudbury_vertigo.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.sudbury_vertigo.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0007",
+              "1|local::at0008"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0009]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0010",
+              "1|local::at0011"
+            ]
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0012]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0013",
+              "1|local::at0014"
+            ]
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0015]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0016",
+              "3|local::at0017"
+            ]
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0018]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0019",
+              "5|local::at0020"
+            ]
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0021]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0022",
+              "6|local::at0023"
+            ]
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0024]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "-5|local::at0026",
+              "0|local::at0025"
+            ]
+          }
+        }
+      },
+      "gt0010" : {
+        "id" : "gt0010",
+        "model_id" : "openEHR-EHR-OBSERVATION.sudbury_vertigo.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.sudbury_vertigo.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0011" : {
+            "id" : "gt0011",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0027]",
+            "data_type" : "DV_COUNT"
+          }
+        }
+      },
+      "gt0012" : {
+        "id" : "gt0012",
+        "model_id" : "openEHR-EHR-EVALUATION.health_risk.v1",
+        "template_id" : "openEHR-EHR-EVALUATION.health_risk.v1",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0013" : {
+            "id" : "gt0013",
+            "path" : "/data[at0001]/items[at0003]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "path" : "/data[at0001]/items[at0015]",
+            "data_type" : "DV_TEXT"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0015" : {
+        "id" : "gt0015",
+        "priority" : 4,
+        "when" : [
+          "$gt0003|Male|!=null",
+          "$gt0004|Age >65 years|!=null",
+          "$gt0009|Diabetes|!=null",
+          "$gt0005|Hypertension|!=null",
+          "$gt0006|Motor or sensory deficit|!=null",
+          "$gt0007|Cerebellar deficit|!=null",
+          "$gt0008|BPPV diagnosis (protective)|!=null"
+        ],
+        "then" : [
+          "$gt0011|Total score|.magnitude=$gt0003|Male|.value+$gt0004|Age >65 years|.value+$gt0009|Diabetes|.value+$gt0005|Hypertension|.value+$gt0006|Motor or sensory deficit|.value+$gt0007|Cerebellar deficit|.value+$gt0008|BPPV diagnosis (protective)|.value"
+        ]
+      },
+      "gt0016" : {
+        "id" : "gt0016",
+        "priority" : 3,
+        "when" : [
+          "$gt0011|Total score|<5"
+        ],
+        "then" : [
+          "$gt0013|Risk assessment|=$gt0017|0% - Low risk of serious central cause|.term",
+          "$gt0014|Clinical implication|=$gt0020|No further testing needed|.term"
+        ]
+      },
+      "gt0023" : {
+        "id" : "gt0023",
+        "priority" : 2,
+        "when" : [
+          "$gt0011|Total score|>=5",
+          "$gt0011|Total score|<=8"
+        ],
+        "then" : [
+          "$gt0013|Risk assessment|=$gt0018|~2–4% - Moderate risk of central cause|.term",
+          "$gt0014|Clinical implication|=$gt0021|Further investigation if unclear|.term"
+        ]
+      },
+      "gt0024" : {
+        "id" : "gt0024",
+        "priority" : 1,
+        "when" : [
+          "$gt0011|Total score|>8"
+        ],
+        "then" : [
+          "$gt0013|Risk assessment|=$gt0019|≥41 % - High risk of serious central cause|.term",
+          "$gt0014|Clinical implication|=$gt0022|Urgent evaluation and neuroimaging|.term"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Sudbury Vertigo Risk Score",
+            "description" : "An assessment score used to estimate the risk of a serious central cause of vertigo in adult patients."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.sudbury_vertigo.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Male"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Age >65 years"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Hypertension"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "Motor or sensory deficit"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Cerebellar deficit"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "BPPV diagnosis (protective)"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Diabetes"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "openEHR-EHR-OBSERVATION.sudbury_vertigo.v0"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Total score"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "openEHR-EHR-EVALUATION.health_risk.v1"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Risk assessment"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Clinical implication"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "Calculate total score",
+            "description" : ""
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "Set interpretation for score < 5",
+            "description" : ""
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "0% - Low risk of serious central cause"
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "~2–4% - Moderate risk of central cause"
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "≥41 % - High risk of serious central cause"
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "No further testing needed"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "Further investigation if unclear"
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "Urgent evaluation and neuroimaging"
+          },
+          "gt0023" : {
+            "id" : "gt0023",
+            "text" : "Set interpretation for score 5-8",
+            "description" : ""
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "text" : "Set interpretation for score > 8",
+            "description" : ""
+          }
+        }
+      }
+    }
+  }
+}
