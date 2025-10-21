@@ -1,0 +1,233 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.heart_score_for_mace_assessment.v0
+
+concept
+	[at0000]	-- HEART Score for MACE - utvärdering
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"Dennis Forslund">
+				["email"] = <"models@cambiocds.com">
+				["organisation"] = <"Cambio Healthcare Systems">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Syeeda S Farruque">
+		["email"] = <"models@cambiocds.com">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2017-07-28">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"The HEART Score for Major Cardiac Events (MACE), helps to risk-stratify patients admitted to the emergency department who exhibits chest pain which is deemed appropriate for further investigation for ACS (acute coronary syndrome).">
+			use = <"Thia tool holds the assessment of risk of having an adverse cardiac event.
+
+Low risk patients score 0-3 with less than 2% risk of MACE (All-cause mortality myocardial infarction, or coronary revascularization) at 6 weeks.
+High risk patients score > 3 with > 2% risk that rises exponentially. See below:
+
+Risk of adverse cardiac event:
+
+0-3: 0.9-1.7% - These patients could be discharged. 
+
+4-6: 12-16.6% - These patients need to be admitted to the hospital. 
+
+≥7: 50-65% - These patients are candidates for early invasive measures. ">
+			keywords = <"HEART score for Major Cardiac Events", "adverse cardiac event">
+			misuse = <"Do not use if:
+
+< 21 years of age
+New ST-segment elevation ≥1 mm or other new EKG changes
+Hypotension
+Life expectancy less than 1 year, or non-cardiac medical/surgical/psychiatric illness requiring admission.
+">
+			copyright = <"© Cambio Healthcare Systems">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"HEART Score for Major Cardiac Events (MACE) kan användas för att riskstratifiera patienter som på akutmottagningen bedömts ha bröstsmärta som bör föranleda utredning för akut koronart syndrom.">
+			use = <"Metoden är tillämpbar på patienter ≥21 års ålder som söker vård med symptombild som indikerar risk för akut koronart syndrom, och baseras på ålder, anamnes, föreliggande riskfaktorer, troponinvärde och EKG.
+
+Anamnes poängsätts med 0-2p baserat på följande definition hämtad ur referens (1):
+
+\"I avsaknad av specifika parametrar såsom mönster av bröstsmärta, debut och duration, relation till fysisk ansträngning, stress eller kyla, lokalisation, åtföljande symtom och reaktion på nitrater, klassificerades anamnesen som 'ospecifik' vilket ger 0p.
+
+Om anamnesen innehöll såväl ospecifika som misstänkt patologiska element, klassificerades den som 'måttligt stark misstanke' och gavs 1p.
+
+Om anamnesen innehöll specifikt patologiska element, klassificerades den som 'mycket stark misstanke' vilket gav 2p.
+
+En poängsumma om totalt 0-3p indikerar låg risk (<2%) för all-cause mortality hjärtinfarkt eller koronar revaskularisering inom sex veckor.
+
+En poängsumma om totalt >3p indikerar hög risk/>2% risk som gradvis ökar enligt:
+
+0-3p: 0.9-1.7% - för dessa patienter kan utskrivning övervägas
+4-6p: 12-16,7% - dessa patienter bör skrivas in på vårdavdelning
+≥7p: 50-65% - för dessa patienter bör tidig invasiv intervention övervägas">
+			keywords = <"HEART Score", "HEART", "akut koronart syndrom", "AKS">
+			misuse = <"Metoden är ej tillämpbar om:
+
+Patienten är under 21 års ålder
+Ny ST-höjning ≥1 mm eller andra nytillkomna EKG-förändringar
+Hypotoni
+Förväntad överlevnad är mindre än ett år, eller om annat icke-kardiellt tillstånd kräver inläggning på sjukhus.">
+			copyright = <"© Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"Ref. 1: Six AJ, Backus BE, Kelder JC. Chest pain in the emergency room: value of the HEART score. Neth Heart J. 2008 Jun;16(6):191-6. PubMed PMID: 18665203; PubMed Central PMCID: PMC2442661.
+">
+		["MD5-CAM-1.0.1"] = <"B02665917D642E2B326AC43D580760CC">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- HEART Score for MACE - utvärdering
+		data matches {
+			ITEM_TREE[at0001] matches {	-- *Tree(en)
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Risknivå
+						value matches {
+							0|[local::at0004], 	-- Låg risk
+							1|[local::at0005]  	-- Hög risk
+						}
+					}
+					ELEMENT[at0003] occurrences matches {0..1} matches {	-- Rekommendation
+						value matches {
+							0|[local::at0006], 	-- För dessa patienter kan utskrivning övervägas
+							1|[local::at0007], 	-- Dessa patienter bör skrivas in på vårdavdelning
+							2|[local::at0008]  	-- För dessa patienter bör tidig invasiv intervention övervägas
+						}
+					}
+					ELEMENT[at0009] occurrences matches {0..1} matches {	-- Estiemrad risk
+						value matches {
+							0|[local::at0010], 	-- 0.9-1.7%
+							1|[local::at0011], 	-- 12-16.6% 
+							2|[local::at0012]  	-- 50-65%
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Heart score for mace assessment">
+					description = <"Provides a 6-week prediction of the risk of having an adverse major cardiac event.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Risk Level of adverse event">
+					description = <"Risk of adverse event">
+				>
+				["at0003"] = <
+					text = <"Management">
+					description = <"Management according to the risk level">
+				>
+				["at0004"] = <
+					text = <"Low risk at 6 weeks">
+					description = <"Score 0-3">
+				>
+				["at0005"] = <
+					text = <"High risk at 6 weeks">
+					description = <"Score > 3">
+				>
+				["at0006"] = <
+					text = <"These patients could be discharged.">
+					description = <"Score 0-3">
+				>
+				["at0007"] = <
+					text = <"These patients need to be admitted to the hospital.">
+					description = <"Score 4-6">
+				>
+				["at0008"] = <
+					text = <"These patients are candidates for early invasive measures. ">
+					description = <"Score ≥7 ">
+				>
+				["at0009"] = <
+					text = <"Risk Percentage">
+					description = <"Percentage risk stratification according to the score">
+				>
+				["at0010"] = <
+					text = <"0.9-1.7% risk of adverse cardiac event">
+					description = <"Score 0-3">
+				>
+				["at0011"] = <
+					text = <"12-16.6% risk of adverse cardiac event">
+					description = <"Score 4-6">
+				>
+				["at0012"] = <
+					text = <"50-65% risk of adverse cardiac event">
+					description = <"Score ≥7">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"HEART Score for MACE - utvärdering">
+					description = <"Utvärdering av poäng erhållen i enlighet med HEART Score for MACE, en metod för riskvärdering av förestående akut koronart syndrom bland patienter med bröstsmärta.">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Risknivå">
+					description = <"">
+				>
+				["at0003"] = <
+					text = <"Rekommendation">
+					description = <"Rekommenderad åtgärd baserat på risknivå.">
+				>
+				["at0004"] = <
+					text = <"Låg risk">
+					description = <"0-3p">
+				>
+				["at0005"] = <
+					text = <"Hög risk">
+					description = <">3p">
+				>
+				["at0006"] = <
+					text = <"För dessa patienter kan utskrivning övervägas">
+					description = <"0-3p">
+				>
+				["at0007"] = <
+					text = <"Dessa patienter bör skrivas in på vårdavdelning">
+					description = <"4-6p">
+				>
+				["at0008"] = <
+					text = <"För dessa patienter bör tidig invasiv intervention övervägas">
+					description = <"≥7p">
+				>
+				["at0009"] = <
+					text = <"Estiemrad risk">
+					description = <"Riskstratifiering baserat på risknivå.">
+				>
+				["at0010"] = <
+					text = <"0.9-1.7%">
+					description = <"0-3p">
+				>
+				["at0011"] = <
+					text = <"12-16.6% ">
+					description = <"4-6p">
+				>
+				["at0012"] = <
+					text = <"50-65%">
+					description = <" ≥7p">
+				>
+			>
+		>
+	>
