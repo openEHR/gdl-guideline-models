@@ -1,0 +1,106 @@
+current_datetime: 2019-11-28T00:00:00+01:00
+guidelines:
+  "1": HEART_score_for_MACE.v0.1.0
+test_cases:
+  - id: 1. No input, no output (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. No output, pre-condition not met (negative test)
+    input:
+      "1":
+        gt0004|History: 0|local::at0014|Slightly suspicious |
+        gt0005|EKG: 0|local::at0017|Normal|
+        gt0008|Risk Factors: 0|local::at0023|No known risk factors |
+        gt0009|Initial Troponin: 0|local::at0026|≤ normal limit |
+        gt0052|Age: 20,a
+    expected_output:
+      "1": {}
+  - id: 3. No total score, History missing (negative test)
+    input:
+      "1":
+        gt0005|EKG: 0|local::at0017|Normal|
+        gt0008|Risk Factors: 0|local::at0023|No known risk factors |
+        gt0009|Initial Troponin: 0|local::at0026|≤ normal limit |
+        gt0052|Age: 22,a
+    expected_output:
+      "1":
+        gt0054|Age group: 0|local::at0020|< 45 yrs|
+  - id: 4. No total score, ECG missing (negative test)
+    input:
+      "1":
+        gt0004|History: 0|local::at0014|Slightly suspicious |
+        gt0008|Risk Factors: 0|local::at0023|No known risk factors |
+        gt0009|Initial Troponin: 0|local::at0026|≤ normal limit |
+        gt0052|Age: 22,a
+    expected_output:
+      "1":
+        gt0054|Age group: 0|local::at0020|< 45 yrs|
+  - id: 5. No total score, Risk factor missing (negative test)
+    input:
+      "1":
+        gt0004|History: 0|local::at0014|Slightly suspicious |
+        gt0005|EKG: 0|local::at0017|Normal|
+        gt0009|Initial Troponin: 0|local::at0026|≤ normal limit |
+        gt0052|Age: 22,a
+    expected_output:
+      "1":
+        gt0054|Age group: 0|local::at0020|< 45 yrs|
+  - id: 6. No total score, Troponin missing (negative test)
+    input:
+      "1":
+        gt0004|History: 0|local::at0014|Slightly suspicious |
+        gt0005|EKG: 0|local::at0017|Normal|
+        gt0008|Risk Factors: 0|local::at0023|No known risk factors |
+        gt0052|Age: 22,a
+    expected_output:
+      "1":
+        gt0054|Age group: 0|local::at0020|< 45 yrs|
+  - id: 7. Low risk
+    input:
+      "1":
+        gt0004|History: 0|local::at0014|Slightly suspicious |
+        gt0005|EKG: 0|local::at0017|Normal|
+        gt0008|Risk Factors: 0|local::at0023|No known risk factors |
+        gt0009|Initial Troponin: 0|local::at0026|≤ normal limit |
+        gt0052|Age: 46,a
+    expected_output:
+      "1":
+        gt0014|Total score: "1"
+        gt0054|Age group: 1|local::at0021|45-65 yrs|
+        gt0031|Risk Percentage: 0|local::at0010|0.9-1.7% risk of MACE|
+        gt0030|Management: 0|local::at0006|Safe for discharge with follow-up.|
+        gt0038|Risk assessment: Low risk
+  - id: 8. Moderate risk
+    input:
+      "1":
+        gt0004|History: 1|local::at0015|Moderately suspicious|
+        gt0005|EKG: 1|local::at0018|Non-specific repolarization disturbance |
+        gt0008|Risk Factors: 1|local::at0024|1-2 risk factors |
+        gt0009|Initial Troponin: 1|local::at0027|1–2× normal limit |
+        gt0052|Age: 46,a
+    expected_output:
+      "1":
+        gt0014|Total score: "5"
+        gt0054|Age group: 1|local::at0021|45-65 yrs|
+        gt0031|Risk Percentage: 1|local::at0011|12-16.6% risk of MACE|
+        gt0030|Management: 1|local::at0007|Consider admission and further testing.|
+        gt0038|Risk assessment: Moderate risk
+  - id: 9. High risk
+    input:
+      "1":
+        gt0004|History: 2|local::at0016|Highly suspicious |
+        gt0005|EKG: 2|local::at0019|Significant ST depression |
+        gt0008|Risk Factors: 2|local::at0025|≥3 risk factors or history of atherosclerotic disease |
+        gt0009|Initial Troponin: 2|local::at0028|>2× normal limit |
+        gt0052|Age: 66,a
+    expected_output:
+      "1":
+        gt0014|Total score: "10"
+        gt0047|Comment: If EKG is highly suspicious, a further workup and admission is
+          recommended even with a low HEART Score.
+        gt0054|Age group: 2|local::at0022|> 65 yrs|
+        gt0031|Risk Percentage: 2|local::at0012|50-65% risk of MACE|
+        gt0030|Management: 2|local::at0008|Urgent evaluation and possible invasive management.|
+        gt0038|Risk assessment: High risk
