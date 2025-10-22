@@ -1,0 +1,261 @@
+archetype (adl_version=1.4; uid=9001cd60-b779-4c65-ae69-81366c365254)
+	openEHR-EHR-OBSERVATION.truelove_and_witts_severity.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-10-22">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"4ac7dbeb-7b8f-3982-8b24-ca6d63284ce7">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Truelove and Witts Severity
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Bowel movements per day
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0005,    -- < 4
+													at0006,    -- 4-5
+													at0007]    -- ≥ 6
+												}
+											}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Blood in stool
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0009,    -- None or no more than small amounts of blood
+													at0010,    -- Between mild and severe
+													at0011]    -- Visible blood
+												}
+											}
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Pyrexia
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0013,    -- No
+													at0014]    -- Yes
+												}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Pulse > 90 bpm
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0016,    -- No
+													at0017]    -- Yes
+												}
+											}
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Anemia
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0019,    -- No
+													at0020]    -- Yes
+												}
+											}
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- Erythrocyte sedimentation rate, mm/hr
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0022,    -- ≤30
+													at0023]    -- >30
+												}
+											}
+										}
+									}
+									ELEMENT[at0026] occurrences matches {0..1} matches {    -- Severity result
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0027,    -- Mild
+													at0028,    -- Moderate
+													at0029]    -- Severe
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0024] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					CLUSTER[at0025] occurrences matches {0..1} matches {*}    -- Extension
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Truelove and Witts Severity">
+					description = <"Truelove and Witts Severity">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Bowel movements per day">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"< 4">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"4-5">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"≥ 6">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Blood in stool">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"None or no more than small amounts of blood">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Between mild and severe">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Visible blood">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Pyrexia">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Pulse > 90 bpm">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Anemia">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Erythrocyte sedimentation rate, mm/hr">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"≤30">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <">30">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0025"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0026"] = <
+					text = <"Severity result">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Mild">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Moderate">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Severe">
+					description = <"">
+				>
+			>
+		>
+	>
