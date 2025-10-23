@@ -1,0 +1,117 @@
+archetype (adl_version=1.4; uid=5d5fbda1-4ef6-4242-b179-dc9dcfdcf0cc)
+	openEHR-EHR-OBSERVATION.score2_archetype.v1
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-10-23">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"a5e2696b-02dd-3f86-9bda-6f0a0642f9a9">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- score2_archetype
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {*}    -- Tree
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0005] occurrences matches {0..1} matches {    -- Cigarrete smoking
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0006,    -- Yes
+									at0007]    -- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0008] occurrences matches {0..1} matches {    -- 10 year risk
+						value matches {
+							DV_QUANTITY matches {*}
+						}
+					}
+					ELEMENT[at0010] occurrences matches {0..1} matches {    -- Interpretation
+						value matches {
+							DV_ORDINAL matches {*}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"score2_archetype">
+					description = <"score2_archetype">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Cigarrete smoking">
+					description = <"Statement about current smoking behaviour ">
+				>
+				["at0006"] = <
+					text = <"Yes">
+					description = <"Smoking">
+				>
+				["at0007"] = <
+					text = <"No">
+					description = <"Non smoking">
+				>
+				["at0008"] = <
+					text = <"10 year risk">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Interpretation">
+					description = <"">
+				>
+			>
+		>
+	>
