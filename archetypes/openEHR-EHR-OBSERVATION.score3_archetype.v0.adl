@@ -1,0 +1,139 @@
+archetype (adl_version=1.4; uid=fcfc7f0f-4c0b-4060-9dc2-3f6a33357c96)
+	openEHR-EHR-OBSERVATION.score3_archetype.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-10-23">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"116b337b780db4d271d38572f8bbf184">
+		["build_uid"] = <"31278ac3-b4c8-310b-aab5-294369543c3d">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- score3_archetype
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Cigarrete smoking
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0006,    -- Yes
+													at0007]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- 10 year risk score
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"a">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Interpretation
+										value matches {
+											1|[local::at0010],
+											2|[local::at0011],
+											3|[local::at0012]
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"score3_archetype">
+					description = <"score3_archetype">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Cigarrete smoking">
+					description = <"Statement about current smoking behaviour ">
+				>
+				["at0006"] = <
+					text = <"Yes">
+					description = <"Smoking">
+				>
+				["at0007"] = <
+					text = <"No">
+					description = <"Non smoking">
+				>
+				["at0008"] = <
+					text = <"10 year risk score">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Interpretation">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Low to moderate risk">
+					description = <"<2.5% in patients <50 years old and <5% in patients between 50-69 years old">
+				>
+				["at0011"] = <
+					text = <"High risk">
+					description = <"2.5% to <7.5% in patients <50 years old and 5 to <10% in patients between 50-69 years old">
+				>
+				["at0012"] = <
+					text = <"Very high risk">
+					description = <"≥7.5% in patients <50 years old and >10% in patients between 50-69 years old">
+				>
+			>
+		>
+	>
