@@ -1,0 +1,162 @@
+archetype (adl_version=1.4; uid=8269caba-df69-4b16-93f0-67725cb461bd)
+	openEHR-EHR-OBSERVATION.international_prognostic_score_for_asymptomatic_early_stage_cll.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-10-06">
+		["name"] = <"Umiah Gohar">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"umiah.gohar@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and their total sum for the asymptomatic early-stage CLL (IPS-E) score.">
+			keywords = <"(IPS-E)","international","prognostic","score","asymptomatic","early","stage","CLL">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and their total sum for the PE-SARD score.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Condoluci A, Terzi di Bergamo L, Langerbeins P, Hoechstetter MA, Herling CD, De Paoli L, Delgado J, Rabe KG, Gentile M, Doubek M, Mauro FR, Chiodin G, Mattsson M, Bahlo J, Cutrona G, Kotaskova J, Deambrogi C, Smedby KE, Spina V, Bruscaggin A, Wu W, Moia R, Bianchi E, Gerber B, Zucca E, Gillessen S, Ghielmini M, Cavalli F, Stussi G, Hess MA, Baumann TS, Neri A, Ferrarini M, Rosenquist R, Forconi F, Foà R, Pospisilova S, Morabito F, Stilgenbauer S, Döhner H, Parikh SA, Wierda WG, Montserrat E, Gaidano G, Hallek M, Rossi D. International prognostic score for asymptomatic early-stage chronic lymphocytic leukemia. Blood. 2020 May 21;135(21):1859-1869. doi: 10.1182/blood.2019003453. PMID: 32267500; PMCID: PMC11311630.
+Smolej L, Turcsányi P, Kubová Z, Zuchnická J, Mihályová J, Šimkovič M, Vodárek P, Krčméryová M, Móciková H, Brejcha M, Špaček M; Czech CLL Study Group. External validation of International Prognostic Score for asymptomatic early stage chronic lymphocytic leukaemia and proposal of an alternative score. Br J Haematol. 2021 Apr;193(1):133-137. doi: 10.1111/bjh.17074. Epub 2020 Sep 10. PMID: 33280081.
+Morabito F, Tripepi G, Vigna E, Bossio S, D'Arrigo G, Martino EA, Storino F, Recchia AG, Fronza G, Di Raimondo F, Colombo M, Fais F, Neri A, Cutrona G, Ferrarini M, Gentile M. Validation of the Alternative International Prognostic Score-E (AIPS-E): Analysis of Binet stage A chronic lymphocytic leukemia patients enrolled into the O-CLL1-GISL protocol. Eur J Haematol. 2021 Jun;106(6):831-835. doi: 10.1111/ejh.13614. Epub 2021 Apr 7. PMID: 33662164.
+Alshemmari SH, Alsarraf A, Kunhikrishnan A, Pandita R. Evaluation of the CLL-IPI and IPS-E Prognostic Indices in a Young Middle Eastern Population with Chronic Lymphocytic Leukemia: A Retrospective Analysis at the Kuwait Cancer Control Center. Med Princ Pract. 2023;32(3):192-199. doi: 10.1159/000533284. Epub 2023 Jul 28. PMID: 37517397; PMCID: PMC10601689.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"33e2d4e7-2e97-381f-9dc1-95251f0e9fcd">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- International Prognostic Score for Asymptomatic Early-stage CLL (IPS-E)
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Unmutated IGHV genes
+										value matches {
+											DV_CODED_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Absolute lymphocyte count >15×109/L
+										value matches {
+											DV_CODED_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Palpable lymph nodes
+										value matches {
+											DV_CODED_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Unmutated IGHV genes points
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Absolute lymphocyte count >15×109/L points
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Palpable lymph nodes points
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0011] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0012] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"International Prognostic Score for Asymptomatic Early-stage CLL (IPS-E)">
+					description = <"An assessment score used to evaluate the prognosis of asymptomatic early-stage chronic lymphocytic leukemia (CLL).">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Unmutated IGHV genes">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Absolute lymphocyte count >15×109/L">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Palpable lymph nodes">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Unmutated IGHV genes points">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Absolute lymphocyte count >15×109/L points">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Palpable lymph nodes points">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Total score">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0012"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>
