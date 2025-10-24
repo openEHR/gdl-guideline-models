@@ -1,0 +1,196 @@
+archetype (adl_version=1.4; uid=e8f9210f-6f94-48ee-87f0-b2d7429904ae)
+	openEHR-EHR-OBSERVATION.pedsrc.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-10-24">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and their total sum for the Pediatric Surgery Research Collaborative (PedSRC) rule for blunt abdominal trauma.">
+			keywords = <"PedSRC","pediatric","surgery","research","collaborative","rule","blunt","abdominal","trauma">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and their total sum for the Pediatric Surgery Research Collaborative (PedSRC) rule for blunt abdominal trauma.">
+			misuse = <"Not to be used for recording information related to other pediatric blunt abdominal trauma rules.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Streck CJ, Vogel AM, Zhang J, Huang EY, Santore MT, Tsao K, Falcone RA, Dassinger MS, Russell RT, Blakely ML; Pediatric Surgery Research Collaborative. Identifying Children at Very Low Risk for Blunt Intra-Abdominal Injury in Whom CT of the Abdomen Can Be Avoided Safely. J Am Coll Surg. 2017 Apr;224(4):449-458.e3. doi: 10.1016/j.jamcollsurg.2016.12.041. Epub 2017 Jan 24. PMID: 28130170.">
+		["build_uid"] = <"622daea5-94b2-4002-ba36-bbc3f3b240c5">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Pediatric Surgery Research Collaborative (PedSRC) Rule for Blunt Abdominal Trauma
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- AST >200 U/L
+										value matches {
+											0|[local::at0007],
+											1|[local::at0008]
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Abdominal wall trauma, distension, or tenderness on exam
+										value matches {
+											0|[local::at0010],
+											1|[local::at0011]
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Abnormal chest X-ray
+										value matches {
+											0|[local::at0013],
+											1|[local::at0014]
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Complaint of abdominal pain
+										value matches {
+											0|[local::at0016],
+											1|[local::at0017]
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Abnormal amylase or lipase
+										value matches {
+											0|[local::at0019],
+											1|[local::at0020]
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Pediatric Surgery Research Collaborative (PedSRC) Rule for Blunt Abdominal Trauma">
+					description = <"An assessment score used to identify pediatric patients (<16 years) at very low risk of intra-abdominal injury after blunt abdominal trauma.">
+					comment = <"Original version, c 2017">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"AST >200 U/L">
+					description = <"Aspartate Aminotransferase">
+				>
+				["at0007"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Abdominal wall trauma, distension, or tenderness on exam">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Abnormal chest X-ray">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Complaint of abdominal pain">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Abnormal amylase or lipase">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Total score">
+					description = <"The total sum of each component parameter for the Pediatric Surgery Research Collaborative (PedSRC) Rule for Blunt Abdominal Trauma.">
+				>
+			>
+		>
+	>
