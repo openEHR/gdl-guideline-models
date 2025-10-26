@@ -1,0 +1,144 @@
+archetype (adl_version=1.4; uid=539a8252-1305-4d65-b052-d2fd3352da07)
+	openEHR-EHR-OBSERVATION.score4_archetype.v1
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-10-23">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Predict the 10-year risk of a cardiovascular event.">
+			keywords = <"heart diseases, cardiovascular diseases, risk prediction,", ...>
+			use = <"People aged 40-69 without preexisting Diabetes or Cardiovascular disease. Applies only to these countries classified as moderate risk: Austria, Cyprus, Finland, Germany, Greece, Iceland, Ireland, Italy, Malta, Portugal, San Marino, Slovenia, and Sweden">
+			misuse = <"People younger than 40 years old or older than 70 years. Existing conditions like Diabetes, Chronic Kidney Disease, Coronary Artery Disease Countries classified as low, hig risk or very high risk">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"a334a242066fc99a5ea461648c2cba0f">
+		["build_uid"] = <"31278ac3-b4c8-310b-aab5-294369543c3d">
+		["references"] = <"1. Visseren F, Mach F, Smulders YM, Carballo D, Koskinas KC, Bäck M, et al. 2021 ESC Guidelines on cardiovascular disease prevention in clinical practice. Eur Heart J. 2021;42(34):3227–337. doi:10.1093/eurheartj/ehab484 2. MDCalc - Medical calculators, equations, scores, and guidelines [Internet]. [cited 2025 Oct 14]. Available from: mdcalc.com 3. SCORE2 working group, ESC Cardiovascular risk collaboration. SCORE2 risk prediction algorithms: new models to estimate 10-year risk of cardiovascular disease in Europe. Eur Heart J. 2021 Jul 1;42(25):2439-2454. doi: 10.1093/eurheartj/ehab309.">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Systematic Coronary Risk Evaluation 2 (SCORE2)
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Cigarrete smoking
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0006,    -- Yes
+													at0007]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- 10 year risk score
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"%">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Interpretation
+										value matches {
+											1|[local::at0010],
+											2|[local::at0011],
+											3|[local::at0012]
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Systematic Coronary Risk Evaluation 2 (SCORE2)">
+					description = <"SCORE2 (Systematic Coronary Risk Evaluation 2) is an advanced cardiovascular risk prediction algorithm developed to estimate the 10-year probability of both fatal and non-fatal cardiovascular disease (CVD) events. It is specifically designed for use in individuals aged 40 to 69 years who do not have pre-existing cardiovascular conditions or diabetes. This archetype only includes cigarrete smoking, 10 year risk and interpretation (low to moderate risk, high risk and very high risk) of the score. To build the complete template, other archetypes were used. ">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Cigarrete smoking">
+					description = <"Statement about current smoking behaviour ">
+				>
+				["at0006"] = <
+					text = <"Yes">
+					description = <"Smoking">
+				>
+				["at0007"] = <
+					text = <"No">
+					description = <"Non smoking">
+				>
+				["at0008"] = <
+					text = <"10 year risk score">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Interpretation">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Low to moderate risk">
+					description = <"<2.5% in patients <50 years old and <5% in patients between 50-69 years old">
+				>
+				["at0011"] = <
+					text = <"High risk">
+					description = <"2.5% to <7.5% in patients <50 years old and 5 to <10% in patients between 50-69 years old">
+				>
+				["at0012"] = <
+					text = <"Very high risk">
+					description = <"≥7.5% in patients <50 years old and >10% in patients between 50-69 years old">
+				>
+			>
+		>
+	>
