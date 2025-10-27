@@ -15,6 +15,7 @@ description
 		["email"] = <"aurelia.maria.ozora@cambio.se">
 	>
 	lifecycle_state = <"in_development">
+	other_contributors = <"Katja Mariko Wilde", ...>
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
@@ -25,7 +26,6 @@ description
 		>
 	>
 	other_details = <
-		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
 		["custodian_organisation"] = <"openEHR Foundation">
 		["references"] = <"Clayton PA, McDonald SP, Snyder JJ, Salkowski N, Chadban SJ. External validation of the estimated posttransplant survival score for allocation of deceased donor kidneys in the United States. Am J Transplant. 2014 Aug;14(8):1922-6. doi: 10.1111/ajt.12761. Epub 2014 Jun 5. PMID: 24903739.
 
@@ -33,7 +33,7 @@ Organ Procurement and Transplantation Network. A guide to calculating and interp
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"408d2cf02bd1aa434a9230d35040e7b9">
+		["MD5-CAM-1.0.1"] = <"3038b1aa7dc7dc26801a138d1e50d578">
 		["build_uid"] = <"cce728c7-c755-3c94-ba1f-41cb89061da4">
 		["revision"] = <"0">
 	>
@@ -63,7 +63,9 @@ definition
 									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Diabetes status
 										value matches {
 											0|[local::at0012],
-											1|[local::at0013]
+											1|[local::at0013],
+											1|[local::at0020],
+											1|[local::at0021]
 										}
 									}
 									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Prior solid organ transplant
@@ -103,9 +105,31 @@ definition
 											>
 										}
 									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {    -- Duration of dialysis
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"a">
+													>
+												>
+											>
+										}
+									}
 								}
 							}
 						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0018] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0022] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
 					}
 				}
 			}
@@ -118,7 +142,8 @@ ontology
 			items = <
 				["at0000"] = <
 					text = <"Estimated Post Transplant Survival Score">
-					description = <"Estimated Post Transplant Survival Score">
+					description = <"An assessment score used to estimate the expected survival of kidney transplant candidates based on age, diabetes status, prior organ transplants, and dialysis history.">
+					comment = <"Original version, c 2014">
 				>
 				["at0001"] = <
 					text = <"History">
@@ -126,7 +151,7 @@ ontology
 				>
 				["at0002"] = <
 					text = <"Any event">
-					description = <"@ internal @">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
 				>
 				["at0003"] = <
 					text = <"Tree">
@@ -161,19 +186,19 @@ ontology
 					description = <"The percentage derived from the raw EPTS score based on the EPTS Mapping Table.">
 				>
 				["at0012"] = <
-					text = <"No">
+					text = <"None">
 					description = <"">
 				>
 				["at0013"] = <
-					text = <"Yes">
+					text = <"Type I diabetes">
 					description = <"">
 				>
 				["at0014"] = <
-					text = <"No">
+					text = <"None">
 					description = <"">
 				>
 				["at0015"] = <
-					text = <"Yes">
+					text = <"One or more">
 					description = <"">
 				>
 				["at0016"] = <
@@ -183,6 +208,27 @@ ontology
 				["at0017"] = <
 					text = <"Yes">
 					description = <"">
+				>
+				["at0018"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0019"] = <
+					text = <"Duration of dialysis">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Type II diabetes">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Other type">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
 				>
 			>
 		>
