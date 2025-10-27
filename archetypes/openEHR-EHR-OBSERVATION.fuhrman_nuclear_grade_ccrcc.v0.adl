@@ -1,0 +1,223 @@
+archetype (adl_version=1.4; uid=a1bd6a43-38a1-437d-8b8c-bcad23db56bb)
+	openEHR-EHR-OBSERVATION.fuhrman_nuclear_grade_ccrcc.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-10-27">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and the assigned Fuhrman Nuclear Grade for patients with clear cell renal cell carcinoma.">
+			keywords = <"fuhrman","nuclear","grade","renal","carcinoma","clear cell","pathology","prognosis">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and the assigned Fuhrman Nuclear Grade for patients with clear cell renal cell carcinoma.">
+			misuse = <"Not to be used for recording information regarding other renal carcinoma grading systems.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Fuhrman SA, Lasky LC, Limas C. Prognostic significance of morphologic parameters in renal cell carcinoma. Am J Surg Pathol. 1982 Oct;6(7):655-63. doi: 10.1097/00000478-198210000-00007. PMID: 7180965.">
+		["build_uid"] = <"a8dd1b76-cecf-47d1-97ee-424140401baf">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Fuhrman Nuclear Grade for Clear Cell Renal Carcinoma
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Nuclear diameter
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0008,    -- Small (~10µm)
+													at0009,    -- Larger (~15µm)
+													at0010]    -- Even larger (~20µm)
+												}
+											}
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Nuclear shape
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012,    -- Round, uniform
+													at0013,    -- Irregularities in outline
+													at0014]    -- Obvious irregular outline
+												}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Nucleoli
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0016,    -- Absent, inconspicuous
+													at0017,    -- Visible at x400
+													at0018]    -- Prominent at x100
+												}
+											}
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {    -- Bizarre often multilobed nuclei and/or spindle cells
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {    -- Fuhrman Nuclear Grade
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0021,    -- Grade I
+													at0022,    -- Grade II
+													at0023,    -- Grade III
+													at0025]    -- Grade IV
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Fuhrman Nuclear Grade for Clear Cell Renal Carcinoma">
+					description = <"A histopathological grading system used to classify the nuclear features of clear cell renal cell carcinoma (ccRCC) cells, providing prognostic information based on cellular morphology.">
+					comment = <"Original version, c 1982">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0007"] = <
+					text = <"Nuclear diameter">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Small (~10µm)">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Larger (~15µm)">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Even larger (~20µm)">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Nuclear shape">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Round, uniform">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Irregularities in outline">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Obvious irregular outline">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Nucleoli">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Absent, inconspicuous">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Visible at x400">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Prominent at x100">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Bizarre often multilobed nuclei and/or spindle cells">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Fuhrman Nuclear Grade">
+					description = <"Overall Fuhrman grade (1–4) assigned according to nuclear morphology.">
+				>
+				["at0021"] = <
+					text = <"Grade I">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Grade II">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Grade III">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Grade IV">
+					description = <"">
+				>
+			>
+		>
+	>
