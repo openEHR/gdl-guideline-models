@@ -1,0 +1,148 @@
+{
+  "uuid" : "",
+  "id" : "Fuhrman_Nuclear_Grade_for_Clear_Cell_Renal_Carcinoma.v0",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Mahmoud Elachi",
+      "email" : "mahmoud.el-achi@cambio.se",
+      "organisation" : "Cambio"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "en" : "draft"
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0010" : {
+        "id" : "gt0010",
+        "model_id" : "openEHR-EHR-OBSERVATION.fuhrman_nuclear_grade.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.fuhrman_nuclear_grade.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0011" : {
+            "id" : "gt0011",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "1|local::at0018",
+              "2|local::at0019",
+              "3|local::at0020"
+            ]
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0010]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "1|local::at0021",
+              "2|local::at0022",
+              "3|local::at0023"
+            ]
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0014]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "1|local::at0024",
+              "2|local::at0025",
+              "3|local::at0026"
+            ]
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0027]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "1|local::at0028",
+              "2|local::at0029"
+            ]
+          }
+        }
+      },
+      "gt0015" : {
+        "id" : "gt0015",
+        "model_id" : "openEHR-EHR-OBSERVATION.fuhrman_nuclear_grade.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.fuhrman_nuclear_grade.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0016" : {
+            "id" : "gt0016",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0030]",
+            "data_type" : "DV_ORDINAL"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0009" : {
+        "id" : "gt0009",
+        "priority" : 1,
+        "when" : [
+          "$gt0011|Nuclear diameter|.value==1"
+        ],
+        "then" : [
+          "$gt0016|Final results|=1|local::at0031|Grade 1|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Fuhrman Nuclear Grade for Clear Cell Renal Carcinoma"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Grade 1: rule",
+            "description" : "The nuclei of the tumor cells are small (< 10 µm), hyperchromatic, and round (resembling mature lymphocytes), with no visible nucleoli and little detail in the chromatin, as shown in the image below."
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "openEHR-EHR-OBSERVATION.fuhrman_nuclear_grade.v0"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Nuclear diameter"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Nuclear shape"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Nucleoli"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Bizarre often multilobed nuclei and/or spindle cells"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "openEHR-EHR-OBSERVATION.fuhrman_nuclear_grade.v0"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "Final results"
+          }
+        }
+      }
+    }
+  }
+}
