@@ -1,0 +1,199 @@
+archetype (adl_version=1.4; uid=b607d3d5-d032-4a7d-892a-2846511b0606)
+	openEHR-EHR-EVALUATION.bclc_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-10-23">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Records the clinical conclusions derived from the BCLC staging system.
+">
+			keywords = <"bclc, hcc, liver, cancer, staging, assessment, evaluation, prognosis, treatment, plan", ...>
+			copyright = <"© Cambio CDS">
+			use = <" Use in patients with a confirmed diagnosis of hepatocellular carcinoma (HCC) to determine the stage of the disease and guide the initial treatment strategy.">
+			misuse = <"Not to be used for recording the input parameters for the BCLC calculation (use OBSERVATION.bclc.v0 for that). Not to be used for staging other types of cancer. Not to be used for the initial diagnosis of HCC; use EVALUATION.problem_diagnosis.v1 for that.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Llovet JM, Brú C, Bruix J. Prognosis of hepatocellular carcinoma: the BCLC staging classification. Semin Liver Dis. 1999;19(3):329-38. doi: 10.1055/s-2007-1007122. PMID: 10518312.
+
+Reig M, Forner A, Rimola J, Ferrer-Fàbrega J, Burrel M, Garcia-Criado Á, Kelley RK, Galle PR, Mazzaferro V, Salem R, Sangro B, Singal AG, Vogel A, Fuster J, Ayuso C, Bruix J. BCLC strategy for prognosis prediction and treatment recommendation: The 2022 update. J Hepatol. 2022 Mar;76(3):681-693. doi: 10.1016/j.jhep.2021.11.018. Epub 2021 Nov 19. PMID: 34801630; PMCID: PMC8866082.">
+		["build_uid"] = <"12a5408f-78c4-3660-a408-8fe9672cfd6f">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- bclc assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0005] occurrences matches {0..1} matches {    -- Prognosis
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0006,    -- Stage 0 : Very early stage
+									at0007,    -- Stage A : Early stage
+									at0008,    -- Stage B : Intermediate stage
+									at0009,    -- Stage C : Advanced stage
+									at0010]    -- Stage D : Terminal stage
+								}
+							}
+						}
+					}
+					ELEMENT[at0011] occurrences matches {0..1} matches {    -- Treatment
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0012,    -- Best supportive care (BSC)
+									at0013,    -- Systemic treatment
+									at0014,    -- Transarterial chemoembolisation (TACE)
+									at0015,    -- Transplant
+									at0016,    -- Ablation
+									at0017]    -- Resection
+								}
+							}
+						}
+					}
+					ELEMENT[at0018] occurrences matches {0..1} matches {    -- Survival
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0019,    -- > 5 years
+									at0020,    -- > 2.5 years
+									at0021,    -- > 2 years
+									at0022]    -- 3 months
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"bclc assessment">
+					description = <"Records a formal clinical assessment of the Barcelona-Clinic Liver Cancer (BCLC) stage, the resulting prognosis, and the recommended treatment plan for a patient with hepatocellular carcinoma (HCC).">
+					comment = <"Original version, c 1999">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Prognosis">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Stage 0 : Very early stage">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Stage A : Early stage">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Stage B : Intermediate stage">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Stage C : Advanced stage">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Stage D : Terminal stage">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Treatment">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Best supportive care (BSC)">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Systemic treatment">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Transarterial chemoembolisation (TACE)">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Transplant">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Ablation">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Resection">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Survival">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"> 5 years">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"> 2.5 years">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"> 2 years">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"3 months">
+					description = <"">
+				>
+			>
+		>
+	>
