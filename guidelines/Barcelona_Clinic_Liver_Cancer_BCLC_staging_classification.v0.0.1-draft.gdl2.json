@@ -1,0 +1,240 @@
+{
+  "uuid" : "",
+  "id" : "Barcelona_Clinic_Liver_Cancer_BCLC_staging_classification.v0.0.1-draft",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Kevin Arjona",
+      "email" : "kevin.arjona@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2025-10-24"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To assess the BCLC stage and determine the corresponding treatment recommendation.",
+        "keywords" : [
+          "bclc",
+          "hcc",
+          "liver",
+          "cancer",
+          "staging",
+          "hepatocellular",
+          "carcinoma",
+          "child-pugh",
+          "ecog"
+        ],
+        "use" : "To be used in patients with hepatocellular carcinoma (HCC). ",
+        "misuse" : "Not applicable if the required input data from the archetype is missing.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "en" : "Assesses the BCLC stage and determines the corresponding treatment recommendation based on the BCLC algorithm."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.bclc.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.bclc.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0007",
+              "local::at0008",
+              "local::at0009",
+              "local::at0010"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0011]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0012",
+              "local::at0013"
+            ]
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0014]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0015",
+              "local::at0016",
+              "local::at0017"
+            ]
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0018]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0019",
+              "local::at0020"
+            ]
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0021]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0022",
+              "local::at0023"
+            ]
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0024]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0025",
+              "local::at0026"
+            ]
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0027]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0028",
+              "local::at0029"
+            ]
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0030]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0031",
+              "local::at0032",
+              "local::at0033"
+            ]
+          }
+        }
+      },
+      "gt0011" : {
+        "id" : "gt0011",
+        "model_id" : "openEHR-EHR-EVALUATION.bclc_assessment.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.bclc_assessment.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0012" : {
+            "id" : "gt0012",
+            "path" : "/data[at0003]/items[at0005]",
+            "data_type" : "DV_CODED_TEXT"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "path" : "/data[at0003]/items[at0011]",
+            "data_type" : "DV_CODED_TEXT"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "path" : "/data[at0003]/items[at0018]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0015" : {
+        "id" : "gt0015",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|Nodule|==local::at0007|Single ≤2 cm|",
+          "$gt0004|Liver function|==local::at0012|Preserved liver function|",
+          "$gt0005|ECOG performance status|==local::at0015|0|",
+          "$gt0006|Potential candidate for liver transplantion|==local::at0020|No|"
+        ],
+        "then" : [
+          "$gt0012|Prognosis|=local::at0006|Stage 0 : Very early stage|",
+          "$gt0013|Treatment|=local::at0016|Ablation|",
+          "$gt0014|Survival|=local::at0019|> 5 years|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Barcelona-Clinic Liver Cancer (BCLC) staging classification",
+            "description" : "Assesses the BCLC stage and determines the corresponding treatment recommendation based on the BCLC algorithm."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.bclc.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Nodule"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Liver function"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "ECOG performance status"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "Potential candidate for liver transplantion"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Portal pressure, bilirubin"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Contraindications to liver transplantation"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Number of nodules"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "HCC characteristics"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "openEHR-EHR-EVALUATION.bclc_assessment.v0"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Prognosis"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Treatment"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Survival"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "Set to stage 0",
+            "description" : "stage 0,  treatment with ablation, suvirval >5 years"
+          }
+        }
+      }
+    }
+  }
+}
