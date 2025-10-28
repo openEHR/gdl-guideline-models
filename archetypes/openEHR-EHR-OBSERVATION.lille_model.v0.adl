@@ -1,0 +1,129 @@
+archetype (adl_version=1.4; uid=b58c7ccd-eea0-472a-b8aa-b326652758c1)
+	openEHR-EHR-OBSERVATION.lille_model.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-10-28">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and the calculated Lille model score.">
+			keywords = <"lille","model","alcoholic","hepatitis","albumin","bilirubin","creatinine","pt","mortality">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and the calculated Lille model score.">
+			misuse = <"Not to be used for recording information related to other alcoholic hepatitis prognostic scores. Not to be used for recording laboratory analyte results (e.g., albumin, bilirubin, creatinine, PT). Use instead openEHR-EHR-OBSERVATION.laboratory_test_result.v1 with CLUSTER.laboratory_test_analyte.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Louvet A, Naveau S, Abdelnour M, Ramond MJ, Diaz E, Fartoux L, Dharancy S, Texier F, Hollebecque A, Serfaty L, Boleslawski E, Deltenre P, Canva V, Pruvot FR, Mathurin P. The Lille model: a new tool for therapeutic strategy in patients with severe alcoholic hepatitis treated with steroids. Hepatology. 2007 Jun;45(6):1348-54. doi: 10.1002/hep.21607. PMID: 17518367.">
+		["build_uid"] = <"b87e544e-80bb-40fd-ba11-284fc190f1b6">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Lille Model for Alcoholic Hepatitis
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Age
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"a">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Lille model score
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"1">
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Lille Model for Alcoholic Hepatitis">
+					description = <"An assessment score used to predict 6-month mortality in patients with alcoholic hepatitis who have not responded to steroid therapy after 7 days.">
+					comment = <"Original version, c 2007">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Age">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Lille model score">
+					description = <"The total score based on each component parameter for the Lille Model for Alcoholic Hepatitis.">
+				>
+			>
+		>
+	>
