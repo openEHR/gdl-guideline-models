@@ -1,0 +1,235 @@
+archetype (adl_version=1.4; uid=cb73bfde-0fdd-4c11-8365-f9e4bcc8d7a3)
+	openEHR-EHR-OBSERVATION.fuhrman_nuclear_grade_ccrc.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-10-23">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"a72a0769ce2ac1ce7dfd1b31f2da2be9">
+		["build_uid"] = <"79f7214e-fa3b-392f-a694-437416a021f1">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- fuhrman_nuclear_grade_ccrc
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Nuclear diameter
+										value matches {
+											1|[local::at0018],
+											2|[local::at0019],
+											3|[local::at0020]
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Nuclear shape
+										value matches {
+											1|[local::at0021],
+											2|[local::at0022],
+											3|[local::at0023]
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Nucleoli
+										value matches {
+											1|[local::at0024],
+											2|[local::at0025],
+											3|[local::at0026]
+										}
+									}
+									ELEMENT[at0027] occurrences matches {0..1} matches {    -- Bizarre often multilobed nuclei and/or spindle cells
+										value matches {
+											1|[local::at0028],
+											2|[local::at0029]
+										}
+									}
+									ELEMENT[at0030] occurrences matches {0..1} matches {    -- Final results
+										value matches {
+											1|[local::at0031],
+											2|[local::at0032],
+											3|[local::at0033],
+											4|[local::at0034]
+										}
+									}
+									ELEMENT[at0035] occurrences matches {0..1} matches {    -- Comments
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0036,    -- 96% Survival
+													at0037,    -- 84% Survival
+													at0038,    -- 59% Survival
+													at0039]    -- 31% Survival
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					CLUSTER[at0005] occurrences matches {0..1} matches {*}    -- Extension
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"fuhrman_nuclear_grade_ccrc">
+					description = <"The Fuhrman Nuclear Grade is a pathology component of renal cell cancers and an independent predictor of cancer-specific survival. Virtually all data are from chart or database reviews and predate modern targeted therapies, but typically worsening nuclear grade correlates with worsening prognosis.">
+					comment = <"Original version, c 1982">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Nuclear diameter">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Nuclear shape">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Nucleoli">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Small (~10µm)">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Larger (~15µm)">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Even larger (~20µm)">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Round, uniform">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Irregularities in outline">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Obvious irregular outline">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Absent, inconspicuous">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Visible at x400">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Prominent at x100">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Bizarre often multilobed nuclei and/or spindle cells">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Final results">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Grade 1">
+					description = <"The nuclei of the tumor cells are small (< 10 µm), hyperchromatic, and round (resembling mature lymphocytes), with no visible nucleoli and little detail in the chromatin, as shown in the image below.">
+				>
+				["at0032"] = <
+					text = <"Grade 2">
+					description = <"Using the 10× objective, the nuclei of the tumor cells are slightly larger (15 µm) with finely granular “open” chromatin but small, inconspicuous nucleoli (see the following image). The nucleoli are often present, and many appear as small chromocenters at 10× objective, with confirmation of their nature at higher power, but this does not count.">
+				>
+				["at0033"] = <
+					text = <"Grade 3">
+					description = <"Using the 10× objective, the nuclei of the tumor cells are larger (20 µm in size) and may be oval in shape, with coarsely granular chromatin (see the image below). The nucleoli are easily unequivocally recognizable.">
+				>
+				["at0034"] = <
+					text = <"Grade 4">
+					description = <"The nuclei are pleomorphic with open chromatin or hyperchromatic and single or multiple macronucleoli.">
+				>
+				["at0035"] = <
+					text = <"Comments">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"96% Survival">
+					description = <"Per Original Study: Tumors classified as Nuclear Grade 1 did not metastasize for at least 5 years.">
+				>
+				["at0037"] = <
+					text = <"84% Survival">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"59% Survival">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"31% Survival">
+					description = <"">
+				>
+			>
+		>
+	>
