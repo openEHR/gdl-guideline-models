@@ -1,0 +1,308 @@
+archetype (adl_version=1.4; uid=c56d2671-3d73-4c43-ab8f-b0615471415c)
+	openEHR-EHR-OBSERVATION.bclc.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-10-22">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the input parameters (performance status, liver function, tumor burden) and the resulting BCLC stage and treatment recommendation.">
+			keywords = <"bclc, hcc, liver, cancer, staging, hepatocellular, carcinoma, child-pugh, ecog.", ...>
+			copyright = <"© Cambio CDS">
+			use = <" Use in patients with a confirmed diagnosis of hepatocellular carcinoma (HCC) to determine the stage of the disease and guide the initial treatment strategy.">
+			misuse = <"Not to be used for other types of liver cancer (e.g., cholangiocarcinoma, metastases).  
+
+Individual data points should not be stored solely within this archetype; use dedicated archetypes such as openEHR-EHR-OBSERVATION.child_pugh_score.v0 for liver function, openEHR-EHR-OBSERVATION.ecog_performance_status.v0 for performance status, and openEHR-EHR-OBSERVATION.imaging_exam_result.v1 for detailed tumor characteristics.
+">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Llovet JM, Brú C, Bruix J. Prognosis of hepatocellular carcinoma: the BCLC staging classification. Semin Liver Dis. 1999;19(3):329-38. doi: 10.1055/s-2007-1007122. PMID: 10518312.
+
+Reig M, Forner A, Rimola J, Ferrer-Fàbrega J, Burrel M, Garcia-Criado Á, Kelley RK, Galle PR, Mazzaferro V, Salem R, Sangro B, Singal AG, Vogel A, Fuster J, Ayuso C, Bruix J. BCLC strategy for prognosis prediction and treatment recommendation: The 2022 update. J Hepatol. 2022 Mar;76(3):681-693. doi: 10.1016/j.jhep.2021.11.018. Epub 2021 Nov 19. PMID: 34801630; PMCID: PMC8866082.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"348ae4d14054682866e040f5b126db89">
+		["build_uid"] = <"b5beaa68-d122-3508-821a-142998c2ff24">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Barcelona-Clinic Liver Cancer (BCLC) Staging Classification
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Nodule
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- Single ≤2 cm
+													at0008,    -- Single, or ≤3 nodules each ≤3cm
+													at0009,    -- Multinodular
+													at0010]    -- Portal invasion and/or extrahepatic spread
+												}
+											}
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Liver function
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012,    -- Preserved liver function
+													at0013]    -- End stage liver function
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- ECOG performance status
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0015,    -- 0
+													at0016,    -- 1-2
+													at0017]    -- 3-4
+												}
+											}
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Potential candidate for liver transplantion
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0019,    -- Yes
+													at0020]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- Portal pressure, bilirubin
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0022,    -- Normal
+													at0023]    -- Increased
+												}
+											}
+										}
+									}
+									ELEMENT[at0024] occurrences matches {0..1} matches {    -- Contraindications to liver transplantation
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0025,    -- Yes
+													at0026]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0027] occurrences matches {0..1} matches {    -- Number of nodules
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0028,    -- Single
+													at0029]    -- ≤3 nodules, each ≤3cm
+												}
+											}
+										}
+									}
+									ELEMENT[at0030] occurrences matches {0..1} matches {    -- HCC characteristics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0031,    -- Extended liver transplant criteria (size, AFP)
+													at0032,    -- Well defined nodules, preserved portal flow, selective access
+													at0033]    -- Diffuse, infiltrative, extensive bilobar liver involvement
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Barcelona-Clinic Liver Cancer (BCLC) Staging Classification">
+					description = <"Records the clinical parameters required to determine the Barcelona-Clinic Liver Cancer (BCLC) stage for patients with hepatocellular carcinoma (HCC).">
+					comment = <"Original version, c 1999">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Nodule">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Single ≤2 cm">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Single, or ≤3 nodules each ≤3cm">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Multinodular">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Portal invasion and/or extrahepatic spread">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Liver function">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Preserved liver function">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"End stage liver function">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"ECOG performance status">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"0">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"1-2">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"3-4">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Potential candidate for liver transplantion">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Portal pressure, bilirubin">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Normal">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Increased">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Contraindications to liver transplantation">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Number of nodules">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Single">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"≤3 nodules, each ≤3cm">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"HCC characteristics">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Extended liver transplant criteria (size, AFP)">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Well defined nodules, preserved portal flow, selective access">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Diffuse, infiltrative, extensive bilobar liver involvement">
+					description = <"">
+				>
+			>
+		>
+	>
