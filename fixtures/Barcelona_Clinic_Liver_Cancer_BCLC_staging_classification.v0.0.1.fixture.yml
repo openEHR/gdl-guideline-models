@@ -1,0 +1,301 @@
+guidelines:
+  "1": Barcelona_Clinic_Liver_Cancer_BCLC_staging_classification.v0.0.1
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Nodule missing (negative test).
+    input:
+      "1":
+        gt0004|Liver function: local::at0012|Preserved liver function|
+        gt0005|ECOG performance status: local::at0015|0|
+        gt0006|Potential candidate for liver transplantion: local::at0020|No|
+        "gt0007|Portal pressure, bilirubin": local::at0022|Normal|
+        gt0008|Contraindications to liver transplantation: local::at0025|Yes|
+        gt0009|Number of nodules: local::at0028|Single|
+        gt0010|HCC characteristics: local::at0031|Extended liver transplant criteria (size, AFP)|
+    expected_output:
+      "1": {}
+  - id: 03. Liver function missing (negative test).
+    input:
+      "1":
+        gt0003|Nodule: local::at0007|Single ≤2 cm|
+        gt0005|ECOG performance status: local::at0015|0|
+        gt0006|Potential candidate for liver transplantion: local::at0020|No|
+        "gt0007|Portal pressure, bilirubin": local::at0022|Normal|
+        gt0008|Contraindications to liver transplantation: local::at0025|Yes|
+        gt0009|Number of nodules: local::at0028|Single|
+        gt0010|HCC characteristics: local::at0031|Extended liver transplant criteria (size, AFP)|
+    expected_output:
+      "1": {}
+  - id: 04. ECOG performance status missing (negative test).
+    input:
+      "1":
+        gt0003|Nodule: local::at0007|Single ≤2 cm|
+        gt0004|Liver function: local::at0012|Preserved liver function|
+        gt0006|Potential candidate for liver transplantion: local::at0020|No|
+        "gt0007|Portal pressure, bilirubin": local::at0022|Normal|
+        gt0008|Contraindications to liver transplantation: local::at0025|Yes|
+        gt0009|Number of nodules: local::at0028|Single|
+        gt0010|HCC characteristics: local::at0031|Extended liver transplant criteria (size, AFP)|
+    expected_output:
+      "1": {}
+  - id: 05. Potential candidate for liver transplantion missing (negative test).
+    input:
+      "1":
+        gt0003|Nodule: local::at0007|Single ≤2 cm|
+        gt0004|Liver function: local::at0012|Preserved liver function|
+        gt0005|ECOG performance status: local::at0015|0|
+        "gt0007|Portal pressure, bilirubin": local::at0022|Normal|
+        gt0008|Contraindications to liver transplantation: local::at0025|Yes|
+        gt0009|Number of nodules: local::at0028|Single|
+        gt0010|HCC characteristics: local::at0031|Extended liver transplant criteria (size, AFP)|
+    expected_output:
+      "1": {}
+  - id: 06. Portal pressure, bilirubin missing  (negative test).
+    input:
+      "1":
+        gt0003|Nodule: local::at0007|Single ≤2 cm|
+        gt0004|Liver function: local::at0012|Preserved liver function|
+        gt0005|ECOG performance status: local::at0015|0|
+        gt0006|Potential candidate for liver transplantion: local::at0019|Yes|
+        gt0008|Contraindications to liver transplantation: local::at0025|Yes|
+        gt0009|Number of nodules: local::at0028|Single|
+        gt0010|HCC characteristics: local::at0031|Extended liver transplant criteria (size, AFP)|
+    expected_output:
+      "1": {}
+  - id: 07. Contraindications to liver transplantation missing (negative test).
+    input:
+      "1":
+        gt0003|Nodule: local::at0007|Single ≤2 cm|
+        gt0004|Liver function: local::at0012|Preserved liver function|
+        gt0005|ECOG performance status: local::at0015|0|
+        gt0006|Potential candidate for liver transplantion: local::at0019|Yes|
+        "gt0007|Portal pressure, bilirubin": local::at0022|Normal|
+        gt0009|Number of nodules: local::at0028|Single|
+        gt0010|HCC characteristics: local::at0031|Extended liver transplant criteria (size, AFP)|
+    expected_output:
+      "1": {}
+  - id: 08. Number of nodules missing (negative test).
+    input:
+      "1":
+        gt0003|Nodule: local::at0007|Single ≤2 cm|
+        gt0004|Liver function: local::at0012|Preserved liver function|
+        gt0005|ECOG performance status: local::at0015|0|
+        gt0006|Potential candidate for liver transplantion: local::at0019|Yes|
+        "gt0007|Portal pressure, bilirubin": local::at0022|Normal|
+        gt0008|Contraindications to liver transplantation: local::at0026|No|
+        gt0010|HCC characteristics: local::at0031|Extended liver transplant criteria (size, AFP)|
+    expected_output:
+      "1": {}
+  - id: 09. HCC characteristics missing (negative test).
+    input:
+      "1":
+        gt0003|Nodule: local::at0007|Single ≤2 cm|
+        gt0004|Liver function: local::at0012|Preserved liver function|
+        gt0005|ECOG performance status: local::at0015|0|
+        gt0006|Potential candidate for liver transplantion: local::at0019|Yes|
+        "gt0007|Portal pressure, bilirubin": local::at0022|Normal|
+        gt0008|Contraindications to liver transplantation: local::at0026|No|
+        gt0009|Number of nodules: local::at0028|Single|
+    expected_output:
+      "1": {}
+  - id: 10. Set to stage 0, treatment with ablation.
+    input:
+      "1":
+        gt0003|Nodule: local::at0007|Single ≤2 cm|
+        gt0004|Liver function: local::at0012|Preserved liver function|
+        gt0005|ECOG performance status: local::at0015|0|
+        gt0006|Potential candidate for liver transplantion: local::at0020|No|
+        "gt0007|Portal pressure, bilirubin": local::at0022|Normal|
+        gt0008|Contraindications to liver transplantation: local::at0026|No|
+        gt0009|Number of nodules: local::at0028|Single|
+        gt0010|HCC characteristics: local::at0031|Extended liver transplant criteria (size, AFP)|
+    expected_output:
+      "1":
+        gt0012|Prognosis: "local::at0006|Stage 0 : Very early stage|"
+        gt0013|Treatment: local::at0016|Ablation|
+        gt0014|Survival: local::at0019|> 5 years|
+  - id: 11. Set to stage 0, treatment with resection.
+    input:
+      "1":
+        gt0003|Nodule: local::at0007|Single ≤2 cm|
+        gt0004|Liver function: local::at0012|Preserved liver function|
+        gt0005|ECOG performance status: local::at0015|0|
+        gt0006|Potential candidate for liver transplantion: local::at0019|Yes|
+        "gt0007|Portal pressure, bilirubin": local::at0022|Normal|
+        gt0008|Contraindications to liver transplantation: local::at0026|No|
+        gt0009|Number of nodules: local::at0028|Single|
+        gt0010|HCC characteristics: local::at0031|Extended liver transplant criteria (size, AFP)|
+    expected_output:
+      "1":
+        gt0012|Prognosis: "local::at0006|Stage 0 : Very early stage|"
+        gt0013|Treatment: local::at0017|Resection|
+        gt0014|Survival: local::at0019|> 5 years|
+  - id: 12. Set to stage A, treatment with resection.
+    input:
+      "1":
+        gt0003|Nodule: local::at0008|Single, or ≤3 nodules each ≤3cm|
+        gt0004|Liver function: local::at0012|Preserved liver function|
+        gt0005|ECOG performance status: local::at0015|0|
+        gt0006|Potential candidate for liver transplantion: local::at0019|Yes|
+        "gt0007|Portal pressure, bilirubin": local::at0022|Normal|
+        gt0008|Contraindications to liver transplantation: local::at0026|No|
+        gt0009|Number of nodules: local::at0028|Single|
+        gt0010|HCC characteristics: local::at0031|Extended liver transplant criteria (size, AFP)|
+    expected_output:
+      "1":
+        gt0012|Prognosis: "local::at0007|Stage A : Early stage|"
+        gt0013|Treatment: local::at0017|Resection|
+        gt0014|Survival: local::at0019|> 5 years|
+  - id: 13. Set to stage A, treatment with ablation.
+    input:
+      "1":
+        gt0003|Nodule: local::at0008|Single, or ≤3 nodules each ≤3cm|
+        gt0004|Liver function: local::at0012|Preserved liver function|
+        gt0005|ECOG performance status: local::at0015|0|
+        gt0006|Potential candidate for liver transplantion: local::at0019|Yes|
+        "gt0007|Portal pressure, bilirubin": local::at0023|Increased|
+        gt0008|Contraindications to liver transplantation: local::at0025|Yes|
+        gt0009|Number of nodules: local::at0028|Single|
+        gt0010|HCC characteristics: local::at0031|Extended liver transplant criteria (size, AFP)|
+    expected_output:
+      "1":
+        gt0012|Prognosis: "local::at0007|Stage A : Early stage|"
+        gt0013|Treatment: local::at0016|Ablation|
+        gt0014|Survival: local::at0019|> 5 years|
+  - id: 14. Set to stage A, treatment with transplant.
+    input:
+      "1":
+        gt0003|Nodule: local::at0008|Single, or ≤3 nodules each ≤3cm|
+        gt0004|Liver function: local::at0012|Preserved liver function|
+        gt0005|ECOG performance status: local::at0015|0|
+        gt0006|Potential candidate for liver transplantion: local::at0019|Yes|
+        "gt0007|Portal pressure, bilirubin": local::at0023|Increased|
+        gt0008|Contraindications to liver transplantation: local::at0026|No|
+        gt0009|Number of nodules: local::at0028|Single|
+        gt0010|HCC characteristics: local::at0033|Diffuse, infiltrative, extensive
+          bilobar liver involvement|
+    expected_output:
+      "1":
+        gt0012|Prognosis: "local::at0007|Stage A : Early stage|"
+        gt0013|Treatment: local::at0015|Transplant|
+        gt0014|Survival: local::at0019|> 5 years|
+  - id: 15. Set to stage A,< 3 nodules, treatment with ablation.
+    input:
+      "1":
+        gt0003|Nodule: local::at0008|Single, or ≤3 nodules each ≤3cm|
+        gt0004|Liver function: local::at0012|Preserved liver function|
+        gt0005|ECOG performance status: local::at0015|0|
+        gt0006|Potential candidate for liver transplantion: local::at0019|Yes|
+        "gt0007|Portal pressure, bilirubin": local::at0023|Increased|
+        gt0008|Contraindications to liver transplantation: local::at0025|Yes|
+        gt0009|Number of nodules: local::at0029|≤3 nodules, each ≤3cm|
+        gt0010|HCC characteristics: local::at0031|Extended liver transplant criteria (size, AFP)|
+    expected_output:
+      "1":
+        gt0012|Prognosis: "local::at0007|Stage A : Early stage|"
+        gt0013|Treatment: local::at0016|Ablation|
+        gt0014|Survival: local::at0019|> 5 years|
+  - id: 16. Set to stage A,< 3 nodules, treatment with transplant.
+    input:
+      "1":
+        gt0003|Nodule: local::at0008|Single, or ≤3 nodules each ≤3cm|
+        gt0004|Liver function: local::at0012|Preserved liver function|
+        gt0005|ECOG performance status: local::at0015|0|
+        gt0006|Potential candidate for liver transplantion: local::at0019|Yes|
+        "gt0007|Portal pressure, bilirubin": local::at0023|Increased|
+        gt0008|Contraindications to liver transplantation: local::at0026|No|
+        gt0009|Number of nodules: local::at0029|≤3 nodules, each ≤3cm|
+        gt0010|HCC characteristics: local::at0031|Extended liver transplant criteria (size, AFP)|
+    expected_output:
+      "1":
+        gt0012|Prognosis: "local::at0007|Stage A : Early stage|"
+        gt0013|Treatment: local::at0015|Transplant|
+        gt0014|Survival: local::at0019|> 5 years|
+  - id: 17. Set to stage B, treatment with transplant.
+    input:
+      "1":
+        gt0003|Nodule: local::at0009|Multinodular|
+        gt0004|Liver function: local::at0012|Preserved liver function|
+        gt0005|ECOG performance status: local::at0015|0|
+        gt0006|Potential candidate for liver transplantion: local::at0019|Yes|
+        "gt0007|Portal pressure, bilirubin": local::at0023|Increased|
+        gt0008|Contraindications to liver transplantation: local::at0026|No|
+        gt0009|Number of nodules: local::at0029|≤3 nodules, each ≤3cm|
+        gt0010|HCC characteristics: local::at0031|Extended liver transplant criteria (size, AFP)|
+    expected_output:
+      "1":
+        gt0012|Prognosis: "local::at0008|Stage B : Intermediate stage|"
+        gt0013|Treatment: local::at0015|Transplant|
+        gt0014|Survival: local::at0019|> 5 years|
+  - id: 18. Set to stage B, treatment with TACE.
+    input:
+      "1":
+        gt0003|Nodule: local::at0009|Multinodular|
+        gt0004|Liver function: local::at0012|Preserved liver function|
+        gt0005|ECOG performance status: local::at0015|0|
+        gt0006|Potential candidate for liver transplantion: local::at0019|Yes|
+        "gt0007|Portal pressure, bilirubin": local::at0023|Increased|
+        gt0008|Contraindications to liver transplantation: local::at0026|No|
+        gt0009|Number of nodules: local::at0029|≤3 nodules, each ≤3cm|
+        gt0010|HCC characteristics: local::at0032|Well defined nodules, preserved portal
+          flow, selective access|
+    expected_output:
+      "1":
+        gt0012|Prognosis: "local::at0008|Stage B : Intermediate stage|"
+        gt0013|Treatment: local::at0014|Transarterial chemoembolisation (TACE)|
+        gt0014|Survival: local::at0020|> 2.5 years|
+  - id: 19. Set to stage B, treatment with systemic treatment.
+    input:
+      "1":
+        gt0003|Nodule: local::at0009|Multinodular|
+        gt0004|Liver function: local::at0012|Preserved liver function|
+        gt0005|ECOG performance status: local::at0015|0|
+        gt0006|Potential candidate for liver transplantion: local::at0019|Yes|
+        "gt0007|Portal pressure, bilirubin": local::at0023|Increased|
+        gt0008|Contraindications to liver transplantation: local::at0026|No|
+        gt0009|Number of nodules: local::at0029|≤3 nodules, each ≤3cm|
+        gt0010|HCC characteristics: local::at0033|Diffuse, infiltrative, extensive
+          bilobar liver involvement|
+    expected_output:
+      "1":
+        gt0012|Prognosis: "local::at0008|Stage B : Intermediate stage|"
+        gt0013|Treatment: local::at0013|Systemic treatment|
+        gt0014|Survival: local::at0021|> 2 years|
+  - id: 20. Set to stage C, treatment with systemic treatment.
+    input:
+      "1":
+        gt0003|Nodule: local::at0010|Portal invasion and/or extrahepatic spread|
+        gt0004|Liver function: local::at0012|Preserved liver function|
+        gt0005|ECOG performance status: local::at0016|1-2|
+        gt0006|Potential candidate for liver transplantion: local::at0019|Yes|
+        "gt0007|Portal pressure, bilirubin": local::at0023|Increased|
+        gt0008|Contraindications to liver transplantation: local::at0026|No|
+        gt0009|Number of nodules: local::at0029|≤3 nodules, each ≤3cm|
+        gt0010|HCC characteristics: local::at0033|Diffuse, infiltrative, extensive
+          bilobar liver involvement|
+    expected_output:
+      "1":
+        gt0012|Prognosis: "local::at0009|Stage C : Advanced stage|"
+        gt0013|Treatment: local::at0013|Systemic treatment|
+        gt0014|Survival: local::at0021|> 2 years|
+  - id: 21. Set to stage D, treatment with BSC.
+    input:
+      "1":
+        gt0003|Nodule: local::at0009|Multinodular|
+        gt0004|Liver function: local::at0013|End stage liver function|
+        gt0005|ECOG performance status: local::at0017|3-4|
+        gt0006|Potential candidate for liver transplantion: local::at0019|Yes|
+        "gt0007|Portal pressure, bilirubin": local::at0023|Increased|
+        gt0008|Contraindications to liver transplantation: local::at0026|No|
+        gt0009|Number of nodules: local::at0029|≤3 nodules, each ≤3cm|
+        gt0010|HCC characteristics: local::at0033|Diffuse, infiltrative, extensive
+          bilobar liver involvement|
+    expected_output:
+      "1":
+        gt0012|Prognosis: "local::at0010|Stage D : Terminal stage|"
+        gt0013|Treatment: local::at0012|Best supportive care (BSC)|
+        gt0014|Survival: local::at0022|3 months|
