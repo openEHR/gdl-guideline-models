@@ -34,6 +34,7 @@ Alshemmari SH, Alsarraf A, Kunhikrishnan A, Pandita R. Evaluation of the CLL-IPI
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"c8bca75103efae14dbce3f5c01a0dad2">
 		["build_uid"] = <"33e2d4e7-2e97-381f-9dc1-95251f0e9fcd">
 	>
 
@@ -48,17 +49,35 @@ definition
 								items cardinality matches {0..*; unordered} matches {
 									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Unmutated IGHV genes
 										value matches {
-											DV_CODED_TEXT matches {*}
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0013,    -- Present
+													at0014]    -- Absent
+												}
+											}
 										}
 									}
 									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Absolute lymphocyte count >15×109/L
 										value matches {
-											DV_CODED_TEXT matches {*}
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0015,    -- Present
+													at0016]    -- Absent
+												}
+											}
 										}
 									}
 									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Palpable lymph nodes
 										value matches {
-											DV_CODED_TEXT matches {*}
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0017,    -- Present
+													at0018]    -- Absent
+												}
+											}
 										}
 									}
 									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Unmutated IGHV genes points
@@ -156,6 +175,30 @@ ontology
 					text = <"Extension">
 					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
 					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0013"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Absent">
+					description = <"">
 				>
 			>
 		>
