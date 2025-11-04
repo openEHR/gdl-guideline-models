@@ -80,16 +80,21 @@ definition
 											1|[local::at0017]
 										}
 									}
-									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Dialysis start date
+									ELEMENT[at0024] occurrences matches {0..1} matches {    -- Dialysis start date and time
 										value matches {
-											DV_DATE matches {
-												value matches {yyyy-mm-dd}
-											}
+											DV_DATE_TIME matches {*}
 										}
 									}
-									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Raw EPTS score
+									ELEMENT[at0025] occurrences matches {0..1} matches {    -- Raw EPTS score
 										value matches {
-											DV_COUNT matches {*}
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"1">
+													>
+												>
+											>
 										}
 									}
 									ELEMENT[at0011] occurrences matches {0..1} matches {    -- EPTS percentage
@@ -105,16 +110,9 @@ definition
 											>
 										}
 									}
-									ELEMENT[at0019] occurrences matches {0..1} matches {    -- Duration of dialysis
+									ELEMENT[at0023] occurrences matches {0..1} matches {    -- Duration of dialysis
 										value matches {
-											C_DV_QUANTITY <
-												property = <[openehr::128]>
-												list = <
-													["1"] = <
-														units = <"a">
-													>
-												>
-											>
+											DV_DURATION matches {*}
 										}
 									}
 								}
@@ -173,14 +171,6 @@ ontology
 					text = <"Routine dialysis status">
 					description = <"To record whether the patient needs routine dialysis.">
 				>
-				["at0009"] = <
-					text = <"Dialysis start date">
-					description = <"To record the first time the patient underwent dialysis if they do routine dialysis.">
-				>
-				["at0010"] = <
-					text = <"Raw EPTS score">
-					description = <"Formula for raw EPTS score = 0.047 x max (Age – 25, 0) + (-0.015) x Diabetes x max (Age – 25, 0) + 0.398 x Prior solid organ transplants + (-0.237) x Diabetes x Prior solid organ transplants + 0.315 x log(Years on dialysis + 1) + (-0.099) x Diabetes x log(Years on dialysis + 1) + 0.130 x (Years on dialysis = 0) + (-0.348) x Diabetes x (Years on dialysis = 0) + 1.262 x Diabetes">
-				>
 				["at0011"] = <
 					text = <"EPTS percentage">
 					description = <"The percentage derived from the raw EPTS score based on the EPTS Mapping Table.">
@@ -213,10 +203,6 @@ ontology
 					text = <"Item tree">
 					description = <"@ internal @">
 				>
-				["at0019"] = <
-					text = <"Duration of dialysis">
-					description = <"">
-				>
 				["at0020"] = <
 					text = <"Type II diabetes">
 					description = <"">
@@ -229,6 +215,18 @@ ontology
 					text = <"Extension">
 					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
 					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0023"] = <
+					text = <"Duration of dialysis">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Dialysis start date and time">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Raw EPTS score">
+					description = <"">
 				>
 			>
 		>
