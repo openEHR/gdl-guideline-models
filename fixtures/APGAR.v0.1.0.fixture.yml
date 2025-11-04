@@ -1,0 +1,89 @@
+guidelines:
+  "1": APGAR.v0.1.0
+test_cases:
+  - id: 01. Test no input
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. No output, Appearance missing (negative test)
+    input:
+      "1":
+        gt0004|Pulse: 1|local::at0007|<100 beats per minute|
+        gt0006|Grimace: 1|local::at0019|Reduced response|
+        gt0005|Activity: 1|local::at0015|Reduced tone|
+        gt0003|Respiratory effort: 1|local::at0011|Weak or irregular|
+    expected_output:
+      "1": {}
+  - id: 03. No output, Pulse missing (negative test)
+    input:
+      "1":
+        gt0007|Appearance: 1|local::at0023|Body pink; extremities blue|
+        gt0006|Grimace: 1|local::at0019|Reduced response|
+        gt0005|Activity: 1|local::at0015|Reduced tone|
+        gt0003|Respiratory effort: 1|local::at0011|Weak or irregular|
+    expected_output:
+      "1": {}
+  - id: 04. No output, Grimace missing (negative test)
+    input:
+      "1":
+        gt0007|Appearance: 1|local::at0023|Body pink; extremities blue|
+        gt0004|Pulse: 1|local::at0007|<100 beats per minute|
+        gt0005|Activity: 1|local::at0015|Reduced tone|
+        gt0003|Respiratory effort: 1|local::at0011|Weak or irregular|
+    expected_output:
+      "1": {}
+  - id: 05. No output, Activity missing (negative test)
+    input:
+      "1":
+        gt0007|Appearance: 1|local::at0023|Body pink; extremities blue|
+        gt0004|Pulse: 1|local::at0007|<100 beats per minute|
+        gt0006|Grimace: 1|local::at0019|Reduced response|
+        gt0003|Respiratory effort: 1|local::at0011|Weak or irregular|
+    expected_output:
+      "1": {}
+  - id: 06. No output, Respiratory effort missing (negative test)
+    input:
+      "1":
+        gt0007|Appearance: 1|local::at0023|Body pink; extremities blue|
+        gt0004|Pulse: 1|local::at0007|<100 beats per minute|
+        gt0006|Grimace: 1|local::at0019|Reduced response|
+        gt0005|Activity: 1|local::at0015|Reduced tone|
+    expected_output:
+      "1": {}
+  - id: 07.  APGAR 0, Critically low
+    input:
+      "1":
+        gt0007|Appearance: 0|local::at0022|Completely blue|
+        gt0004|Pulse: 0|local::at0006|Absent|
+        gt0006|Grimace: 0|local::at0018|No response|
+        gt0005|Activity: 0|local::at0014|Limp or flaccid|
+        gt0003|Respiratory effort: 0|local::at0010|Absent|
+    expected_output:
+      "1":
+        gt0009|Total score: "0"
+        gt0011|Apgar assessment: 2|local::at0005|Critically low, intervention required|
+  - id: 08.  APGAR 5, Moderately abnormal
+    input:
+      "1":
+        gt0007|Appearance: 1|local::at0023|Body pink; extremities blue|
+        gt0004|Pulse: 1|local::at0007|<100 beats per minute|
+        gt0006|Grimace: 1|local::at0019|Reduced response|
+        gt0005|Activity: 1|local::at0015|Reduced tone|
+        gt0003|Respiratory effort: 1|local::at0011|Weak or irregular|
+    expected_output:
+      "1":
+        gt0009|Total score: "5"
+        gt0011|Apgar assessment: 1|local::at0004|Moderately abnormal|
+  - id: 09.  APGAR 10, Normal
+    input:
+      "1":
+        gt0007|Appearance: 2|local::at0024|Completely pink|
+        gt0004|Pulse: 2|local::at0008|≥100 beats per minute|
+        gt0006|Grimace: 2|local::at0020|Normal response|
+        gt0005|Activity: 2|local::at0016|Normal tone|
+        gt0003|Respiratory effort: 2|local::at0012|Normal|
+    expected_output:
+      "1":
+        gt0009|Total score: "10"
+        gt0011|Apgar assessment: 0|local::at0003|Normal|
