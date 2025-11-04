@@ -1,0 +1,42 @@
+guidelines:
+  "1": BSA_dubois_calculation.v0.1.0
+test_cases:
+  - id: "Test case_01 : BSA metric"
+    input:
+      "1":
+        gt0003|Weight: 49,kg
+        gt0005|Height/Length: 154,cm
+    expected_output:
+      "1":
+        gt0007|Body Surface Area: 1.45,m2
+  - id: "Test case_02 : BSA metric"
+    input:
+      "1":
+        gt0003|Weight: 75,kg
+        gt0005|Height/Length: 185,cm
+    expected_output:
+      "1":
+        gt0007|Body Surface Area: 1.98,m2
+  - id: "Test case_03 : BSA Imperial"
+    input:
+      "1":
+        gt0003|Weight: 108,[lb_av]
+        gt0005|Height/Length: 60,[in_i]
+    expected_output:
+      "1":
+        gt0007|Body Surface Area: 15.46,[ft_i]2
+  - id: "Test case_04 : BSA Imperial"
+    input:
+      "1":
+        gt0003|Weight: 150,[lb_av]
+        gt0005|Height/Length: 70,[in_i]
+    expected_output:
+      "1":
+        gt0007|Body Surface Area: 19.88,[ft_i]2
+  - id: "Test case_05 : BSA Imperial & metric"
+    input:
+      "1":
+        gt0003|Weight: 70,kg
+        gt0005|Height/Length: 65,[in_i]
+    expected_output:
+      "1": {}
