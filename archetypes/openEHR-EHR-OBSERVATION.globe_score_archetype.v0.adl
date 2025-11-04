@@ -1,0 +1,331 @@
+archetype (adl_version=1.4; uid=379d18c5-3485-441d-a76f-f6d5614426f9)
+	openEHR-EHR-OBSERVATION.globe_score_archetype.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-11-04">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"b2487471-5b75-39bc-bd1c-abf6dd63334c">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Globe_Score_Archetype
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Age
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"a">
+														magnitude = <|>=18.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Platelet Count
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::119]>
+												list = <
+													["1"] = <
+														units = <"10*9/L">
+													>
+												>
+											>
+										}
+									}
+									CLUSTER[at0007] occurrences matches {0..1} matches {    -- Serum Bilirubin
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0008] occurrences matches {0..1} matches {    -- Total Serum Bilirubin
+												value matches {
+													C_DV_QUANTITY <
+														
+														list = <
+															["1"] = <
+																units = <"mg/dL">
+															>
+															["2"] = <
+																units = <"umol/L">
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0009] occurrences matches {0..1} matches {    -- Upper Limit of Normal Total Serum Bilirubin
+												value matches {
+													C_DV_QUANTITY <
+														
+														list = <
+															["1"] = <
+																units = <"mg/dL">
+															>
+															["2"] = <
+																units = <"umol/L">
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0011] occurrences matches {0..1} matches {    -- Bilirubin Ratio
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::507]>
+														list = <
+															["1"] = <
+																units = <"1">
+															>
+														>
+													>
+												}
+											}
+										}
+									}
+									CLUSTER[at0012] occurrences matches {0..1} matches {    -- ALP
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0013] occurrences matches {0..1} matches {    -- ALP
+												value matches {
+													C_DV_QUANTITY <
+														
+														list = <
+															["1"] = <
+																units = <"u/L">
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0014] occurrences matches {0..1} matches {    -- Upper Limit of Normal ALP
+												value matches {
+													C_DV_QUANTITY <
+														
+														list = <
+															["1"] = <
+																units = <"u/L">
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0015] occurrences matches {0..1} matches {    -- ALP Ratio
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::507]>
+														list = <
+															["1"] = <
+																units = <"1">
+															>
+														>
+													>
+												}
+											}
+										}
+									}
+									CLUSTER[at0016] occurrences matches {0..1} matches {    -- Serum Albumin
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0017] occurrences matches {0..1} matches {    -- Serum Albumin
+												value matches {
+													C_DV_QUANTITY <
+														
+														list = <
+															["1"] = <
+																units = <"mg/L">
+															>
+															["2"] = <
+																units = <"mg/dL">
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0018] occurrences matches {0..1} matches {    -- Lower Limit of Normal Albumin
+												value matches {
+													C_DV_QUANTITY <
+														
+														list = <
+															["1"] = <
+																units = <"mg/L">
+															>
+															["2"] = <
+																units = <"mg/dL">
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0019] occurrences matches {0..1} matches {    -- Albumin Ratio
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::507]>
+														list = <
+															["1"] = <
+																units = <"1">
+															>
+														>
+													>
+												}
+											}
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {    -- GLOBE Score
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::507]>
+												list = <
+													["1"] = <
+														units = <"1">
+													>
+												>
+											>
+										}
+									}
+									CLUSTER[at0021] occurrences matches {0..1} matches {    -- Transplant-free Survival Rate
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0022] occurrences matches {0..1} matches {    -- transplant-free survival at 5-year (percentage)
+												value matches {
+													DV_PROPORTION matches {
+														type matches {2}
+														precision matches {|2|}
+													}
+												}
+											}
+											ELEMENT[at0023] occurrences matches {0..1} matches {    -- transplant-free survival at 10-year (percentage)
+												value matches {
+													DV_PROPORTION matches {
+														type matches {2}
+														precision matches {|2|}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Globe_Score_Archetype">
+					description = <"Globe_Score_Archetype">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Age">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Platelet Count">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Serum Bilirubin">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Total Serum Bilirubin">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Upper Limit of Normal Total Serum Bilirubin">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Bilirubin Ratio">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"ALP">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"ALP">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Upper Limit of Normal ALP">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"ALP Ratio">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Serum Albumin">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Serum Albumin">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Lower Limit of Normal Albumin">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Albumin Ratio">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"GLOBE Score">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Transplant-free Survival Rate">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"transplant-free survival at 5-year (percentage)">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"transplant-free survival at 10-year (percentage)">
+					description = <"">
+				>
+			>
+		>
+	>
