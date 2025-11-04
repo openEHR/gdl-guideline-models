@@ -11,22 +11,22 @@ We've gathered all of the available applications in one place and organized them
 
 If you would like to test an app, simply click on "ENG" to access the English version, and "SWE" for the Swedish version. To view a detailed description of the app and its components, click on the application name.
 
-### *Published Apps: 673*
+### *Published Apps: 676*
 
 ----------
 
 ### Latest added
 
-1. Mayo Alliance Prognostic System (MAPS) Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Mayo_Alliance_Prognostic_System_MAPS_Score/0.1.0?language=en))
-2. Infant scalp score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Infant_scalp_score/0.1.0?language=en))
-3. ISTH-SCC bleeding assessment tool - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISTH_SCC_bleeding_assessment_tool/0.1.0?language=en))
-4. ISWT (Incremental Shuttle Walk Test)  - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISWT/16.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISWT/16.1?language=sv))
-5. DOWNES score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Downes_score/8.1.3?language=en))
-6. Diagnostic criteria for preeclampsia - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=en))/([_GER_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=de))/([_ES_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=es))/([_CAT_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=ca))/([_FR_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=fr))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=sv))
-7. MELD_3_0 - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MELD_3_0/3.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MELD_3_0/3.1?language=sv))
-8. Trauma Injury Severity Score (TRISS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/TRISS/1?language=en))
-9. Villalta Score for Post-thrombotic Syndrome (PTS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/villalta_score/1?language=en))
-10. Elderly Mobility Scale (EMS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/EMS/1?language=en))
+1. Body surface Area-Livingstons (BSA-Livingstons) calculation - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BSA_livingstons_calculation/0.1.0?language=en))
+2. BMI assessment - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BMI_assessment/0.1.0?language=en))
+3. BMI calculation - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BMI_calculation/0.1.0?language=en))
+4. Mayo Alliance Prognostic System (MAPS) Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Mayo_Alliance_Prognostic_System_MAPS_Score/0.1.0?language=en))
+5. Infant scalp score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Infant_scalp_score/0.1.0?language=en))
+6. ISTH-SCC bleeding assessment tool - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISTH_SCC_bleeding_assessment_tool/0.1.0?language=en))
+7. ISWT (Incremental Shuttle Walk Test)  - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISWT/16.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISWT/16.1?language=sv))
+8. DOWNES score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Downes_score/8.1.3?language=en))
+9. Diagnostic criteria for preeclampsia - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=en))/([_GER_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=de))/([_ES_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=es))/([_CAT_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=ca))/([_FR_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=fr))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=sv))
+10. MELD_3_0 - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MELD_3_0/3.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MELD_3_0/3.1?language=sv))
 
 ----------
 
@@ -236,7 +236,7 @@ _Select a medical specialty below to view the available apps._
 
 * MAGGIC Risk Calculator for Heart Failure - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MAGGIC_Risk_Calculator_for_Heart_Failure_guideline/1?language=en))
 
-* Mean Arterial Pressure (MAP) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MAP/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MAP/1?language=sv))
+* Mean Arterial Pressure (MAP) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MAP_calculation/0.1.0?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MAP_calculation/0.1.0?language=sv))
 
 * Modified SOAR Score for Stroke - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Modified_SOAR_Score_for_Stroke/1?language=en))
 
@@ -760,7 +760,7 @@ _Select a medical specialty below to view the available apps._
 ### Neonatology
 
 ----------
-* Apgar Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Apgar/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Apgar/1?language=sv))
+* Apgar Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/APGAR/0.1.0?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/APGAR/0.1.0?language=sv))
 
 * Neonatal Partial Exchange for Polycythemia - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Neonatal_Partial_Exchange_for_Polycythemia/1?language=en))
 
@@ -1207,9 +1207,19 @@ _Select a medical specialty below to view the available apps._
 
 * Body Mass Index (BMI) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BMI/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BMI/1?language=sv))
 
+* BMI calculation - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BMI_calculation/0.1.0?language=en))
+
+* BMI assessment - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BMI_assessment/0.1.0?language=en))
+
 * Body Surface Area Dubois (BSA-Dubois) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BSA_Dubois/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BSA_Dubois/1?language=sv))
 
+* Body surface Area-Dubois (BSA-Dubois) calculation - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BSA_dubois_calculation/0.1.0?language=en))
+
+* Body surface Area-Livingstons (BSA-Livingstons) calculation - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BSA_livingstons_calculation/0.1.0?language=en))
+
 * Body Surface Area Mosteller (BSA-Mosteller) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BSA_Mosteller/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BSA_Mosteller/1?language=sv))
+
+* Body Surface Area Mosteller (BSA-Mosteller) calculation - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BSA_Mosteller/1?language=en))
 
 * Centor Criteria - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Centor_Criteria/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Centor_Criteria/1?language=sv))
 
