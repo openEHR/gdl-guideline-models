@@ -11,22 +11,22 @@ We've gathered all of the available applications in one place and organized them
 
 If you would like to test an app, simply click on "ENG" to access the English version, and "SWE" for the Swedish version. To view a detailed description of the app and its components, click on the application name.
 
-### *Published Apps: 670*
+### *Published Apps: 673*
 
 ----------
 
 ### Latest added
 
-1. ISWT (Incremental Shuttle Walk Test)  - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISWT/16.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISWT/16.1?language=sv))
-2. DOWNES score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Downes_score/8.1.3?language=en))
-3. Diagnostic criteria for preeclampsia - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=en))/([_GER_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=de))/([_ES_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=es))/([_CAT_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=ca))/([_FR_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=fr))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=sv))
-4. MELD_3_0 - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MELD_3_0/3.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MELD_3_0/3.1?language=sv))
-5. Trauma Injury Severity Score (TRISS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/TRISS/1?language=en))
-6. Villalta Score for Post-thrombotic Syndrome (PTS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/villalta_score/1?language=en))
-7. Elderly Mobility Scale (EMS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/EMS/1?language=en))
-8. Pediatric Trauma BIG Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Pediatric_trauma_BIG_score/1?language=en))
-9. MAGGIC Risk Calculator for Heart Failure - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MAGGIC_Risk_Calculator_for_Heart_Failure_guideline/1?language=en))
-10. Acute Decompensated Heart Failure National Registry (ADHERE) Algorithm - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Acute_decompensated_heart_failure_national_registry_adhere_algorithm.v0.gdl2/0?language=en))
+1. Mayo Alliance Prognostic System (MAPS) Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Mayo_Alliance_Prognostic_System_MAPS_Score/0.1.0?language=en))
+2. Infant scalp score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Infant_scalp_score/0.1.0?language=en))
+3. ISTH-SCC bleeding assessment tool - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISTH_SCC_bleeding_assessment_tool/0.1.0?language=en))
+4. ISWT (Incremental Shuttle Walk Test)  - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISWT/16.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISWT/16.1?language=sv))
+5. DOWNES score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Downes_score/8.1.3?language=en))
+6. Diagnostic criteria for preeclampsia - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=en))/([_GER_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=de))/([_ES_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=es))/([_CAT_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=ca))/([_FR_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=fr))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=sv))
+7. MELD_3_0 - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MELD_3_0/3.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MELD_3_0/3.1?language=sv))
+8. Trauma Injury Severity Score (TRISS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/TRISS/1?language=en))
+9. Villalta Score for Post-thrombotic Syndrome (PTS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/villalta_score/1?language=en))
+10. Elderly Mobility Scale (EMS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/EMS/1?language=en))
 
 ----------
 
@@ -453,11 +453,11 @@ _Select a medical specialty below to view the available apps._
 
 * Vancouver Chest Pain Rule (VCPR) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Vancouver_CPR/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Vancouver_CPR/1?language=sv))
 
-* Wells Criteria for Deep Vein Thrombosis (DVT) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Wells_DVT/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Wells_DVT/1?language=sv))
+* Wells Criteria for Deep Vein Thrombosis (DVT) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/wells_criteria_DVT/0.1.0?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Wells_DVT/1?language=sv))
 
 * Wells Criteria for DVT (D-Dimer)  - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Wells_DVT_D_Dimer_US/1?language=en))
 
-* Wells Criteria for Pulmonary Embolism - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Wells_Criteria_PE/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Wells_Criteria_PE/1?language=sv))
+* Wells Criteria for Pulmonary Embolism - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Wells_Criteria_PE/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/wells_criteria_DVT/0.1.0?language=sv))
 
 * YEARS Algorithm for Pulmonary Embolism (PE) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/YEARS_Algorithm_for_Pulmonary_Embolism_PE_guideline/1?language=en))
 ----------
@@ -680,7 +680,11 @@ _Select a medical specialty below to view the available apps._
 
 * HScore for Reactive Hemophagocytic Syndrome - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/HScore/1?language=en))
 
+* ISTH-SCC bleeding assessment tool - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISTH_SCC_bleeding_assessment_tool/0.1.0?language=en))
+
 * Intrauterine RBC Transfusion Dosage - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Intrauterine_RBC_Transfusion_Dosage_guideline/1?language=en))
+
+* Mayo Alliance Prognostic System (MAPS) Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Mayo_Alliance_Prognostic_System_MAPS_Score/0.1.0?language=en))
 
 * Neutrophil-Lymphocyte Ratio (NLR) Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Neutrophil_Lymphocyte_Ratio_NLR_Calculator/1?language=en))
 
@@ -996,7 +1000,7 @@ _Select a medical specialty below to view the available apps._
 
 * Mekhail Extension of the Motzer Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Mekhail_Extension_of_the_Motzer_Score/1?language=en))
 
-* Memorial Sloan-Kettering Cancer Center (MSKCC/Motzer) Score for Metastatic Renal Cell Carcinoma (RCC) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MSKCC_Motzer_Score_guideline/1?language=en))
+* Memorial Sloan-Kettering Cancer Center (MSKCC/Motzer) Score for Metastatic Renal Cell Carcinoma (RCC) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MSKCC_Motzer/0.1.0?language=en))
 
 * Modified Response Evaluation Criteria in Solid Tumors (mRECIST) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/mRECIST/1?language=en))
 
@@ -1104,6 +1108,8 @@ _Select a medical specialty below to view the available apps._
 * Children's Hospital of Eastern Ontario Pain Scale (CHEOPS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Cheops_for_post_op_pediatric_pain/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Cheops_for_post_op_pediatric_pain/1?language=sv))
 
 * Height Potential - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Height_potential/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Height_potential/1?language=sv))
+
+* Infant scalp score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Infant_scalp_score/0.1.0?language=en))
 
 * Kawasaki Disease Diagnostic Criteria - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Kawasaki_Disease_Diagnostic_Criteria_guideline/1?language=en))
 
