@@ -1,0 +1,27 @@
+guidelines:
+  "1": MAP_calculation.v0.1.0
+test_cases:
+  - id: Normal MAP
+    input:
+      "1":
+        gt0003|Systolic: 120,mm[Hg]
+        gt0004|Diastolic: 80,mm[Hg]
+    expected_output:
+      "1":
+        gt0006|Mean Arterial Pressure: 93,mm[Hg]
+  - id: Low MAP
+    input:
+      "1":
+        gt0003|Systolic: 50,mm[Hg]
+        gt0004|Diastolic: 30,mm[Hg]
+    expected_output:
+      "1":
+        gt0006|Mean Arterial Pressure: 37,mm[Hg]
+  - id: High MAP
+    input:
+      "1":
+        gt0003|Systolic: 220,mm[Hg]
+        gt0004|Diastolic: 100,mm[Hg]
+    expected_output:
+      "1":
+        gt0006|Mean Arterial Pressure: 140,mm[Hg]
