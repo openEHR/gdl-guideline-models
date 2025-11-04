@@ -1,0 +1,1319 @@
+guidelines:
+  "1": EPTS_Score_Calculation.v0.0.10
+test_cases:
+  - id: Precondition, age has to be >=20
+    input:
+      "1":
+        gt0014|Age: 19,a
+        gt0015|Diabetes status: 0|local::at0012|No|
+        gt0016|Prior solid organ transplant: 0|local::at0014|No|
+        gt0017|Routine dialysis status: 0|local::at0016|No|
+    expected_output:
+      "1": {}
+  - id: EPTS 0%, age <25, no prior health condition
+    input:
+      "1":
+        gt0014|Age: 23,a
+        gt0015|Diabetes status: 0|local::at0012|No|
+        gt0016|Prior solid organ transplant: 0|local::at0014|No|
+        gt0017|Routine dialysis status: 0|local::at0016|No|
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 0.0,a
+        gt0021|Raw EPTS score: 0.000,1
+        gt0022|EPTS percentage: 0,%
+  - id: EPTS 1%, age >25, with diabetes
+    input:
+      "1":
+        gt0014|Age: 26,a
+        gt0015|Diabetes status: 0|local::at0012|No|
+        gt0016|Prior solid organ transplant: 0|local::at0014|No|
+        gt0017|Routine dialysis status: 0|local::at0016|No|
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 0.0,a
+        gt0021|Raw EPTS score: 0.047,1
+        gt0022|EPTS percentage: 1,%
+  - id: EPTS 2%, with prior organ transplant
+    input:
+      "1":
+        gt0014|Age: 23,a
+        gt0015|Diabetes status: 0|local::at0012|No|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 0|local::at0016|No|
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 0.0,a
+        gt0021|Raw EPTS score: 0.398,1
+        gt0022|EPTS percentage: 2,%
+  - id: EPTS 3%, with routine dialysis
+    input:
+      "1":
+        gt0014|Age: 30,a
+        gt0015|Diabetes status: 0|local::at0012|No|
+        gt0016|Prior solid organ transplant: 0|local::at0014|No|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2024-09-01T16:57:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 0.4,a
+        gt0021|Raw EPTS score: 0.411,1
+        gt0022|EPTS percentage: 3,%
+  - id: EPTS 4%
+    input:
+      "1":
+        gt0014|Age: 29,a
+        gt0015|Diabetes status: 0|local::at0012|No|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 0|local::at0016|No|
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 0.0,a
+        gt0021|Raw EPTS score: 0.586,1
+        gt0022|EPTS percentage: 4,%
+  - id: EPTS 5%
+    input:
+      "1":
+        gt0014|Age: 30,a
+        gt0015|Diabetes status: 0|local::at0012|No|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 0|local::at0016|No|
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 0.0,a
+        gt0021|Raw EPTS score: 0.633,1
+        gt0022|EPTS percentage: 5,%
+  - id: EPTS 6%
+    input:
+      "1":
+        gt0014|Age: 30,a
+        gt0015|Diabetes status: 0|local::at0012|No|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2025-01-01T16:57:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 0.1,a
+        gt0021|Raw EPTS score: 0.776,1
+        gt0022|EPTS percentage: 6,%
+  - id: EPTS 7%
+    input:
+      "1":
+        gt0014|Age: 31,a
+        gt0015|Diabetes status: 0|local::at0012|No|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2025-01-01T16:57:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 0.1,a
+        gt0021|Raw EPTS score: 0.823,1
+        gt0022|EPTS percentage: 7,%
+  - id: EPTS 8%
+    input:
+      "1":
+        gt0014|Age: 32,a
+        gt0015|Diabetes status: 0|local::at0012|No|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2024-12-01T16:57:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 0.2,a
+        gt0021|Raw EPTS score: 0.882,1
+        gt0022|EPTS percentage: 8,%
+  - id: EPTS 9%
+    input:
+      "1":
+        gt0014|Age: 32,a
+        gt0015|Diabetes status: 0|local::at0012|No|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2024-06-01T16:57:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 0.7,a
+        gt0021|Raw EPTS score: 0.930,1
+        gt0022|EPTS percentage: 9,%
+  - id: EPTS 10%
+    input:
+      "1":
+        gt0014|Age: 33,a
+        gt0015|Diabetes status: 0|local::at0012|No|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2024-03-01T16:57:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 0.9,a
+        gt0021|Raw EPTS score: 0.992,1
+        gt0022|EPTS percentage: 10,%
+  - id: EPTS 11%
+    input:
+      "1":
+        gt0014|Age: 35,a
+        gt0015|Diabetes status: 0|local::at0012|No|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2024-05-01T13:38:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 0.8,a
+        gt0021|Raw EPTS score: 1.078,1
+        gt0022|EPTS percentage: 11,%
+  - id: EPTS 12%
+    input:
+      "1":
+        gt0014|Age: 36,a
+        gt0015|Diabetes status: 0|local::at0012|No|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2024-01-01T13:38:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 1.1,a
+        gt0021|Raw EPTS score: 1.146,1
+        gt0022|EPTS percentage: 12,%
+  - id: EPTS 13%
+    input:
+      "1":
+        gt0014|Age: 37,a
+        gt0015|Diabetes status: 0|local::at0012|No|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2024-01-01T13:38:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 1.1,a
+        gt0021|Raw EPTS score: 1.193,1
+        gt0022|EPTS percentage: 13,%
+  - id: EPTS 14%
+    input:
+      "1":
+        gt0014|Age: 25,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 0|local::at0014|No|
+        gt0017|Routine dialysis status: 0|local::at0016|No|
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 0.0,a
+        gt0021|Raw EPTS score: 1.262,1
+        gt0022|EPTS percentage: 14,%
+  - id: EPTS 15%
+    input:
+      "1":
+        gt0014|Age: 30,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 0|local::at0014|No|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2023-07-01T13:38:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 1.6,a
+        gt0021|Raw EPTS score: 1.294,1
+        gt0022|EPTS percentage: 15,%
+  - id: EPTS 16%
+    input:
+      "1":
+        gt0014|Age: 26,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2023-07-01T13:38:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 1.6,a
+        gt0021|Raw EPTS score: 1.327,1
+        gt0022|EPTS percentage: 16,%
+  - id: EPTS 17%
+    input:
+      "1":
+        gt0014|Age: 28,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2023-07-01T13:38:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 1.6,a
+        gt0021|Raw EPTS score: 1.391,1
+        gt0022|EPTS percentage: 17,%
+  - id: EPTS 18%
+    input:
+      "1":
+        gt0014|Age: 29,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2023-07-01T13:38:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 1.6,a
+        gt0021|Raw EPTS score: 1.423,1
+        gt0022|EPTS percentage: 18,%
+  - id: EPTS 19%
+    input:
+      "1":
+        gt0014|Age: 30,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2023-07-01T13:38:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 1.6,a
+        gt0021|Raw EPTS score: 1.455,1
+        gt0022|EPTS percentage: 19,%
+  - id: EPTS 20%
+    input:
+      "1":
+        gt0014|Age: 30,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2022-02-01T13:38:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 3.0,a
+        gt0021|Raw EPTS score: 1.495,1
+        gt0022|EPTS percentage: 20,%
+  - id: EPTS 21%
+    input:
+      "1":
+        gt0014|Age: 32,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2022-02-01T13:38:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 3.0,a
+        gt0021|Raw EPTS score: 1.559,1
+        gt0022|EPTS percentage: 21,%
+  - id: EPTS 22%
+    input:
+      "1":
+        gt0014|Age: 33,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2022-02-01T13:38:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 3.0,a
+        gt0021|Raw EPTS score: 1.591,1
+        gt0022|EPTS percentage: 22,%
+  - id: EPTS 23%
+    input:
+      "1":
+        gt0014|Age: 34,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2022-02-01T13:38:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 3.0,a
+        gt0021|Raw EPTS score: 1.623,1
+        gt0022|EPTS percentage: 23,%
+  - id: EPTS 24%
+    input:
+      "1":
+        gt0014|Age: 35,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2022-02-01T13:38:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 3.0,a
+        gt0021|Raw EPTS score: 1.655,1
+        gt0022|EPTS percentage: 24,%
+  - id: EPTS 25%
+    input:
+      "1":
+        gt0014|Age: 36,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2022-02-01T13:38:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 3.0,a
+        gt0021|Raw EPTS score: 1.687,1
+        gt0022|EPTS percentage: 25,%
+  - id: EPTS 26%
+    input:
+      "1":
+        gt0014|Age: 36,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2021-02-01T13:38:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 4.0,a
+        gt0021|Raw EPTS score: 1.708,1
+        gt0022|EPTS percentage: 26,%
+  - id: EPTS 27%
+    input:
+      "1":
+        gt0014|Age: 36,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2019-11-01T13:38:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 5.3,a
+        gt0021|Raw EPTS score: 1.730,1
+        gt0022|EPTS percentage: 27,%
+  - id: EPTS 28%
+    input:
+      "1":
+        gt0014|Age: 37,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2019-11-01T13:38:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 5.3,a
+        gt0021|Raw EPTS score: 1.762,1
+        gt0022|EPTS percentage: 28,%
+  - id: EPTS 29%
+    input:
+      "1":
+        gt0014|Age: 38,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2019-11-01T13:38:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 5.3,a
+        gt0021|Raw EPTS score: 1.794,1
+        gt0022|EPTS percentage: 29,%
+  - id: EPTS 30%
+    input:
+      "1":
+        gt0014|Age: 39,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2019-11-01T13:38:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 5.3,a
+        gt0021|Raw EPTS score: 1.826,1
+        gt0022|EPTS percentage: 30,%
+  - id: EPTS 31%
+    input:
+      "1":
+        gt0014|Age: 39,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2019-02-01T21:23:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 6.0,a
+        gt0021|Raw EPTS score: 1.836,1
+        gt0022|EPTS percentage: 31,%
+  - id: EPTS 32%
+    input:
+      "1":
+        gt0014|Age: 40,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2019-02-01T21:23:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 6.0,a
+        gt0021|Raw EPTS score: 1.868,1
+        gt0022|EPTS percentage: 32,%
+  - id: EPTS 33%
+    input:
+      "1":
+        gt0014|Age: 41,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2019-02-01T21:23:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 6.0,a
+        gt0021|Raw EPTS score: 1.900,1
+        gt0022|EPTS percentage: 33,%
+  - id: EPTS 34%
+    input:
+      "1":
+        gt0014|Age: 41,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2018-10-01T21:23:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 6.4,a
+        gt0021|Raw EPTS score: 1.905,1
+        gt0022|EPTS percentage: 34,%
+  - id: EPTS 35%
+    input:
+      "1":
+        gt0014|Age: 41,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2016-11-01T21:23:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 8.3,a
+        gt0021|Raw EPTS score: 1.926,1
+        gt0022|EPTS percentage: 35,%
+  - id: EPTS 36%
+    input:
+      "1":
+        gt0014|Age: 42,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2016-11-01T21:23:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 8.3,a
+        gt0021|Raw EPTS score: 1.958,1
+        gt0022|EPTS percentage: 36,%
+  - id: EPTS 37%
+    input:
+      "1":
+        gt0014|Age: 43,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2017-07-01T21:23:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 7.6,a
+        gt0021|Raw EPTS score: 1.983,1
+        gt0022|EPTS percentage: 37,%
+  - id: EPTS 38%
+    input:
+      "1":
+        gt0014|Age: 44,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2018-02-01T21:23:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 7.0,a
+        gt0021|Raw EPTS score: 2.008,1
+        gt0022|EPTS percentage: 38,%
+  - id: EPTS 39%
+    input:
+      "1":
+        gt0014|Age: 45,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2019-06-01T21:23:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 5.7,a
+        gt0021|Raw EPTS score: 2.023,1
+        gt0022|EPTS percentage: 39,%
+  - id: EPTS 40%
+    input:
+      "1":
+        gt0014|Age: 46,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2020-03-01T21:23:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 4.9,a
+        gt0021|Raw EPTS score: 2.044,1
+        gt0022|EPTS percentage: 40,%
+  - id: EPTS 41%
+    input:
+      "1":
+        gt0014|Age: 47,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2021-02-01T21:23:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 4.0,a
+        gt0021|Raw EPTS score: 2.060,1
+        gt0022|EPTS percentage: 41,%
+  - id: EPTS 42%
+    input:
+      "1":
+        gt0014|Age: 48,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2021-10-01T21:23:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 3.4,a
+        gt0021|Raw EPTS score: 2.080,1
+        gt0022|EPTS percentage: 42,%
+  - id: EPTS 43%
+    input:
+      "1":
+        gt0014|Age: 49,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2022-08-01T21:23:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 2.5,a
+        gt0021|Raw EPTS score: 2.091,1
+        gt0022|EPTS percentage: 43,%
+  - id: EPTS 44%
+    input:
+      "1":
+        gt0014|Age: 50,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2023-02-01T21:23:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 2.0,a
+        gt0021|Raw EPTS score: 2.108,1
+        gt0022|EPTS percentage: 44,%
+  - id: EPTS 45%
+    input:
+      "1":
+        gt0014|Age: 50,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2022-08-01T21:23:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 2.5,a
+        gt0021|Raw EPTS score: 2.123,1
+        gt0022|EPTS percentage: 45,%
+  - id: EPTS 46%
+    input:
+      "1":
+        gt0014|Age: 50,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2021-12-01T21:23:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 3.2,a
+        gt0021|Raw EPTS score: 2.140,1
+        gt0022|EPTS percentage: 46,%
+  - id: EPTS 47%
+    input:
+      "1":
+        gt0014|Age: 50,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2021-02-01T21:23:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 4.0,a
+        gt0021|Raw EPTS score: 2.156,1
+        gt0022|EPTS percentage: 47,%
+  - id: EPTS 48%
+    input:
+      "1":
+        gt0014|Age: 50,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2020-02-01T21:23:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 5.0,a
+        gt0021|Raw EPTS score: 2.173,1
+        gt0022|EPTS percentage: 48,%
+  - id: EPTS 49%
+    input:
+      "1":
+        gt0014|Age: 50,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2019-02-01T21:23:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 6.0,a
+        gt0021|Raw EPTS score: 2.188,1
+        gt0022|EPTS percentage: 49,%
+  - id: EPTS 50%
+    input:
+      "1":
+        gt0014|Age: 51,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2019-02-01T21:23:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 6.0,a
+        gt0021|Raw EPTS score: 2.220,1
+        gt0022|EPTS percentage: 50,%
+  - id: EPTS 51%
+    input:
+      "1":
+        gt0014|Age: 51,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2019-01-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 6.1,a
+        gt0021|Raw EPTS score: 2.221,1
+        gt0022|EPTS percentage: 51,%
+  - id: EPTS 52%
+    input:
+      "1":
+        gt0014|Age: 51,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2017-10-01T13:53:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 7.4,a
+        gt0021|Raw EPTS score: 2.237,1
+        gt0022|EPTS percentage: 52,%
+  - id: EPTS 53%
+    input:
+      "1":
+        gt0014|Age: 52,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2018-06-01T13:53:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 6.7,a
+        gt0021|Raw EPTS score: 2.260,1
+        gt0022|EPTS percentage: 53,%
+  - id: EPTS 54%
+    input:
+      "1":
+        gt0014|Age: 52,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2017-10-01T13:53:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 7.4,a
+        gt0021|Raw EPTS score: 2.269,1
+        gt0022|EPTS percentage: 54,%
+  - id: EPTS 55%
+    input:
+      "1":
+        gt0014|Age: 53,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2018-05-01T13:53:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 6.8,a
+        gt0021|Raw EPTS score: 2.294,1
+        gt0022|EPTS percentage: 55,%
+  - id: EPTS 56%
+    input:
+      "1":
+        gt0014|Age: 54,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2019-07-01T13:53:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 5.6,a
+        gt0021|Raw EPTS score: 2.310,1
+        gt0022|EPTS percentage: 56,%
+  - id: EPTS 57%
+    input:
+      "1":
+        gt0014|Age: 54,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2019-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 6.0,a
+        gt0021|Raw EPTS score: 2.316,1
+        gt0022|EPTS percentage: 57,%
+  - id: EPTS 58%
+    input:
+      "1":
+        gt0014|Age: 55,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2020-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 5.0,a
+        gt0021|Raw EPTS score: 2.333,1
+        gt0022|EPTS percentage: 58,%
+  - id: EPTS 59%
+    input:
+      "1":
+        gt0014|Age: 55,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2019-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 6.0,a
+        gt0021|Raw EPTS score: 2.348,1
+        gt0022|EPTS percentage: 59,%
+  - id: EPTS 60%
+    input:
+      "1":
+        gt0014|Age: 56,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2020-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 5.0,a
+        gt0021|Raw EPTS score: 2.365,1
+        gt0022|EPTS percentage: 60,%
+  - id: EPTS 61%
+    input:
+      "1":
+        gt0014|Age: 57,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2020-10-01T13:53:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 4.4,a
+        gt0021|Raw EPTS score: 2.387,1
+        gt0022|EPTS percentage: 61,%
+  - id: EPTS 62%
+    input:
+      "1":
+        gt0014|Age: 57,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2020-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 5.0,a
+        gt0021|Raw EPTS score: 2.397,1
+        gt0022|EPTS percentage: 62,%
+  - id: EPTS 63%
+    input:
+      "1":
+        gt0014|Age: 58,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2020-10-01T13:53:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 4.4,a
+        gt0021|Raw EPTS score: 2.419,1
+        gt0022|EPTS percentage: 63,%
+  - id: EPTS 64%
+    input:
+      "1":
+        gt0014|Age: 58,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2020-03-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 4.9,a
+        gt0021|Raw EPTS score: 2.428,1
+        gt0022|EPTS percentage: 64,%
+  - id: EPTS 65%
+    input:
+      "1":
+        gt0014|Age: 59,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2021-01-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 4.1,a
+        gt0021|Raw EPTS score: 2.446,1
+        gt0022|EPTS percentage: 65,%
+  - id: EPTS 66%
+    input:
+      "1":
+        gt0014|Age: 59,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2020-06-01T13:53:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 4.7,a
+        gt0021|Raw EPTS score: 2.456,1
+        gt0022|EPTS percentage: 66,%
+  - id: EPTS 67%
+    input:
+      "1":
+        gt0014|Age: 59,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2019-11-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 5.3,a
+        gt0021|Raw EPTS score: 2.466,1
+        gt0022|EPTS percentage: 67,%
+  - id: EPTS 68%
+    input:
+      "1":
+        gt0014|Age: 60,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2020-07-01T13:53:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 4.6,a
+        gt0021|Raw EPTS score: 2.487,1
+        gt0022|EPTS percentage: 68,%
+  - id: EPTS 69%
+    input:
+      "1":
+        gt0014|Age: 60,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2020-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 5.0,a
+        gt0021|Raw EPTS score: 2.493,1
+        gt0022|EPTS percentage: 69,%
+  - id: EPTS 70%
+    input:
+      "1":
+        gt0014|Age: 61,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2021-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 4.0,a
+        gt0021|Raw EPTS score: 2.508,1
+        gt0022|EPTS percentage: 70,%
+  - id: EPTS 71%
+    input:
+      "1":
+        gt0014|Age: 61,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2020-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 5.0,a
+        gt0021|Raw EPTS score: 2.525,1
+        gt0022|EPTS percentage: 71,%
+  - id: EPTS 72%
+    input:
+      "1":
+        gt0014|Age: 62,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2021-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 4.0,a
+        gt0021|Raw EPTS score: 2.540,1
+        gt0022|EPTS percentage: 72,%
+  - id: EPTS 73%
+    input:
+      "1":
+        gt0014|Age: 62,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2020-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 5.0,a
+        gt0021|Raw EPTS score: 2.557,1
+        gt0022|EPTS percentage: 73,%
+  - id: EPTS 74%
+    input:
+      "1":
+        gt0014|Age: 63,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2021-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 4.0,a
+        gt0021|Raw EPTS score: 2.572,1
+        gt0022|EPTS percentage: 74,%
+  - id: EPTS 75%
+    input:
+      "1":
+        gt0014|Age: 63,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2020-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 5.0,a
+        gt0021|Raw EPTS score: 2.589,1
+        gt0022|EPTS percentage: 75,%
+  - id: EPTS 76%
+    input:
+      "1":
+        gt0014|Age: 64,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2021-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 4.0,a
+        gt0021|Raw EPTS score: 2.604,1
+        gt0022|EPTS percentage: 76,%
+  - id: EPTS 77%
+    input:
+      "1":
+        gt0014|Age: 64,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2020-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 5.0,a
+        gt0021|Raw EPTS score: 2.621,1
+        gt0022|EPTS percentage: 77,%
+  - id: EPTS 78%
+    input:
+      "1":
+        gt0014|Age: 65,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2021-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 4.0,a
+        gt0021|Raw EPTS score: 2.636,1
+        gt0022|EPTS percentage: 78,%
+  - id: EPTS 79%
+    input:
+      "1":
+        gt0014|Age: 65,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2020-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 5.0,a
+        gt0021|Raw EPTS score: 2.653,1
+        gt0022|EPTS percentage: 79,%
+  - id: EPTS 80%
+    input:
+      "1":
+        gt0014|Age: 65,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2019-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 6.0,a
+        gt0021|Raw EPTS score: 2.668,1
+        gt0022|EPTS percentage: 80,%
+  - id: EPTS 81%
+    input:
+      "1":
+        gt0014|Age: 66,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2020-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 5.0,a
+        gt0021|Raw EPTS score: 2.685,1
+        gt0022|EPTS percentage: 81,%
+  - id: EPTS 82%
+    input:
+      "1":
+        gt0014|Age: 66,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2018-08-01T13:53:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 6.5,a
+        gt0021|Raw EPTS score: 2.706,1
+        gt0022|EPTS percentage: 82,%
+  - id: EPTS 83%
+    input:
+      "1":
+        gt0014|Age: 67,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2018-08-01T13:53:00+02:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 6.5,a
+        gt0021|Raw EPTS score: 2.738,1
+        gt0022|EPTS percentage: 83,%
+  - id: EPTS 84%
+    input:
+      "1":
+        gt0014|Age: 68,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2020-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 5.0,a
+        gt0021|Raw EPTS score: 2.749,1
+        gt0022|EPTS percentage: 84,%
+  - id: EPTS 85%
+    input:
+      "1":
+        gt0014|Age: 68,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2019-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 6.0,a
+        gt0021|Raw EPTS score: 2.764,1
+        gt0022|EPTS percentage: 85,%
+  - id: EPTS 86%
+    input:
+      "1":
+        gt0014|Age: 69,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2019-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 6.0,a
+        gt0021|Raw EPTS score: 2.796,1
+        gt0022|EPTS percentage: 86,%
+  - id: EPTS 87%
+    input:
+      "1":
+        gt0014|Age: 69,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2018-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 7.0,a
+        gt0021|Raw EPTS score: 2.808,1
+        gt0022|EPTS percentage: 87,%
+  - id: EPTS 88%
+    input:
+      "1":
+        gt0014|Age: 70,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2018-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 7.0,a
+        gt0021|Raw EPTS score: 2.840,1
+        gt0022|EPTS percentage: 88,%
+  - id: EPTS 89%
+    input:
+      "1":
+        gt0014|Age: 71,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2019-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 6.0,a
+        gt0021|Raw EPTS score: 2.860,1
+        gt0022|EPTS percentage: 89,%
+  - id: EPTS 90%
+    input:
+      "1":
+        gt0014|Age: 71,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2018-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 7.0,a
+        gt0021|Raw EPTS score: 2.872,1
+        gt0022|EPTS percentage: 90,%
+  - id: EPTS 91%
+    input:
+      "1":
+        gt0014|Age: 72,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2018-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 7.0,a
+        gt0021|Raw EPTS score: 2.904,1
+        gt0022|EPTS percentage: 91,%
+  - id: EPTS 92%
+    input:
+      "1":
+        gt0014|Age: 73,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2018-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 7.0,a
+        gt0021|Raw EPTS score: 2.936,1
+        gt0022|EPTS percentage: 92,%
+  - id: EPTS 93%
+    input:
+      "1":
+        gt0014|Age: 74,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2018-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 7.0,a
+        gt0021|Raw EPTS score: 2.968,1
+        gt0022|EPTS percentage: 93,%
+  - id: EPTS 94%
+    input:
+      "1":
+        gt0014|Age: 75,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2019-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 6.0,a
+        gt0021|Raw EPTS score: 2.988,1
+        gt0022|EPTS percentage: 94,%
+  - id: EPTS 95%
+    input:
+      "1":
+        gt0014|Age: 75,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2018-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 7.0,a
+        gt0021|Raw EPTS score: 3.000,1
+        gt0022|EPTS percentage: 95,%
+  - id: EPTS 96%
+    input:
+      "1":
+        gt0014|Age: 77,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2018-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 7.0,a
+        gt0021|Raw EPTS score: 3.064,1
+        gt0022|EPTS percentage: 96,%
+  - id: EPTS 97%
+    input:
+      "1":
+        gt0014|Age: 78,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2018-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 7.0,a
+        gt0021|Raw EPTS score: 3.096,1
+        gt0022|EPTS percentage: 97,%
+  - id: EPTS 98%
+    input:
+      "1":
+        gt0014|Age: 79,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2018-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 7.0,a
+        gt0021|Raw EPTS score: 3.128,1
+        gt0022|EPTS percentage: 98,%
+  - id: EPTS 99%
+    input:
+      "1":
+        gt0014|Age: 81,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2018-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 7.0,a
+        gt0021|Raw EPTS score: 3.192,1
+        gt0022|EPTS percentage: 99,%
+  - id: EPTS 100%
+    input:
+      "1":
+        gt0014|Age: 83,a
+        gt0015|Diabetes status: 1|local::at0013|Yes|
+        gt0016|Prior solid organ transplant: 1|local::at0015|Yes|
+        gt0017|Routine dialysis status: 1|local::at0017|Yes|
+        gt0018|Dialysis start date: 2018-02-01T13:53:00+01:00
+    expected_output:
+      "1":
+        gt0020|Duration of dialysis: 7.0,a
+        gt0021|Raw EPTS score: 3.256,1
+        gt0022|EPTS percentage: 100,%
