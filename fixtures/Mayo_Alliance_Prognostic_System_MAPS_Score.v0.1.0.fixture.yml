@@ -1,0 +1,105 @@
+guidelines:
+  "1": Mayo_Alliance_Prognostic_System_MAPS_Score.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. SM type input missing (negative test)
+    input:
+      "1":
+        gt0004|Age: 0|local::at0012|≤60|
+        gt0005|Platelets: 0|local::at0006|≥150×10^9/L|
+        gt0006|Serum ALP: 0|local::at0015|Within normal range|
+        gt0007|Adverse mutations: 0|local::at0018|No|
+    expected_output:
+      "1": {}
+  - id: 3. Age input missing (negative test)
+    input:
+      "1":
+        gt0003|SM type: 0|local::at0009|Indolent SM/smoldering SM|
+        gt0005|Platelets: 0|local::at0006|≥150×10^9/L|
+        gt0006|Serum ALP: 0|local::at0015|Within normal range|
+        gt0007|Adverse mutations: 0|local::at0018|No|
+    expected_output:
+      "1": {}
+  - id: 4. Platelets input missing (negative test)
+    input:
+      "1":
+        gt0003|SM type: 0|local::at0009|Indolent SM/smoldering SM|
+        gt0004|Age: 0|local::at0012|≤60|
+        gt0006|Serum ALP: 0|local::at0015|Within normal range|
+        gt0007|Adverse mutations: 0|local::at0018|No|
+    expected_output:
+      "1": {}
+  - id: 5. Serum ALP input missing (negative test)
+    input:
+      "1":
+        gt0003|SM type: 0|local::at0009|Indolent SM/smoldering SM|
+        gt0004|Age: 0|local::at0012|≤60|
+        gt0005|Platelets: 0|local::at0006|≥150×10^9/L|
+        gt0007|Adverse mutations: 0|local::at0018|No|
+    expected_output:
+      "1": {}
+  - id: 6. Adverse mutations input missing (negative test)
+    input:
+      "1":
+        gt0003|SM type: 0|local::at0009|Indolent SM/smoldering SM|
+        gt0004|Age: 0|local::at0012|≤60|
+        gt0005|Platelets: 0|local::at0006|≥150×10^9/L|
+        gt0006|Serum ALP: 0|local::at0015|Within normal range|
+    expected_output:
+      "1": {}
+  - id: 7. All inputs, total score = 0 (<=2)
+    input:
+      "1":
+        gt0003|SM type: 0|local::at0009|Indolent SM/smoldering SM|
+        gt0004|Age: 0|local::at0012|≤60|
+        gt0005|Platelets: 0|local::at0006|≥150×10^9/L|
+        gt0006|Serum ALP: 0|local::at0015|Within normal range|
+        gt0007|Adverse mutations: 0|local::at0018|No|
+    expected_output:
+      "1":
+        gt0009|Total score: "0"
+        gt0023|Risk assessment: Low risk
+        gt0024|Median overall survival: 198 months
+  - id: 8. All inputs, total score = 3
+    input:
+      "1":
+        gt0003|SM type: 2|local::at0010|Advanced SM|
+        gt0004|Age: 1|local::at0013|>60|
+        gt0005|Platelets: 0|local::at0006|≥150×10^9/L|
+        gt0006|Serum ALP: 0|local::at0015|Within normal range|
+        gt0007|Adverse mutations: 0|local::at0018|No|
+    expected_output:
+      "1":
+        gt0009|Total score: "3"
+        gt0023|Risk assessment: Intermediate risk
+        gt0024|Median overall survival: 85 months
+  - id: 9. All inputs, total score = 4
+    input:
+      "1":
+        gt0003|SM type: 2|local::at0010|Advanced SM|
+        gt0004|Age: 1|local::at0013|>60|
+        gt0005|Platelets: 1|local::at0007|<150×10^9/L|
+        gt0006|Serum ALP: 0|local::at0015|Within normal range|
+        gt0007|Adverse mutations: 0|local::at0018|No|
+    expected_output:
+      "1":
+        gt0009|Total score: "4"
+        gt0023|Risk assessment: Intermediate risk
+        gt0024|Median overall survival: 36 months
+  - id: 10. All inputs, total score = 5 (>=5)
+    input:
+      "1":
+        gt0003|SM type: 2|local::at0010|Advanced SM|
+        gt0004|Age: 1|local::at0013|>60|
+        gt0005|Platelets: 1|local::at0007|<150×10^9/L|
+        gt0006|Serum ALP: 1|local::at0016|Above normal range|
+        gt0007|Adverse mutations: 0|local::at0018|No|
+    expected_output:
+      "1":
+        gt0009|Total score: "5"
+        gt0023|Risk assessment: High risk
+        gt0024|Median overall survival: 12 months

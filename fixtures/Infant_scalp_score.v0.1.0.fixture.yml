@@ -1,0 +1,145 @@
+guidelines:
+  "1": Infant_scalp_score.v0.1.0
+test_cases:
+  - id: 01. Total score 0
+    input:
+      "1":
+        gt0016|Patient's age (months): 0|local::at0009|> 12|
+        gt0017|Hematoma size: 0|local::at0013|None|
+        gt0018|Hematoma location: 0|local::at0017|Frontal|
+    expected_output:
+      "1":
+        gt0009|Risk assessment: Low risk of traumatic brain injury
+        gt0020|Total score: "0"
+  - id: 02. Age empty (negative test)
+    input:
+      "1":
+        gt0017|Hematoma size: 1|local::at0014|Small (barely palpable)|
+        gt0018|Hematoma location: 0|local::at0017|Frontal|
+    expected_output:
+      "1": {}
+  - id: 03. All inputs empty (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 04. Age and location score 0 and size score 1
+    input:
+      "1":
+        gt0016|Patient's age (months): 0|local::at0009|> 12|
+        gt0017|Hematoma size: 1|local::at0014|Small (barely palpable)|
+        gt0018|Hematoma location: 0|local::at0017|Frontal|
+    expected_output:
+      "1":
+        gt0009|Risk assessment: Low risk of traumatic brain injury
+        gt0020|Total score: "1"
+  - id: 05. Age and location score 0 and size score 2
+    input:
+      "1":
+        gt0016|Patient's age (months): 0|local::at0009|> 12|
+        gt0017|Hematoma size: 2|local::at0015|Medium (easily palpable)|
+        gt0018|Hematoma location: 0|local::at0017|Frontal|
+    expected_output:
+      "1":
+        gt0009|Risk assessment: Low risk of traumatic brain injury
+        gt0020|Total score: "2"
+  - id: 06. Age and location score 0 and size score 3
+    input:
+      "1":
+        gt0016|Patient's age (months): 0|local::at0009|> 12|
+        gt0017|Hematoma size: 3|local::at0016|Large (boggy consistency)|
+        gt0018|Hematoma location: 0|local::at0017|Frontal|
+    expected_output:
+      "1":
+        gt0009|Risk assessment: Low risk of traumatic brain injury
+        gt0020|Total score: "3"
+  - id: 07. Max total score (8)
+    input:
+      "1":
+        gt0016|Patient's age (months): 3|local::at0012|0-2|
+        gt0017|Hematoma size: 3|local::at0016|Large (boggy consistency)|
+        gt0018|Hematoma location: 2|local::at0019|Temporal/ Parietal|
+    expected_output:
+      "1":
+        gt0009|Risk assessment: High risk of traumatic brain injury
+        gt0020|Total score: "8"
+  - id: 08. Age score 1 and location and size score 0
+    input:
+      "1":
+        gt0016|Patient's age (months): 1|local::at0010|6-11|
+        gt0017|Hematoma size: 0|local::at0013|None|
+        gt0018|Hematoma location: 0|local::at0017|Frontal|
+    expected_output:
+      "1":
+        gt0009|Risk assessment: Low risk of traumatic brain injury
+        gt0020|Total score: "1"
+  - id: 09. Age score 2 and location and size score 0
+    input:
+      "1":
+        gt0016|Patient's age (months): 2|local::at0011|3-5|
+        gt0017|Hematoma size: 0|local::at0013|None|
+        gt0018|Hematoma location: 0|local::at0017|Frontal|
+    expected_output:
+      "1":
+        gt0009|Risk assessment: Low risk of traumatic brain injury
+        gt0020|Total score: "2"
+  - id: 10. Age score 3 and location and size score 0
+    input:
+      "1":
+        gt0016|Patient's age (months): 3|local::at0012|0-2|
+        gt0017|Hematoma size: 0|local::at0013|None|
+        gt0018|Hematoma location: 0|local::at0017|Frontal|
+    expected_output:
+      "1":
+        gt0009|Risk assessment: Low risk of traumatic brain injury
+        gt0020|Total score: "3"
+  - id: 11. Age and size score 0 and location score 1
+    input:
+      "1":
+        gt0016|Patient's age (months): 0|local::at0009|> 12|
+        gt0017|Hematoma size: 0|local::at0013|None|
+        gt0018|Hematoma location: 1|local::at0018|Occipital|
+    expected_output:
+      "1":
+        gt0009|Risk assessment: Low risk of traumatic brain injury
+        gt0020|Total score: "1"
+  - id: 12. Age and size score 0 and location score 2
+    input:
+      "1":
+        gt0016|Patient's age (months): 0|local::at0009|> 12|
+        gt0017|Hematoma size: 0|local::at0013|None|
+        gt0018|Hematoma location: 2|local::at0019|Temporal/ Parietal|
+    expected_output:
+      "1":
+        gt0009|Risk assessment: Low risk of traumatic brain injury
+        gt0020|Total score: "2"
+  - id: 13. Total score 4
+    input:
+      "1":
+        gt0016|Patient's age (months): 1|local::at0010|6-11|
+        gt0017|Hematoma size: 2|local::at0015|Medium (easily palpable)|
+        gt0018|Hematoma location: 1|local::at0018|Occipital|
+    expected_output:
+      "1":
+        gt0009|Risk assessment: High risk of traumatic brain injury
+        gt0020|Total score: "4"
+  - id: 14. Total score 6
+    input:
+      "1":
+        gt0016|Patient's age (months): 3|local::at0012|0-2|
+        gt0017|Hematoma size: 3|local::at0016|Large (boggy consistency)|
+        gt0018|Hematoma location: 0|local::at0017|Frontal|
+    expected_output:
+      "1":
+        gt0009|Risk assessment: High risk of traumatic brain injury
+        gt0020|Total score: "6"
+  - id: 15. Total score 5
+    input:
+      "1":
+        gt0016|Patient's age (months): 2|local::at0011|3-5|
+        gt0017|Hematoma size: 1|local::at0014|Small (barely palpable)|
+        gt0018|Hematoma location: 2|local::at0019|Temporal/ Parietal|
+    expected_output:
+      "1":
+        gt0009|Risk assessment: High risk of traumatic brain injury
+        gt0020|Total score: "5"
