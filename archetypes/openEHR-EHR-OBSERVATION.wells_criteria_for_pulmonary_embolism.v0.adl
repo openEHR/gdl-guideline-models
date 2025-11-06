@@ -15,14 +15,15 @@ description
 		["email"] = <"models@cambiocds.com">
 	>
 	lifecycle_state = <"in_development">
-	other_contributors = <"Aurelia Maria Ozora", ...>
+	other_contributors = <"Aurelia Maria Ozora","Katja Mariko Wilde">
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"To record the results for each component parameter and their sum total for the Wells criteria.">
-			keywords = <"wells, criteria, pulmonary, embolism, dvt, pe, diagnosis", ...>
+			purpose = <"To record the results for each component parameter and their sum total for the Well's criteria for pulmonary embolism score.">
+			keywords = <"wells, criteria, pulmonary, embolism, DVT, PE, diagnosis, deep, vein, thrombosis", ...>
 			copyright = <"© CambioCDS">
-			use = <"Use to record the results for each component parameter and their sum total for the Wells criteria.">
+			use = <"Use to record the results for each component parameter and their sum total for the Well's criteria for pulmonary embolism score.">
+			misuse = <"Not to be used for recording information regarding the Wells’ criteria for deep vein thrombosis.">
 		>
 	>
 	other_details = <
@@ -36,7 +37,7 @@ Lucassen W, Geersing GJ, Erkens PM, Reitsma JB, Moons KG, Büller H, van Weert H
 	>
 
 definition
-	OBSERVATION[at0000] matches {    -- Wells Criteria for Pulmonary Embolism
+	OBSERVATION[at0000] matches {    -- Wells' Criteria for Pulmonary Embolism
 		data matches {
 			HISTORY[at0001] matches {    -- Event Series
 				events cardinality matches {1..*; unordered} matches {
@@ -44,51 +45,59 @@ definition
 						data matches {
 							ITEM_TREE[at0003] matches {    -- Tree
 								items cardinality matches {0..*; unordered} matches {
-									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Clinical symptoms of DVT
-										value matches {
-											0|[local::at0015],
-											6|[local::at0016]
-										}
-									}
-									ELEMENT[at0005] occurrences matches {0..1} matches {    -- No alternative diagnosis
-										value matches {
-											0|[local::at0015],
-											6|[local::at0016]
-										}
-									}
-									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Heart rate >100x/min
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Clinical signs and symptoms of DVT
 										value matches {
 											0|[local::at0015],
 											3|[local::at0016]
 										}
 									}
-									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Immobilization (more than 3 days) or surgery in the previous four weeks
+									ELEMENT[at0033] occurrences matches {0..1} matches {    -- PE is #1 diagnosis OR equally likely
 										value matches {
-											0|[local::at0015],
-											3|[local::at0016]
+											0|[local::at0034],
+											3|[local::at0035]
 										}
 									}
-									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Previous DVT/PE
+									ELEMENT[at0030] occurrences matches {0..1} matches {    -- Heart rate >100
 										value matches {
-											0|[local::at0015],
-											3|[local::at0016]
+											0.0|[local::at0031],
+											1.5|[local::at0032]
+										}
+									}
+									ELEMENT[at0036] occurrences matches {0..1} matches {    -- Immobilization OR recent surgery
+										value matches {
+											0.0|[local::at0037],
+											1.5|[local::at0038]
+										}
+									}
+									ELEMENT[at0039] occurrences matches {0..1} matches {    -- Previous, objectively diagnosed PE or DVT
+										value matches {
+											0.0|[local::at0040],
+											1.5|[local::at0041]
 										}
 									}
 									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Hemoptysis
 										value matches {
 											0|[local::at0015],
-											2|[local::at0016]
+											1|[local::at0016]
 										}
 									}
-									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Malignancy (receiving treatment or palliative care or treated in the last 6 months)
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Malignancy
 										value matches {
 											0|[local::at0015],
-											2|[local::at0016]
+											1|[local::at0016]
 										}
 									}
-									ELEMENT[at0029] occurrences matches {0..1} matches {    -- Total score
+									ELEMENT[at0042] occurrences matches {0..1} matches {    -- Total score
 										value matches {
-											DV_COUNT matches {*}
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"1">
+														magnitude = <|0.0..12.5|>
+													>
+												>
+											>
 										}
 									}
 								}
@@ -115,8 +124,8 @@ ontology
 		["en"] = <
 			items = <
 				["at0000"] = <
-					text = <"Wells Criteria for Pulmonary Embolism">
-					description = <"The Wells criteria are a standardized clinical decision rule used to assess the clinical probability of a pulmonary embolism diagnosis.">
+					text = <"Wells' Criteria for Pulmonary Embolism">
+					description = <"An assessment score used to estimate mortality for patients with unstable angina and non-ST elevation MI.">
 					comment = <"Original version, c 2000.">
 				>
 				["at0001"] = <
@@ -132,23 +141,7 @@ ontology
 					description = <"@ internal @">
 				>
 				["at0004"] = <
-					text = <"Clinical symptoms of DVT">
-					description = <"">
-				>
-				["at0005"] = <
-					text = <"No alternative diagnosis">
-					description = <"">
-				>
-				["at0006"] = <
-					text = <"Heart rate >100x/min">
-					description = <"">
-				>
-				["at0007"] = <
-					text = <"Immobilization (more than 3 days) or surgery in the previous four weeks">
-					description = <"">
-				>
-				["at0008"] = <
-					text = <"Previous DVT/PE">
+					text = <"Clinical signs and symptoms of DVT">
 					description = <"">
 				>
 				["at0009"] = <
@@ -156,8 +149,8 @@ ontology
 					description = <"">
 				>
 				["at0010"] = <
-					text = <"Malignancy (receiving treatment or palliative care or treated in the last 6 months)">
-					description = <"">
+					text = <"Malignancy">
+					description = <"Malignancy w/ treatment within 6 months or palliative">
 				>
 				["at0015"] = <
 					text = <"No">
@@ -176,9 +169,57 @@ ontology
 					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
 					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
 				>
-				["at0029"] = <
-					text = <"Total score">
+				["at0030"] = <
+					text = <"Heart rate >100">
 					description = <"">
+				>
+				["at0031"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"PE is #1 diagnosis OR equally likely">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Immobilization OR recent surgery">
+					description = <"Immobilization at least 3 days OR surgery in the previous 4 weeks">
+				>
+				["at0037"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"Previous, objectively diagnosed PE or DVT">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"Total score">
+					description = <"The total sum of each component parameter for the Wells' Criteria for Pulmonary Embolism.">
 				>
 			>
 		>
