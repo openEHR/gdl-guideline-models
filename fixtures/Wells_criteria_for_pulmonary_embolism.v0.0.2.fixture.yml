@@ -1,0 +1,164 @@
+guidelines:
+  "1": Wells_criteria_for_pulmonary_embolism.v0.0.2
+test_cases:
+  - id: 01 - Test no input
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02 - Clinical symptoms of DVT input missing (negative test)
+    input:
+      "1":
+        gt0059|No alternative diagnosis: 0|local::at0015|No|
+        gt0060|Heart rate >100x/min: 0|local::at0015|No|
+        gt0061|Immobilization (more than 3 days) or surgery in the previous four weeks: 0|local::at0015|No|
+        gt0062|Previous DVT/PE: 0|local::at0015|No|
+        gt0063|Hemoptysis: 0|local::at0015|No|
+        gt0064|Malignancy (receiving treatment or palliative care or treated in the last 6 months): 0|local::at0015|No|
+    expected_output:
+      "1": {}
+  - id: 03 - No alternative diagnosis input missing (negative test)
+    input:
+      "1":
+        gt0058|Clinical symptoms of DVT: 0|local::at0015|No|
+        gt0060|Heart rate >100x/min: 0|local::at0015|No|
+        gt0061|Immobilization (more than 3 days) or surgery in the previous four weeks: 0|local::at0015|No|
+        gt0062|Previous DVT/PE: 0|local::at0015|No|
+        gt0063|Hemoptysis: 0|local::at0015|No|
+        gt0064|Malignancy (receiving treatment or palliative care or treated in the last 6 months): 0|local::at0015|No|
+    expected_output:
+      "1": {}
+  - id: 04 - Heart rate >100x/min input missing (negative test)
+    input:
+      "1":
+        gt0058|Clinical symptoms of DVT: 0|local::at0015|No|
+        gt0059|No alternative diagnosis: 0|local::at0015|No|
+        gt0061|Immobilization (more than 3 days) or surgery in the previous four weeks: 0|local::at0015|No|
+        gt0062|Previous DVT/PE: 0|local::at0015|No|
+        gt0063|Hemoptysis: 0|local::at0015|No|
+        gt0064|Malignancy (receiving treatment or palliative care or treated in the last 6 months): 0|local::at0015|No|
+    expected_output:
+      "1": {}
+  - id: 05 - Immobilization (more than 3 days) or surgery in the previous four weeks
+      input missing (negative test)
+    input:
+      "1":
+        gt0058|Clinical symptoms of DVT: 0|local::at0015|No|
+        gt0059|No alternative diagnosis: 0|local::at0015|No|
+        gt0060|Heart rate >100x/min: 0|local::at0015|No|
+        gt0062|Previous DVT/PE: 0|local::at0015|No|
+        gt0063|Hemoptysis: 0|local::at0015|No|
+        gt0064|Malignancy (receiving treatment or palliative care or treated in the last 6 months): 0|local::at0015|No|
+    expected_output:
+      "1": {}
+  - id: 06 - Previous DVT/PE input missing (negative test)
+    input:
+      "1":
+        gt0058|Clinical symptoms of DVT: 0|local::at0015|No|
+        gt0059|No alternative diagnosis: 0|local::at0015|No|
+        gt0060|Heart rate >100x/min: 0|local::at0015|No|
+        gt0061|Immobilization (more than 3 days) or surgery in the previous four weeks: 0|local::at0015|No|
+        gt0063|Hemoptysis: 0|local::at0015|No|
+        gt0064|Malignancy (receiving treatment or palliative care or treated in the last 6 months): 0|local::at0015|No|
+    expected_output:
+      "1": {}
+  - id: 07 - Hemoptysis input missing (negative test)
+    input:
+      "1":
+        gt0058|Clinical symptoms of DVT: 0|local::at0015|No|
+        gt0059|No alternative diagnosis: 0|local::at0015|No|
+        gt0060|Heart rate >100x/min: 0|local::at0015|No|
+        gt0061|Immobilization (more than 3 days) or surgery in the previous four weeks: 0|local::at0015|No|
+        gt0062|Previous DVT/PE: 0|local::at0015|No|
+        gt0064|Malignancy (receiving treatment or palliative care or treated in the last 6 months): 0|local::at0015|No|
+    expected_output:
+      "1": {}
+  - id: 08 - Malignancy (receiving treatment or palliative care or treated in the
+      last 6 months) input missing (negative test)
+    input:
+      "1":
+        gt0058|Clinical symptoms of DVT: 0|local::at0015|No|
+        gt0059|No alternative diagnosis: 0|local::at0015|No|
+        gt0060|Heart rate >100x/min: 0|local::at0015|No|
+        gt0061|Immobilization (more than 3 days) or surgery in the previous four weeks: 0|local::at0015|No|
+        gt0062|Previous DVT/PE: 0|local::at0015|No|
+        gt0063|Hemoptysis: 0|local::at0015|No|
+    expected_output:
+      "1": {}
+  - id: 09 - All inputs 0 points, test PE unlikely and low clinical probability of
+      PE
+    input:
+      "1":
+        gt0058|Clinical symptoms of DVT: 0|local::at0015|No|
+        gt0059|No alternative diagnosis: 0|local::at0015|No|
+        gt0060|Heart rate >100x/min: 0|local::at0015|No|
+        gt0061|Immobilization (more than 3 days) or surgery in the previous four weeks: 0|local::at0015|No|
+        gt0062|Previous DVT/PE: 0|local::at0015|No|
+        gt0063|Hemoptysis: 0|local::at0015|No|
+        gt0064|Malignancy (receiving treatment or palliative care or treated in the last 6 months): 0|local::at0015|No|
+    expected_output:
+      "1":
+        gt0071|Total score: "0.0"
+        gt0073|Two level clinical probability: local::at0006|Pulmonary embolism unlikely|
+        gt0074|Three level clinical probability: local::at0008|Low|
+  - id: 10 - Total score 4 points, test PE unlikely and moderate clinical
+      probability of PE
+    input:
+      "1":
+        gt0058|Clinical symptoms of DVT: 6|local::at0016|Yes|
+        gt0059|No alternative diagnosis: 0|local::at0015|No|
+        gt0060|Heart rate >100x/min: 0|local::at0015|No|
+        gt0061|Immobilization (more than 3 days) or surgery in the previous four weeks: 0|local::at0015|No|
+        gt0062|Previous DVT/PE: 0|local::at0015|No|
+        gt0063|Hemoptysis: 0|local::at0015|No|
+        gt0064|Malignancy (receiving treatment or palliative care or treated in the last 6 months): 2|local::at0016|Yes|
+    expected_output:
+      "1":
+        gt0071|Total score: "4.0"
+        gt0073|Two level clinical probability: local::at0006|Pulmonary embolism unlikely|
+        gt0074|Three level clinical probability: local::at0009|Moderate|
+  - id: 11 - Total score 5, test PE likely and moderate clinical probability of PE
+    input:
+      "1":
+        gt0058|Clinical symptoms of DVT: 6|local::at0016|Yes|
+        gt0059|No alternative diagnosis: 0|local::at0015|No|
+        gt0060|Heart rate >100x/min: 0|local::at0015|No|
+        gt0061|Immobilization (more than 3 days) or surgery in the previous four weeks: 0|local::at0015|No|
+        gt0062|Previous DVT/PE: 0|local::at0015|No|
+        gt0063|Hemoptysis: 2|local::at0016|Yes|
+        gt0064|Malignancy (receiving treatment or palliative care or treated in the last 6 months): 2|local::at0016|Yes|
+    expected_output:
+      "1":
+        gt0071|Total score: "5.0"
+        gt0073|Two level clinical probability: local::at0007|Pulmonary embolism likely|
+        gt0074|Three level clinical probability: local::at0009|Moderate|
+  - id: 12 - Total score 6.5, test PE likely and high clinical probability of PE
+    input:
+      "1":
+        gt0058|Clinical symptoms of DVT: 6|local::at0016|Yes|
+        gt0059|No alternative diagnosis: 0|local::at0015|No|
+        gt0060|Heart rate >100x/min: 0|local::at0015|No|
+        gt0061|Immobilization (more than 3 days) or surgery in the previous four weeks: 0|local::at0015|No|
+        gt0062|Previous DVT/PE: 3|local::at0016|Yes|
+        gt0063|Hemoptysis: 2|local::at0016|Yes|
+        gt0064|Malignancy (receiving treatment or palliative care or treated in the last 6 months): 2|local::at0016|Yes|
+    expected_output:
+      "1":
+        gt0071|Total score: "6.5"
+        gt0073|Two level clinical probability: local::at0007|Pulmonary embolism likely|
+        gt0074|Three level clinical probability: local::at0010|High|
+  - id: 13 - Test all input yes
+    input:
+      "1":
+        gt0058|Clinical symptoms of DVT: 6|local::at0016|Yes|
+        gt0059|No alternative diagnosis: 6|local::at0016|Yes|
+        gt0060|Heart rate >100x/min: 3|local::at0016|Yes|
+        gt0061|Immobilization (more than 3 days) or surgery in the previous four weeks: 3|local::at0016|Yes|
+        gt0062|Previous DVT/PE: 3|local::at0016|Yes|
+        gt0063|Hemoptysis: 2|local::at0016|Yes|
+        gt0064|Malignancy (receiving treatment or palliative care or treated in the last 6 months): 2|local::at0016|Yes|
+    expected_output:
+      "1":
+        gt0071|Total score: "12.5"
+        gt0073|Two level clinical probability: local::at0007|Pulmonary embolism likely|
+        gt0074|Three level clinical probability: local::at0010|High|
