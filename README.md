@@ -11,22 +11,22 @@ We've gathered all of the available applications in one place and organized them
 
 If you would like to test an app, simply click on "ENG" to access the English version, and "SWE" for the Swedish version. To view a detailed description of the app and its components, click on the application name.
 
-### *Published Apps: 676*
+### *Published Apps: 686*
 
 ----------
 
 ### Latest added
 
-1. Body surface Area-Livingstons (BSA-Livingstons) calculation - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BSA_livingstons_calculation/0.1.0?language=en))
-2. BMI assessment - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BMI_assessment/0.1.0?language=en))
-3. BMI calculation - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BMI_calculation/0.1.0?language=en))
-4. Mayo Alliance Prognostic System (MAPS) Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Mayo_Alliance_Prognostic_System_MAPS_Score/0.1.0?language=en))
-5. Infant scalp score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Infant_scalp_score/0.1.0?language=en))
-6. ISTH-SCC bleeding assessment tool - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISTH_SCC_bleeding_assessment_tool/0.1.0?language=en))
-7. ISWT (Incremental Shuttle Walk Test)  - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISWT/16.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISWT/16.1?language=sv))
-8. DOWNES score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Downes_score/8.1.3?language=en))
-9. Diagnostic criteria for preeclampsia - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=en))/([_GER_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=de))/([_ES_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=es))/([_CAT_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=ca))/([_FR_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=fr))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=sv))
-10. MELD_3_0 - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MELD_3_0/3.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MELD_3_0/3.1?language=sv))
+1. Novel, Innovative Research for Understanding Dehydration in Adults and Kids (NIRUDAK) Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Simplified_NIRUDAK_score/0.1.0?language=en))
+2. Geriatric Depression Scale (GDS-15) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rome_IV_Diagnostic_Criteria_for_Child_Functional_Constipation_Assessment/0.1.0?language=en))
+3. Rome IV Diagnostic Criteria for Child Functional Constipation - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rome_IV_Diagnostic_Criteria_for_Child_Functional_Constipation_Assessment/0.1.0?language=en))
+4. Prague C & M Classification for Barrett's Esophagus - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Prague_C_M_Classification_for_Barrett_s_Esophagus/0.1.0?language=en))
+5. CRIES Pain Scale - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/CRIES_pain_scale/0.1.0?language=en))
+6. BIND Score (Bilirubin-Induced Neurologic Dysfunction) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BIND_score/0.1.1?language=en))
+7. Dehydration: Assessing Kids Accurately (DHAKA) Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Dehydration_Assessing_Kids_Accurately_DHAKA_Score/0.1.0?language=en))
+8. Sudbury Vertigo Risk Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Sudbury_Vertigo_Risk_Score/0.1.0?language=en))
+9. Henderson-Hasselbalch Equation Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Henderson_Hasselbalch_equation/0.1.0?language=en))
+10. Pulmonary Embolism Syncope-Anemia-Renal Dysfunction (PE-SARD) Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Pulmonary_Embolism_Syncope_Anemia_Renal_Dysfunction_PE_SARD_Score/0.1.0?language=en))
 
 ----------
 

@@ -1,0 +1,103 @@
+guidelines:
+  "1": Dehydration_Assessing_Kids_Accurately_DHAKA_Score.v0.1.0
+test_cases:
+  - id: 01 - Age 5 (test precondition, negative test)
+    input:
+      "1":
+        gt0016|Age: 5,a
+        gt0018|General appearance: 0|local::at0011|Normal|
+        gt0019|Tears: 0|local::at0014|Normal|
+        gt0020|Skin pinch: 0|local::at0017|Normal|
+        gt0021|Respiration: 0|local::at0020|Normal|
+    expected_output:
+      "1": {}
+  - id: 02 - Age 4, others no input (negative test)
+    input:
+      "1":
+        gt0016|Age: 4,a
+    expected_output:
+      "1": {}
+  - id: 03 - Age 4, General appearance input missing (negative test)
+    input:
+      "1":
+        gt0016|Age: 4,a
+        gt0019|Tears: 0|local::at0014|Normal|
+        gt0020|Skin pinch: 0|local::at0017|Normal|
+        gt0021|Respiration: 0|local::at0020|Normal|
+    expected_output:
+      "1": {}
+  - id: 04 - Age 4, Tears input missing (negative test)
+    input:
+      "1":
+        gt0016|Age: 4,a
+        gt0018|General appearance: 0|local::at0011|Normal|
+        gt0020|Skin pinch: 0|local::at0017|Normal|
+        gt0021|Respiration: 0|local::at0020|Normal|
+    expected_output:
+      "1": {}
+  - id: 05 - Age 4, Skin pinch input missing (negative test)
+    input:
+      "1":
+        gt0016|Age: 4,a
+        gt0018|General appearance: 0|local::at0011|Normal|
+        gt0019|Tears: 0|local::at0014|Normal|
+        gt0021|Respiration: 0|local::at0020|Normal|
+    expected_output:
+      "1": {}
+  - id: 06 - Age 4, Respiration input missing (negative test)
+    input:
+      "1":
+        gt0016|Age: 4,a
+        gt0018|General appearance: 0|local::at0011|Normal|
+        gt0019|Tears: 0|local::at0014|Normal|
+        gt0020|Skin pinch: 0|local::at0017|Normal|
+    expected_output:
+      "1": {}
+  - id: 07 - Age 4, All input value 0 (no dehydration)
+    input:
+      "1":
+        gt0016|Age: 4,a
+        gt0018|General appearance: 0|local::at0011|Normal|
+        gt0019|Tears: 0|local::at0014|Normal|
+        gt0020|Skin pinch: 0|local::at0017|Normal|
+        gt0021|Respiration: 0|local::at0020|Normal|
+    expected_output:
+      "1":
+        gt0023|Total score: "0"
+        gt0025|Interpretation: local::at0005|No dehydration|
+  - id: 08 - Age 4, total score 3 (some dehydration)
+    input:
+      "1":
+        gt0016|Age: 4,a
+        gt0018|General appearance: 2|local::at0012|Restless/irritable|
+        gt0019|Tears: 1|local::at0015|Decreased|
+        gt0020|Skin pinch: 0|local::at0017|Normal|
+        gt0021|Respiration: 0|local::at0020|Normal|
+    expected_output:
+      "1":
+        gt0023|Total score: "3"
+        gt0025|Interpretation: local::at0006|Some dehydration|
+  - id: 09 - Age 4, test second option of all input (severe dehydration)
+    input:
+      "1":
+        gt0016|Age: 4,a
+        gt0018|General appearance: 2|local::at0012|Restless/irritable|
+        gt0019|Tears: 1|local::at0015|Decreased|
+        gt0020|Skin pinch: 2|local::at0018|Slow|
+        gt0021|Respiration: 2|local::at0021|Deep|
+    expected_output:
+      "1":
+        gt0023|Total score: "7"
+        gt0025|Interpretation: local::at0007|Severe dehydration|
+  - id: 10 - Age 4, test last option of all input (severe dehydration)
+    input:
+      "1":
+        gt0016|Age: 4,a
+        gt0018|General appearance: 4|local::at0013|Lethargic/unconscious|
+        gt0019|Tears: 2|local::at0016|Absent|
+        gt0020|Skin pinch: 4|local::at0019|Very slow|
+        gt0021|Respiration: 2|local::at0021|Deep|
+    expected_output:
+      "1":
+        gt0023|Total score: "12"
+        gt0025|Interpretation: local::at0007|Severe dehydration|

@@ -1,0 +1,88 @@
+guidelines:
+  "1": CRIES_pain_scale.v0.1.0
+test_cases:
+  - id: 01 - Test no input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02 - Crying missing input (negative test)
+    input:
+      "1":
+        gt0013|Requires O2 for SaO2 < 95%: 0|local::at0015|No oxygen required|
+        gt0014|Increased vital signs (blood pressure and heart rate): 0|local::at0018|Both HR and BP unchanged or less than baseline|
+        gt0015|Expression: 0|local::at0021|No grimace present|
+        gt0016|Sleeplessness: 0|local::at0024|Baby has been continuously asleep|
+    expected_output:
+      "1": {}
+  - id: 03 - Requires O2 for SaO2 < 95% missing input (negative test)
+    input:
+      "1":
+        gt0012|Crying: 0|local::at0012|No crying or crying that is not high-pitched|
+        gt0014|Increased vital signs (blood pressure and heart rate): 0|local::at0018|Both HR and BP unchanged or less than baseline|
+        gt0015|Expression: 0|local::at0021|No grimace present|
+        gt0016|Sleeplessness: 0|local::at0024|Baby has been continuously asleep|
+    expected_output:
+      "1": {}
+  - id: 04 - Increased vital signs (blood pressure and heart rate) missing input
+      (negative test)
+    input:
+      "1":
+        gt0012|Crying: 0|local::at0012|No crying or crying that is not high-pitched|
+        gt0013|Requires O2 for SaO2 < 95%: 0|local::at0015|No oxygen required|
+        gt0015|Expression: 0|local::at0021|No grimace present|
+        gt0016|Sleeplessness: 0|local::at0024|Baby has been continuously asleep|
+    expected_output:
+      "1": {}
+  - id: 05 - Expression missing input (negative test)
+    input:
+      "1":
+        gt0012|Crying: 0|local::at0012|No crying or crying that is not high-pitched|
+        gt0013|Requires O2 for SaO2 < 95%: 0|local::at0015|No oxygen required|
+        gt0014|Increased vital signs (blood pressure and heart rate): 0|local::at0018|Both HR and BP unchanged or less than baseline|
+        gt0016|Sleeplessness: 0|local::at0024|Baby has been continuously asleep|
+    expected_output:
+      "1": {}
+  - id: 06 - Sleeplessness missing input (negative test)
+    input:
+      "1":
+        gt0012|Crying: 0|local::at0012|No crying or crying that is not high-pitched|
+        gt0013|Requires O2 for SaO2 < 95%: 0|local::at0015|No oxygen required|
+        gt0014|Increased vital signs (blood pressure and heart rate): 0|local::at0018|Both HR and BP unchanged or less than baseline|
+        gt0015|Expression: 0|local::at0021|No grimace present|
+    expected_output:
+      "1": {}
+  - id: 07 - All inputs 0 points
+    input:
+      "1":
+        gt0012|Crying: 0|local::at0012|No crying or crying that is not high-pitched|
+        gt0013|Requires O2 for SaO2 < 95%: 0|local::at0015|No oxygen required|
+        gt0014|Increased vital signs (blood pressure and heart rate): 0|local::at0018|Both HR and BP unchanged or less than baseline|
+        gt0015|Expression: 0|local::at0021|No grimace present|
+        gt0016|Sleeplessness: 0|local::at0024|Baby has been continuously asleep|
+    expected_output:
+      "1":
+        gt0018|Total score: "0"
+  - id: 08 - All inputs 1 point
+    input:
+      "1":
+        gt0012|Crying: 1|local::at0013|Crying is high pitched but the baby is easily
+          consolable|
+        gt0013|Requires O2 for SaO2 < 95%: 1|local::at0016|< 30% oxygen required|
+        gt0014|Increased vital signs (blood pressure and heart rate): 1|local::at0019|HR or BP increased but increase in < 20% of baseline|
+        gt0015|Expression: 1|local::at0022|Grimace alone is present|
+        gt0016|Sleeplessness: 1|local::at0025|Baby has awakened at frequent intervals|
+    expected_output:
+      "1":
+        gt0018|Total score: "5"
+  - id: 09 - All inputs 2 points
+    input:
+      "1":
+        gt0012|Crying: 2|local::at0014|Crying is high pitched and the baby is inconsolable|
+        gt0013|Requires O2 for SaO2 < 95%: 2|local::at0017|> 30% oxygen required|
+        gt0014|Increased vital signs (blood pressure and heart rate): 2|local::at0020|HR or BP increased by > 20% of baseline|
+        gt0015|Expression: 2|local::at0023|Grimace and non-cry vocalization grunt is present|
+        gt0016|Sleeplessness: 2|local::at0026|Baby has been awake constantly|
+    expected_output:
+      "1":
+        gt0018|Total score: "10"

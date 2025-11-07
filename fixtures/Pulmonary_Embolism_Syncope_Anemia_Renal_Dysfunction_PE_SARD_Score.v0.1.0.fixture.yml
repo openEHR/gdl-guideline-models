@@ -1,0 +1,100 @@
+guidelines:
+  "1": Pulmonary_Embolism_Syncope_Anemia_Renal_Dysfunction_PE_SARD_Score.v0.1.0
+test_cases:
+  - id: 01 - Test no input
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02 - Anemia Hgb <12 g/dL input missing (negative test)
+    input:
+      "1":
+        gt0004|Syncope: local::at0015|Present|
+        gt0005|Renal dysfunction  eGFR <60 mL/min: local::at0017|Present|
+    expected_output:
+      "1":
+        gt0008|Syncope points: "1.5"
+        gt0009|Renal dysfunction points: "1.0"
+  - id: 03 - Syncope input missing (negative test)
+    input:
+      "1":
+        gt0003|Anemia  Hgb <12 g/dL: local::at0013|Present|
+        gt0005|Renal dysfunction  eGFR <60 mL/min: local::at0017|Present|
+    expected_output:
+      "1":
+        gt0007|Anemia points: "2.5"
+        gt0009|Renal dysfunction points: "1.0"
+  - id: 04 - Renal dysfunction eGFR <60 mL/min input missing (negative test)
+    input:
+      "1":
+        gt0003|Anemia  Hgb <12 g/dL: local::at0013|Present|
+        gt0004|Syncope: local::at0016|Absent|
+    expected_output:
+      "1":
+        gt0007|Anemia points: "2.5"
+        gt0008|Syncope points: "0.0"
+  - id: 05 -  All inputs 0 points
+    input:
+      "1":
+        gt0003|Anemia  Hgb <12 g/dL: local::at0014|Absent|
+        gt0004|Syncope: local::at0016|Absent|
+        gt0005|Renal dysfunction  eGFR <60 mL/min: local::at0018|Absent|
+    expected_output:
+      "1":
+        gt0007|Anemia points: "0.0"
+        gt0008|Syncope points: "0.0"
+        gt0009|Renal dysfunction points: "0.0"
+        gt0010|Total score: 0.0,1
+        gt0012|Risk assessment: Low risk
+  - id: 06 -  All inputs 1 point
+    input:
+      "1":
+        gt0003|Anemia  Hgb <12 g/dL: local::at0013|Present|
+        gt0004|Syncope: local::at0015|Present|
+        gt0005|Renal dysfunction  eGFR <60 mL/min: local::at0017|Present|
+    expected_output:
+      "1":
+        gt0007|Anemia points: "2.5"
+        gt0008|Syncope points: "1.5"
+        gt0009|Renal dysfunction points: "1.0"
+        gt0010|Total score: 5.0,1
+        gt0012|Risk assessment: High risk
+  - id: 07 -  Risk assessment 'Low risk'
+    input:
+      "1":
+        gt0003|Anemia  Hgb <12 g/dL: local::at0014|Absent|
+        gt0004|Syncope: local::at0016|Absent|
+        gt0005|Renal dysfunction  eGFR <60 mL/min: local::at0018|Absent|
+    expected_output:
+      "1":
+        gt0007|Anemia points: "0.0"
+        gt0008|Syncope points: "0.0"
+        gt0009|Renal dysfunction points: "0.0"
+        gt0010|Total score: 0.0,1
+        gt0012|Risk assessment: Low risk
+  - id: 08 -  Risk assessment 'Intermediate risk'
+    input:
+      "1":
+        gt0003|Anemia  Hgb <12 g/dL: local::at0013|Present|
+        gt0004|Syncope: local::at0016|Absent|
+        gt0005|Renal dysfunction  eGFR <60 mL/min: local::at0018|Absent|
+    expected_output:
+      "1":
+        gt0007|Anemia points: "2.5"
+        gt0008|Syncope points: "0.0"
+        gt0009|Renal dysfunction points: "0.0"
+        gt0010|Total score: 2.5,1
+        gt0012|Risk assessment: Intermediate risk
+  - id: 09 -  Risk assessment 'High risk'
+    input:
+      "1":
+        gt0003|Anemia  Hgb <12 g/dL: local::at0013|Present|
+        gt0004|Syncope: local::at0016|Absent|
+        gt0005|Renal dysfunction  eGFR <60 mL/min: local::at0017|Present|
+    expected_output:
+      "1":
+        gt0007|Anemia points: "2.5"
+        gt0008|Syncope points: "0.0"
+        gt0009|Renal dysfunction points: "1.0"
+        gt0010|Total score: 3.5,1
+        gt0012|Risk assessment: High risk
