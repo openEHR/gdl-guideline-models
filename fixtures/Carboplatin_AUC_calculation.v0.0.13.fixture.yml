@@ -1,0 +1,87 @@
+guidelines:
+  "1": Carboplatin_AUC_calculation.v0.0.13
+test_cases:
+  - id: TestCase_1_Sr.Cr.mg/dL
+    input:
+      "1":
+        gt0003|Age: 56,a
+        gt0011|Gender: local::at0005|Male|
+        gt0005|Weight: 69,kg
+        gt0007|Height/Length: 64,[in_i]
+        gt0021|Serum Creatinine: 5.6,mg/dL
+        gt0022|Target AUC: 6,mg/ml/min
+    expected_output:
+      "1":
+        gt0015|Ideal body weight: 59,kg
+        gt0018|CrCl: "14"
+        gt0019|Dosage: "234.0"
+  - id: TestCase_2_Sr.Cr.umol/L
+    input:
+      "1":
+        gt0003|Age: 56,a
+        gt0011|Gender: local::at0005|Male|
+        gt0005|Weight: 69,kg
+        gt0007|Height/Length: 64,[in_i]
+        gt0021|Serum Creatinine: 64,umol/L
+        gt0022|Target AUC: 7,mg/ml/min
+    expected_output:
+      "1":
+        gt0015|Ideal body weight: 59,kg
+        gt0018|CrCl: "111"
+        gt0019|Dosage: "952.0"
+  - id: TestCase_3_Sr.Cr.umol/L_Female
+    input:
+      "1":
+        gt0003|Age: 56,a
+        gt0011|Gender: local::at0006|Female|
+        gt0005|Weight: 69,kg
+        gt0007|Height/Length: 64,[in_i]
+        gt0021|Serum Creatinine: 64,umol/L
+        gt0022|Target AUC: 7,mg/ml/min
+    expected_output:
+      "1":
+        gt0015|Ideal body weight: 55,kg
+        gt0018|CrCl: "94"
+        gt0019|Dosage: "833.0"
+  - id: TestCase_4_Sr.Cr.umg/dL_Female
+    input:
+      "1":
+        gt0003|Age: 66,a
+        gt0011|Gender: local::at0006|Female|
+        gt0005|Weight: 69,kg
+        gt0007|Height/Length: 61,[in_i]
+        gt0021|Serum Creatinine: 34,mg/dL
+        gt0022|Target AUC: 7,mg/ml/min
+    expected_output:
+      "1":
+        gt0015|Ideal body weight: 48,kg
+        gt0018|CrCl: "1"
+        gt0019|Dosage: "182.0"
+  - id: Test5_with_all_units
+    input:
+      "1":
+        gt0003|Age: 59,a
+        gt0011|Gender: local::at0006|Female|
+        gt0005|Weight: 67,kg
+        gt0007|Height/Length: 68,[in_i]
+        gt0021|Serum Creatinine: 2.6,umol/L
+        gt0022|Target AUC: 6,mg/ml/min
+    expected_output:
+      "1":
+        gt0015|Ideal body weight: 64,kg
+        gt0018|CrCl: 2171,ml/min
+        gt0019|Dosage: 13170,mg
+  - id: Test6_with_all_units_female
+    input:
+      "1":
+        gt0003|Age: 45,a
+        gt0011|Gender: local::at0006|Female|
+        gt0005|Weight: 69,kg
+        gt0007|Height/Length: 61,[in_i]
+        gt0021|Serum Creatinine: 4.2,mg/dL
+        gt0022|Target AUC: 4,mg/ml/min
+    expected_output:
+      "1":
+        gt0015|Ideal body weight: 48,kg
+        gt0018|CrCl: 18,ml/min
+        gt0019|Dosage: 180,mg
