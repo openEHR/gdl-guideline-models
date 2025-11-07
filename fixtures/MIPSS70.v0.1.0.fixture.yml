@@ -1,0 +1,217 @@
+guidelines:
+  "1": MIPSS70.v0.1.0
+test_cases:
+  - id: 01. No inputs (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Karyotype information missing, pre-condition not met (negative test).
+    input:
+      "1":
+        gt0004|Hemoglobin <10 g/dL: 1|local::at0009|Yes|
+        "gt0005|Platelet count <100,000 /µL": 2|local::at0012|Yes|
+        "gt0006|Leukocyte count >25,000  /µL": 0|local::at0014|No|
+        gt0007|Circulating blasts ≥2%: 0|local::at0017|No|
+        gt0008|Fibrosis grade ≥2: 0|local::at0020|No|
+        gt0009|Constitutional symptoms: 0|local::at0023|No|
+        gt0010|Absence of CALR type 1-like mutation: 0|local::at0026|No|
+        gt0011|HMR category: 0|local::at0029|No|
+        gt0012|Two or more HMR mutations: 0|local::at0032|No|
+    expected_output:
+      "1": {}
+  - id: 03. Karyotype information available, pre-condition not met (negative test).
+    input:
+      "1":
+        gt0003|Karyotype information: local::at0054|Available|
+        gt0004|Hemoglobin <10 g/dL: 1|local::at0009|Yes|
+        "gt0005|Platelet count <100,000 /µL": 2|local::at0012|Yes|
+        "gt0006|Leukocyte count >25,000  /µL": 2|local::at0015|Yes|
+        gt0007|Circulating blasts ≥2%: 0|local::at0017|No|
+        gt0008|Fibrosis grade ≥2: 0|local::at0020|No|
+        gt0009|Constitutional symptoms: 0|local::at0023|No|
+        gt0010|Absence of CALR type 1-like mutation: 0|local::at0026|No|
+        gt0011|HMR category: 0|local::at0029|No|
+        gt0012|Two or more HMR mutations: 0|local::at0032|No|
+    expected_output:
+      "1": {}
+  - id: 04. Hemoglobin <10 g/dL missing (negative test).
+    input:
+      "1":
+        gt0003|Karyotype information: local::at0055|Not available|
+        "gt0005|Platelet count <100,000 /µL": 2|local::at0012|Yes|
+        "gt0006|Leukocyte count >25,000  /µL": 0|local::at0014|No|
+        gt0007|Circulating blasts ≥2%: 0|local::at0017|No|
+        gt0008|Fibrosis grade ≥2: 0|local::at0020|No|
+        gt0009|Constitutional symptoms: 0|local::at0023|No|
+        gt0010|Absence of CALR type 1-like mutation: 0|local::at0026|No|
+        gt0011|HMR category: 0|local::at0029|No|
+        gt0012|Two or more HMR mutations: 0|local::at0032|No|
+    expected_output:
+      "1": {}
+  - id: 05. Platelet count <100,000 /µL missing (negative test).
+    input:
+      "1":
+        gt0003|Karyotype information: local::at0055|Not available|
+        gt0004|Hemoglobin <10 g/dL: 0|local::at0008|No|
+        "gt0006|Leukocyte count >25,000  /µL": 0|local::at0014|No|
+        gt0007|Circulating blasts ≥2%: 0|local::at0017|No|
+        gt0008|Fibrosis grade ≥2: 0|local::at0020|No|
+        gt0009|Constitutional symptoms: 0|local::at0023|No|
+        gt0010|Absence of CALR type 1-like mutation: 0|local::at0026|No|
+        gt0011|HMR category: 0|local::at0029|No|
+        gt0012|Two or more HMR mutations: 0|local::at0032|No|
+    expected_output:
+      "1": {}
+  - id: 06. Leukocyte count >25,000 /µL missing (negative test).
+    input:
+      "1":
+        gt0003|Karyotype information: local::at0055|Not available|
+        gt0004|Hemoglobin <10 g/dL: 0|local::at0008|No|
+        "gt0005|Platelet count <100,000 /µL": 2|local::at0012|Yes|
+        gt0007|Circulating blasts ≥2%: 0|local::at0017|No|
+        gt0008|Fibrosis grade ≥2: 0|local::at0020|No|
+        gt0009|Constitutional symptoms: 0|local::at0023|No|
+        gt0010|Absence of CALR type 1-like mutation: 0|local::at0026|No|
+        gt0011|HMR category: 0|local::at0029|No|
+        gt0012|Two or more HMR mutations: 0|local::at0032|No|
+    expected_output:
+      "1": {}
+  - id: 07. Circulating blasts ≥2% (negative test).
+    input:
+      "1":
+        gt0003|Karyotype information: local::at0055|Not available|
+        gt0004|Hemoglobin <10 g/dL: 0|local::at0008|No|
+        "gt0005|Platelet count <100,000 /µL": 2|local::at0012|Yes|
+        "gt0006|Leukocyte count >25,000  /µL": 0|local::at0014|No|
+        gt0008|Fibrosis grade ≥2: 0|local::at0020|No|
+        gt0009|Constitutional symptoms: 0|local::at0023|No|
+        gt0010|Absence of CALR type 1-like mutation: 0|local::at0026|No|
+        gt0011|HMR category: 0|local::at0029|No|
+        gt0012|Two or more HMR mutations: 0|local::at0032|No|
+    expected_output:
+      "1": {}
+  - id: 08. Fibrosis grade ≥2 missing (negative test).
+    input:
+      "1":
+        gt0003|Karyotype information: local::at0055|Not available|
+        gt0004|Hemoglobin <10 g/dL: 0|local::at0008|No|
+        "gt0005|Platelet count <100,000 /µL": 2|local::at0012|Yes|
+        "gt0006|Leukocyte count >25,000  /µL": 0|local::at0014|No|
+        gt0007|Circulating blasts ≥2%: 0|local::at0017|No|
+        gt0009|Constitutional symptoms: 0|local::at0023|No|
+        gt0010|Absence of CALR type 1-like mutation: 0|local::at0026|No|
+        gt0011|HMR category: 0|local::at0029|No|
+        gt0012|Two or more HMR mutations: 0|local::at0032|No|
+    expected_output:
+      "1": {}
+  - id: 09. Constitutional symptoms missing (negative test).
+    input:
+      "1":
+        gt0003|Karyotype information: local::at0055|Not available|
+        gt0004|Hemoglobin <10 g/dL: 0|local::at0008|No|
+        "gt0005|Platelet count <100,000 /µL": 2|local::at0012|Yes|
+        "gt0006|Leukocyte count >25,000  /µL": 0|local::at0014|No|
+        gt0007|Circulating blasts ≥2%: 0|local::at0017|No|
+        gt0008|Fibrosis grade ≥2: 0|local::at0020|No|
+        gt0010|Absence of CALR type 1-like mutation: 0|local::at0026|No|
+        gt0011|HMR category: 0|local::at0029|No|
+        gt0012|Two or more HMR mutations: 0|local::at0032|No|
+    expected_output:
+      "1": {}
+  - id: 10. Absence of CALR type 1-like mutation missing (negative test).
+    input:
+      "1":
+        gt0003|Karyotype information: local::at0055|Not available|
+        gt0004|Hemoglobin <10 g/dL: 0|local::at0008|No|
+        "gt0005|Platelet count <100,000 /µL": 2|local::at0012|Yes|
+        "gt0006|Leukocyte count >25,000  /µL": 0|local::at0014|No|
+        gt0007|Circulating blasts ≥2%: 0|local::at0017|No|
+        gt0008|Fibrosis grade ≥2: 0|local::at0020|No|
+        gt0009|Constitutional symptoms: 0|local::at0023|No|
+        gt0011|HMR category: 0|local::at0029|No|
+        gt0012|Two or more HMR mutations: 0|local::at0032|No|
+    expected_output:
+      "1": {}
+  - id: 11. HMR category missing (negative test).
+    input:
+      "1":
+        gt0003|Karyotype information: local::at0055|Not available|
+        gt0004|Hemoglobin <10 g/dL: 0|local::at0008|No|
+        "gt0005|Platelet count <100,000 /µL": 2|local::at0012|Yes|
+        "gt0006|Leukocyte count >25,000  /µL": 0|local::at0014|No|
+        gt0007|Circulating blasts ≥2%: 0|local::at0017|No|
+        gt0008|Fibrosis grade ≥2: 0|local::at0020|No|
+        gt0009|Constitutional symptoms: 0|local::at0023|No|
+        gt0010|Absence of CALR type 1-like mutation: 1|local::at0027|Yes|
+        gt0012|Two or more HMR mutations: 0|local::at0032|No|
+    expected_output:
+      "1": {}
+  - id: 12. Two or more HMR mutations missing (negative test).
+    input:
+      "1":
+        gt0003|Karyotype information: local::at0055|Not available|
+        gt0004|Hemoglobin <10 g/dL: 0|local::at0008|No|
+        "gt0005|Platelet count <100,000 /µL": 2|local::at0012|Yes|
+        "gt0006|Leukocyte count >25,000  /µL": 0|local::at0014|No|
+        gt0007|Circulating blasts ≥2%: 0|local::at0017|No|
+        gt0008|Fibrosis grade ≥2: 0|local::at0020|No|
+        gt0009|Constitutional symptoms: 0|local::at0023|No|
+        gt0010|Absence of CALR type 1-like mutation: 1|local::at0027|Yes|
+        gt0011|HMR category: 0|local::at0029|No|
+    expected_output:
+      "1": {}
+  - id: 13. low risk
+    input:
+      "1":
+        gt0003|Karyotype information: local::at0055|Not available|
+        gt0004|Hemoglobin <10 g/dL: 1|local::at0009|Yes|
+        "gt0005|Platelet count <100,000 /µL": 0|local::at0011|No|
+        "gt0006|Leukocyte count >25,000  /µL": 0|local::at0014|No|
+        gt0007|Circulating blasts ≥2%: 0|local::at0017|No|
+        gt0008|Fibrosis grade ≥2: 0|local::at0020|No|
+        gt0009|Constitutional symptoms: 0|local::at0023|No|
+        gt0010|Absence of CALR type 1-like mutation: 0|local::at0026|No|
+        gt0011|HMR category: 0|local::at0029|No|
+        gt0012|Two or more HMR mutations: 0|local::at0032|No|
+    expected_output:
+      "1":
+        gt0043|Risk MIPSS70: local::at0009|Low|
+        gt0044|Median Overall Survival: local::at0014|27.7|
+        gt0048|Total score|: "1"
+  - id: 14. Intermediate risk
+    input:
+      "1":
+        gt0003|Karyotype information: local::at0055|Not available|
+        gt0004|Hemoglobin <10 g/dL: 1|local::at0009|Yes|
+        "gt0005|Platelet count <100,000 /µL": 2|local::at0012|Yes|
+        "gt0006|Leukocyte count >25,000  /µL": 0|local::at0014|No|
+        gt0007|Circulating blasts ≥2%: 0|local::at0017|No|
+        gt0008|Fibrosis grade ≥2: 0|local::at0020|No|
+        gt0009|Constitutional symptoms: 0|local::at0023|No|
+        gt0010|Absence of CALR type 1-like mutation: 0|local::at0026|No|
+        gt0011|HMR category: 0|local::at0029|No|
+        gt0012|Two or more HMR mutations: 0|local::at0032|No|
+    expected_output:
+      "1":
+        gt0043|Risk MIPSS70: local::at0010|Intermediate|
+        gt0044|Median Overall Survival: local::at0016|7.1|
+        gt0048|Total score|: "3"
+  - id: 15. High risk
+    input:
+      "1":
+        gt0003|Karyotype information: local::at0055|Not available|
+        gt0004|Hemoglobin <10 g/dL: 1|local::at0009|Yes|
+        "gt0005|Platelet count <100,000 /µL": 2|local::at0012|Yes|
+        "gt0006|Leukocyte count >25,000  /µL": 2|local::at0015|Yes|
+        gt0007|Circulating blasts ≥2%: 0|local::at0017|No|
+        gt0008|Fibrosis grade ≥2: 0|local::at0020|No|
+        gt0009|Constitutional symptoms: 0|local::at0023|No|
+        gt0010|Absence of CALR type 1-like mutation: 0|local::at0026|No|
+        gt0011|HMR category: 0|local::at0029|No|
+        gt0012|Two or more HMR mutations: 0|local::at0032|No|
+    expected_output:
+      "1":
+        gt0043|Risk MIPSS70: local::at0011|High|
+        gt0044|Median Overall Survival: local::at0019|2.3|
+        gt0048|Total score|: "5"
