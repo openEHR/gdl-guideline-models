@@ -1,0 +1,294 @@
+guidelines:
+  "1": ICC_Primary_Myelofibrosis_Diagnostic_Criteria.v0.1.0
+test_cases:
+  - id: 01. No input, test default action (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1":
+        "gt0034|PMF, Early/Prefibrotic Stage (Pre-PMF)": local::at0005|Does not meet criteria|
+        "gt0035|PMF, Overt Fibrotic Stage": local::at0007|Does not meet criteria|
+  - id: 02. Bone marrow biopsy showing megakaryocytic proliferation and atypia, bone
+      marrow fibrosis grade <2 missing (negative test).
+    input:
+      "1":
+        "gt0004|Bone marrow biopsy showing megakaryocytic proliferation and atypia, accompanied by reticulin and/or collagen fibrosis grades 2 or 3": local::at0011|No|
+        "gt0005|JAK2, CALR, or MPL mutation or presence of another clonal marker": local::at0014|No|
+        gt0006|Absence of reactive bone marrow reticulin fibrosis: local::at0017|No|
+        gt0007|Absence of reactive myelofibrosis: local::at0020|No|
+        "gt0008|Diagnostic criteria for ET, PV, BCR::ABL1-positive CML, myelodysplastic syndrome, or other myeloid neoplasms are not met": local::at0023|No|
+        gt0009|Anemia not attributed to a comorbid condition: local::at0026|No|
+        gt0010|Leukocytosis ≥11 × 109/L: local::at0029|No|
+        gt0011|Palpable splenomegaly: local::at0032|No|
+        gt0012|Lactate dehydrogenase level above the reference range: local::at0035|No|
+        gt0013|Leukoerythroblastosis: local::at0038|No|
+    expected_output:
+      "1":
+        "gt0034|PMF, Early/Prefibrotic Stage (Pre-PMF)": local::at0005|Does not meet criteria|
+        "gt0035|PMF, Overt Fibrotic Stage": local::at0007|Does not meet criteria|
+  - id: 03. Bone marrow biopsy showing megakaryocytic proliferation and atypia,
+      accompanied by reticulin missing (negative test).
+    input:
+      "1":
+        "gt0003|Bone marrow biopsy showing megakaryocytic proliferation and atypia, bone marrow fibrosis grade <2, increased age-adjusted BM cellularity, granulocytic proliferation, and decreased erythropoiesis": local::at0008|No|
+        "gt0005|JAK2, CALR, or MPL mutation or presence of another clonal marker": local::at0014|No|
+        gt0006|Absence of reactive bone marrow reticulin fibrosis: local::at0017|No|
+        gt0007|Absence of reactive myelofibrosis: local::at0020|No|
+        "gt0008|Diagnostic criteria for ET, PV, BCR::ABL1-positive CML, myelodysplastic syndrome, or other myeloid neoplasms are not met": local::at0023|No|
+        gt0009|Anemia not attributed to a comorbid condition: local::at0026|No|
+        gt0010|Leukocytosis ≥11 × 109/L: local::at0029|No|
+        gt0011|Palpable splenomegaly: local::at0032|No|
+        gt0012|Lactate dehydrogenase level above the reference range: local::at0035|No|
+        gt0013|Leukoerythroblastosis: local::at0038|No|
+    expected_output:
+      "1":
+        "gt0034|PMF, Early/Prefibrotic Stage (Pre-PMF)": local::at0005|Does not meet criteria|
+        "gt0035|PMF, Overt Fibrotic Stage": local::at0007|Does not meet criteria|
+  - id: 04. JAK2, CALR, or MPL mutation or presence of another clonal marker missing
+      (negative test).
+    input:
+      "1":
+        "gt0003|Bone marrow biopsy showing megakaryocytic proliferation and atypia, bone marrow fibrosis grade <2, increased age-adjusted BM cellularity, granulocytic proliferation, and decreased erythropoiesis": local::at0008|No|
+        "gt0004|Bone marrow biopsy showing megakaryocytic proliferation and atypia, accompanied by reticulin and/or collagen fibrosis grades 2 or 3": local::at0011|No|
+        gt0006|Absence of reactive bone marrow reticulin fibrosis: local::at0017|No|
+        gt0007|Absence of reactive myelofibrosis: local::at0020|No|
+        "gt0008|Diagnostic criteria for ET, PV, BCR::ABL1-positive CML, myelodysplastic syndrome, or other myeloid neoplasms are not met": local::at0023|No|
+        gt0009|Anemia not attributed to a comorbid condition: local::at0026|No|
+        gt0010|Leukocytosis ≥11 × 109/L: local::at0029|No|
+        gt0011|Palpable splenomegaly: local::at0032|No|
+        gt0012|Lactate dehydrogenase level above the reference range: local::at0035|No|
+        gt0013|Leukoerythroblastosis: local::at0038|No|
+    expected_output:
+      "1":
+        "gt0034|PMF, Early/Prefibrotic Stage (Pre-PMF)": local::at0005|Does not meet criteria|
+        "gt0035|PMF, Overt Fibrotic Stage": local::at0007|Does not meet criteria|
+  - id: 05. Absence of reactive bone marrow reticulin fibrosis missing (negative
+      test).
+    input:
+      "1":
+        "gt0003|Bone marrow biopsy showing megakaryocytic proliferation and atypia, bone marrow fibrosis grade <2, increased age-adjusted BM cellularity, granulocytic proliferation, and decreased erythropoiesis": local::at0008|No|
+        "gt0004|Bone marrow biopsy showing megakaryocytic proliferation and atypia, accompanied by reticulin and/or collagen fibrosis grades 2 or 3": local::at0011|No|
+        "gt0005|JAK2, CALR, or MPL mutation or presence of another clonal marker": local::at0014|No|
+        gt0007|Absence of reactive myelofibrosis: local::at0020|No|
+        "gt0008|Diagnostic criteria for ET, PV, BCR::ABL1-positive CML, myelodysplastic syndrome, or other myeloid neoplasms are not met": local::at0023|No|
+        gt0009|Anemia not attributed to a comorbid condition: local::at0026|No|
+        gt0010|Leukocytosis ≥11 × 109/L: local::at0029|No|
+        gt0011|Palpable splenomegaly: local::at0032|No|
+        gt0012|Lactate dehydrogenase level above the reference range: local::at0035|No|
+        gt0013|Leukoerythroblastosis: local::at0038|No|
+    expected_output:
+      "1":
+        "gt0034|PMF, Early/Prefibrotic Stage (Pre-PMF)": local::at0005|Does not meet criteria|
+        "gt0035|PMF, Overt Fibrotic Stage": local::at0007|Does not meet criteria|
+  - id: 06. Absence of reactive myelofibrosis missing (negative test).
+    input:
+      "1":
+        "gt0003|Bone marrow biopsy showing megakaryocytic proliferation and atypia, bone marrow fibrosis grade <2, increased age-adjusted BM cellularity, granulocytic proliferation, and decreased erythropoiesis": local::at0008|No|
+        "gt0004|Bone marrow biopsy showing megakaryocytic proliferation and atypia, accompanied by reticulin and/or collagen fibrosis grades 2 or 3": local::at0011|No|
+        "gt0005|JAK2, CALR, or MPL mutation or presence of another clonal marker": local::at0014|No|
+        gt0006|Absence of reactive bone marrow reticulin fibrosis: local::at0017|No|
+        "gt0008|Diagnostic criteria for ET, PV, BCR::ABL1-positive CML, myelodysplastic syndrome, or other myeloid neoplasms are not met": local::at0023|No|
+        gt0009|Anemia not attributed to a comorbid condition: local::at0026|No|
+        gt0010|Leukocytosis ≥11 × 109/L: local::at0029|No|
+        gt0011|Palpable splenomegaly: local::at0032|No|
+        gt0012|Lactate dehydrogenase level above the reference range: local::at0035|No|
+        gt0013|Leukoerythroblastosis: local::at0038|No|
+    expected_output:
+      "1":
+        "gt0034|PMF, Early/Prefibrotic Stage (Pre-PMF)": local::at0005|Does not meet criteria|
+        "gt0035|PMF, Overt Fibrotic Stage": local::at0007|Does not meet criteria|
+  - id: 07. Diagnostic criteria for ET, PV missing (negative test).
+    input:
+      "1":
+        "gt0003|Bone marrow biopsy showing megakaryocytic proliferation and atypia, bone marrow fibrosis grade <2, increased age-adjusted BM cellularity, granulocytic proliferation, and decreased erythropoiesis": local::at0008|No|
+        "gt0004|Bone marrow biopsy showing megakaryocytic proliferation and atypia, accompanied by reticulin and/or collagen fibrosis grades 2 or 3": local::at0011|No|
+        "gt0005|JAK2, CALR, or MPL mutation or presence of another clonal marker": local::at0014|No|
+        gt0006|Absence of reactive bone marrow reticulin fibrosis: local::at0017|No|
+        gt0007|Absence of reactive myelofibrosis: local::at0020|No|
+        gt0009|Anemia not attributed to a comorbid condition: local::at0026|No|
+        gt0010|Leukocytosis ≥11 × 109/L: local::at0029|No|
+        gt0011|Palpable splenomegaly: local::at0032|No|
+        gt0012|Lactate dehydrogenase level above the reference range: local::at0035|No|
+        gt0013|Leukoerythroblastosis: local::at0038|No|
+    expected_output:
+      "1":
+        "gt0034|PMF, Early/Prefibrotic Stage (Pre-PMF)": local::at0005|Does not meet criteria|
+        "gt0035|PMF, Overt Fibrotic Stage": local::at0007|Does not meet criteria|
+  - id: 08. Anemia not attributed to a comorbid condition missing (negative test).
+    input:
+      "1":
+        "gt0003|Bone marrow biopsy showing megakaryocytic proliferation and atypia, bone marrow fibrosis grade <2, increased age-adjusted BM cellularity, granulocytic proliferation, and decreased erythropoiesis": local::at0008|No|
+        "gt0004|Bone marrow biopsy showing megakaryocytic proliferation and atypia, accompanied by reticulin and/or collagen fibrosis grades 2 or 3": local::at0011|No|
+        "gt0005|JAK2, CALR, or MPL mutation or presence of another clonal marker": local::at0014|No|
+        gt0006|Absence of reactive bone marrow reticulin fibrosis: local::at0017|No|
+        gt0007|Absence of reactive myelofibrosis: local::at0020|No|
+        "gt0008|Diagnostic criteria for ET, PV, BCR::ABL1-positive CML, myelodysplastic syndrome, or other myeloid neoplasms are not met": local::at0023|No|
+        gt0010|Leukocytosis ≥11 × 109/L: local::at0029|No|
+        gt0011|Palpable splenomegaly: local::at0032|No|
+        gt0012|Lactate dehydrogenase level above the reference range: local::at0035|No|
+        gt0013|Leukoerythroblastosis: local::at0038|No|
+    expected_output:
+      "1":
+        "gt0034|PMF, Early/Prefibrotic Stage (Pre-PMF)": local::at0005|Does not meet criteria|
+        "gt0035|PMF, Overt Fibrotic Stage": local::at0007|Does not meet criteria|
+  - id: 09. Leukocytosis ≥11 × 109/L missing (negative test).
+    input:
+      "1":
+        "gt0003|Bone marrow biopsy showing megakaryocytic proliferation and atypia, bone marrow fibrosis grade <2, increased age-adjusted BM cellularity, granulocytic proliferation, and decreased erythropoiesis": local::at0008|No|
+        "gt0004|Bone marrow biopsy showing megakaryocytic proliferation and atypia, accompanied by reticulin and/or collagen fibrosis grades 2 or 3": local::at0011|No|
+        "gt0005|JAK2, CALR, or MPL mutation or presence of another clonal marker": local::at0014|No|
+        gt0006|Absence of reactive bone marrow reticulin fibrosis: local::at0017|No|
+        gt0007|Absence of reactive myelofibrosis: local::at0020|No|
+        "gt0008|Diagnostic criteria for ET, PV, BCR::ABL1-positive CML, myelodysplastic syndrome, or other myeloid neoplasms are not met": local::at0023|No|
+        gt0009|Anemia not attributed to a comorbid condition: local::at0026|No|
+        gt0011|Palpable splenomegaly: local::at0032|No|
+        gt0012|Lactate dehydrogenase level above the reference range: local::at0035|No|
+        gt0013|Leukoerythroblastosis: local::at0038|No|
+    expected_output:
+      "1":
+        "gt0034|PMF, Early/Prefibrotic Stage (Pre-PMF)": local::at0005|Does not meet criteria|
+        "gt0035|PMF, Overt Fibrotic Stage": local::at0007|Does not meet criteria|
+  - id: 10. Palpable splenomegaly missing (negative test).
+    input:
+      "1":
+        "gt0003|Bone marrow biopsy showing megakaryocytic proliferation and atypia, bone marrow fibrosis grade <2, increased age-adjusted BM cellularity, granulocytic proliferation, and decreased erythropoiesis": local::at0008|No|
+        "gt0004|Bone marrow biopsy showing megakaryocytic proliferation and atypia, accompanied by reticulin and/or collagen fibrosis grades 2 or 3": local::at0011|No|
+        "gt0005|JAK2, CALR, or MPL mutation or presence of another clonal marker": local::at0014|No|
+        gt0006|Absence of reactive bone marrow reticulin fibrosis: local::at0017|No|
+        gt0007|Absence of reactive myelofibrosis: local::at0020|No|
+        "gt0008|Diagnostic criteria for ET, PV, BCR::ABL1-positive CML, myelodysplastic syndrome, or other myeloid neoplasms are not met": local::at0023|No|
+        gt0009|Anemia not attributed to a comorbid condition: local::at0026|No|
+        gt0010|Leukocytosis ≥11 × 109/L: local::at0029|No|
+        gt0012|Lactate dehydrogenase level above the reference range: local::at0035|No|
+        gt0013|Leukoerythroblastosis: local::at0038|No|
+    expected_output:
+      "1":
+        "gt0034|PMF, Early/Prefibrotic Stage (Pre-PMF)": local::at0005|Does not meet criteria|
+        "gt0035|PMF, Overt Fibrotic Stage": local::at0007|Does not meet criteria|
+  - id: 11. Lactate dehydrogenase level above the reference range missing (negative
+      test).
+    input:
+      "1":
+        "gt0003|Bone marrow biopsy showing megakaryocytic proliferation and atypia, bone marrow fibrosis grade <2, increased age-adjusted BM cellularity, granulocytic proliferation, and decreased erythropoiesis": local::at0008|No|
+        "gt0004|Bone marrow biopsy showing megakaryocytic proliferation and atypia, accompanied by reticulin and/or collagen fibrosis grades 2 or 3": local::at0011|No|
+        "gt0005|JAK2, CALR, or MPL mutation or presence of another clonal marker": local::at0014|No|
+        gt0006|Absence of reactive bone marrow reticulin fibrosis: local::at0017|No|
+        gt0007|Absence of reactive myelofibrosis: local::at0020|No|
+        "gt0008|Diagnostic criteria for ET, PV, BCR::ABL1-positive CML, myelodysplastic syndrome, or other myeloid neoplasms are not met": local::at0023|No|
+        gt0009|Anemia not attributed to a comorbid condition: local::at0026|No|
+        gt0010|Leukocytosis ≥11 × 109/L: local::at0029|No|
+        gt0011|Palpable splenomegaly: local::at0032|No|
+        gt0013|Leukoerythroblastosis: local::at0038|No|
+    expected_output:
+      "1":
+        "gt0034|PMF, Early/Prefibrotic Stage (Pre-PMF)": local::at0005|Does not meet criteria|
+        "gt0035|PMF, Overt Fibrotic Stage": local::at0007|Does not meet criteria|
+  - id: 12. Leukoerythroblastosis missing (negative test).
+    input:
+      "1":
+        "gt0003|Bone marrow biopsy showing megakaryocytic proliferation and atypia, bone marrow fibrosis grade <2, increased age-adjusted BM cellularity, granulocytic proliferation, and decreased erythropoiesis": local::at0008|No|
+        "gt0004|Bone marrow biopsy showing megakaryocytic proliferation and atypia, accompanied by reticulin and/or collagen fibrosis grades 2 or 3": local::at0011|No|
+        "gt0005|JAK2, CALR, or MPL mutation or presence of another clonal marker": local::at0014|No|
+        gt0006|Absence of reactive bone marrow reticulin fibrosis: local::at0017|No|
+        gt0007|Absence of reactive myelofibrosis: local::at0020|No|
+        "gt0008|Diagnostic criteria for ET, PV, BCR::ABL1-positive CML, myelodysplastic syndrome, or other myeloid neoplasms are not met": local::at0023|No|
+        gt0009|Anemia not attributed to a comorbid condition: local::at0026|No|
+        gt0010|Leukocytosis ≥11 × 109/L: local::at0029|No|
+        gt0011|Palpable splenomegaly: local::at0032|No|
+        gt0012|Lactate dehydrogenase level above the reference range: local::at0035|No|
+    expected_output:
+      "1":
+        "gt0034|PMF, Early/Prefibrotic Stage (Pre-PMF)": local::at0005|Does not meet criteria|
+        "gt0035|PMF, Overt Fibrotic Stage": local::at0007|Does not meet criteria|
+  - id: 13. All major criteria present.
+    input:
+      "1":
+        "gt0003|Bone marrow biopsy showing megakaryocytic proliferation and atypia, bone marrow fibrosis grade <2, increased age-adjusted BM cellularity, granulocytic proliferation, and decreased erythropoiesis": local::at0007|Yes|
+        "gt0004|Bone marrow biopsy showing megakaryocytic proliferation and atypia, accompanied by reticulin and/or collagen fibrosis grades 2 or 3": local::at0010|Yes|
+        "gt0005|JAK2, CALR, or MPL mutation or presence of another clonal marker": local::at0013|Yes|
+        gt0006|Absence of reactive bone marrow reticulin fibrosis: local::at0016|Yes|
+        gt0007|Absence of reactive myelofibrosis: local::at0019|Yes|
+        "gt0008|Diagnostic criteria for ET, PV, BCR::ABL1-positive CML, myelodysplastic syndrome, or other myeloid neoplasms are not met": local::at0022|Yes|
+        gt0009|Anemia not attributed to a comorbid condition: local::at0026|No|
+        gt0010|Leukocytosis ≥11 × 109/L: local::at0029|No|
+        gt0011|Palpable splenomegaly: local::at0032|No|
+        gt0012|Lactate dehydrogenase level above the reference range: local::at0035|No|
+        gt0013|Leukoerythroblastosis: local::at0038|No|
+    expected_output:
+      "1":
+        "gt0034|PMF, Early/Prefibrotic Stage (Pre-PMF)": local::at0005|Does not meet criteria|
+        "gt0035|PMF, Overt Fibrotic Stage": local::at0007|Does not meet criteria|
+  - id: 14. Only minor criteria present.
+    input:
+      "1":
+        "gt0003|Bone marrow biopsy showing megakaryocytic proliferation and atypia, bone marrow fibrosis grade <2, increased age-adjusted BM cellularity, granulocytic proliferation, and decreased erythropoiesis": local::at0008|No|
+        "gt0004|Bone marrow biopsy showing megakaryocytic proliferation and atypia, accompanied by reticulin and/or collagen fibrosis grades 2 or 3": local::at0011|No|
+        "gt0005|JAK2, CALR, or MPL mutation or presence of another clonal marker": local::at0014|No|
+        gt0006|Absence of reactive bone marrow reticulin fibrosis: local::at0017|No|
+        gt0007|Absence of reactive myelofibrosis: local::at0020|No|
+        "gt0008|Diagnostic criteria for ET, PV, BCR::ABL1-positive CML, myelodysplastic syndrome, or other myeloid neoplasms are not met": local::at0023|No|
+        gt0009|Anemia not attributed to a comorbid condition: local::at0025|Yes|
+        gt0010|Leukocytosis ≥11 × 109/L: local::at0028|Yes|
+        gt0011|Palpable splenomegaly: local::at0031|Yes|
+        gt0012|Lactate dehydrogenase level above the reference range: local::at0034|Yes|
+        gt0013|Leukoerythroblastosis: local::at0037|Yes|
+    expected_output:
+      "1":
+        "gt0034|PMF, Early/Prefibrotic Stage (Pre-PMF)": local::at0005|Does not meet criteria|
+        "gt0035|PMF, Overt Fibrotic Stage": local::at0007|Does not meet criteria|
+  - id: 15. One major criteria and minor criteria present.
+    input:
+      "1":
+        "gt0003|Bone marrow biopsy showing megakaryocytic proliferation and atypia, bone marrow fibrosis grade <2, increased age-adjusted BM cellularity, granulocytic proliferation, and decreased erythropoiesis": local::at0008|No|
+        "gt0004|Bone marrow biopsy showing megakaryocytic proliferation and atypia, accompanied by reticulin and/or collagen fibrosis grades 2 or 3": local::at0011|No|
+        "gt0005|JAK2, CALR, or MPL mutation or presence of another clonal marker": local::at0014|No|
+        gt0006|Absence of reactive bone marrow reticulin fibrosis: local::at0017|No|
+        gt0007|Absence of reactive myelofibrosis: local::at0020|No|
+        "gt0008|Diagnostic criteria for ET, PV, BCR::ABL1-positive CML, myelodysplastic syndrome, or other myeloid neoplasms are not met": local::at0022|Yes|
+        gt0009|Anemia not attributed to a comorbid condition: local::at0025|Yes|
+        gt0010|Leukocytosis ≥11 × 109/L: local::at0028|Yes|
+        gt0011|Palpable splenomegaly: local::at0031|Yes|
+        gt0012|Lactate dehydrogenase level above the reference range: local::at0034|Yes|
+        gt0013|Leukoerythroblastosis: local::at0037|Yes|
+    expected_output:
+      "1":
+        "gt0034|PMF, Early/Prefibrotic Stage (Pre-PMF)": local::at0005|Does not meet criteria|
+        "gt0035|PMF, Overt Fibrotic Stage": local::at0007|Does not meet criteria|
+  - id: 16. All major criteria and one minor criteria present for PMF, Overt
+      Fibrotic Stage
+    input:
+      "1":
+        "gt0003|Bone marrow biopsy showing megakaryocytic proliferation and atypia, bone marrow fibrosis grade <2, increased age-adjusted BM cellularity, granulocytic proliferation, and decreased erythropoiesis": local::at0007|Yes|
+        "gt0004|Bone marrow biopsy showing megakaryocytic proliferation and atypia, accompanied by reticulin and/or collagen fibrosis grades 2 or 3": local::at0010|Yes|
+        "gt0005|JAK2, CALR, or MPL mutation or presence of another clonal marker": local::at0013|Yes|
+        gt0006|Absence of reactive bone marrow reticulin fibrosis: local::at0016|Yes|
+        gt0007|Absence of reactive myelofibrosis: local::at0019|Yes|
+        "gt0008|Diagnostic criteria for ET, PV, BCR::ABL1-positive CML, myelodysplastic syndrome, or other myeloid neoplasms are not met": local::at0022|Yes|
+        gt0009|Anemia not attributed to a comorbid condition: local::at0026|No|
+        gt0010|Leukocytosis ≥11 × 109/L: local::at0029|No|
+        gt0011|Palpable splenomegaly: local::at0032|No|
+        gt0012|Lactate dehydrogenase level above the reference range: local::at0035|No|
+        gt0013|Leukoerythroblastosis: local::at0037|Yes|
+    expected_output:
+      "1":
+        "gt0034|PMF, Early/Prefibrotic Stage (Pre-PMF)": local::at0005|Does not meet criteria|
+        "gt0035|PMF, Overt Fibrotic Stage": local::at0006|Meets criteria|
+  - id: 17. All major criteria and one minor criteria present for PMF,
+      Early/prefibrotic Stage (Pre-PMF).
+    input:
+      "1":
+        "gt0003|Bone marrow biopsy showing megakaryocytic proliferation and atypia, bone marrow fibrosis grade <2, increased age-adjusted BM cellularity, granulocytic proliferation, and decreased erythropoiesis": local::at0007|Yes|
+        "gt0004|Bone marrow biopsy showing megakaryocytic proliferation and atypia, accompanied by reticulin and/or collagen fibrosis grades 2 or 3": local::at0011|No|
+        "gt0005|JAK2, CALR, or MPL mutation or presence of another clonal marker": local::at0013|Yes|
+        gt0006|Absence of reactive bone marrow reticulin fibrosis: local::at0016|Yes|
+        gt0007|Absence of reactive myelofibrosis: local::at0019|Yes|
+        "gt0008|Diagnostic criteria for ET, PV, BCR::ABL1-positive CML, myelodysplastic syndrome, or other myeloid neoplasms are not met": local::at0022|Yes|
+        gt0009|Anemia not attributed to a comorbid condition: local::at0025|Yes|
+        gt0010|Leukocytosis ≥11 × 109/L: local::at0029|No|
+        gt0011|Palpable splenomegaly: local::at0032|No|
+        gt0012|Lactate dehydrogenase level above the reference range: local::at0035|No|
+        gt0013|Leukoerythroblastosis: local::at0038|No|
+    expected_output:
+      "1":
+        "gt0034|PMF, Early/Prefibrotic Stage (Pre-PMF)": local::at0004|Meets criteria|
+        "gt0035|PMF, Overt Fibrotic Stage": local::at0007|Does not meet criteria|
