@@ -1,0 +1,130 @@
+guidelines:
+  "1": Left_ventricle_Mass_Index_LVMI.v0.1.0
+test_cases:
+  - id: 01. No input, test default action (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. LV end diastolic dimension missing (negative test).
+    input:
+      "1":
+        gt0004|Interventricular septal end diastole: 11,mm
+        gt0005|Posterior wall thickness at end-diastole: 11,mm
+        gt0006|Do you know the Body Surface Area?: local::at0015|Yes|
+        gt0017|Body Surface Area: 2,m2
+    expected_output:
+      "1": {}
+  - id: 03. Interventricular septal end diastole missing (negative test).
+    input:
+      "1":
+        gt0003|LV end diastolic dimension: 65,mm
+        gt0005|Posterior wall thickness at end-diastole: 11,mm
+        gt0006|Do you know the Body Surface Area?: local::at0015|Yes|
+        gt0017|Body Surface Area: 2,m2
+    expected_output:
+      "1": {}
+  - id: 04. Posterior wall thickness at end-diastole missing (negative test).
+    input:
+      "1":
+        gt0003|LV end diastolic dimension: 65,mm
+        gt0004|Interventricular septal end diastole: 11,mm
+        gt0006|Do you know the Body Surface Area?: local::at0015|Yes|
+        gt0017|Body Surface Area: 2,m2
+    expected_output:
+      "1": {}
+  - id: 05. Do you know the Body Surface Area? missing (negative test).
+    input:
+      "1":
+        gt0003|LV end diastolic dimension: 65,mm
+        gt0004|Interventricular septal end diastole: 11,mm
+        gt0005|Posterior wall thickness at end-diastole: 11,mm
+        gt0017|Body Surface Area: 2,m2
+    expected_output:
+      "1": {}
+  - id: 06. Weight missing, LVMI not calculated  (negative test).
+    input:
+      "1":
+        gt0003|LV end diastolic dimension: 65,mm
+        gt0004|Interventricular septal end diastole: 11,mm
+        gt0005|Posterior wall thickness at end-diastole: 11,mm
+        gt0006|Do you know the Body Surface Area?: local::at0016|No|
+        gt0015|Height/Length: 175,cm
+    expected_output:
+      "1":
+        gt0008|LV Mass: 319.99,g
+        gt0010|RWT: "0.338"
+        gt0011|Classification of LV mass increase: local::at0024|Eccentric hypertrophy|
+  - id: 07. Height/Length missing, LVMI not calculated (negative test).
+    input:
+      "1":
+        gt0003|LV end diastolic dimension: 65,mm
+        gt0004|Interventricular septal end diastole: 11,mm
+        gt0005|Posterior wall thickness at end-diastole: 11,mm
+        gt0006|Do you know the Body Surface Area?: local::at0016|No|
+        gt0013|Weight: 70,kg
+    expected_output:
+      "1":
+        gt0008|LV Mass: 319.99,g
+        gt0010|RWT: "0.338"
+        gt0011|Classification of LV mass increase: local::at0024|Eccentric hypertrophy|
+  - id: 08 BSA present.
+    input:
+      "1":
+        gt0003|LV end diastolic dimension: 65,mm
+        gt0004|Interventricular septal end diastole: 11,mm
+        gt0005|Posterior wall thickness at end-diastole: 11,mm
+        gt0006|Do you know the Body Surface Area?: local::at0015|Yes|
+        gt0017|Body Surface Area: 2,m2
+    expected_output:
+      "1":
+        gt0008|LV Mass: 319.99,g
+        gt0009|LVMI: 160.00,g/m2
+        gt0010|RWT: "0.338"
+        gt0011|Classification of LV mass increase: local::at0024|Eccentric hypertrophy|
+  - id: 09 BSA calculated  (metric).
+    input:
+      "1":
+        gt0003|LV end diastolic dimension: 65,mm
+        gt0004|Interventricular septal end diastole: 11,mm
+        gt0005|Posterior wall thickness at end-diastole: 11,mm
+        gt0006|Do you know the Body Surface Area?: local::at0016|No|
+        gt0013|Weight: 80,kg
+        gt0015|Height/Length: 180,cm
+    expected_output:
+      "1":
+        gt0008|LV Mass: 319.99,g
+        gt0009|LVMI: 160.00,g/m2
+        gt0010|RWT: "0.338"
+        gt0011|Classification of LV mass increase: local::at0024|Eccentric hypertrophy|
+  - id: 10 BSA calculated  (imperial).
+    input:
+      "1":
+        gt0003|LV end diastolic dimension: 65,mm
+        gt0004|Interventricular septal end diastole: 11,mm
+        gt0005|Posterior wall thickness at end-diastole: 11,mm
+        gt0006|Do you know the Body Surface Area?: local::at0016|No|
+        gt0013|Weight: 180,[lb_av]
+        gt0015|Height/Length: 70,[in_i]
+    expected_output:
+      "1":
+        gt0008|LV Mass: 319.99,g
+        gt0009|LVMI: 159.20,g/m2
+        gt0010|RWT: "0.338"
+        gt0011|Classification of LV mass increase: local::at0024|Eccentric hypertrophy|
+  - id: 11 Concentric hypertrophy.
+    input:
+      "1":
+        gt0003|LV end diastolic dimension: 46,mm
+        gt0004|Interventricular septal end diastole: 14,mm
+        gt0005|Posterior wall thickness at end-diastole: 14,mm
+        gt0006|Do you know the Body Surface Area?: local::at0015|Yes|
+        gt0013|Weight: 180,[lb_av]
+        gt0015|Height/Length: 70,[in_i]
+        gt0017|Body Surface Area: 1.9,m2
+    expected_output:
+      "1":
+        gt0008|LV Mass: 256.76,g
+        gt0009|LVMI: 135.14,g/m2
+        gt0010|RWT: "0.608"
+        gt0011|Classification of LV mass increase: local::at0023|Concentric hypertrophy|
