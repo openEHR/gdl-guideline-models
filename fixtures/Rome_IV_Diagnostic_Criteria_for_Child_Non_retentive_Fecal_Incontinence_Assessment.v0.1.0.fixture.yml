@@ -1,0 +1,217 @@
+guidelines:
+  "1": Rome_IV_Diagnostic_Criteria_for_Child_Non_retentive_Fecal_Incontinence_Assessment.v0.1.0
+test_cases:
+  - id: 01 - Test no input
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02 - Test precondition, age <4,a (negative test)
+    input:
+      "1":
+        gt0013|Age: 3,a
+        gt0015|Defecation in places inappropriate to the sociocultural context: "true"
+        gt0016|No evidence of fecal retention: "true"
+        "gt0017|After appropriate evaluation, the fecal incontinence cannot be explained by another medical condition": "true"
+        gt0018|The symptoms have lasted for at least one month.: "true"
+    expected_output:
+      "1": {}
+  - id: 03 - Test precondition, age 18,a (negative test)
+    input:
+      "1":
+        gt0013|Age: 18,a
+        gt0015|Defecation in places inappropriate to the sociocultural context: "true"
+        gt0016|No evidence of fecal retention: "true"
+        "gt0017|After appropriate evaluation, the fecal incontinence cannot be explained by another medical condition": "true"
+        gt0018|The symptoms have lasted for at least one month.: "true"
+    expected_output:
+      "1": {}
+  - id: 04 - Defecation in places inappropriate to the sociocultural context no
+      input (test default action)
+    input:
+      "1":
+        gt0013|Age: 17,a
+        gt0016|No evidence of fecal retention: "true"
+        "gt0017|After appropriate evaluation, the fecal incontinence cannot be explained by another medical condition": "true"
+        gt0018|The symptoms have lasted for at least one month.: "true"
+    expected_output:
+      "1":
+        gt0009|Diagnostic Result: local::at0009|Negative|
+  - id: 05 - No evidence of fecal retention no input (test default action)
+    input:
+      "1":
+        gt0013|Age: 17,a
+        gt0015|Defecation in places inappropriate to the sociocultural context: "true"
+        "gt0017|After appropriate evaluation, the fecal incontinence cannot be explained by another medical condition": "true"
+        gt0018|The symptoms have lasted for at least one month.: "true"
+    expected_output:
+      "1":
+        gt0009|Diagnostic Result: local::at0009|Negative|
+  - id: 06 - After appropriate evaluation, the fecal incontinence cannot be
+      explained by another medical condition no input (test default action)
+    input:
+      "1":
+        gt0013|Age: 17,a
+        gt0015|Defecation in places inappropriate to the sociocultural context: "true"
+        gt0016|No evidence of fecal retention: "true"
+        gt0018|The symptoms have lasted for at least one month.: "true"
+    expected_output:
+      "1":
+        gt0009|Diagnostic Result: local::at0009|Negative|
+  - id: 07 - The symptoms have lasted for at least one month no input (test default
+      action)
+    input:
+      "1":
+        gt0013|Age: 17,a
+        gt0015|Defecation in places inappropriate to the sociocultural context: "true"
+        gt0016|No evidence of fecal retention: "true"
+        "gt0017|After appropriate evaluation, the fecal incontinence cannot be explained by another medical condition": "true"
+    expected_output:
+      "1":
+        gt0009|Diagnostic Result: local::at0009|Negative|
+  - id: 08 - All inputs false (negative test)
+    input:
+      "1":
+        gt0013|Age: 17,a
+        gt0015|Defecation in places inappropriate to the sociocultural context: "false"
+        gt0016|No evidence of fecal retention: "false"
+        "gt0017|After appropriate evaluation, the fecal incontinence cannot be explained by another medical condition": "false"
+        gt0018|The symptoms have lasted for at least one month.: "false"
+    expected_output:
+      "1":
+        gt0009|Diagnostic Result: local::at0009|Negative|
+  - id: 09 - Defecation in places inappropriate to the sociocultural context input
+      false, other inputs true (negative test)
+    input:
+      "1":
+        gt0013|Age: 17,a
+        gt0015|Defecation in places inappropriate to the sociocultural context: "false"
+        gt0016|No evidence of fecal retention: "true"
+        "gt0017|After appropriate evaluation, the fecal incontinence cannot be explained by another medical condition": "true"
+        gt0018|The symptoms have lasted for at least one month.: "true"
+    expected_output:
+      "1":
+        gt0009|Diagnostic Result: local::at0009|Negative|
+  - id: 10 - No evidence of fecal retention input false, other inputs true (negative
+      test)
+    input:
+      "1":
+        gt0013|Age: 17,a
+        gt0015|Defecation in places inappropriate to the sociocultural context: "true"
+        gt0016|No evidence of fecal retention: "false"
+        "gt0017|After appropriate evaluation, the fecal incontinence cannot be explained by another medical condition": "true"
+        gt0018|The symptoms have lasted for at least one month.: "true"
+    expected_output:
+      "1":
+        gt0009|Diagnostic Result: local::at0009|Negative|
+  - id: 11 - After appropriate evaluation, the fecal incontinence cannot be
+      explained by another medical condition input false, other inputs true
+      (negative test)
+    input:
+      "1":
+        gt0013|Age: 17,a
+        gt0015|Defecation in places inappropriate to the sociocultural context: "true"
+        gt0016|No evidence of fecal retention: "true"
+        "gt0017|After appropriate evaluation, the fecal incontinence cannot be explained by another medical condition": "false"
+        gt0018|The symptoms have lasted for at least one month.: "true"
+    expected_output:
+      "1":
+        gt0009|Diagnostic Result: local::at0009|Negative|
+  - id: 12 - The symptoms have lasted for at least one month input false, other
+      inputs true (negative test)
+    input:
+      "1":
+        gt0013|Age: 17,a
+        gt0015|Defecation in places inappropriate to the sociocultural context: "true"
+        gt0016|No evidence of fecal retention: "true"
+        "gt0017|After appropriate evaluation, the fecal incontinence cannot be explained by another medical condition": "true"
+        gt0018|The symptoms have lasted for at least one month.: "false"
+    expected_output:
+      "1":
+        gt0009|Diagnostic Result: local::at0009|Negative|
+  - id: 13 - Defecation in places inappropriate to the sociocultural context and No
+      evidence of fecal retention input false (negative test)
+    input:
+      "1":
+        gt0013|Age: 17,a
+        gt0015|Defecation in places inappropriate to the sociocultural context: "true"
+        gt0016|No evidence of fecal retention: "true"
+        "gt0017|After appropriate evaluation, the fecal incontinence cannot be explained by another medical condition": "false"
+        gt0018|The symptoms have lasted for at least one month.: "false"
+    expected_output:
+      "1":
+        gt0009|Diagnostic Result: local::at0009|Negative|
+  - id: 14 - Defecation in places inappropriate to the sociocultural context and
+      After appropriate evaluation, the fecal incontinence cannot be explained
+      by another medical condition input false (negative test)
+    input:
+      "1":
+        gt0013|Age: 17,a
+        gt0015|Defecation in places inappropriate to the sociocultural context: "true"
+        gt0016|No evidence of fecal retention: "false"
+        "gt0017|After appropriate evaluation, the fecal incontinence cannot be explained by another medical condition": "true"
+        gt0018|The symptoms have lasted for at least one month.: "false"
+    expected_output:
+      "1":
+        gt0009|Diagnostic Result: local::at0009|Negative|
+  - id: 15 - Defecation in places inappropriate to the sociocultural context and The
+      symptoms have lasted for at least one month input false (negative test)
+    input:
+      "1":
+        gt0013|Age: 17,a
+        gt0015|Defecation in places inappropriate to the sociocultural context: "true"
+        gt0016|No evidence of fecal retention: "false"
+        "gt0017|After appropriate evaluation, the fecal incontinence cannot be explained by another medical condition": "false"
+        gt0018|The symptoms have lasted for at least one month.: "true"
+    expected_output:
+      "1":
+        gt0009|Diagnostic Result: local::at0009|Negative|
+  - id: 16 - No evidence of fecal retention and After appropriate evaluation, the
+      fecal incontinence cannot be explained by another medical condition input
+      false (negative test)
+    input:
+      "1":
+        gt0013|Age: 17,a
+        gt0015|Defecation in places inappropriate to the sociocultural context: "false"
+        gt0016|No evidence of fecal retention: "true"
+        "gt0017|After appropriate evaluation, the fecal incontinence cannot be explained by another medical condition": "true"
+        gt0018|The symptoms have lasted for at least one month.: "false"
+    expected_output:
+      "1":
+        gt0009|Diagnostic Result: local::at0009|Negative|
+  - id: 17 - No evidence of fecal retention and The symptoms have lasted for at
+      least one month input false (negative test)
+    input:
+      "1":
+        gt0013|Age: 17,a
+        gt0015|Defecation in places inappropriate to the sociocultural context: "false"
+        gt0016|No evidence of fecal retention: "true"
+        "gt0017|After appropriate evaluation, the fecal incontinence cannot be explained by another medical condition": "false"
+        gt0018|The symptoms have lasted for at least one month.: "true"
+    expected_output:
+      "1":
+        gt0009|Diagnostic Result: local::at0009|Negative|
+  - id: 18 - After appropriate evaluation, the fecal incontinence cannot be
+      explained by another medical condition and The symptoms have lasted for at
+      least one month input false (negative test)
+    input:
+      "1":
+        gt0013|Age: 17,a
+        gt0015|Defecation in places inappropriate to the sociocultural context: "false"
+        gt0016|No evidence of fecal retention: "false"
+        "gt0017|After appropriate evaluation, the fecal incontinence cannot be explained by another medical condition": "true"
+        gt0018|The symptoms have lasted for at least one month.: "true"
+    expected_output:
+      "1":
+        gt0009|Diagnostic Result: local::at0009|Negative|
+  - id: 19 - All inputs true
+    input:
+      "1":
+        gt0013|Age: 17,a
+        gt0015|Defecation in places inappropriate to the sociocultural context: "true"
+        gt0016|No evidence of fecal retention: "true"
+        "gt0017|After appropriate evaluation, the fecal incontinence cannot be explained by another medical condition": "true"
+        gt0018|The symptoms have lasted for at least one month.: "true"
+    expected_output:
+      "1":
+        gt0009|Diagnostic Result: local::at0010|Positive|

@@ -1,0 +1,73 @@
+guidelines:
+  "1": WHO_Diagnostic_Criteria_for_Polycythemia_Vera.v0.1.0
+test_cases:
+  - id: 01. No input, test default action
+    input:
+      "1": {}
+    expected_output:
+      "1":
+        gt0034|Diagnostic result: local::at0004|Does not meet WHO diagnostic criteria
+          for polycythemia vera.|
+  - id: 02. All three major criteria met
+    input:
+      "1":
+        "gt0003|Hemoglobin >16.5 g/dL in men or >16.0 g/dL in women, or hematocrit >49% in men or >48% in women": local::at0007|Yes|
+        "gt0004|Bone marrow biopsy showing age-adjusted hypercellularity with trilineage growth (panmyelosis), including prominent erythroid, granulocytic, and megakaryocytic proliferation, with pleomorphic, mature megakaryocytes (differences in size)": local::at0012|Yes|
+        gt0005|Presence of JAK2 V617F or JAK2 exon 12 mutation: local::at0014|Yes|
+        gt0006|Subnormal serum erythropoietin level: local::at0017|No|
+    expected_output:
+      "1":
+        gt0034|Diagnostic result: local::at0005|Meets WHO diagnostic criteria for polycythemia vera.|
+  - id: 03. Two major criteria and minor criterion met
+    input:
+      "1":
+        "gt0003|Hemoglobin >16.5 g/dL in men or >16.0 g/dL in women, or hematocrit >49% in men or >48% in women": local::at0007|Yes|
+        "gt0004|Bone marrow biopsy showing age-adjusted hypercellularity with trilineage growth (panmyelosis), including prominent erythroid, granulocytic, and megakaryocytic proliferation, with pleomorphic, mature megakaryocytes (differences in size)": local::at0012|Yes|
+        gt0005|Presence of JAK2 V617F or JAK2 exon 12 mutation: local::at0015|No|
+        gt0006|Subnormal serum erythropoietin level: local::at0016|Yes|
+    expected_output:
+      "1":
+        gt0034|Diagnostic result: local::at0005|Meets WHO diagnostic criteria for polycythemia vera.|
+  - id: 04. All three major criteria and minor criteria are met
+    input:
+      "1":
+        "gt0003|Hemoglobin >16.5 g/dL in men or >16.0 g/dL in women, or hematocrit >49% in men or >48% in women": local::at0007|Yes|
+        "gt0004|Bone marrow biopsy showing age-adjusted hypercellularity with trilineage growth (panmyelosis), including prominent erythroid, granulocytic, and megakaryocytic proliferation, with pleomorphic, mature megakaryocytes (differences in size)": local::at0012|Yes|
+        gt0005|Presence of JAK2 V617F or JAK2 exon 12 mutation: local::at0014|Yes|
+        gt0006|Subnormal serum erythropoietin level: local::at0016|Yes|
+    expected_output:
+      "1":
+        gt0034|Diagnostic result: local::at0005|Meets WHO diagnostic criteria for polycythemia vera.|
+  - id: 05. Two major criteria met but no minor criterion (negative test)
+    input:
+      "1":
+        "gt0003|Hemoglobin >16.5 g/dL in men or >16.0 g/dL in women, or hematocrit >49% in men or >48% in women": local::at0007|Yes|
+        "gt0004|Bone marrow biopsy showing age-adjusted hypercellularity with trilineage growth (panmyelosis), including prominent erythroid, granulocytic, and megakaryocytic proliferation, with pleomorphic, mature megakaryocytes (differences in size)": local::at0012|Yes|
+        gt0005|Presence of JAK2 V617F or JAK2 exon 12 mutation: local::at0015|No|
+        gt0006|Subnormal serum erythropoietin level: local::at0017|No|
+    expected_output:
+      "1":
+        gt0034|Diagnostic result: local::at0004|Does not meet WHO diagnostic criteria
+          for polycythemia vera.|
+  - id: 06. One major criteria and minor criteria present (negative test)
+    input:
+      "1":
+        "gt0003|Hemoglobin >16.5 g/dL in men or >16.0 g/dL in women, or hematocrit >49% in men or >48% in women": local::at0007|Yes|
+        "gt0004|Bone marrow biopsy showing age-adjusted hypercellularity with trilineage growth (panmyelosis), including prominent erythroid, granulocytic, and megakaryocytic proliferation, with pleomorphic, mature megakaryocytes (differences in size)": local::at0013|No|
+        gt0005|Presence of JAK2 V617F or JAK2 exon 12 mutation: local::at0015|No|
+        gt0006|Subnormal serum erythropoietin level: local::at0016|Yes|
+    expected_output:
+      "1":
+        gt0034|Diagnostic result: local::at0004|Does not meet WHO diagnostic criteria
+          for polycythemia vera.|
+  - id: 07. Only minor criteria present (negative test)
+    input:
+      "1":
+        "gt0003|Hemoglobin >16.5 g/dL in men or >16.0 g/dL in women, or hematocrit >49% in men or >48% in women": local::at0008|No|
+        "gt0004|Bone marrow biopsy showing age-adjusted hypercellularity with trilineage growth (panmyelosis), including prominent erythroid, granulocytic, and megakaryocytic proliferation, with pleomorphic, mature megakaryocytes (differences in size)": local::at0013|No|
+        gt0005|Presence of JAK2 V617F or JAK2 exon 12 mutation: local::at0015|No|
+        gt0006|Subnormal serum erythropoietin level: local::at0016|Yes|
+    expected_output:
+      "1":
+        gt0034|Diagnostic result: local::at0004|Does not meet WHO diagnostic criteria
+          for polycythemia vera.|

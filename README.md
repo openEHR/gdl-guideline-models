@@ -11,22 +11,22 @@ We've gathered all of the available applications in one place and organized them
 
 If you would like to test an app, simply click on "ENG" to access the English version, and "SWE" for the Swedish version. To view a detailed description of the app and its components, click on the application name.
 
-### *Published Apps: 686*
+### *Published Apps: 700*
 
 ----------
 
 ### Latest added
 
-1. Novel, Innovative Research for Understanding Dehydration in Adults and Kids (NIRUDAK) Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Simplified_NIRUDAK_score/0.1.0?language=en))
-2. Geriatric Depression Scale (GDS-15) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rome_IV_Diagnostic_Criteria_for_Child_Functional_Constipation_Assessment/0.1.0?language=en))
-3. Rome IV Diagnostic Criteria for Child Functional Constipation - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rome_IV_Diagnostic_Criteria_for_Child_Functional_Constipation_Assessment/0.1.0?language=en))
-4. Prague C & M Classification for Barrett's Esophagus - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Prague_C_M_Classification_for_Barrett_s_Esophagus/0.1.0?language=en))
-5. CRIES Pain Scale - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/CRIES_pain_scale/0.1.0?language=en))
-6. BIND Score (Bilirubin-Induced Neurologic Dysfunction) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BIND_score/0.1.1?language=en))
-7. Dehydration: Assessing Kids Accurately (DHAKA) Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Dehydration_Assessing_Kids_Accurately_DHAKA_Score/0.1.0?language=en))
-8. Sudbury Vertigo Risk Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Sudbury_Vertigo_Risk_Score/0.1.0?language=en))
-9. Henderson-Hasselbalch Equation Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Henderson_Hasselbalch_equation/0.1.0?language=en))
-10. Pulmonary Embolism Syncope-Anemia-Renal Dysfunction (PE-SARD) Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Pulmonary_Embolism_Syncope_Anemia_Renal_Dysfunction_PE_SARD_Score/0.1.0?language=en))
+1. International Consensus Classification (ICC) Diagnostic Criteria for Primary Myelofibrosis (PMF) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ICC_Primary_Myelofibrosis_Diagnostic_Criteria/0.1.0?language=en))
+2. Rome IV Diagnostic Criteria for Rumination Syndrome - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rome_IV_Diagnostic_Criteria_for_Rumination_Syndrome/0.1.0?language=en))
+3. LV Mass Index Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Left_ventricle_Mass_Index_LVMI/0.1.0?language=en))
+4. Mutation-Enhanced International Prognostic Score System (MIPSS70/MIPSS70+) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MIPSS70/0.1.0?language=en))
+5. Wisconsin Criteria - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Wisconsin_criteria/0.1.0?language=en))
+6. Ottawa Ankle Rule - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Ottawa_Ankle_Rule/0.1.0?language=en))
+7. Ottawa Knee Rule - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Ottawa_Knee_Rule/0.1.0?language=en))
+8. Rome IV Diagnostic Criteria for Biliary Pain - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rome_IV_Diagnostic_Criteria_for_Biliary_Pain_BP/0.1.0?language=en))
+9. World Health Organization (WHO) Diagnostic Criteria for Polycythemia Vera - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/WHO_Diagnostic_Criteria_for_Polycythemia_Vera/0.1.0?language=en))
+10. Neck Disability Index (NDI) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/NDI_calculation/0.1.0?language=en))
 
 ----------
 
@@ -234,6 +234,8 @@ _Select a medical specialty below to view the available apps._
 
 * Killip Classification for Heart Failure - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Killip_Classification_Heart_Failure/0?language=en))
 
+* LV Mass Index Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Left_ventricle_Mass_Index_LVMI/0.1.0?language=en))
+
 * MAGGIC Risk Calculator for Heart Failure - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MAGGIC_Risk_Calculator_for_Heart_Failure_guideline/1?language=en))
 
 * Mean Arterial Pressure (MAP) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MAP_calculation/0.1.0?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MAP_calculation/0.1.0?language=sv))
@@ -300,6 +302,8 @@ _Select a medical specialty below to view the available apps._
 * Estimated Average Glucose (eAG) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Estimated_Average_Glucose/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Estimated_Average_Glucose/1?language=sv))
 
 * Free Water Deficit in Hypernatremia - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Free_water_deficit_hypernatremia/1?language=en))
+
+* Henderson-Hasselbalch Equation Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Henderson_Hasselbalch_equation/0.1.0?language=en))
 
 * Insulin Sensitivity QUICKI Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/QUICKI_calculator/1?language=en))
 
@@ -423,6 +427,8 @@ _Select a medical specialty below to view the available apps._
 
 * Pulmonary Embolism Severity Index (PESI) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/PESI/1?language=en))
 
+* Pulmonary Embolism Syncope-Anemia-Renal Dysfunction (PE-SARD) Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Pulmonary_Embolism_Syncope_Anemia_Renal_Dysfunction_PE_SARD_Score/0.1.0?language=en))
+
 * Quick COVID-19 Severity Index (qCSI) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Quick_COVID-19_Severity_Index_qCSI_guideline/1?language=en))
 
 * Quick Sepsis Related Organ Failure Assessment (qSOFA) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/qSOFA/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/qSOFA/1?language=sv))
@@ -458,6 +464,8 @@ _Select a medical specialty below to view the available apps._
 * Wells Criteria for DVT (D-Dimer)  - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Wells_DVT_D_Dimer_US/1?language=en))
 
 * Wells Criteria for Pulmonary Embolism - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Wells_Criteria_PE/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/wells_criteria_DVT/0.1.0?language=sv))
+
+* Wisconsin Criteria - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Wisconsin_criteria/0.1.0?language=en))
 
 * YEARS Algorithm for Pulmonary Embolism (PE) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/YEARS_Algorithm_for_Pulmonary_Embolism_PE_guideline/1?language=en))
 ----------
@@ -506,6 +514,8 @@ _Select a medical specialty below to view the available apps._
 * ATLAS Score for Clostridium Difficile Infection - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ATLAS_score_for_C_difficile_infection/1?language=en))
 
 * BARD Score for NAFLD Fibrosis - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BARD_Score_for_NAFLD_Fibrosis/0?language=en))
+
+* BIND Score (Bilirubin-Induced Neurologic Dysfunction) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BIND_score/0.1.0?language=en))
 
 * Bristol Stool Form Scale - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Bristol_stool_form_scale/1?language=en))
 
@@ -569,6 +579,8 @@ _Select a medical specialty below to view the available apps._
 
 * Oakland Score for Safe Discharge After Lower GI Bleed - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Oakland_Score_for_Safe_Discharge_After_Lower_GI_Bleed/1?language=en)
 
+* Prague C & M Classification for Barrett's Esophagus - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Prague_C_M_Classification_for_Barrett_s_Esophagus/0.1.0?language=en))
+
 * R Factor for Liver Injury - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/R_factor_for_liver_injury/1?language=en))
 
 * Ranson's Criteria for Pancreatitis Mortality - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Ransons_Criteria_Pancreatitis_Mortality/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Ransons_Criteria_Pancreatitis_Mortality/1?language=sv))
@@ -582,6 +594,12 @@ _Select a medical specialty below to view the available apps._
 * Rockall Score for Upper GI Bleeding (Complete) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rockall_Score_Upper_GI_Bleeding_guideline/1?language=en))
 
 * Rockall Score for Upper GI Bleeding (Pre-Endoscopy) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rockall_Score_preEndoscopy_guideline/1?language=en))
+
+* Rome IV Diagnostic Criteria for Rumination Syndrome - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rome_IV_Diagnostic_Criteria_for_Rumination_Syndrome/0.1.0?language=en))
+
+* Rome IV Diagnosis Criteria for Functional Heartburn - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rome_IV_Diagnostic_Criteria_for_Functional_Heartburn/0.1.0?language=en))
+
+* Rome IV Diagnostic Criteria for Biliary Pain - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rome_IV_Diagnostic_Criteria_for_Biliary_Pain_BP/0.1.0?language=en))
 
 * Serum Ascites Albumin Gradient (SAAG) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Serum_Ascites_Albumin_Gradient_SAAG_guideline/1?language=en))
 
@@ -701,6 +719,8 @@ _Select a medical specialty below to view the available apps._
 * Transferrin Saturation Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Transferrin_Saturation_Calculator/1?language=en))
 
 * Villalta Score for Post-thrombotic Syndrome (PTS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/villalta_score/1?language=en))
+
+* World Health Organization (WHO) Diagnostic Criteria for Polycythemia Vera - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/WHO_Diagnostic_Criteria_for_Polycythemia_Vera/0.1.0?language=en))
 
 ----------
 
@@ -910,6 +930,8 @@ _Select a medical specialty below to view the available apps._
 
 * Schwab and England Activities of Daily Living (ADL) Scale - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Schwab_and_England_activities_of_daily_living_ADL_scale/1?language=en))
 
+* Sudbury Vertigo Risk Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Sudbury_Vertigo_Risk_Score/0.1.0?language=en))
+
 * Trunk Impairment Scale - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/TIS_calculator/1?language=en))
 
 * Webster Rating Scale for Parkinson’s Disease - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Webster_Rating_Scale_for_Parkinsons_Disease_guideline/1?language=en))
@@ -970,7 +992,9 @@ _Select a medical specialty below to view the available apps._
 
 * Fong Clinical Risk Score for Colorectal Cancer Recurrence - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Fong_Clinical_Risk_Score_for_Colorectal_Cancer_Recurrence/1?language=en))
 
-* Fuhrman Nuclear Grade for Clear Cell Renal Cell Carcinoma - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Fuhrman_Nuclear_Grade_ccRCC/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Fuhrman_Nuclear_Grade_ccRCC/1?language=sv)) - 
+* Fuhrman Nuclear Grade for Clear Cell Renal Cell Carcinoma - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Fuhrman_Nuclear_Grade_ccRCC/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Fuhrman_Nuclear_Grade_ccRCC/1?language=sv))
+
+* Genetically Inspired Prognostic Scoring System (GIPSS) for Primary Myelofibrosis (PMF) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Genetically_Inspired_Prognostic_Scoring_System_GIPSS_for_Primary_Myelofibrosis_PMF_/0.1.0?language=en)) 
 
 * GALAD Model for Hepatocellular Carcinoma (HCC) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/GALAD_Model_for_Hepatocellular_Carcinoma_HCC_guideline/1?language=en))
 
@@ -983,6 +1007,8 @@ _Select a medical specialty below to view the available apps._
 * Hematopoietic Cell Transplantation-specific Comorbidity Index (HCT-CI) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/HCT-CI/1?language=en))
 
 * Heng Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Heng_mRCC/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Heng_mRCC/1?language=sv))
+
+* International Consensus Classification (ICC) Diagnostic Criteria for Primary Myelofibrosis (PMF) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ICC_Primary_Myelofibrosis_Diagnostic_Criteria/0.1.0?language=en))
 
 * IMDC (International Metastatic RCC Database Consortium) Risk Model for Metastatic Renal Cell Carcinoma - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/IMDC_risk_model_metastiatic_renal_cell_carcinoma/1?language=en))
 
@@ -1009,6 +1035,8 @@ _Select a medical specialty below to view the available apps._
 * Multiple Myeloma International Staging System (ISS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Multiple_Myeloma_International_Staging_System/1?language=en))
 
 * Multiple Myeloma Response Criteria - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Multiple_Myeloma_Response_Criteria/1?language=en))
+
+* Mutation-Enhanced International Prognostic Score System (MIPSS70/MIPSS70+) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MIPSS70/0.1.0?language=en))
 
 * PREVAIL Model for Prostate Cancer Survival - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/PREVAIL_Model_guideline/1?language=en))
 
@@ -1069,7 +1097,13 @@ _Select a medical specialty below to view the available apps._
 
 * Kocher Criteria - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Kocher_Criteria/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Kocher_Criteria/1?language=sv))
 
+* Neck Disability Index (NDI) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/NDI_calculation/0.1.0?language=en))
+
 * Open Fracture Gustilo Classification - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Open_fracture_Gustilo_classification/1?language=en))
+
+* Ottawa Ankle Rule - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Ottawa_Ankle_Rule/0.1.0?language=en))
+
+* Ottawa Knee Rule - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Ottawa_Knee_Rule/0.1.0?language=en))
 
 * Patient Activity Scale (PAS) for RA - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/pas_for_ra/1?language=en))
 
@@ -1149,7 +1183,13 @@ _Select a medical specialty below to view the available apps._
 
 * Rochester Criteria for Febrile Infants - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rochester_Criteria_guideline/1?language=en))
 
+* Rome IV Diagnostic Criteria for Child Non-retentive Fecal Incontinence - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rome_IV_Diagnostic_Criteria_for_Child_Non_retentive_Fecal_Incontinence_Assessment/0.1.0?language=en))
+
+* Rome IV Diagnostic Criteria for Child Functional Constipation - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rome_IV_Diagnostic_Criteria_for_Child_Functional_Constipation_Assessment/0.1.0?language=en))
+
 * Rome IV Diagnostic Criteria for Infant Colic - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rome_IV_infant_colic/1?language=en))
+
+* Rome IV Diagnostic Criteria for Infant Functional Diarrhea - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rome_IV_criteria_for_infant_functional_diarrhea/0.1.0?language=en))
 
 * Shock Index Pediatric Age-Adjusted (SIPA) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/SIPA/1?language=en))
 
@@ -1223,7 +1263,11 @@ _Select a medical specialty below to view the available apps._
 
 * Centor Criteria - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Centor_Criteria/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Centor_Criteria/1?language=sv))
 
+* CRIES Pain Scale - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/CRIES_pain_scale/0.1.0?language=en))
+
 * Denver HIV Risk Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Denver_HIV_Risk_Score_guideline/1?language=en))
+
+* Dehydration: Assessing Kids Accurately (DHAKA) Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Dehydration_Assessing_Kids_Accurately_DHAKA_Score/0.1.0?language=en))
 
 * DIRE Score for Opioid Treatment - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/DIRE_score_opioid_treatment/1?language=en))
 
@@ -1264,6 +1308,8 @@ _Select a medical specialty below to view the available apps._
 * Morse Fall Scale - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Morse_Fall_Scale_guideline/1?language=en))
 
 * Nutritional Risk Index (NRI) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Nutritional_risk_index_NRI/1?language=en))
+
+* Novel, Innovative Research for Understanding Dehydration in Adults and Kids (NIRUDAK) Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Simplified_NIRUDAK_score/0.1.0?language=en))
 
 * Opioid Risk Tool (ORT) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ORT/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ORT/1?language=sv))
 
@@ -1321,6 +1367,8 @@ _Select a medical specialty below to view the available apps._
 * DSM-5 Criteria for Posttraumatic Stress Disorder  - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/DSM_5_PTSD/1?language=en))
 
 * Generalized Anxiety Disorder Score (GAD-7) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/GAD-7/1?language=en))
+
+* Geriatric Depression Scale (GDS-15) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rome_IV_Diagnostic_Criteria_for_Child_Functional_Constipation_Assessment/0.1.0?language=en))
 
 * Hamilton Anxiety Scale (HAM-A) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/HAM-A/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/HAM-A/1?language=sv))
 
