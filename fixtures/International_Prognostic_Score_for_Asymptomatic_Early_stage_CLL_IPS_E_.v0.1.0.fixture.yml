@@ -1,0 +1,69 @@
+guidelines:
+  "1": International_Prognostic_Score_for_Asymptomatic_Early_stage_CLL_IPS_E_.v0.1.0
+test_cases:
+  - id: 01 - Test no input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02 - Unmutated IGHV gene input missing (negative test)
+    input:
+      "1":
+        gt0027|Absolute lymphocyte count >15×10^9/L: 0|local::at0024|Absent|
+        gt0028|Palpable lymph nodes: 1|local::at0027|Present|
+    expected_output:
+      "1": {}
+  - id: 03 - Absolute lymphocyte count >15×10^9/L missing (negative test)
+    input:
+      "1":
+        gt0026|Unmutated IGHV genes: 0|local::at0022|Absent|
+        gt0028|Palpable lymph nodes: 1|local::at0027|Present|
+    expected_output:
+      "1": {}
+  - id: 04 - Palpable lymph nodes missing (negative test)
+    input:
+      "1":
+        gt0026|Unmutated IGHV genes: 0|local::at0022|Absent|
+        gt0027|Absolute lymphocyte count >15×10^9/L: 0|local::at0024|Absent|
+    expected_output:
+      "1": {}
+  - id: 05 - All inputs 0 points returns 'Low risk'
+    input:
+      "1":
+        gt0026|Unmutated IGHV genes: 0|local::at0022|Absent|
+        gt0027|Absolute lymphocyte count >15×10^9/L: 0|local::at0024|Absent|
+        gt0028|Palpable lymph nodes: 0|local::at0026|Absent|
+    expected_output:
+      "1":
+        gt0012|Risk for Treatment Need: Low risk
+        gt0033|Total score: "0"
+  - id: 06 - All inputs 1 point returns 'Intermediate risk'
+    input:
+      "1":
+        gt0026|Unmutated IGHV genes: 1|local::at0023|Present|
+        gt0027|Absolute lymphocyte count >15×10^9/L: 0|local::at0024|Absent|
+        gt0028|Palpable lymph nodes: 0|local::at0026|Absent|
+    expected_output:
+      "1":
+        gt0012|Risk for Treatment Need: Intermediate risk
+        gt0033|Total score: "1"
+  - id: 07 - All inputs 2 points returns 'High risk'
+    input:
+      "1":
+        gt0026|Unmutated IGHV genes: 1|local::at0023|Present|
+        gt0027|Absolute lymphocyte count >15×10^9/L: 1|local::at0025|Present|
+        gt0028|Palpable lymph nodes: 0|local::at0026|Absent|
+    expected_output:
+      "1":
+        gt0012|Risk for Treatment Need: High risk
+        gt0033|Total score: "2"
+  - id: 08 - All inputs 3 points returns 'High risk'
+    input:
+      "1":
+        gt0026|Unmutated IGHV genes: 1|local::at0023|Present|
+        gt0027|Absolute lymphocyte count >15×10^9/L: 1|local::at0025|Present|
+        gt0028|Palpable lymph nodes: 1|local::at0027|Present|
+    expected_output:
+      "1":
+        gt0012|Risk for Treatment Need: High risk
+        gt0033|Total score: "3"
