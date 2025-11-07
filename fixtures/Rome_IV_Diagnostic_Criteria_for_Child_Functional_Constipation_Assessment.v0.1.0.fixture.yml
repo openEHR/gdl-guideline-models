@@ -1,0 +1,763 @@
+guidelines:
+  "1": Rome_IV_Diagnostic_Criteria_for_Child_Functional_Constipation_Assessment.v0.1.0
+test_cases:
+  - id: 01 - Test no input
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02 - Test precondition, age < 4 years old (negative test)
+    input:
+      "1":
+        gt0018|Age: 3,a
+        gt0020|≤2 defecations in the toilet per week: "true"
+        gt0021|≥1 episode of fecal incontinence per week: "true"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "true"
+        gt0023|History of painful or hard bowel movements: "true"
+        gt0024|Presence of a large fecal mass in the rectum: "true"
+        gt0025|History of large diameter stools which can obstruct the toilet: "true"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "true"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1": {}
+  - id: 03 - Test precondition, age 18 years old (negative test)
+    input:
+      "1":
+        gt0018|Age: 18,a
+        gt0020|≤2 defecations in the toilet per week: "true"
+        gt0021|≥1 episode of fecal incontinence per week: "true"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "true"
+        gt0023|History of painful or hard bowel movements: "true"
+        gt0024|Presence of a large fecal mass in the rectum: "true"
+        gt0025|History of large diameter stools which can obstruct the toilet: "true"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "true"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1": {}
+  - id: 04 - Age 4, others no input (negative test)
+    input:
+      "1":
+        gt0018|Age: 4,a
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0009|Negative|
+  - id: 05 - Age 4, ≤2 defecations in the toilet per week no input
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0021|≥1 episode of fecal incontinence per week: "true"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "true"
+        gt0023|History of painful or hard bowel movements: "true"
+        gt0024|Presence of a large fecal mass in the rectum: "true"
+        gt0025|History of large diameter stools which can obstruct the toilet: "true"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "true"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 06 - Age 4, ≥1 episode of fecal incontinence per week no input
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "true"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "true"
+        gt0023|History of painful or hard bowel movements: "true"
+        gt0024|Presence of a large fecal mass in the rectum: "true"
+        gt0025|History of large diameter stools which can obstruct the toilet: "true"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "true"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 07 - Age 4, History of retentive posturing or excessive volitional stool
+      retention no input
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "true"
+        gt0021|≥1 episode of fecal incontinence per week: "true"
+        gt0023|History of painful or hard bowel movements: "true"
+        gt0024|Presence of a large fecal mass in the rectum: "true"
+        gt0025|History of large diameter stools which can obstruct the toilet: "true"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "true"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 08 - Age 4, History of painful or hard bowel movements no input
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "true"
+        gt0021|≥1 episode of fecal incontinence per week: "true"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "true"
+        gt0024|Presence of a large fecal mass in the rectum: "true"
+        gt0025|History of large diameter stools which can obstruct the toilet: "true"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "true"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 09 - Age 4, Presence of a large fecal mass in the rectum no input
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "true"
+        gt0021|≥1 episode of fecal incontinence per week: "true"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "true"
+        gt0023|History of painful or hard bowel movements: "true"
+        gt0025|History of large diameter stools which can obstruct the toilet: "true"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "true"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 10 - Age 4, History of large diameter stools which can obstruct the toilet
+      no input
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "true"
+        gt0021|≥1 episode of fecal incontinence per week: "true"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "true"
+        gt0023|History of painful or hard bowel movements: "true"
+        gt0024|Presence of a large fecal mass in the rectum: "true"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "true"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 11 - Age 4, After appropriate evaluation, the symptoms cannot be fully
+      explained by another medical condition no input
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "true"
+        gt0021|≥1 episode of fecal incontinence per week: "true"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "true"
+        gt0023|History of painful or hard bowel movements: "true"
+        gt0024|Presence of a large fecal mass in the rectum: "true"
+        gt0025|History of large diameter stools which can obstruct the toilet: "true"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 12 - Age 4, Occurring ≥1 time per week for a minimum of 1 month no input
+      (negative test)
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "true"
+        gt0021|≥1 episode of fecal incontinence per week: "true"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "true"
+        gt0023|History of painful or hard bowel movements: "true"
+        gt0024|Presence of a large fecal mass in the rectum: "true"
+        gt0025|History of large diameter stools which can obstruct the toilet: "true"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0009|Negative|
+  - id: 13 - Age 4, Insufficient criteria no input (negative test)
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "true"
+        gt0021|≥1 episode of fecal incontinence per week: "true"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "true"
+        gt0023|History of painful or hard bowel movements: "true"
+        gt0024|Presence of a large fecal mass in the rectum: "true"
+        gt0025|History of large diameter stools which can obstruct the toilet: "true"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "true"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0009|Negative|
+  - id: 14 - Age 4, all inputs false (negative test)
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "false"
+        gt0028|Insufficient criteria: "false"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0009|Negative|
+  - id: 15 - Age 4, all inputs true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "true"
+        gt0021|≥1 episode of fecal incontinence per week: "true"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "true"
+        gt0023|History of painful or hard bowel movements: "true"
+        gt0024|Presence of a large fecal mass in the rectum: "true"
+        gt0025|History of large diameter stools which can obstruct the toilet: "true"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "true"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 16 - Age 4, Occurring ≥1 time per week for a minimum of 1 month input false,
+      other inputs true (negative test)
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "true"
+        gt0021|≥1 episode of fecal incontinence per week: "true"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "true"
+        gt0023|History of painful or hard bowel movements: "true"
+        gt0024|Presence of a large fecal mass in the rectum: "true"
+        gt0025|History of large diameter stools which can obstruct the toilet: "true"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "true"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "false"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0009|Negative|
+  - id: 17 - Age 4, Insufficient criteria input false, other inputs true (negative
+      test)
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "true"
+        gt0021|≥1 episode of fecal incontinence per week: "true"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "true"
+        gt0023|History of painful or hard bowel movements: "true"
+        gt0024|Presence of a large fecal mass in the rectum: "true"
+        gt0025|History of large diameter stools which can obstruct the toilet: "true"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "true"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "false"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0009|Negative|
+  - id: 18 - Age 4, Insufficient criteria and Occurring ≥1 time per week is false,
+      other inputs true (negative test)
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "true"
+        gt0021|≥1 episode of fecal incontinence per week: "true"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "true"
+        gt0023|History of painful or hard bowel movements: "true"
+        gt0024|Presence of a large fecal mass in the rectum: "true"
+        gt0025|History of large diameter stools which can obstruct the toilet: "true"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "true"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "false"
+        gt0028|Insufficient criteria: "false"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0009|Negative|
+  - id: 19 - Age 4, Insufficient criteria and Occurring ≥1 time per week true, other
+      inputs false (negative test)
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0009|Negative|
+  - id: 20 - Age 4, Insufficient criteria, Occurring ≥1 time per week, and ≤2
+      defecations true, other inputs false (negative test)
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "true"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0009|Negative|
+  - id: 21 - Age 4, Insufficient criteria, Occurring ≥1 time per week, and ≥1
+      episode of fecal incontinence true, other inputs false (negative test)
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "true"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0009|Negative|
+  - id: 22 - Age 4, Insufficient criteria, Occurring ≥1 time per week, and History
+      of retentive posturing true, other inputs false (negative test)
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "true"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0009|Negative|
+  - id: 23 - Age 4, Insufficient criteria, Occurring ≥1 time per week, and History
+      of painful true, other inputs false (negative test)
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "true"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0009|Negative|
+  - id: 24 - Age 4, Insufficient criteria, Occurring ≥1 time per week, and Presence
+      of a large fecal mass true, other inputs false (negative test)
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "true"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0009|Negative|
+  - id: 25 - Age 4, Insufficient criteria, Occurring ≥1 time per week, and History
+      of large diameter true, other inputs false (negative test)
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "true"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0009|Negative|
+  - id: 26 - Age 4, Insufficient criteria, Occurring ≥1 time per week, and After
+      appropriate evaluation true, other inputs false (negative test)
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "true"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0009|Negative|
+  - id: 27 - Age 4, Insufficient criteria, Occurring ≥1 time per week, ≤2
+      defecations, and ≥1 episode of fecal incontinence true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "true"
+        gt0021|≥1 episode of fecal incontinence per week: "true"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 28 - Age 4, Insufficient criteria, Occurring ≥1 time per week, ≤2
+      defecations, and History of retentive posturing true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "true"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "true"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 29 - Age 4, Insufficient criteria, Occurring ≥1 time per week, ≤2
+      defecations, and History of painful true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "true"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "true"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 30 - Age 4, Insufficient criteria, Occurring ≥1 time per week, ≤2
+      defecations, and Presence of a large fecal mass true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "true"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "true"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 31 - Age 4, Insufficient criteria, Occurring ≥1 time per week for a minimum
+      of 1 month, ≤2 defecations in the toilet per week, and History of large
+      diameter stools which can obstruct the toilet inputs true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "true"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "true"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 32 - Age 4, Insufficient criteria, Occurring ≥1 time per week for a minimum
+      of 1 month, ≤2 defecations in the toilet per week, and After appropriate
+      evaluation, the symptoms cannot be fully explained by another medical
+      condition inputs true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "true"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "true"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 33 - Age 4, Insufficient criteria, Occurring ≥1 time per week, ≥1 episode of
+      fecal incontinence, and History of retentive posturing true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "true"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "true"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 34 - Age 4, Insufficient criteria, Occurring ≥1 time per week, ≥1 episode of
+      fecal incontinence, and History of painful true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "true"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "true"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 35 - Age 4, Insufficient criteria, Occurring ≥1 time per week, ≥1 episode of
+      fecal incontinence, and Presence of a large fecal mass true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "true"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "true"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 36 - Age 4, Insufficient criteria, Occurring ≥1 time per week, ≥1 episode of
+      fecal incontinence, and History of large diameter stools inputs true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "true"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "true"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 37 - Age 4, Insufficient criteria, Occurring ≥1 time per week, ≥1 episode of
+      fecal incontinence, and After appropriate evaluation inputs true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "true"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "true"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 38 - Age 4, Insufficient criteria, Occurring ≥1 time per week, History of
+      retentive posturing, and History of painful inputs true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "true"
+        gt0023|History of painful or hard bowel movements: "true"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 39 - Age 4, Insufficient criteria, Occurring ≥1 time per week, History of
+      retentive posturing, and Presence of a large fecal mass inputs true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "true"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "true"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 40 - Age 4, Insufficient criteria, Occurring ≥1 time per week, History of
+      retentive posturing, and History of large diameter stools inputs true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "true"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "true"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 41 - Age 4, Insufficient criteria, Occurring ≥1 time per week, History of
+      retentive posturing, and After appropriate evaluation inputs true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "true"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "true"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 42 - Age 4, Insufficient criteria, Occurring ≥1 time per week, History of
+      painful, and Presence of a large fecal mass inputs true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "true"
+        gt0024|Presence of a large fecal mass in the rectum: "true"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 43 - Age 4, Insufficient criteria, Occurring ≥1 time per week, History of
+      painful, and History of large diameter stools inputs true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "true"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "true"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 44 - Age 4, Insufficient criteria, Occurring ≥1 time per week, History of
+      painful, and After appropriate evaluation inputs true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "true"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "true"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 45 - Age 4, Insufficient criteria, Occurring ≥1 time per week, Presence of a
+      large fecal mass, and History of large diameter stools inputs true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "true"
+        gt0025|History of large diameter stools which can obstruct the toilet: "true"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "false"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 46 - Age 4, Insufficient criteria, Occurring ≥1 time per week, Presence of a
+      large fecal mass, and After appropriate evaluation inputs true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "true"
+        gt0025|History of large diameter stools which can obstruct the toilet: "false"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "true"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
+  - id: 47 - Age 4, Insufficient criteria, Occurring ≥1 time per week, History of
+      large diameter stools, and After appropriate evaluation inputs true
+    input:
+      "1":
+        gt0018|Age: 4,a
+        gt0020|≤2 defecations in the toilet per week: "false"
+        gt0021|≥1 episode of fecal incontinence per week: "false"
+        gt0022|History of retentive posturing or excessive volitional stool retention: "false"
+        gt0023|History of painful or hard bowel movements: "false"
+        gt0024|Presence of a large fecal mass in the rectum: "false"
+        gt0025|History of large diameter stools which can obstruct the toilet: "true"
+        "gt0026|After appropriate evaluation, the symptoms cannot be fully explained by another medical condition": "true"
+        gt0027|Occurring ≥1 time per week for a minimum of 1 month: "true"
+        gt0028|Insufficient criteria: "true"
+    expected_output:
+      "1":
+        gt0014|Diagnostic Result: local::at0010|Positive|
