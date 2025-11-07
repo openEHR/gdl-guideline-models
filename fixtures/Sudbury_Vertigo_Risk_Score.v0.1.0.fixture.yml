@@ -1,0 +1,130 @@
+guidelines:
+  "1": Sudbury_Vertigo_Risk_Score.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Male input missing (negative test)
+    input:
+      "1":
+        gt0004|Age >65 years: 0|local::at0010|No|
+        gt0009|Diabetes: 0|local::at0013|No|
+        gt0005|Hypertension: 0|local::at0016|No|
+        gt0006|Motor or sensory deficit: 0|local::at0019|No|
+        gt0007|Cerebellar deficit: 0|local::at0022|No|
+        gt0008|BPPV diagnosis (protective): 0|local::at0025|No|
+    expected_output:
+      "1": {}
+  - id: 3. Age >65 years input missing (negative test)
+    input:
+      "1":
+        gt0003|Male: 0|local::at0007|No|
+        gt0009|Diabetes: 0|local::at0013|No|
+        gt0005|Hypertension: 0|local::at0016|No|
+        gt0006|Motor or sensory deficit: 0|local::at0019|No|
+        gt0007|Cerebellar deficit: 0|local::at0022|No|
+        gt0008|BPPV diagnosis (protective): 0|local::at0025|No|
+    expected_output:
+      "1": {}
+  - id: 4. Diabetes input missing (negative test)
+    input:
+      "1":
+        gt0003|Male: 0|local::at0007|No|
+        gt0004|Age >65 years: 0|local::at0010|No|
+        gt0005|Hypertension: 0|local::at0016|No|
+        gt0006|Motor or sensory deficit: 0|local::at0019|No|
+        gt0007|Cerebellar deficit: 0|local::at0022|No|
+        gt0008|BPPV diagnosis (protective): 0|local::at0025|No|
+    expected_output:
+      "1": {}
+  - id: 5. Hypertension input missing (negative test)
+    input:
+      "1":
+        gt0003|Male: 0|local::at0007|No|
+        gt0004|Age >65 years: 0|local::at0010|No|
+        gt0009|Diabetes: 0|local::at0013|No|
+        gt0006|Motor or sensory deficit: 0|local::at0019|No|
+        gt0007|Cerebellar deficit: 0|local::at0022|No|
+        gt0008|BPPV diagnosis (protective): 0|local::at0025|No|
+    expected_output:
+      "1": {}
+  - id: 6. Motor or sensory deficit input missing (negative test)
+    input:
+      "1":
+        gt0003|Male: 0|local::at0007|No|
+        gt0004|Age >65 years: 0|local::at0010|No|
+        gt0009|Diabetes: 0|local::at0013|No|
+        gt0005|Hypertension: 0|local::at0016|No|
+        gt0007|Cerebellar deficit: 0|local::at0022|No|
+        gt0008|BPPV diagnosis (protective): 0|local::at0025|No|
+    expected_output:
+      "1": {}
+  - id: 7. Cerebellar deficit input missing (negative test)
+    input:
+      "1":
+        gt0003|Male: 0|local::at0007|No|
+        gt0004|Age >65 years: 0|local::at0010|No|
+        gt0009|Diabetes: 0|local::at0013|No|
+        gt0005|Hypertension: 0|local::at0016|No|
+        gt0006|Motor or sensory deficit: 0|local::at0019|No|
+        gt0008|BPPV diagnosis (protective): 0|local::at0025|No|
+    expected_output:
+      "1": {}
+  - id: 8. BPPV diagnosis (protective) input missing (negative test)
+    input:
+      "1":
+        gt0003|Male: 0|local::at0007|No|
+        gt0004|Age >65 years: 0|local::at0010|No|
+        gt0009|Diabetes: 0|local::at0013|No|
+        gt0005|Hypertension: 0|local::at0016|No|
+        gt0006|Motor or sensory deficit: 0|local::at0019|No|
+        gt0007|Cerebellar deficit: 0|local::at0022|No|
+    expected_output:
+      "1": {}
+  - id: 9. All inputs, total score = 0 (<5)
+    input:
+      "1":
+        gt0003|Male: 0|local::at0007|No|
+        gt0004|Age >65 years: 0|local::at0010|No|
+        gt0009|Diabetes: 0|local::at0013|No|
+        gt0005|Hypertension: 0|local::at0016|No|
+        gt0006|Motor or sensory deficit: 0|local::at0019|No|
+        gt0007|Cerebellar deficit: 0|local::at0022|No|
+        gt0008|BPPV diagnosis (protective): 0|local::at0025|No|
+    expected_output:
+      "1":
+        gt0011|Total score: "0"
+        gt0013|Risk assessment: 0% - Low risk of serious central cause
+        gt0014|Clinical implication: No further testing needed
+  - id: 10. All inputs, total score = 5 (5-8)
+    input:
+      "1":
+        gt0003|Male: 1|local::at0008|Yes|
+        gt0004|Age >65 years: 1|local::at0011|Yes|
+        gt0009|Diabetes: 0|local::at0013|No|
+        gt0005|Hypertension: 3|local::at0017|Yes|
+        gt0006|Motor or sensory deficit: 0|local::at0019|No|
+        gt0007|Cerebellar deficit: 0|local::at0022|No|
+        gt0008|BPPV diagnosis (protective): 0|local::at0025|No|
+    expected_output:
+      "1":
+        gt0011|Total score: "5"
+        gt0013|Risk assessment: ~2–4% - Moderate risk of central cause
+        gt0014|Clinical implication: Further investigation if unclear
+  - id: 11. All inputs, total score = 11 (>8)
+    input:
+      "1":
+        gt0003|Male: 1|local::at0008|Yes|
+        gt0004|Age >65 years: 1|local::at0011|Yes|
+        gt0009|Diabetes: 1|local::at0014|Yes|
+        gt0005|Hypertension: 3|local::at0017|Yes|
+        gt0006|Motor or sensory deficit: 5|local::at0020|Yes|
+        gt0007|Cerebellar deficit: 0|local::at0022|No|
+        gt0008|BPPV diagnosis (protective): 0|local::at0025|No|
+    expected_output:
+      "1":
+        gt0011|Total score: "11"
+        gt0013|Risk assessment: ≥41 % - High risk of serious central cause
+        gt0014|Clinical implication: Urgent evaluation and neuroimaging
