@@ -1,0 +1,38 @@
+guidelines:
+  "1": Rome_IV_Diagnostic_Criteria_for_Rumination_Syndrome.v0.1.0
+test_cases:
+  - id: 01. No input, pre-conditions not met (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Persistent or recurrent regurgitation of recently ingested food into the
+      mouth with subsequent spitting or remastication and swallowing missing
+      (negative test).
+    input:
+      "1":
+        gt0059|Regurgitation is not preceded by retching: local::at0009|Yes|
+    expected_output:
+      "1": {}
+  - id: 03. Regurgitation is not preceded by retching missing (negative test).
+    input:
+      "1":
+        gt0058|Persistent or recurrent regurgitation of recently ingested food into the mouth with subsequent spitting or remastication and swallowing: local::at0006|Yes|
+    expected_output:
+      "1": {}
+  - id: 04. Only one criterion present.
+    input:
+      "1":
+        gt0058|Persistent or recurrent regurgitation of recently ingested food into the mouth with subsequent spitting or remastication and swallowing: local::at0006|Yes|
+        gt0059|Regurgitation is not preceded by retching: local::at0010|No|
+    expected_output:
+      "1":
+        gt0056|Diagnostic Result: local::at0009|Negative|
+  - id: 05. All criteria present, positive for rumination syndrome.
+    input:
+      "1":
+        gt0058|Persistent or recurrent regurgitation of recently ingested food into the mouth with subsequent spitting or remastication and swallowing: local::at0006|Yes|
+        gt0059|Regurgitation is not preceded by retching: local::at0009|Yes|
+    expected_output:
+      "1":
+        gt0056|Diagnostic Result: local::at0010|Positive|
