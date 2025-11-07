@@ -1,0 +1,72 @@
+guidelines:
+  "1": BIND_score.v0.1.0
+test_cases:
+  - id: 01 - Test no input
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02 - Mental status input is missing (negative test)
+    input:
+      "1":
+        gt0016|Muscle tone: 0|local::at0014|Normal flexed tone (awake)|
+        gt0017|Cry pattern: 0|local::at0018|Normal|
+    expected_output:
+      "1": {}
+  - id: 03 - Muscle tone input is missing (negative test)
+    input:
+      "1":
+        gt0015|Mental status: 0|local::at0010|Normal|
+        gt0017|Cry pattern: 0|local::at0018|Normal|
+    expected_output:
+      "1": {}
+  - id: 04 - Cry pattern input is missing (negative test)
+    input:
+      "1":
+        gt0015|Mental status: 0|local::at0010|Normal|
+        gt0016|Muscle tone: 0|local::at0014|Normal flexed tone (awake)|
+    expected_output:
+      "1": {}
+  - id: 05 - All inputs 0 points, no acute bilirubin encephalopathy
+    input:
+      "1":
+        gt0015|Mental status: 0|local::at0010|Normal|
+        gt0016|Muscle tone: 0|local::at0014|Normal flexed tone (awake)|
+        gt0017|Cry pattern: 0|local::at0018|Normal|
+    expected_output:
+      "1":
+        gt0019|Total score: "0"
+        gt0021|Interpretation: local::at0005|No acute bilirubin encephalopathy|
+  - id: 06 - All inputs 1 points, mild acute bilirubin encephalopathy
+    input:
+      "1":
+        gt0015|Mental status: 1|local::at0011|Sleepy, poor feeding|
+        gt0016|Muscle tone: 1|local::at0015|Hypertonia alternating with hypotonia|
+        gt0017|Cry pattern: 1|local::at0019|High pitched cry|
+    expected_output:
+      "1":
+        gt0019|Total score: "3"
+        gt0021|Interpretation: local::at0006|Mild acute bilirubin encephalopathy|
+  - id: 07 - All inputs 2 points, moderate acute bilirubin encephalopathy
+    input:
+      "1":
+        gt0015|Mental status: 2|local::at0012|Lethargic, irritable, jittery|
+        gt0016|Muscle tone: 2|local::at0016|Neck stiffness, flexor spasm, beginning of
+          neck and back|
+        gt0017|Cry pattern: 2|local::at0020|Shrill cry even if intermittent|
+    expected_output:
+      "1":
+        gt0019|Total score: "6"
+        gt0021|Interpretation: local::at0007|Moderate acute bilirubin encephalopathy|
+  - id: 08 - All inputs 3 points, severe acute bilirubin encephalopathy
+    input:
+      "1":
+        gt0015|Mental status: 3|local::at0013|Unable to feed, apnea, seizures, coma|
+        gt0016|Muscle tone: 3|local::at0017|Persistent retrocollis and opisthotonos,
+          bicycling, twitching of hands and feet, fisting, severe hypotonia with
+          limp posture|
+        gt0017|Cry pattern: 3|local::at0021|Weak or absent cry. Inconsolable cry|
+    expected_output:
+      "1":
+        gt0019|Total score: "9"
+        gt0021|Interpretation: local::at0008|Severe acute bilirubin encephalopathy|
