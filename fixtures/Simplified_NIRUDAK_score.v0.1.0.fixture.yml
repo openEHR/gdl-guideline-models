@@ -1,0 +1,103 @@
+guidelines:
+  "1": Simplified_NIRUDAK_score.v0.1.0
+test_cases:
+  - id: 01 - Precondition not fulfilled (negative test)
+    input:
+      "1":
+        gt0017|Skin pinch: 0|local::at0012|Rapid|
+        gt0018|Eye level: 0|local::at0015|Normal|
+        gt0019|Respiration depth: 0|local::at0017|Normal|
+        gt0020|Urine output: 0|local::at0019|Normal|
+        gt0021|Radial pulse: 0|local::at0022|Strong|
+        gt0023|Age: 4,a
+    expected_output: {}
+  - id: 02 - No input (negative test)
+    input:
+      "1":
+        gt0023|Age: 5,a
+    expected_output: {}
+  - id: 03 - No skin pinch (negative test)
+    input:
+      "1":
+        gt0018|Eye level: 0|local::at0015|Normal|
+        gt0019|Respiration depth: 0|local::at0017|Normal|
+        gt0020|Urine output: 0|local::at0019|Normal|
+        gt0021|Radial pulse: 0|local::at0022|Strong|
+        gt0023|Age: 5,a
+    expected_output: {}
+  - id: 04 - No eye level (negative test)
+    input:
+      "1":
+        gt0017|Skin pinch: 0|local::at0012|Rapid|
+        gt0019|Respiration depth: 0|local::at0017|Normal|
+        gt0020|Urine output: 0|local::at0019|Normal|
+        gt0021|Radial pulse: 0|local::at0022|Strong|
+        gt0023|Age: 5,a
+    expected_output: {}
+  - id: 05 - No respiration depth (negative test)
+    input:
+      "1":
+        gt0017|Skin pinch: 0|local::at0012|Rapid|
+        gt0018|Eye level: 0|local::at0015|Normal|
+        gt0020|Urine output: 0|local::at0019|Normal|
+        gt0021|Radial pulse: 0|local::at0022|Strong|
+        gt0023|Age: 5,a
+    expected_output: {}
+  - id: 06 - No urine output (negative test)
+    input:
+      "1":
+        gt0017|Skin pinch: 0|local::at0012|Rapid|
+        gt0018|Eye level: 0|local::at0015|Normal|
+        gt0019|Respiration depth: 0|local::at0017|Normal|
+        gt0021|Radial pulse: 0|local::at0022|Strong|
+        gt0023|Age: 5,a
+    expected_output: {}
+  - id: 07 - No radial pulse (negative test)
+    input:
+      "1":
+        gt0017|Skin pinch: 0|local::at0012|Rapid|
+        gt0018|Eye level: 0|local::at0015|Normal|
+        gt0019|Respiration depth: 0|local::at0017|Normal|
+        gt0020|Urine output: 0|local::at0019|Normal|
+        gt0023|Age: 5,a
+    expected_output: {}
+  - id: 08 - All value 0, no dehydration
+    input:
+      "1":
+        gt0017|Skin pinch: 0|local::at0012|Rapid|
+        gt0018|Eye level: 0|local::at0015|Normal|
+        gt0019|Respiration depth: 0|local::at0017|Normal|
+        gt0020|Urine output: 0|local::at0019|Normal|
+        gt0021|Radial pulse: 0|local::at0022|Strong|
+        gt0023|Age: 5,a
+    expected_output:
+      "1":
+        gt0025|Total score: "0"
+        gt0027|Interpretation: local::at0003|No dehydration|
+  - id: 09 - Skin pinch slow, urine output decreased, radial pulse decreased, some
+      dehydration"
+    input:
+      "1":
+        gt0017|Skin pinch: 2|local::at0013|Slow|
+        gt0018|Eye level: 0|local::at0015|Normal|
+        gt0019|Respiration depth: 0|local::at0017|Normal|
+        gt0020|Urine output: 1|local::at0020|Decreased or dark|
+        gt0021|Radial pulse: 1|local::at0023|Decreased|
+        gt0023|Age: 5,a
+    expected_output:
+      "1":
+        gt0025|Total score: "4"
+        gt0027|Interpretation: local::at0004|Some dehydration|
+  - id: 10 - All highest value, severe dehydration
+    input:
+      "1":
+        gt0017|Skin pinch: 4|local::at0014|Very slow|
+        gt0018|Eye level: 2|local::at0016|Sunken|
+        gt0019|Respiration depth: 2|local::at0018|Deep|
+        gt0020|Urine output: 2|local::at0021|Minimal or none|
+        gt0021|Radial pulse: 4|local::at0024|Absent|
+        gt0023|Age: 5,a
+    expected_output:
+      "1":
+        gt0025|Total score: "14"
+        gt0027|Interpretation: local::at0005|Severe dehydration|
