@@ -1,0 +1,28 @@
+guidelines:
+  "1": Prague_C_M_Classification_for_Barrett_s_Esophagus.v0.1.0
+test_cases:
+  - id: 01 - Set C and M classification
+    input:
+      "1":
+        gt0003|Circumferential extent of Barret's Esophagus above the gastroesophageal junction (C value)|: 1,cm
+        gt0004|Maximal extent of Barret's Esophagus above the gastroesophageal junction (M value)|: 2,cm
+    expected_output:
+      "1":
+        gt0006|Prague C & M classification|: C1M2
+  - id: 02 - No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 03 - M value missing (negative test)
+    input:
+      "1":
+        gt0003|Circumferential extent of Barret's Esophagus above the gastroesophageal junction (C value)|: 0,cm
+    expected_output:
+      "1": {}
+  - id: 04 - C value missing (negative test)
+    input:
+      "1":
+        gt0004|Maximal extent of Barret's Esophagus above the gastroesophageal junction (M value)|: 2,cm
+    expected_output:
+      "1": {}
