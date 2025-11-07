@@ -1,0 +1,130 @@
+guidelines:
+  "1": Ottawa_Knee_Rule.v0.1.0
+test_cases:
+  - id: 01 - Test no input (test default action)
+    input:
+      "1": {}
+    expected_output:
+      "1":
+        gt0039|Knee radiograph: local::at0004|Not required|
+  - id: 02 - Age 55 years old or older no input, other inputs no (test default
+      action)
+    input:
+      "1":
+        gt0034|Tenderness at the head of fibula: local::at0017|No|
+        gt0035|Isolated tenderness of patella: local::at0017|No|
+        gt0036|Unable to flex to 90°: local::at0017|No|
+        gt0037|Unable to bear weight both immediately and in the ED (four steps): local::at0017|No|
+    expected_output:
+      "1":
+        gt0039|Knee radiograph: local::at0004|Not required|
+  - id: 03 - Tenderness at the head of fibula no input, other inputs no (test
+      default action)
+    input:
+      "1":
+        gt0033|Age 55 years old or older: local::at0017|No|
+        gt0035|Isolated tenderness of patella: local::at0017|No|
+        gt0036|Unable to flex to 90°: local::at0017|No|
+        gt0037|Unable to bear weight both immediately and in the ED (four steps): local::at0017|No|
+    expected_output:
+      "1":
+        gt0039|Knee radiograph: local::at0004|Not required|
+  - id: 04 - Isolated tenderness of patella no input, other inputs no (test default
+      action)
+    input:
+      "1":
+        gt0033|Age 55 years old or older: local::at0017|No|
+        gt0034|Tenderness at the head of fibula: local::at0017|No|
+        gt0036|Unable to flex to 90°: local::at0017|No|
+        gt0037|Unable to bear weight both immediately and in the ED (four steps): local::at0017|No|
+    expected_output:
+      "1":
+        gt0039|Knee radiograph: local::at0004|Not required|
+  - id: 05 - Unable to flex to 90° no input, other inputs no (test default action)
+    input:
+      "1":
+        gt0033|Age 55 years old or older: local::at0017|No|
+        gt0034|Tenderness at the head of fibula: local::at0017|No|
+        gt0035|Isolated tenderness of patella: local::at0017|No|
+        gt0037|Unable to bear weight both immediately and in the ED (four steps): local::at0017|No|
+    expected_output:
+      "1":
+        gt0039|Knee radiograph: local::at0004|Not required|
+  - id: 06 - Unable to bear weight both immediately and in the ED (four steps) no
+      input, other inputs no (test default action)
+    input:
+      "1":
+        gt0033|Age 55 years old or older: local::at0017|No|
+        gt0034|Tenderness at the head of fibula: local::at0017|No|
+        gt0035|Isolated tenderness of patella: local::at0017|No|
+        gt0036|Unable to flex to 90°: local::at0017|No|
+    expected_output:
+      "1":
+        gt0039|Knee radiograph: local::at0004|Not required|
+  - id: 07 - All inputs no (negative test)
+    input:
+      "1":
+        gt0033|Age 55 years old or older: local::at0017|No|
+        gt0034|Tenderness at the head of fibula: local::at0017|No|
+        gt0035|Isolated tenderness of patella: local::at0017|No|
+        gt0036|Unable to flex to 90°: local::at0017|No|
+        gt0037|Unable to bear weight both immediately and in the ED (four steps): local::at0017|No|
+    expected_output:
+      "1":
+        gt0039|Knee radiograph: local::at0004|Not required|
+  - id: 08 - Age 55 years old or older input yes
+    input:
+      "1":
+        gt0033|Age 55 years old or older: local::at0016|Yes|
+        gt0034|Tenderness at the head of fibula: local::at0017|No|
+        gt0035|Isolated tenderness of patella: local::at0017|No|
+        gt0036|Unable to flex to 90°: local::at0017|No|
+        gt0037|Unable to bear weight both immediately and in the ED (four steps): local::at0017|No|
+    expected_output:
+      "1":
+        gt0039|Knee radiograph: local::at0003|Required|
+  - id: 09 - Tenderness at the head of fibula input yes
+    input:
+      "1":
+        gt0033|Age 55 years old or older: local::at0017|No|
+        gt0034|Tenderness at the head of fibula: local::at0016|Yes|
+        gt0035|Isolated tenderness of patella: local::at0017|No|
+        gt0036|Unable to flex to 90°: local::at0017|No|
+        gt0037|Unable to bear weight both immediately and in the ED (four steps): local::at0017|No|
+    expected_output:
+      "1":
+        gt0039|Knee radiograph: local::at0003|Required|
+  - id: 10 - Isolated tenderness of patella input yes
+    input:
+      "1":
+        gt0033|Age 55 years old or older: local::at0017|No|
+        gt0034|Tenderness at the head of fibula: local::at0017|No|
+        gt0035|Isolated tenderness of patella: local::at0016|Yes|
+        gt0036|Unable to flex to 90°: local::at0017|No|
+        gt0037|Unable to bear weight both immediately and in the ED (four steps): local::at0017|No|
+    expected_output:
+      "1":
+        gt0039|Knee radiograph: local::at0003|Required|
+  - id: 11 - Unable to flex to 90° input yes
+    input:
+      "1":
+        gt0033|Age 55 years old or older: local::at0017|No|
+        gt0034|Tenderness at the head of fibula: local::at0017|No|
+        gt0035|Isolated tenderness of patella: local::at0017|No|
+        gt0036|Unable to flex to 90°: local::at0016|Yes|
+        gt0037|Unable to bear weight both immediately and in the ED (four steps): local::at0017|No|
+    expected_output:
+      "1":
+        gt0039|Knee radiograph: local::at0003|Required|
+  - id: 12 - Unable to bear weight both immediately and in the ED (four
+      steps)  input yes
+    input:
+      "1":
+        gt0033|Age 55 years old or older: local::at0017|No|
+        gt0034|Tenderness at the head of fibula: local::at0017|No|
+        gt0035|Isolated tenderness of patella: local::at0017|No|
+        gt0036|Unable to flex to 90°: local::at0017|No|
+        gt0037|Unable to bear weight both immediately and in the ED (four steps): local::at0016|Yes|
+    expected_output:
+      "1":
+        gt0039|Knee radiograph: local::at0003|Required|

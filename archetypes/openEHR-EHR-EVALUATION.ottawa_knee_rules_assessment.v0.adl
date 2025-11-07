@@ -1,0 +1,107 @@
+archetype (adl_version=1.4; uid=47e39225-7103-4af2-ab72-c5f0399f054a)
+	openEHR-EHR-EVALUATION.ottawa_knee_rules_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-07-01">
+		["name"] = <"Aurelia Maria Ozora">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"aurelia.maria.ozora@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the assessment of Ottawa Knee Rules.">
+			keywords = <"Ottawa, knee, rules, fracture, radiography", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the assessment of Ottawa Knee Rules.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Emparanza JI, Aginaga JR; Estudio Multicéntro en Urgencias de Osakidetza: Reglas de Ottawa (EMUORO) Group. Validation of the Ottawa Knee Rules. Ann Emerg Med. 2001 Oct;38(4):364-8. doi: 10.1067/mem.2001.118011. PMID: 11574791.
+
+Stiell IG, Greenberg GH, Wells GA, McKnight RD, Cwinn AA, Cacciotti T, McDowell I, Smith NA. Derivation of a decision rule for the use of radiography in acute knee injuries. Ann Emerg Med. 1995 Oct;26(4):405-13. doi: 10.1016/s0196-0644(95)70106-0. PMID: 7574120.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"1c319aac-f2e2-38b1-8c4d-9d38b8217f20">
+		["revision"] = <"0">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Ottawa Knee Rules Assessment
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- Knee radiograph
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0003,    -- Required
+									at0004]    -- Not required
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0005] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0006] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Ottawa Knee Rules Assessment">
+					description = <"Assessment of Ottawa Knee Rules.">
+					comment = <"Original version, c 1995.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Knee radiograph">
+					description = <"">
+				>
+				["at0003"] = <
+					text = <"Required">
+					description = <"">
+				>
+				["at0004"] = <
+					text = <"Not required">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0006"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>
