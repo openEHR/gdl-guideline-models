@@ -1,0 +1,434 @@
+guidelines:
+  "1": Geriatric_Depression_Scale_GDS_15.v0.1.0
+test_cases:
+  - id: 01 - Test precondition (negative test)
+    input:
+      "1":
+        gt0028|Age: 64,a
+        gt0030|Are you basically satisfied with your life?: 0|local::at0022|Yes|
+        gt0031|Have you dropped many of your activities and interests?: 0|local::at0024|No|
+        gt0032|Do you feel that your life is empty?: 0|local::at0026|No|
+        gt0033|Do you often get bored?: 0|local::at0028|No|
+        gt0034|Are you in good spirits most of the time?: 0|local::at0030|Yes|
+        gt0035|Are you afraid that something bad is going to happen to you?: 0|local::at0032|No|
+        gt0036|Do you feel happy most of the time?: 0|local::at0034|Yes|
+        gt0037|Do you often feel helpless?: 0|local::at0036|No|
+        "gt0038|Do you prefer to stay at home, rather than going out and doing new things?": 0|local::at0038|No|
+        gt0039|Do you feel you have more problems with memory than most?: 0|local::at0040|No|
+        gt0040|Do you think it is wonderful to be alive now?: 0|local::at0042|Yes|
+        gt0041|Do you feel pretty worthless the way you are now?: 0|local::at0044|No|
+        gt0042|Do you feel full of energy?: 0|local::at0046|Yes|
+        gt0043|Do you feel that your situation is hopeless?: 0|local::at0048|No|
+        gt0044|Do you think that most people are better off than you are?: 0|local::at0050|No|
+    expected_output:
+      "1": {}
+  - id: 02 - Age 65, others no input
+    input:
+      "1":
+        gt0028|Age: 65,a
+    expected_output:
+      "1": {}
+  - id: 03 - Age 65, Are you basically satisfied with your life input missing
+      (negative test)
+    input:
+      "1":
+        gt0028|Age: 65,a
+        gt0031|Have you dropped many of your activities and interests?: 0|local::at0024|No|
+        gt0032|Do you feel that your life is empty?: 0|local::at0026|No|
+        gt0033|Do you often get bored?: 0|local::at0028|No|
+        gt0034|Are you in good spirits most of the time?: 0|local::at0030|Yes|
+        gt0035|Are you afraid that something bad is going to happen to you?: 0|local::at0032|No|
+        gt0036|Do you feel happy most of the time?: 0|local::at0034|Yes|
+        gt0037|Do you often feel helpless?: 0|local::at0036|No|
+        "gt0038|Do you prefer to stay at home, rather than going out and doing new things?": 0|local::at0038|No|
+        gt0039|Do you feel you have more problems with memory than most?: 0|local::at0040|No|
+        gt0040|Do you think it is wonderful to be alive now?: 0|local::at0042|Yes|
+        gt0041|Do you feel pretty worthless the way you are now?: 0|local::at0044|No|
+        gt0042|Do you feel full of energy?: 0|local::at0046|Yes|
+        gt0043|Do you feel that your situation is hopeless?: 0|local::at0048|No|
+        gt0044|Do you think that most people are better off than you are?: 0|local::at0050|No|
+    expected_output:
+      "1": {}
+  - id: 04 - Age 65, Have you dropped many of your activities and interests input
+      missing (negative test)
+    input:
+      "1":
+        gt0028|Age: 65,a
+        gt0030|Are you basically satisfied with your life?: 0|local::at0022|Yes|
+        gt0032|Do you feel that your life is empty?: 0|local::at0026|No|
+        gt0033|Do you often get bored?: 0|local::at0028|No|
+        gt0034|Are you in good spirits most of the time?: 0|local::at0030|Yes|
+        gt0035|Are you afraid that something bad is going to happen to you?: 0|local::at0032|No|
+        gt0036|Do you feel happy most of the time?: 0|local::at0034|Yes|
+        gt0037|Do you often feel helpless?: 0|local::at0036|No|
+        "gt0038|Do you prefer to stay at home, rather than going out and doing new things?": 0|local::at0038|No|
+        gt0039|Do you feel you have more problems with memory than most?: 0|local::at0040|No|
+        gt0040|Do you think it is wonderful to be alive now?: 0|local::at0042|Yes|
+        gt0041|Do you feel pretty worthless the way you are now?: 0|local::at0044|No|
+        gt0042|Do you feel full of energy?: 0|local::at0046|Yes|
+        gt0043|Do you feel that your situation is hopeless?: 0|local::at0048|No|
+        gt0044|Do you think that most people are better off than you are?: 0|local::at0050|No|
+    expected_output:
+      "1": {}
+  - id: 05 - Age 65, Do you feel that your life is empty input missing (negative
+      test)
+    input:
+      "1":
+        gt0028|Age: 65,a
+        gt0030|Are you basically satisfied with your life?: 0|local::at0022|Yes|
+        gt0031|Have you dropped many of your activities and interests?: 0|local::at0024|No|
+        gt0033|Do you often get bored?: 0|local::at0028|No|
+        gt0034|Are you in good spirits most of the time?: 0|local::at0030|Yes|
+        gt0035|Are you afraid that something bad is going to happen to you?: 0|local::at0032|No|
+        gt0036|Do you feel happy most of the time?: 0|local::at0034|Yes|
+        gt0037|Do you often feel helpless?: 0|local::at0036|No|
+        "gt0038|Do you prefer to stay at home, rather than going out and doing new things?": 0|local::at0038|No|
+        gt0039|Do you feel you have more problems with memory than most?: 0|local::at0040|No|
+        gt0040|Do you think it is wonderful to be alive now?: 0|local::at0042|Yes|
+        gt0041|Do you feel pretty worthless the way you are now?: 0|local::at0044|No|
+        gt0042|Do you feel full of energy?: 0|local::at0046|Yes|
+        gt0043|Do you feel that your situation is hopeless?: 0|local::at0048|No|
+        gt0044|Do you think that most people are better off than you are?: 0|local::at0050|No|
+    expected_output:
+      "1": {}
+  - id: 06 - Age 65, Do you often get bored input missing (negative test)
+    input:
+      "1":
+        gt0028|Age: 65,a
+        gt0030|Are you basically satisfied with your life?: 0|local::at0022|Yes|
+        gt0031|Have you dropped many of your activities and interests?: 0|local::at0024|No|
+        gt0032|Do you feel that your life is empty?: 0|local::at0026|No|
+        gt0034|Are you in good spirits most of the time?: 0|local::at0030|Yes|
+        gt0035|Are you afraid that something bad is going to happen to you?: 0|local::at0032|No|
+        gt0036|Do you feel happy most of the time?: 0|local::at0034|Yes|
+        gt0037|Do you often feel helpless?: 0|local::at0036|No|
+        "gt0038|Do you prefer to stay at home, rather than going out and doing new things?": 0|local::at0038|No|
+        gt0039|Do you feel you have more problems with memory than most?: 0|local::at0040|No|
+        gt0040|Do you think it is wonderful to be alive now?: 0|local::at0042|Yes|
+        gt0041|Do you feel pretty worthless the way you are now?: 0|local::at0044|No|
+        gt0042|Do you feel full of energy?: 0|local::at0046|Yes|
+        gt0043|Do you feel that your situation is hopeless?: 0|local::at0048|No|
+        gt0044|Do you think that most people are better off than you are?: 0|local::at0050|No|
+    expected_output:
+      "1": {}
+  - id: 07 - Age 65, Are you in good spirits most of the time input missing
+      (negative test)
+    input:
+      "1":
+        gt0028|Age: 65,a
+        gt0030|Are you basically satisfied with your life?: 0|local::at0022|Yes|
+        gt0031|Have you dropped many of your activities and interests?: 0|local::at0024|No|
+        gt0032|Do you feel that your life is empty?: 0|local::at0026|No|
+        gt0033|Do you often get bored?: 0|local::at0028|No|
+        gt0035|Are you afraid that something bad is going to happen to you?: 0|local::at0032|No|
+        gt0036|Do you feel happy most of the time?: 0|local::at0034|Yes|
+        gt0037|Do you often feel helpless?: 0|local::at0036|No|
+        "gt0038|Do you prefer to stay at home, rather than going out and doing new things?": 0|local::at0038|No|
+        gt0039|Do you feel you have more problems with memory than most?: 0|local::at0040|No|
+        gt0040|Do you think it is wonderful to be alive now?: 0|local::at0042|Yes|
+        gt0041|Do you feel pretty worthless the way you are now?: 0|local::at0044|No|
+        gt0042|Do you feel full of energy?: 0|local::at0046|Yes|
+        gt0043|Do you feel that your situation is hopeless?: 0|local::at0048|No|
+        gt0044|Do you think that most people are better off than you are?: 0|local::at0050|No|
+    expected_output:
+      "1": {}
+  - id: 08 - Age 65, Are you afraid that something bad is going to happen to you
+      input missing (negative test)
+    input:
+      "1":
+        gt0028|Age: 65,a
+        gt0030|Are you basically satisfied with your life?: 0|local::at0022|Yes|
+        gt0031|Have you dropped many of your activities and interests?: 0|local::at0024|No|
+        gt0032|Do you feel that your life is empty?: 0|local::at0026|No|
+        gt0033|Do you often get bored?: 0|local::at0028|No|
+        gt0034|Are you in good spirits most of the time?: 0|local::at0030|Yes|
+        gt0036|Do you feel happy most of the time?: 0|local::at0034|Yes|
+        gt0037|Do you often feel helpless?: 0|local::at0036|No|
+        "gt0038|Do you prefer to stay at home, rather than going out and doing new things?": 0|local::at0038|No|
+        gt0039|Do you feel you have more problems with memory than most?: 0|local::at0040|No|
+        gt0040|Do you think it is wonderful to be alive now?: 0|local::at0042|Yes|
+        gt0041|Do you feel pretty worthless the way you are now?: 0|local::at0044|No|
+        gt0042|Do you feel full of energy?: 0|local::at0046|Yes|
+        gt0043|Do you feel that your situation is hopeless?: 0|local::at0048|No|
+        gt0044|Do you think that most people are better off than you are?: 0|local::at0050|No|
+    expected_output:
+      "1": {}
+  - id: 09 - Age 65, Do you feel happy most of the time input missing (negative
+      test)
+    input:
+      "1":
+        gt0028|Age: 65,a
+        gt0030|Are you basically satisfied with your life?: 0|local::at0022|Yes|
+        gt0031|Have you dropped many of your activities and interests?: 0|local::at0024|No|
+        gt0032|Do you feel that your life is empty?: 0|local::at0026|No|
+        gt0033|Do you often get bored?: 0|local::at0028|No|
+        gt0034|Are you in good spirits most of the time?: 0|local::at0030|Yes|
+        gt0035|Are you afraid that something bad is going to happen to you?: 0|local::at0032|No|
+        gt0037|Do you often feel helpless?: 0|local::at0036|No|
+        "gt0038|Do you prefer to stay at home, rather than going out and doing new things?": 0|local::at0038|No|
+        gt0039|Do you feel you have more problems with memory than most?: 0|local::at0040|No|
+        gt0040|Do you think it is wonderful to be alive now?: 0|local::at0042|Yes|
+        gt0041|Do you feel pretty worthless the way you are now?: 0|local::at0044|No|
+        gt0042|Do you feel full of energy?: 0|local::at0046|Yes|
+        gt0043|Do you feel that your situation is hopeless?: 0|local::at0048|No|
+        gt0044|Do you think that most people are better off than you are?: 0|local::at0050|No|
+    expected_output:
+      "1": {}
+  - id: 10 - Age 65, Do you often feel helpless input missing (negative test)
+    input:
+      "1":
+        gt0028|Age: 65,a
+        gt0030|Are you basically satisfied with your life?: 0|local::at0022|Yes|
+        gt0031|Have you dropped many of your activities and interests?: 0|local::at0024|No|
+        gt0032|Do you feel that your life is empty?: 0|local::at0026|No|
+        gt0033|Do you often get bored?: 0|local::at0028|No|
+        gt0034|Are you in good spirits most of the time?: 0|local::at0030|Yes|
+        gt0035|Are you afraid that something bad is going to happen to you?: 0|local::at0032|No|
+        gt0036|Do you feel happy most of the time?: 0|local::at0034|Yes|
+        "gt0038|Do you prefer to stay at home, rather than going out and doing new things?": 0|local::at0038|No|
+        gt0039|Do you feel you have more problems with memory than most?: 0|local::at0040|No|
+        gt0040|Do you think it is wonderful to be alive now?: 0|local::at0042|Yes|
+        gt0041|Do you feel pretty worthless the way you are now?: 0|local::at0044|No|
+        gt0042|Do you feel full of energy?: 0|local::at0046|Yes|
+        gt0043|Do you feel that your situation is hopeless?: 0|local::at0048|No|
+        gt0044|Do you think that most people are better off than you are?: 0|local::at0050|No|
+    expected_output:
+      "1": {}
+  - id: 11 - Age 65, Do you prefer to stay at home, rather than going out and doing
+      new things input missing (negative test)
+    input:
+      "1":
+        gt0028|Age: 65,a
+        gt0030|Are you basically satisfied with your life?: 0|local::at0022|Yes|
+        gt0031|Have you dropped many of your activities and interests?: 0|local::at0024|No|
+        gt0032|Do you feel that your life is empty?: 0|local::at0026|No|
+        gt0033|Do you often get bored?: 0|local::at0028|No|
+        gt0034|Are you in good spirits most of the time?: 0|local::at0030|Yes|
+        gt0035|Are you afraid that something bad is going to happen to you?: 0|local::at0032|No|
+        gt0036|Do you feel happy most of the time?: 0|local::at0034|Yes|
+        gt0037|Do you often feel helpless?: 0|local::at0036|No|
+        gt0039|Do you feel you have more problems with memory than most?: 0|local::at0040|No|
+        gt0040|Do you think it is wonderful to be alive now?: 0|local::at0042|Yes|
+        gt0041|Do you feel pretty worthless the way you are now?: 0|local::at0044|No|
+        gt0042|Do you feel full of energy?: 0|local::at0046|Yes|
+        gt0043|Do you feel that your situation is hopeless?: 0|local::at0048|No|
+        gt0044|Do you think that most people are better off than you are?: 0|local::at0050|No|
+    expected_output:
+      "1": {}
+  - id: 12- Age 65, Do you feel you have more problems with memory than most input
+      missing (negative test)
+    input:
+      "1":
+        gt0028|Age: 65,a
+        gt0030|Are you basically satisfied with your life?: 0|local::at0022|Yes|
+        gt0031|Have you dropped many of your activities and interests?: 0|local::at0024|No|
+        gt0032|Do you feel that your life is empty?: 0|local::at0026|No|
+        gt0033|Do you often get bored?: 0|local::at0028|No|
+        gt0034|Are you in good spirits most of the time?: 0|local::at0030|Yes|
+        gt0035|Are you afraid that something bad is going to happen to you?: 0|local::at0032|No|
+        gt0036|Do you feel happy most of the time?: 0|local::at0034|Yes|
+        gt0037|Do you often feel helpless?: 0|local::at0036|No|
+        "gt0038|Do you prefer to stay at home, rather than going out and doing new things?": 0|local::at0038|No|
+        gt0040|Do you think it is wonderful to be alive now?: 0|local::at0042|Yes|
+        gt0041|Do you feel pretty worthless the way you are now?: 0|local::at0044|No|
+        gt0042|Do you feel full of energy?: 0|local::at0046|Yes|
+        gt0043|Do you feel that your situation is hopeless?: 0|local::at0048|No|
+        gt0044|Do you think that most people are better off than you are?: 0|local::at0050|No|
+    expected_output:
+      "1": {}
+  - id: 13 - Age 65, Do you think it is wonderful to be alive now input missing
+      (negative test)
+    input:
+      "1":
+        gt0028|Age: 65,a
+        gt0030|Are you basically satisfied with your life?: 0|local::at0022|Yes|
+        gt0031|Have you dropped many of your activities and interests?: 0|local::at0024|No|
+        gt0032|Do you feel that your life is empty?: 0|local::at0026|No|
+        gt0033|Do you often get bored?: 0|local::at0028|No|
+        gt0034|Are you in good spirits most of the time?: 0|local::at0030|Yes|
+        gt0035|Are you afraid that something bad is going to happen to you?: 0|local::at0032|No|
+        gt0036|Do you feel happy most of the time?: 0|local::at0034|Yes|
+        gt0037|Do you often feel helpless?: 0|local::at0036|No|
+        "gt0038|Do you prefer to stay at home, rather than going out and doing new things?": 0|local::at0038|No|
+        gt0039|Do you feel you have more problems with memory than most?: 0|local::at0040|No|
+        gt0041|Do you feel pretty worthless the way you are now?: 0|local::at0044|No|
+        gt0042|Do you feel full of energy?: 0|local::at0046|Yes|
+        gt0043|Do you feel that your situation is hopeless?: 0|local::at0048|No|
+        gt0044|Do you think that most people are better off than you are?: 0|local::at0050|No|
+    expected_output:
+      "1": {}
+  - id: 14 - Age 65, Do you feel pretty worthless the way you are now input missing
+      (negative test)
+    input:
+      "1":
+        gt0028|Age: 65,a
+        gt0030|Are you basically satisfied with your life?: 0|local::at0022|Yes|
+        gt0031|Have you dropped many of your activities and interests?: 0|local::at0024|No|
+        gt0032|Do you feel that your life is empty?: 0|local::at0026|No|
+        gt0033|Do you often get bored?: 0|local::at0028|No|
+        gt0034|Are you in good spirits most of the time?: 0|local::at0030|Yes|
+        gt0035|Are you afraid that something bad is going to happen to you?: 0|local::at0032|No|
+        gt0036|Do you feel happy most of the time?: 0|local::at0034|Yes|
+        gt0037|Do you often feel helpless?: 0|local::at0036|No|
+        "gt0038|Do you prefer to stay at home, rather than going out and doing new things?": 0|local::at0038|No|
+        gt0039|Do you feel you have more problems with memory than most?: 0|local::at0040|No|
+        gt0040|Do you think it is wonderful to be alive now?: 0|local::at0042|Yes|
+        gt0042|Do you feel full of energy?: 0|local::at0046|Yes|
+        gt0043|Do you feel that your situation is hopeless?: 0|local::at0048|No|
+        gt0044|Do you think that most people are better off than you are?: 0|local::at0050|No|
+    expected_output:
+      "1": {}
+  - id: 15 - Age 65, Do you feel full of energy input missing (negative test)
+    input:
+      "1":
+        gt0028|Age: 65,a
+        gt0030|Are you basically satisfied with your life?: 0|local::at0022|Yes|
+        gt0031|Have you dropped many of your activities and interests?: 0|local::at0024|No|
+        gt0032|Do you feel that your life is empty?: 0|local::at0026|No|
+        gt0033|Do you often get bored?: 0|local::at0028|No|
+        gt0034|Are you in good spirits most of the time?: 0|local::at0030|Yes|
+        gt0035|Are you afraid that something bad is going to happen to you?: 0|local::at0032|No|
+        gt0036|Do you feel happy most of the time?: 0|local::at0034|Yes|
+        gt0037|Do you often feel helpless?: 0|local::at0036|No|
+        "gt0038|Do you prefer to stay at home, rather than going out and doing new things?": 0|local::at0038|No|
+        gt0039|Do you feel you have more problems with memory than most?: 0|local::at0040|No|
+        gt0040|Do you think it is wonderful to be alive now?: 0|local::at0042|Yes|
+        gt0041|Do you feel pretty worthless the way you are now?: 0|local::at0044|No|
+        gt0043|Do you feel that your situation is hopeless?: 0|local::at0048|No|
+        gt0044|Do you think that most people are better off than you are?: 0|local::at0050|No|
+    expected_output:
+      "1": {}
+  - id: 16 - Age 65, Do you feel that your situation is hopeless input missing
+      (negative test)
+    input:
+      "1":
+        gt0028|Age: 65,a
+        gt0030|Are you basically satisfied with your life?: 0|local::at0022|Yes|
+        gt0031|Have you dropped many of your activities and interests?: 0|local::at0024|No|
+        gt0032|Do you feel that your life is empty?: 0|local::at0026|No|
+        gt0033|Do you often get bored?: 0|local::at0028|No|
+        gt0034|Are you in good spirits most of the time?: 0|local::at0030|Yes|
+        gt0035|Are you afraid that something bad is going to happen to you?: 0|local::at0032|No|
+        gt0036|Do you feel happy most of the time?: 0|local::at0034|Yes|
+        gt0037|Do you often feel helpless?: 0|local::at0036|No|
+        "gt0038|Do you prefer to stay at home, rather than going out and doing new things?": 0|local::at0038|No|
+        gt0039|Do you feel you have more problems with memory than most?: 0|local::at0040|No|
+        gt0040|Do you think it is wonderful to be alive now?: 0|local::at0042|Yes|
+        gt0041|Do you feel pretty worthless the way you are now?: 0|local::at0044|No|
+        gt0042|Do you feel full of energy?: 0|local::at0046|Yes|
+        gt0044|Do you think that most people are better off than you are?: 0|local::at0050|No|
+    expected_output:
+      "1": {}
+  - id: 17 - Age 65, Do you think that most people are better off than you are input
+      missing (negative test)
+    input:
+      "1":
+        gt0028|Age: 65,a
+        gt0030|Are you basically satisfied with your life?: 0|local::at0022|Yes|
+        gt0031|Have you dropped many of your activities and interests?: 0|local::at0024|No|
+        gt0032|Do you feel that your life is empty?: 0|local::at0026|No|
+        gt0033|Do you often get bored?: 0|local::at0028|No|
+        gt0034|Are you in good spirits most of the time?: 0|local::at0030|Yes|
+        gt0035|Are you afraid that something bad is going to happen to you?: 0|local::at0032|No|
+        gt0036|Do you feel happy most of the time?: 0|local::at0034|Yes|
+        gt0037|Do you often feel helpless?: 0|local::at0036|No|
+        "gt0038|Do you prefer to stay at home, rather than going out and doing new things?": 0|local::at0038|No|
+        gt0039|Do you feel you have more problems with memory than most?: 0|local::at0040|No|
+        gt0040|Do you think it is wonderful to be alive now?: 0|local::at0042|Yes|
+        gt0041|Do you feel pretty worthless the way you are now?: 0|local::at0044|No|
+        gt0042|Do you feel full of energy?: 0|local::at0046|Yes|
+        gt0043|Do you feel that your situation is hopeless?: 0|local::at0048|No|
+    expected_output:
+      "1": {}
+  - id: 18 - Age 65, all inputs 0 points (suggest no depression)
+    input:
+      "1":
+        gt0028|Age: 65,a
+        gt0030|Are you basically satisfied with your life?: 0|local::at0022|Yes|
+        gt0031|Have you dropped many of your activities and interests?: 0|local::at0024|No|
+        gt0032|Do you feel that your life is empty?: 0|local::at0026|No|
+        gt0033|Do you often get bored?: 0|local::at0028|No|
+        gt0034|Are you in good spirits most of the time?: 0|local::at0030|Yes|
+        gt0035|Are you afraid that something bad is going to happen to you?: 0|local::at0032|No|
+        gt0036|Do you feel happy most of the time?: 0|local::at0034|Yes|
+        gt0037|Do you often feel helpless?: 0|local::at0036|No|
+        "gt0038|Do you prefer to stay at home, rather than going out and doing new things?": 0|local::at0038|No|
+        gt0039|Do you feel you have more problems with memory than most?: 0|local::at0040|No|
+        gt0040|Do you think it is wonderful to be alive now?: 0|local::at0042|Yes|
+        gt0041|Do you feel pretty worthless the way you are now?: 0|local::at0044|No|
+        gt0042|Do you feel full of energy?: 0|local::at0046|Yes|
+        gt0043|Do you feel that your situation is hopeless?: 0|local::at0048|No|
+        gt0044|Do you think that most people are better off than you are?: 0|local::at0050|No|
+    expected_output:
+      "1":
+        gt0046|Total score: "0"
+        gt0048|Interpretation: local::at0005|Absence of clinically significant depressive symptoms|
+  - id: 19 - Age 65, all inputs 1 point (suggest severe depression)
+    input:
+      "1":
+        gt0028|Age: 65,a
+        gt0030|Are you basically satisfied with your life?: 1|local::at0023|No|
+        gt0031|Have you dropped many of your activities and interests?: 1|local::at0025|Yes|
+        gt0032|Do you feel that your life is empty?: 1|local::at0027|Yes|
+        gt0033|Do you often get bored?: 1|local::at0029|Yes|
+        gt0034|Are you in good spirits most of the time?: 1|local::at0031|No|
+        gt0035|Are you afraid that something bad is going to happen to you?: 1|local::at0033|Yes|
+        gt0036|Do you feel happy most of the time?: 1|local::at0035|No|
+        gt0037|Do you often feel helpless?: 1|local::at0037|Yes|
+        "gt0038|Do you prefer to stay at home, rather than going out and doing new things?": 1|local::at0039|Yes|
+        gt0039|Do you feel you have more problems with memory than most?: 1|local::at0041|Yes|
+        gt0040|Do you think it is wonderful to be alive now?: 1|local::at0043|No|
+        gt0041|Do you feel pretty worthless the way you are now?: 1|local::at0045|Yes|
+        gt0042|Do you feel full of energy?: 1|local::at0047|No|
+        gt0043|Do you feel that your situation is hopeless?: 1|local::at0049|Yes|
+        gt0044|Do you think that most people are better off than you are?: 1|local::at0051|Yes|
+    expected_output:
+      "1":
+        gt0046|Total score: "15"
+        gt0048|Interpretation: local::at0008|Suggests severe depression|
+  - id: 20 - Age 65, test treshold for mild depression
+    input:
+      "1":
+        gt0028|Age: 65,a
+        gt0030|Are you basically satisfied with your life?: 0|local::at0022|Yes|
+        gt0031|Have you dropped many of your activities and interests?: 0|local::at0024|No|
+        gt0032|Do you feel that your life is empty?: 0|local::at0026|No|
+        gt0033|Do you often get bored?: 0|local::at0028|No|
+        gt0034|Are you in good spirits most of the time?: 0|local::at0030|Yes|
+        gt0035|Are you afraid that something bad is going to happen to you?: 0|local::at0032|No|
+        gt0036|Do you feel happy most of the time?: 0|local::at0034|Yes|
+        gt0037|Do you often feel helpless?: 0|local::at0036|No|
+        "gt0038|Do you prefer to stay at home, rather than going out and doing new things?": 0|local::at0038|No|
+        gt0039|Do you feel you have more problems with memory than most?: 0|local::at0040|No|
+        gt0040|Do you think it is wonderful to be alive now?: 1|local::at0043|No|
+        gt0041|Do you feel pretty worthless the way you are now?: 1|local::at0045|Yes|
+        gt0042|Do you feel full of energy?: 1|local::at0047|No|
+        gt0043|Do you feel that your situation is hopeless?: 1|local::at0049|Yes|
+        gt0044|Do you think that most people are better off than you are?: 1|local::at0051|Yes|
+    expected_output:
+      "1":
+        gt0046|Total score: "5"
+        gt0048|Interpretation: local::at0006|Suggests mild depression|
+  - id: 21 - Age 65, test treshold for moderate depression
+    input:
+      "1":
+        gt0028|Age: 65,a
+        gt0030|Are you basically satisfied with your life?: 0|local::at0022|Yes|
+        gt0031|Have you dropped many of your activities and interests?: 0|local::at0024|No|
+        gt0032|Do you feel that your life is empty?: 0|local::at0026|No|
+        gt0033|Do you often get bored?: 0|local::at0028|No|
+        gt0034|Are you in good spirits most of the time?: 0|local::at0030|Yes|
+        gt0035|Are you afraid that something bad is going to happen to you?: 0|local::at0032|No|
+        gt0036|Do you feel happy most of the time?: 0|local::at0034|Yes|
+        gt0037|Do you often feel helpless?: 1|local::at0037|Yes|
+        "gt0038|Do you prefer to stay at home, rather than going out and doing new things?": 1|local::at0039|Yes|
+        gt0039|Do you feel you have more problems with memory than most?: 1|local::at0041|Yes|
+        gt0040|Do you think it is wonderful to be alive now?: 1|local::at0043|No|
+        gt0041|Do you feel pretty worthless the way you are now?: 1|local::at0045|Yes|
+        gt0042|Do you feel full of energy?: 1|local::at0047|No|
+        gt0043|Do you feel that your situation is hopeless?: 1|local::at0049|Yes|
+        gt0044|Do you think that most people are better off than you are?: 1|local::at0051|Yes|
+    expected_output:
+      "1":
+        gt0046|Total score: "8"
+        gt0048|Interpretation: local::at0007|Suggests moderate depression|
