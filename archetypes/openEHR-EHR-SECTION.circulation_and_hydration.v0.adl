@@ -1,0 +1,54 @@
+archetype (adl_version=1.4; uid=1dfe7b4c-e32a-47ec-80a5-a7bca407906b)
+	openEHR-EHR-SECTION.circulation_and_hydration.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-11-09">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"13a68c83761cad97baaa77918b79d9fd">
+		["build_uid"] = <"6f445d07-ecaa-3637-8d83-939dd7fdd350">
+	>
+
+definition
+	SECTION[at0000] matches {    -- Circulation and Hydration
+		items cardinality matches {1..*; unordered} matches {
+			allow_archetype ENTRY[at0002] occurrences matches {0..*} matches {    -- Circulation and Hydration data
+				include
+					archetype_id/value matches {/.*|openEHR-EHR-OBSERVATION\.pulse\.v2|openEHR-EHR-OBSERVATION\.capillary_refill\.v1|openEHR-EHR-OBSERVATION\.circulation_and_hydration_questionnaires_\.v0/}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Circulation and Hydration">
+					description = <"Circulation and Hydration">
+				>
+				["at0002"] = <
+					text = <"Circulation and Hydration data">
+					description = <"">
+				>
+			>
+		>
+	>
