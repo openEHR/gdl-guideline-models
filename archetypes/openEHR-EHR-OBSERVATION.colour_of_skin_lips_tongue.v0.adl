@@ -1,0 +1,98 @@
+archetype (adl_version=1.4; uid=5954468d-56da-4192-862a-5f2db5f4bc70)
+	openEHR-EHR-OBSERVATION.colour_of_skin_lips_tongue.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-11-10">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"5c0cd63bf33bba1b32f8ab70302eb96e">
+		["build_uid"] = <"56aac534-8b72-3801-bc0b-8aeb8c2e71bd">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Colour of skin lips tongue
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Colour (of skin, lips or tongue)
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0005,    -- Normal colour
+													at0006,    -- Pallor
+													at0007]    -- Pale/mottled/ashen/ blue
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Colour of skin lips tongue">
+					description = <"colour_of_skin_lips_tongue">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Colour (of skin, lips or tongue)">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Normal colour">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Pallor">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Pale/mottled/ashen/ blue">
+					description = <"">
+				>
+			>
+		>
+	>
