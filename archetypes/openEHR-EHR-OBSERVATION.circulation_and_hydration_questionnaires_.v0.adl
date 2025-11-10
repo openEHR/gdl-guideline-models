@@ -1,0 +1,120 @@
+archetype (adl_version=1.4; uid=2374c626-4ccd-466b-8afd-c0c20c714d6a)
+	openEHR-EHR-OBSERVATION.circulation_and_hydration_questionnaires_.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-11-10">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"c1d999af45f598c8325c8d63b9386c1c">
+		["build_uid"] = <"84fde619-64a1-3721-817b-198af5dd57fe">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Circulation and hydration questionnaires
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Reduced skin turgor present?
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Mucous membranes status
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0006,    -- Moist mucous membranes
+													at0007]    -- Dry mucous membranes
+												}
+											}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Poor feeding in infants?
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Reduced urine output present?
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Circulation and hydration questionnaires">
+					description = <"Circulation and hydration questionnaires ">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Reduced skin turgor present?">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Mucous membranes status">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Moist mucous membranes">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Dry mucous membranes">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Poor feeding in infants?">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Reduced urine output present?">
+					description = <"">
+				>
+			>
+		>
+	>
