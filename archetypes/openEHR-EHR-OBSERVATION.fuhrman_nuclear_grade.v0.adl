@@ -1,4 +1,4 @@
-archetype (adl_version=1.4; uid=00e72fb0-4917-4233-8675-e3076b67d6ed)
+archetype (adl_version=1.4; uid=a98ecb4d-020a-459b-8fa2-d385d9cb0542)
 	openEHR-EHR-OBSERVATION.fuhrman_nuclear_grade.v0
 
 concept
@@ -9,12 +9,20 @@ language
 
 description
 	original_author = <
-		["date"] = <"2025-10-23">
+		["date"] = <"2025-11-10">
+		["name"] = <"Mahmoud Elachi">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"mahmoud.el-achi@cambio.se">
 	>
 	lifecycle_state = <"unmanaged">
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
+			purpose = <"To record the observed nuclear features and assign the final Fuhrman Nuclear Grade (1 to 4) for renal cell carcinoma.">
+			keywords = <"fuhrman","renal cell carcinoma","nuclear grade","oncology","pathology","clear cell","histology","tumor grading">
+			copyright = <"Use © Cambio CDS">
+			use = <"Use to record nuclear diameter, nuclear shape, nucleolar prominence, and the presence of bizarre nuclei in cases of renal cell carcinoma. The recorded values are used to assign the final Fuhrman Nuclear Grade (1 to 4). This archetype supports clinical documentation, structured reporting, and integration with decision support logic.">
+			misuse = <"Not to be used for recording histological grades of tumors other than renal cell carcinoma. For non renal cell carcinoma tumors, use a tumor-specific grading archetype.">
 		>
 	>
 	other_details = <
@@ -23,6 +31,8 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Fuhrman SA, Lasky LC, Limas C. Prognostic significance of morphologic parameters in renal cell carcinoma. Am J Surg Pathol. 1982 Oct;6(7):655-63. doi: 10.1097/00000478-198210000-00007. PMID: 7180965.
+Ficarra V, Martignoni G, Maffei N, Brunelli M, Novara G, Zanolla L, Pea M, Artibani W. Original and reviewed nuclear grading according to the Fuhrman system: a multivariate analysis of 388 patients with conventional renal cell carcinoma. Cancer. 2005 Jan 1;103(1):68-75. doi: 10.1002/cncr.20749. PMID: 15573369.">
 		["build_uid"] = <"79f7214e-fa3b-392f-a694-437416a021f1">
 	>
 
@@ -37,37 +47,62 @@ definition
 								items cardinality matches {0..*; unordered} matches {
 									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Nuclear diameter
 										value matches {
-											1|[local::at0018],
-											2|[local::at0019],
-											3|[local::at0020]
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- Small (~10µm)
+													at0008,    -- Larger (~15µm)
+													at0009]    -- Even larger (~20µm)
+												}
+											}
 										}
 									}
 									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Nuclear shape
 										value matches {
-											1|[local::at0021],
-											2|[local::at0022],
-											3|[local::at0023]
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0011,    -- Round, uniform
+													at0012,    -- Irregularities in outline
+													at0013]    -- Obvious irregular outline
+												}
+											}
 										}
 									}
 									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Nucleoli
 										value matches {
-											1|[local::at0024],
-											2|[local::at0025],
-											3|[local::at0026]
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0015,    -- Absent, inconspicuous
+													at0016,    -- Visible at x400
+													at0017]    -- Prominent at x100
+												}
+											}
 										}
 									}
-									ELEMENT[at0027] occurrences matches {0..1} matches {    -- Bizarre often multilobed nuclei and/or spindle cells
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Bizarre often multilobed nuclei and/or spindle cells
 										value matches {
-											1|[local::at0028],
-											2|[local::at0029]
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0019,    -- Yes
+													at0020]    -- No
+												}
+											}
 										}
 									}
-									ELEMENT[at0030] occurrences matches {0..1} matches {    -- Final results
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- Final results
 										value matches {
-											1|[local::at0031],
-											2|[local::at0032],
-											3|[local::at0033],
-											4|[local::at0034]
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0022,    -- Grade 1
+													at0023,    -- Grade 2
+													at0024,    -- Grade 3
+													at0025]    -- Grade 4
+												}
+											}
 										}
 									}
 								}
@@ -92,7 +127,7 @@ ontology
 			items = <
 				["at0000"] = <
 					text = <"fuhrman_nuclear_grade">
-					description = <"The Fuhrman Nuclear Grade is a pathology component of renal cell cancers and an independent predictor of cancer-specific survival. Virtually all data are from chart or database reviews and predate modern targeted therapies, but typically worsening nuclear grade correlates with worsening prognosis.">
+					description = <"The Fuhrman Nuclear Grade classification is used for determining the histological severity of clear cell renal cell carcinoma, where the grade is assigned based on nuclear diameter, shape, and nucleolar prominence.">
 					comment = <"Original version, c 1982">
 				>
 				["at0001"] = <
@@ -120,79 +155,79 @@ ontology
 					text = <"Nuclear diameter">
 					description = <"">
 				>
+				["at0007"] = <
+					text = <"Small (~10µm)">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Larger (~15µm)">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Even larger (~20µm)">
+					description = <"">
+				>
 				["at0010"] = <
 					text = <"Nuclear shape">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Round, uniform">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Irregularities in outline">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Obvious irregular outline">
 					description = <"">
 				>
 				["at0014"] = <
 					text = <"Nucleoli">
 					description = <"">
 				>
-				["at0018"] = <
-					text = <"Small (~10µm)">
-					description = <"">
-				>
-				["at0019"] = <
-					text = <"Larger (~15µm)">
-					description = <"">
-				>
-				["at0020"] = <
-					text = <"Even larger (~20µm)">
-					description = <"">
-				>
-				["at0021"] = <
-					text = <"Round, uniform">
-					description = <"">
-				>
-				["at0022"] = <
-					text = <"Irregularities in outline">
-					description = <"">
-				>
-				["at0023"] = <
-					text = <"Obvious irregular outline">
-					description = <"">
-				>
-				["at0024"] = <
+				["at0015"] = <
 					text = <"Absent, inconspicuous">
 					description = <"">
 				>
-				["at0025"] = <
+				["at0016"] = <
 					text = <"Visible at x400">
 					description = <"">
 				>
-				["at0026"] = <
+				["at0017"] = <
 					text = <"Prominent at x100">
 					description = <"">
 				>
-				["at0027"] = <
+				["at0018"] = <
 					text = <"Bizarre often multilobed nuclei and/or spindle cells">
 					description = <"">
 				>
-				["at0028"] = <
-					text = <"No">
-					description = <"">
-				>
-				["at0029"] = <
+				["at0019"] = <
 					text = <"Yes">
 					description = <"">
 				>
-				["at0030"] = <
+				["at0020"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0021"] = <
 					text = <"Final results">
 					description = <"">
 				>
-				["at0031"] = <
+				["at0022"] = <
 					text = <"Grade 1">
 					description = <"The nuclei of the tumor cells are small (< 10 µm), hyperchromatic, and round (resembling mature lymphocytes), with no visible nucleoli and little detail in the chromatin, as shown in the image below.">
 				>
-				["at0032"] = <
+				["at0023"] = <
 					text = <"Grade 2">
 					description = <"Using the 10× objective, the nuclei of the tumor cells are slightly larger (15 µm) with finely granular “open” chromatin but small, inconspicuous nucleoli (see the following image). The nucleoli are often present, and many appear as small chromocenters at 10× objective, with confirmation of their nature at higher power, but this does not count.">
 				>
-				["at0033"] = <
+				["at0024"] = <
 					text = <"Grade 3">
 					description = <"Using the 10× objective, the nuclei of the tumor cells are larger (20 µm in size) and may be oval in shape, with coarsely granular chromatin (see the image below). The nucleoli are easily unequivocally recognizable.">
 				>
-				["at0034"] = <
+				["at0025"] = <
 					text = <"Grade 4">
 					description = <"The nuclei are pleomorphic with open chromatin or hyperchromatic and single or multiple macronucleoli.">
 				>
