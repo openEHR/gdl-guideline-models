@@ -1,21 +1,33 @@
-﻿archetype (adl_version=1.4)
+archetype (adl_version=1.4; uid=b0e87a7b-245f-3d4d-9e49-62c2aaf50c33)
 	openEHR-EHR-EVALUATION.r_factor_for_liver_injury.v0
 
 concept
-	[at0000]	-- R factor for liver injury
+	[at0000]
+
 language
 	original_language = <[ISO_639-1::en]>
+	translations = <
+		["zh"] = <
+			language = <[ISO_639-1::zh]>
+			author = <
+			>
+		>
+	>
+
 description
 	original_author = <
-		["name"] = <"Therese Lindberg">
-		["email"] = <"therese.lindberg@cambio.se">
-		["organisation"] = <"Cambio CDS">
 		["date"] = <"2020-11-26">
+		["name"] = <"Therese Lindberg">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"therese.lindberg@cambio.se">
 	>
+	lifecycle_state = <"0">
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
 			purpose = <"To differentiate cholestatic from hepatocellular liver injury.">
+			keywords = <"r factor","liver injury","lab values","ALT","ALP","hepatocellular","mixed","cholestatic">
+			copyright = <"@CambioCDS">
 			use = <"Use the first lab values (ALT and ALP) indicating acute liver injury to calculate the R factor.
 
 FORMULA
@@ -28,25 +40,25 @@ Interpretation:
 >5             Hepatocellular         Acute viral hepatitis serologies, HCV RNA and autoimmune hepatitis serologies, imaging studies (e.g. abdominal ultrasound)
 2–5            Mixed                     Acute viral hepatitis serologies, HCV RNA and autoimmune hepatitis serologies, imaging studies (e.g. abdominal ultrasound)
 <2             Cholestatic              Imaging studies (e.g. abdominal ultrasound)">
-			keywords = <"r factor", "liver injury", "lab values", "ALT", "ALP", "hepatocellular", "mixed", "cholestatic">
-			misuse = <"">
-			copyright = <"@CambioCDS">
+		>
+		["zh"] = <
+			language = <[ISO_639-1::zh]>
+			copyright = <"© openEHR Foundation">
 		>
 	>
-	lifecycle_state = <"0">
-	other_contributors = <>
 	other_details = <
 		["references"] = <"1. Bénichou C. Criteria of drug-induced liver disorders. Report of an international consensus meeting. J Hepatol. 1990;11(2):272-6.">
 		["current_contact"] = <"Therese Lindberg, Cambio CDS<therese.lindberg@cambio.se>">
 		["MD5-CAM-1.0.1"] = <"B939930CBCB0A26CB0B6C11F00C1BB3B">
+		["build_uid"] = <"9e3f1458-a401-3c60-aeca-7e12505886a5">
 	>
 
 definition
-	EVALUATION[at0000] matches {	-- R factor for liver injury
+	EVALUATION[at0000] matches {    -- R factor for liver injury
 		data matches {
-			ITEM_TREE[at0001] matches {	-- Tree
+			ITEM_TREE[at0001] matches {    -- Tree
 				items cardinality matches {0..*; unordered} matches {
-					ELEMENT[at0002] occurrences matches {0..1} matches {	-- R factor
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- R factor
 						value matches {
 							C_DV_QUANTITY <
 								property = <[openehr::380]>
@@ -58,30 +70,30 @@ definition
 							>
 						}
 					}
-					ELEMENT[at0003] occurrences matches {0..1} matches {	-- Injury type
+					ELEMENT[at0003] occurrences matches {0..1} matches {    -- Injury type
 						value matches {
 							DV_CODED_TEXT matches {
 								defining_code matches {
 									[local::
-									at0004, 	-- Hepatocellular
-									at0005, 	-- Mixed
-									at0006]	-- Cholestatic
+									at0004,    -- Hepatocellular
+									at0005,    -- Mixed
+									at0006]    -- Cholestatic
 								}
 							}
 						}
 					}
-					ELEMENT[at0007] occurrences matches {0..1} matches {	-- Recommended 1st line tests
+					ELEMENT[at0007] occurrences matches {0..1} matches {    -- Recommended 1st line tests
 						value matches {
 							DV_CODED_TEXT matches {
 								defining_code matches {
 									[local::
-									at0009, 	-- Acute viral hepatitis serologies, HCV RNA and autoimmune hepatitis serologies, imaging studies (e.g. abdominal ultrasound)
-									at0010]	-- Imaging studies (e.g. abdominal ultrasound)
+									at0009,    -- Acute viral hepatitis serologies, HCV RNA and autoimmune hepatitis serologies, imaging studies (e.g. abdominal ultrasound)
+									at0010]    -- Imaging studies (e.g. abdominal ultrasound)
 								}
 							}
 						}
 					}
-					ELEMENT[at0011] occurrences matches {0..1} matches {	-- Upper limit of normal ALP according to your lab. (Norm 40-140 U/L)
+					ELEMENT[at0011] occurrences matches {0..1} matches {    -- Upper limit of normal ALP according to your lab. (Norm 40-140 U/L)
 						value matches {
 							C_DV_QUANTITY <
 								property = <[openehr::119]>
@@ -93,7 +105,7 @@ definition
 							>
 						}
 					}
-					ELEMENT[at0012] occurrences matches {0..1} matches {	-- Upper limit of normal ALT according to your lab (Norm 1-35 U/L)
+					ELEMENT[at0012] occurrences matches {0..1} matches {    -- Upper limit of normal ALT according to your lab (Norm 1-35 U/L)
 						value matches {
 							C_DV_QUANTITY <
 								property = <[openehr::119]>
@@ -160,6 +172,58 @@ ontology
 				>
 				["at0012"] = <
 					text = <"Upper limit of normal ALT according to your lab (Norm 1-35 U/L)">
+					description = <"*">
+				>
+			>
+		>
+		["zh"] = <
+			items = <
+				["at0000"] = <
+					text = <"*R factor for liver injury (en)">
+					description = <"*R Factor for Liver Injury differentiates cholestatic from hepatocellular liver injury, recommended by ACG guidelines. Use for patients with suspected drug induced liver injury (DILI) with abnormal liver chemistries. (en)">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"*R factor (en)">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"*Injury type (en)">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"*Hepatocellular (en)">
+					description = <"*R factor >5 (en)">
+				>
+				["at0005"] = <
+					text = <"*Mixed (en)">
+					description = <"*R factor 2-5 (en)">
+				>
+				["at0006"] = <
+					text = <"*Cholestatic (en)">
+					description = <"*<2 (en)">
+				>
+				["at0007"] = <
+					text = <"*Recommended 1st line tests (en)">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"*Acute viral hepatitis serologies, HCV RNA and autoimmune hepatitis serologies, imaging studies (e.g. abdominal ultrasound) (en)">
+					description = <"*R factor 2-5 (en)">
+				>
+				["at0010"] = <
+					text = <"*Imaging studies (e.g. abdominal ultrasound) (en)">
+					description = <"*R factor <2 (en)">
+				>
+				["at0011"] = <
+					text = <"根据所在实验室的参考范围所定义的 ALP 正常上限（通常为 40–140 U/L）。">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"*Upper limit of normal ALT according to your lab (Norm 1-35 U/L) (en)">
 					description = <"*">
 				>
 			>
