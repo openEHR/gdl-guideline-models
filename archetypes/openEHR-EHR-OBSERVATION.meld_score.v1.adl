@@ -1,8 +1,9 @@
-archetype (adl_version=1.4)
+archetype (adl_version=1.4; uid=1533c18c-17c4-3c74-8e48-e561679d9c09)
 	openEHR-EHR-OBSERVATION.meld_score.v1
 
 concept
-	[at0000]	-- Model For End-Stage Liver Disease (MELD) score
+	[at0000]
+
 language
 	original_language = <[ISO_639-1::en]>
 	translations = <
@@ -13,18 +14,27 @@ language
 				["organisation"] = <"Cambio Healthcare Systems">
 			>
 		>
+		["zh"] = <
+			language = <[ISO_639-1::zh]>
+			author = <
+			>
+		>
 	>
+
 description
 	original_author = <
-		["name"] = <"Eneimi Allwell-Brown">
-		["email"] = <"models@cambiocds.com">
-		["organisation"] = <"Cambio Healthcare Systems">
 		["date"] = <"2017-01-18">
+		["name"] = <"Eneimi Allwell-Brown">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"models@cambiocds.com">
 	>
+	lifecycle_state = <"AuthorDraft">
 	details = <
 		["sv"] = <
 			language = <[ISO_639-1::sv]>
 			purpose = <"Att registrera data i enlighet med såväl senaste som ursprungliga versionen av MELD Score, vilken används för att på kort sikt uppskatta mortalitet hos patienter med terminal leversjukdom och därigenom bedöma behov av levertransplantation.">
+			keywords = <"cirros","levercirros","alkoholhepatit","leversvikt","kronisk leversjukdom","leversjukdom","MELD","MELD Score">
+			copyright = <"© Cambio Healthcare Systems">
 			use = <"Att registrera data i enlighet med såväl senaste som ursprungliga versionen av MELD Score, baserat på ett antal parametrar:
 
 - Kreatinin (mg/dl eller umol/L)
@@ -40,15 +50,15 @@ Formel för senaste versionen av MELD score = oMELD + [1.32 * (137-Na)] – [0.0
 Resultatet används för att uppskatta 90-dagarsmortalitet hos patienter med terminal leversjukdom, och registreras med hjälp av en separat arketyp - openEHR-EHR-EVALUATION.meld_score.v1.
 
 MELD Score är även användbar för att uppskatta överlevnad hos patienter med varicerblödning, levercirros kombinerat med infektion, fulminant leversvikt, alkoholhepatit och andra former av kronisk leversjukdom, samt för att prioritera behov av levertransplantation.">
-			keywords = <"cirros", "levercirros", "alkoholhepatit", "leversvikt", "kronisk leversjukdom", "leversjukdom", "MELD", "MELD Score">
 			misuse = <"Endast avsedd för patienter över 12 års ålder. 
 
 MELD Score är ej avsedd för att uppskatta mortalitet efter levertransplantation.">
-			copyright = <"© Cambio Healthcare Systems">
 		>
 		["en"] = <
 			language = <[ISO_639-1::en]>
 			purpose = <"To record data about the MELD score and original MELD score, used for predicting short-term mortality of end-stage liver disease, as well as organ transplant priority.">
+			keywords = <"liver cirrhosis","alcoholic hepatitis","hepatic failure","liver failure","chronic liver disease","CTP score","Child-Turcotte-Pugh","end-stage liver disease">
+			copyright = <"© Cambio Healthcare Systems">
 			use = <"To record the MELD score and the Original MELD score, based on serum creatinine (mg/dl or umol/L), total serum bilirubin (mg/dl or umol/L), and serum sodium (mmol/L) concentrations, the International Normalized Ratio for prothrombin time (INR) and whether or not the individual has had at least two dialysis sessions or 24hrs of continuous venovenous hemodialysis (CVVHD) in the last week before serum creatinine was measured.
 
 Original MELD (oMELD) score = 9.57 * ln(creatinine, mg/dL) + 3.78 * ln(bilirubin, mg/dL) + 11.20 * ln(INR) + 6.43; a positive history of dialysis automatically defaults serum creatinine concentration to 4 mg/dl.
@@ -56,14 +66,14 @@ MELD score = oMELD + [1.32 * (137-Na)] – [0.033 * oMELD * (137-Na)]; based on 
 
 The calculated MELD score is used to determine the 90-day mortality in patients with end-stage liver disease, and that value is stored in a separate evaluation archetype: openEHR-EHR-EVALUATION.meld_score.v1. MELD score is also accurate in predicting survival in patients with variceal bleeding, determining mortality in patients with cirrhosis who develop infections, predicting mortality in patients with fulminant hepatic failure, alcoholic hepatitis and other forms of chronic liver disease, as well as in prioritizing recipients of liver transplantation.
 90-day mortality rates based on MELD score are: score = 40 (71.3% mortality); score = 30-39 (52.6% mortality); score = 20-29 (19.6% mortality); score = 10-19 (6.0% mortality) and score = 9 or less (1.9% mortality).">
-			keywords = <"liver cirrhosis", "alcoholic hepatitis", "hepatic failure", "liver failure", "chronic liver disease", "CTP score", "Child-Turcotte-Pugh", "end-stage liver disease">
 			misuse = <"Not applicable for children under 12 years of age.
 MELD score is not useful for predicting mortality following liver transplantation.">
-			copyright = <"© Cambio Healthcare Systems">
+		>
+		["zh"] = <
+			language = <[ISO_639-1::zh]>
+			copyright = <"© openEHR Foundation">
 		>
 	>
-	lifecycle_state = <"AuthorDraft">
-	other_contributors = <>
 	other_details = <
 		["references"] = <"Kamath PS, Wiesner RH, Malinchoc M, Kremers W, Therneau TM, Kosberg CL, D'Amico G, Dickson ER, Kim W. A model to predict survival in patients with end‐stage liver disease. Hepatology. 2001 Feb 1;33(2):464-70.
 
@@ -75,18 +85,19 @@ Dunn W, Jamil LH, Brown LS, Wiesner RH, Kim W, Menon KV, Malinchoc M, Kamath PS,
 
 Kamath PS, Kim W. The model for end‐stage liver disease (MELD). Hepatology. 2007 Mar 1;45(3):797-805.">
 		["MD5-CAM-1.0.1"] = <"18C29BA31B2BC322D9CD0250E7ABB6F3">
+		["build_uid"] = <"ce1c7718-f2d5-3553-ac4f-ebeb8a4d69b1">
 	>
 
 definition
-	OBSERVATION[at0000] matches {	-- Model For End-Stage Liver Disease (MELD) score
+	OBSERVATION[at0000] matches {    -- Model For End-Stage Liver Disease (MELD) score
 		data matches {
-			HISTORY[at0001] matches {	-- Event Series
+			HISTORY[at0001] matches {    -- Event Series
 				events cardinality matches {1..*; unordered} matches {
-					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+					EVENT[at0002] occurrences matches {0..1} matches {    -- Any event
 						data matches {
-							ITEM_TREE[at0003] matches {	-- Tree
+							ITEM_TREE[at0003] matches {    -- Tree
 								items cardinality matches {0..*; unordered} matches {
-									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Original MELD (oMELD) score
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Original MELD (oMELD) score
 										value matches {
 											C_DV_QUANTITY <
 												property = <[openehr::380]>
@@ -99,7 +110,7 @@ definition
 											>
 										}
 									}
-									ELEMENT[at0005] occurrences matches {0..1} matches {	-- MELD score
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- MELD score
 										value matches {
 											C_DV_QUANTITY <
 												property = <[openehr::380]>
@@ -112,13 +123,13 @@ definition
 											>
 										}
 									}
-									ELEMENT[at0006] occurrences matches {0..1} matches {	-- Dialysis history
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Dialysis history
 										value matches {
-											0|[local::at0007], 	-- No
-											1|[local::at0008]  	-- Yes
+											0|[local::at0007],
+											1|[local::at0008]
 										}
 									}
-									ELEMENT[at0009] occurrences matches {0..1} matches {	-- Comment
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Comment
 										value matches {
 											DV_TEXT matches {*}
 										}
@@ -220,6 +231,50 @@ ontology
 				["at0009"] = <
 					text = <"Kommentar">
 					description = <"Ev tillägg">
+				>
+			>
+		>
+		["zh"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Model For End-Stage Liver Disease (MELD) score (en)">
+					description = <"*Model For End-Stage Liver Disease (MELD) score is a measure of mortality risk in patients with end-stage liver disease. It is a reliable way of estimating disease severity, determining prognosis, and assigning organ allocation priority in patients with end-stage liver disease. It is the standard used by the Organ Procurement and Transplantation Network (OPTN) and determines who is the highest priority to receive liver transplants in the US. The score is calculated from a regression equation that includes serum sodium, creatinine and total bilirubin concentrations, the International Normalized Ratio for prothrombin time (INR) and whether or not the individual has had at least two dialysis sessions in the last week before serum creatinine was measured. It is based on a previous \"Original MELD score\" that is calculated using the same equation and the same set of variables, but does not include serum sodium concentration. MELD score is considered as good as the Child-Turcotte-Pugh (CTP) score in predicting short-term mortality in end-stage liver disease, as well as an accurate predictor of survival in patients with variceal bleeding, mortality in patients with cirrhosis who develop infections, mortality in patients with fulminant hepatic failure, alcoholic hepatitis and other forms of chronic liver disease. 90-day mortality rates based on MELD score are: score = 40 (71.3% mortality); score = 30-39 (52.6% mortality); score = 20-29 (19.6% mortality); score = 10-19 (6.0% mortality) and score = 9 or less (1.9% mortality). (en)">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"*Any event (en)">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"原始 MELD（oMELD）评分">
+					description = <"原始（2016 年之前版本）终末期肝病模型（oMELD）的计算值。">
+				>
+				["at0005"] = <
+					text = <"*MELD评分">
+					description = <"2016 版终末期肝病模型（MELD）的计算值。">
+				>
+				["at0006"] = <
+					text = <"*Dialysis history (en)">
+					description = <"*Has the patient had dialysis at least twice, or 24hrs of continuous venovenous hemodialysis (CVVHD), in the past week? (en)">
+				>
+				["at0007"] = <
+					text = <"*No (en)">
+					description = <"*Has not had at least two dialysis session in the past one week. (en)">
+				>
+				["at0008"] = <
+					text = <"*Yes (en)">
+					description = <"*Has had at least two dialysis sessions in the past one week. (en)">
+				>
+				["at0009"] = <
+					text = <"*Comment (en)">
+					description = <"*Additional information about the recordings. (en)">
 				>
 			>
 		>
