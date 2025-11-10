@@ -1,0 +1,54 @@
+archetype (adl_version=1.4; uid=2bf106cb-087e-454e-97ed-d8fdf52dcbcf)
+	openEHR-EHR-SECTION.respiratory_examination.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-11-05">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"b1fbc31c110829edb7a74cc39af322cb">
+		["build_uid"] = <"96c21094-017a-331e-9b92-8df451798cb4">
+	>
+
+definition
+	SECTION[at0000] matches {    -- Respiratory examination
+		items cardinality matches {1..*; unordered} matches {
+			allow_archetype ENTRY[at0001] occurrences matches {0..*} matches {    -- Respiratory examination data
+				include
+					archetype_id/value matches {/openEHR-EHR-OBSERVATION\.respiration\.v1|openEHR-EHR-OBSERVATION\.pulse_oximetry\.v1|openEHR-EHR-OBSERVATION\.respiratory_questionnaires\.v0/}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Respiratory examination">
+					description = <"Respiratory examination">
+				>
+				["at0001"] = <
+					text = <"Respiratory examination data">
+					description = <"">
+				>
+			>
+		>
+	>
