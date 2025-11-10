@@ -1,0 +1,125 @@
+archetype (adl_version=1.4; uid=a825a5c9-0e0d-4786-8fd3-47e9799c8bfc)
+	openEHR-EHR-OBSERVATION.respiratory_questionnaires.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-11-10">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"5f0d660b37b758d012ce404b15ad2a6e">
+		["build_uid"] = <"748bcb6c-37c8-3928-8cc2-8ce945ac3a91">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Respiratory questionnaires
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Nasal flaring present?
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Grunting present?
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Crackles in chest present?
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Chest indrawing severity
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0008,    -- None
+													at0009,    -- Moderate
+													at0010]    -- Severe
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Respiratory questionnaires">
+					description = <"Respiratory questionnaires">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Nasal flaring present?">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Grunting present?">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Crackles in chest present?">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Chest indrawing severity">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"None">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Moderate">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Severe">
+					description = <"">
+				>
+			>
+		>
+	>
