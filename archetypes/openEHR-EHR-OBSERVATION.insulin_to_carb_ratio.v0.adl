@@ -1,45 +1,57 @@
-archetype (adl_version=1.4)
+archetype (adl_version=1.4; uid=7d779654-7834-384a-9229-62c38de2fb0a)
 	openEHR-EHR-OBSERVATION.insulin_to_carb_ratio.v0
 
 concept
-	[at0000]	-- Insulin to carb ratio
+	[at0000]
+
 language
 	original_language = <[ISO_639-1::en]>
+	translations = <
+		["zh"] = <
+			language = <[ISO_639-1::zh]>
+			author = <
+			>
+		>
+	>
+
 description
 	original_author = <
-		["name"] = <"Therese Lindberg">
-		["email"] = <"therese.lindberg@cambio.se">
-		["organisation"] = <"Cambio CDS">
 		["date"] = <"2021-04-08">
+		["name"] = <"Therese Lindberg">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"therese.lindberg@cambio.se">
 	>
+	lifecycle_state = <"Initial">
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
 			purpose = <"To record the insulin to carb ratio.">
-			use = <"Use to record the insulin to carb ratio in order to help clinicians or patients customize their insulin dosage.">
-			keywords = <"insulin", "carb", "ratio", "unit", "dispose", "diabetes", "carbohydrate">
-			misuse = <"">
+			keywords = <"insulin","carb","ratio","unit","dispose","diabetes","carbohydrate">
 			copyright = <"Cambio CDS">
+			use = <"Use to record the insulin to carb ratio in order to help clinicians or patients customize their insulin dosage.">
+		>
+		["zh"] = <
+			language = <[ISO_639-1::zh]>
+			copyright = <"© openEHR Foundation">
 		>
 	>
-	lifecycle_state = <"Initial">
-	other_contributors = <>
 	other_details = <
 		["references"] = <"1. Bergenstal RM, Johnson M, Powers MA, Wynne A, Vlajnic A, Hollander P, Rendell M. Adjust to target in type 2 diabetes: comparison of a simple algorithm with carbohydrate counting for adjustment of mealtime insulin glulisine. Diabetes Care. 2008 Jul;31(7):1305-10. doi: 10.2337/dc07-2137. Epub 2008 Mar 25. PMID: 18364392; PMCID: PMC2453649.">
 		["current_contact"] = <"Therese Lindberg, Cambio CDS<therese.lindberg@cambio.se>">
 		["MD5-CAM-1.0.1"] = <"8660BE2203B06A19205F20915C6CE20C">
+		["build_uid"] = <"bdc02cf3-c31b-35df-8d46-51a02cd7f4cf">
 	>
 
 definition
-	OBSERVATION[at0000] matches {	-- Insulin to carb ratio
+	OBSERVATION[at0000] matches {    -- Insulin to carb ratio
 		data matches {
-			HISTORY[at0001] matches {	-- Event Series
+			HISTORY[at0001] matches {    -- Event Series
 				events cardinality matches {1..*; unordered} matches {
-					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+					EVENT[at0002] occurrences matches {0..1} matches {    -- Any event
 						data matches {
-							ITEM_TREE[at0003] matches {	-- Tree
+							ITEM_TREE[at0003] matches {    -- Tree
 								items cardinality matches {0..*; unordered} matches {
-									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Carbohydrate intake in grams
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Carbohydrate intake in grams
 										value matches {
 											C_DV_QUANTITY <
 												property = <[openehr::124]>
@@ -52,7 +64,7 @@ definition
 											>
 										}
 									}
-									ELEMENT[at0005] occurrences matches {0..1} matches {	-- Number of daily insulin units
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Number of daily insulin units
 										value matches {
 											C_DV_QUANTITY <
 												property = <[openehr::380]>
@@ -64,12 +76,12 @@ definition
 											>
 										}
 									}
-									ELEMENT[at0006] occurrences matches {0..1} matches {	-- Insulin to carb ratio
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Insulin to carb ratio
 										value matches {
 											DV_PROPORTION matches {*}
 										}
 									}
-									ELEMENT[at0007] occurrences matches {0..1} matches {	-- Comment
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Comment
 										value matches {
 											DV_TEXT matches {*}
 										}
@@ -117,6 +129,42 @@ ontology
 				>
 				["at0007"] = <
 					text = <"Comment">
+					description = <"*">
+				>
+			>
+		>
+		["zh"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Insulin to carb ratio (en)">
+					description = <"*An assessment tool to determine how many carbohydrate grams are disposed of by one unit of insulin from the diabetes treatment. (en)">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"*Any event (en)">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"*Carbohydrate intake in grams (en)">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"*每日胰岛素用量">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"*Insulin to carb ratio (en)">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"*Comment (en)">
 					description = <"*">
 				>
 			>
