@@ -1,0 +1,312 @@
+archetype (adl_version=1.4; uid=aefdbf0c-756b-49a7-a5b2-b5c175e517f8)
+	openEHR-EHR-OBSERVATION.nice_traffic_light_questionnaire.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-11-10">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"90eca9b288178b522ee4842014cd7ce6">
+		["build_uid"] = <"bfd41d16-df03-390e-8362-454cf3eaec4d">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- NICE traffic light questionnaire
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Colour (of skin, lips or tongue)
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0005,    -- Normal colour
+													at0006,    -- Pallor
+													at0007]    -- Pale/mottled/ashen/ blue
+												}
+											}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Activity cues screening
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0009,    -- Responds normally to social cues
+													at0010,    -- Reduces responding normally to social cues
+													at0011]    -- No response social cues
+												}
+											}
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Nasal flaring present?
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {    -- Grunting present?
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {    -- Crackles in chest present?
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0022] occurrences matches {0..1} matches {    -- Chest indrawing severity
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0023,    -- None
+													at0024,    -- Moderate
+													at0025]    -- Severe
+												}
+											}
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Reduced skin turgor present?
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- Mucous membranes status
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0014,    -- Moist mucous membranes
+													at0015]    -- Dry mucous membranes
+												}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Poor feeding in infants?
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Reduced urine output present?
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0026] occurrences matches {0..1} matches {    -- Rigor present?
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0027] occurrences matches {0..1} matches {    -- Swelling of limb/joint present?
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0028] occurrences matches {0..1} matches {    -- Non-weight-bearing limb present?
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0029] occurrences matches {0..1} matches {    -- Non-blanching rash present?
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0030] occurrences matches {0..1} matches {    -- Bulging fontanelle present?
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0031] occurrences matches {0..1} matches {    -- Neck stiffness present?
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0032] occurrences matches {0..1} matches {    -- Status epilepticus present?
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0033] occurrences matches {0..1} matches {    -- Focal neurological signs present?
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0034] occurrences matches {0..1} matches {    -- Focal seizures present?
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"NICE traffic light questionnaire">
+					description = <"NICE traffic light questionnaire">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Colour (of skin, lips or tongue)">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Normal colour">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Pallor">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Pale/mottled/ashen/ blue">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Activity cues screening">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Responds normally to social cues">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Reduces responding normally to social cues">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"No response social cues">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Reduced skin turgor present?">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Mucous membranes status">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Moist mucous membranes">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Dry mucous membranes">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Poor feeding in infants?">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Reduced urine output present?">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Nasal flaring present?">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Grunting present?">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Crackles in chest present?">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Chest indrawing severity">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"None">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Moderate">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Severe">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Rigor present?">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Swelling of limb/joint present?">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Non-weight-bearing limb present?">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Non-blanching rash present?">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Bulging fontanelle present?">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Neck stiffness present?">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Status epilepticus present?">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Focal neurological signs present?">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Focal seizures present?">
+					description = <"">
+				>
+			>
+		>
+	>
