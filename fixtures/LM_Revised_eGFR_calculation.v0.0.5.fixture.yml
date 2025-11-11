@@ -1,0 +1,53 @@
+guidelines:
+  "1": LM_Revised_eGFR_calculation.v0.0.5
+test_cases:
+  - id: Female pCr < 150 umol/L
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female
+        gt0004|Age: 28,a
+        gt0006|Plasma Creatinine: 1.5,mg/dl
+    expected_output:
+      "1":
+        gt0008|Plasma Creatinine (umol/L): 133,umol/l
+        gt0010|Relative eGFR: 43,ml/min/1.73m2
+  - id: Female pCr >= 150 umol/L
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female
+        gt0004|Age: 28,a
+        gt0006|Plasma Creatinine: 3.5,mg/dl
+    expected_output:
+      "1":
+        gt0008|Plasma Creatinine (umol/L): 309,umol/l
+        gt0010|Relative eGFR: 17,ml/min/1.73m2
+  - id: Male pCr <180 umol/L
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male
+        gt0004|Age: 28,a
+        gt0006|Plasma Creatinine: 1.5,mg/dl
+    expected_output:
+      "1":
+        gt0008|Plasma Creatinine (umol/L): 133,umol/l
+        gt0010|Relative eGFR: 58,ml/min/1.73m2
+  - id: Male pCr >=180 umol/L
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male
+        gt0004|Age: 28,a
+        gt0006|Plasma Creatinine: 3.5,mg/dl
+    expected_output:
+      "1":
+        gt0008|Plasma Creatinine (umol/L): 309,umol/l
+        gt0010|Relative eGFR: 22,ml/min/1.73m2
+  - id: Male pCr >=180 umol/L with umol/L input
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male
+        gt0004|Age: 28,a
+        gt0006|Plasma Creatinine: 309,umol/l
+    expected_output:
+      "1":
+        gt0008|Plasma Creatinine (umol/L): 309,umol/l
+        gt0010|Relative eGFR: 22,ml/min/1.73m2
