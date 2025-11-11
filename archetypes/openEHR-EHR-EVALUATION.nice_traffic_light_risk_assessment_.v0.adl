@@ -32,6 +32,11 @@ definition
 		data matches {
 			ITEM_TREE[at0001] matches {    -- Item tree
 				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0011] occurrences matches {0..1} matches {    -- Risk severity
+						value matches {
+							DV_QUANTITY matches {*}
+						}
+					}
 					ELEMENT[at0003] occurrences matches {0..1} matches {    -- Risk category
 						value matches {
 							DV_CODED_TEXT matches {
@@ -47,21 +52,6 @@ definition
 					ELEMENT[at0007] occurrences matches {0..1} matches {    -- Interpretation
 						value matches {
 							DV_TEXT matches {*}
-						}
-					}
-					ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tachypnoea?
-						value matches {
-							DV_BOOLEAN matches {*}
-						}
-					}
-					ELEMENT[at0009] occurrences matches {0..1} matches {    -- Tachypnoea?
-						value matches {
-							DV_BOOLEAN matches {*}
-						}
-					}
-					ELEMENT[at0010] occurrences matches {0..1} matches {    -- Tachycardia?
-						value matches {
-							DV_BOOLEAN matches {*}
 						}
 					}
 				}
@@ -108,16 +98,8 @@ ontology
 					text = <"Interpretation">
 					description = <"">
 				>
-				["at0008"] = <
-					text = <"Tachypnoea?">
-					description = <"">
-				>
-				["at0009"] = <
-					text = <"Tachypnoea?">
-					description = <"">
-				>
-				["at0010"] = <
-					text = <"Tachycardia?">
+				["at0011"] = <
+					text = <"Risk severity">
 					description = <"">
 				>
 			>
