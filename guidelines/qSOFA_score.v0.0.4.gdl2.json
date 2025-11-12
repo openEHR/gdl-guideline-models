@@ -1,0 +1,191 @@
+{
+  "uuid" : "",
+  "id" : "qSOFA_score.v0.0.4",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Kevin Arjona",
+      "email" : "kevin.arjona@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2025-11-12"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To identify patients with confirmed or suspected infection with high risk for poor outcome outside of the intensive care unit.",
+        "keywords" : [
+          "infection",
+          "icu",
+          "evaluation",
+          "assessment",
+          "respiratory",
+          "sepsis",
+          "hipotension",
+          "qsofa"
+        ],
+        "use" : "Use to evaluate the risk of poor outcome in patients with confirmed or suspected infection outside of the intensive care unit (ICU). qSOFA is an acronym for quick Sepsis Related Organ Failure Assessment. It is can be used bedside to assess the risk of poor outcome in patients with suspected or confirmed infection outside the ICU. qSOFA consists of three criteria: altered mental state (GCS&lt;15), fast respiratory rate (≥22 breaths per min), and low blood pressure (SBP≤100 mmHg). Each criteria is worth one point, thus the maximum qSOFA Score is 3. The qSOFA protocol is a markedly simplified version of the SOFA protocol. qSOFA uses only its three clinical criteria and uses \\\"altered mental status\\\" instead of GCS≤13. A qSOFA score of ≥2 is indicative of a high risk of poor prognosis (mortality or ICU stay of ≥3 days). Patients with qSOFA score of ≥2 should be assessed for organ dysfunction (this includes lactate levels). Furthermore, the SOFA Score should be calculated for these patients and the standard interventions for sepsis should be used as treatment. A qSOFA score of &lt;2 is not associated with a high risk of poor prognosis, but it does not suggest that the subject of care is not a high risk patient. If sepsis is still suspected when the qSOFA score is &lt;2, continue monitoration and evaluation of the patient. Initiate standard treatment if needed. Serial qSOFA assessments can be performed to detect changes in prognosis.",
+        "misuse" : "Do not use to rule out sepsis. If sepsis is still suspected when the qSOFA score is &lt;2, continue monitoration and evaluation of the patient. Initiate standard treatment if needed. Conduct qSOFA assessments regularly in order to detect changes in prognosis.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Seymour CW, Liu VX, Iwashyna TJ, Brunkhorst FM, Rea TD, Scherag A, Rubenfeld G, Kahn JM, Shankar-Hari M, Singer M, Deutschman CS, Escobar GJ, Angus DC. Assessment of Clinical Criteria for Sepsis: For the Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3). JAMA. 2016 Feb 23;315(8):762-74. doi: 10.1001/jama.2016.0288. Erratum in: JAMA. 2016 May 24-31;315(20):2237. PMID: 26903335; PMCID: PMC5433435.\n\nShankar-Hari M, Phillips GS, Levy ML, Seymour CW, Liu VX, Deutschman CS, Angus DC, Rubenfeld GD, Singer M; Sepsis Definitions Task Force. Developing a New Definition and Assessing New Clinical Criteria for Septic Shock: For the Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3). JAMA. 2016 Feb 23;315(8):775-87. doi: 10.1001/jama.2016.0289. PMID: 26903336; PMCID: PMC4910392.\n\nFreund Y, Lemachatti N, Krastinova E, Van Laer M, Claessens YE, Avondo A, Occelli C, Feral-Pierssens AL, Truchot J, Ortega M, Carneiro B, Pernet J, Claret PG, Dami F, Bloom B, Riou B, Beaune S; French Society of Emergency Medicine Collaborators Group. Prognostic Accuracy of Sepsis-3 Criteria for In-Hospital Mortality Among Patients With Suspected Infection Presenting to the Emergency Department. JAMA. 2017 Jan 17;317(3):301-308. doi: 10.1001/jama.2016.20329. PMID: 28114554.",
+      "en" : "An assessment score used to identify high-risk patients for in-hospital mortality with suspected infection outside the ICU."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.qsofa_score.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.qsofa_score.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0009",
+              "1|local::at0010"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0014",
+              "1|local::at0015"
+            ]
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0011",
+              "1|local::at0012"
+            ]
+          }
+        }
+      },
+      "gt0006" : {
+        "id" : "gt0006",
+        "model_id" : "openEHR-EHR-OBSERVATION.qsofa_score.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.qsofa_score.v1",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type" : "DV_COUNT"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_TEXT"
+          }
+        }
+      }
+    },
+    "pre_conditions" : [
+      "$gt0003|Respiratory rate|!=null",
+      "$gt0004|Blood pressure|!=null",
+      "$gt0005|Mental status|!=null"
+    ],
+    "default_actions" : [
+      "$gt0015|Risk assessment|=$gt0012|Not High Risk: If sepsis is still suspected, continue to monitor, evaluate, and initiate treatment as appropriate, including serial qSOFA assessments.|.term"
+    ],
+    "rules" : {
+      "gt0011" : {
+        "id" : "gt0011",
+        "priority" : 2,
+        "when" : [
+          "$gt0003|Respiratory rate|!=null",
+          "$gt0004|Blood pressure|!=null",
+          "$gt0005|Mental status|!=null"
+        ],
+        "then" : [
+          "$gt0007|qSOFA score|.magnitude=$gt0003|Respiratory rate|.value+$gt0004|Blood pressure|.value+$gt0005|Mental status|.value"
+        ]
+      },
+      "gt0014" : {
+        "id" : "gt0014",
+        "priority" : 1,
+        "when" : [
+          "$gt0007|qSOFA score|.magnitude>=2"
+        ],
+        "then" : [
+          "$gt0015|Risk assessment|=$gt0013|High Risk: qSOFA Scores 2-3 are associated with a 3- to 14-fold increase in in-hospital mortality. Assess for evidence of organ dysfunction with blood testing including serum lactate and calculation of the full SOFA Score.  Patients meeting these qSOFA criteria should have infection considered even if it was previously not.|.term"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "qSOFA score",
+            "description" : "An assessment score used to identify high-risk patients for in-hospital mortality with suspected infection outside the ICU."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.qsofa_score.v1"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Respiratory rate"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Blood pressure"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Mental status"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "openEHR-EHR-OBSERVATION.qsofa_score.v1"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "qSOFA score"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Total score",
+            "description" : ""
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Not High Risk: If sepsis is still suspected, continue to monitor, evaluate, and initiate treatment as appropriate, including serial qSOFA assessments."
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "High Risk: qSOFA Scores 2-3 are associated with a 3- to 14-fold increase in in-hospital mortality. Assess for evidence of organ dysfunction with blood testing including serum lactate and calculation of the full SOFA Score.  Patients meeting these qSOFA criteria should have infection considered even if it was previously not.",
+            "description" : "High risk"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Set to High Risk",
+            "description" : ""
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "Risk assessment"
+          }
+        }
+      }
+    }
+  }
+}
