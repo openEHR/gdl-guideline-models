@@ -1,0 +1,279 @@
+guidelines:
+  "1": Michaelis_Menten_Equation_Calculator.v0.0.3
+test_cases:
+  - id: "1"
+    input:
+      "1":
+        "gt0018|Substrate concentration [S]": 1,molars (M)
+        gt0019|Maximum Rate (Vmax): 1,1/sec
+        gt0020|Michaelis constant (Km): 1,molars (M)
+    expected_output:
+      "1":
+        gt0017|Reaction Rate (V0): "0.5"
+  - id: Substrate concentration [S]
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 12,1/sec
+        gt0019|Maximum Rate (Vmax): 1,1/sec
+        gt0020|Michaelis constant (Km): 1,molars (M)
+    expected_output:
+      "1":
+        "gt0018|Substrate concentration [S]": "-1.091"
+  - id: Maximum Rate (VMax)
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 12,1/sec
+        "gt0018|Substrate concentration [S]": 1,molars (M)
+        gt0020|Michaelis constant (Km): 1,molars (M)
+    expected_output:
+      "1":
+        gt0019|Maximum Rate (Vmax): "24.0"
+  - id: Michaelis constant (Km)
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 12,1/sec
+        "gt0018|Substrate concentration [S]": 1,molars (M)
+        gt0019|Maximum Rate (Vmax): 1,1/sec
+    expected_output:
+      "1":
+        gt0020|Michaelis constant (Km): "-0.917"
+  - id: Vmax empty test
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 123,1/sec
+        "gt0018|Substrate concentration [S]": 1,molars (M)
+        gt0020|Michaelis constant (Km): 2,molars (M)
+    expected_output:
+      "1":
+        gt0024|Maximum Rate (Vmax): 369.00,1/sec
+        gt0026|or: 22140.00,1/min
+  - id: Vmax empty test - min
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 123,1/sec
+        "gt0018|Substrate concentration [S]": 1,molars (M)
+        gt0020|Michaelis constant (Km): 2,molars (M)
+    expected_output:
+      "1":
+        gt0024|Maximum Rate (Vmax): 369.00,1/sec
+        gt0026|or: 22140.00,1/min
+  - id: Vmax empty test - min (v0/min)
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 12,1/min
+        "gt0018|Substrate concentration [S]": 1,molars (M)
+        gt0020|Michaelis constant (Km): 2,molars (M)
+    expected_output:
+      "1":
+        gt0024|Maximum Rate (Vmax): 36.00,1/min
+        gt0026|or: 0.60,1/sec
+  - id: Vmax empty test - sec (v0/min)
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 12,1/min
+        "gt0018|Substrate concentration [S]": 1,molars (M)
+        gt0020|Michaelis constant (Km): 2,molars (M)
+    expected_output:
+      "1":
+        gt0024|Maximum Rate (Vmax): 36.00,1/min
+        gt0026|or: 0.60,1/sec
+  - id: V0 empty test - sec (vmax/sec)
+    input:
+      "1":
+        "gt0018|Substrate concentration [S]": 1,molars (M)
+        gt0019|Maximum Rate (Vmax): 55,1/sec
+        gt0020|Michaelis constant (Km): 2,molars (M)
+    expected_output:
+      "1":
+        gt0022|Reaction Rate (V0): 18.33,1/sec
+        gt0026|or: 1099.98,1/min
+  - id: V0 empty test - min (vmax/min)
+    input:
+      "1":
+        "gt0018|Substrate concentration [S]": 1,molars (M)
+        gt0019|Maximum Rate (Vmax): 55,1/min
+        gt0020|Michaelis constant (Km): 2,molars (M)
+    expected_output:
+      "1":
+        gt0022|Reaction Rate (V0): 18.33,1/min
+        gt0026|or: 0.31,1/sec
+  - id: S empty test - v0 sec (vmax/sec)
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 45,1/sec
+        gt0019|Maximum Rate (Vmax): 55,1/sec
+        gt0020|Michaelis constant (Km): 2,molars (M)
+    expected_output:
+      "1":
+        "gt0023|Substrate concentration [S]": 9.00,molars (M)
+        gt0026|or: 9000.00,milimolars (mM)
+        gt0027|holding unit 2: 9000000.00,micromolars (μM)
+        gt0028|holding unit 3: 9000000000.00,nanomolars (nM)
+  - id: S empty test - v0 min (vmax/min)
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 45,1/min
+        gt0019|Maximum Rate (Vmax): 55,1/min
+        gt0020|Michaelis constant (Km): 2,molars (M)
+    expected_output:
+      "1":
+        "gt0023|Substrate concentration [S]": 9.00,molars (M)
+        gt0026|or: 9000.00,milimolars (mM)
+        gt0027|holding unit 2: 9000000.00,micromolars (μM)
+        gt0028|holding unit 3: 9000000000.00,nanomolars (nM)
+  - id: S empty test - mm
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 45,1/min
+        gt0019|Maximum Rate (Vmax): 55,1/min
+        gt0020|Michaelis constant (Km): 2,molars (M)
+    expected_output:
+      "1":
+        "gt0023|Substrate concentration [S]": 9.00,molars (M)
+        gt0026|or: 9000.00,milimolars (mM)
+        gt0027|holding unit 2: 9000000.00,micromolars (μM)
+        gt0028|holding unit 3: 9000000000.00,nanomolars (nM)
+  - id: S empty test - um
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 45,1/min
+        gt0019|Maximum Rate (Vmax): 55,1/min
+        gt0020|Michaelis constant (Km): 2,molars (M)
+    expected_output:
+      "1":
+        "gt0023|Substrate concentration [S]": 9.00,molars (M)
+        gt0026|or: 9000.00,milimolars (mM)
+        gt0027|holding unit 2: 9000000.00,micromolars (μM)
+        gt0028|holding unit 3: 9000000000.00,nanomolars (nM)
+  - id: S empty test - nm
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 45,1/min
+        gt0019|Maximum Rate (Vmax): 55,1/min
+        gt0020|Michaelis constant (Km): 2,molars (M)
+    expected_output:
+      "1":
+        "gt0023|Substrate concentration [S]": 9.00,molars (M)
+        gt0026|or: 9000.00,milimolars (mM)
+        gt0027|holding unit 2: 9000000.00,micromolars (μM)
+        gt0028|holding unit 3: 9000000000.00,nanomolars (nM)
+  - id: S empty test - nm (km / mm)
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 45,1/min
+        gt0019|Maximum Rate (Vmax): 55,1/min
+        gt0020|Michaelis constant (Km): 2,milimolars (mM)
+    expected_output:
+      "1":
+        "gt0023|Substrate concentration [S]": 9.00,milimolars (mM)
+        gt0026|or: 0.01,molars (M)
+        gt0027|holding unit 2: 9000.00,micromolars (μM)
+        gt0028|holding unit 3: 9000000.00,nanomolars (nM)
+  - id: Km empty test - m (S / m)
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 45,1/min
+        "gt0018|Substrate concentration [S]": 55,molars (M)
+        gt0019|Maximum Rate (Vmax): 55,1/min
+    expected_output:
+      "1":
+        gt0025|Michaelis constant (Km): 12.22,molars (M)
+        gt0026|or: 12222.00,milimolars (mM)
+        gt0027|holding unit 2: 12222000.00,micromolars (μM)
+        gt0028|holding unit 3: 12222000000.00,nanomolars (nM)
+  - id: Km empty test - m (S / mm)
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 45,1/min
+        "gt0018|Substrate concentration [S]": 55,milimolars (mM)
+        gt0019|Maximum Rate (Vmax): 55,1/min
+    expected_output:
+      "1":
+        gt0025|Michaelis constant (Km): 12.22,milimolars (mM)
+        gt0026|or: 0.01,molars (M)
+        gt0027|holding unit 2: 12222.00,micromolars (μM)
+        gt0028|holding unit 3: 12222000.00,nanomolars (nM)
+  - id: Km empty test - m (S / um)
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 45,1/min
+        "gt0018|Substrate concentration [S]": 55,micromolars (μM)
+        gt0019|Maximum Rate (Vmax): 55,1/min
+    expected_output:
+      "1":
+        gt0025|Michaelis constant (Km): 12.22,micromolars (μM)
+        gt0026|or: 0.00,molars (M)
+        gt0027|holding unit 2: 0.01,milimolars (mM)
+        gt0028|holding unit 3: 12222.00,nanomolars (nM)
+  - id: Km empty test - m (S /nm)
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 45,1/min
+        "gt0018|Substrate concentration [S]": 55,nanomolars (nM)
+        gt0019|Maximum Rate (Vmax): 55,1/min
+    expected_output:
+      "1":
+        gt0025|Michaelis constant (Km): 12.22,nanomolars (nM)
+        gt0026|or: 0.00,molars (M)
+        gt0027|holding unit 2: 0.00,milimolars (mM)
+        gt0028|holding unit 3: 0.01,micromolars (μM)
+  - id: Km empty test - um (S /nm)
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 45,1/min
+        "gt0018|Substrate concentration [S]": 55,nanomolars (nM)
+        gt0019|Maximum Rate (Vmax): 55,1/min
+    expected_output:
+      "1":
+        gt0025|Michaelis constant (Km): 12.22,nanomolars (nM)
+        gt0026|or: 0.00,molars (M)
+        gt0027|holding unit 2: 0.00,milimolars (mM)
+        gt0028|holding unit 3: 0.01,micromolars (μM)
+  - id: uM - Substrate concentration [S] is empty
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 45,1/min
+        gt0019|Maximum Rate (Vmax): 55,1/min
+        gt0020|Michaelis constant (Km): 1,molars (M)
+    expected_output:
+      "1":
+        "gt0023|Substrate concentration [S]": 4.50,molars (M)
+        gt0026|or: 4500.00,milimolars (mM)
+        gt0027|holding unit 2: 4500000.00,micromolars (μM)
+        gt0028|holding unit 3: 4500000000.00,nanomolars (nM)
+  - id: nM - Substrate concentration [S] is empty
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 45,1/min
+        gt0019|Maximum Rate (Vmax): 55,1/min
+        gt0020|Michaelis constant (Km): 1,molars (M)
+    expected_output:
+      "1":
+        "gt0023|Substrate concentration [S]": 4.50,molars (M)
+        gt0026|or: 4500.00,milimolars (mM)
+        gt0027|holding unit 2: 4500000.00,micromolars (μM)
+        gt0028|holding unit 3: 4500000000.00,nanomolars (nM)
+  - id: nM - Substrate concentration [S] is empty (Km / uM)
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 45,1/min
+        gt0019|Maximum Rate (Vmax): 55,1/min
+        gt0020|Michaelis constant (Km): 1,micromolars (μM)
+    expected_output:
+      "1":
+        "gt0023|Substrate concentration [S]": 4.50,micromolars (μM)
+        gt0026|or: 0.00,molars (M)
+        gt0027|holding unit 2: 0.00,milimolars (mM)
+        gt0028|holding unit 3: 4500.00,nanomolars (nM)
+  - id: nM - Substrate concentration [S] is empty (Km / nM)
+    input:
+      "1":
+        gt0017|Reaction Rate (V0): 45,1/min
+        gt0019|Maximum Rate (Vmax): 55,1/min
+        gt0020|Michaelis constant (Km): 1,nanomolars (nM)
+    expected_output:
+      "1":
+        "gt0023|Substrate concentration [S]": 4.50,nanomolars (nM)
+        gt0026|or: 0.00,molars (M)
+        gt0027|holding unit 2: 0.00,milimolars (mM)
+        gt0028|holding unit 3: 0.00,micromolars (μM)
