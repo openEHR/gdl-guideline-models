@@ -1,0 +1,548 @@
+{
+  "id" : "Michaelis_Menten_Equation_Calculator.v0.0.3",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Mahmoud Elachi",
+      "email" : "mel.achi@gmail.com",
+      "organisation" : "Cambio"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To record the parameters and calculated values related to the Michaelis–Menten kinetic model, used for describing enzyme-catalyzed reactions involving a single substrate.",
+        "keywords" : [
+          "Michaelis Menten",
+          "enzyme",
+          "kinetics",
+          "reaction rate",
+          "substrate concentration",
+          "velocity",
+          "enzyme-catalyzed",
+          "single-substrate"
+        ],
+        "use" : "Use to record the values of each component parameter (V₀, Vmax, Km, and [S]) and the calculated result of the Michaelis–Menten kinetic equation for enzyme-catalyzed reactions involving a single substrate.",
+        "misuse" : "Not to be used to record enzyme kinetics involving multiple substrates, inhibition models, or non–enzyme-catalyzed reactions.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Michaelis L, Menten ML. Die Kinetik der Invertinwirkung. Biochem Z. 1913; 49: 333–369.\nJohnson KA and Goody RS. The Original Michaelis Constant: Translation of the 1913 Michaelis–Menten Paper. Biochemistry 2011, 50, 39, 8264–8269.\nReuveni S, Urbakh M, Klafter T. Role of Substrate Unbinding in Michaelis-Menten Enzymatic Reactions. Proc Natl Acad Sci U S A. 2014;111(12):4391-6.",
+      "en" : "The Michaelis Menten kinetic equation is used for determining the kinetics of enzyme-controlled reactions, where the biochemical reaction is assumed to be involving a single substrate."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0016" : {
+        "id" : "gt0016",
+        "model_id" : "openEHR-EHR-OBSERVATION.michaelis_menten_equation_calculator.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.michaelis_menten_equation_calculator.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0017" : {
+            "id" : "gt0017",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "1/sec",
+              "1/min"
+            ]
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "molars (M)",
+              "milimolars (mM)",
+              "micromolars (μM)",
+              "nanomolars (nM)"
+            ]
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "1/sec",
+              "1/min"
+            ]
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "molars (M)",
+              "milimolars (mM)",
+              "micromolars (μM)",
+              "nanomolars (nM)"
+            ]
+          }
+        }
+      },
+      "gt0021" : {
+        "id" : "gt0021",
+        "model_id" : "openEHR-EHR-OBSERVATION.michaelis_menten_equation_calculator.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.michaelis_menten_equation_calculator.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0022" : {
+            "id" : "gt0022",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "1/sec",
+              "1/min"
+            ]
+          },
+          "gt0023" : {
+            "id" : "gt0023",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "molars (M)",
+              "milimolars (mM)",
+              "micromolars (μM)",
+              "nanomolars (nM)"
+            ]
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "1/sec",
+              "1/min"
+            ]
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "molars (M)",
+              "milimolars (mM)",
+              "micromolars (μM)",
+              "nanomolars (nM)"
+            ]
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "molars (M)",
+              "milimolars (mM)",
+              "micromolars (μM)",
+              "nanomolars (nM)",
+              "1/sec",
+              "1/min"
+            ]
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0015]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "molars (M)",
+              "milimolars (mM)",
+              "micromolars (μM)",
+              "nanomolars (nM)",
+              "1/sec",
+              "1/min"
+            ]
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0016]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "molars (M)",
+              "milimolars (mM)",
+              "micromolars (μM)",
+              "nanomolars (nM)",
+              "1/sec",
+              "1/min"
+            ]
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0040" : {
+        "id" : "gt0040",
+        "priority" : 12,
+        "when" : [
+          "$gt0017|Reaction Rate (V0)|.unit=='1/sec'",
+          "$gt0019|Maximum Rate (Vmax)|==null&&$gt0017|Reaction Rate (V0)|!=null&&$gt0018|Substrate concentration [S]|!=null&&$gt0020|Michaelis constant (Km)|!=null"
+        ],
+        "then" : [
+          "$gt0024|Maximum Rate (Vmax)|.magnitude=($gt0017|Reaction Rate (V0)|.magnitude*($gt0018|Substrate concentration [S]|.magnitude+$gt0020|Michaelis constant (Km)|.magnitude))/$gt0018|Substrate concentration [S]|.magnitude",
+          "$gt0024|Maximum Rate (Vmax)|.unit='1/sec'",
+          "$gt0024|Maximum Rate (Vmax)|.precision=2",
+          "$gt0026|or|.magnitude=(($gt0017|Reaction Rate (V0)|.magnitude*($gt0018|Substrate concentration [S]|.magnitude+$gt0020|Michaelis constant (Km)|.magnitude))/$gt0018|Substrate concentration [S]|.magnitude)*60",
+          "$gt0026|or|.unit='1/min'",
+          "$gt0026|or|.precision=2"
+        ]
+      },
+      "gt0041" : {
+        "id" : "gt0041",
+        "priority" : 11,
+        "when" : [
+          "$gt0017|Reaction Rate (V0)|.unit=='1/min'",
+          "$gt0019|Maximum Rate (Vmax)|==null&&$gt0017|Reaction Rate (V0)|!=null&&$gt0018|Substrate concentration [S]|!=null&&$gt0020|Michaelis constant (Km)|!=null"
+        ],
+        "then" : [
+          "$gt0024|Maximum Rate (Vmax)|.magnitude=($gt0017|Reaction Rate (V0)|.magnitude*($gt0018|Substrate concentration [S]|.magnitude+$gt0020|Michaelis constant (Km)|.magnitude))/$gt0018|Substrate concentration [S]|.magnitude",
+          "$gt0024|Maximum Rate (Vmax)|.unit='1/min'",
+          "$gt0024|Maximum Rate (Vmax)|.precision=2",
+          "$gt0026|or|.magnitude=(($gt0017|Reaction Rate (V0)|.magnitude*($gt0018|Substrate concentration [S]|.magnitude+$gt0020|Michaelis constant (Km)|.magnitude))/$gt0018|Substrate concentration [S]|.magnitude)/60",
+          "$gt0026|or|.unit='1/sec'",
+          "$gt0026|or|.precision=2"
+        ]
+      },
+      "gt0038" : {
+        "id" : "gt0038",
+        "priority" : 10,
+        "when" : [
+          "$gt0019|Maximum Rate (Vmax)|.unit=='1/sec'",
+          "$gt0017|Reaction Rate (V0)|==null&&$gt0019|Maximum Rate (Vmax)|!=null&&$gt0018|Substrate concentration [S]|!=null&&$gt0020|Michaelis constant (Km)|!=null",
+          "$gt0018|Substrate concentration [S]|.unit=='molars (M)'&&$gt0020|Michaelis constant (Km)|.unit=='molars (M)'"
+        ],
+        "then" : [
+          "$gt0022|Reaction Rate (V0)|.magnitude=($gt0019|Maximum Rate (Vmax)|.magnitude*$gt0018|Substrate concentration [S]|.magnitude)/($gt0018|Substrate concentration [S]|.magnitude+$gt0020|Michaelis constant (Km)|.magnitude)",
+          "$gt0022|Reaction Rate (V0)|.precision=2",
+          "$gt0022|Reaction Rate (V0)|.unit='1/sec'",
+          "$gt0026|or|.magnitude=(($gt0019|Maximum Rate (Vmax)|.magnitude*$gt0018|Substrate concentration [S]|.magnitude)/($gt0018|Substrate concentration [S]|.magnitude+$gt0020|Michaelis constant (Km)|.magnitude))*60",
+          "$gt0026|or|.unit='1/min'",
+          "$gt0026|or|.precision=2"
+        ]
+      },
+      "gt0039" : {
+        "id" : "gt0039",
+        "priority" : 9,
+        "when" : [
+          "$gt0019|Maximum Rate (Vmax)|.unit=='1/min'",
+          "$gt0017|Reaction Rate (V0)|==null&&$gt0019|Maximum Rate (Vmax)|!=null&&$gt0018|Substrate concentration [S]|!=null&&$gt0020|Michaelis constant (Km)|!=null",
+          "$gt0018|Substrate concentration [S]|.unit=='molars (M)'&&$gt0020|Michaelis constant (Km)|.unit=='molars (M)'"
+        ],
+        "then" : [
+          "$gt0022|Reaction Rate (V0)|.magnitude=($gt0019|Maximum Rate (Vmax)|.magnitude*$gt0018|Substrate concentration [S]|.magnitude)/($gt0018|Substrate concentration [S]|.magnitude+$gt0020|Michaelis constant (Km)|.magnitude)",
+          "$gt0022|Reaction Rate (V0)|.precision=2",
+          "$gt0022|Reaction Rate (V0)|.unit='1/min'",
+          "$gt0026|or|.magnitude=(($gt0019|Maximum Rate (Vmax)|.magnitude*$gt0018|Substrate concentration [S]|.magnitude)/($gt0018|Substrate concentration [S]|.magnitude+$gt0020|Michaelis constant (Km)|.magnitude))/60",
+          "$gt0026|or|.unit='1/sec'",
+          "$gt0026|or|.precision=2"
+        ]
+      },
+      "gt0033" : {
+        "id" : "gt0033",
+        "priority" : 8,
+        "when" : [
+          "$gt0020|Michaelis constant (Km)|.unit=='molars (M)'",
+          "$gt0018|Substrate concentration [S]|==null&&$gt0017|Reaction Rate (V0)|!=null&&$gt0019|Maximum Rate (Vmax)|!=null&&$gt0020|Michaelis constant (Km)|!=null"
+        ],
+        "then" : [
+          "$gt0023|Substrate concentration [S]|.magnitude=($gt0017|Reaction Rate (V0)|.magnitude*$gt0020|Michaelis constant (Km)|.magnitude)/($gt0019|Maximum Rate (Vmax)|.magnitude-$gt0017|Reaction Rate (V0)|.magnitude)",
+          "$gt0023|Substrate concentration [S]|.unit='molars (M)'",
+          "$gt0023|Substrate concentration [S]|.precision=2",
+          "$gt0026|or|.magnitude=(($gt0017|Reaction Rate (V0)|.magnitude*$gt0020|Michaelis constant (Km)|.magnitude)/($gt0019|Maximum Rate (Vmax)|.magnitude-$gt0017|Reaction Rate (V0)|.magnitude))*1000",
+          "$gt0026|or|.unit='milimolars (mM)'",
+          "$gt0026|or|.precision=2",
+          "$gt0027|holding unit 2|.magnitude=(($gt0017|Reaction Rate (V0)|.magnitude*$gt0020|Michaelis constant (Km)|.magnitude)/($gt0019|Maximum Rate (Vmax)|.magnitude-$gt0017|Reaction Rate (V0)|.magnitude))*1000000",
+          "$gt0027|holding unit 2|.unit='micromolars (μM)'",
+          "$gt0027|holding unit 2|.precision=2",
+          "$gt0028|holding unit 3|.magnitude=(($gt0017|Reaction Rate (V0)|.magnitude*$gt0020|Michaelis constant (Km)|.magnitude)/($gt0019|Maximum Rate (Vmax)|.magnitude-$gt0017|Reaction Rate (V0)|.magnitude))*1000000000",
+          "$gt0028|holding unit 3|.unit='nanomolars (nM)'",
+          "$gt0028|holding unit 3|.precision=2"
+        ]
+      },
+      "gt0034" : {
+        "id" : "gt0034",
+        "priority" : 7,
+        "when" : [
+          "$gt0020|Michaelis constant (Km)|.unit=='milimolars (mM)'",
+          "$gt0018|Substrate concentration [S]|==null&&$gt0017|Reaction Rate (V0)|!=null&&$gt0019|Maximum Rate (Vmax)|!=null&&$gt0020|Michaelis constant (Km)|!=null"
+        ],
+        "then" : [
+          "$gt0023|Substrate concentration [S]|.magnitude=($gt0017|Reaction Rate (V0)|.magnitude*$gt0020|Michaelis constant (Km)|.magnitude)/($gt0019|Maximum Rate (Vmax)|.magnitude-$gt0017|Reaction Rate (V0)|.magnitude)",
+          "$gt0023|Substrate concentration [S]|.unit='milimolars (mM)'",
+          "$gt0023|Substrate concentration [S]|.precision=2",
+          "$gt0026|or|.magnitude=(($gt0017|Reaction Rate (V0)|.magnitude*$gt0020|Michaelis constant (Km)|.magnitude)/($gt0019|Maximum Rate (Vmax)|.magnitude-$gt0017|Reaction Rate (V0)|.magnitude))/1000",
+          "$gt0026|or|.unit='molars (M)'",
+          "$gt0026|or|.precision=2",
+          "$gt0027|holding unit 2|.magnitude=(($gt0017|Reaction Rate (V0)|.magnitude*$gt0020|Michaelis constant (Km)|.magnitude)/($gt0019|Maximum Rate (Vmax)|.magnitude-$gt0017|Reaction Rate (V0)|.magnitude))*1000",
+          "$gt0027|holding unit 2|.unit='micromolars (μM)'",
+          "$gt0027|holding unit 2|.precision=2",
+          "$gt0028|holding unit 3|.magnitude=(($gt0017|Reaction Rate (V0)|.magnitude*$gt0020|Michaelis constant (Km)|.magnitude)/($gt0019|Maximum Rate (Vmax)|.magnitude-$gt0017|Reaction Rate (V0)|.magnitude))*1000000",
+          "$gt0028|holding unit 3|.unit='nanomolars (nM)'",
+          "$gt0028|holding unit 3|.precision=2"
+        ]
+      },
+      "gt0035" : {
+        "id" : "gt0035",
+        "priority" : 6,
+        "when" : [
+          "$gt0020|Michaelis constant (Km)|.unit=='micromolars (μM)'",
+          "$gt0018|Substrate concentration [S]|==null&&$gt0017|Reaction Rate (V0)|!=null&&$gt0019|Maximum Rate (Vmax)|!=null&&$gt0020|Michaelis constant (Km)|!=null"
+        ],
+        "then" : [
+          "$gt0023|Substrate concentration [S]|.magnitude=($gt0017|Reaction Rate (V0)|.magnitude*$gt0020|Michaelis constant (Km)|.magnitude)/($gt0019|Maximum Rate (Vmax)|.magnitude-$gt0017|Reaction Rate (V0)|.magnitude)",
+          "$gt0023|Substrate concentration [S]|.unit='micromolars (μM)'",
+          "$gt0023|Substrate concentration [S]|.precision=2",
+          "$gt0026|or|.magnitude=(($gt0017|Reaction Rate (V0)|.magnitude*$gt0020|Michaelis constant (Km)|.magnitude)/($gt0019|Maximum Rate (Vmax)|.magnitude-$gt0017|Reaction Rate (V0)|.magnitude))/1000000",
+          "$gt0026|or|.unit='molars (M)'",
+          "$gt0026|or|.precision=2",
+          "$gt0027|holding unit 2|.magnitude=(($gt0017|Reaction Rate (V0)|.magnitude*$gt0020|Michaelis constant (Km)|.magnitude)/($gt0019|Maximum Rate (Vmax)|.magnitude-$gt0017|Reaction Rate (V0)|.magnitude))/1000",
+          "$gt0027|holding unit 2|.unit='milimolars (mM)'",
+          "$gt0027|holding unit 2|.precision=2",
+          "$gt0028|holding unit 3|.magnitude=(($gt0017|Reaction Rate (V0)|.magnitude*$gt0020|Michaelis constant (Km)|.magnitude)/($gt0019|Maximum Rate (Vmax)|.magnitude-$gt0017|Reaction Rate (V0)|.magnitude))*1000",
+          "$gt0028|holding unit 3|.unit='nanomolars (nM)'",
+          "$gt0028|holding unit 3|.precision=2"
+        ]
+      },
+      "gt0036" : {
+        "id" : "gt0036",
+        "priority" : 5,
+        "when" : [
+          "$gt0020|Michaelis constant (Km)|.unit=='nanomolars (nM)'",
+          "$gt0018|Substrate concentration [S]|==null&&$gt0017|Reaction Rate (V0)|!=null&&$gt0019|Maximum Rate (Vmax)|!=null&&$gt0020|Michaelis constant (Km)|!=null"
+        ],
+        "then" : [
+          "$gt0023|Substrate concentration [S]|.magnitude=($gt0017|Reaction Rate (V0)|.magnitude*$gt0020|Michaelis constant (Km)|.magnitude)/($gt0019|Maximum Rate (Vmax)|.magnitude-$gt0017|Reaction Rate (V0)|.magnitude)",
+          "$gt0023|Substrate concentration [S]|.unit='nanomolars (nM)'",
+          "$gt0023|Substrate concentration [S]|.precision=2",
+          "$gt0026|or|.magnitude=(($gt0017|Reaction Rate (V0)|.magnitude*$gt0020|Michaelis constant (Km)|.magnitude)/($gt0019|Maximum Rate (Vmax)|.magnitude-$gt0017|Reaction Rate (V0)|.magnitude))/1000000000",
+          "$gt0026|or|.unit='molars (M)'",
+          "$gt0026|or|.precision=2",
+          "$gt0027|holding unit 2|.magnitude=(($gt0017|Reaction Rate (V0)|.magnitude*$gt0020|Michaelis constant (Km)|.magnitude)/($gt0019|Maximum Rate (Vmax)|.magnitude-$gt0017|Reaction Rate (V0)|.magnitude))/1000000",
+          "$gt0027|holding unit 2|.unit='milimolars (mM)'",
+          "$gt0027|holding unit 2|.precision=2",
+          "$gt0028|holding unit 3|.magnitude=(($gt0017|Reaction Rate (V0)|.magnitude*$gt0020|Michaelis constant (Km)|.magnitude)/($gt0019|Maximum Rate (Vmax)|.magnitude-$gt0017|Reaction Rate (V0)|.magnitude))/1000",
+          "$gt0028|holding unit 3|.unit='micromolars (μM)'",
+          "$gt0028|holding unit 3|.precision=2"
+        ]
+      },
+      "gt0029" : {
+        "id" : "gt0029",
+        "priority" : 4,
+        "when" : [
+          "$gt0018|Substrate concentration [S]|.unit=='molars (M)'",
+          "$gt0020|Michaelis constant (Km)|.magnitude==null&&$gt0017|Reaction Rate (V0)|.magnitude!=null&&$gt0019|Maximum Rate (Vmax)|.magnitude!=null&&$gt0018|Substrate concentration [S]|.magnitude!=null"
+        ],
+        "then" : [
+          "$gt0025|Michaelis constant (Km)|.magnitude=(($gt0019|Maximum Rate (Vmax)|.magnitude*$gt0018|Substrate concentration [S]|.magnitude)/$gt0017|Reaction Rate (V0)|.magnitude)-$gt0018|Substrate concentration [S]|.magnitude",
+          "$gt0025|Michaelis constant (Km)|.unit='molars (M)'",
+          "$gt0025|Michaelis constant (Km)|.precision=2",
+          "$gt0026|or|.magnitude=((($gt0019|Maximum Rate (Vmax)|.magnitude*$gt0018|Substrate concentration [S]|.magnitude)/$gt0017|Reaction Rate (V0)|.magnitude)-$gt0018|Substrate concentration [S]|.magnitude)*1000",
+          "$gt0026|or|.unit='milimolars (mM)'",
+          "$gt0026|or|.precision=2",
+          "$gt0027|holding unit 2|.magnitude=((($gt0019|Maximum Rate (Vmax)|.magnitude*$gt0018|Substrate concentration [S]|.magnitude)/$gt0017|Reaction Rate (V0)|.magnitude)-$gt0018|Substrate concentration [S]|.magnitude)*1000000",
+          "$gt0027|holding unit 2|.unit='micromolars (μM)'",
+          "$gt0027|holding unit 2|.precision=2",
+          "$gt0028|holding unit 3|.magnitude=((($gt0019|Maximum Rate (Vmax)|.magnitude*$gt0018|Substrate concentration [S]|.magnitude)/$gt0017|Reaction Rate (V0)|.magnitude)-$gt0018|Substrate concentration [S]|.magnitude)*1000000000",
+          "$gt0028|holding unit 3|.unit='nanomolars (nM)'",
+          "$gt0028|holding unit 3|.precision=2"
+        ]
+      },
+      "gt0030" : {
+        "id" : "gt0030",
+        "priority" : 3,
+        "when" : [
+          "$gt0018|Substrate concentration [S]|.unit=='milimolars (mM)'",
+          "$gt0020|Michaelis constant (Km)|.magnitude==null&&$gt0017|Reaction Rate (V0)|.magnitude!=null&&$gt0019|Maximum Rate (Vmax)|.magnitude!=null&&$gt0018|Substrate concentration [S]|.magnitude!=null"
+        ],
+        "then" : [
+          "$gt0025|Michaelis constant (Km)|.magnitude=(($gt0019|Maximum Rate (Vmax)|.magnitude*$gt0018|Substrate concentration [S]|.magnitude)/$gt0017|Reaction Rate (V0)|.magnitude)-$gt0018|Substrate concentration [S]|.magnitude",
+          "$gt0025|Michaelis constant (Km)|.unit='milimolars (mM)'",
+          "$gt0025|Michaelis constant (Km)|.precision=2",
+          "$gt0026|or|.magnitude=((($gt0019|Maximum Rate (Vmax)|.magnitude*$gt0018|Substrate concentration [S]|.magnitude)/$gt0017|Reaction Rate (V0)|.magnitude)-$gt0018|Substrate concentration [S]|.magnitude)/1000",
+          "$gt0026|or|.unit='molars (M)'",
+          "$gt0026|or|.precision=2",
+          "$gt0027|holding unit 2|.magnitude=((($gt0019|Maximum Rate (Vmax)|.magnitude*$gt0018|Substrate concentration [S]|.magnitude)/$gt0017|Reaction Rate (V0)|.magnitude)-$gt0018|Substrate concentration [S]|.magnitude)*1000",
+          "$gt0027|holding unit 2|.unit='micromolars (μM)'",
+          "$gt0027|holding unit 2|.precision=2",
+          "$gt0028|holding unit 3|.magnitude=((($gt0019|Maximum Rate (Vmax)|.magnitude*$gt0018|Substrate concentration [S]|.magnitude)/$gt0017|Reaction Rate (V0)|.magnitude)-$gt0018|Substrate concentration [S]|.magnitude)*1000000",
+          "$gt0028|holding unit 3|.unit='nanomolars (nM)'",
+          "$gt0028|holding unit 3|.precision=2"
+        ]
+      },
+      "gt0031" : {
+        "id" : "gt0031",
+        "priority" : 2,
+        "when" : [
+          "$gt0018|Substrate concentration [S]|.unit=='micromolars (μM)'",
+          "$gt0020|Michaelis constant (Km)|.magnitude==null&&$gt0017|Reaction Rate (V0)|.magnitude!=null&&$gt0019|Maximum Rate (Vmax)|.magnitude!=null&&$gt0018|Substrate concentration [S]|.magnitude!=null"
+        ],
+        "then" : [
+          "$gt0025|Michaelis constant (Km)|.magnitude=(($gt0019|Maximum Rate (Vmax)|.magnitude*$gt0018|Substrate concentration [S]|.magnitude)/$gt0017|Reaction Rate (V0)|.magnitude)-$gt0018|Substrate concentration [S]|.magnitude",
+          "$gt0025|Michaelis constant (Km)|.unit='micromolars (μM)'",
+          "$gt0025|Michaelis constant (Km)|.precision=2",
+          "$gt0026|or|.magnitude=((($gt0019|Maximum Rate (Vmax)|.magnitude*$gt0018|Substrate concentration [S]|.magnitude)/$gt0017|Reaction Rate (V0)|.magnitude)-$gt0018|Substrate concentration [S]|.magnitude)/1000000",
+          "$gt0026|or|.unit='molars (M)'",
+          "$gt0026|or|.precision=2",
+          "$gt0027|holding unit 2|.magnitude=((($gt0019|Maximum Rate (Vmax)|.magnitude*$gt0018|Substrate concentration [S]|.magnitude)/$gt0017|Reaction Rate (V0)|.magnitude)-$gt0018|Substrate concentration [S]|.magnitude)/1000",
+          "$gt0027|holding unit 2|.unit='milimolars (mM)'",
+          "$gt0027|holding unit 2|.precision=2",
+          "$gt0028|holding unit 3|.magnitude=((($gt0019|Maximum Rate (Vmax)|.magnitude*$gt0018|Substrate concentration [S]|.magnitude)/$gt0017|Reaction Rate (V0)|.magnitude)-$gt0018|Substrate concentration [S]|.magnitude)*1000",
+          "$gt0028|holding unit 3|.unit='nanomolars (nM)'",
+          "$gt0028|holding unit 3|.precision=2"
+        ]
+      },
+      "gt0032" : {
+        "id" : "gt0032",
+        "priority" : 1,
+        "when" : [
+          "$gt0018|Substrate concentration [S]|.unit=='nanomolars (nM)'",
+          "$gt0020|Michaelis constant (Km)|.magnitude==null&&$gt0017|Reaction Rate (V0)|.magnitude!=null&&$gt0019|Maximum Rate (Vmax)|.magnitude!=null&&$gt0018|Substrate concentration [S]|.magnitude!=null"
+        ],
+        "then" : [
+          "$gt0025|Michaelis constant (Km)|.magnitude=(($gt0019|Maximum Rate (Vmax)|.magnitude*$gt0018|Substrate concentration [S]|.magnitude)/$gt0017|Reaction Rate (V0)|.magnitude)-$gt0018|Substrate concentration [S]|.magnitude",
+          "$gt0025|Michaelis constant (Km)|.unit='nanomolars (nM)'",
+          "$gt0025|Michaelis constant (Km)|.precision=2",
+          "$gt0026|or|.magnitude=((($gt0019|Maximum Rate (Vmax)|.magnitude*$gt0018|Substrate concentration [S]|.magnitude)/$gt0017|Reaction Rate (V0)|.magnitude)-$gt0018|Substrate concentration [S]|.magnitude)/1000000000",
+          "$gt0026|or|.unit='molars (M)'",
+          "$gt0026|or|.precision=2",
+          "$gt0027|holding unit 2|.magnitude=((($gt0019|Maximum Rate (Vmax)|.magnitude*$gt0018|Substrate concentration [S]|.magnitude)/$gt0017|Reaction Rate (V0)|.magnitude)-$gt0018|Substrate concentration [S]|.magnitude)/1000000",
+          "$gt0027|holding unit 2|.unit='milimolars (mM)'",
+          "$gt0027|holding unit 2|.precision=2",
+          "$gt0028|holding unit 3|.magnitude=((($gt0019|Maximum Rate (Vmax)|.magnitude*$gt0018|Substrate concentration [S]|.magnitude)/$gt0017|Reaction Rate (V0)|.magnitude)-$gt0018|Substrate concentration [S]|.magnitude)/1000",
+          "$gt0028|holding unit 3|.unit='micromolars (μM)'",
+          "$gt0028|holding unit 3|.precision=2"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Michaelis Menten Equation Calculator",
+            "description" : "The Michaelis Menten kinetic equation is used for determining the kinetics of enzyme-controlled reactions, where the biochemical reaction is assumed to be involving a single substrate."
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "openEHR-EHR-OBSERVATION.michaelis_menten_equation_calculator.v0"
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "Reaction Rate (V0)"
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "Substrate concentration [S]"
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "Maximum Rate (Vmax)"
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "Michaelis constant (Km)"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "openEHR-EHR-OBSERVATION.michaelis_menten_equation_calculator.v0"
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "Reaction Rate (V0)"
+          },
+          "gt0023" : {
+            "id" : "gt0023",
+            "text" : "Substrate concentration [S]"
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "text" : "Maximum Rate (Vmax)"
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "text" : "Michaelis constant (Km)"
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "text" : "or"
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "text" : "holding unit 2"
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "text" : "holding unit 3"
+          },
+          "gt0029" : {
+            "id" : "gt0029",
+            "text" : "M - Michaelis constant (Km) is empty",
+            "description" : "This rule only applied when the unit of substrate concentration [S] is molars | RULE : Km = (Vmax x [S] / V0) – [S]"
+          },
+          "gt0030" : {
+            "id" : "gt0030",
+            "text" : "mM - Michaelis constant (Km) is empty",
+            "description" : "This rule only applied when the unit of substrate concentration [S] is milimolars | RULE : Km = (Vmax x [S] / V0) – [S]"
+          },
+          "gt0031" : {
+            "id" : "gt0031",
+            "text" : "uM - Michaelis constant (Km) is empty",
+            "description" : "This rule only applied when the unit of substrate concentration [S] is micomolars | RULE : Km = (Vmax x [S] / V0) – [S]"
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "text" : "mM - Michaelis constant (Km) is empty",
+            "description" : "This rule only applied when the unit of substrate concentration [S] is nanomolars | RULE : Km = (Vmax x [S] / V0) – [S]"
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "text" : "M - Substrate concentration [S] is empty",
+            "description" : "This rule only applied when the unit of Michaelis constant [Km] is molars | RULE :  [S] = V0 x Km / (Vmax – V0)"
+          },
+          "gt0034" : {
+            "id" : "gt0034",
+            "text" : "mM - Substrate concentration [S] is empty",
+            "description" : "This rule only applied when the unit of Michaelis constant [Km] is milimolars | RULE :  [S] = V0 x Km / (Vmax – V0)"
+          },
+          "gt0035" : {
+            "id" : "gt0035",
+            "text" : "uM - Substrate concentration [S] is empty",
+            "description" : "This rule only applied when the unit of Michaelis constant [Km] is micomolars | RULE :  [S] = V0 x Km / (Vmax – V0)"
+          },
+          "gt0036" : {
+            "id" : "gt0036",
+            "text" : "nM - Substrate concentration [S] is empty",
+            "description" : "This rule only applied when the unit of Michaelis constant [Km] nanomolars | RULE : [S] = V0 x Km / (Vmax – V0)"
+          },
+          "gt0038" : {
+            "id" : "gt0038",
+            "text" : "Sec - Reaction Rate (V0) is empty",
+            "description" : "This rule only applied when the unit of Reaction Rate (V0) is Sec | RULE : V0 = Vmax x [S] / ([S] + Km)"
+          },
+          "gt0039" : {
+            "id" : "gt0039",
+            "text" : "Min - Reaction Rate (V0) is empty",
+            "description" : "This rule only applied when the unit of Reaction Rate (V0) is Min | RULE : V0 = Vmax x [S] / ([S] + Km)"
+          },
+          "gt0040" : {
+            "id" : "gt0040",
+            "text" : "Sec - Vmax is empty",
+            "description" : "This rule only applied when the unit of Vmax is Sec | RULE : Vmax = V0 x ([S] + Km) / [S]"
+          },
+          "gt0041" : {
+            "id" : "gt0041",
+            "text" : "Min - Vmax is empty",
+            "description" : "This rule only applied when the unit of Vmax is Min | RULE : Vmax = V0 x ([S] + Km) / [S]"
+          }
+        }
+      }
+    }
+  }
+}
