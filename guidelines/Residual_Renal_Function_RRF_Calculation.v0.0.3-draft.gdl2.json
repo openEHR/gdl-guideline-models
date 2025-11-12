@@ -1,0 +1,260 @@
+{
+  "uuid" : "",
+  "id" : "Residual_Renal_Function_RRF_Calculation.v0.0.3-draft",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Kevin Arjona",
+      "email" : "Kevin.Arjona@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2025-11-12"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate the residual renal function of patients undergoing dialysis. The guideline provides a standardized method for determining the contribution of native kidney function to overall clearance.",
+        "keywords" : [
+          "hemodialysis",
+          "renal",
+          "function",
+          "end-stage",
+          "disease",
+          "creatinine",
+          "kidney",
+          "urea"
+        ],
+        "use" : "Applicable to adult dialysis patients with measurable urine output.\nRequires accurate input values for:\n\nInterdialytic urine volume (mL)\n\nUrine urea concentration (mg/dL)\n\nBlood urea nitrogen (BUN) levels (post- and pre-dialysis)\n\nDuration of the interdialytic period (hours).\n\nFill all input fields to calculate the RRF in milliliters per minute per 1.73 m² (mL/min/1.73 m²).",
+        "misuse" : "Not to be used for patients with anuria (no urine output).\n\nNot intended to measure residual renal function in patients without dialysis dependency.\n\nAvoid using the guideline without consistent and accurate BUN and urine sample measurements.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Daugirdas JT, Ing TS. Handbook of Dialysis. Second Edition, 1994, pp. 92-107.\n\nWang AY, Lai KN. The importance of residual renal function in dialysis patients. Kidney Int. 2006; 69(10):1726-32.\n\nThomas J, Teitelbaum I. Preservation of residual renal function in dialysis patients. Adv Perit Dial. 2011; 27:112-7.\n\nMoist LM, Port FK, Orzol SM, Young EW, Ostbye T, Wolfe RA, Hulbert-Shearon T, Jones CA, Bloembergen WE. Predictors of loss of residual renal function among new dialysis patients. J Am Soc Nephrol. 2000; 11(3):556-64.",
+      "en" : "Calculates the residual renal function (RRF) in dialysis patients. The calculation is based on interdialytic urine volume, urine urea concentration, BUN measurements, and interdialytic period."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mL"
+            ]
+          }
+        }
+      },
+      "gt0004" : {
+        "id" : "gt0004",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mg/dL"
+            ]
+          }
+        }
+      },
+      "gt0006" : {
+        "id" : "gt0006",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mg/dL"
+            ]
+          }
+        }
+      },
+      "gt0008" : {
+        "id" : "gt0008",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0009" : {
+            "id" : "gt0009",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mg/dL"
+            ]
+          }
+        }
+      },
+      "gt0010" : {
+        "id" : "gt0010",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0011" : {
+            "id" : "gt0011",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mg/dL"
+            ]
+          }
+        }
+      },
+      "gt0014" : {
+        "id" : "gt0014",
+        "model_id" : "openEHR-EHR-OBSERVATION.total_score.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.total_score.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0015" : {
+            "id" : "gt0015",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_COUNT"
+          }
+        }
+      },
+      "gt0024" : {
+        "id" : "gt0024",
+        "model_id" : "openEHR-EHR-CLUSTER.dosage.v2",
+        "template_id" : "openEHR-EHR-CLUSTER.dosage.v2",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0025" : {
+            "id" : "gt0025",
+            "path" : "/items[at0102]"
+          }
+        }
+      }
+    },
+    "pre_conditions" : [
+      "$gt0003|Interdialytic urine volume|!=null",
+      "$gt0005|Urine urea concentration|!=null",
+      "$gt0007|BUN 1 (after 1st dialysis of week)|!=null",
+      "$gt0009|BUN 2 (prior to 2nd dialysis of week)|!=null",
+      "$gt0017|Interdialytic period (minutes)|!=null"
+    ],
+    "rules" : {
+      "gt0012" : {
+        "id" : "gt0012",
+        "priority" : 2,
+        "when" : [
+          "$gt0007|BUN 1 (after 1st dialysis of week)|!=null",
+          "$gt0009|BUN 2 (prior to 2nd dialysis of week)|!=null"
+        ],
+        "then" : [
+          "$gt0011|Mean BUN|=($gt0007|BUN 1 (after 1st dialysis of week)|.magnitude+$gt0009|BUN 2 (prior to 2nd dialysis of week)|.magnitude)/2"
+        ]
+      },
+      "gt0013" : {
+        "id" : "gt0013",
+        "priority" : 1,
+        "when" : [
+          "$gt0011|Mean BUN|!=null"
+        ],
+        "then" : [
+          "$gt0015|Residual Renal Function (mL/min)|=($gt0003|Interdialytic urine volume|.magnitude*$gt0005|Urine urea concentration|.magnitude)/$gt0025|Interdialytic period (minutes)|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Residual Renal Function (RRF) Calculation",
+            "description" : "Calculates the residual renal function (RRF) in dialysis patients. The calculation is based on interdialytic urine volume, urine urea concentration, BUN measurements, and interdialytic period."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Interdialytic urine volume"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Urine urea concentration"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "BUN 1 (after 1st dialysis of week)"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "BUN 2 (prior to 2nd dialysis of week)"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Mean BUN"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Mean BUN",
+            "description" : "Mean BUN = (BUN 1 + BUN 2) / 2"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Residual Renal Function",
+            "description" : "Residual Renal Function = Interdialytic urine volume x Urine urea concentration / Interdialytic period / Mean BUN"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "openEHR-EHR-OBSERVATION.total_score.v0"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "Residual Renal Function (mL/min)"
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "text" : "openEHR-EHR-CLUSTER.dosage.v2"
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "text" : "Interdialytic period (minutes)"
+          }
+        }
+      }
+    }
+  }
+}
