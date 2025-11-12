@@ -1,0 +1,56 @@
+guidelines:
+  "1": qSOFA_score.v0.0.4
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Respiratory rate missing (negative test).
+    input:
+      "1":
+        gt0004|Blood pressure: 0|local::at0014|Systolic blood pressure >100|
+        gt0005|Mental status: 0|local::at0011|No altered mental status|
+    expected_output:
+      "1": {}
+  - id: 03. Blood pressure missing (negative test).
+    input:
+      "1":
+        gt0003|Respiratory rate: 0|local::at0009|Respiration rate <22|
+        gt0005|Mental status: 0|local::at0011|No altered mental status|
+    expected_output:
+      "1": {}
+  - id: 04. Mental status missing (negative test).
+    input:
+      "1":
+        gt0003|Respiratory rate: 0|local::at0009|Respiration rate <22|
+        gt0004|Blood pressure: 0|local::at0014|Systolic blood pressure >100|
+    expected_output:
+      "1": {}
+  - id: 05. Not High risk.
+    input:
+      "1":
+        gt0003|Respiratory rate: 0|local::at0009|Respiration rate <22|
+        gt0004|Blood pressure: 0|local::at0014|Systolic blood pressure >100|
+        gt0005|Mental status: 0|local::at0011|No altered mental status|
+    expected_output:
+      "1":
+        gt0007|qSOFA score: "0"
+        gt0015|Risk assessment: "Not High Risk: If sepsis is still suspected, continue
+          to monitor, evaluate, and initiate treatment as appropriate, including
+          serial qSOFA assessments."
+  - id: 06. Set to High risk.
+    input:
+      "1":
+        gt0003|Respiratory rate: 1|local::at0010|Respiration rate ≥22|
+        gt0004|Blood pressure: 1|local::at0015|Systolic blood pressure ≤100|
+        gt0005|Mental status: 0|local::at0011|No altered mental status|
+    expected_output:
+      "1":
+        gt0007|qSOFA score: "2"
+        gt0015|Risk assessment: "High Risk: qSOFA Scores 2-3 are associated with a 3- to
+          14-fold increase in in-hospital mortality. Assess for evidence of
+          organ dysfunction with blood testing including serum lactate and
+          calculation of the full SOFA Score.  Patients meeting these qSOFA
+          criteria should have infection considered even if it was previously
+          not."
