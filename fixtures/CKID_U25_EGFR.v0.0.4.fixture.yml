@@ -1,0 +1,220 @@
+guidelines:
+  "1": CKID_U25_EGFR.v0.0.4
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Equation missing (negative test).
+    input:
+      "1":
+        gt0019|Gender: local::at0005|Male|
+        gt0020|Age: 14,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1": {}
+  - id: 03. Gender missing (negative test).
+    input:
+      "1":
+        gt0003|Equation: local::at0007|CKiD U25 Creatinine|
+        gt0020|Age: 14,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1": {}
+  - id: 04. Age missing (negative test).
+    input:
+      "1":
+        gt0003|Equation: local::at0007|CKiD U25 Creatinine|
+        gt0019|Gender: local::at0005|Male|
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1": {}
+  - id: 05. Height missing (negative test).
+    input:
+      "1":
+        gt0003|Equation: local::at0007|CKiD U25 Creatinine|
+        gt0019|Gender: local::at0005|Male|
+        gt0020|Age: 15,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0024|Cystatin C: 0.9,mg/L
+    expected_output:
+      "1":
+        gt0010|k: "44.505478874999994"
+  - id: "06. sCr-based eGFR: Males Age 1 to <12 years old."
+    input:
+      "1":
+        gt0003|Equation: local::at0007|CKiD U25 Creatinine|
+        gt0019|Gender: local::at0005|Male|
+        gt0020|Age: 10,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1":
+        gt0010|k: "38.3834089191232"
+        gt0041|Estimated GFR by CKiD U25 Creatinine: "84"
+  - id: "07. sCr-based eGFR: Males Age 12 to <18 years old."
+    input:
+      "1":
+        gt0003|Equation: local::at0007|CKiD U25 Creatinine|
+        gt0019|Gender: local::at0005|Male|
+        gt0020|Age: 15,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1":
+        gt0010|k: "44.505478874999994"
+        gt0041|Estimated GFR by CKiD U25 Creatinine: "97"
+  - id: "08. sCr-based eGFR: Males Age 18 to 25 years old."
+    input:
+      "1":
+        gt0003|Equation: local::at0007|CKiD U25 Creatinine|
+        gt0019|Gender: local::at0005|Male|
+        gt0020|Age: 19,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1":
+        gt0010|k: "50.8"
+        gt0041|Estimated GFR by CKiD U25 Creatinine: "111"
+  - id: "09. sCr-based eGFR: Females Age 1 to <12 years old."
+    input:
+      "1":
+        gt0003|Equation: local::at0007|CKiD U25 Creatinine|
+        gt0019|Gender: local::at0006|Female|
+        gt0020|Age: 10,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1":
+        gt0010|k: "35.52925799949609"
+        gt0041|Estimated GFR by CKiD U25 Creatinine: "78"
+  - id: "10. sCr-based eGFR: Females Age 12 to <18 years old."
+    input:
+      "1":
+        gt0003|Equation: local::at0007|CKiD U25 Creatinine|
+        gt0019|Gender: local::at0006|Female|
+        gt0020|Age: 15,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1":
+        gt0010|k: "38.64862992869999"
+        gt0041|Estimated GFR by CKiD U25 Creatinine: "85"
+  - id: "11. sCr-based eGFR: Females Age 18 to 25 years old."
+    input:
+      "1":
+        gt0003|Equation: local::at0007|CKiD U25 Creatinine|
+        gt0019|Gender: local::at0006|Female|
+        gt0020|Age: 19,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1":
+        gt0010|k: "41.4"
+        gt0041|Estimated GFR by CKiD U25 Creatinine: "91"
+  - id: "12. cycC-based eGFR: Males Age 1 to <15 years old."
+    input:
+      "1":
+        gt0003|Equation: local::at0008|CKiD U25 Cystatin C|
+        gt0019|Gender: local::at0005|Male|
+        gt0020|Age: 10,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1":
+        gt0010|k: "82.55829341905367"
+        gt0014|Estimated GFR by CKiD U25 Cystatin C: "92"
+  - id: "13. cycC-based eGFR: Males Age 15 to <18 years old."
+    input:
+      "1":
+        gt0003|Equation: local::at0008|CKiD U25 Cystatin C|
+        gt0019|Gender: local::at0005|Male|
+        gt0020|Age: 15,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1":
+        gt0010|k: "87.2"
+        gt0014|Estimated GFR by CKiD U25 Cystatin C: "97"
+  - id: "14. cycC-based eGFR: Males Age 18 to 25 years old."
+    input:
+      "1":
+        gt0003|Equation: local::at0008|CKiD U25 Cystatin C|
+        gt0019|Gender: local::at0005|Male|
+        gt0020|Age: 19,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1":
+        gt0010|k: "77.1"
+        gt0014|Estimated GFR by CKiD U25 Cystatin C: "86"
+  - id: "15. cycC-based eGFR: Females Age 1 to <15 years old."
+    input:
+      "1":
+        gt0003|Equation: local::at0008|CKiD U25 Cystatin C|
+        gt0019|Gender: local::at0006|Female|
+        gt0020|Age: 10,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1":
+        gt0010|k: "79.26461484738337"
+        gt0014|Estimated GFR by CKiD U25 Cystatin C: "88"
+  - id: "16. cycC-based eGFR: Females Age 15 to <18 years old."
+    input:
+      "1":
+        gt0003|Equation: local::at0008|CKiD U25 Cystatin C|
+        gt0019|Gender: local::at0006|Female|
+        gt0020|Age: 16,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1":
+        gt0010|k: "71.90889362278239"
+        gt0014|Estimated GFR by CKiD U25 Cystatin C: "80"
+  - id: "17. cycC-based eGFR: Females Age 18 to 25 years old."
+    input:
+      "1":
+        gt0003|Equation: local::at0008|CKiD U25 Cystatin C|
+        gt0019|Gender: local::at0006|Female|
+        gt0020|Age: 19,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1":
+        gt0010|k: "68.3"
+        gt0014|Estimated GFR by CKiD U25 Cystatin C: "76"
+  - id: 18. CKiD U25 Creatinine-Cystatin C.
+    input:
+      "1":
+        gt0003|Equation: local::at0009|CKiD U25 Creatinine-Cystatin C|
+        gt0019|Gender: local::at0006|Female|
+        gt0020|Age: 19,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1":
+        gt0010|k: "68.3"
+        gt0014|Estimated GFR by CKiD U25 Cystatin C: "76"
+        gt0041|Estimated GFR by CKiD U25 Creatinine: "149"
+        gt0044|Estimated GFR by CKiD U25 Creatinine-Cystatin C: "115"
