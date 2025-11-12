@@ -1,0 +1,216 @@
+{
+  "id" : "Truelove_Witts_Severity_Index.v0.0.2",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Mahmoud Elachi",
+      "email" : "mel.achi@gmail.com",
+      "organisation" : "Cambio"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "Classifies the severity of ulcerative colitis into Mild, Moderate, or Severe categories based on the Truelove and Witts criteria (1955). The index uses six clinical variables related to bowel habits, rectal bleeding, systemic inflammation, and anemia to support standardized severity classification.",
+        "keywords" : [
+          "ulcerative colitis",
+          "truelove",
+          "witts",
+          "IBD",
+          "cortisone",
+          "Truelove & Witts index"
+        ],
+        "use" : "Intended for use in adult patients diagnosed with ulcerative colitis to support clinical decision-making, triage, and treatment planning. The classification informs severity-based therapeutic strategies.",
+        "misuse" : "Should not be used as a diagnostic tool for UC. Not validated for patients with Crohn's disease or indeterminate colitis. Interpretation must be based on clinical judgment.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "TRUELOVE S. C., WITTS L. J. Cortisone in ulcerative colitis; preliminary report on a therapeutic trial. Br Med J. 1954 Aug 14;2(4884):375–378. doi: 10.1136/bmj.2.4884.375.",
+      "en" : "The Truelove and Witts Severity Index is used to classify the severity of ulcerative colitis based on six clinical parameters, including stool frequency, rectal bleeding, temperature, pulse, hemoglobin level, and erythrocyte sedimentation rate."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.truelove_and_witts_severity.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.truelove_and_witts_severity.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0005",
+              "local::at0006",
+              "local::at0007"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0009",
+              "local::at0010",
+              "local::at0011"
+            ]
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0012]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0013",
+              "local::at0014"
+            ]
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0015]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0016",
+              "local::at0017"
+            ]
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0018]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0019",
+              "local::at0020"
+            ]
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0021]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0022",
+              "local::at0023"
+            ]
+          }
+        }
+      },
+      "gt0009" : {
+        "id" : "gt0009",
+        "model_id" : "openEHR-EHR-OBSERVATION.truelove_and_witts_severity.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.truelove_and_witts_severity.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0010" : {
+            "id" : "gt0010",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0026]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0013" : {
+        "id" : "gt0013",
+        "priority" : 2,
+        "when" : [
+          "$gt0003|Bowel movements per day|==local::at0007|≥ 6|&&($gt0005|Pyrexia|==local::at0014|Yes|||$gt0006|Pulse > 90 bpm|==local::at0017|Yes|||$gt0007|Anemia|==local::at0020|Yes|||$gt0008|Erythrocyte sedimentation rate, mm/hr|==local::at0023|>30|)"
+        ],
+        "then" : [
+          "$gt0010|Severity result|.value=local::at0029|Severe|"
+        ]
+      },
+      "gt0011" : {
+        "id" : "gt0011",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|Bowel movements per day|==local::at0005|< 4|&&$gt0005|Pyrexia|==local::at0013|No|&&$gt0004|Blood in stool|==local::at0009|None or no more than small amounts of blood|&&$gt0006|Pulse > 90 bpm|==local::at0016|No|&&$gt0007|Anemia|==local::at0019|No|&&$gt0008|Erythrocyte sedimentation rate, mm/hr|==local::at0022|≤30|"
+        ],
+        "then" : [
+          "$gt0010|Severity result|.value=local::at0027|Mild|"
+        ]
+      },
+      "gt0014" : {
+        "id" : "gt0014",
+        "priority" : 3,
+        "when" : [
+          "$gt0013|Severe |!=true&&$gt0011|Mild|!=true",
+          "$gt0003|Bowel movements per day|!=null&&$gt0004|Blood in stool|!=null&&$gt0005|Pyrexia|!=null&&$gt0006|Pulse > 90 bpm|!=null&&$gt0007|Anemia|!=null&&$gt0008|Erythrocyte sedimentation rate, mm/hr|!=null"
+        ],
+        "then" : [
+          "$gt0010|Severity result|.value=local::at0028|Moderate|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Truelove & Witts Severity Index",
+            "description" : "The Truelove and Witts Severity Index is used to classify the severity of ulcerative colitis based on six clinical parameters, including stool frequency, rectal bleeding, temperature, pulse, hemoglobin level, and erythrocyte sedimentation rate."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.truelove_and_witts_severity.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Bowel movements per day"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Blood in stool"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Pyrexia"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "Pulse > 90 bpm"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Anemia"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Erythrocyte sedimentation rate, mm/hr"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "openEHR-EHR-OBSERVATION.truelove_and_witts_severity.v0"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Severity result"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Mild",
+            "description" : "Diagnosis is mild when all six criteria are satisfied."
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Severe ",
+            "description" : "Diagnosis is severe when criteria for frequency of bowel movement and ≥1 features of systemic upset (bolded) are satisfied."
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Moderate ",
+            "description" : "Diagnosis is moderate when variables fall between these criteria."
+          }
+        }
+      }
+    }
+  }
+}
