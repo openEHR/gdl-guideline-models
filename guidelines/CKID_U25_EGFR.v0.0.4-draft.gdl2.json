@@ -1,0 +1,320 @@
+{
+  "uuid" : "",
+  "id" : "CKID_U25_EGFR.v0.0.4-draft",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Kevin Arjona",
+      "email" : "kevin.arjona@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2025-11-12"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate the eGFR using the CKiD U25 formula.",
+        "keywords" : [
+          "renal",
+          "ckid",
+          "egfr",
+          "gfr",
+          "kidney",
+          "pediatric",
+          "creatinine",
+          "bun",
+          "nephrology"
+        ],
+        "use" : "Use in children and young adults (&lt; 25 years) with chronic kidney disease to estimate glomerular filtration rate, which is essential for staging CKD, dosing medications, and monitoring disease progression.",
+        "misuse" : "Not to be used in adults aged 25 years or older; use the CKD-EPI equation instead. Not validated for assessing acute kidney injury (AKI) where creatinine levels are unstable.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Pierce CB, Muñoz A, Ng DK, Warady BA, Furth SL, Schwartz GJ. Age- and sex-dependent clinical equations to estimate glomerular filtration rates in children and young adults with chronic kidney disease. Kidney Int. 2021 Apr;99(4):948-956. doi: 10.1016/j.kint.2020.10.047. Epub 2020 Dec 8. PMID: 33301749; PMCID: PMC9083470.\n\nNg DK, Furth SL, Warady BA, Crews DC, Seegmiller JC, Schwartz GJ; CKiD Study Investigators. Self-reported Race, Serum Creatinine, Cystatin C, and GFR in Children and Young Adults With Pediatric Kidney Diseases: A Report From the Chronic Kidney Disease in Children (CKiD) Study. Am J Kidney Dis. 2022 Aug;80(2):174-185.e1. doi: 10.1053/j.ajkd.2021.10.013. Epub 2021 Dec 30. PMID: 34974031; PMCID: PMC9243196.",
+      "en" : "Calculates the estimated Glomerular Filtration Rate (eGFR) for children and young adults using the CKiD U25 equation."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.ckid_u25_egfr.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.ckid_u25_egfr.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0007",
+              "local::at0008",
+              "local::at0009"
+            ]
+          }
+        }
+      },
+      "gt0009" : {
+        "id" : "gt0009",
+        "model_id" : "openEHR-EHR-OBSERVATION.ckid_u25_egfr.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.ckid_u25_egfr.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0010" : {
+            "id" : "gt0010",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0018]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "1"
+            ]
+          }
+        }
+      },
+      "gt0011" : {
+        "id" : "gt0011",
+        "model_id" : "openEHR-EHR-OBSERVATION.estimated_glomerular_filtration_rate.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.estimated_glomerular_filtration_rate.v1",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0012" : {
+            "id" : "gt0012",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "ml/min"
+            ]
+          }
+        }
+      },
+      "gt0013" : {
+        "id" : "gt0013",
+        "model_id" : "openEHR-EHR-OBSERVATION.estimated_glomerular_filtration_rate.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.estimated_glomerular_filtration_rate.v1",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0014" : {
+            "id" : "gt0014",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "ml/min"
+            ]
+          }
+        }
+      },
+      "gt0015" : {
+        "id" : "gt0015",
+        "model_id" : "openEHR-EHR-OBSERVATION.estimated_glomerular_filtration_rate.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.estimated_glomerular_filtration_rate.v1",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0016" : {
+            "id" : "gt0016",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "ml/min"
+            ]
+          }
+        }
+      },
+      "gt0018" : {
+        "id" : "gt0018",
+        "model_id" : "openEHR-EHR-OBSERVATION.basic_demographic_lm_rev.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.basic_demographic_lm_rev.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0019" : {
+            "id" : "gt0019",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0005",
+              "local::at0006"
+            ]
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "a",
+              "mo",
+              "wk",
+              "d"
+            ]
+          }
+        }
+      },
+      "gt0021" : {
+        "id" : "gt0021",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0022" : {
+            "id" : "gt0022",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mg/dL"
+            ]
+          }
+        }
+      },
+      "gt0023" : {
+        "id" : "gt0023",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0024" : {
+            "id" : "gt0024",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mg/L"
+            ]
+          }
+        }
+      },
+      "gt0025" : {
+        "id" : "gt0025",
+        "model_id" : "openEHR-EHR-OBSERVATION.height.v2",
+        "template_id" : "openEHR-EHR-OBSERVATION.height.v2",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0026" : {
+            "id" : "gt0026",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "cm",
+              "[in_i]"
+            ]
+          }
+        }
+      }
+    },
+    "pre_conditions" : [
+      "$gt0003|Equation|!=null",
+      "$gt0019|Gender|!=null",
+      "$gt0020|Age|!=null"
+    ],
+    "rules" : {
+      "gt0017" : {
+        "id" : "gt0017",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|Equation|==local::at0007|CKiD U25 Creatinine|",
+          "$gt0019|Gender|==local::at0005|Male|",
+          "$gt0020|Age|.magnitude>=1",
+          "$gt0020|Age|.magnitude<12"
+        ],
+        "then" : [
+          "$gt0010|k|=39*(1.008^($gt0020|Age|.magnitude-12))"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "CKiD U25 eGFR Calculation",
+            "description" : "Calculates the estimated Glomerular Filtration Rate (eGFR) for children and young adults using the CKiD U25 equation."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.ckid_u25_egfr.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Equation"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "openEHR-EHR-OBSERVATION.ckid_u25_egfr.v0"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "k"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "openEHR-EHR-OBSERVATION.estimated_glomerular_filtration_rate.v1"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Estimated Glomerular Filtration Rate"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "openEHR-EHR-OBSERVATION.estimated_glomerular_filtration_rate.v1"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "cycC-based eGFR"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "openEHR-EHR-OBSERVATION.estimated_glomerular_filtration_rate.v1"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "sCr-based eGFR"
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "K Formula CKiD U25 Creatinine: Males Age 1 to <12 years old",
+            "description" : "CKiD U25 Creatinine: eGFR = k × (height, m / sCr, mg/dL)  - k calculation: 39.0 × 1.008(age-12)"
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "openEHR-EHR-OBSERVATION.basic_demographic_lm_rev.v1"
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "Gender"
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "Age"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "Serum creatinine"
+          },
+          "gt0023" : {
+            "id" : "gt0023",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "text" : "Cystatin C"
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "text" : "openEHR-EHR-OBSERVATION.height.v2"
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "text" : "Height/Length"
+          }
+        }
+      }
+    }
+  }
+}
