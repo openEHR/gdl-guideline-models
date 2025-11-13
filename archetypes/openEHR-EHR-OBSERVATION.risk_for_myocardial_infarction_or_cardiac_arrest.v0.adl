@@ -1,0 +1,309 @@
+archetype (adl_version=1.4; uid=51ef8132-8e38-4f85-a969-b56eb4095a0c)
+	openEHR-EHR-OBSERVATION.risk_for_myocardial_infarction_or_cardiac_arrest.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-11-06">
+		["name"] = <"Mahmoud Elachi">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"mel.achi@gmail.com">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the clinical inputs needed to calculate the 30-day risk of myocardial infarction or cardiac arrest following surgery using the Gupta MICA logistic regression model.">
+			keywords = <"perioperative risk","cardiac arrest","myocardial infarction","surgery","risk score","gupta">
+			copyright = <"Use © Cambio CDS">
+			use = <"Used in clinical decision support systems to assess perioperative cardiac risk based on patient age, ASA class, functional status, serum creatinine, and type of surgery. Intended to support shared decision-making and surgical planning.">
+			misuse = <"Should not be used to replace comprehensive cardiovascular risk assessment or predict long-term cardiac outcomes. Not applicable to patients undergoing cardiac surgery.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Gupta PK, Gupta H, Sundaram A, et al. Development and validation of a risk calculator for prediction of cardiac risk after surgery. Circulation. 2011;124(4):381-7.
+Fleisher LA, Fleischmann KE, Auerbach AD, et al. 2014 ACC/AHA guideline on perioperative cardiovascular evaluation and management of patients undergoing noncardiac surgery: a report of the American College of Cardiology/American Heart Association Task Force on practice guidelines. J Am Coll Cardiol. 2014;64(22):e77-137.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"07042d60f9546cc0faf19ce28706e6b5">
+		["build_uid"] = <"bec363c2-0cde-36be-b4e9-29ac69156916">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Risk for Myocardial Infarction or Cardiac Arrest
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Functional status
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- Independent
+													at0008,    -- Partially dependent
+													at0009]    -- Totally dependent
+												}
+											}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- ASA class
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0011,    -- 1: normal healthy patient
+													at0012,    -- 2: mild systemic disease
+													at0013,    -- 3: severe systemic disease
+													at0014,    -- 4: severe systemic disease that is a constant threat to life*
+													at0015]    -- 5: moribund, not expected to survive without surgery
+												}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Creatinine
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0017,    -- Normal (≤1.5 mg/dL, 133 µmol/L)
+													at0018,    -- Elevated (>1.5 mg/dL, 133 µmol/L)
+													at0019]    -- Unknown
+												}
+											}
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {    -- Type of procedure
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0021,    -- Anorectal
+													at0022,    -- Aortic
+													at0023,    -- Bariatric
+													at0024,    -- Brain
+													at0025,    -- Breast
+													at0026,    -- Cardiac
+													at0027,    -- ENT (except thyroid/parathyroid)
+													at0028,    -- Foregut or hepatopancreatobiliary
+													at0029,    -- Gallbladder, appendix, adrenals, or spleen
+													at0030,    -- Hernia (ventral, inguinal, femoral)
+													at0031,    -- Intestinal
+													at0032,    -- Neck (thyroid/parathyroid)
+													at0033,    -- Obstetric/gynecologic
+													at0034,    -- Orthopedic and non-vascular extremity
+													at0035,    -- Other abdominal
+													at0036,    -- Peripheral vascular**
+													at0037,    -- Skin
+													at0038,    -- Spine
+													at0039,    -- Non-esophageal thoracic
+													at0040,    -- Vein
+													at0041]    -- Urology
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					CLUSTER[at0005] occurrences matches {0..1} matches {*}    -- Extension
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Risk for Myocardial Infarction or Cardiac Arrest">
+					description = <"The Gupta Perioperative Risk Calculator estimates the 30-day risk of myocardial infarction or cardiac arrest following surgery, based on NSQIP data. Developed using logistic regression, it includes only five clinical variables and is widely used to guide perioperative risk discussions. While derived from historical surgical cohorts, it remains validated and relevant in contemporary practice for non-cardiac surgeries.">
+					comment = <"Original version, c 2011">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Functional status">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Independent">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Partially dependent">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Totally dependent">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"ASA class">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"1: normal healthy patient">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"2: mild systemic disease">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"3: severe systemic disease">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"4: severe systemic disease that is a constant threat to life*">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"5: moribund, not expected to survive without surgery">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Creatinine">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Normal (≤1.5 mg/dL, 133 µmol/L)">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Elevated (>1.5 mg/dL, 133 µmol/L)">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Unknown">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Type of procedure">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Anorectal">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Aortic">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Bariatric">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Brain">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Breast">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Cardiac">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"ENT (except thyroid/parathyroid)">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Foregut or hepatopancreatobiliary">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Gallbladder, appendix, adrenals, or spleen">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Hernia (ventral, inguinal, femoral)">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Intestinal">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Neck (thyroid/parathyroid)">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Obstetric/gynecologic">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Orthopedic and non-vascular extremity">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"Other abdominal">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Peripheral vascular**">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"Skin">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"Spine">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"Non-esophageal thoracic">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"Vein">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"Urology">
+					description = <"">
+				>
+			>
+		>
+	>
