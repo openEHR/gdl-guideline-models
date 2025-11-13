@@ -1,0 +1,214 @@
+archetype (adl_version=1.4; uid=f4673a81-73ba-4952-bb06-efd1948f0da1)
+	openEHR-EHR-EVALUATION.tumor_categorization_breast.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-11-13">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the resulting molecular subtype categorization and related advisory comments.">
+			keywords = <"breast","cancer","tumor","categorization","molecular","subtype","ER","PR","HER2","Ki-67","NHG","gene expression","oncology">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the resulting molecular subtype categorization and related advisory comments.">
+			misuse = <"Not to be used for recording raw pathology or laboratory results. Use instead openEHR-EHR-OBSERVATION.tumor_categorization_breast.v0.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Regionala cancercentrum i samverkan. Nationellt vårdprogram bröstcancer: Kapitel 10 Kategorisering av tumören. Kunskapsbanken, 2025. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/brostcancer/vardprogram/kategorisering-av-tumoren2/">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"2c4bece0bce1e74c4b662079efab9dd0">
+		["build_uid"] = <"9a048ef8-1a7e-4ae3-870c-c4f25dba14e9">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Breast Cancer Tumor Categorization
+		data matches {
+			ITEM_TREE[at0002] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0003] occurrences matches {0..1} matches {    -- ER status
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0004,    -- Positive
+									at0005]    -- Negative
+								}
+							}
+						}
+					}
+					ELEMENT[at0006] occurrences matches {0..1} matches {    -- PR status
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0007,    -- Positive
+									at0008]    -- Negative
+								}
+							}
+						}
+					}
+					ELEMENT[at0009] occurrences matches {0..1} matches {    -- Ki-67 category
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0010,    -- Low ≤5%
+									at0011,    -- Intermediate 6-29%
+									at0012]    -- High ≥30%
+								}
+							}
+						}
+					}
+					ELEMENT[at0013] occurrences matches {0..1} matches {    -- HER2 amplification
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0014,    -- Positive
+									at0015]    -- Negative
+								}
+							}
+						}
+					}
+					ELEMENT[at0016] occurrences matches {0..1} matches {    -- Molecular subtype
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0017,    -- Triple-negative
+									at0018,    -- HER2-positive / Non-luminal
+									at0019,    -- HER2-positive / Luminal
+									at0020,    -- Low-risk Luminal (HER2-)
+									at0021]    -- High-risk Luminal (HER2-)
+								}
+							}
+						}
+					}
+					ELEMENT[at0022] occurrences matches {0..1} matches {    -- Comment
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Breast Cancer Tumor Categorization">
+					description = <"An interpretive categorization that records the molecular subtype of invasive breast cancer according to the Swedish National Breast Cancer Care Programme.">
+					comment = <"Original version, c 2025">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"ER status">
+					description = <"">
+				>
+				["at0004"] = <
+					text = <"Positive">
+					description = <"ER > 10%">
+				>
+				["at0005"] = <
+					text = <"Negative">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"PR status">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Positive">
+					description = <"PR > 10%">
+				>
+				["at0008"] = <
+					text = <"Negative">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Ki-67 category">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Low ≤5%">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Intermediate 6-29%">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"High ≥30%">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"HER2 amplification">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Positive">
+					description = <"IHC=3+, or (IHC=2+ and ((ISH ratio ≥2 and copies ≥4) or (ISH ratio <2 and copies ≥6)))">
+				>
+				["at0015"] = <
+					text = <"Negative">
+					description = <"IHC=0/0+/1+, or IHC=2+ and above thresholds not met">
+				>
+				["at0016"] = <
+					text = <"Molecular subtype">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Triple-negative">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"HER2-positive / Non-luminal">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"HER2-positive / Luminal">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Low-risk Luminal (HER2-)">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"High-risk Luminal (HER2-)">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Comment">
+					description = <"">
+				>
+			>
+		>
+	>
