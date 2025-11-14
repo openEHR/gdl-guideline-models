@@ -1,0 +1,357 @@
+{
+  "uuid" : "",
+  "id" : "Breast_Cancer_Tumor_Categorization.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Katja Mariko Wilde",
+      "email" : "katja-wilde@t-online.de",
+      "organisation" : "Cambio CDS",
+      "date" : "2025-11-14"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To determine the molecular subtype of invasive breast cancer by applying rule-based logic to recorded pathology and biomarker data (NHG grade, ER%, PR%, Ki-67%, HER2 IHC/ISH, and gene expression risk).",
+        "keywords" : [
+          "breast",
+          "cancer",
+          "tumor",
+          "categorization",
+          "molecular",
+          "subtype",
+          "ER",
+          "PR",
+          "HER2",
+          "Ki-67",
+          "NHG",
+          "gene expression",
+          "oncology"
+        ],
+        "use" : "Use to classify invasive breast cancer into molecular subtypes as defined in the Swedish National Breast Cancer Care Programme (Chapter 10 Kategorisering av tumören).\nThe guideline evaluates the following parameters:\n\nNHG grade: 1, 2, 3\n\nER status: Positive if &gt; 10% cells positive\n\nPR status: Positive if &gt; 10% cells positive\n\nKi-67 category: Low &lt; 6%, Intermediate 6–29%, High ≥ 30%\n\nHER2 amplification: Positive if IHC 3+ or IHC 2+ with (ISH ratio ≥ 2 and copies ≥ 4) or (ISH ratio &lt; 2 and copies ≥ 6)\n\nGene expression risk: Low-risk / High-risk / Not done\n\nBased on these inputs, the algorithm determines one of the following molecular subtypes:\n\nLow-risk luminal (HER2-)\n\nHigh-risk luminal (HER2-)\n\nHER2-positive luminal\n\nHER2-positive non-luminal\n\nTriple-negative\n\nA discordance advisory comment is triggered if NHG = 1 and Ki-67 High, or NHG = 3 and Ki-67 Low, suggesting case review and possible gene expression testing.",
+        "misuse" : "Not to be used for recording information related to TNM staging, full histopathology reports, or treatment decisions.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Regionala cancercentrum i samverkan. Nationellt vårdprogram bröstcancer: Kapitel 10 Kategorisering av tumören. Kunskapsbanken, 2025. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/brostcancer/vardprogram/kategorisering-av-tumoren2/",
+      "en" : "A categorization used to define invasive breast cancer into molecular subtypes based on histologic grade, estrogen receptor (ER), progesterone receptor (PR), HER2 status, Ki-67 proliferation index, and gene expression risk according to the Swedish National Breast Cancer Care Programme."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0004" : {
+        "id" : "gt0004",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "%"
+            ]
+          }
+        },
+        "predicates" : [
+          "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024] is_a local::gt0013|ER code|"
+        ]
+      },
+      "gt0007" : {
+        "id" : "gt0007",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0008" : {
+            "id" : "gt0008",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "%"
+            ]
+          }
+        },
+        "predicates" : [
+          "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024] is_a local::gt0014|PR code|"
+        ]
+      },
+      "gt0010" : {
+        "id" : "gt0010",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0011" : {
+            "id" : "gt0011",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "%"
+            ]
+          }
+        },
+        "predicates" : [
+          "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024] is_a local::gt0015|Ki-67 code|"
+        ]
+      },
+      "gt0016" : {
+        "id" : "gt0016",
+        "model_id" : "openEHR-EHR-OBSERVATION.tumor_categorization_breast.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.tumor_categorization_breast.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0017" : {
+            "id" : "gt0017",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0010]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0011",
+              "local::at0012",
+              "local::at0013"
+            ]
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0014]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0015",
+              "local::at0016",
+              "local::at0017",
+              "local::at0018",
+              "local::at0019"
+            ]
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0020]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0021",
+              "local::at0022",
+              "local::at0023"
+            ]
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0024]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0025",
+              "local::at0026",
+              "local::at0027",
+              "local::at0028"
+            ]
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0029]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0030",
+              "local::at0031",
+              "local::at0032"
+            ]
+          }
+        }
+      },
+      "gt0022" : {
+        "id" : "gt0022",
+        "model_id" : "openEHR-EHR-EVALUATION.tumor_categorization_breast.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.tumor_categorization_breast.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0023" : {
+            "id" : "gt0023",
+            "path" : "/data[at0002]/items[at0003]",
+            "data_type" : "DV_CODED_TEXT"
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "path" : "/data[at0002]/items[at0006]",
+            "data_type" : "DV_CODED_TEXT"
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "path" : "/data[at0002]/items[at0009]",
+            "data_type" : "DV_CODED_TEXT"
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "path" : "/data[at0002]/items[at0013]",
+            "data_type" : "DV_CODED_TEXT"
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "path" : "/data[at0002]/items[at0016]",
+            "data_type" : "DV_CODED_TEXT"
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "path" : "/data[at0002]/items[at0022]",
+            "data_type" : "DV_TEXT"
+          }
+        }
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Breast Cancer Tumor Categorization",
+            "description" : "A categorization used to define invasive breast cancer into molecular subtypes based on histologic grade, estrogen receptor (ER), progesterone receptor (PR), HER2 status, Ki-67 proliferation index, and gene expression risk according to the Swedish National Breast Cancer Care Programme."
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Estrogen Receptor (ER)"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "ER result"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Progesterone Receptor (PR)"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "PR result"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Ki-67 proliferation index"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Ki-67 result"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "ER code"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "PR code"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "Ki-67 code"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "openEHR-EHR-OBSERVATION.tumor_categorization_breast.v0"
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "NHG grade"
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "HER2 IHC"
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "HER2 ISH ratio"
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "HER2 copies per cell"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "Gene expression risk"
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "openEHR-EHR-EVALUATION.tumor_categorization_breast.v0"
+          },
+          "gt0023" : {
+            "id" : "gt0023",
+            "text" : "ER status"
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "text" : "PR status"
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "text" : "Ki-67 category"
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "text" : "HER2 amplification"
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "text" : "Molecular subtype"
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "text" : "Discordance flag"
+          }
+        }
+      }
+    },
+    "term_bindings" : {
+      "LOINC" : {
+        "id" : "LOINC",
+        "bindings" : {
+          "gt0013" : {
+            "codes" : [
+              "LOINC::85329-1"
+            ]
+          },
+          "gt0014" : {
+            "codes" : [
+              "LOINC::85325-9"
+            ]
+          },
+          "gt0015" : {
+            "codes" : [
+              "LOINC::85330-9"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
