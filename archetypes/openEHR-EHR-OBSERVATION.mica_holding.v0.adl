@@ -33,7 +33,7 @@ Fleisher LA, Fleischmann KE, Auerbach AD, et al. 2014 ACC/AHA guideline on perio
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"6f092b068bae2428f5b6b06b338e2230">
+		["MD5-CAM-1.0.1"] = <"8cda87ab402e3b74720ab04e2f5be973">
 		["build_uid"] = <"bec363c2-0cde-36be-b4e9-29ac69156916">
 	>
 
@@ -48,17 +48,12 @@ definition
 								items cardinality matches {0..*; unordered} matches {
 									ELEMENT[at0050] occurrences matches {0..1} matches {    -- Functional status
 										value matches {
-											1|[local::at0051],
-											2|[local::at0052],
-											3|[local::at0053]
+											DV_QUANTITY matches {*}
 										}
 									}
 									ELEMENT[at0044] occurrences matches {0..1} matches {    -- ASA class
 										value matches {
-											1|[local::at0054],
-											2|[local::at0055],
-											3|[local::at0056],
-											4|[local::at0057]
+											DV_QUANTITY matches {*}
 										}
 									}
 									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Creatinine
@@ -103,7 +98,7 @@ ontology
 			items = <
 				["at0000"] = <
 					text = <"mica_holding">
-					description = <"The Gupta Perioperative Risk Calculator estimates the 30-day risk of myocardial infarction or cardiac arrest following surgery, based on NSQIP data. Developed using logistic regression, it includes only five clinical variables and is widely used to guide perioperative risk discussions. While derived from historical surgical cohorts, it remains validated and relevant in contemporary practice for non-cardiac surgeries.">
+					description = <"This is holding units for The Gupta Perioperative Risk Calculator estimates the 30-day risk of myocardial infarction or cardiac arrest following surgery, based on NSQIP data.">
 					comment = <"Original version, c 2011">
 				>
 				["at0001"] = <
@@ -150,34 +145,6 @@ ontology
 				["at0050"] = <
 					text = <"Functional status">
 					description = <"">
-				>
-				["at0051"] = <
-					text = <"Independent">
-					description = <"0">
-				>
-				["at0052"] = <
-					text = <"Partially dependent">
-					description = <"0.65">
-				>
-				["at0053"] = <
-					text = <"Totally dependent">
-					description = <"1.03">
-				>
-				["at0054"] = <
-					text = <"normal healthy patient">
-					description = <"−5.17">
-				>
-				["at0055"] = <
-					text = <"mild systemic disease">
-					description = <"−3.29">
-				>
-				["at0056"] = <
-					text = <"severe systemic disease">
-					description = <"−1.92">
-				>
-				["at0057"] = <
-					text = <"severe systemic disease that is a constant threat to life*">
-					description = <"−0.95">
 				>
 			>
 		>
