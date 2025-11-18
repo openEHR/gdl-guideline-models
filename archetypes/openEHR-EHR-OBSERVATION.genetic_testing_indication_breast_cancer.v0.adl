@@ -1,0 +1,191 @@
+archetype (adl_version=1.4; uid=6a2c535f-c0b8-4fab-8390-ec4ea0559720)
+	openEHR-EHR-OBSERVATION.genetic_testing_indication_breast_cancer.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-11-18">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the clinical input parameters required to assess whether a patient with breast cancer meets guideline-based criteria for genetic testing.">
+			keywords = <"breast cancer","genetic testing","hereditary cancer","familial cancer">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the clinical input parameters required to assess whether a patient with breast cancer meets guideline-based criteria for genetic testing.">
+			misuse = <"Not to be used for recording results of genetic tests or variant classifications.
+Not to be used for general hereditary risk assessment unrelated to breast cancer.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"0f0afe3c-bd8b-4bc7-aff7-fac7e24c6b5a">
+		["references"] = <"Regionala cancercentrum i samverkan. Nationellt vårdprogram bröstcancer: Kapitel 7 Ärftlighet. Kunskapsbanken, 2025. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/brostcancer/vardprogram/arftlighet/">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Genetic Testing Indication in Breast Cancer
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Breast cancer
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Number of breast cancer cases in first or second degree relatives
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"1">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Triple negative breast cancer
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Ovarian or related gynecologic cancer
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Meets criteria for other hereditary cancer syndrome
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Genetic test would change current treatment
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- Indication for genetic testing
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0014,    -- Genetic testing recommended
+													at0015]    -- Genetic testing not recommended
+												}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Comment
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Genetic Testing Indication in Breast Cancer">
+					description = <"A data structure for recording clinical criteria relevant for assessing the indication for genetic testing in patients with breast cancer in accordance with the Swedish National Breast Cancer Care Programme.">
+					comment = <"Original version, c 2025">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Breast cancer">
+					description = <"Ductal carcinoma in situ (DCIS) is also considered breast cancer">
+				>
+				["at0007"] = <
+					text = <"Number of breast cancer cases in first or second degree relatives">
+					description = <"Bilateral breast cancer counts as two cases. The third case may also be ovarian or fallopian tube cancer, early prostate cancer (before the age of 65), or pancreatic cancer.">
+				>
+				["at0008"] = <
+					text = <"Triple negative breast cancer">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Ovarian or related gynecologic cancer">
+					description = <"Ovarian cancer, including fallopian tube cancer and primary peritoneal carcinomatosis (non-borderline).">
+				>
+				["at0010"] = <
+					text = <"Meets criteria for other hereditary cancer syndrome">
+					description = <"Criteria met for other hereditary syndromes involving breast or ovarian cancer">
+				>
+				["at0011"] = <
+					text = <"Genetic test would change current treatment">
+					description = <"A positive outcome of a genetic analysis would have immediate significance for the treatment of a patient with manifest cancer.  ">
+				>
+				["at0013"] = <
+					text = <"Indication for genetic testing">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Genetic testing recommended">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Genetic testing not recommended">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Comment">
+					description = <"">
+				>
+			>
+		>
+	>
