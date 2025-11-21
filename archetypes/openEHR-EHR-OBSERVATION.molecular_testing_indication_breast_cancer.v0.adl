@@ -31,7 +31,7 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"19c7ea424906406927a0fb978e08206b">
+		["MD5-CAM-1.0.1"] = <"3e9ea3f548339a12ca2ebd32b6fad34a">
 		["build_uid"] = <"2a6181f7-6e34-4e7a-8018-b05716cc7146">
 	>
 
@@ -50,7 +50,8 @@ definition
 												defining_code matches {
 													[local::
 													at0008,    -- Positive
-													at0009]    -- Negative
+													at0009;    -- Negative
+													at0009]
 												}
 											}
 										}
@@ -61,7 +62,8 @@ definition
 												defining_code matches {
 													[local::
 													at0011,    -- Positive
-													at0012]    -- Negative
+													at0012;    -- Negative
+													at0012]
 												}
 											}
 										}
@@ -73,7 +75,8 @@ definition
 													[local::
 													at0014,    -- Low
 													at0015,    -- Intermediate
-													at0016]    -- High
+													at0016;    -- High
+													at0014]
 												}
 											}
 										}
@@ -85,7 +88,8 @@ definition
 													[local::
 													at0018,    -- Grade 1
 													at0019,    -- Grade 2
-													at0020]    -- Grade 3
+													at0020;    -- Grade 3
+													at0018]
 												}
 											}
 										}
@@ -96,7 +100,8 @@ definition
 												defining_code matches {
 													[local::
 													at0022,    -- Premenopausal
-													at0023]    -- Postmenopausal
+													at0023;    -- Postmenopausal
+													at0022]
 												}
 											}
 										}
@@ -108,7 +113,8 @@ definition
 													[local::
 													at0025,    -- Node-negative (N0)
 													at0026,    -- 1-3 positive lymph nodes (N1-3)
-													at0027]    -- ≥4 positive lymph nodes (N≥4)
+													at0027;    -- ≥4 positive lymph nodes (N≥4)
+													at0025]
 												}
 											}
 										}
@@ -134,14 +140,56 @@ definition
 												defining_code matches {
 													[local::
 													at0031,    -- Early breast cancer
-													at0032]    -- Metastatic breast cancer
+													at0032;    -- Metastatic breast cancer
+													at0031]
 												}
 											}
 										}
 									}
-									ELEMENT[at0034] occurrences matches {0..1} matches {    -- Indication
+									ELEMENT[at0036] occurrences matches {0..1} matches {    -- Gene expression indication
 										value matches {
-											DV_TEXT matches {*}
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0037,    -- Not applicable
+													at0038,    -- Recommended
+													at0039,    -- May be considered
+													at0040]    -- With Oncotype Dx may be considered
+												}
+											}
+										}
+									}
+									ELEMENT[at0041] occurrences matches {0..1} matches {    -- Germline BRCA1/2 testing indication
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0042,    -- Not applicable
+													at0043]    -- Recommended
+												}
+											}
+										}
+									}
+									ELEMENT[at0044] occurrences matches {0..1} matches {    -- Somatic PIK3CA testing indication
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0045,    -- Not applicable
+													at0046]    -- Recommended
+												}
+											}
+										}
+									}
+									ELEMENT[at0047] occurrences matches {0..1} matches {    -- Broad genomic profiling indication
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0048,    -- Not applicable
+													at0049]    -- May be considered
+												}
+											}
 										}
 									}
 									ELEMENT[at0035] occurrences matches {0..1} matches {    -- Comment
@@ -306,12 +354,64 @@ ontology
 					text = <"Uncertain tumor risk categorization prior to selection of cytostatic treatment">
 					description = <"">
 				>
-				["at0034"] = <
-					text = <"Indication">
-					description = <"">
-				>
 				["at0035"] = <
 					text = <"Comment">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Gene expression indication">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"Not applicable">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"Recommended">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"May be considered">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"With Oncotype Dx may be considered">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"Germline BRCA1/2 testing indication">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"Not applicable">
+					description = <"">
+				>
+				["at0043"] = <
+					text = <"Recommended">
+					description = <"">
+				>
+				["at0044"] = <
+					text = <"Somatic PIK3CA testing indication">
+					description = <"">
+				>
+				["at0045"] = <
+					text = <"Not applicable">
+					description = <"">
+				>
+				["at0046"] = <
+					text = <"Recommended">
+					description = <"">
+				>
+				["at0047"] = <
+					text = <"Broad genomic profiling indication">
+					description = <"">
+				>
+				["at0048"] = <
+					text = <"Not applicable">
+					description = <"">
+				>
+				["at0049"] = <
+					text = <"May be considered">
 					description = <"">
 				>
 			>
