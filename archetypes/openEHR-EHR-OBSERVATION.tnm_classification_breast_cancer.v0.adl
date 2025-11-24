@@ -33,7 +33,7 @@ Brierley JD, Gospodarowicz MK, Wittekind C, editors. TNM classification of malig
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"8081aaf0b5fe352b87ec075768589d16">
+		["MD5-CAM-1.0.1"] = <"1af4cad7cfc6f1555a0f4b0a62feba94">
 		["build_uid"] = <"2855a991-2bc8-4d34-9253-9ea3bdb53bbf">
 	>
 
@@ -46,6 +46,16 @@ definition
 						data matches {
 							ITEM_TREE[at0003] matches {    -- Tree
 								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0059] occurrences matches {0..1} matches {    -- Primary tumour evaluable
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0060] occurrences matches {0..1} matches {    -- Primary tumour present
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
 									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Invasive tumour size
 										value matches {
 											C_DV_QUANTITY <
@@ -423,6 +433,14 @@ ontology
 				>
 				["at0058"] = <
 					text = <"Supraclavicular nodes involved">
+					description = <"">
+				>
+				["at0059"] = <
+					text = <"Primary tumour evaluable">
+					description = <"">
+				>
+				["at0060"] = <
+					text = <"Primary tumour present">
 					description = <"">
 				>
 			>
