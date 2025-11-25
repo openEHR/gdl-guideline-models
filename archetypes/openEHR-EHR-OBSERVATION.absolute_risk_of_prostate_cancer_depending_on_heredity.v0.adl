@@ -1,0 +1,169 @@
+archetype (adl_version=1.4; uid=6675a8c6-a16f-4f27-868f-89d69fe6c579)
+	openEHR-EHR-OBSERVATION.absolute_risk_of_prostate_cancer_depending_on_heredity.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-11-18">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the heredity category and the estimated absolute risk of prostate cancer.">
+			keywords = <"prostate, cancer, risk, heredity, family history, oncology", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the specific hereditary category regarding prostate cancer history in the family and the associated absolute risk percentage. Based on the Swedish National Care Program for Prostate Cancer.">
+			misuse = <"Not to be used for patients with a previous diagnosis of prostate cancer. Not intended for use outside the context of the Swedish National Care Program guidelines.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Johns LE, Houlston RS. A systematic review and meta-analysis of familial prostate cancer risk. BJU Int. 2003 Jun;91(9):789-94. doi: 10.1046/j.1464-410x.2003.04232.x. PMID: 12780833.
+
+Bratt O, Drevin L, Akre O, Garmo H, Stattin P. Family History and Probability of Prostate Cancer, Differentiated by Risk Category: A Nationwide Population-Based Study. J Natl Cancer Inst. 2016 Jul 10;108(10):djw110. doi: 10.1093/jnci/djw110. PMID: 27400876.
+
+Nationellt vårdprogram prostatacancer [Internet]. Regionala cancercentrum i samverkan; 2023 [cited 2025 Nov 18]. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/prostatacancer/vardprogram/testning-for-tidig-diagnostik/
+Jansson KF, Akre O, Garmo H, Bill-Axelson A, Adolfsson J, Stattin P, Bratt O. Risk of prostate cancer in men with a history of prostate cancer in the family. JNCI: Journal of the National Cancer Institute. 2012;104(12).">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"e880963d-dbdb-3c6a-97f7-efcdda9ec86f">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Absolute risk of prostate cancer depending on heredity
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Heredity
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- No hereditary load
+													at0008,    -- Father with prostate cancer
+													at0009,    -- Brother with prostate cancer
+													at0010,    -- Father and brother with prostate cancer
+													at0011]    -- Father and two or more brothers with prostate cancer
+												}
+											}
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Age-risk category
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0013,    -- Absolute risk at age 65
+													at0014,    -- Absolute risk at age 75
+													at0015]    -- Absolute risk of high-risk cancer at age 75
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Absolute risk of prostate cancer depending on heredity">
+					description = <"Use to estimate the absolute risk of developing prostate cancer based on age and hereditary factors.">
+					comment = <"Original version, c 2003">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Heredity">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"No hereditary load">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Father with prostate cancer">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Brother with prostate cancer">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Father and brother with prostate cancer">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Father and two or more brothers with prostate cancer">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Age-risk category">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Absolute risk at age 65">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Absolute risk at age 75">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Absolute risk of high-risk cancer at age 75">
+					description = <"">
+				>
+			>
+		>
+	>
