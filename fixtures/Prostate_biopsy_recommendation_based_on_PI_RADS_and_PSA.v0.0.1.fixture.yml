@@ -1,0 +1,92 @@
+guidelines:
+  "1": Prostate_biopsy_recommendation_based_on_PI_RADS_and_PSA.v0.0.1
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. PI-RADS Score missing (negative test).
+    input:
+      "1":
+        gt0004|PSA density: local::at0011|< 0,10|
+    expected_output:
+      "1": {}
+  - id: 03. PSA density missing (negative test).
+    input:
+      "1":
+        gt0003|PI-RADS Score: local::at0007|PI-RADS 1–2|
+    expected_output:
+      "1": {}
+  - id: 04. Refrain from biopsy
+    input:
+      "1":
+        gt0003|PI-RADS Score: local::at0007|PI-RADS 1–2|
+        gt0004|PSA density: local::at0011|< 0,10|
+    expected_output:
+      "1":
+        gt0006|Recommendation for biopsy: local::at0005|Refrain from biopsy|
+  - id: 05. Refrain from biopsy 2
+    input:
+      "1":
+        gt0003|PI-RADS Score: local::at0007|PI-RADS 1–2|
+        gt0004|PSA density: local::at0012|0,10–0,199|
+    expected_output:
+      "1":
+        gt0006|Recommendation for biopsy: local::at0005|Refrain from biopsy|
+  - id: 06. Refrain from biopsy 3
+    input:
+      "1":
+        gt0003|PI-RADS Score: local::at0008|PI-RADS 3|
+        gt0004|PSA density: local::at0011|< 0,10|
+    expected_output:
+      "1":
+        gt0006|Recommendation for biopsy: local::at0005|Refrain from biopsy|
+  - id: 07. Perform targeted biopsy
+    input:
+      "1":
+        gt0003|PI-RADS Score: local::at0008|PI-RADS 3|
+        gt0004|PSA density: local::at0012|0,10–0,199|
+    expected_output:
+      "1":
+        gt0006|Recommendation for biopsy: local::at0006|Perform targeted biopsy|
+  - id: 08. Perform targeted biopsy 2
+    input:
+      "1":
+        gt0003|PI-RADS Score: local::at0009|PI-RADS 4–5|
+        gt0004|PSA density: local::at0012|0,10–0,199|
+    expected_output:
+      "1":
+        gt0006|Recommendation for biopsy: local::at0006|Perform targeted biopsy|
+  - id: 09. Perform targeted biopsy 3
+    input:
+      "1":
+        gt0003|PI-RADS Score: local::at0009|PI-RADS 4–5|
+        gt0004|PSA density: local::at0011|< 0,10|
+    expected_output:
+      "1":
+        gt0006|Recommendation for biopsy: local::at0006|Perform targeted biopsy|
+  - id: 10. Perform targeted biopsy 4
+    input:
+      "1":
+        gt0003|PI-RADS Score: local::at0009|PI-RADS 4–5|
+        gt0004|PSA density: local::at0013|≥ 0,20|
+    expected_output:
+      "1":
+        gt0006|Recommendation for biopsy: local::at0006|Perform targeted biopsy|
+  - id: 11. Perform systematic biopsies
+    input:
+      "1":
+        gt0003|PI-RADS Score: local::at0007|PI-RADS 1–2|
+        gt0004|PSA density: local::at0013|≥ 0,20|
+    expected_output:
+      "1":
+        gt0006|Recommendation for biopsy: local::at0007|Perform systematic biopsies|
+  - id: 12. Perform targeted and systematic biopsies
+    input:
+      "1":
+        gt0003|PI-RADS Score: local::at0008|PI-RADS 3|
+        gt0004|PSA density: local::at0013|≥ 0,20|
+    expected_output:
+      "1":
+        gt0006|Recommendation for biopsy: local::at0008|Perform targeted and systematic biopsies|
