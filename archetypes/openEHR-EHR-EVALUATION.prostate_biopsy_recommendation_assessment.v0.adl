@@ -1,0 +1,117 @@
+archetype (adl_version=1.4; uid=4d036835-78fe-465d-b4db-be9872c5ce8b)
+	openEHR-EHR-EVALUATION.prostate_biopsy_recommendation_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-11-20">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the clinical recommendation regarding the performance of prostate biopsies.">
+			keywords = <"prostate, cancer, biopsy, PI-RADS, PSA, density", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the recommendation based on the matrix of PI-RADS assessment and PSA density values as defined by the Swedish National Care Program.">
+			misuse = <"Not to be used for patients not undergoing prostate cancer investigation under the specific care program context.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Schoots IG, Padhani AR. Risk-adapted biopsy decision based on prostate magnetic resonance imaging and prostate-specific antigen density for enhanced biopsy avoidance in first prostate cancer diagnostic evaluation. BJU Int. 2021 Feb;127(2):175-178. doi: 10.1111/bju.15277. Epub 2020 Nov 13. PMID: 33089586; PMCID: PMC7894174.
+
+Nationellt vårdprogram prostatacancer [Internet]. Regionala cancercentrum i samverkan; 2023 [cited 2025 Nov 20]. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/prostatacancer/vardprogram/klinisk-diagnostik/#chapter-7-6-Prostatabiopsier">
+		["build_uid"] = <"bc6f67d4-aaf3-3a87-a2fc-f63af9f646af">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Prostate biopsy recommendation assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Recommendation for biopsy
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- Refrain from biopsy
+									at0006,    -- Perform targeted biopsy
+									at0007,    -- Perform systematic biopsies
+									at0008]    -- Perform targeted and systematic biopsies
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Prostate biopsy recommendation assessment">
+					description = <"Assessment of the recommendations regarding prostate biopsies based on PI-RADS levels and PSA density.">
+					comment = <"Original version, c 2021">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Recommendation for biopsy">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Refrain from biopsy">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Perform targeted biopsy">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Perform systematic biopsies">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Perform targeted and systematic biopsies">
+					description = <"">
+				>
+			>
+		>
+	>
