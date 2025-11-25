@@ -1,0 +1,140 @@
+archetype (adl_version=1.4; uid=379f0e7f-40c2-41a6-82f3-7d0c60e45675)
+	openEHR-EHR-EVALUATION.tnm_stage_breast_cancer.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-11-25">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the derived breast cancer stage grouping based on the TNM categories according to UICC/AJCC TNM classification.">
+			keywords = <"tnm","tumour","node","metastasis","stage","breast","cancer">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the derived breast cancer stage grouping based on the TNM categories according to UICC/AJCC TNM classification.">
+			misuse = <"Not to be used for recording raw tumour characteristics or assigning T, N, or M categories.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Regionala cancercentrum i samverkan. Nationellt vårdprogram bröstcancer: Kapitel 10 Kategorisering av tumören. Kunskapsbanken, 2025. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/brostcancer/vardprogram/kvalitetsdokument-for-patologi/
+Brierley JD, Gospodarowicz MK, Wittekind C, editors. TNM classification of malignant tumours. 8th ed. Hoboken (NJ): Wiley Blackwell; 2017">
+		["build_uid"] = <"31a80be0-5793-4152-b275-6997130162e1">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- TNM Stage Breast Cancer
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Stage group
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- Stage 0
+									at0006,    -- Stage IA
+									at0007,    -- Stage IB
+									at0008,    -- Stage IIA
+									at0009,    -- Stage IIB
+									at0010,    -- Stage IIIA
+									at0011,    -- Stage IIIB
+									at0012,    -- Stage IIIC
+									at0013]    -- Stage IV
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0002] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0003] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"TNM Stage Breast Cancer">
+					description = <"A structured evaluation that records the final TNM stage grouping for breast cancer based on the classified T, N, and M categories.">
+					comment = <"Original version, c 1950">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0004"] = <
+					text = <"Stage group">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Stage 0">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Stage IA">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Stage IB">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Stage IIA">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Stage IIB">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Stage IIIA">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Stage IIIB">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Stage IIIC">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Stage IV">
+					description = <"">
+				>
+			>
+		>
+	>
