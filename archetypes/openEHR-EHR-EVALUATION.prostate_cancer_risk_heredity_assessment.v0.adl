@@ -1,0 +1,165 @@
+archetype (adl_version=1.4; uid=c47edd3e-fe91-41e9-a983-fd0e98e6aed4)
+	openEHR-EHR-EVALUATION.prostate_cancer_risk_heredity_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-11-18">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To assess the heredity category and the estimated absolute risk of prostate cancer.">
+			keywords = <"prostate, cancer, risk, heredity, family history, oncology", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to assess the specific hereditary category regarding prostate cancer history in the family and the associated absolute risk percentage recorded in the prostate cancer depending on heredity archetype. Based on the Swedish National Care Program for Prostate Cancer.">
+			misuse = <"Not to be used for patients with a previous diagnosis of prostate cancer. Not intended for use outside the context of the Swedish National Care Program guidelines.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Johns LE, Houlston RS. A systematic review and meta-analysis of familial prostate cancer risk. BJU Int. 2003 Jun;91(9):789-94. doi: 10.1046/j.1464-410x.2003.04232.x. PMID: 12780833.
+
+Bratt O, Drevin L, Akre O, Garmo H, Stattin P. Family History and Probability of Prostate Cancer, Differentiated by Risk Category: A Nationwide Population-Based Study. J Natl Cancer Inst. 2016 Jul 10;108(10):djw110. doi: 10.1093/jnci/djw110. PMID: 27400876.
+
+Nationellt vårdprogram prostatacancer [Internet]. Regionala cancercentrum i samverkan; 2023 [cited 2025 Nov 18]. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/prostatacancer/vardprogram/testning-for-tidig-diagnostik/
+Jansson KF, Akre O, Garmo H, Bill-Axelson A, Adolfsson J, Stattin P, Bratt O. Risk of prostate cancer in men with a history of prostate cancer in the family. JNCI: Journal of the National Cancer Institute. 2012;104(12).">
+		["build_uid"] = <"1ace884d-efd4-3cb0-b01d-f3af46914398">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Prostate cancer risk heredity assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Absolute risk
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- 5 %
+									at0006,    -- 7 %
+									at0007,    -- 9 %
+									at0008,    -- 11 %
+									at0009,    -- 13 %
+									at0010,    -- 14 %
+									at0011,    -- 15 %
+									at0012,    -- 21 %
+									at0013,    -- 23 %
+									at0014,    -- 30 %
+									at0015,    -- 44 %
+									at0016,    -- 48 %
+									at0017]    -- 64 %
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Prostate cancer risk heredity assessment">
+					description = <"Use to assess the absolute risk of developing prostate cancer based on age and hereditary factors.">
+					comment = <"Original version, c 2003">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Absolute risk">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"5 %">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"7 %">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"9 %">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"11 %">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"13 %">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"14 %">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"15 %">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"21 %">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"23 %">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"30 %">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"44 %">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"48 %">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"64 %">
+					description = <"">
+				>
+			>
+		>
+	>
