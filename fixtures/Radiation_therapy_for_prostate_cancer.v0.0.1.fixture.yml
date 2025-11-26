@@ -1,0 +1,118 @@
+guidelines:
+  "1": Radiation_therapy_for_prostate_cancer.v0.0.1
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Risk Category missing (negative test).
+    input:
+      "1":
+        gt0004|Regimen type: "local::at0015|External RT: Conventional fractionation|"
+    expected_output:
+      "1": {}
+  - id: 03. Regimen type density missing (negative test).
+    input:
+      "1":
+        gt0003|Risk Category: local::at0007|Low risk|
+    expected_output:
+      "1": {}
+  - id: "04. Primary RT: 2 Gy x 39 fx."
+    input:
+      "1":
+        gt0003|Risk Category: local::at0010|High risk|
+        gt0004|Regimen type: "local::at0015|External RT: Conventional fractionation|"
+    expected_output:
+      "1":
+        gt0006|Recommended dose and fractionation: "local::at0011|Primary RT: 2 Gy x 39 fx|"
+        gt0007|Recommendation status: local::at0009|Recommended + focal boost, if necessary|
+  - id: "05. Postop RT: 2 Gy x 32 fx or 2 Gy x 35 fx."
+    input:
+      "1":
+        gt0003|Risk Category: local::at0013|Postoperative radiation therapy (salvage)|
+        gt0004|Regimen type: "local::at0015|External RT: Conventional fractionation|"
+    expected_output:
+      "1":
+        gt0006|Recommended dose and fractionation: "local::at0012|Postop RT: 2 Gy x 32 fx or 2 Gy x 35 fx|"
+        gt0007|Recommendation status: local::at0006|Recommended|
+  - id: 06. 3 Gy x 20-22 fx|. Consider/Conditional
+    input:
+      "1":
+        gt0003|Risk Category: local::at0007|Low risk|
+        gt0004|Regimen type: "local::at0016|External RT: Moderate hypofractionation|"
+    expected_output:
+      "1":
+        gt0006|Recommended dose and fractionation: local::at0013|3 Gy x 20-22 fx|
+        gt0007|Recommendation status: local::at0008|Consider/Conditional|
+  - id: 07. 6.1 Gy x 7 fx. Consider/Conditional
+    input:
+      "1":
+        gt0003|Risk Category: local::at0007|Low risk|
+        gt0004|Regimen type: "local::at0017|External RT: Ultrahypofractionation|"
+    expected_output:
+      "1":
+        gt0006|Recommended dose and fractionation: local::at0014|6.1 Gy x 7 fx|
+        gt0007|Recommendation status: local::at0008|Consider/Conditional|
+  - id: 08. 6.1 Gy x 7 fx Recommended.
+    input:
+      "1":
+        gt0003|Risk Category: local::at0010|High risk|
+        gt0004|Regimen type: "local::at0017|External RT: Ultrahypofractionation|"
+    expected_output:
+      "1":
+        gt0006|Recommended dose and fractionation: local::at0014|6.1 Gy x 7 fx|
+        gt0007|Recommendation status: local::at0006|Recommended|
+  - id: 09. 3 Gy x 20-22 fx Recommended.
+    input:
+      "1":
+        gt0003|Risk Category: local::at0009|Unfavorable intermediate risk|
+        gt0004|Regimen type: "local::at0016|External RT: Moderate hypofractionation|"
+    expected_output:
+      "1":
+        gt0006|Recommended dose and fractionation: local::at0013|3 Gy x 20-22 fx|
+        gt0007|Recommendation status: local::at0006|Recommended|
+  - id: 10. 14-15 Gy x 1 fx or 10 Gy x 2 fx.
+    input:
+      "1":
+        gt0003|Risk Category: local::at0011|Very high risk / N1|
+        gt0004|Regimen type: "local::at0018|External RT + Brachytherapy Boost: HDR BT (Ir 192)|"
+    expected_output:
+      "1":
+        gt0006|Recommended dose and fractionation: local::at0015|14-15 Gy x 1 fx or 10 Gy x 2 fx|
+        gt0007|Recommendation status: local::at0006|Recommended|
+  - id: 11. 13-14 Gy x 2 fx.
+    input:
+      "1":
+        gt0003|Risk Category: local::at0008|Favorable intermediate risk|
+        gt0004|Regimen type: "local::at0019|Brachytherapy Monotherapy: HDR BT (Ir 192)|"
+    expected_output:
+      "1":
+        gt0006|Recommended dose and fractionation: local::at0016|13-14 Gy x 2 fx|
+        gt0007|Recommendation status: local::at0006|Recommended|
+  - id: 12. Lymph node irradiation recommended.
+    input:
+      "1":
+        gt0003|Risk Category: local::at0011|Very high risk / N1|
+        gt0004|Regimen type: local::at0020|Lymph node irradiation|
+    expected_output:
+      "1":
+        gt0007|Recommendation status: local::at0006|Recommended|
+  - id: 13. 2,75 Gy x 20 or 3 Gy x 19-20.
+    input:
+      "1":
+        gt0003|Risk Category: local::at0012|M1 (Low volume)|
+        gt0004|Regimen type: local::at0021|Moderate hypofractionation M1|
+    expected_output:
+      "1":
+        gt0006|Recommended dose and fractionation: local::at0017|2,75 Gy x 20 . 3 Gy x 19-20|
+        gt0007|Recommendation status: local::at0006|Recommended|
+  - id: 14. 6-6,1 Gy x 6.
+    input:
+      "1":
+        gt0003|Risk Category: local::at0012|M1 (Low volume)|
+        gt0004|Regimen type: local::at0022|Ultrahypofractionation M1|
+    expected_output:
+      "1":
+        gt0006|Recommended dose and fractionation: local::at0018|6-6,1 Gy x 6|
+        gt0007|Recommendation status: local::at0006|Recommended|
