@@ -1,0 +1,285 @@
+archetype (adl_version=1.4; uid=d35f0dcf-e868-46e8-b827-1fee822680f8)
+	openEHR-EHR-OBSERVATION.tnm_liver_hcc.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-11-26">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter required to compute the T, N, and M categories and the final TNM stage for hepatocellular carcinoma of the liver.">
+			keywords = <"tnm","tumour","node","metastasis","liver","hepatocellular","carcinoma","cancer","hcc","staging">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter required to compute the T, N, and M categories and the final TNM stage for hepatocellular carcinoma of the liver.">
+			misuse = <"Not to be used to record the final T, N, or M categories or the TNM stage.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"86290e76-c063-4dca-b1c1-35ce928b9f7f">
+		["references"] = <"Regionala cancercentrum i samverkan. Nationellt vårdprogram levercellscancer: Kapitel 9 Kategorisering av tumören. Kunskapsbanken, 2024. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/levercellscancer/vardprogram/kategorisering-av-tumoren/
+Brierley JD, Gospodarowicz MK, Wittekind C, editors. TNM classification of malignant tumours. 8th ed. Hoboken (NJ): Wiley Blackwell; 2017">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- TNM classification for liver hepatocellular carcinoma
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Primary tumor assessable
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Evidence of primary tumor
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tumor pattern
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0009,    -- Solitary tumour ≤2cm with or without vascular invasion
+													at0010,    -- Solitary tumour >2cm without vascular invasion
+													at0011,    -- Solitary tumour >2cm with vascular invasion
+													at0012,    -- Multiple tumours, none >5cm
+													at0013,    -- Multiple tumours, any >5cm
+													at0014]    -- Tumour(s) with major vein involvement or adjacent organ invasion or peritoneal perforation
+												}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Regional lymph nodes assessable
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Regional lymph node metastasis
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Distant metastasis present
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- T - Primary tumour
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0019,    -- TX
+													at0020,    -- T0
+													at0021,    -- T1a
+													at0022,    -- T1b
+													at0023,    -- T2
+													at0024,    -- T3
+													at0025]    -- T4
+												}
+											}
+										}
+									}
+									ELEMENT[at0026] occurrences matches {0..1} matches {    -- N - Regional lymph nodes
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0027,    -- NX
+													at0028,    -- N0
+													at0029]    -- N1
+												}
+											}
+										}
+									}
+									ELEMENT[at0030] occurrences matches {0..1} matches {    -- M - Distant metastasis
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0031,    -- M0
+													at0032]    -- M1
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"TNM classification for liver hepatocellular carcinoma">
+					description = <"A structured set of clinical and pathological input parameters required to determine the Tumour, Node, Metastasis (TNM) classification for hepatocellular carcinoma of the liver.">
+					comment = <"Original version, c 1970">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Primary tumor assessable">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Evidence of primary tumor">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Tumor pattern">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Solitary tumour ≤2cm with or without vascular invasion">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Solitary tumour >2cm without vascular invasion">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Solitary tumour >2cm with vascular invasion">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Multiple tumours, none >5cm">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Multiple tumours, any >5cm">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Tumour(s) with major vein involvement or adjacent organ invasion or peritoneal perforation">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Regional lymph nodes assessable">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Regional lymph node metastasis">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Distant metastasis present">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"T - Primary tumour">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"TX">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"T0">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"T1a">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"T1b">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"T2">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"T3">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"T4">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"N - Regional lymph nodes">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"NX">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"N0">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"N1">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"M - Distant metastasis">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"M0">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"M1">
+					description = <"">
+				>
+			>
+		>
+	>
