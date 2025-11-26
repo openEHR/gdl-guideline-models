@@ -1,0 +1,205 @@
+archetype (adl_version=1.4; uid=ceb44c90-7d9e-4fea-827c-5932a3ff5098)
+	openEHR-EHR-OBSERVATION.prostate_radiation_therapy_in_relation_to_risk_group.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-11-24">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the recommended type of radiation therapy for primary treatment of prostate cancer.">
+			keywords = <"prostate, cancer, radiation, therapy, radiotherapy, fractionation, risk", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the recommendation for radiation therapy modalities (e.g., Ultrahypofractionation, Brachytherapy, Standard fractionation) based on the patient's risk group (Low, Intermediate, High) and lymph node involvement (N-stage).">
+			misuse = <"Not to be used for recording the actual administration of radiation.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Widmark A, Klepp O, Solberg A, Damber JE, Angelsen A, Fransson P, Lund JA, Tasdemir I, Hoyer M, Wiklund F, Fosså SD; Scandinavian Prostate Cancer Group Study 7; Swedish Association for Urological Oncology 3. Endocrine treatment, with or without radiotherapy, in locally advanced prostate cancer (SPCG-7/SFUO-3): an open randomised phase III trial. Lancet. 2009 Jan 24;373(9660):301-8. doi: 10.1016/S0140-6736(08)61815-2. Epub 2008 Dec 16. Erratum in: Lancet. 2009 Apr 4;373(9670):1174. PMID: 19091394.
+
+Mottet N, Peneau M, Mazeron JJ, Molinie V, Richaud P. Addition of radiotherapy to long-term androgen deprivation in locally advanced prostate cancer: an open randomised phase 3 trial. Eur Urol. 2012 Aug;62(2):213-9. doi: 10.1016/j.eururo.2012.03.053. Epub 2012 Apr 3. PMID: 22502942.
+
+Denham JW, Steigler A, Lamb DS, Joseph D, Turner S, Matthews J, Atkinson C, North J, Christie D, Spry NA, Tai KH, Wynne C, D'Este C. Short-term neoadjuvant androgen deprivation and radiotherapy for locally advanced prostate cancer: 10-year data from the TROG 96.01 randomised trial. Lancet Oncol. 2011 May;12(5):451-9. doi: 10.1016/S1470-2045(11)70063-8. PMID: 21440505.
+
+Nationellt vårdprogram prostatacancer [Internet]. Regionala cancercentrum i samverkan; 2023 [cited 2025 Nov 24]. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/prostatacancer/vardprogram/primar-behandling-av-prostatacancer-utan-spridning/">
+		["build_uid"] = <"199e04e9-5469-3891-8535-deefabfd68de">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Prostate radiation therapy in relation to risk group
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Risk Category
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- Low risk
+													at0008,    -- Favorable intermediate risk
+													at0009,    -- Unfavorable intermediate risk
+													at0010,    -- High risk
+													at0011,    -- Very high risk / N1
+													at0012,    -- M1 (Low volume)
+													at0013]    -- Postoperative radiation therapy (salvage)
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Regimen type
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0015,    -- External RT: Conventional fractionation
+													at0016,    -- External RT: Moderate hypofractionation
+													at0017,    -- External RT: Ultrahypofractionation
+													at0018,    -- External RT + Brachytherapy Boost: HDR BT (Ir 192)
+													at0019,    -- Brachytherapy Monotherapy: HDR BT (Ir 192)
+													at0020,    -- Lymph node irradiation
+													at0021,    -- Moderate hypofractionation M1
+													at0022]    -- Ultrahypofractionation M1
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Prostate radiation therapy in relation to risk group">
+					description = <"Recommendation for the type of radiation therapy for prostate cancer based on risk group and N-stage.">
+					comment = <"Original version, c 2009">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Risk Category">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Low risk">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Favorable intermediate risk">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Unfavorable intermediate risk">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"High risk">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Very high risk / N1">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"M1 (Low volume)">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Postoperative radiation therapy (salvage)">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Regimen type">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"External RT: Conventional fractionation">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"External RT: Moderate hypofractionation">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"External RT: Ultrahypofractionation">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"External RT + Brachytherapy Boost: HDR BT (Ir 192)">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Brachytherapy Monotherapy: HDR BT (Ir 192)">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Lymph node irradiation">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Moderate hypofractionation M1">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Ultrahypofractionation M1">
+					description = <"">
+				>
+			>
+		>
+	>
