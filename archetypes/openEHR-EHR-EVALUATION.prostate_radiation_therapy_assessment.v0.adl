@@ -1,0 +1,174 @@
+archetype (adl_version=1.4; uid=c47a352d-2c1a-4d34-a4ae-62555c8ba3b3)
+	openEHR-EHR-EVALUATION.prostate_radiation_therapy_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-11-24">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the specific recommended radiation therapy regimen(s) and associated dosage schedules.">
+			keywords = <"prostate, cancer, radiation, therapy, radiotherapy, fractionation, risk, assessment", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to output the detailed treatment options applicable to the patient's specific risk group.">
+			misuse = <"Not to be used for recording the actual administration of radiation.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Widmark A, Klepp O, Solberg A, Damber JE, Angelsen A, Fransson P, Lund JA, Tasdemir I, Hoyer M, Wiklund F, Fosså SD; Scandinavian Prostate Cancer Group Study 7; Swedish Association for Urological Oncology 3. Endocrine treatment, with or without radiotherapy, in locally advanced prostate cancer (SPCG-7/SFUO-3): an open randomised phase III trial. Lancet. 2009 Jan 24;373(9660):301-8. doi: 10.1016/S0140-6736(08)61815-2. Epub 2008 Dec 16. Erratum in: Lancet. 2009 Apr 4;373(9670):1174. PMID: 19091394.
+
+Mottet N, Peneau M, Mazeron JJ, Molinie V, Richaud P. Addition of radiotherapy to long-term androgen deprivation in locally advanced prostate cancer: an open randomised phase 3 trial. Eur Urol. 2012 Aug;62(2):213-9. doi: 10.1016/j.eururo.2012.03.053. Epub 2012 Apr 3. PMID: 22502942.
+
+Denham JW, Steigler A, Lamb DS, Joseph D, Turner S, Matthews J, Atkinson C, North J, Christie D, Spry NA, Tai KH, Wynne C, D'Este C. Short-term neoadjuvant androgen deprivation and radiotherapy for locally advanced prostate cancer: 10-year data from the TROG 96.01 randomised trial. Lancet Oncol. 2011 May;12(5):451-9. doi: 10.1016/S1470-2045(11)70063-8. PMID: 21440505.
+
+Nationellt vårdprogram prostatacancer [Internet]. Regionala cancercentrum i samverkan; 2023 [cited 2025 Nov 24]. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/prostatacancer/vardprogram/primar-behandling-av-prostatacancer-utan-spridning/">
+		["build_uid"] = <"a02c6d93-5ce6-38ad-a9c7-e135ec086a49">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Prostate radiation therapy assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0010] occurrences matches {0..1} matches {    -- Recommended dose and fractionation
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0011,    -- Primary RT: 2 Gy x 39 fx
+									at0012,    -- Postop RT: 2 Gy x 32 fx or 2 Gy x 35 fx
+									at0013,    -- 3 Gy x 20-22 fx
+									at0014,    -- 6.1 Gy x 7 fx
+									at0015,    -- 14-15 Gy x 1 fx or 10 Gy x 2 fx
+									at0016,    -- 13-14 Gy x 2 fx
+									at0017,    -- 2,75 Gy x 20 . 3 Gy x 19-20
+									at0018]    -- 6-6,1 Gy x 6
+								}
+							}
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {    -- Recommendation status
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0006,    -- Recommended
+									at0007,    -- Not recommended
+									at0008,    -- Consider/Conditional
+									at0009]    -- Recommended + focal boost, if necessary
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Prostate radiation therapy assessment">
+					description = <"Recommended radiation therapy regimens, including dose and fractionation, based on risk group and disease extent.">
+					comment = <"Original version, c 2009">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Recommendation status">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Recommended">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Not recommended">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Consider/Conditional">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Recommended + focal boost, if necessary">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Recommended dose and fractionation">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Primary RT: 2 Gy x 39 fx">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Postop RT: 2 Gy x 32 fx or 2 Gy x 35 fx">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"3 Gy x 20-22 fx">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"6.1 Gy x 7 fx">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"14-15 Gy x 1 fx or 10 Gy x 2 fx">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"13-14 Gy x 2 fx">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"2,75 Gy x 20 . 3 Gy x 19-20">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"6-6,1 Gy x 6">
+					description = <"">
+				>
+			>
+		>
+	>
