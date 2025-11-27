@@ -1,0 +1,160 @@
+archetype (adl_version=1.4; uid=76c72e27-badd-4ede-93f1-a65c30f6138f)
+	openEHR-EHR-OBSERVATION.gupta_perioperative_risk.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-11-06">
+		["name"] = <"Mahmoud Elachi">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"mel.achi@gmail.com">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the clinical inputs needed to calculate the 30-day risk of myocardial infarction or cardiac arrest following surgery using the Gupta MICA logistic regression model.">
+			keywords = <"perioperative risk","cardiac arrest","myocardial infarction","surgery","risk score","gupta">
+			copyright = <"Use © Cambio CDS">
+			use = <"Used in clinical decision support systems to assess perioperative cardiac risk based on patient age, ASA class, functional status, serum creatinine, and type of surgery. Intended to support shared decision-making and surgical planning.">
+			misuse = <"Should not be used to replace comprehensive cardiovascular risk assessment or predict long-term cardiac outcomes. Not applicable to patients undergoing cardiac surgery.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Gupta PK, Gupta H, Sundaram A, et al. Development and validation of a risk calculator for prediction of cardiac risk after surgery. Circulation. 2011;124(4):381-7.
+Fleisher LA, Fleischmann KE, Auerbach AD, et al. 2014 ACC/AHA guideline on perioperative cardiovascular evaluation and management of patients undergoing noncardiac surgery: a report of the American College of Cardiology/American Heart Association Task Force on practice guidelines. J Am Coll Cardiol. 2014;64(22):e77-137.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"bd8169d6474e22d7035eb906e67c83ac">
+		["build_uid"] = <"bec363c2-0cde-36be-b4e9-29ac69156916">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- gupta_perioperative risk
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0050] occurrences matches {0..1} matches {    -- Functional status
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0044] occurrences matches {0..1} matches {    -- ASA class
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Creatinine
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {    -- Type of procedure
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0042] occurrences matches {0..1} matches {    -- MICA risk (%)
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0051] occurrences matches {0..1} matches {    -- Constant
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0043] occurrences matches {0..1} matches {    -- Comment
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					CLUSTER[at0005] occurrences matches {0..1} matches {*}    -- Extension
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"gupta_perioperative risk">
+					description = <"This is holding units for The Gupta Perioperative Risk Calculator estimates the 30-day risk of myocardial infarction or cardiac arrest following surgery, based on NSQIP data.">
+					comment = <"Original version, c 2011">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0016"] = <
+					text = <"Creatinine">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Type of procedure">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"MICA risk (%)">
+					description = <"">
+				>
+				["at0043"] = <
+					text = <"Comment">
+					description = <"">
+				>
+				["at0044"] = <
+					text = <"ASA class">
+					description = <"">
+				>
+				["at0050"] = <
+					text = <"Functional status">
+					description = <"">
+				>
+				["at0051"] = <
+					text = <"Constant">
+					description = <"">
+				>
+			>
+		>
+	>
