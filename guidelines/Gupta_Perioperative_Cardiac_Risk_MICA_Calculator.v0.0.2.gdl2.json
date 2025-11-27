@@ -1,0 +1,752 @@
+{
+  "id" : "Gupta_Perioperative_Cardiac_Risk_MICA_Calculator.v0.0.2",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Mahmoud Elachi",
+      "email" : "mel.achi@gmail.com",
+      "organisation" : "Cambio"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To estimate the patient-specific probability of experiencing a myocardial infarction or cardiac arrest within 30 days following surgery, based on clinical risk factors. ",
+        "use" : "Use to record the required inputs and calculate the predicted cardiac risk for adult patients undergoing non-cardiac surgery. Helps identify low (&lt;1%) vs. elevated (≥1%) risk and guide further evaluation or optimization.",
+        "misuse" : "Not for use in cardiac surgery, long-term cardiac risk prediction, or as a replacement for full clinical evaluation. Not validated in pediatric or emergency settings.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Fuhrman SA, Lasky LC, Limas C. Prognostic significance of morphologic parameters in renal cell carcinoma. Am J Surg Pathol. 1982 Oct;6(7):655-63. doi: 10.1097/00000478-198210000-00007. PMID: 7180965.\nFicarra V, Martignoni G, Maffei N, Brunelli M, Novara G, Zanolla L, Pea M, Artibani W. Original and reviewed nuclear grading according to the Fuhrman system: a multivariate analysis of 388 patients with conventional renal cell carcinoma. Cancer. 2005 Jan 1;103(1):68-75. doi: 10.1002/cncr.20749. PMID: 15573369.",
+      "en" : "This guideline calculates the 30-day risk of myocardial infarction or cardiac arrest (MICA) following non-cardiac surgery using the logistic regression model developed by Gupta et al. It supports perioperative clinical decision-making based on five inputs: age, functional status, ASA class, serum creatinine, and type of surgery."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0009" : {
+        "id" : "gt0009",
+        "model_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0010" : {
+            "id" : "gt0010",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "a"
+            ]
+          }
+        }
+      },
+      "gt0032" : {
+        "id" : "gt0032",
+        "model_id" : "openEHR-EHR-EVALUATION.gupta_postoperative_pneumonia_risk.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.gupta_postoperative_pneumonia_risk.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0035" : {
+            "id" : "gt0035",
+            "path" : "/data[at0001]/items[at0002]/items[at0022]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0023",
+              "local::at0024",
+              "local::at0025",
+              "local::at0026",
+              "local::at0027",
+              "local::at0028",
+              "local::at0029",
+              "local::at0030",
+              "local::at0031",
+              "local::at0032",
+              "local::at0033",
+              "local::at0034",
+              "local::at0035",
+              "local::at0036",
+              "local::at0037",
+              "local::at0038",
+              "local::at0039",
+              "local::at0040",
+              "local::at0041",
+              "local::at0042",
+              "local::at0043"
+            ]
+          }
+        }
+      },
+      "gt0093" : {
+        "id" : "gt0093",
+        "model_id" : "openEHR-EHR-OBSERVATION.gupta_perioperative_risk.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.gupta_perioperative_risk.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0094" : {
+            "id" : "gt0094",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0042]",
+            "data_type" : "DV_QUANTITY"
+          },
+          "gt0095" : {
+            "id" : "gt0095",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0050]",
+            "data_type" : "DV_QUANTITY"
+          }
+        }
+      },
+      "gt0096" : {
+        "id" : "gt0096",
+        "model_id" : "openEHR-EHR-OBSERVATION.gupta_perioperative_risk.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.gupta_perioperative_risk.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0097" : {
+            "id" : "gt0097",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0007",
+              "local::at0008",
+              "local::at0009"
+            ]
+          },
+          "gt0100" : {
+            "id" : "gt0100",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0044]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "1|local::at0045",
+              "2|local::at0046",
+              "3|local::at0047",
+              "4|local::at0048",
+              "5|local::at0049"
+            ]
+          },
+          "gt0098" : {
+            "id" : "gt0098",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0016]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0017",
+              "local::at0018",
+              "local::at0019"
+            ]
+          },
+          "gt0099" : {
+            "id" : "gt0099",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0020]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0021",
+              "local::at0022",
+              "local::at0023",
+              "local::at0024",
+              "local::at0025",
+              "local::at0026",
+              "local::at0027",
+              "local::at0028",
+              "local::at0029",
+              "local::at0030",
+              "local::at0031",
+              "local::at0032",
+              "local::at0033",
+              "local::at0034",
+              "local::at0035",
+              "local::at0036",
+              "local::at0037",
+              "local::at0038",
+              "local::at0039",
+              "local::at0040",
+              "local::at0041"
+            ]
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0046" : {
+        "id" : "gt0046",
+        "priority" : 34,
+        "when" : [
+          "$gt0097|Functional status|==local::at0009|Totally dependent|"
+        ],
+        "then" : [
+          "$gt0078|Functional status score|=1.03"
+        ]
+      },
+      "gt0045" : {
+        "id" : "gt0045",
+        "priority" : 33,
+        "when" : [
+          "$gt0097|Functional status|==local::at0008|Partially dependent|"
+        ],
+        "then" : [
+          "$gt0078|Functional status score|=0.65"
+        ]
+      },
+      "gt0040" : {
+        "id" : "gt0040",
+        "priority" : 32,
+        "when" : [
+          "$gt0097|Functional status|==local::at0007|Independent|"
+        ],
+        "then" : [
+          "$gt0078|Functional status score|=0"
+        ]
+      },
+      "gt0049" : {
+        "id" : "gt0049",
+        "priority" : 31,
+        "when" : [
+          "$gt0100|ASA class|==1|local::at0045|Normal healthy patient|"
+        ],
+        "then" : [
+          "$gt0079|ASA class score|=0-5.17"
+        ]
+      },
+      "gt0050" : {
+        "id" : "gt0050",
+        "priority" : 30,
+        "when" : [
+          "$gt0100|ASA class|==2|local::at0046|Mild systemic disease|"
+        ],
+        "then" : [
+          "$gt0079|ASA class score|=0-3.29"
+        ]
+      },
+      "gt0051" : {
+        "id" : "gt0051",
+        "priority" : 29,
+        "when" : [
+          "$gt0100|ASA class|==3|local::at0047|Sever systemic disease|"
+        ],
+        "then" : [
+          "$gt0079|ASA class score|=0-1.92"
+        ]
+      },
+      "gt0052" : {
+        "id" : "gt0052",
+        "priority" : 28,
+        "when" : [
+          "$gt0100|ASA class|==4|local::at0048|Sever systemic disease that is constant threat to life (i.e., patient could die acutely without intervention)|"
+        ],
+        "then" : [
+          "$gt0079|ASA class score|=0-0.95"
+        ]
+      },
+      "gt0053" : {
+        "id" : "gt0053",
+        "priority" : 27,
+        "when" : [
+          "$gt0100|ASA class|==5|local::at0049|Moribund, not expected to survive without surgery|"
+        ],
+        "then" : [
+          "$gt0079|ASA class score|=0"
+        ]
+      },
+      "gt0054" : {
+        "id" : "gt0054",
+        "priority" : 26,
+        "when" : [
+          "$gt0098|Creatinine|==local::at0017|Normal (≤1.5 mg/dL, 133 µmol/L)|"
+        ],
+        "then" : [
+          "$gt0080|Creatinine score|=0"
+        ]
+      },
+      "gt0055" : {
+        "id" : "gt0055",
+        "priority" : 25,
+        "when" : [
+          "$gt0098|Creatinine|==local::at0018|Elevated (>1.5 mg/dL, 133 µmol/L)|"
+        ],
+        "then" : [
+          "$gt0080|Creatinine score|=0.61"
+        ]
+      },
+      "gt0056" : {
+        "id" : "gt0056",
+        "priority" : 24,
+        "when" : [
+          "$gt0098|Creatinine|==local::at0019|Unknown|"
+        ],
+        "then" : [
+          "$gt0080|Creatinine score|=0-0.1"
+        ]
+      },
+      "gt0057" : {
+        "id" : "gt0057",
+        "priority" : 23,
+        "when" : [
+          "$gt0035|Type of procedure|==local::at0023|Anorectal|"
+        ],
+        "then" : [
+          "$gt0081|Type of procedure|=0-0.16"
+        ]
+      },
+      "gt0058" : {
+        "id" : "gt0058",
+        "priority" : 22,
+        "when" : [
+          "$gt0035|Type of procedure|==local::at0024|Aortic|"
+        ],
+        "then" : [
+          "$gt0081|Type of procedure|=1.6"
+        ]
+      },
+      "gt0059" : {
+        "id" : "gt0059",
+        "priority" : 21,
+        "when" : [
+          "$gt0035|Type of procedure|==local::at0025|Bariatric|"
+        ],
+        "then" : [
+          "$gt0081|Type of procedure|=0-0.25"
+        ]
+      },
+      "gt0060" : {
+        "id" : "gt0060",
+        "priority" : 20,
+        "when" : [
+          "$gt0035|Type of procedure|==local::at0026|Brain|"
+        ],
+        "then" : [
+          "$gt0081|Type of procedure|=1.4"
+        ]
+      },
+      "gt0061" : {
+        "id" : "gt0061",
+        "priority" : 19,
+        "when" : [
+          "$gt0035|Type of procedure|==local::at0027|Breast|"
+        ],
+        "then" : [
+          "$gt0081|Type of procedure|=0-1.61"
+        ]
+      },
+      "gt0062" : {
+        "id" : "gt0062",
+        "priority" : 18,
+        "when" : [
+          "$gt0035|Type of procedure|==local::at0028|Cardiac|"
+        ],
+        "then" : [
+          "$gt0081|Type of procedure|=1.01"
+        ]
+      },
+      "gt0063" : {
+        "id" : "gt0063",
+        "priority" : 17,
+        "when" : [
+          "$gt0035|Type of procedure|==local::at0029|ENT (except thyroid/parathyroid)|"
+        ],
+        "then" : [
+          "$gt0081|Type of procedure|=0.71"
+        ]
+      },
+      "gt0064" : {
+        "id" : "gt0064",
+        "priority" : 16,
+        "when" : [
+          "$gt0035|Type of procedure|==local::at0030|Foregut or hepatopancreatobiliary|"
+        ],
+        "then" : [
+          "$gt0081|Type of procedure|=1.39"
+        ]
+      },
+      "gt0065" : {
+        "id" : "gt0065",
+        "priority" : 15,
+        "when" : [
+          "$gt0035|Type of procedure|==local::at0031|Gallbladder, appendix, adrenals, or spleen|"
+        ],
+        "then" : [
+          "$gt0081|Type of procedure|=0.59"
+        ]
+      },
+      "gt0066" : {
+        "id" : "gt0066",
+        "priority" : 14,
+        "when" : [
+          "$gt0035|Type of procedure|==local::at0032|Hernia (ventral, inguinal, femoral)|"
+        ],
+        "then" : [
+          "$gt0081|Type of procedure|=0"
+        ]
+      },
+      "gt0067" : {
+        "id" : "gt0067",
+        "priority" : 13,
+        "when" : [
+          "$gt0035|Type of procedure|==local::at0033|Intestinal|"
+        ],
+        "then" : [
+          "$gt0081|Type of procedure|=1.14"
+        ]
+      },
+      "gt0068" : {
+        "id" : "gt0068",
+        "priority" : 12,
+        "when" : [
+          "$gt0035|Type of procedure|==local::at0034|Neck|"
+        ],
+        "then" : [
+          "$gt0081|Type of procedure|=0.18"
+        ]
+      },
+      "gt0069" : {
+        "id" : "gt0069",
+        "priority" : 11,
+        "when" : [
+          "$gt0035|Type of procedure|==local::at0035|Obstetric/gynecologic|"
+        ],
+        "then" : [
+          "$gt0081|Type of procedure|=0.76"
+        ]
+      },
+      "gt0070" : {
+        "id" : "gt0070",
+        "priority" : 10,
+        "when" : [
+          "$gt0035|Type of procedure|==local::at0036|Orthopedic|"
+        ],
+        "then" : [
+          "$gt0081|Type of procedure|=0.8"
+        ]
+      },
+      "gt0071" : {
+        "id" : "gt0071",
+        "priority" : 9,
+        "when" : [
+          "$gt0035|Type of procedure|==local::at0037|Other abdomen|"
+        ],
+        "then" : [
+          "$gt0081|Type of procedure|=1.13"
+        ]
+      },
+      "gt0072" : {
+        "id" : "gt0072",
+        "priority" : 8,
+        "when" : [
+          "$gt0035|Type of procedure|==local::at0038|Peripheral vascular|"
+        ],
+        "then" : [
+          "$gt0081|Type of procedure|=0.86"
+        ]
+      },
+      "gt0073" : {
+        "id" : "gt0073",
+        "priority" : 7,
+        "when" : [
+          "$gt0035|Type of procedure|==local::at0039|Skin|"
+        ],
+        "then" : [
+          "$gt0081|Type of procedure|=0.54"
+        ]
+      },
+      "gt0074" : {
+        "id" : "gt0074",
+        "priority" : 6,
+        "when" : [
+          "$gt0035|Type of procedure|==local::at0040|Spine|"
+        ],
+        "then" : [
+          "$gt0081|Type of procedure|=0.21"
+        ]
+      },
+      "gt0075" : {
+        "id" : "gt0075",
+        "priority" : 5,
+        "when" : [
+          "$gt0035|Type of procedure|==local::at0041|Non-esophageal thoracic|"
+        ],
+        "then" : [
+          "$gt0081|Type of procedure|=0.4"
+        ]
+      },
+      "gt0076" : {
+        "id" : "gt0076",
+        "priority" : 4,
+        "when" : [
+          "$gt0035|Type of procedure|==local::at0042|Vein|"
+        ],
+        "then" : [
+          "$gt0081|Type of procedure|=0-1.09"
+        ]
+      },
+      "gt0077" : {
+        "id" : "gt0077",
+        "priority" : 3,
+        "when" : [
+          "$gt0035|Type of procedure|==local::at0043|Urology|"
+        ],
+        "then" : [
+          "$gt0081|Type of procedure|=0-0.26"
+        ]
+      },
+      "gt0082" : {
+        "id" : "gt0082",
+        "priority" : 2,
+        "when" : [
+          "$gt0010|Age|!=null",
+          "$gt0078|Functional status score|!=null",
+          "$gt0079|ASA class score|!=null",
+          "$gt0080|Creatinine score|!=null",
+          "$gt0081|Type of procedure|!=null"
+        ],
+        "then" : [
+          "$gt0095|x|.magnitude=(0-5.25)+(($gt0010|Age|.magnitude*0.02)+$gt0078|Functional status score|+$gt0079|ASA class score|+$gt0080|Creatinine score|+$gt0081|Type of procedure|)",
+          "$gt0095|x|.precision=4"
+        ]
+      },
+      "gt0083" : {
+        "id" : "gt0083",
+        "priority" : 1,
+        "when" : [
+          "$gt0095|x|.magnitude!=null"
+        ],
+        "then" : [
+          "$gt0094|The risk (%)|.magnitude=(exp($gt0095|x|.magnitude)/(1+exp($gt0095|x|.magnitude)))*100",
+          "$gt0094|The risk (%)|.unit='%'",
+          "$gt0094|The risk (%)|.precision=1"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Gupta Perioperative Cardiac Risk (MICA) Calculator",
+            "description" : "This guideline calculates the 30-day risk of myocardial infarction or cardiac arrest (MICA) following non-cardiac surgery using the logistic regression model developed by Gupta et al. It supports perioperative clinical decision-making based on five inputs: age, functional status, ASA class, serum creatinine, and type of surgery."
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "openEHR-EHR-OBSERVATION.basic_demographic.v1"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Age"
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "text" : "openEHR-EHR-EVALUATION.gupta_postoperative_pneumonia_risk.v0"
+          },
+          "gt0035" : {
+            "id" : "gt0035",
+            "text" : "Type of procedure"
+          },
+          "gt0040" : {
+            "id" : "gt0040",
+            "text" : "Set Local variable: Functional status score for Independent",
+            "description" : ""
+          },
+          "gt0045" : {
+            "id" : "gt0045",
+            "text" : "Set Local variable: Functional status score for Partially dependent",
+            "description" : ""
+          },
+          "gt0046" : {
+            "id" : "gt0046",
+            "text" : "Set Local variable: Functional status score for Totally dependent",
+            "description" : ""
+          },
+          "gt0049" : {
+            "id" : "gt0049",
+            "text" : "ASA class score 1",
+            "description" : ""
+          },
+          "gt0050" : {
+            "id" : "gt0050",
+            "text" : "ASA class score 2",
+            "description" : ""
+          },
+          "gt0051" : {
+            "id" : "gt0051",
+            "text" : "ASA class score 3",
+            "description" : ""
+          },
+          "gt0052" : {
+            "id" : "gt0052",
+            "text" : "ASA class score 4",
+            "description" : ""
+          },
+          "gt0053" : {
+            "id" : "gt0053",
+            "text" : "ASA class score 5",
+            "description" : ""
+          },
+          "gt0054" : {
+            "id" : "gt0054",
+            "text" : "Creatinine score Normal",
+            "description" : ""
+          },
+          "gt0055" : {
+            "id" : "gt0055",
+            "text" : "Creatinine score Elevated",
+            "description" : ""
+          },
+          "gt0056" : {
+            "id" : "gt0056",
+            "text" : "Creatinine score Unknown",
+            "description" : ""
+          },
+          "gt0057" : {
+            "id" : "gt0057",
+            "text" : "TOP Anorectal score",
+            "description" : ""
+          },
+          "gt0058" : {
+            "id" : "gt0058",
+            "text" : "TOP Aortic score",
+            "description" : ""
+          },
+          "gt0059" : {
+            "id" : "gt0059",
+            "text" : "TOP Bariatric score",
+            "description" : ""
+          },
+          "gt0060" : {
+            "id" : "gt0060",
+            "text" : "TOP Brain score",
+            "description" : ""
+          },
+          "gt0061" : {
+            "id" : "gt0061",
+            "text" : "TOP Breast score",
+            "description" : ""
+          },
+          "gt0062" : {
+            "id" : "gt0062",
+            "text" : "TOP Cardiac score",
+            "description" : ""
+          },
+          "gt0063" : {
+            "id" : "gt0063",
+            "text" : "TOP ENT (except thyroid/parathyroid) score",
+            "description" : ""
+          },
+          "gt0064" : {
+            "id" : "gt0064",
+            "text" : "TOP Foregut or hepatopancreatobiliary score",
+            "description" : ""
+          },
+          "gt0065" : {
+            "id" : "gt0065",
+            "text" : "TOP Gallbladder, appendix, adrenals, or spleen score",
+            "description" : ""
+          },
+          "gt0066" : {
+            "id" : "gt0066",
+            "text" : "TOP Hernia (ventral, inguinal, femoral) score",
+            "description" : ""
+          },
+          "gt0067" : {
+            "id" : "gt0067",
+            "text" : "TOP Intestinal score",
+            "description" : ""
+          },
+          "gt0068" : {
+            "id" : "gt0068",
+            "text" : "TOP Neck (thyroid/parathyroid) score",
+            "description" : ""
+          },
+          "gt0069" : {
+            "id" : "gt0069",
+            "text" : "TOP Obstetric/gynecologic score",
+            "description" : ""
+          },
+          "gt0070" : {
+            "id" : "gt0070",
+            "text" : "TOP Orthopedic and non-vascular extremity score",
+            "description" : ""
+          },
+          "gt0071" : {
+            "id" : "gt0071",
+            "text" : "TOP Other abdominal score",
+            "description" : ""
+          },
+          "gt0072" : {
+            "id" : "gt0072",
+            "text" : "TOP Peripheral vascular** score",
+            "description" : ""
+          },
+          "gt0073" : {
+            "id" : "gt0073",
+            "text" : "TOP Skin score",
+            "description" : ""
+          },
+          "gt0074" : {
+            "id" : "gt0074",
+            "text" : "TOP Spine score",
+            "description" : ""
+          },
+          "gt0075" : {
+            "id" : "gt0075",
+            "text" : "TOP Non-esophageal thoracic score",
+            "description" : ""
+          },
+          "gt0076" : {
+            "id" : "gt0076",
+            "text" : "TOP Vein score",
+            "description" : ""
+          },
+          "gt0077" : {
+            "id" : "gt0077",
+            "text" : "TOP Urology score",
+            "description" : ""
+          },
+          "gt0082" : {
+            "id" : "gt0082",
+            "text" : "Calculating x",
+            "description" : ""
+          },
+          "gt0083" : {
+            "id" : "gt0083",
+            "text" : "Risk calculation",
+            "description" : "$gt0038|Risk of postoperative pneumonia|.magnitude = exp ( $gt0092|x|.magnitude ) / ( 1 + exp ( $gt0092|x|.magnitude ) )"
+          },
+          "gt0093" : {
+            "id" : "gt0093",
+            "text" : "openEHR-EHR-OBSERVATION.gupta_perioperative_risk.v0"
+          },
+          "gt0094" : {
+            "id" : "gt0094",
+            "text" : "The risk (%)"
+          },
+          "gt0095" : {
+            "id" : "gt0095",
+            "text" : "x"
+          },
+          "gt0096" : {
+            "id" : "gt0096",
+            "text" : "openEHR-EHR-OBSERVATION.gupta_perioperative_risk.v0"
+          },
+          "gt0097" : {
+            "id" : "gt0097",
+            "text" : "Functional status"
+          },
+          "gt0098" : {
+            "id" : "gt0098",
+            "text" : "Creatinine"
+          },
+          "gt0099" : {
+            "id" : "gt0099",
+            "text" : "Type of procedure"
+          },
+          "gt0100" : {
+            "id" : "gt0100",
+            "text" : "ASA class"
+          }
+        }
+      }
+    }
+  }
+}
