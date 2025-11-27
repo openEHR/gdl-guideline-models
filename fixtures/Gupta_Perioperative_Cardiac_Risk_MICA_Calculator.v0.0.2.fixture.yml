@@ -1,0 +1,228 @@
+guidelines:
+  "1": Gupta_Perioperative_Cardiac_Risk_MICA_Calculator.v0.0.2
+test_cases:
+  - id: missing ASA
+    input:
+      "1":
+        gt0010|Age: 33,a
+        gt0033|Functional status: local::at0007|Independent|
+        gt0035|Type of procedure: local::at0023|Anorectal|
+        gt0044|Creatinine: local::at0017|Normal (≤1.5 mg/dL, 133 µmol/L)|
+    expected_output:
+      "1": {}
+  - id: missing age
+    input:
+      "1":
+        gt0033|Functional status: local::at0007|Independent|
+        gt0034|ASA class: "local::at0011|1: normal healthy patient|"
+        gt0035|Type of procedure: local::at0023|Anorectal|
+        gt0044|Creatinine: local::at0017|Normal (≤1.5 mg/dL, 133 µmol/L)|
+    expected_output:
+      "1": {}
+  - id: FS totally dependent
+    input:
+      "1":
+        gt0010|Age: 33,a
+        gt0033|Functional status: local::at0009|Totally dependent|
+        gt0034|ASA class: "local::at0011|1: normal healthy patient|"
+        gt0035|Type of procedure: local::at0023|Anorectal|
+        gt0044|Creatinine: local::at0017|Normal (≤1.5 mg/dL, 133 µmol/L)|
+    expected_output:
+      "1":
+        gt0038|Risk of postoperative pneumonia: 0.0,%
+        gt0092|x: "-8.8900"
+  - id: FS Partially dependent
+    input:
+      "1":
+        gt0010|Age: 33,a
+        gt0033|Functional status: local::at0008|Partially dependent|
+        gt0034|ASA class: "local::at0011|1: normal healthy patient|"
+        gt0035|Type of procedure: local::at0023|Anorectal|
+        gt0044|Creatinine: local::at0017|Normal (≤1.5 mg/dL, 133 µmol/L)|
+    expected_output:
+      "1":
+        gt0038|Risk of postoperative pneumonia: 0.0,%
+        gt0092|x: "-9.2700"
+  - id: ASA class score 2 (FE Partially dependent)
+    input:
+      "1":
+        gt0010|Age: 33,a
+        gt0033|Functional status: local::at0008|Partially dependent|
+        gt0034|ASA class: "local::at0012|2: mild systemic disease|"
+        gt0035|Type of procedure: local::at0023|Anorectal|
+        gt0044|Creatinine: local::at0017|Normal (≤1.5 mg/dL, 133 µmol/L)|
+    expected_output:
+      "1":
+        gt0038|Risk of postoperative pneumonia: 0.1,%
+        gt0092|x: "-7.3900"
+  - id: "ASA class score 2 (FE     gt0033|Functional status: local::at0009|Totally
+      dependent| dependent)"
+    input:
+      "1":
+        gt0010|Age: 33,a
+        gt0033|Functional status: local::at0009|Totally dependent|
+        gt0034|ASA class: "local::at0012|2: mild systemic disease|"
+        gt0035|Type of procedure: local::at0023|Anorectal|
+        gt0044|Creatinine: local::at0017|Normal (≤1.5 mg/dL, 133 µmol/L)|
+    expected_output:
+      "1":
+        gt0038|Risk of postoperative pneumonia: 0.1,%
+        gt0092|x: "-7.0100"
+  - id: ASA class score 3 (FE Totally dependent)
+    input:
+      "1":
+        gt0010|Age: 33,a
+        gt0033|Functional status: local::at0009|Totally dependent|
+        gt0034|ASA class: "local::at0013|3: severe systemic disease|"
+        gt0035|Type of procedure: local::at0023|Anorectal|
+        gt0044|Creatinine: local::at0017|Normal (≤1.5 mg/dL, 133 µmol/L)|
+    expected_output:
+      "1":
+        gt0038|Risk of postoperative pneumonia: 0.4,%
+        gt0092|x: "-5.6400"
+  - id: ASA class score 3 (FE Totally dependent, Creatinine Elevated)
+    input:
+      "1":
+        gt0010|Age: 33,a
+        gt0033|Functional status: local::at0009|Totally dependent|
+        gt0034|ASA class: "local::at0013|3: severe systemic disease|"
+        gt0035|Type of procedure: local::at0023|Anorectal|
+        gt0044|Creatinine: local::at0018|Elevated (>1.5 mg/dL, 133 µmol/L)|
+    expected_output:
+      "1":
+        gt0038|Risk of postoperative pneumonia: 0.6,%
+        gt0092|x: "-5.0300"
+  - id: ASA class score 4 (FE Totally dependent, Creatinine Elevated)
+    input:
+      "1":
+        gt0010|Age: 33,a
+        gt0033|Functional status: local::at0009|Totally dependent|
+        gt0034|ASA class: "local::at0014|4: severe systemic disease that is a constant
+          threat to life|"
+        gt0035|Type of procedure: local::at0023|Anorectal|
+        gt0044|Creatinine: local::at0018|Elevated (>1.5 mg/dL, 133 µmol/L)|
+    expected_output:
+      "1":
+        gt0038|Risk of postoperative pneumonia: 1.7,%
+        gt0092|x: "-4.0600"
+  - id: ASA class score 4 (FE Totally dependent, Creatinine Unknown)
+    input:
+      "1":
+        gt0010|Age: 33,a
+        gt0033|Functional status: local::at0009|Totally dependent|
+        gt0034|ASA class: "local::at0014|4: severe systemic disease that is a constant
+          threat to life|"
+        gt0035|Type of procedure: local::at0023|Anorectal|
+        gt0044|Creatinine: local::at0019|Unknown|
+    expected_output:
+      "1":
+        gt0038|Risk of postoperative pneumonia: 0.8,%
+        gt0092|x: "-4.7700"
+  - id: ASA class score 5 (FE Totally dependent, Creatinine Unknown)
+    input:
+      "1":
+        gt0010|Age: 33,a
+        gt0033|Functional status: local::at0009|Totally dependent|
+        gt0034|ASA class: "local::at0015|5: moribund, not expected to survive without surgery|"
+        gt0035|Type of procedure: local::at0023|Anorectal|
+        gt0044|Creatinine: local::at0019|Unknown|
+    expected_output:
+      "1":
+        gt0038|Risk of postoperative pneumonia: 2.1,%
+        gt0092|x: "-3.8200"
+  - id: ASA class score 5 (FE Independent, Creatinine Unknown)
+    input:
+      "1":
+        gt0010|Age: 33,a
+        gt0033|Functional status: local::at0007|Independent|
+        gt0034|ASA class: "local::at0015|5: moribund, not expected to survive without surgery|"
+        gt0035|Type of procedure: local::at0023|Anorectal|
+        gt0044|Creatinine: local::at0019|Unknown|
+    expected_output:
+      "1":
+        gt0038|Risk of postoperative pneumonia: 0.8,%
+        gt0092|x: "-4.8500"
+  - id: ASA class score 5 (FE Independent, Creatinine Elevated)
+    input:
+      "1":
+        gt0010|Age: 33,a
+        gt0033|Functional status: local::at0007|Independent|
+        gt0034|ASA class: "local::at0015|5: moribund, not expected to survive without surgery|"
+        gt0035|Type of procedure: local::at0023|Anorectal|
+        gt0044|Creatinine: local::at0018|Elevated (>1.5 mg/dL, 133 µmol/L)|
+    expected_output:
+      "1":
+        gt0038|Risk of postoperative pneumonia: 1.6,%
+        gt0092|x: "-4.1400"
+  - id: TOP Aortic (Creatinine Elevated, ASA class 5, FE Independent)
+    input:
+      "1":
+        gt0010|Age: 33,a
+        gt0033|Functional status: local::at0007|Independent|
+        gt0034|ASA class: "local::at0015|5: moribund, not expected to survive without surgery|"
+        gt0035|Type of procedure: local::at0024|Aortic|
+        gt0044|Creatinine: local::at0018|Elevated (>1.5 mg/dL, 133 µmol/L)|
+    expected_output:
+      "1":
+        gt0038|Risk of postoperative pneumonia: 8.5,%
+        gt0092|x: "-2.3800"
+  - id: TOP Aortic (Creatinine Normal, ASA class 5, FE Independent)
+    input:
+      "1":
+        gt0010|Age: 33,a
+        gt0033|Functional status: local::at0007|Independent|
+        gt0034|ASA class: "local::at0015|5: moribund, not expected to survive without surgery|"
+        gt0035|Type of procedure: local::at0024|Aortic|
+        gt0044|Creatinine: local::at0017|Normal (≤1.5 mg/dL, 133 µmol/L)|
+    expected_output:
+      "1":
+        gt0038|Risk of postoperative pneumonia: 4.8,%
+        gt0092|x: "-2.9900"
+  - id: TOP Bariatric (Creatinine Normal, ASA class 5, FE Independent)
+    input:
+      "1":
+        gt0010|Age: 33,a
+        gt0033|Functional status: local::at0007|Independent|
+        gt0034|ASA class: "local::at0015|5: moribund, not expected to survive without surgery|"
+        gt0035|Type of procedure: local::at0025|Bariatric|
+        gt0044|Creatinine: local::at0017|Normal (≤1.5 mg/dL, 133 µmol/L)|
+    expected_output:
+      "1":
+        gt0038|Risk of postoperative pneumonia: 0.8,%
+        gt0092|x: "-4.8400"
+  - id: TOP Bariatric (Creatinine Normal, ASA class 2, FE Independent)
+    input:
+      "1":
+        gt0010|Age: 33,a
+        gt0033|Functional status: local::at0007|Independent|
+        gt0034|ASA class: "local::at0012|2: mild systemic disease|"
+        gt0035|Type of procedure: local::at0025|Bariatric|
+        gt0044|Creatinine: local::at0017|Normal (≤1.5 mg/dL, 133 µmol/L)|
+    expected_output:
+      "1":
+        gt0038|Risk of postoperative pneumonia: 0.0,%
+        gt0092|x: "-8.1300"
+  - id: TOP Brain (Creatinine Normal, ASA class 2, FE Independent)
+    input:
+      "1":
+        gt0010|Age: 33,a
+        gt0033|Functional status: local::at0007|Independent|
+        gt0034|ASA class: "local::at0012|2: mild systemic disease|"
+        gt0035|Type of procedure: local::at0026|Brain|
+        gt0044|Creatinine: local::at0017|Normal (≤1.5 mg/dL, 133 µmol/L)|
+    expected_output:
+      "1":
+        gt0038|Risk of postoperative pneumonia: 0.2,%
+        gt0092|x: "-6.4800"
+  - id: TOP Breast (Creatinine Elevated, ASA class 3, FE Independent)
+    input:
+      "1":
+        gt0010|Age: 33,a
+        gt0033|Functional status: local::at0007|Independent|
+        gt0034|ASA class: "local::at0013|3: severe systemic disease|"
+        gt0035|Type of procedure: local::at0027|Breast|
+        gt0044|Creatinine: local::at0018|Elevated (>1.5 mg/dL, 133 µmol/L)|
+    expected_output:
+      "1":
+        gt0038|Risk of postoperative pneumonia: 0.1,%
+        gt0092|x: "-7.5100"
