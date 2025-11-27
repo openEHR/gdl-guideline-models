@@ -1,4 +1,4 @@
-archetype (adl_version=1.4; uid=76c72e27-badd-4ede-93f1-a65c30f6138f)
+archetype (adl_version=1.4; uid=f53c9960-07af-48b7-9700-c1b112dbcdb4)
 	openEHR-EHR-OBSERVATION.gupta_perioperative_risk.v0
 
 concept
@@ -33,12 +33,12 @@ Fleisher LA, Fleischmann KE, Auerbach AD, et al. 2014 ACC/AHA guideline on perio
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"bd8169d6474e22d7035eb906e67c83ac">
+		["MD5-CAM-1.0.1"] = <"e55cc3c9de6641d5b34231405406d9ac">
 		["build_uid"] = <"bec363c2-0cde-36be-b4e9-29ac69156916">
 	>
 
 definition
-	OBSERVATION[at0000] matches {    -- gupta_perioperative risk
+	OBSERVATION[at0000] matches {    -- gupta_perioperative_risk
 		data matches {
 			HISTORY[at0001] matches {    -- History
 				events cardinality matches {1..*; unordered} matches {
@@ -46,32 +46,75 @@ definition
 						data matches {
 							ITEM_TREE[at0003] matches {    -- Tree
 								items cardinality matches {0..*; unordered} matches {
-									ELEMENT[at0050] occurrences matches {0..1} matches {    -- Functional status
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Functional status
 										value matches {
-											DV_QUANTITY matches {*}
-										}
-									}
-									ELEMENT[at0044] occurrences matches {0..1} matches {    -- ASA class
-										value matches {
-											DV_QUANTITY matches {*}
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- Independent
+													at0008,    -- Partially dependent
+													at0009]    -- Totally dependent
+												}
+											}
 										}
 									}
 									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Creatinine
 										value matches {
-											DV_QUANTITY matches {*}
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0017,    -- Normal (≤1.5 mg/dL, 133 µmol/L)
+													at0018,    -- Elevated (>1.5 mg/dL, 133 µmol/L)
+													at0019]    -- Unknown
+												}
+											}
 										}
 									}
 									ELEMENT[at0020] occurrences matches {0..1} matches {    -- Type of procedure
 										value matches {
-											DV_QUANTITY matches {*}
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0021,    -- Anorectal
+													at0022,    -- Aortic
+													at0023,    -- Bariatric
+													at0024,    -- Brain
+													at0025,    -- Breast
+													at0026,    -- Cardiac
+													at0027,    -- ENT (except thyroid/parathyroid)
+													at0028,    -- Foregut or hepatopancreatobiliary
+													at0029,    -- Gallbladder, appendix, adrenals, or spleen
+													at0030,    -- Hernia (ventral, inguinal, femoral)
+													at0031,    -- Intestinal
+													at0032,    -- Neck (thyroid/parathyroid)
+													at0033,    -- Obstetric/gynecologic
+													at0034,    -- Orthopedic and non-vascular extremity
+													at0035,    -- Other abdominal
+													at0036,    -- Peripheral vascular**
+													at0037,    -- Skin
+													at0038,    -- Spine
+													at0039,    -- Non-esophageal thoracic
+													at0040,    -- Vein
+													at0041]    -- Urology
+												}
+											}
 										}
 									}
-									ELEMENT[at0042] occurrences matches {0..1} matches {    -- MICA risk (%)
+									ELEMENT[at0044] occurrences matches {0..1} matches {    -- ASA class
+										value matches {
+											1|[local::at0045],
+											2|[local::at0046],
+											3|[local::at0047],
+											4|[local::at0048],
+											5|[local::at0049]
+										}
+									}
+									ELEMENT[at0042] occurrences matches {0..1} matches {    -- The risk (%)
 										value matches {
 											DV_QUANTITY matches {*}
 										}
 									}
-									ELEMENT[at0051] occurrences matches {0..1} matches {    -- Constant
+									ELEMENT[at0050] occurrences matches {0..1} matches {    -- Constant
 										value matches {
 											DV_QUANTITY matches {*}
 										}
@@ -102,8 +145,8 @@ ontology
 		["en"] = <
 			items = <
 				["at0000"] = <
-					text = <"gupta_perioperative risk">
-					description = <"This is holding units for The Gupta Perioperative Risk Calculator estimates the 30-day risk of myocardial infarction or cardiac arrest following surgery, based on NSQIP data.">
+					text = <"gupta_perioperative_risk">
+					description = <"The Gupta Perioperative Risk Calculator estimates the 30-day risk of myocardial infarction or cardiac arrest following surgery, based on NSQIP data. Developed using logistic regression, it includes only five clinical variables and is widely used to guide perioperative risk discussions. While derived from historical surgical cohorts, it remains validated and relevant in contemporary practice for non-cardiac surgeries.">
 					comment = <"Original version, c 2011">
 				>
 				["at0001"] = <
@@ -127,16 +170,128 @@ ontology
 					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
 					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
 				>
+				["at0006"] = <
+					text = <"Functional status">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Independent">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Partially dependent">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Totally dependent">
+					description = <"">
+				>
 				["at0016"] = <
 					text = <"Creatinine">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Normal (≤1.5 mg/dL, 133 µmol/L)">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Elevated (>1.5 mg/dL, 133 µmol/L)">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Unknown">
 					description = <"">
 				>
 				["at0020"] = <
 					text = <"Type of procedure">
 					description = <"">
 				>
+				["at0021"] = <
+					text = <"Anorectal">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Aortic">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Bariatric">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Brain">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Breast">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Cardiac">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"ENT (except thyroid/parathyroid)">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Foregut or hepatopancreatobiliary">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Gallbladder, appendix, adrenals, or spleen">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Hernia (ventral, inguinal, femoral)">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Intestinal">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Neck (thyroid/parathyroid)">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Obstetric/gynecologic">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Orthopedic and non-vascular extremity">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"Other abdominal">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Peripheral vascular**">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"Skin">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"Spine">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"Non-esophageal thoracic">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"Vein">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"Urology">
+					description = <"">
+				>
 				["at0042"] = <
-					text = <"MICA risk (%)">
+					text = <"The risk (%)">
 					description = <"">
 				>
 				["at0043"] = <
@@ -147,11 +302,27 @@ ontology
 					text = <"ASA class">
 					description = <"">
 				>
-				["at0050"] = <
-					text = <"Functional status">
+				["at0045"] = <
+					text = <"Normal healthy patient">
 					description = <"">
 				>
-				["at0051"] = <
+				["at0046"] = <
+					text = <"Mild systemic disease">
+					description = <"">
+				>
+				["at0047"] = <
+					text = <"Sever systemic disease">
+					description = <"">
+				>
+				["at0048"] = <
+					text = <"Sever systemic disease that is constant threat to life (i.e., patient could die acutely without intervention)">
+					description = <"">
+				>
+				["at0049"] = <
+					text = <"Moribund, not expected to survive without surgery">
+					description = <"">
+				>
+				["at0050"] = <
 					text = <"Constant">
 					description = <"">
 				>
