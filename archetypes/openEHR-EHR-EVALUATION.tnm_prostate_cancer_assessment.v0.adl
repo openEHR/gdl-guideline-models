@@ -1,0 +1,233 @@
+archetype (adl_version=1.4; uid=f74fb70b-7a6f-41bf-8bed-33eb319c65ff)
+	openEHR-EHR-EVALUATION.tnm_prostate_cancer_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-12-01">
+		["email"] = <"kevin.arjona@cambio.se">
+		["organisation"] = <"Cambio CDS">
+		["name"] = <"Kevin Arjona">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To assess the recorded anatomical extent of prostate cancer based on the Primary Tumor (T), Regional Lymph Nodes (N), and Distant Metastasis (M).">
+			keywords = <"prostate, cancer, tnm, staging, uicc, oncology, tumor, metastasis", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to assess the recorded clinical observations for the prostate cancer TNM classification.">
+			misuse = <"Not to be used for staging other types of malignancies. Not to be used for versions of TNM other than the 8th edition">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Buyyounouski MK, Choyke PL, McKenney JK, Sartor O, Sandler HM, Amin MB, Kattan MW, Lin DW. Prostate cancer - major changes in the American Joint Committee on Cancer eighth edition cancer staging manual. CA Cancer J Clin. 2017 May 6;67(3):245-253. doi: 10.3322/caac.21391. Epub 2017 Feb 21. PMID: 28222223; PMCID: PMC6375094.
+
+Nationellt vårdprogram prostatacancer [Internet]. Regionala cancercentrum i samverkan; 2023 [cited 2025 Dec 01]. Kategorisering av tumören. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/prostatacancer/vardprogram/kategorisering-av-tumoren/">
+		["build_uid"] = <"da51f9fc-360a-355a-a311-f6256ceb40d8">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- TNM prostate cancer assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Clinical T stage
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0007,    -- T0
+									at0008,    -- Tx
+									at0009,    -- T1
+									at0010,    -- T1a
+									at0011,    -- T1b
+									at0012,    -- T1c
+									at0013,    -- T2
+									at0014,    -- T2a
+									at0015,    -- T2b
+									at0016,    -- T2c
+									at0017,    -- T3
+									at0018,    -- T3a
+									at0019,    -- T3b
+									at0020]    -- T4
+								}
+							}
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {    -- Clinical N stage
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0021,    -- N0
+									at0022,    -- Nx
+									at0023]    -- N1
+								}
+							}
+						}
+					}
+					ELEMENT[at0006] occurrences matches {0..1} matches {    -- Clinical M stage
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0024,    -- M0
+									at0025,    -- M1
+									at0026,    -- M1a
+									at0027,    -- M1b
+									at0028]    -- M1c
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"TNM prostate cancer assessment">
+					description = <"TNM prostate cancer assessment according to UICC 8th Edition.">
+					comment = <"Original version, c 2017">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Clinical T stage">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Clinical N stage">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Clinical M stage">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"T0">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Tx">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"T1">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"T1a">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"T1b">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"T1c">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"T2">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"T2a">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"T2b">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"T2c">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"T3">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"T3a">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"T3b">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"T4">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"N0">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Nx">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"N1">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"M0">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"M1">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"M1a">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"M1b">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"M1c">
+					description = <"">
+				>
+			>
+		>
+	>
