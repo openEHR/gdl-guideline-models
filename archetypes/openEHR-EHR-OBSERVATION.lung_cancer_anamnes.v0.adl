@@ -1,0 +1,341 @@
+archetype (adl_version=1.4; uid=c9c91d4c-c269-4283-8b3f-8d326c9da841)
+	openEHR-EHR-OBSERVATION.lung_cancer_anamnes.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-11-20">
+		["name"] = <"Mahmoud Elachi">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"mel.achi@gmail.com">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To capture key historical factors associated with lung cancer risk, diagnostic evaluation, and clinical management.">
+			keywords = <"anamnesis; history; lung cancer; smoking; exposures; comorbidities", ...>
+			copyright = <"Use © Cambio CDS">
+			use = <"Use when obtaining a focused history for suspected or confirmed lung cancer. Appropriate in primary care, oncology, pulmonology, and multidisciplinary assessments. Supports decision-making, risk stratification, and completeness of diagnostic evaluation.">
+			misuse = <"Do not use for risk assessment or screening of healthy individuals or recording final diagnostic results, staging results, or molecular test outcomes and for making treatment decisions beyond diagnostics.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Regionala cancercentrum i samverkan. Nationellt vårdprogram lungcancer. Kunskapsbanken, 2025.
+Available at: kunskapsbanken.cancercentrum.se/diagnoser/lungcancer/vardprogram/">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"4bbd65038b3e6b996f39c93ec6f40be0">
+		["build_uid"] = <"493c17a6-7a0c-3e14-8136-fec675a7427f">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- lung_cancer_anamnes
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									CLUSTER[at0007] occurrences matches {0..1} matches {    -- Smoking
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0006] occurrences matches {0..1} matches {    -- Smoking
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0009] occurrences matches {0..1} matches {    -- Smoking status
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0010,    -- Currently smoker
+															at0011,    -- Never
+															at0012]    -- Former smoker
+														}
+													}
+												}
+											}
+											ELEMENT[at0008] occurrences matches {0..1} matches {    -- Years of smoking
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"a">
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0013] occurrences matches {0..1} matches {    -- Years since quitting
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"a">
+															>
+														>
+													>
+												}
+											}
+										}
+									}
+									CLUSTER[at0014] occurrences matches {0..1} matches {    -- Family history
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0016] occurrences matches {0..1} matches {    -- History in the family
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0018] occurrences matches {0..1} matches {    -- Relation
+												value matches {
+													DV_CODED_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0017] occurrences matches {0..1} matches {    -- First degree relative
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+										}
+									}
+									CLUSTER[at0024] occurrences matches {0..1} matches {    -- Occupational exposures
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0025] occurrences matches {0..1} matches {    -- Asbestos exposure
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0026] occurrences matches {0..1} matches {    -- Demolition workers
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0027] occurrences matches {0..1} matches {    -- Plumbing installers
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0028] occurrences matches {0..1} matches {    -- Electricians
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0029] occurrences matches {0..1} matches {    -- Carpenters
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0030] occurrences matches {0..1} matches {    -- Floor layers
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0031] occurrences matches {0..1} matches {    -- Roofers
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0032] occurrences matches {0..1} matches {    -- Others
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+										}
+									}
+									CLUSTER[at0033] occurrences matches {0..1} matches {    -- Comorbidities
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0034] occurrences matches {0..1} matches {    -- Cardiovascular
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0035] occurrences matches {0..1} matches {    -- Heart
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0036] occurrences matches {0..1} matches {    -- Diabetes
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0037] occurrences matches {0..1} matches {    -- Chronic Obstructive Pulmonary Disease
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0038] occurrences matches {0..1} matches {    -- Other
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					CLUSTER[at0005] occurrences matches {0..1} matches {*}    -- Extension
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"lung_cancer_anamnes">
+					description = <"A clinical decision rule used to determine whether a patient with lung cancer meets the guideline-based criteria for genetic testing according to the Swedish National Breast Cancer Care Programme.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Smoking">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Smoking">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Years of smoking">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Smoking status">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Currently smoker">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Never">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Former smoker">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Years since quitting">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Family history">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"History in the family">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"First degree relative">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Relation">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Occupational exposures">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Asbestos exposure">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Demolition workers">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Plumbing installers">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Electricians">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Carpenters">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Floor layers">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Roofers">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Others">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Comorbidities">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Cardiovascular">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"Heart">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Diabetes">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"Chronic Obstructive Pulmonary Disease">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"Other">
+					description = <"">
+				>
+			>
+		>
+	>
