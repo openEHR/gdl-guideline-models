@@ -1,0 +1,135 @@
+archetype (adl_version=1.4; uid=98cf7541-6dbb-49c1-b976-db21d11722ea)
+	openEHR-EHR-OBSERVATION.lung_cancer_performance_status.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-12-04">
+		["name"] = <"Mahmoud Elachi">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"mel.achi@gmail.com">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the performance status (0–4) for consistent assessment of functional impairment in patients with suspected or confirmed cancer.
+
+">
+			keywords = <"ECOG; performance status; oncology; functional status; lung cancer", ...>
+			copyright = <"Use © Cambio CDS">
+			use = <"Use to document performance status during clinical visits, multidisciplinary assessments, and treatment planning. Suitable for monitoring changes over time.">
+			misuse = <"Do not use for other performance scales (WHO, Karnofsky), quality-of-life measures, frailty assessments, or detailed physical examination findings.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"https://kunskapsbanken.cancercentrum.se/diagnoser/lungcancer/vardprogram/utredning/">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"84b2f04301e4cb595a79c8488a4d2933">
+		["build_uid"] = <"7bf6431a-1568-3a83-a785-0da4da07035d">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- lung_cancer_performance_status
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Performance status
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- Can perform all normal activities without limitations
+													at0008,    -- Can do light work but not physically strenuous activities; fully awake
+													at0009,    -- Ambulatory, able to perform all self-care but unable to perform any work; up more than 50% of the day
+													at0010,    -- Only able to do limited self-care; confined to bed or chair more than 50% of the day
+													at0011]    -- Unable to take care of themselves; completely bedridden
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					CLUSTER[at0005] occurrences matches {0..1} matches {*}    -- Extension
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"lung_cancer_performance_status">
+					description = <"A standardised WHO scale for assessing functional status scale describing a patient’s functional capacity and how illness affects daily activity. Widely used in oncology to support treatment decisions, prognosis, and assessment of clinical status.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Performance status">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Can perform all normal activities without limitations">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Can do light work but not physically strenuous activities; fully awake">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Ambulatory, able to perform all self-care but unable to perform any work; up more than 50% of the day">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Only able to do limited self-care; confined to bed or chair more than 50% of the day">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Unable to take care of themselves; completely bedridden">
+					description = <"">
+				>
+			>
+		>
+	>
