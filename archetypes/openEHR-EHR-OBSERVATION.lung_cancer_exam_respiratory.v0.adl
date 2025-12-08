@@ -1,0 +1,141 @@
+archetype (adl_version=1.4; uid=e0b12db9-059f-47bb-b025-f09c6139c03e)
+	openEHR-EHR-OBSERVATION.lung_cancer_exam_respiratory.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-12-04">
+		["name"] = <"Mahmoud Elachi">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"mel.achi@gmail.com">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To capture key clinician-observed respiratory and thoracic findings that support assessment, staging, and diagnostic decision-making in suspected or confirmed lung cancer.">
+			keywords = <"respiratory exam; lung cancer; auscultation; percussion; lymph nodes; supraclavicular; cervical; axillary", ...>
+			copyright = <"Use © Cambio CDS">
+			use = <"Use during physical examination in primary care, pulmonology, emergency assessment, or oncology workups to document respiratory sounds and lymph node palpation findings. Suitable for decision support, clinical documentation, and multidisciplinary evaluations.">
+			misuse = <"Do not use to record patient-reported symptoms, imaging findings, or detailed neurological deficits. Not intended for documenting systemic examinations unrelated to respiratory or thoracic assessment.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"https://kunskapsbanken.cancercentrum.se/diagnoser/lungcancer/vardprogram/">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"303f9eff20b55b51d875f73a0c720ecd">
+		["build_uid"] = <"24649f63-05f3-3c92-9932-94d0f9113be6">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- lung_cancer_exam_respiratory
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Auscultation and percussion of the lungs
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Auscultation of the heart
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Palpation of supraclavicular
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Cervical
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Axillary lymph node
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					CLUSTER[at0005] occurrences matches {0..1} matches {*}    -- Extension
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"lung_cancer_exam_respiratory">
+					description = <"Structured recording of respiratory and thoracic examination findings relevant to lung cancer evaluation, including lung auscultation and percussion, heart auscultation, and palpation of regional lymph nodes commonly involved in thoracic malignancy.">
+					comment = <"Original version, c 2015">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Auscultation and percussion of the lungs">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Auscultation of the heart">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Palpation of supraclavicular">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Cervical">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Axillary lymph node">
+					description = <"">
+				>
+			>
+		>
+	>
