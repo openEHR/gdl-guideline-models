@@ -1,0 +1,289 @@
+archetype (adl_version=1.4; uid=df59e0f3-9d89-426f-b88a-cac5ac6753ee)
+	openEHR-EHR-OBSERVATION.tnm_colorectal_cancer_staging.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-12-10">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the anatomical extent of colorectal cancer based on the Primary Tumor (T), Regional Lymph Nodes (N), and Distant Metastasis (M).">
+			keywords = <"colorectal, cancer, colon, rectum, tnm, staging, uicc, oncology", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the clinical (cTNM) or pathological (pTNM) classification.
+T: Extent of invasion into the bowel wall.
+N: Number of regional lymph nodes involved (and presence of tumor deposits - N1c).
+M: Presence of distant metastasis (including peritoneal carcinomatosis).">
+			misuse = <"Not to be used for other gastrointestinal malignancies. Use the proper arcehtypes for TNM classification.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Bertero L, Massa F, Metovic J, Zanetti R, Castellano I, Ricardi U, Papotti M, Cassoni P. Eighth Edition of the UICC Classification of Malignant Tumours: an overview of the changes in the pathological TNM classification criteria-What has changed and why? Virchows Arch. 2018 Apr;472(4):519-531. doi: 10.1007/s00428-017-2276-y. Epub 2017 Dec 5. PMID: 29209757.
+
+Nagtegaal ID, Odze RD, Klimstra D, Paradis V, Rugge M, Schirmacher P, Washington KM, Carneiro F, Cree IA; WHO Classification of Tumours Editorial Board. The 2019 WHO classification of tumours of the digestive system. Histopathology. 2020 Jan;76(2):182-188. doi: 10.1111/his.13975. Epub 2019 Nov 13. PMID: 31433515; PMCID: PMC7003895.
+
+Nationellt vårdprogram tjock- och ändtarmscancer [Internet]. Regionala cancercentrum i samverkan; 2023 [cited 2025 Dec 08]. 9.6 Klassificering av tumören med TNM. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/tjock-och-andtarmscancer/vardprogram/histo--och-molekylarpatologi2/">
+		["build_uid"] = <"edc9927e-a493-3e69-b3f8-18db04b1135e">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- TNM colorectal cancer staging
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Primary Tumor
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- No evidence of primary tumor
+													at0008,    -- Primary tumor cannot be assessed
+													at0009,    -- Carcinoma in situ: Intraepithelial or invasion into the lamina propria
+													at0010,    -- The tumor invades the submucosa
+													at0011,    -- Sm1: Invasion of 1/3 of the submucosa
+													at0012,    -- Sm2: Invasion of 2/3 of the submucosa
+													at0013,    -- Sm3: Invasion of 3/3 of the submucosa
+													at0014,    -- The tumor invades through the muscularis propria into the pericolonic tissue
+													at0015,    -- Minimal invasion: < 1 mm outside the boundaries of the muscularis propria
+													at0016,    -- Slight invasion: 1–5 mm invasion outside the boundaries of the muscularis propria
+													at0017,    -- Moderate invasion: > 5–15 mm outside the boundaries of the muscularis propria
+													at0018,    -- Extensive invasion: > 15 mm outside the boundaries of the  propria
+													at0019,    -- The tumor penetrates the surface of the visceral peritoneum
+													at0020,    -- The tumor invades other organs or structures
+													at0038]    -- The tumor invades the muscularis propria
+												}
+											}
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- Lymph Nodes
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0022,    -- No positive regional lymph nodes
+													at0023,    -- Regional lymph nodes were not assessed
+													at0031,    -- Metastases in 1–3 regional lymph nodes
+													at0032,    -- Metastases in 1 regional lymph node
+													at0033,    -- Metastases in 2–3 regional lymph nodes
+													at0034,    -- Tumor deposits in the subserosa, mesentery, or non-peritonealized pericolic or perirectal tissue without regional lymph node metastasis
+													at0035,    -- Metastases in 4 or more regional lymph nodes
+													at0036,    -- Metastases in 4–6 regional lymph nodes
+													at0037]    -- Metastases in 7 or more regional lymph nodes
+												}
+											}
+										}
+									}
+									ELEMENT[at0025] occurrences matches {0..1} matches {    -- Distant Metastasis
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0026,    -- No distant metastasis
+													at0027,    -- Distant metastasis
+													at0028,    -- Metastasis to one organ or site but without peritoneal metastasis
+													at0029,    -- Metastasis to more than one organ/site
+													at0030]    -- Metastasis to the peritoneum with or without other metastasis
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"TNM colorectal cancer staging">
+					description = <"TNM staging classification for colorectal cancer according to UICC 8th Edition.">
+					comment = <"Original version, c 2017">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Primary Tumor">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"No evidence of primary tumor">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Primary tumor cannot be assessed">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Carcinoma in situ: Intraepithelial or invasion into the lamina propria">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"The tumor invades the submucosa">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Sm1: Invasion of 1/3 of the submucosa">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Sm2: Invasion of 2/3 of the submucosa">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Sm3: Invasion of 3/3 of the submucosa">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"The tumor invades through the muscularis propria into the pericolonic tissue">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Minimal invasion: < 1 mm outside the boundaries of the muscularis propria">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Slight invasion: 1–5 mm invasion outside the boundaries of the muscularis propria">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Moderate invasion: > 5–15 mm outside the boundaries of the muscularis propria">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Extensive invasion: > 15 mm outside the boundaries of the  propria">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"The tumor penetrates the surface of the visceral peritoneum">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"The tumor invades other organs or structures">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Lymph Nodes">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"No positive regional lymph nodes">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Regional lymph nodes were not assessed">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Distant Metastasis">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"No distant metastasis">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Distant metastasis">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Metastasis to one organ or site but without peritoneal metastasis">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Metastasis to more than one organ/site">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Metastasis to the peritoneum with or without other metastasis">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Metastases in 1–3 regional lymph nodes">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Metastases in 1 regional lymph node">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Metastases in 2–3 regional lymph nodes">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Tumor deposits in the subserosa, mesentery, or non-peritonealized pericolic or perirectal tissue without regional lymph node metastasis">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"Metastases in 4 or more regional lymph nodes">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Metastases in 4–6 regional lymph nodes">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"Metastases in 7 or more regional lymph nodes">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"The tumor invades the muscularis propria">
+					description = <"">
+				>
+			>
+		>
+	>
