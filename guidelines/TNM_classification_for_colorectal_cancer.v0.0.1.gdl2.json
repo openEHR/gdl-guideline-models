@@ -1,0 +1,569 @@
+{
+  "uuid" : "",
+  "id" : "TNM_classification_for_colorectal_cancer.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Kevin Arjona",
+      "email" : "kevin.arjona@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2025-12-09"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To assess and categorize the specific T, N, and M according to UICC 8th Edition.",
+        "keywords" : [
+          "colorectal",
+          "cancer",
+          "tnm",
+          "colon",
+          "rectum",
+          "staging",
+          "uicc",
+          "oncology"
+        ],
+        "use" : "Use to evaluate the TNM classification in patients diagnosed with colorectal cancer.",
+        "misuse" : "Not to be used for other types of cancer.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Bertero L, Massa F, Metovic J, Zanetti R, Castellano I, Ricardi U, Papotti M, Cassoni P. Eighth Edition of the UICC Classification of Malignant Tumours: an overview of the changes in the pathological TNM classification criteria-What has changed and why? Virchows Arch. 2018 Apr;472(4):519-531. doi: 10.1007/s00428-017-2276-y. Epub 2017 Dec 5. PMID: 29209757.\n\nNagtegaal ID, Odze RD, Klimstra D, Paradis V, Rugge M, Schirmacher P, Washington KM, Carneiro F, Cree IA; WHO Classification of Tumours Editorial Board. The 2019 WHO classification of tumours of the digestive system. Histopathology. 2020 Jan;76(2):182-188. doi: 10.1111/his.13975. Epub 2019 Nov 13. PMID: 31433515; PMCID: PMC7003895.\n\nNationellt vårdprogram tjock- och ändtarmscancer [Internet]. Regionala cancercentrum i samverkan; 2023 [cited 2025 Dec 08]. 9.6 Klassificering av tumören med TNM. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/tjock-och-andtarmscancer/vardprogram/histo--och-molekylarpatologi2/",
+      "en" : "Evaluation of the TNM classification for  colorectal cancer according to UICC 8th Edition."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.tnm_colorectal_cancer_staging.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.tnm_colorectal_cancer_staging.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0007",
+              "local::at0008",
+              "local::at0009",
+              "local::at0010",
+              "local::at0011",
+              "local::at0012",
+              "local::at0013",
+              "local::at0014",
+              "local::at0015",
+              "local::at0016",
+              "local::at0017",
+              "local::at0018",
+              "local::at0019",
+              "local::at0020",
+              "local::at0038"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0021]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0022",
+              "local::at0023",
+              "local::at0031",
+              "local::at0032",
+              "local::at0033",
+              "local::at0034",
+              "local::at0035",
+              "local::at0036",
+              "local::at0037"
+            ]
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0025]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0026",
+              "local::at0027",
+              "local::at0028",
+              "local::at0029",
+              "local::at0030"
+            ]
+          }
+        }
+      },
+      "gt0006" : {
+        "id" : "gt0006",
+        "model_id" : "openEHR-EHR-EVALUATION.tnm_colorectal_cancer_assessment.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.tnm_colorectal_cancer_assessment.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0003]/items[at0004]",
+            "data_type" : "DV_CODED_TEXT"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "path" : "/data[at0003]/items[at0019]",
+            "data_type" : "DV_CODED_TEXT"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "path" : "/data[at0003]/items[at0023]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      }
+    },
+    "pre_conditions" : [
+      "$gt0003|Primary Tumor|!=null",
+      "$gt0004|Lymph Nodes|!=null",
+      "$gt0005|Distant Metastasis|!=null"
+    ],
+    "rules" : {
+      "gt0010" : {
+        "id" : "gt0010",
+        "priority" : 26,
+        "when" : [
+          "$gt0003|Primary Tumor|==local::at0007|No evidence of primary tumor|"
+        ],
+        "then" : [
+          "$gt0007|T stage|=local::at0005|T0|"
+        ]
+      },
+      "gt0011" : {
+        "id" : "gt0011",
+        "priority" : 25,
+        "when" : [
+          "$gt0003|Primary Tumor|==local::at0008|Primary tumor cannot be assessed|"
+        ],
+        "then" : [
+          "$gt0007|T stage|=local::at0006|Tx|"
+        ]
+      },
+      "gt0012" : {
+        "id" : "gt0012",
+        "priority" : 24,
+        "when" : [
+          "$gt0003|Primary Tumor|==local::at0009|Carcinoma in situ: Intraepithelial or invasion into the lamina propria|"
+        ],
+        "then" : [
+          "$gt0007|T stage|=local::at0007|Tis|"
+        ]
+      },
+      "gt0013" : {
+        "id" : "gt0013",
+        "priority" : 23,
+        "when" : [
+          "$gt0003|Primary Tumor|==local::at0010|The tumor invades the submucosa|||$gt0003|Primary Tumor|==local::at0011|Sm1: Invasion of 1/3 of the submucosa|||$gt0003|Primary Tumor|==local::at0012|Sm2: Invasion of 2/3 of the submucosa|||$gt0003|Primary Tumor|==local::at0013|Sm3: Invasion of 3/3 of the submucosa|"
+        ],
+        "then" : [
+          "$gt0007|T stage|=local::at0008|T1|"
+        ]
+      },
+      "gt0015" : {
+        "id" : "gt0015",
+        "priority" : 22,
+        "when" : [
+          "$gt0003|Primary Tumor|==local::at0038|The tumor invades the muscularis propria|"
+        ],
+        "then" : [
+          "$gt0007|T stage|=local::at0009|T2|"
+        ]
+      },
+      "gt0014" : {
+        "id" : "gt0014",
+        "priority" : 21,
+        "when" : [
+          "$gt0003|Primary Tumor|==local::at0014|The tumor invades through the muscularis propria into the pericolonic tissue|"
+        ],
+        "then" : [
+          "$gt0007|T stage|=local::at0010|T3|"
+        ]
+      },
+      "gt0016" : {
+        "id" : "gt0016",
+        "priority" : 20,
+        "when" : [
+          "$gt0003|Primary Tumor|==local::at0015|Minimal invasion: < 1 mm outside the boundaries of the muscularis propria|"
+        ],
+        "then" : [
+          "$gt0007|T stage|=local::at0011|T3a|"
+        ]
+      },
+      "gt0017" : {
+        "id" : "gt0017",
+        "priority" : 19,
+        "when" : [
+          "$gt0003|Primary Tumor|==local::at0016|Slight invasion: 1–5 mm invasion outside the boundaries of the muscularis propria|"
+        ],
+        "then" : [
+          "$gt0007|T stage|=local::at0012|T3b|"
+        ]
+      },
+      "gt0018" : {
+        "id" : "gt0018",
+        "priority" : 18,
+        "when" : [
+          "$gt0003|Primary Tumor|==local::at0017|Moderate invasion: > 5–15 mm outside the boundaries of the muscularis propria|"
+        ],
+        "then" : [
+          "$gt0007|T stage|=local::at0013|T3c|"
+        ]
+      },
+      "gt0019" : {
+        "id" : "gt0019",
+        "priority" : 17,
+        "when" : [
+          "$gt0003|Primary Tumor|==local::at0018|Extensive invasion: > 15 mm outside the boundaries of the  propria|"
+        ],
+        "then" : [
+          "$gt0007|T stage|=local::at0014|T3d|"
+        ]
+      },
+      "gt0020" : {
+        "id" : "gt0020",
+        "priority" : 16,
+        "when" : [
+          "$gt0003|Primary Tumor|==local::at0019|The tumor penetrates the surface of the visceral peritoneum|"
+        ],
+        "then" : [
+          "$gt0007|T stage|=local::at0015|T4a|"
+        ]
+      },
+      "gt0021" : {
+        "id" : "gt0021",
+        "priority" : 15,
+        "when" : [
+          "$gt0003|Primary Tumor|==local::at0020|The tumor invades other organs or structures|"
+        ],
+        "then" : [
+          "$gt0007|T stage|=local::at0016|T4b|"
+        ]
+      },
+      "gt0022" : {
+        "id" : "gt0022",
+        "priority" : 14,
+        "when" : [
+          "$gt0004|Lymph Nodes|==local::at0022|No positive regional lymph nodes|"
+        ],
+        "then" : [
+          "$gt0008|N stage|=local::at0020|N0|"
+        ]
+      },
+      "gt0023" : {
+        "id" : "gt0023",
+        "priority" : 13,
+        "when" : [
+          "$gt0004|Lymph Nodes|==local::at0023|Regional lymph nodes were not assessed|"
+        ],
+        "then" : [
+          "$gt0008|N stage|=local::at0021|Nx|"
+        ]
+      },
+      "gt0024" : {
+        "id" : "gt0024",
+        "priority" : 12,
+        "when" : [
+          "$gt0004|Lymph Nodes|==local::at0031|Metastases in 1–3 regional lymph nodes|"
+        ],
+        "then" : [
+          "$gt0008|N stage|=local::at0022|N1|"
+        ]
+      },
+      "gt0025" : {
+        "id" : "gt0025",
+        "priority" : 11,
+        "when" : [
+          "$gt0004|Lymph Nodes|==local::at0032|Metastases in 1 regional lymph node|"
+        ],
+        "then" : [
+          "$gt0008|N stage|=local::at0029|N1a|"
+        ]
+      },
+      "gt0026" : {
+        "id" : "gt0026",
+        "priority" : 10,
+        "when" : [
+          "$gt0004|Lymph Nodes|==local::at0033|Metastases in 2–3 regional lymph nodes|"
+        ],
+        "then" : [
+          "$gt0008|N stage|=local::at0030|N1b|"
+        ]
+      },
+      "gt0027" : {
+        "id" : "gt0027",
+        "priority" : 9,
+        "when" : [
+          "$gt0004|Lymph Nodes|==local::at0034|Tumor deposits in the subserosa, mesentery, or non-peritonealized pericolic or perirectal tissue without regional lymph node metastasis|"
+        ],
+        "then" : [
+          "$gt0008|N stage|=local::at0031|N1c|"
+        ]
+      },
+      "gt0028" : {
+        "id" : "gt0028",
+        "priority" : 8,
+        "when" : [
+          "$gt0004|Lymph Nodes|==local::at0035|Metastases in 4 or more regional lymph nodes|"
+        ],
+        "then" : [
+          "$gt0008|N stage|=local::at0032|N2|"
+        ]
+      },
+      "gt0029" : {
+        "id" : "gt0029",
+        "priority" : 7,
+        "when" : [
+          "$gt0004|Lymph Nodes|==local::at0036|Metastases in 4–6 regional lymph nodes|"
+        ],
+        "then" : [
+          "$gt0008|N stage|=local::at0033|N2a|"
+        ]
+      },
+      "gt0030" : {
+        "id" : "gt0030",
+        "priority" : 6,
+        "when" : [
+          "$gt0004|Lymph Nodes|==local::at0037|Metastases in 7 or more regional lymph nodes|"
+        ],
+        "then" : [
+          "$gt0008|N stage|=local::at0034|N2b|"
+        ]
+      },
+      "gt0031" : {
+        "id" : "gt0031",
+        "priority" : 5,
+        "when" : [
+          "$gt0005|Distant Metastasis|==local::at0026|No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0009|M stage|=local::at0024|M0|"
+        ]
+      },
+      "gt0032" : {
+        "id" : "gt0032",
+        "priority" : 4,
+        "when" : [
+          "$gt0005|Distant Metastasis|==local::at0027|Distant metastasis|"
+        ],
+        "then" : [
+          "$gt0009|M stage|=local::at0025|M1|"
+        ]
+      },
+      "gt0033" : {
+        "id" : "gt0033",
+        "priority" : 3,
+        "when" : [
+          "$gt0005|Distant Metastasis|==local::at0028|Metastasis to one organ or site but without peritoneal metastasis|"
+        ],
+        "then" : [
+          "$gt0009|M stage|=local::at0026|M1a|"
+        ]
+      },
+      "gt0034" : {
+        "id" : "gt0034",
+        "priority" : 2,
+        "when" : [
+          "$gt0005|Distant Metastasis|==local::at0029|Metastasis to more than one organ/site|"
+        ],
+        "then" : [
+          "$gt0009|M stage|=local::at0027|M1b|"
+        ]
+      },
+      "gt0035" : {
+        "id" : "gt0035",
+        "priority" : 1,
+        "when" : [
+          "$gt0005|Distant Metastasis|==local::at0030|Metastasis to the peritoneum with or without other metastasis|"
+        ],
+        "then" : [
+          "$gt0009|M stage|=local::at0028|M1c|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "TNM classification for colorectal cancer",
+            "description" : "Evaluation of the TNM classification for  colorectal cancer according to UICC 8th Edition."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.tnm_colorectal_cancer_staging.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Primary Tumor"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Lymph Nodes"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Distant Metastasis"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "openEHR-EHR-EVALUATION.tnm_colorectal_cancer_assessment.v0"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "T stage"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "N stage"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "M stage"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Set to T0",
+            "description" : ""
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Set to Tx",
+            "description" : ""
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Set to Tis",
+            "description" : ""
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Set to T1",
+            "description" : ""
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Set to T3",
+            "description" : ""
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "Set to T2",
+            "description" : ""
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "Set to T3a",
+            "description" : ""
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "Set to T3b",
+            "description" : ""
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "Set to T3c",
+            "description" : ""
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "Set to T3d",
+            "description" : ""
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "Set to T4a",
+            "description" : ""
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "Set to T4b",
+            "description" : ""
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "Set to N0",
+            "description" : ""
+          },
+          "gt0023" : {
+            "id" : "gt0023",
+            "text" : "Set to Nx",
+            "description" : ""
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "text" : "Set to N1",
+            "description" : ""
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "text" : "Set to N1a",
+            "description" : ""
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "text" : "Set to N1b",
+            "description" : ""
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "text" : "Set to N1c",
+            "description" : ""
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "text" : "Set to N2",
+            "description" : ""
+          },
+          "gt0029" : {
+            "id" : "gt0029",
+            "text" : "Set to N2a",
+            "description" : ""
+          },
+          "gt0030" : {
+            "id" : "gt0030",
+            "text" : "Set to N2b",
+            "description" : ""
+          },
+          "gt0031" : {
+            "id" : "gt0031",
+            "text" : "Set to M0",
+            "description" : ""
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "text" : "Set to M1",
+            "description" : ""
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "text" : "Set to M1a",
+            "description" : ""
+          },
+          "gt0034" : {
+            "id" : "gt0034",
+            "text" : "Set to M1b",
+            "description" : ""
+          },
+          "gt0035" : {
+            "id" : "gt0035",
+            "text" : "Set to M1c",
+            "description" : ""
+          }
+        }
+      }
+    }
+  }
+}
