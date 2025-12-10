@@ -1,0 +1,259 @@
+archetype (adl_version=1.4; uid=a37a8ec8-d476-4d5c-93ba-963b92db7705)
+	openEHR-EHR-EVALUATION.tnm_colorectal_cancer_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-12-10">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To assess the inputs recorded in the tnm_colorectal_cancer_staging archetype and the anatomical extent of colorectal cancer based on the Primary Tumor (T), Regional Lymph Nodes (N), and Distant Metastasis (M).">
+			keywords = <"colorectal, cancer, colon, rectum, tnm, staging, uicc, oncology", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to assess the inputs recorded in the tnm_colorectal_cancer_staging archetype
+
+T: Extent of invasion into the bowel wall.
+N: Number of regional lymph nodes involved (and presence of tumor deposits - N1c).
+M: Presence of distant metastasis (including peritoneal carcinomatosis).">
+			misuse = <"Not to be used for other gastrointestinal malignancies. Use the proper arcehtypes for TNM classification.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Bertero L, Massa F, Metovic J, Zanetti R, Castellano I, Ricardi U, Papotti M, Cassoni P. Eighth Edition of the UICC Classification of Malignant Tumours: an overview of the changes in the pathological TNM classification criteria-What has changed and why? Virchows Arch. 2018 Apr;472(4):519-531. doi: 10.1007/s00428-017-2276-y. Epub 2017 Dec 5. PMID: 29209757.
+
+Nagtegaal ID, Odze RD, Klimstra D, Paradis V, Rugge M, Schirmacher P, Washington KM, Carneiro F, Cree IA; WHO Classification of Tumours Editorial Board. The 2019 WHO classification of tumours of the digestive system. Histopathology. 2020 Jan;76(2):182-188. doi: 10.1111/his.13975. Epub 2019 Nov 13. PMID: 31433515; PMCID: PMC7003895.
+
+Nationellt vårdprogram tjock- och ändtarmscancer [Internet]. Regionala cancercentrum i samverkan; 2023 [cited 2025 Dec 08]. 9.6 Klassificering av tumören med TNM. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/tjock-och-andtarmscancer/vardprogram/histo--och-molekylarpatologi2/">
+		["build_uid"] = <"7d816b67-e550-3e67-aa0d-a63b71ab76f0">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- TNM Colorectal cancer assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- T stage
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- T0
+									at0006,    -- Tx
+									at0007,    -- Tis
+									at0008,    -- T1
+									at0009,    -- T2
+									at0010,    -- T3
+									at0011,    -- T3a
+									at0012,    -- T3b
+									at0013,    -- T3c
+									at0014,    -- T3d
+									at0015,    -- T4a
+									at0016]    -- T4b
+								}
+							}
+						}
+					}
+					ELEMENT[at0019] occurrences matches {0..1} matches {    -- N stage
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0020,    -- N0
+									at0021,    -- Nx
+									at0022,    -- N1
+									at0029,    -- N1a
+									at0030,    -- N1b
+									at0031,    -- N1c
+									at0032,    -- N2
+									at0033,    -- N2a
+									at0034]    -- N2b
+								}
+							}
+						}
+					}
+					ELEMENT[at0023] occurrences matches {0..1} matches {    -- M stage
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0024,    -- M0
+									at0025,    -- M1
+									at0026,    -- M1a
+									at0027,    -- M1b
+									at0028]    -- M1c
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"TNM Colorectal cancer assessment">
+					description = <"Assessment of the TNM staging classification for colorectal cancer according to UICC 8th Edition.">
+					comment = <"Original version, c 2017">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"T stage">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"T0">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Tx">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Tis">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"T1">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"T2">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"T3">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"T3a">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"T3b">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"T3c">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"T3d">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"T4a">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"T4b">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"N stage">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"N0">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Nx">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"N1">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"M stage">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"M0">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"M1">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"M1a">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"M1b">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"M1c">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"N1a">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"N1b">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"N1c">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"N2">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"N2a">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"N2b">
+					description = <"">
+				>
+			>
+		>
+	>
