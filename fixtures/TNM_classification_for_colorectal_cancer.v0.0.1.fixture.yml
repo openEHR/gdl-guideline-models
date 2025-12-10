@@ -1,0 +1,189 @@
+guidelines:
+  "1": TNM_classification_for_colorectal_cancer.v0.0.1
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Primary Tumor missing (negative test).
+    input:
+      "1":
+        gt0004|Lymph Nodes: local::at0022|No positive regional lymph nodes|
+        gt0005|Distant Metastasis: local::at0026|No distant metastasis|
+    expected_output:
+      "1": {}
+  - id: 03. Lymph Nodes missing (negative test).
+    input:
+      "1":
+        gt0003|Primary Tumor: local::at0007|No evidence of primary tumor|
+        gt0005|Distant Metastasis: local::at0026|No distant metastasis|
+    expected_output:
+      "1": {}
+  - id: 04. Distant Metastasis missing (negative test).
+    input:
+      "1":
+        gt0003|Primary Tumor: local::at0007|No evidence of primary tumor|
+        gt0004|Lymph Nodes: local::at0022|No positive regional lymph nodes|
+    expected_output:
+      "1": {}
+  - id: 05. T0N0M0.
+    input:
+      "1":
+        gt0003|Primary Tumor: local::at0007|No evidence of primary tumor|
+        gt0004|Lymph Nodes: local::at0022|No positive regional lymph nodes|
+        gt0005|Distant Metastasis: local::at0026|No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|T stage: local::at0005|T0|
+        gt0008|N stage: local::at0020|N0|
+        gt0009|M stage: local::at0024|M0|
+  - id: 06. TxNxM0.
+    input:
+      "1":
+        gt0003|Primary Tumor: local::at0008|Primary tumor cannot be assessed|
+        gt0004|Lymph Nodes: local::at0023|Regional lymph nodes were not assessed|
+        gt0005|Distant Metastasis: local::at0026|No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|T stage: local::at0006|Tx|
+        gt0008|N stage: local::at0021|Nx|
+        gt0009|M stage: local::at0024|M0|
+  - id: 07. T1N1M1.
+    input:
+      "1":
+        gt0003|Primary Tumor: local::at0010|The tumor invades the submucosa|
+        gt0004|Lymph Nodes: local::at0031|Metastases in 1–3 regional lymph nodes|
+        gt0005|Distant Metastasis: local::at0027|Distant metastasis|
+    expected_output:
+      "1":
+        gt0007|T stage: local::at0008|T1|
+        gt0008|N stage: local::at0022|N1|
+        gt0009|M stage: local::at0025|M1|
+  - id: 08. TisN1aM1.
+    input:
+      "1":
+        gt0003|Primary Tumor: "local::at0009|Carcinoma in situ: Intraepithelial or
+          invasion into the lamina propria|"
+        gt0004|Lymph Nodes: local::at0032|Metastases in 1 regional lymph node|
+        gt0005|Distant Metastasis: local::at0027|Distant metastasis|
+    expected_output:
+      "1":
+        gt0007|T stage: local::at0007|Tis|
+        gt0008|N stage: local::at0029|N1a|
+        gt0009|M stage: local::at0025|M1|
+  - id: 09. T1N1bM1a.
+    input:
+      "1":
+        gt0003|Primary Tumor: "local::at0011|Sm1: Invasion of 1/3 of the submucosa|"
+        gt0004|Lymph Nodes: local::at0033|Metastases in 2–3 regional lymph nodes|
+        gt0005|Distant Metastasis: local::at0028|Metastasis to one organ or site but
+          without peritoneal metastasis|
+    expected_output:
+      "1":
+        gt0007|T stage: local::at0008|T1|
+        gt0008|N stage: local::at0030|N1b|
+        gt0009|M stage: local::at0026|M1a|
+  - id: 09. T2N1cM0.
+    input:
+      "1":
+        gt0003|Primary Tumor: local::at0038|The tumor invades the muscularis propria|
+        gt0004|Lymph Nodes: local::at0034|Tumor deposits in the subserosa, mesentery, or
+          non-peritonealized pericolic or perirectal tissue without regional
+          lymph node metastasis|
+        gt0005|Distant Metastasis: local::at0026|No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|T stage: local::at0009|T2|
+        gt0008|N stage: local::at0031|N1c|
+        gt0009|M stage: local::at0024|M0|
+  - id: 10. T3N1cM1b.
+    input:
+      "1":
+        gt0003|Primary Tumor: local::at0014|The tumor invades through the muscularis
+          propria into the pericolonic tissue|
+        gt0004|Lymph Nodes: local::at0034|Tumor deposits in the subserosa, mesentery, or
+          non-peritonealized pericolic or perirectal tissue without regional
+          lymph node metastasis|
+        gt0005|Distant Metastasis: local::at0029|Metastasis to more than one organ/site|
+    expected_output:
+      "1":
+        gt0007|T stage: local::at0010|T3|
+        gt0008|N stage: local::at0031|N1c|
+        gt0009|M stage: local::at0027|M1b|
+  - id: 11. T3aN1cM1b.
+    input:
+      "1":
+        gt0003|Primary Tumor: "local::at0015|Minimal invasion: < 1 mm outside the
+          boundaries of the muscularis propria|"
+        gt0004|Lymph Nodes: local::at0034|Tumor deposits in the subserosa, mesentery, or
+          non-peritonealized pericolic or perirectal tissue without regional
+          lymph node metastasis|
+        gt0005|Distant Metastasis: local::at0029|Metastasis to more than one organ/site|
+    expected_output:
+      "1":
+        gt0007|T stage: local::at0011|T3a|
+        gt0008|N stage: local::at0031|N1c|
+        gt0009|M stage: local::at0027|M1b|
+  - id: 12. T3bN1cM1c.
+    input:
+      "1":
+        gt0003|Primary Tumor: "local::at0016|Slight invasion: 1–5 mm invasion outside
+          the boundaries of the muscularis propria|"
+        gt0004|Lymph Nodes: local::at0034|Tumor deposits in the subserosa, mesentery, or
+          non-peritonealized pericolic or perirectal tissue without regional
+          lymph node metastasis|
+        gt0005|Distant Metastasis: local::at0030|Metastasis to the peritoneum with or
+          without other metastasis|
+    expected_output:
+      "1":
+        gt0007|T stage: local::at0012|T3b|
+        gt0008|N stage: local::at0031|N1c|
+        gt0009|M stage: local::at0028|M1c|
+  - id: 13. T3cN2M0.
+    input:
+      "1":
+        gt0003|Primary Tumor: "local::at0017|Moderate invasion: > 5–15 mm outside the
+          boundaries of the muscularis propria|"
+        gt0004|Lymph Nodes: local::at0035|Metastases in 4 or more regional lymph nodes|
+        gt0005|Distant Metastasis: local::at0026|No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|T stage: local::at0013|T3c|
+        gt0008|N stage: local::at0032|N2|
+        gt0009|M stage: local::at0024|M0|
+  - id: 14. T3dN2aM1.
+    input:
+      "1":
+        gt0003|Primary Tumor: "local::at0018|Extensive invasion: > 15 mm outside the
+          boundaries of the  propria|"
+        gt0004|Lymph Nodes: local::at0036|Metastases in 4–6 regional lymph nodes|
+        gt0005|Distant Metastasis: local::at0027|Distant metastasis|
+    expected_output:
+      "1":
+        gt0007|T stage: local::at0014|T3d|
+        gt0008|N stage: local::at0033|N2a|
+        gt0009|M stage: local::at0025|M1|
+  - id: 15. T4aN2bM1.
+    input:
+      "1":
+        gt0003|Primary Tumor: local::at0019|The tumor penetrates the surface of the
+          visceral peritoneum|
+        gt0004|Lymph Nodes: local::at0037|Metastases in 7 or more regional lymph nodes|
+        gt0005|Distant Metastasis: local::at0027|Distant metastasis|
+    expected_output:
+      "1":
+        gt0007|T stage: local::at0015|T4a|
+        gt0008|N stage: local::at0034|N2b|
+        gt0009|M stage: local::at0025|M1|
+  - id: 16. T4bN2bM1.
+    input:
+      "1":
+        gt0003|Primary Tumor: local::at0020|The tumor invades other organs or structures|
+        gt0004|Lymph Nodes: local::at0037|Metastases in 7 or more regional lymph nodes|
+        gt0005|Distant Metastasis: local::at0027|Distant metastasis|
+    expected_output:
+      "1":
+        gt0007|T stage: local::at0016|T4b|
+        gt0008|N stage: local::at0034|N2b|
+        gt0009|M stage: local::at0025|M1|
