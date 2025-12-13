@@ -1,0 +1,368 @@
+archetype (adl_version=1.4; uid=b1c8cbf3-a717-4cda-b1c9-a8f42041328e)
+	openEHR-EHR-OBSERVATION.lung_cancer_tnm_staging.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-12-13">
+		["name"] = <"Mahmoud Elachi">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"mel.achi@gmail.com">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the TNM classification (T, N, M) for lung cancer according to the TNM 9th edition (UICC/IASLC), including histology required for SCLC LD/ED classification.">
+			keywords = <"TNM; lung cancer; T category; N category; M category; SCLC; NSCLC", ...>
+			copyright = <"Use © Cambio CDS">
+			use = <"Used during diagnostic evaluation, treatment planning, reporting, and decision-support. Required as input to staging algorithms, clinical pathways, and predictive models using TNM categories.">
+			misuse = <"Not intended for storing non-TNM staging systems or tumour classifications from other cancer types. Should not be used to enter descriptive tumour information such as radiological features or anatomical diagrams. Does not replace the full pathological report or imaging documentation.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Regionala cancercentrum i samverkan. Nationellt vårdprogram lungcancer. Kunskapsbanken, 2025.
+Available at: kunskapsbanken.cancercentrum.se/diagnoser/lungcancer/vardprogram/">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"339d33082c40ddb81b6ca45505b1a9f6">
+		["build_uid"] = <"88971854-ded2-3610-b83e-b995b4db23da">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- lung_cancer_tnm_staging
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0037] occurrences matches {0..1} matches {    -- T category
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0038,    -- TX
+													at0039,    -- T0
+													at0040,    -- Tis
+													at0041,    -- T1a
+													at0042,    -- T1b
+													at0043,    -- T1c
+													at0044,    -- T2a
+													at0045,    -- T2b
+													at0046,    -- T3
+													at0047]    -- T4
+												}
+											}
+										}
+									}
+									ELEMENT[at0048] occurrences matches {0..1} matches {    -- N category
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0049,    -- NX
+													at0050,    -- N0
+													at0051,    -- N1
+													at0052,    -- N2a
+													at0053,    -- N2b
+													at0054]    -- N3
+												}
+											}
+										}
+									}
+									ELEMENT[at0055] occurrences matches {0..1} matches {    -- M category
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0056,    -- M0
+													at0057,    -- M1a
+													at0058,    -- M1b
+													at0059,    -- M1c1
+													at0060]    -- M1c2
+												}
+											}
+										}
+									}
+									ELEMENT[at0061] occurrences matches {0..1} matches {    -- Histology
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0062,    -- SCLC
+													at0063]    -- NSCLC
+												}
+											}
+										}
+									}
+									CLUSTER[at0064] occurrences matches {0..1} matches {    -- staging TNM output
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0065] occurrences matches {0..1} matches {    -- stage group
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0066,    -- IA1
+															at0067,    -- IA2
+															at0068,    -- IA3
+															at0069,    -- IB
+															at0070,    -- IIA
+															at0071,    -- IIB
+															at0072,    -- IIIA
+															at0073,    -- IIIB
+															at0074,    -- IIIC
+															at0075,    -- IVA
+															at0076,    -- IVB
+															at0077]    -- UNS
+														}
+													}
+												}
+											}
+											ELEMENT[at0078] occurrences matches {0..1} matches {    -- SCLC extent
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0079,    -- LD
+															at0080]    -- ED
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					CLUSTER[at0005] occurrences matches {0..1} matches {*}    -- Extension
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"lung_cancer_tnm_staging">
+					description = <"TNM staging classification for lung cancer">
+					comment = <"Original version, c 2015">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0037"] = <
+					text = <"T category">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"TX">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"T0">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"Tis">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"T1a">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"T1b">
+					description = <"">
+				>
+				["at0043"] = <
+					text = <"T1c">
+					description = <"">
+				>
+				["at0044"] = <
+					text = <"T2a">
+					description = <"">
+				>
+				["at0045"] = <
+					text = <"T2b">
+					description = <"">
+				>
+				["at0046"] = <
+					text = <"T3">
+					description = <"">
+				>
+				["at0047"] = <
+					text = <"T4">
+					description = <"">
+				>
+				["at0048"] = <
+					text = <"N category">
+					description = <"">
+				>
+				["at0049"] = <
+					text = <"NX">
+					description = <"">
+				>
+				["at0050"] = <
+					text = <"N0">
+					description = <"">
+				>
+				["at0051"] = <
+					text = <"N1">
+					description = <"">
+				>
+				["at0052"] = <
+					text = <"N2a">
+					description = <"">
+				>
+				["at0053"] = <
+					text = <"N2b">
+					description = <"">
+				>
+				["at0054"] = <
+					text = <"N3">
+					description = <"">
+				>
+				["at0055"] = <
+					text = <"M category">
+					description = <"">
+				>
+				["at0056"] = <
+					text = <"M0">
+					description = <"">
+				>
+				["at0057"] = <
+					text = <"M1a">
+					description = <"">
+				>
+				["at0058"] = <
+					text = <"M1b">
+					description = <"">
+				>
+				["at0059"] = <
+					text = <"M1c1">
+					description = <"">
+				>
+				["at0060"] = <
+					text = <"M1c2">
+					description = <"">
+				>
+				["at0061"] = <
+					text = <"Histology">
+					description = <"">
+				>
+				["at0062"] = <
+					text = <"SCLC">
+					description = <"">
+				>
+				["at0063"] = <
+					text = <"NSCLC">
+					description = <"">
+				>
+				["at0064"] = <
+					text = <"staging TNM output">
+					description = <"">
+				>
+				["at0065"] = <
+					text = <"stage group">
+					description = <"">
+				>
+				["at0066"] = <
+					text = <"IA1">
+					description = <"">
+				>
+				["at0067"] = <
+					text = <"IA2">
+					description = <"">
+				>
+				["at0068"] = <
+					text = <"IA3">
+					description = <"">
+				>
+				["at0069"] = <
+					text = <"IB">
+					description = <"">
+				>
+				["at0070"] = <
+					text = <"IIA">
+					description = <"">
+				>
+				["at0071"] = <
+					text = <"IIB">
+					description = <"">
+				>
+				["at0072"] = <
+					text = <"IIIA">
+					description = <"">
+				>
+				["at0073"] = <
+					text = <"IIIB">
+					description = <"">
+				>
+				["at0074"] = <
+					text = <"IIIC">
+					description = <"">
+				>
+				["at0075"] = <
+					text = <"IVA">
+					description = <"">
+				>
+				["at0076"] = <
+					text = <"IVB">
+					description = <"">
+				>
+				["at0077"] = <
+					text = <"UNS">
+					description = <"">
+				>
+				["at0078"] = <
+					text = <"SCLC extent">
+					description = <"">
+				>
+				["at0079"] = <
+					text = <"LD">
+					description = <"(Limited Disease)">
+				>
+				["at0080"] = <
+					text = <"ED">
+					description = <"(Extensive Disease)">
+				>
+			>
+		>
+	>
