@@ -1,0 +1,278 @@
+{
+  "uuid" : "",
+  "id" : "Hormone_therapy_for_prostate_cancer.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Kevin Arjona",
+      "email" : "kevin.arjona@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2025-12-15"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To determine the indication  of hormone therapy based on risk group and endocrine treatment.",
+        "keywords" : [
+          "prostate",
+          "cancer",
+          "radiation",
+          "therapy",
+          "radiotherapy",
+          "risk",
+          "gnrh",
+          "anti-androgen",
+          "hormone",
+          "adt"
+        ],
+        "use" : "Use in patients with protate cancer to assess the hormone therapy recommendations.",
+        "misuse" : "Not to be used for hormone therapy recommendations in other types of cancer.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Widmark A, Klepp O, Solberg A, Damber JE, Angelsen A, Fransson P, Lund JA, Tasdemir I, Hoyer M, Wiklund F, Fosså SD; Scandinavian Prostate Cancer Group Study 7; Swedish Association for Urological Oncology 3. Endocrine treatment, with or without radiotherapy, in locally advanced prostate cancer (SPCG-7/SFUO-3): an open randomised phase III trial. Lancet. 2009 Jan 24;373(9660):301-8. doi: 10.1016/S0140-6736(08)61815-2. Epub 2008 Dec 16. Erratum in: Lancet. 2009 Apr 4;373(9670):1174. PMID: 19091394.\n\nMottet N, Peneau M, Mazeron JJ, Molinie V, Richaud P. Addition of radiotherapy to long-term androgen deprivation in locally advanced prostate cancer: an open randomised phase 3 trial. Eur Urol. 2012 Aug;62(2):213-9. doi: 10.1016/j.eururo.2012.03.053. Epub 2012 Apr 3. PMID: 22502942.\n\nDenham JW, Steigler A, Lamb DS, Joseph D, Turner S, Matthews J, Atkinson C, North J, Christie D, Spry NA, Tai KH, Wynne C, D'Este C. Short-term neoadjuvant androgen deprivation and radiotherapy for locally advanced prostate cancer: 10-year data from the TROG 96.01 randomised trial. Lancet Oncol. 2011 May;12(5):451-9. doi: 10.1016/S1470-2045(11)70063-8. PMID: 21440505.\n\nNationellt vårdprogram prostatacancer [Internet]. Regionala cancercentrum i samverkan; 2023 [cited 2025 Nov 24]. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/prostatacancer/vardprogram/primar-behandling-av-prostatacancer-utan-spridning/",
+      "en" : "Recommendations for hormone therapy (ADT)  for prostate cancer."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.hormone_therapy_for_prostate_cancer.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.hormone_therapy_for_prostate_cancer.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0007",
+              "local::at0008",
+              "local::at0009",
+              "local::at0010",
+              "local::at0011",
+              "local::at0012",
+              "local::at0013",
+              "local::at0014"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0015]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0016",
+              "local::at0017",
+              "local::at0018",
+              "local::at0019",
+              "local::at0020"
+            ]
+          }
+        }
+      },
+      "gt0005" : {
+        "id" : "gt0005",
+        "model_id" : "openEHR-EHR-EVALUATION.hormone_therapy_for_prostate_cancer_assessment.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.hormone_therapy_for_prostate_cancer_assessment.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0003]/items[at0004]",
+            "data_type" : "DV_CODED_TEXT"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0003]/items[at0010]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      }
+    },
+    "pre_conditions" : [
+      "$gt0003|Risk Category|!=null",
+      "$gt0004|Endocrine treatment during radiation therapy|!=null"
+    ],
+    "default_actions" : [
+      "$gt0006|Recommendation status|=local::at0007|Not recommended|"
+    ],
+    "rules" : {
+      "gt0008" : {
+        "id" : "gt0008",
+        "priority" : 8,
+        "when" : [
+          "$gt0003|Risk Category|==local::at0009|Unfavorable intermediate risk|",
+          "$gt0004|Endocrine treatment during radiation therapy|==local::at0016|6 months of adjuvant TAB|"
+        ],
+        "then" : [
+          "$gt0006|Recommendation status|=local::at0006|Recommended|"
+        ]
+      },
+      "gt0012" : {
+        "id" : "gt0012",
+        "priority" : 7,
+        "when" : [
+          "$gt0003|Risk Category|==local::at0010|High risk|",
+          "$gt0004|Endocrine treatment during radiation therapy|==local::at0016|6 months of adjuvant TAB|"
+        ],
+        "then" : [
+          "$gt0006|Recommendation status|=local::at0008|Consider/Conditional|",
+          "$gt0007|Comment|=local::at0011|Treatment with bicalutamide or GnRH agonist should continue for 2–3 years after radiotherapy|"
+        ]
+      },
+      "gt0009" : {
+        "id" : "gt0009",
+        "priority" : 6,
+        "when" : [
+          "$gt0003|Risk Category|==local::at0010|High risk|||$gt0003|Risk Category|==local::at0011|Very high risk|",
+          "$gt0004|Endocrine treatment during radiation therapy|==local::at0017|6 months of TAB followed by adjuvant bicalutamide for 18-36 months|"
+        ],
+        "then" : [
+          "$gt0006|Recommendation status|=local::at0006|Recommended|"
+        ]
+      },
+      "gt0010" : {
+        "id" : "gt0010",
+        "priority" : 5,
+        "when" : [
+          "$gt0003|Risk Category|==local::at0012|Very high risk / N1|",
+          "$gt0004|Endocrine treatment during radiation therapy|==local::at0018|(24)-36 months of castration + 24 months of abiraterone|"
+        ],
+        "then" : [
+          "$gt0006|Recommendation status|=local::at0006|Recommended|"
+        ]
+      },
+      "gt0011" : {
+        "id" : "gt0011",
+        "priority" : 4,
+        "when" : [
+          "$gt0003|Risk Category|==local::at0013|M1 (Low volume)|",
+          "$gt0004|Endocrine treatment during radiation therapy|==local::at0019|Castration until further notice + new endocrine preparations|"
+        ],
+        "then" : [
+          "$gt0006|Recommendation status|=local::at0006|Recommended|"
+        ]
+      },
+      "gt0014" : {
+        "id" : "gt0014",
+        "priority" : 3,
+        "when" : [
+          "$gt0003|Risk Category|==local::at0014|Postoperative radiation therapy (salvage)|",
+          "$gt0004|Endocrine treatment during radiation therapy|==local::at0017|6 months of TAB followed by adjuvant bicalutamide for 18-36 months|"
+        ],
+        "then" : [
+          "$gt0006|Recommendation status|=local::at0006|Recommended|"
+        ]
+      },
+      "gt0013" : {
+        "id" : "gt0013",
+        "priority" : 2,
+        "when" : [
+          "$gt0003|Risk Category|==local::at0014|Postoperative radiation therapy (salvage)|",
+          "$gt0004|Endocrine treatment during radiation therapy|==local::at0016|6 months of adjuvant TAB|"
+        ],
+        "then" : [
+          "$gt0006|Recommendation status|=local::at0008|Consider/Conditional|",
+          "$gt0007|Comment|=local::at0012|In case the pelvic lymph nodes are to be treated and PSA < 0.7 µg/l (If PSA > 0.7, 2 years of bicalutamide is recommended)|"
+        ]
+      },
+      "gt0015" : {
+        "id" : "gt0015",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|Risk Category|==local::at0014|Postoperative radiation therapy (salvage)|",
+          "$gt0004|Endocrine treatment during radiation therapy|==local::at0020|Adjuvant bicalutamide for 24 months|"
+        ],
+        "then" : [
+          "$gt0006|Recommendation status|=local::at0008|Consider/Conditional|",
+          "$gt0007|Comment|=local::at0013|In selected cases in patients who are willing to accept the side effects or who cannot tolerate bicalutamide|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Hormone therapy for prostate cancer",
+            "description" : "Recommendations for hormone therapy (ADT)  for prostate cancer."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.hormone_therapy_for_prostate_cancer.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Risk Category"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Endocrine treatment during radiation therapy"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "openEHR-EHR-EVALUATION.hormone_therapy_for_prostate_cancer_assessment.v0"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "Recommendation status"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Comment"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Set to recommended case 1",
+            "description" : " Unfavorable intermediate risk for 6 months of adjuvant TAB"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Set to recommended case 2",
+            "description" : "High risk or very high risk for 6 months of adjuvant TAB + 2 years "
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Set to recommended case 3",
+            "description" : "Very high risk / N1 for 24-36 months castration + 24 months ab"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Set to recommended case 4",
+            "description" : "M1 (lv) for castration + endocrine"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Set to conditional case 1",
+            "description" : "High risk for 6 months of adjuvant TAB"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Set to conditional case 2",
+            "description" : "salvage PRT for 6 months of adjuvant TAB"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Set to recommended case 5",
+            "description" : "salvage PRT for 6 months of adjuvant TAB + 2 years "
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "Set to conditional case 3",
+            "description" : "salvage PRT for adjuvant bicalutamide"
+          }
+        }
+      }
+    }
+  }
+}
