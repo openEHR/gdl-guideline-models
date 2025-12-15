@@ -1,0 +1,144 @@
+archetype (adl_version=1.4; uid=37eb0766-c6ca-4a6f-8285-b682ac74e60c)
+	openEHR-EHR-EVALUATION.hormone_therapy_for_prostate_cancer_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-12-15">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To assess the recorded risk group and endocrine treatment during radiation therapy.">
+			keywords = <"prostate, cancer, radiation, therapy, radiotherapy, fractionation, risk, GnRH, anti-androgen, ADT, hormone", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to assess the inputs recorded in the hormone_therapy_for_prostate_cancer.adl archetype.">
+			misuse = <"Not to be used for recording the administration of the treatment. Not to be used for hormone therapy recommendations in other types of cancer.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Widmark A, Klepp O, Solberg A, Damber JE, Angelsen A, Fransson P, Lund JA, Tasdemir I, Hoyer M, Wiklund F, Fosså SD; Scandinavian Prostate Cancer Group Study 7; Swedish Association for Urological Oncology 3. Endocrine treatment, with or without radiotherapy, in locally advanced prostate cancer (SPCG-7/SFUO-3): an open randomised phase III trial. Lancet. 2009 Jan 24;373(9660):301-8. doi: 10.1016/S0140-6736(08)61815-2. Epub 2008 Dec 16. Erratum in: Lancet. 2009 Apr 4;373(9670):1174. PMID: 19091394.
+
+Mottet N, Peneau M, Mazeron JJ, Molinie V, Richaud P. Addition of radiotherapy to long-term androgen deprivation in locally advanced prostate cancer: an open randomised phase 3 trial. Eur Urol. 2012 Aug;62(2):213-9. doi: 10.1016/j.eururo.2012.03.053. Epub 2012 Apr 3. PMID: 22502942.
+
+Denham JW, Steigler A, Lamb DS, Joseph D, Turner S, Matthews J, Atkinson C, North J, Christie D, Spry NA, Tai KH, Wynne C, D'Este C. Short-term neoadjuvant androgen deprivation and radiotherapy for locally advanced prostate cancer: 10-year data from the TROG 96.01 randomised trial. Lancet Oncol. 2011 May;12(5):451-9. doi: 10.1016/S1470-2045(11)70063-8. PMID: 21440505.
+
+Nationellt vårdprogram prostatacancer [Internet]. Regionala cancercentrum i samverkan; 2023 [cited 2025 Nov 24]. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/prostatacancer/vardprogram/primar-behandling-av-prostatacancer-utan-spridning/">
+		["build_uid"] = <"f481de37-2547-3172-8091-1bded44d1005">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Hormone therapy for prostate cancer assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Recommendation status
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0006,    -- Recommended
+									at0007,    -- Not recommended
+									at0008]    -- Consider/Conditional
+								}
+							}
+						}
+					}
+					ELEMENT[at0010] occurrences matches {0..1} matches {    -- Comment
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0011,    -- Treatment with bicalutamide or GnRH agonist should continue for 2–3 years after radiotherapy
+									at0012,    -- In case the pelvic lymph nodes are to be treated and PSA < 0.7 µg/l (If PSA > 0.7, 2 years of bicalutamide is recommended)
+									at0013]    -- In selected cases in patients who are willing to accept the side effects or who cannot tolerate bicalutamide
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Hormone therapy for prostate cancer assessment">
+					description = <"Assessment of the hormone therapy (ADT) when given in conjunction with radiation therapy for prostate cancer.">
+					comment = <"Original version, c 2009">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Recommendation status">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Recommended">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Not recommended">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Consider/Conditional">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Comment">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Treatment with bicalutamide or GnRH agonist should continue for 2–3 years after radiotherapy">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"In case the pelvic lymph nodes are to be treated and PSA < 0.7 µg/l (If PSA > 0.7, 2 years of bicalutamide is recommended)">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"In selected cases in patients who are willing to accept the side effects or who cannot tolerate bicalutamide">
+					description = <"">
+				>
+			>
+		>
+	>
