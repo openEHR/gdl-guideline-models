@@ -1,0 +1,102 @@
+guidelines:
+  "1": Hormone_therapy_for_prostate_cancer.v0.0.1
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Risk Category missing (negative test).
+    input:
+      "1":
+        gt0004|Endocrine treatment during radiation therapy: local::at0016|6 months of adjuvant TAB|
+    expected_output:
+      "1": {}
+  - id: 03. Endocrine treatment during radiation therapy missing (negative test).
+    input:
+      "1":
+        gt0003|Risk Category: local::at0009|Unfavorable intermediate risk|
+    expected_output:
+      "1": {}
+  - id: 04.  Unfavorable intermediate risk for 6 months of adjuvant TAB.
+    input:
+      "1":
+        gt0003|Risk Category: local::at0009|Unfavorable intermediate risk|
+        gt0004|Endocrine treatment during radiation therapy: local::at0016|6 months of adjuvant TAB|
+    expected_output:
+      "1":
+        gt0006|Recommendation status: local::at0006|Recommended|
+  - id: 05.  High risk for 6 months of adjuvant TAB.
+    input:
+      "1":
+        gt0003|Risk Category: local::at0010|High risk|
+        gt0004|Endocrine treatment during radiation therapy: local::at0016|6 months of adjuvant TAB|
+    expected_output:
+      "1":
+        gt0006|Recommendation status: local::at0008|Consider/Conditional|
+        gt0007|Comment: local::at0011|Treatment with bicalutamide or GnRH agonist should
+          continue for 2–3 years after radiotherapy|
+  - id: 06. High risk or very high risk for 6 months of adjuvant TAB + 2 years.
+    input:
+      "1":
+        gt0003|Risk Category: local::at0010|High risk|
+        gt0004|Endocrine treatment during radiation therapy: local::at0017|6 months of
+          TAB followed by adjuvant bicalutamide for 18-36 months|
+    expected_output:
+      "1":
+        gt0006|Recommendation status: local::at0006|Recommended|
+  - id: 07. Very high risk / N1 for 24-36 months castration + 24 months ab.
+    input:
+      "1":
+        gt0003|Risk Category: local::at0012|Very high risk / N1|
+        gt0004|Endocrine treatment during radiation therapy: local::at0018|(24)-36 months of castration + 24 months of abiraterone|
+    expected_output:
+      "1":
+        gt0006|Recommendation status: local::at0006|Recommended|
+  - id: 08. M1 (lv) for castration + endocrine.
+    input:
+      "1":
+        gt0003|Risk Category: local::at0013|M1 (Low volume)|
+        gt0004|Endocrine treatment during radiation therapy: local::at0019|Castration
+          until further notice + new endocrine preparations|
+    expected_output:
+      "1":
+        gt0006|Recommendation status: local::at0006|Recommended|
+  - id: 09. Salvage PRT for 6 months of adjuvant TAB.
+    input:
+      "1":
+        gt0003|Risk Category: local::at0014|Postoperative radiation therapy (salvage)|
+        gt0004|Endocrine treatment during radiation therapy: local::at0016|6 months of adjuvant TAB|
+    expected_output:
+      "1":
+        gt0006|Recommendation status: local::at0008|Consider/Conditional|
+        gt0007|Comment: local::at0012|In case the pelvic lymph nodes are to be treated
+          and PSA < 0.7 µg/l (If PSA > 0.7, 2 years of bicalutamide is
+          recommended)|
+  - id: 10. Salvage PRT for 6 months of adjuvant TAB + 2years.
+    input:
+      "1":
+        gt0003|Risk Category: local::at0014|Postoperative radiation therapy (salvage)|
+        gt0004|Endocrine treatment during radiation therapy: local::at0017|6 months of
+          TAB followed by adjuvant bicalutamide for 18-36 months|
+    expected_output:
+      "1":
+        gt0006|Recommendation status: local::at0006|Recommended|
+  - id: 11. Salvage PRT for adjuvant bicalutamide.
+    input:
+      "1":
+        gt0003|Risk Category: local::at0014|Postoperative radiation therapy (salvage)|
+        gt0004|Endocrine treatment during radiation therapy: local::at0020|Adjuvant bicalutamide for 24 months|
+    expected_output:
+      "1":
+        gt0006|Recommendation status: local::at0008|Consider/Conditional|
+        gt0007|Comment: local::at0013|In selected cases in patients who are willing to
+          accept the side effects or who cannot tolerate bicalutamide|
+  - id: 12. Not recommended.
+    input:
+      "1":
+        gt0003|Risk Category: local::at0010|High risk|
+        gt0004|Endocrine treatment during radiation therapy: local::at0020|Adjuvant bicalutamide for 24 months|
+    expected_output:
+      "1":
+        gt0006|Recommendation status: local::at0007|Not recommended|
