@@ -1,0 +1,249 @@
+archetype (adl_version=1.4; uid=c7391737-382e-4c7a-8626-e31f9c69f060)
+	openEHR-EHR-OBSERVATION.lung_cancer_tests.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-12-08">
+		["name"] = <"Mahmoud Elachi">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"mel.achi@gmail.com">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To provide a concise, structured overview of key laboratory findings that influence diagnostic assessment, treatment planning, and clinical decision-making in lung cancer care.">
+			keywords = <"lung cancer; laboratory tests; blood count; CRP; coagulation; liver enzymes; electrolytes; creatinine", ...>
+			copyright = <"Use © Cambio CDS">
+			use = <"Use to record grouped laboratory results during initial evaluation, triage, oncology consultations, or multidisciplinary assessment for lung cancer. Suitable when detailed analyte values are not required and categorical interpretation is sufficient for decision support.">
+			misuse = <"Do not use to record individual analyte measurements or detailed laboratory results. Not intended for monitoring specific lab trends, integrating laboratory information system (LIS) data, or providing numeric values for clinical calculations.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"https://kunskapsbanken.cancercentrum.se/diagnoser/lungcancer/vardprogram/">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"281cd8cd4451a5568bf2ed90a33fb116">
+		["build_uid"] = <"a705061c-0e78-39b5-9306-64469d8512fe">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- lung_cancer_tests
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Blood count
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- Normal
+													at0008]    -- Abnormal
+												}
+											}
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- CRP
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012,    -- Normal
+													at0013]    -- Elevated
+												}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Bleeding tests
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0017,    -- Normal
+													at0018]    -- Abnormal
+												}
+											}
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {    -- Liver enzymes
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0020,    -- Normal
+													at0021]    -- Abnormal
+												}
+											}
+										}
+									}
+									ELEMENT[at0022] occurrences matches {0..1} matches {    -- Electrolytes and creatinine
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0023,    -- Normal
+													at0024]    -- Abnormal
+												}
+											}
+										}
+									}
+									ELEMENT[at0025] occurrences matches {0..1} matches {    -- ECOG Performance Status
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0026,    -- 0
+													at0027,    -- 1
+													at0028,    -- 2
+													at0029,    -- 3
+													at0030]    -- 4
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					CLUSTER[at0005] occurrences matches {0..1} matches {*}    -- Extension
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"lung_cancer_tests">
+					description = <"A simplified summary of laboratory findings relevant to the initial evaluation of suspected or confirmed lung cancer. Includes grouped assessments of blood count, CRP, coagulation tests, liver enzymes, and renal/electrolyte status, represented as categorical results.">
+					comment = <"Original version, c 2015">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Blood count">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Normal">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Abnormal">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"CRP">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Normal">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Elevated">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Bleeding tests">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Normal">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Abnormal">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Liver enzymes">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Normal">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Abnormal">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Electrolytes and creatinine">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Normal">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Abnormal">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"ECOG Performance Status">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"0">
+					description = <"Fully active, able to carry on all pre-disease performance without restriction.">
+				>
+				["at0027"] = <
+					text = <"1">
+					description = <"Restricted in physically strenuous activity but ambulatory and able to carry out light work.">
+				>
+				["at0028"] = <
+					text = <"2">
+					description = <"Ambulatory and capable of all self-care but unable to carry out any work activities; up and about more than 50% of waking hours.">
+				>
+				["at0029"] = <
+					text = <"3">
+					description = <"Capable of only limited self-care; confined to bed or chair more than 50% of waking hours.">
+				>
+				["at0030"] = <
+					text = <"4">
+					description = <"Completely disabled; cannot carry on any self-care; totally confined to bed or chair.">
+				>
+			>
+		>
+	>
