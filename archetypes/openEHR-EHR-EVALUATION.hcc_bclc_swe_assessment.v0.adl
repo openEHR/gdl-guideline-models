@@ -1,0 +1,163 @@
+archetype (adl_version=1.4; uid=2f773d7e-dfae-4c43-aeca-00547cdc8041)
+	openEHR-EHR-EVALUATION.hcc_bclc_swe_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-12-26">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the derived disease stage and recommended treatment strategy for hepatocellular carcinoma based on Swedish BCLC-based decision support logic.">
+			keywords = <"hepatocellular carcinoma","hcc","bclc","swedish","assessment","staging","treatment","recommendation","ablation","resection","transplantation","TACE","SIRT","systemic therapy","supportive care">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the derived disease stage and recommended treatment strategy for hepatocellular carcinoma based on Swedish BCLC-based decision support logic.">
+			misuse = <"Not to be used for recording the input parameters used to derive Swedish BCLC stage or treatment recommendations.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Regionala cancercentrum i samverkan. Nationellt vårdprogram levercellscancer: Kapitel 8 Diagnostik och staging. Kunskapsbanken, 2024. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/levercellscancer/vardprogram/diagnostik/
+">
+		["build_uid"] = <"b940a348-90c0-458e-a2f0-5a6c04bf733f">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Hepatocellular carcinoma Swedish BCLC assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Stage
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- Early
+									at0006,    -- Intermediate
+									at0007,    -- Advanced
+									at0008]    -- Terminal
+								}
+							}
+						}
+					}
+					ELEMENT[at0009] occurrences matches {0..1} matches {    -- Treatment recommendation
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0010,    -- Ablation
+									at0011,    -- Resection
+									at0012,    -- Transplantation
+									at0013,    -- TACE
+									at0014,    -- SIRT
+									at0015,    -- Systemic therapy
+									at0016]    -- Best supportive care
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Hepatocellular carcinoma Swedish BCLC assessment">
+					description = <"A clinical assessment used to record the derived disease stage and treatment recommendation for hepatocellular carcinoma according to the Swedish adaptation of the Barcelona Clinic Liver Cancer framework.">
+					comment = <"Derived from the Barcelona Clinic Liver Cancer classification originally published in 1999 and adapted according to Swedish national treatment recommendations for hepatocellular carcinoma.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Stage">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Early">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Intermediate">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Advanced">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Terminal">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Treatment recommendation">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Ablation">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Resection">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Transplantation">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"TACE">
+					description = <"Transarterial chemoembolization">
+				>
+				["at0014"] = <
+					text = <"SIRT">
+					description = <"Selective internal radiation therapy">
+				>
+				["at0015"] = <
+					text = <"Systemic therapy">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Best supportive care">
+					description = <"">
+				>
+			>
+		>
+	>
