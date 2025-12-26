@@ -1,0 +1,242 @@
+archetype (adl_version=1.4; uid=eb08ad1d-958d-43d7-98e9-76a8cd41d477)
+	openEHR-EHR-OBSERVATION.hcc_bclc_swe.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-12-26">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter required for Swedish BCLC-based staging and treatment assessment in patients with hepatocellular carcinoma.">
+			keywords = <"hepatocellular carcinoma","hcc","bclc","swedish","staging","treatment">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter required for Swedish BCLC-based staging and treatment assessment in patients with hepatocellular carcinoma.">
+			misuse = <"Not to be used to record the staging and treatment assessment in patients with hepatocellular carcinoma.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Regionala cancercentrum i samverkan. Nationellt vårdprogram levercellscancer: Kapitel 8 Diagnostik och staging. Kunskapsbanken, 2024. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/levercellscancer/vardprogram/diagnostik/">
+		["build_uid"] = <"c21a8b73-4151-477b-8c59-9383c1984aa4">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Hepatocellular carcinoma Swedish BCLC
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Largest tumour diameter
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::122]>
+												list = <
+													["1"] = <
+														units = <"cm">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Number of tumours
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0008,    -- single
+													at0009,    -- few (2-3)
+													at0010]    -- multifocal (>3)
+												}
+											}
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Tumour confined to liver
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Extrahepatic metastasis present
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- Diffuse growth or macroscopic thrombus
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Portal vein status
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0015,    -- none
+													at0016,    -- peripheral thrombosis
+													at0017]    -- main trunk thrombosis
+												}
+											}
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Severe comorbidity limiting therapy
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {    -- Transplant candidate
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {    -- Tumour burden within transplant criteria
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- Downstaging successful
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0022] occurrences matches {0..1} matches {    -- Cirrhosis present
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Hepatocellular carcinoma Swedish BCLC">
+					description = <"A structured set of input parameters used to record tumour-related, liver-related, and patient-related parameters required for staging and treatment decision-making in hepatocellular carcinoma according to the Swedish adaptation of the Barcelona Clinic Liver Cancer framework.">
+					comment = <"Derived from the Barcelona Clinic Liver Cancer (BCLC) classification originally published in 1999 and adapted according to Swedish national treatment recommendations for hepatocellular carcinoma.
+">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Largest tumour diameter">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Number of tumours">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"single">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"few (2-3)">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"multifocal (>3)">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Tumour confined to liver">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Extrahepatic metastasis present">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Diffuse growth or macroscopic thrombus">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Portal vein status">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"none">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"peripheral thrombosis">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"main trunk thrombosis">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Severe comorbidity limiting therapy">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Transplant candidate">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Tumour burden within transplant criteria">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Downstaging successful">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Cirrhosis present">
+					description = <"">
+				>
+			>
+		>
+	>
