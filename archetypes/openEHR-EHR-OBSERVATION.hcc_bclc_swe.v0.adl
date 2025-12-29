@@ -27,10 +27,11 @@ description
 	>
 	other_details = <
 		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Regionala cancercentrum i samverkan. Nationellt vårdprogram levercellscancer: Kapitel 8 Diagnostik och staging. Kunskapsbanken, 2024. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/levercellscancer/vardprogram/diagnostik/">
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["references"] = <"Regionala cancercentrum i samverkan. Nationellt vårdprogram levercellscancer: Kapitel 8 Diagnostik och staging. Kunskapsbanken, 2024. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/levercellscancer/vardprogram/diagnostik/">
+		["MD5-CAM-1.0.1"] = <"054a790fe512b693da1a354e081510e1">
 		["build_uid"] = <"c21a8b73-4151-477b-8c59-9383c1984aa4">
 	>
 
@@ -77,7 +78,12 @@ definition
 											DV_BOOLEAN matches {*}
 										}
 									}
-									ELEMENT[at0013] occurrences matches {0..1} matches {    -- Diffuse growth or macroscopic thrombus
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- Diffuse tumour growth present
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0023] occurrences matches {0..1} matches {    -- Macroscopic tumour thrombus present
 										value matches {
 											DV_BOOLEAN matches {*}
 										}
@@ -198,7 +204,7 @@ ontology
 					description = <"">
 				>
 				["at0013"] = <
-					text = <"Diffuse growth or macroscopic thrombus">
+					text = <"Diffuse tumour growth present">
 					description = <"">
 				>
 				["at0014"] = <
@@ -235,6 +241,10 @@ ontology
 				>
 				["at0022"] = <
 					text = <"Cirrhosis present">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Macroscopic tumour thrombus present">
 					description = <"">
 				>
 			>
