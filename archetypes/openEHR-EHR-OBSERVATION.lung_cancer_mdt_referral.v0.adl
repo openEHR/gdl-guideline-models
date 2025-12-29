@@ -1,0 +1,362 @@
+archetype (adl_version=1.4; uid=83c13a20-4ade-4201-b789-6df4b5912130)
+	openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-12-29">
+		["name"] = <"Mahmoud Elachi">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"mel.achi@gmail.com">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record whether MDT referral is recommended and to guide referral scheduling">
+			keywords = <"MDT, multidisciplinary team, lung cancer, NSCLC, mediastinal staging, EBUS, EUS, PET-CT, lymph nodes, N2, N3, CT scan, guideline", ...>
+			copyright = <"Use © Cambio CDS">
+			use = <"To be used as the output of a clinical decision support rule suggesting MDT referral">
+			misuse = <"Not intended for palliative care cases or in absence of adequate imaging. Do not use without PET-CT data or if diagnosis is not suspected/confirmed NSCLC.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Regionala cancercentrum i samverkan. Nationellt vårdprogram lungcancer. Kunskapsbanken, 2025.
+Available at: kunskapsbanken.cancercentrum.se/diagnoser/lungcancer/vardprogram/">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"585946fc0b7a69b1fc797bf2ffb86fc0">
+		["build_uid"] = <"58937016-33bd-3da8-935d-42afa5938fed">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- lung_cancer mdt_referral
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									CLUSTER[at0030] occurrences matches {0..1} matches {    -- Imaging prerequisites
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0022] occurrences matches {0..1} matches {    -- PET‑CT performed
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0023] occurrences matches {0..1} matches {    -- Diagnostic CT thorax
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0024] occurrences matches {0..1} matches {    -- PET lymph node uptake
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0025,    -- N0
+															at0026,    -- N1
+															at0027,    -- N2
+															at0028]    -- N3
+														}
+													}
+												}
+											}
+											ELEMENT[at0029] occurrences matches {0..1} matches {    -- CT lymph node enlargement
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+										}
+									}
+									CLUSTER[at0031] occurrences matches {0..1} matches {    -- Tumor characteristics
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0032] occurrences matches {0..1} matches {    -- Tumor size
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::122]>
+														list = <
+															["1"] = <
+																units = <"cm">
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0033] occurrences matches {0..1} matches {    -- Tumor location
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0034,    -- Central
+															at0035]    -- Peripheral
+														}
+													}
+												}
+											}
+											ELEMENT[at0036] occurrences matches {0..1} matches {    -- Peripheral third of lung
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+										}
+									}
+									CLUSTER[at0037] occurrences matches {0..1} matches {    -- Clinical pathway context
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0038] occurrences matches {0..1} matches {    -- Curative intent
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0039] occurrences matches {0..1} matches {    -- Prior EBUS/EUS performed
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0040] occurrences matches {0..1} matches {    -- EBUS/EUS result
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0041,    -- Positive
+															at0042,    -- Negative
+															at0043]    -- Non‑representative
+														}
+													}
+												}
+											}
+										}
+									}
+									CLUSTER[at0044] occurrences matches {0..1} matches {    -- Outputs
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0013] occurrences matches {0..1} matches {    -- Mediastinal staging required
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0045] occurrences matches {0..1} matches {    -- Recommended staging method
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0046,    -- EBUS-TBNA
+															at0047,    -- EUS-FNA
+															at0048,    -- Mediastinoscopy
+															at0049]    -- None
+														}
+													}
+												}
+											}
+											ELEMENT[at0050] occurrences matches {0..1} matches {    -- Next staging step
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0051,    -- Perform EBUS
+															at0052,    -- Add EUS
+															at0053,    -- Repeat EBUS
+															at0054,    -- Perform mediastinoscopy
+															at0055]    -- No further staging
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					CLUSTER[at0005] occurrences matches {0..1} matches {*}    -- Extension
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"lung_cancer mdt_referral">
+					description = <"A clinical decision guideline for determining whether invasive mediastinal lymph node staging (e.g. EBUS-TBNA, EUS-FNA, or mediastinoscopy) is required prior to curative treatment in patients with suspected or confirmed NSCLC, based on PET-CT findings, tumor size, location, and radiological nodal status.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0013"] = <
+					text = <"Mediastinal staging required">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"PET‑CT performed">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Diagnostic CT thorax">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"PET lymph node uptake">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"N0">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"N1">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"N2">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"N3">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"CT lymph node enlargement">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Imaging prerequisites">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Tumor characteristics">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Tumor size">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Tumor location">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Central">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"Peripheral">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Peripheral third of lung">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"Clinical pathway context">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"Curative intent">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"Prior EBUS/EUS performed">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"EBUS/EUS result">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"Positive">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"Negative">
+					description = <"">
+				>
+				["at0043"] = <
+					text = <"Non‑representative">
+					description = <"">
+				>
+				["at0044"] = <
+					text = <"Outputs">
+					description = <"">
+				>
+				["at0045"] = <
+					text = <"Recommended staging method">
+					description = <"">
+				>
+				["at0046"] = <
+					text = <"EBUS-TBNA">
+					description = <"">
+				>
+				["at0047"] = <
+					text = <"EUS-FNA">
+					description = <"">
+				>
+				["at0048"] = <
+					text = <"Mediastinoscopy">
+					description = <"">
+				>
+				["at0049"] = <
+					text = <"None">
+					description = <"">
+				>
+				["at0050"] = <
+					text = <"Next staging step">
+					description = <"">
+				>
+				["at0051"] = <
+					text = <"Perform EBUS">
+					description = <"">
+				>
+				["at0052"] = <
+					text = <"Add EUS">
+					description = <"">
+				>
+				["at0053"] = <
+					text = <"Repeat EBUS">
+					description = <"">
+				>
+				["at0054"] = <
+					text = <"Perform mediastinoscopy">
+					description = <"">
+				>
+				["at0055"] = <
+					text = <"No further staging">
+					description = <"">
+				>
+			>
+		>
+	>
