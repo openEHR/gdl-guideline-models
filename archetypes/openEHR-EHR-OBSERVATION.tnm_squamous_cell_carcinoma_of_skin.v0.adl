@@ -1,0 +1,209 @@
+archetype (adl_version=1.4; uid=beefbc0e-9262-4a2e-85be-99b8699a2bb3)
+	openEHR-EHR-OBSERVATION.tnm_squamous_cell_carcinoma_of_skin.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-01-05">
+		["name"] = <"Umiah Gohar">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"umiah.gohar@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the anatomical extent of skin cancer based on the Primary Tumor (T), Regional Lymph Nodes (N), and Distant Metastasis (M).">
+			keywords = <"Squamous, cell, skin, cancer, tnm, staging, uicc, oncology, tumor, metastasis", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the clinical observations for the classification of squamous cell carcinoma of skin.">
+			misuse = <"Not to be used for staging other types of malignancies.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"e71aa6bbbf174b3f785266e9df5224ca">
+		["build_uid"] = <"9d19fd6e-511a-306c-9d84-3b94adf850e9">
+		["references"] = <"Brierley JD, Gospodarowicz MK, Wittekind C, editors. TNM classification of malignant tumours. 8th ed. Oxford (UK): Wiley-Blackwell; 2016.">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- TNM squamous cell carcinoma of skin
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Primary tumor
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0008,    -- Primary tumor cannot be identified
+													at0009,    -- Unknown primary tumor
+													at0010,    -- Cancer in situ
+													at0011,    -- Largest tumor diameter ≤2.0 cm
+													at0012,    -- Largest tumor diameter >2 cm and ≤4 cm
+													at0013,    -- Largest tumor diameter >4 cm or less skeletal erosion or perineural invasion or deep invasion
+													at0014,    -- Tumor growth in cortical bone or bone marrow
+													at0015]    -- Tumor growth in axial skeleton including involvement of foramina and/or involvement of vertebral foramen to epidural space
+												}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Lymph nodes
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0017,    -- Regional lymph nodes cannot be examined.
+													at0018,    -- No regional lymph node metastases
+													at0019,    -- Metastasis with largest diameter ≤ 3 cm in a lymph node
+													at0020,    -- Metastasis with largest diameter > 3 cm but ≤ 6 cm in one ipsilateral lymph node or metastases with largest diameter ≤ 6 cm in multiple ipsilateral lymph nodes
+													at0021]    -- Metastasis with largest diameter > 6 cm in a lymph node
+												}
+											}
+										}
+									}
+									ELEMENT[at0022] occurrences matches {0..1} matches {    -- Distant metastases
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0023,    -- No distant metastases
+													at0024]    -- Distant metastases
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					CLUSTER[at0028] occurrences matches {0..1} matches {*}    -- Extension
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"TNM squamous cell carcinoma of skin">
+					description = <"TNM classification of skin cancer (except eyelid, head and neck area, perianal, vulva and penis) (ICD-O-3 C44.5-7, C63.2) according to UICC8.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0007"] = <
+					text = <"Primary tumor">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Primary tumor cannot be identified">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Unknown primary tumor">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Cancer in situ">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Largest tumor diameter ≤2.0 cm">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Largest tumor diameter >2 cm and ≤4 cm">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Largest tumor diameter >4 cm or less skeletal erosion or perineural invasion or deep invasion">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Tumor growth in cortical bone or bone marrow">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Tumor growth in axial skeleton including involvement of foramina and/or involvement of vertebral foramen to epidural space">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Lymph nodes">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Regional lymph nodes cannot be examined.">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"No regional lymph node metastases">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Metastasis with largest diameter ≤ 3 cm in a lymph node">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Metastasis with largest diameter > 3 cm but ≤ 6 cm in one ipsilateral lymph node or metastases with largest diameter ≤ 6 cm in multiple ipsilateral lymph nodes">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Metastasis with largest diameter > 6 cm in a lymph node">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Distant metastases">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"No distant metastases">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Distant metastases">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>
