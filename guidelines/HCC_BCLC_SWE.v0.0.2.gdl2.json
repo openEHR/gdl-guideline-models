@@ -1,0 +1,499 @@
+{
+  "id" : "HCC_BCLC_SWE.v0.0.2",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Katja Mariko Wilde",
+      "email" : "katja-wilde@t-online.de",
+      "organisation" : "Cambio CDS",
+      "date" : "2025-12-15"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To assess disease stage and determine recommended treatment strategy for hepatocellular carcinoma (HCC) using a Swedish adaptation of the BCLC staging system.",
+        "keywords" : [
+          "hepatocellular",
+          "carcinoma",
+          "HCC",
+          "BCLC",
+          "staging",
+          "treatment",
+          "liver cancer"
+        ],
+        "use" : "Use to support structured clinical assessment and treatment planning for patients with suspected or confirmed hepatocellular carcinoma (HCC).\n\nThe guideline is intended for use in adult patients and evaluates the following clinical parameters:\n- Tumour size, number, and distribution\n- Presence of vascular invasion or extrahepatic metastases\n- Liver function assessed by Child–Pugh classification\n- Performance status according to ECOG\n- Presence of cirrhosis\n- Portal vein involvement\n- Eligibility for liver transplantation\n- Presence of severe comorbidity limiting therapy\n- Tumour burden in relation to transplantation criteria\n- Outcome of any tumour downstaging attempt\n\nBased on these inputs, the guideline:\n\nAssigns a disease stage according to a Swedish-modified BCLC framework\n- Early stage\n- Intermediate stage\n- Advanced stage\n- Terminal stage\n\nProvides treatment recommendations, including:\n- Ablation\n- Surgical resection\n- Liver transplantation\n- Transarterial chemoembolization (TACE)\n- Selective internal radiation therapy (SIRT)\n- Systemic oncological treatment\n- Symptom-directed or supportive care\n\nThe output is intended to support, but not replace, multidisciplinary team (MDT) decision-making.",
+        "misuse" : "Not to be used for:\n- Staging or treatment planning of non-hepatocellular liver malignancies (e.g. cholangiocarcinoma or liver metastases).\n- Application of the original BCLC algorithm without adaptation to Swedish clinical practice.\n- Independent clinical decision-making without multidisciplinary evaluation.\n- Prognostic estimation without consideration of clinical factors not captured by the guideline.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Regionala cancercentrum i samverkan. Nationellt vårdprogram levercellscancer: Kapitel 8 Diagnostik och staging. Kunskapsbanken, 2024. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/levercellscancer/vardprogram/diagnostik/",
+      "en" : "A structured clinical decision support guideline used to assess disease stage and recommend treatment strategies for hepatocellular carcinoma (HCC) based on the Swedish adaptation of the Barcelona Clinic Liver Cancer (BCLC) staging system."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.hcc_bclc_swe.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.hcc_bclc_swe.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "cm"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0008",
+              "local::at0009",
+              "local::at0010"
+            ]
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0011]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0012]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0014]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0015",
+              "local::at0016",
+              "local::at0017"
+            ]
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0018]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0019]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0020]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0021]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0022]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0023]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type" : "DV_BOOLEAN"
+          }
+        }
+      },
+      "gt0014" : {
+        "id" : "gt0014",
+        "model_id" : "openEHR-EHR-OBSERVATION.child_pugh_score.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.child_pugh_score.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0015" : {
+            "id" : "gt0015",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0028]",
+            "data_type" : "DV_COUNT"
+          }
+        }
+      },
+      "gt0016" : {
+        "id" : "gt0016",
+        "model_id" : "openEHR-EHR-OBSERVATION.ecog.v2",
+        "template_id" : "openEHR-EHR-OBSERVATION.ecog.v2",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0017" : {
+            "id" : "gt0017",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0005",
+              "1|local::at0006",
+              "2|local::at0007",
+              "3|local::at0008",
+              "4|local::at0009",
+              "5|local::at0010"
+            ]
+          }
+        }
+      },
+      "gt0018" : {
+        "id" : "gt0018",
+        "model_id" : "openEHR-EHR-EVALUATION.hcc_bclc_swe_assessment.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.hcc_bclc_swe_assessment.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0019" : {
+            "id" : "gt0019",
+            "path" : "/data[at0003]/items[at0004]",
+            "data_type" : "DV_CODED_TEXT"
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "path" : "/data[at0003]/items[at0009]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0022" : {
+        "id" : "gt0022",
+        "priority" : 13,
+        "when" : [
+          "$gt0007|Diffuse tumour growth present|==true||$gt0006|Extrahepatic metastasis present|==true||$gt0027|Macroscopic tumour thrombus present|==true",
+          "$gt0017|ECOG performance status|==1|local::at0006|Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work.|||$gt0017|ECOG performance status|==0|local::at0005|Fully active, able to carry on all pre-disease performance without restriction.|"
+        ],
+        "then" : [
+          "$gt0019|Stage|=local::at0007|Advanced|"
+        ]
+      },
+      "gt0024" : {
+        "id" : "gt0024",
+        "priority" : 12,
+        "when" : [
+          "$gt0005|Tumour confined to liver|==true",
+          "$gt0006|Extrahepatic metastasis present|==false",
+          "$gt0011|Tumour burden within transplant criteria|==false",
+          "$gt0017|ECOG performance status|==1|local::at0006|Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work.|||$gt0017|ECOG performance status|==0|local::at0005|Fully active, able to carry on all pre-disease performance without restriction.|",
+          "$gt0009|Severe comorbidity limiting therapy|==false",
+          "$gt0027|Macroscopic tumour thrombus present|==false",
+          "$gt0004|Number of tumours|==local::at0010|multifocal (>3)|"
+        ],
+        "then" : [
+          "$gt0019|Stage|=local::at0006|Intermediate|"
+        ]
+      },
+      "gt0023" : {
+        "id" : "gt0023",
+        "priority" : 11,
+        "when" : [
+          "$gt0005|Tumour confined to liver|==true",
+          "$gt0006|Extrahepatic metastasis present|==false",
+          "$gt0017|ECOG performance status|==1|local::at0006|Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work.|||$gt0017|ECOG performance status|==0|local::at0005|Fully active, able to carry on all pre-disease performance without restriction.|",
+          "$gt0009|Severe comorbidity limiting therapy|==false",
+          "$gt0027|Macroscopic tumour thrombus present|==false"
+        ],
+        "then" : [
+          "$gt0019|Stage|=local::at0005|Early|"
+        ]
+      },
+      "gt0021" : {
+        "id" : "gt0021",
+        "priority" : 10,
+        "when" : [
+          "($gt0017|ECOG performance status|==2|local::at0007|Ambulatory and capable of all selfcare but unable to carry out any work activities; up and about more than 50% of waking hours.|||$gt0017|ECOG performance status|==3|local::at0008|Capable of only limited selfcare; confined to bed or chair more than 50% of waking hours.|||$gt0017|ECOG performance status|==4|local::at0009|Completely disabled; cannot carry on any selfcare; totally confined to bed or chair.|||$gt0017|ECOG performance status|==5|local::at0010|Dead|)&&$gt0009|Severe comorbidity limiting therapy|==true",
+          "$gt0015|Child Pugh total score|>=8&&$gt0010|Transplant candidate|==false"
+        ],
+        "then" : [
+          "$gt0019|Stage|=local::at0008|Terminal|",
+          "$gt0020|Treatment recommendation|=local::at0016|Best supportive care|"
+        ]
+      },
+      "gt0025" : {
+        "id" : "gt0025",
+        "priority" : 9,
+        "when" : [
+          "$gt0007|Diffuse tumour growth present|==true||$gt0006|Extrahepatic metastasis present|==true||$gt0027|Macroscopic tumour thrombus present|==true",
+          "$gt0017|ECOG performance status|==1|local::at0006|Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work.|||$gt0017|ECOG performance status|==0|local::at0005|Fully active, able to carry on all pre-disease performance without restriction.|",
+          "$gt0015|Child Pugh total score|<=7"
+        ],
+        "then" : [
+          "$gt0019|Stage|=local::at0007|Advanced|",
+          "$gt0020|Treatment recommendation|=local::at0015|Systemic therapy|"
+        ]
+      },
+      "gt0026" : {
+        "id" : "gt0026",
+        "priority" : 8,
+        "when" : [
+          "$gt0015|Child Pugh total score|<=7",
+          "$gt0027|Macroscopic tumour thrombus present|==true&&$gt0006|Extrahepatic metastasis present|==false&&$gt0007|Diffuse tumour growth present|==false",
+          "$gt0017|ECOG performance status|==1|local::at0006|Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work.|||$gt0017|ECOG performance status|==0|local::at0005|Fully active, able to carry on all pre-disease performance without restriction.|"
+        ],
+        "then" : [
+          "$gt0020|Treatment recommendation|=local::at0014|SIRT|"
+        ]
+      },
+      "gt0028" : {
+        "id" : "gt0028",
+        "priority" : 7,
+        "when" : [
+          "$gt0019|Stage|==local::at0006|Intermediate|",
+          "$gt0015|Child Pugh total score|<=7",
+          "$gt0027|Macroscopic tumour thrombus present|==true&&$gt0008|Portal vein status|==local::at0017|main trunk thrombosis|"
+        ],
+        "then" : [
+          "$gt0020|Treatment recommendation|=local::at0014|SIRT|"
+        ]
+      },
+      "gt0029" : {
+        "id" : "gt0029",
+        "priority" : 6,
+        "when" : [
+          "$gt0019|Stage|==local::at0006|Intermediate|",
+          "$gt0015|Child Pugh total score|<=7",
+          "$gt0008|Portal vein status|==local::at0015|none|||$gt0008|Portal vein status|==local::at0016|peripheral thrombosis|"
+        ],
+        "then" : [
+          "$gt0020|Treatment recommendation|=local::at0013|TACE|"
+        ]
+      },
+      "gt0030" : {
+        "id" : "gt0030",
+        "priority" : 5,
+        "when" : [
+          "$gt0019|Stage|==local::at0006|Intermediate|",
+          "$gt0015|Child Pugh total score|<=7",
+          "$gt0012|Downstaging successful|==true"
+        ],
+        "then" : [
+          "$gt0020|Treatment recommendation|=local::at0012|Transplantation|"
+        ]
+      },
+      "gt0031" : {
+        "id" : "gt0031",
+        "priority" : 4,
+        "when" : [
+          "$gt0019|Stage|==local::at0005|Early|",
+          "$gt0015|Child Pugh total score|>=7",
+          "$gt0011|Tumour burden within transplant criteria|==true"
+        ],
+        "then" : [
+          "$gt0020|Treatment recommendation|=local::at0012|Transplantation|"
+        ]
+      },
+      "gt0032" : {
+        "id" : "gt0032",
+        "priority" : 3,
+        "when" : [
+          "$gt0019|Stage|==local::at0005|Early|",
+          "$gt0015|Child Pugh total score|<=6",
+          "$gt0004|Number of tumours|==local::at0008|single|||$gt0004|Number of tumours|==local::at0009|few (2-3)|"
+        ],
+        "then" : [
+          "$gt0020|Treatment recommendation|=local::at0011|Resection|"
+        ]
+      },
+      "gt0033" : {
+        "id" : "gt0033",
+        "priority" : 2,
+        "when" : [
+          "$gt0019|Stage|==local::at0005|Early|",
+          "$gt0003|Largest tumour diameter|<3",
+          "$gt0013|Cirrhosis present|==false"
+        ],
+        "then" : [
+          "$gt0020|Treatment recommendation|=local::at0011|Resection|"
+        ]
+      },
+      "gt0034" : {
+        "id" : "gt0034",
+        "priority" : 1,
+        "when" : [
+          "$gt0019|Stage|==local::at0005|Early|",
+          "$gt0003|Largest tumour diameter|<3",
+          "$gt0015|Child Pugh total score|<=7"
+        ],
+        "then" : [
+          "$gt0020|Treatment recommendation|=local::at0010|Ablation|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Hepatocellular carcinoma - Swedish BCLC-based treatment assessment",
+            "description" : "A structured clinical decision support guideline used to assess disease stage and recommend treatment strategies for hepatocellular carcinoma (HCC) based on the Swedish adaptation of the Barcelona Clinic Liver Cancer (BCLC) staging system."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.hcc_bclc_swe.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Largest tumour diameter"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Number of tumours"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Tumour confined to liver"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "Extrahepatic metastasis present"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Diffuse tumour growth present"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Portal vein status"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Severe comorbidity limiting therapy"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Transplant candidate"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Tumour burden within transplant criteria"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Downstaging successful"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Cirrhosis present"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "openEHR-EHR-OBSERVATION.child_pugh_score.v0"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "Child Pugh total score"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "openEHR-EHR-OBSERVATION.ecog.v2"
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "ECOG performance status"
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "openEHR-EHR-EVALUATION.hcc_bclc_swe_assessment.v0"
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "Stage"
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "Treatment recommendation"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "Terminal stage",
+            "description" : ""
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "Advanced stage",
+            "description" : ""
+          },
+          "gt0023" : {
+            "id" : "gt0023",
+            "text" : "Early stage",
+            "description" : ""
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "text" : "Intermediate stage",
+            "description" : ""
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "text" : "Systemic therapy - advanced stage",
+            "description" : ""
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "text" : "SIRT - advanced stage",
+            "description" : ""
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "text" : "Macroscopic tumour thrombus present"
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "text" : "SIRT - intermediate stage",
+            "description" : ""
+          },
+          "gt0029" : {
+            "id" : "gt0029",
+            "text" : "TACE - intermediate stage",
+            "description" : ""
+          },
+          "gt0030" : {
+            "id" : "gt0030",
+            "text" : "Transplantation - intermediate stage",
+            "description" : ""
+          },
+          "gt0031" : {
+            "id" : "gt0031",
+            "text" : "Transplantation - early stage",
+            "description" : ""
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "text" : "Resection - early stage",
+            "description" : ""
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "text" : "Resection - early stage (size related)",
+            "description" : ""
+          },
+          "gt0034" : {
+            "id" : "gt0034",
+            "text" : "Ablation - early stage (size related)",
+            "description" : ""
+          }
+        }
+      }
+    }
+  }
+}
