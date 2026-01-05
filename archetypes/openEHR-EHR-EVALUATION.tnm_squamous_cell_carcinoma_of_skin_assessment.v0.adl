@@ -1,0 +1,133 @@
+archetype (adl_version=1.4; uid=b836a213-7188-476d-886d-6be2375fb6f7)
+	openEHR-EHR-EVALUATION.tnm_squamous_cell_carcinoma_of_skin_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-01-06">
+		["name"] = <"Umiah Gohar">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"umiah.gohar@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the anatomical extent of skin cancer based on the Primary Tumor (T), Regional Lymph Nodes (N), and Distant Metastasis (M).">
+			keywords = <"Squamous, cell, skin, cancer, tnm, staging, uicc, oncology, tumor, metastasis", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the clinical observations for the classification of squamous cell carcinoma of skin.">
+			misuse = <"Not to be used for staging other types of malignancies.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"f20833f87bd9dcb31ea83b44026390e0">
+		["build_uid"] = <"18b5e9b1-94b8-32bb-98aa-b36b457a6394">
+		["references"] = <"Brierley JD, Gospodarowicz MK, Wittekind C, editors. TNM classification of malignant tumours. 8th ed. Oxford (UK): Wiley-Blackwell; 2016.">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- TNM squamous cell carcinoma of skin assessment
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- Stage 0
+						value matches {
+							DV_CODED_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0003] occurrences matches {0..1} matches {    -- Stage I
+						value matches {
+							DV_CODED_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Stage II
+						value matches {
+							DV_CODED_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {    -- Stage III
+						value matches {
+							DV_CODED_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0006] occurrences matches {0..1} matches {    -- Stadium IVA
+						value matches {
+							DV_CODED_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0007] occurrences matches {0..1} matches {    -- Stadium IVB
+						value matches {
+							DV_CODED_TEXT matches {*}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0008] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					CLUSTER[at0009] occurrences matches {0..1} matches {*}    -- Extension
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"TNM squamous cell carcinoma of skin assessment">
+					description = <"TNM classification of skin cancer (except eyelid, head and neck area, perianal, vulva and penis) (ICD-O-3 C44.5-7, C63.2) according to UICC8.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Stage 0">
+					description = <"">
+				>
+				["at0003"] = <
+					text = <"Stage I">
+					description = <"">
+				>
+				["at0004"] = <
+					text = <"Stage II">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Stage III">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Stadium IVA">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Stadium IVB">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0009"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>
