@@ -1,0 +1,187 @@
+archetype (adl_version=1.4; uid=6376d56b-1ffd-47a1-ae60-0662e193b807)
+	openEHR-EHR-OBSERVATION.hcc_easl_diagnostic.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-01-07">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter required to support diagnostic decision-making for suspected hepatocellular carcinoma.">
+			keywords = <"hepatocellular","carcinoma","hcc","diagnostic","imaging","easl">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter required to support diagnostic decision-making for suspected hepatocellular carcinoma.">
+			misuse = <"Not to be used for recording treatment decisions or therapeutic recommendations for hepatocellular carcinoma.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"European Association for the Study of the Liver. EASL Clinical Practice Guidelines: Management of hepatocellular carcinoma. J Hepatol. 2018 Jul;69(1):182-236. doi: 10.1016/j.jhep.2018.03.019. Epub 2018 Apr 5. Erratum in: J Hepatol. 2019 Apr;70(4):817. doi: 10.1016/j.jhep.2019.01.020. PMID: 29628281.
+Regionala cancercentrum i samverkan. Nationellt vårdprogram levercellscancer: Kapitel 8 Diagnostik och staging. Kunskapsbanken, 2024. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/levercellscancer/vardprogram/diagnostik/
+">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"77ea9a072c60755b7a18fd915621ec74">
+		["build_uid"] = <"f0ab9a0f-d9e8-45e5-af8e-b92037e9aa7a">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Hepatocellular Carcinoma Diagnostic Imaging
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Liver changes
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- < 1cm
+													at0008]    -- > 1cm
+												}
+											}
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Follow-up ultrasound change
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0010,    -- Not performed
+													at0011,    -- Unchanged
+													at0012]    -- Growth or changed
+												}
+											}
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- Primary imaging performed
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Arterial hyperenhancement and washout present
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Alternative imaging performed
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Arterial hyperenhancement and washout present in alternative imaging
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Hepatocellular Carcinoma Diagnostic Imaging">
+					description = <"A structured clinical observation used to record lesion characteristics and imaging findings relevant to the non-invasive diagnosis of hepatocellular carcinoma according to European Association for the Study of the Liver diagnostic criteria (EASL).">
+					comment = <"Original version, c 2018">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Liver changes">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"< 1cm">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"> 1cm">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Follow-up ultrasound change">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Not performed">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Unchanged">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Growth or changed">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Primary imaging performed">
+					description = <"4-phase CT or MRI">
+				>
+				["at0014"] = <
+					text = <"Arterial hyperenhancement and washout present">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Alternative imaging performed">
+					description = <"4-phase CT or MRI">
+				>
+				["at0016"] = <
+					text = <"Arterial hyperenhancement and washout present in alternative imaging">
+					description = <"">
+				>
+			>
+		>
+	>
