@@ -1,0 +1,144 @@
+archetype (adl_version=1.4; uid=e00d5927-4ce8-4bf5-aee8-fb9497f09ac1)
+	openEHR-EHR-EVALUATION.hcc_easl_diagnostic_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-01-07">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the interpreted diagnostic outcome and recommended next diagnostic action for suspected hepatocellular carcinoma based on structured imaging and follow-up findings.">
+			keywords = <"hepatocellular","carcinoma","hcc","diagnosis","diagnostic assessment","easl">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the interpreted diagnostic outcome and recommended next diagnostic action for suspected hepatocellular carcinoma based on structured imaging and follow-up findings.">
+			misuse = <"Not to be used for recording raw imaging findings or lesion measurements. Use instead openEHR-EHR-OBSERVATION.hcc_easl_diagnostic.v0.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"European Association for the Study of the Liver. EASL Clinical Practice Guidelines: Management of hepatocellular carcinoma. J Hepatol. 2018 Jul;69(1):182-236. doi: 10.1016/j.jhep.2018.03.019. Epub 2018 Apr 5. Erratum in: J Hepatol. 2019 Apr;70(4):817. doi: 10.1016/j.jhep.2019.01.020. PMID: 29628281.
+Regionala cancercentrum i samverkan. Nationellt vårdprogram levercellscancer: Kapitel 8 Diagnostik och staging. Kunskapsbanken, 2024. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/levercellscancer/vardprogram/diagnostik/">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"885ae80c73ca99ed9628e2f344c98ff3">
+		["build_uid"] = <"ceef6265-07a7-4095-8c74-ea1d8f0080fb">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Hepatocellular Carcinoma Diagnostic Assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0010] occurrences matches {0..1} matches {    -- Diagnostic conclusion
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0011,    -- HCC diagnosed by imaging criteria
+									at0012]    -- Insufficient imaging evidence to diagnose hepatocellular carcinoma
+								}
+							}
+						}
+					}
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Recommended next step
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- Repeat liver ultrasound after approximately 4 months
+									at0006,    -- Reassess diagnostic pathway based on lesion size
+									at0007,    -- Perform four-phase CT or MRI of the liver
+									at0008,    -- Perform alternative imaging modality (four-phase CT or MRI)
+									at0009]    -- Multidisciplinary team assessment with consideration of additional diagnostic measures
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Hepatocellular Carcinoma Diagnostic Assessment">
+					description = <"A clinical evaluation used to record the diagnostic conclusion and recommended next diagnostic step for suspected hepatocellular carcinoma based on lesion characteristics and imaging findings in accordance with European Association for the Study of the Liver diagnostic guidance (EASL).">
+					comment = <"Original version, c 2018">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Recommended next step">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Repeat liver ultrasound after approximately 4 months">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Reassess diagnostic pathway based on lesion size">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Perform four-phase CT or MRI of the liver">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Perform alternative imaging modality (four-phase CT or MRI)">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Multidisciplinary team assessment with consideration of additional diagnostic measures">
+					description = <"This may include biopsy, examination with an alternative imaging modality such as CEUS, or interval follow-up imaging.">
+				>
+				["at0010"] = <
+					text = <"Diagnostic conclusion">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"HCC diagnosed by imaging criteria">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Insufficient imaging evidence to diagnose hepatocellular carcinoma">
+					description = <"">
+				>
+			>
+		>
+	>
