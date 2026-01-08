@@ -1,0 +1,179 @@
+archetype (adl_version=1.4; uid=bf21554b-b451-49ca-abc5-41b89438a7ba)
+	openEHR-EHR-OBSERVATION.hca_pattern.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-01-08">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter used for classification of hepatocellular adenoma subtypes.">
+			keywords = <"hepatocellular","adenoma","hca","liver","pathology","histology","immunohistochemistry">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter used for classification of hepatocellular adenoma subtypes.">
+			misuse = <"Not to be used for recording a final diagnosis of hepatocellular adenoma subtype.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Regionala cancercentrum i samverkan. Nationellt vårdprogram levercellscancer: Kapitel 9 Kategorisering av tumören. Kunskapsbanken, 2024. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/levercellscancer/vardprogram/kategorisering-av-tumoren/
+Bioulac-Sage P, Balabaud C, Zucman-Rossi J. Subtype classification of hepatocellular adenoma. Dig Surg. 2010;27(1):39-45. doi: 10.1159/000268406. Epub 2010 Apr 1. PMID: 20357450.">
+		["build_uid"] = <"5802bfa9-26f6-4c34-9f12-98540a0ab976">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Hepatocellular adenoma diagnostic pattern (HCA)
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Histological pattern
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0008,    -- Lobulated contours and steatosis; often microadenomas in the surrounding liver parenchyma
+													at0009,    -- Sinusoidal dilatation, congestion, foci of lymphocytic inflammation, thick arteries, ductular reaction, pseudoportal tracts
+													at0010,    -- Exon 3 mutation: often cytoarchitectural atypia and pseudoglandular formations
+													at0011]    -- No specific histological features reported
+												}
+											}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Immunohistochemistry pattern
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012,    -- Loss of LFABP
+													at0013,    -- Positive for CRP and SAA
+													at0014,    -- Exon 3 mutation (other than S45): diffuse, homogeneous GS; often nuclear β-catenin positivity
+													at0015,    -- Exon 3 S45: diffuse, heterogeneous GS (starry-sky pattern), often with a peripheral GS-positive border; little or no nuclear β-catenin
+													at0016,    -- Exon 7/8: weak GS, often with a peripheral GS-positive border; nuclear β-catenin negative
+													at0017,    -- Positive for PTGDS
+													at0018]    -- Some cases with increased bleeding risk express ASS1 (Henriet et al. 2017)
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Hepatocellular adenoma diagnostic pattern (HCA)">
+					description = <"A structured record of histological and immunohistochemical diagnostic patterns observed in hepatocellular adenoma.">
+					comment = <"Original version, c 2010">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Histological pattern">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Immunohistochemistry pattern">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Lobulated contours and steatosis; often microadenomas in the surrounding liver parenchyma">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Sinusoidal dilatation, congestion, foci of lymphocytic inflammation, thick arteries, ductular reaction, pseudoportal tracts">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Exon 3 mutation: often cytoarchitectural atypia and pseudoglandular formations">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"No specific histological features reported">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Loss of LFABP">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Positive for CRP and SAA">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Exon 3 mutation (other than S45): diffuse, homogeneous GS; often nuclear β-catenin positivity">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Exon 3 S45: diffuse, heterogeneous GS (starry-sky pattern), often with a peripheral GS-positive border; little or no nuclear β-catenin">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Exon 7/8: weak GS, often with a peripheral GS-positive border; nuclear β-catenin negative">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Positive for PTGDS">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Some cases with increased bleeding risk express ASS1 (Henriet et al. 2017)">
+					description = <"">
+				>
+			>
+		>
+	>
