@@ -1,0 +1,170 @@
+archetype (adl_version=1.4; uid=3a680f21-27be-404f-a462-e6e869180e39)
+	openEHR-EHR-EVALUATION.hca_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-01-08">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter used in the hepatocellular adenoma assessment.">
+			keywords = <"hepatocellular","adenoma","hca","liver","diagnostic assessment">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter used in the hepatocellular adenoma assessment.">
+			misuse = <"Not to be used for recording raw histological findings or immunohistochemical test results.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"57ee2e8d-d9d7-42dd-bf01-73a85676eb18">
+		["references"] = <"Regionala cancercentrum i samverkan. Nationellt vårdprogram levercellscancer: Kapitel 9 Kategorisering av tumören. Kunskapsbanken, 2024. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/levercellscancer/vardprogram/kategorisering-av-tumoren/
+Bioulac-Sage P, Balabaud C, Zucman-Rossi J. Subtype classification of hepatocellular adenoma. Dig Surg. 2010;27(1):39-45. doi: 10.1159/000268406. Epub 2010 Apr 1. PMID: 20357450.">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Hepatocellular adenoma (HCA) assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- HCA subtype
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0007,    -- HNF1A-inactivated hepatocellular adenoma
+									at0008,    -- Inflammatory hepatocellular adenoma
+									at0009,    -- β-catenin-activated hepatocellular adenoma
+									at0010,    -- β-catenin-activated inflammatory hepatocellular adenoma
+									at0011,    -- Sonic hedgehog hepatocellular adenoma
+									at0012]    -- Unclassified hepatocellular adenoma
+								}
+							}
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {    -- Risk for HCC
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0013,    -- Low
+									at0014,    -- High
+									at0015]    -- Not specified
+								}
+							}
+						}
+					}
+					ELEMENT[at0006] occurrences matches {0..1} matches {    -- Validation message
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::at0016]    -- Selected histology and immunohistochemistry patterns do not match a single HCA subtype.
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Hepatocellular adenoma (HCA) assessment">
+					description = <"A structured clinical assessment of hepatocellular adenoma based on observed histological and immunohistochemical diagnostic patterns, including subtype classification and associated risk evaluation.">
+					comment = <"Original version, c 2010">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"HCA subtype">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Risk for HCC">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Validation message">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"HNF1A-inactivated hepatocellular adenoma">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Inflammatory hepatocellular adenoma">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"β-catenin-activated hepatocellular adenoma">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"β-catenin-activated inflammatory hepatocellular adenoma">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Sonic hedgehog hepatocellular adenoma">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Unclassified hepatocellular adenoma">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Low">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"High">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Not specified">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Selected histology and immunohistochemistry patterns do not match a single HCA subtype.">
+					description = <"">
+				>
+			>
+		>
+	>
