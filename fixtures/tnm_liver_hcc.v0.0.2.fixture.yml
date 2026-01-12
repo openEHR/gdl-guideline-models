@@ -1,0 +1,259 @@
+guidelines:
+  "1": tnm_liver_hcc.v0.0.2
+test_cases:
+  - id: 1. No input (negative test, default action)
+    input:
+      "1": {}
+    expected_output:
+      "1":
+        gt0026|Stage group: local::at0012|Stage cannot be assigned|
+  - id: 2. Primary tumor assessable input missing (negative test)
+    input:
+      "1":
+        gt0004|Evidence of primary tumor: "false"
+        gt0005|Tumor pattern: local::at0009|Solitary tumour ≤2cm with or without vascular invasion|
+    expected_output:
+      "1":
+        gt0026|Stage group: local::at0012|Stage cannot be assigned|
+  - id: 3. Tumor pattern input missing (negative test)
+    input:
+      "1":
+        gt0003|Primary tumor assessable: "true"
+        gt0004|Evidence of primary tumor: "true"
+    expected_output:
+      "1":
+        gt0026|Stage group: local::at0012|Stage cannot be assigned|
+  - id: 4. Regional lymph nodes assessable input missing (negative test)
+    input:
+      "1":
+        gt0007|Regional lymph node metastasis: "false"
+    expected_output:
+      "1":
+        gt0026|Stage group: local::at0012|Stage cannot be assigned|
+  - id: 5. Regional lymph node metastasis input missing (negative test)
+    input:
+      "1":
+        gt0006|Regional lymph nodes assessable: "true"
+    expected_output:
+      "1":
+        gt0026|Stage group: local::at0012|Stage cannot be assigned|
+  - id: 6. T-TX
+    input:
+      "1":
+        gt0003|Primary tumor assessable: "false"
+        gt0004|Evidence of primary tumor: "false"
+        gt0005|Tumor pattern: local::at0009|Solitary tumour ≤2cm with or without vascular invasion|
+    expected_output:
+      "1":
+        gt0010|T - Primary tumour: local::at0019|TX|
+        gt0026|Stage group: local::at0012|Stage cannot be assigned|
+  - id: 7. T-T0
+    input:
+      "1":
+        gt0003|Primary tumor assessable: "true"
+        gt0004|Evidence of primary tumor: "false"
+        gt0005|Tumor pattern: local::at0009|Solitary tumour ≤2cm with or without vascular invasion|
+    expected_output:
+      "1":
+        gt0010|T - Primary tumour: local::at0020|T0|
+        gt0026|Stage group: local::at0012|Stage cannot be assigned|
+  - id: 8. T-T1a
+    input:
+      "1":
+        gt0003|Primary tumor assessable: "true"
+        gt0004|Evidence of primary tumor: "true"
+        gt0005|Tumor pattern: local::at0009|Solitary tumour ≤2cm with or without vascular invasion|
+    expected_output:
+      "1":
+        gt0010|T - Primary tumour: local::at0021|T1a|
+        gt0026|Stage group: local::at0012|Stage cannot be assigned|
+  - id: 9. T-T1b
+    input:
+      "1":
+        gt0003|Primary tumor assessable: "true"
+        gt0004|Evidence of primary tumor: "true"
+        gt0005|Tumor pattern: local::at0010|Solitary tumour >2cm without vascular invasion|
+    expected_output:
+      "1":
+        gt0010|T - Primary tumour: local::at0022|T1b|
+        gt0026|Stage group: local::at0012|Stage cannot be assigned|
+  - id: 10. T-T2
+    input:
+      "1":
+        gt0003|Primary tumor assessable: "true"
+        gt0004|Evidence of primary tumor: "true"
+        gt0005|Tumor pattern: local::at0011|Solitary tumour >2cm with vascular invasion|
+    expected_output:
+      "1":
+        gt0010|T - Primary tumour: local::at0023|T2|
+        gt0026|Stage group: local::at0012|Stage cannot be assigned|
+  - id: 11. T-T3
+    input:
+      "1":
+        gt0003|Primary tumor assessable: "true"
+        gt0004|Evidence of primary tumor: "true"
+        gt0005|Tumor pattern: local::at0013|Multiple tumours, any >5cm|
+    expected_output:
+      "1":
+        gt0010|T - Primary tumour: local::at0024|T3|
+        gt0026|Stage group: local::at0012|Stage cannot be assigned|
+  - id: 12. T-T4
+    input:
+      "1":
+        gt0003|Primary tumor assessable: "true"
+        gt0004|Evidence of primary tumor: "true"
+        gt0005|Tumor pattern: local::at0014|Tumour(s) with major vein involvement or
+          adjacent organ invasion or peritoneal perforation|
+    expected_output:
+      "1":
+        gt0010|T - Primary tumour: local::at0025|T4|
+        gt0026|Stage group: local::at0012|Stage cannot be assigned|
+  - id: 13. N-NX
+    input:
+      "1":
+        gt0006|Regional lymph nodes assessable: "false"
+        gt0007|Regional lymph node metastasis: "false"
+    expected_output:
+      "1":
+        gt0011|N - Regional lymph nodes: local::at0027|NX|
+        gt0026|Stage group: local::at0012|Stage cannot be assigned|
+  - id: 14. N-N0
+    input:
+      "1":
+        gt0006|Regional lymph nodes assessable: "true"
+        gt0007|Regional lymph node metastasis: "false"
+    expected_output:
+      "1":
+        gt0011|N - Regional lymph nodes: local::at0028|N0|
+        gt0026|Stage group: local::at0012|Stage cannot be assigned|
+  - id: 14. N-N1
+    input:
+      "1":
+        gt0006|Regional lymph nodes assessable: "true"
+        gt0007|Regional lymph node metastasis: "true"
+    expected_output:
+      "1":
+        gt0011|N - Regional lymph nodes: local::at0029|N1|
+        gt0026|Stage group: local::at0012|Stage cannot be assigned|
+  - id: 15. M-M0
+    input:
+      "1":
+        gt0008|Distant metastasis present: "false"
+    expected_output:
+      "1":
+        gt0012|M - Distant metastasis: local::at0031|M0|
+        gt0026|Stage group: local::at0012|Stage cannot be assigned|
+  - id: 16. M-M1
+    input:
+      "1":
+        gt0008|Distant metastasis present: "true"
+    expected_output:
+      "1":
+        gt0012|M - Distant metastasis: local::at0032|M1|
+        gt0026|Stage group: local::at0012|Stage cannot be assigned|
+  - id: 17. All inputs - Stage IA
+    input:
+      "1":
+        gt0003|Primary tumor assessable: "true"
+        gt0004|Evidence of primary tumor: "true"
+        gt0005|Tumor pattern: local::at0009|Solitary tumour ≤2cm with or without vascular invasion|
+        gt0006|Regional lymph nodes assessable: "true"
+        gt0007|Regional lymph node metastasis: "false"
+        gt0008|Distant metastasis present: "false"
+    expected_output:
+      "1":
+        gt0010|T - Primary tumour: local::at0021|T1a|
+        gt0011|N - Regional lymph nodes: local::at0028|N0|
+        gt0012|M - Distant metastasis: local::at0031|M0|
+        gt0026|Stage group: local::at0005|Stage IA|
+  - id: 18. All inputs - Stage IB
+    input:
+      "1":
+        gt0003|Primary tumor assessable: "true"
+        gt0004|Evidence of primary tumor: "true"
+        gt0005|Tumor pattern: local::at0010|Solitary tumour >2cm without vascular invasion|
+        gt0006|Regional lymph nodes assessable: "true"
+        gt0007|Regional lymph node metastasis: "false"
+        gt0008|Distant metastasis present: "false"
+    expected_output:
+      "1":
+        gt0010|T - Primary tumour: local::at0022|T1b|
+        gt0011|N - Regional lymph nodes: local::at0028|N0|
+        gt0012|M - Distant metastasis: local::at0031|M0|
+        gt0026|Stage group: local::at0006|Stage IB|
+  - id: 19. All inputs - Stage II
+    input:
+      "1":
+        gt0003|Primary tumor assessable: "true"
+        gt0004|Evidence of primary tumor: "true"
+        gt0005|Tumor pattern: local::at0012|Multiple tumours, none >5cm|
+        gt0006|Regional lymph nodes assessable: "true"
+        gt0007|Regional lymph node metastasis: "false"
+        gt0008|Distant metastasis present: "false"
+    expected_output:
+      "1":
+        gt0010|T - Primary tumour: local::at0023|T2|
+        gt0011|N - Regional lymph nodes: local::at0028|N0|
+        gt0012|M - Distant metastasis: local::at0031|M0|
+        gt0026|Stage group: local::at0007|Stage II|
+  - id: 20. All inputs - Stage IIIA
+    input:
+      "1":
+        gt0003|Primary tumor assessable: "true"
+        gt0004|Evidence of primary tumor: "true"
+        gt0005|Tumor pattern: local::at0013|Multiple tumours, any >5cm|
+        gt0006|Regional lymph nodes assessable: "true"
+        gt0007|Regional lymph node metastasis: "false"
+        gt0008|Distant metastasis present: "false"
+    expected_output:
+      "1":
+        gt0010|T - Primary tumour: local::at0024|T3|
+        gt0011|N - Regional lymph nodes: local::at0028|N0|
+        gt0012|M - Distant metastasis: local::at0031|M0|
+        gt0026|Stage group: local::at0008|Stage IIIA|
+  - id: 21. All inputs - Stage IIIB
+    input:
+      "1":
+        gt0003|Primary tumor assessable: "true"
+        gt0004|Evidence of primary tumor: "true"
+        gt0005|Tumor pattern: local::at0014|Tumour(s) with major vein involvement or
+          adjacent organ invasion or peritoneal perforation|
+        gt0006|Regional lymph nodes assessable: "true"
+        gt0007|Regional lymph node metastasis: "false"
+        gt0008|Distant metastasis present: "false"
+    expected_output:
+      "1":
+        gt0010|T - Primary tumour: local::at0025|T4|
+        gt0011|N - Regional lymph nodes: local::at0028|N0|
+        gt0012|M - Distant metastasis: local::at0031|M0|
+        gt0026|Stage group: local::at0009|Stage IIIB|
+  - id: 22. All inputs - Stage IVA
+    input:
+      "1":
+        gt0003|Primary tumor assessable: "true"
+        gt0004|Evidence of primary tumor: "true"
+        gt0005|Tumor pattern: local::at0009|Solitary tumour ≤2cm with or without vascular invasion|
+        gt0006|Regional lymph nodes assessable: "true"
+        gt0007|Regional lymph node metastasis: "true"
+        gt0008|Distant metastasis present: "false"
+    expected_output:
+      "1":
+        gt0010|T - Primary tumour: local::at0021|T1a|
+        gt0011|N - Regional lymph nodes: local::at0029|N1|
+        gt0012|M - Distant metastasis: local::at0031|M0|
+        gt0026|Stage group: local::at0010|Stage IVA|
+  - id: 23. All inputs - Stage IVB
+    input:
+      "1":
+        gt0003|Primary tumor assessable: "true"
+        gt0004|Evidence of primary tumor: "true"
+        gt0005|Tumor pattern: local::at0009|Solitary tumour ≤2cm with or without vascular invasion|
+        gt0006|Regional lymph nodes assessable: "true"
+        gt0007|Regional lymph node metastasis: "true"
+        gt0008|Distant metastasis present: "true"
+    expected_output:
+      "1":
+        gt0010|T - Primary tumour: local::at0021|T1a|
+        gt0011|N - Regional lymph nodes: local::at0029|N1|
+        gt0012|M - Distant metastasis: local::at0032|M1|
+        gt0026|Stage group: local::at0011|Stage IVB|
