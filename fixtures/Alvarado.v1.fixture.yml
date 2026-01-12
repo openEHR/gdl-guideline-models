@@ -1,0 +1,165 @@
+guidelines:
+  1: Alvarado.v1
+test_cases:
+- id: RLQ(0)-temp(0)-tenderness(0)-pain(0)-anorexia(0)-nausea(0)-leukocytosis(0)-LLS(0)
+  input:
+    1:
+      gt0033|Right Lower Quadrant Tenderness?: 0|local::at0014|No|
+      gt0034|Elevated Temperature (>37.3°C or 99.1°F)?: 0|local::at0016|No|
+      gt0035|Rebound Tenderness?: 0|local::at0018|No|
+      gt0036|Migration of Pain to the Right Lower Quadrant?: 0|local::at0020|No|
+      gt0037|Anorexia?: 0|local::at0022|No|
+      gt0038|Nausea or Vomiting?: 0|local::at0024|No|
+      gt0044|Leukocytosis > 10,000?: 0|local::at0026|No|
+      gt0045|Leukocyte Left Shift: 0|local::at0028|No|
+  expected_output:
+    1:
+      gt0049|Total score: 0
+      gt0060|Score recommendation: 0|local::at0003|A CT scan is not needed due to the low probability of appendicitis.|
+
+
+- id: RLQ(2)-temp(0)-tenderness(0)-pain(0)-anorexia(0)-nausea(0)-leukocytosis(0)-LLS(0)
+  input:
+    1:
+      gt0033|Right Lower Quadrant Tenderness?: 2|local::at0015|Yes|
+      gt0034|Elevated Temperature (>37.3°C or 99.1°F)?: 0|local::at0016|No|
+      gt0035|Rebound Tenderness?: 0|local::at0018|No|
+      gt0036|Migration of Pain to the Right Lower Quadrant?: 0|local::at0020|No|
+      gt0037|Anorexia?: 0|local::at0022|No|
+      gt0038|Nausea or Vomiting?: 0|local::at0024|No|
+      gt0044|Leukocytosis > 10,000?: 0|local::at0026|No|
+      gt0045|Leukocyte Left Shift: 0|local::at0028|No|
+  expected_output:
+    1:
+      gt0049|Total score: 2
+      gt0060|Score recommendation: 0|local::at0003|A CT scan is not needed due to the low probability of appendicitis.|
+
+
+- id: RLQ(2)-temp(1)-tenderness(0)-pain(0)-anorexia(0)-nausea(0)-leukocytosis(0)-LLS(0)
+  input:
+    1:
+      gt0033|Right Lower Quadrant Tenderness?: 2|local::at0015|Yes|
+      gt0034|Elevated Temperature (>37.3°C or 99.1°F)?: 1|local::at0017|Yes|
+      gt0035|Rebound Tenderness?: 0|local::at0018|No|
+      gt0036|Migration of Pain to the Right Lower Quadrant?: 0|local::at0020|No|
+      gt0037|Anorexia?: 0|local::at0022|No|
+      gt0038|Nausea or Vomiting?: 0|local::at0024|No|
+      gt0044|Leukocytosis > 10,000?: 0|local::at0026|No|
+      gt0045|Leukocyte Left Shift: 0|local::at0028|No|
+  expected_output:
+    1:
+      gt0049|Total score: 3
+      gt0060|Score recommendation: 0|local::at0003|A CT scan is not needed due to the low probability of appendicitis.|
+
+
+- id: RLQ(2)-temp(1)-tenderness(1)-pain(0)-anorexia(0)-nausea(0)-leukocytosis(0)-LLS(0)
+  input:
+    1:
+      gt0033|Right Lower Quadrant Tenderness?: 2|local::at0015|Yes|
+      gt0034|Elevated Temperature (>37.3°C or 99.1°F)?: 1|local::at0017|Yes|
+      gt0035|Rebound Tenderness?: 1|local::at0019|Yes|
+      gt0036|Migration of Pain to the Right Lower Quadrant?: 0|local::at0020|No|
+      gt0037|Anorexia?: 0|local::at0022|No|
+      gt0038|Nausea or Vomiting?: 0|local::at0024|No|
+      gt0044|Leukocytosis > 10,000?: 0|local::at0026|No|
+      gt0045|Leukocyte Left Shift: 0|local::at0028|No|
+  expected_output:
+    1:
+      gt0049|Total score: 4
+      gt0060|Score recommendation: 1|local::at0004|A CT scan is recommended |
+
+- id: RLQ(2)-temp(1)-tenderness(1)-pain(1)-anorexia(0)-nausea(0)-leukocytosis(0)-LLS(0)
+  input:
+    1:
+      gt0033|Right Lower Quadrant Tenderness?: 2|local::at0015|Yes|
+      gt0034|Elevated Temperature (>37.3°C or 99.1°F)?: 1|local::at0017|Yes|
+      gt0035|Rebound Tenderness?: 1|local::at0019|Yes|
+      gt0036|Migration of Pain to the Right Lower Quadrant?: 1|local::at0021|Yes|
+      gt0037|Anorexia?: 0|local::at0022|No|
+      gt0038|Nausea or Vomiting?: 0|local::at0024|No|
+      gt0044|Leukocytosis > 10,000?: 0|local::at0026|No|
+      gt0045|Leukocyte Left Shift: 0|local::at0028|No|
+  expected_output:
+    1:
+      gt0049|Total score: 5
+      gt0060|Score recommendation: 1|local::at0004|A CT scan is recommended |
+
+- id: RLQ(2)-temp(1)-tenderness(1)-pain(1)-anorexia(1)-nausea(0)-leukocytosis(0)-LLS(0)
+  input:
+    1:
+      gt0033|Right Lower Quadrant Tenderness?: 2|local::at0015|Yes|
+      gt0034|Elevated Temperature (>37.3°C or 99.1°F)?: 1|local::at0017|Yes|
+      gt0035|Rebound Tenderness?: 1|local::at0019|Yes|
+      gt0036|Migration of Pain to the Right Lower Quadrant?: 1|local::at0021|Yes|
+      gt0037|Anorexia?: 1|local::at0023|Yes|
+      gt0038|Nausea or Vomiting?: 0|local::at0024|No|
+      gt0044|Leukocytosis > 10,000?: 0|local::at0026|No|
+      gt0045|Leukocyte Left Shift: 0|local::at0028|No|
+  expected_output:
+    1:
+      gt0049|Total score: 6
+      gt0060|Score recommendation: 1|local::at0004|A CT scan is recommended |
+
+- id: RLQ(2)-temp(1)-tenderness(1)-pain(1)-anorexia(1)-nausea(1)-leukocytosis(0)-LLS(0)
+  input:
+    1:
+      gt0033|Right Lower Quadrant Tenderness?: 2|local::at0015|Yes|
+      gt0034|Elevated Temperature (>37.3°C or 99.1°F)?: 1|local::at0017|Yes|
+      gt0035|Rebound Tenderness?: 1|local::at0019|Yes|
+      gt0036|Migration of Pain to the Right Lower Quadrant?: 1|local::at0021|Yes|
+      gt0037|Anorexia?: 1|local::at0023|Yes|
+      gt0038|Nausea or Vomiting?: 1|local::at0025|Yes|
+      gt0044|Leukocytosis > 10,000?: 0|local::at0026|No|
+      gt0045|Leukocyte Left Shift: 0|local::at0028|No|
+  expected_output:
+    1:
+      gt0049|Total score: 7
+      gt0060|Score recommendation: 2|local::at0005|A surgical consultation is needed|
+
+- id: RLQ(2)-temp(1)-tenderness(1)-pain(1)-anorexia(1)-nausea(1)-leukocytosis(0)-LLS(1)
+  input:
+    1:
+      gt0033|Right Lower Quadrant Tenderness?: 2|local::at0015|Yes|
+      gt0034|Elevated Temperature (>37.3°C or 99.1°F)?: 1|local::at0017|Yes|
+      gt0035|Rebound Tenderness?: 1|local::at0019|Yes|
+      gt0036|Migration of Pain to the Right Lower Quadrant?: 1|local::at0021|Yes|
+      gt0037|Anorexia?: 1|local::at0023|Yes|
+      gt0038|Nausea or Vomiting?: 1|local::at0025|Yes|
+      gt0044|Leukocytosis > 10,000?: 0|local::at0026|No|
+      gt0045|Leukocyte Left Shift: 1|local::at0029|Yes|
+  expected_output:
+    1:
+      gt0049|Total score: 8
+      gt0060|Score recommendation: 2|local::at0005|A surgical consultation is needed|
+
+- id: RLQ(2)-temp(1)-tenderness(1)-pain(1)-anorexia(1)-nausea(1)-leukocytosis(2)-LLS(0)
+  input:
+    1:
+      gt0033|Right Lower Quadrant Tenderness?: 2|local::at0015|Yes|
+      gt0034|Elevated Temperature (>37.3°C or 99.1°F)?: 1|local::at0017|Yes|
+      gt0035|Rebound Tenderness?: 1|local::at0019|Yes|
+      gt0036|Migration of Pain to the Right Lower Quadrant?: 1|local::at0021|Yes|
+      gt0037|Anorexia?: 1|local::at0023|Yes|
+      gt0038|Nausea or Vomiting?: 1|local::at0025|Yes|
+      gt0044|Leukocytosis > 10,000?: 2|local::at0027|Yes|
+      gt0045|Leukocyte Left Shift: 0|local::at0028|No|
+  expected_output:
+    1:
+      gt0049|Total score: 9
+      gt0060|Score recommendation: 2|local::at0005|A surgical consultation is needed|
+
+- id: RLQ(2)-temp(1)-tenderness(1)-pain(1)-anorexia(1)-nausea(1)-leukocytosis(2)-LLS(1)
+  input:
+    1:
+      gt0033|Right Lower Quadrant Tenderness?: 2|local::at0015|Yes|
+      gt0034|Elevated Temperature (>37.3°C or 99.1°F)?: 1|local::at0017|Yes|
+      gt0035|Rebound Tenderness?: 1|local::at0019|Yes|
+      gt0036|Migration of Pain to the Right Lower Quadrant?: 1|local::at0021|Yes|
+      gt0037|Anorexia?: 1|local::at0023|Yes|
+      gt0038|Nausea or Vomiting?: 1|local::at0025|Yes|
+      gt0044|Leukocytosis > 10,000?: 2|local::at0027|Yes|
+      gt0045|Leukocyte Left Shift: 1|local::at0029|Yes|
+  expected_output:
+    1:
+      gt0049|Total score: 10
+      gt0060|Score recommendation: 2|local::at0005|A surgical consultation is needed|

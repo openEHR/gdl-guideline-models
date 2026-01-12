@@ -1,0 +1,98 @@
+guidelines:
+  1: SSIGN_ccRCC.v1
+test_cases:
+- id: 1 - Total score = 0
+  input:
+    1:
+      gt0020|Tumor size: 0|local::at0020|<5 cm|
+      gt0021|Tumor necrosis present: 0|local::at0025|No|
+      gt0033|Tumor sizing: 0|local::at0009|TX - Primary tumor cannot be assessed|
+      gt0034|Node involvement: 0|local::at0020|NX - Regional nodes cannot be assessed|
+      gt0035|Metastases: 0|local::at0024|MX - Distant metastasis cannot be assessed|
+      gt0049|Grade: 1|local::at0022|Grade I|
+  expected_output:
+    1:
+      gt0028|Tumor necrosis present: 0|local::at0025|No|
+      gt0025|Metastasis category: 0|local::at0018|M0|
+      gt0027|Tumor (nuclear) grade: 0|local::at0022|Stage 1 or 2|
+      gt0023|Pathological T category: 0|local::at0012|pT1|
+      gt0029|Total score: 0
+      gt0024|Regional lymph node status: 0|local::at0016|pNx or pN0|
+      gt0026|Tumor size: 0|local::at0020|<5 cm|
+      gt0055|10 Year Survival: 0|local::at0028|93.6%|
+      gt0052|3 Year Survival: 0|local::at0013|98.7%|
+      gt0053|5 Year Survival: 0|local::at0018|97.3%|
+      gt0054|7 Year Survival: 0|local::at0023|96%|
+      gt0051|1 Year Survival: 0|local::at0008|99.7%|
+
+- id: 2 - Total score = 10
+  input:
+    1:
+      gt0020|Tumor size: 2|local::at0027|>= 5 cm|
+      gt0021|Tumor necrosis present: 2|local::at0026|Yes|
+      gt0033|Tumor sizing: 2|local::at0011|TIa - Organ confined, ≤4 cm|
+      gt0034|Node involvement: 2|local::at0022|N1 - Metastasis in a single regional lymph node|
+      gt0035|Metastases: 2|local::at0026|M1 - Distant metastasis|
+      gt0049|Grade: 2|local::at0023|Grade II|
+  expected_output:
+    1:
+      gt0028|Tumor necrosis present: 2|local::at0026|Yes|
+      gt0025|Metastasis category: 4|local::at0019|M1|
+      gt0027|Tumor (nuclear) grade: 0|local::at0022|Stage 1 or 2|
+      gt0023|Pathological T category: 0|local::at0012|pT1|
+      gt0029|Total score: 10
+      gt0024|Regional lymph node status: 2|local::at0017|pN1 or pN2|
+      gt0026|Tumor size: 2|local::at0027|>= 5 cm|
+      gt0055|10 Year Survival: 4|local::at0032|19.2%|
+      gt0052|3 Year Survival: 4|local::at0017|21.9%|
+      gt0053|5 Year Survival: 4|local::at0022|19.2%|
+      gt0054|7 Year Survival: 4|local::at0027|19.2%|
+      gt0051|1 Year Survival: 4|local::at0012|43.3%|
+
+- id: 3 - Total score = 15
+  input:
+    1:
+      gt0020|Tumor size: 2|local::at0027|>= 5 cm|
+      gt0021|Tumor necrosis present: 2|local::at0026|Yes|
+      gt0033|Tumor sizing: 6|local::at0015|T3a - Perinephric tissue, renal sinus, or renal vein|
+      gt0034|Node involvement: 3|local::at0023|N2 - Metastasis in more than one regional lymph node|
+      gt0035|Metastases: 2|local::at0026|M1 - Distant metastasis|
+      gt0049|Grade: 4|local::at0025|Grade IV|
+  expected_output:
+    1:
+      gt0028|Tumor necrosis present: 2|local::at0026|Yes|
+      gt0025|Metastasis category: 4|local::at0019|M1|
+      gt0027|Tumor (nuclear) grade: 3|local::at0024|Stage 4|
+      gt0023|Pathological T category: 2|local::at0014|pT3a-c|
+      gt0029|Total score: 15
+      gt0024|Regional lymph node status: 2|local::at0017|pN1 or pN2|
+      gt0026|Tumor size: 2|local::at0027|>= 5 cm|
+      gt0055|10 Year Survival: 4|local::at0032|19.2%|
+      gt0052|3 Year Survival: 4|local::at0017|21.9%|
+      gt0053|5 Year Survival: 4|local::at0022|19.2%|
+      gt0054|7 Year Survival: 4|local::at0027|19.2%|
+      gt0051|1 Year Survival: 4|local::at0012|43.3%|
+
+- id: 4 - Total score = 17
+  input:
+    1:
+      gt0020|Tumor size: 2|local::at0027|>= 5 cm|
+      gt0021|Tumor necrosis present: 2|local::at0026|Yes|
+      gt0033|Tumor sizing: 9|local::at0018|T4 - Beyond Gerota’s fascia or directly into adrenal gland|
+      gt0034|Node involvement: 3|local::at0023|N2 - Metastasis in more than one regional lymph node|
+      gt0035|Metastases: 2|local::at0026|M1 - Distant metastasis|
+      gt0049|Grade: 4|local::at0025|Grade IV|
+  expected_output:
+    1:
+      gt0028|Tumor necrosis present: 2|local::at0026|Yes|
+      gt0025|Metastasis category: 4|local::at0019|M1|
+      gt0027|Tumor (nuclear) grade: 3|local::at0024|Stage 4|
+      gt0023|Pathological T category: 4|local::at0015|pT4|
+      gt0029|Total score: 17
+      gt0024|Regional lymph node status: 2|local::at0017|pN1 or pN2|
+      gt0026|Tumor size: 2|local::at0027|>= 5 cm|
+      gt0055|10 Year Survival: 4|local::at0032|19.2%|
+      gt0052|3 Year Survival: 4|local::at0017|21.9%|
+      gt0053|5 Year Survival: 4|local::at0022|19.2%|
+      gt0054|7 Year Survival: 4|local::at0027|19.2%|
+      gt0051|1 Year Survival: 4|local::at0012|43.3%|

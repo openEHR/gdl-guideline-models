@@ -1,0 +1,52 @@
+guidelines:
+  1: EMTALA_guideline.v1
+test_cases:
+- id: serious dysfunction of any bodily organ
+  input:
+    1:
+      gt0003|Has the current medical condition which requires urgent care any of the following characteristics?: local::at0007|Is expected to result in serious dysfunction of any bodily organ or part|
+  expected_output:
+    1:
+      gt0006|Interpretation: local::at0005|An emergency medical condition is present.|
+- id: health of the individua
+  input:
+    1:
+      gt0003|Has the current medical condition which requires urgent care any of the following characteristics?: local::at0006|Is expected to result in serious impairment to bodily functions|
+  expected_output:
+    1:
+      gt0006|Interpretation: local::at0005|An emergency medical condition is present.|
+- id: health of the individua
+  input:
+    1:
+      gt0003|Has the current medical condition which requires urgent care any of the following characteristics?: local::at0005|Places the health of the individual (or, with respect to a pregnant woman, the health of the woman or her unborn child) in serious jeopardy|
+  expected_output:
+    1:
+      gt0006|Interpretation: local::at0005|An emergency medical condition is present.|
+- id: inadequate time to effect a safe transfer
+  input:
+    1:
+      gt0004|With respect to a pregnant woman who is having contractions: local::at0009|there is inadequate time to effect a safe transfer to another hospital before delivery, or|
+  expected_output:
+    1:
+      gt0006|Interpretation: local::at0005|An emergency medical condition is present.|
+- id: transfer may pose a threat to the health
+  input:
+    1:
+      gt0004|With respect to a pregnant woman who is having contractions: local::at0010|that transfer may pose a threat to the health or safety of the woman or the unborn child|
+  expected_output:
+    1:
+      gt0006|Interpretation: local::at0005|An emergency medical condition is present.|
+- id: Both questions have answered
+  input:
+    1:
+      gt0003|Has the current medical condition which requires urgent care any of the following characteristics?: local::at0007|Is expected to result in serious dysfunction of any bodily organ or part|
+      gt0004|With respect to a pregnant woman who is having contractions: local::at0010|that transfer may pose a threat to the health or safety of the woman or the unborn child|
+  expected_output:
+    1:
+      gt0006|Interpretation: local::at0005|An emergency medical condition is present.|
+- id: No answer
+  input:
+    1: {}
+  expected_output:
+    1:
+      gt0006|Interpretation: local::at0004|An emergency medical condition may not be present.|

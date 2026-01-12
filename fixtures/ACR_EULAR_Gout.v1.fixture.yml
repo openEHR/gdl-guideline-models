@@ -1,0 +1,407 @@
+guidelines:
+  1: ACR_EULAR_Gout.v1
+test_cases:
+- id: all_normal
+  input:
+    1:
+      gt0003|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 0|local::at0017|No|
+      gt0004|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 0|local::at0019|No|
+      gt0005|Pattern of joint/bursa involvement during episodes: 0|local::at0021|Joint(s) or bursa(e) other than ankle, midfoot or first metatarsophalangeal (MTP)|
+      gt0006|How many characteristics during episode(s)?: 0|local::at0024|No characteristics present|
+      gt0007|How many typical episodes with the following time-course?: 0|local::at0028|None|
+      gt0008|Evidence of tophus: 0|local::at0031|Absent|
+      gt0010|Synovial fluid analysis of a symptomatic (ever) joint or bursa: 0|local::at0039|Not done|
+      gt0011|Imaging evidence of urate deposition in symptomatic joint/bursa: 0|local::at0040|Absent or not done|
+      gt0012|Imaging evidence of gout-related joint damage: 0|local::at0042|Absent or not done|
+      gt0037|Urea: 4,mg/dl
+  expected_output:
+    1:
+      gt0020|Serum Urate - score: 0|local::at0034|≥ 4 or < 6mg/dL [≥ 0.24 or < 0.36mM] |
+      gt0024|Total score for Step 3: 0
+      gt0014|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 0|local::at0017|No|
+      gt0015|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 0|local::at0019|No|
+      gt0046|Diagnosis of Gout?: 0|local::at0003|No - This patient does NOT meet criteria for gout classification (scores < 8).|
+
+- id: swelling(+)
+  input:
+    1:
+      gt0003|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0004|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 0|local::at0019|No|
+      gt0005|Pattern of joint/bursa involvement during episodes: 0|local::at0021|Joint(s) or bursa(e) other than ankle, midfoot or first metatarsophalangeal (MTP)|
+      gt0006|How many characteristics during episode(s)?: 0|local::at0024|No characteristics present|
+      gt0007|How many typical episodes with the following time-course?: 0|local::at0028|None|
+      gt0008|Evidence of tophus: 0|local::at0031|Absent|
+      gt0010|Synovial fluid analysis of a symptomatic (ever) joint or bursa: 0|local::at0039|Not done|
+      gt0011|Imaging evidence of urate deposition in symptomatic joint/bursa: 0|local::at0040|Absent or not done|
+      gt0012|Imaging evidence of gout-related joint damage: 0|local::at0042|Absent or not done|
+      gt0037|Urea: 4,mg/dl
+  expected_output:
+    1:
+      gt0020|Serum Urate - score: 0|local::at0034|≥ 4 or < 6mg/dL [≥ 0.24 or < 0.36mM] |
+      gt0024|Total score for Step 3: 0
+      gt0014|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0015|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 0|local::at0019|No|
+      gt0046|Diagnosis of Gout?: 0|local::at0003|No - This patient does NOT meet criteria for gout classification (scores < 8).|
+
+
+- id: swelling(+)-MSU
+  input:
+    1:
+      gt0003|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0004|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0005|Pattern of joint/bursa involvement during episodes: 0|local::at0021|Joint(s) or bursa(e) other than ankle, midfoot or first metatarsophalangeal (MTP)|
+      gt0006|How many characteristics during episode(s)?: 0|local::at0024|No characteristics present|
+      gt0007|How many typical episodes with the following time-course?: 0|local::at0028|None|
+      gt0008|Evidence of tophus: 0|local::at0031|Absent|
+      gt0010|Synovial fluid analysis of a symptomatic (ever) joint or bursa: 0|local::at0039|Not done|
+      gt0011|Imaging evidence of urate deposition in symptomatic joint/bursa: 0|local::at0040|Absent or not done|
+      gt0012|Imaging evidence of gout-related joint damage: 0|local::at0042|Absent or not done|
+      gt0037|Urea: 4,mg/dl
+  expected_output:
+    1:
+      gt0020|Serum Urate - score: 0|local::at0034|≥ 4 or < 6mg/dL [≥ 0.24 or < 0.36mM] |
+      gt0024|Total score for Step 3: 0
+      gt0014|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0015|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0046|Diagnosis of Gout?: 1|local::at0004|Yes - This patient MEETS sufficient criterion and can be classified as having gout and/or has a score ≥8|
+
+
+- id: swelling(+)-MSU(+)-bursa(1)
+  input:
+    1:
+      gt0003|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0004|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0005|Pattern of joint/bursa involvement during episodes: 1|local::at0022|Ankle or midfoot joint(s) as monoarticular or part of an oligoarticular presentation without first MTP joint involvement|
+      gt0006|How many characteristics during episode(s)?: 0|local::at0024|No characteristics present|
+      gt0007|How many typical episodes with the following time-course?: 0|local::at0028|None|
+      gt0008|Evidence of tophus: 0|local::at0031|Absent|
+      gt0010|Synovial fluid analysis of a symptomatic (ever) joint or bursa: 0|local::at0039|Not done|
+      gt0011|Imaging evidence of urate deposition in symptomatic joint/bursa: 0|local::at0040|Absent or not done|
+      gt0012|Imaging evidence of gout-related joint damage: 0|local::at0042|Absent or not done|
+      gt0037|Urea: 4,mg/dl
+  expected_output:
+    1:
+      gt0020|Serum Urate - score: 0|local::at0034|≥ 4 or < 6mg/dL [≥ 0.24 or < 0.36mM] |
+      gt0024|Total score for Step 3: 1
+      gt0014|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0015|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0046|Diagnosis of Gout?: 1|local::at0004|Yes - This patient MEETS sufficient criterion and can be classified as having gout and/or has a score ≥8|
+
+
+
+- id: swelling(+)-MSU(+)-bursa(1)-characteristic(1)
+  input:
+    1:
+      gt0003|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0004|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0005|Pattern of joint/bursa involvement during episodes: 1|local::at0022|Ankle or midfoot joint(s) as monoarticular or part of an oligoarticular presentation without first MTP joint involvement|
+      gt0006|How many characteristics during episode(s)?: 1|local::at0025|1 characteristic present|
+      gt0007|How many typical episodes with the following time-course?: 0|local::at0028|None|
+      gt0008|Evidence of tophus: 0|local::at0031|Absent|
+      gt0010|Synovial fluid analysis of a symptomatic (ever) joint or bursa: 0|local::at0039|Not done|
+      gt0011|Imaging evidence of urate deposition in symptomatic joint/bursa: 0|local::at0040|Absent or not done|
+      gt0012|Imaging evidence of gout-related joint damage: 0|local::at0042|Absent or not done|
+      gt0037|Urea: 4,mg/dl
+  expected_output:
+    1:
+      gt0020|Serum Urate - score: 0|local::at0034|≥ 4 or < 6mg/dL [≥ 0.24 or < 0.36mM] |
+      gt0024|Total score for Step 3: 2
+      gt0014|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0015|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0046|Diagnosis of Gout?: 1|local::at0004|Yes - This patient MEETS sufficient criterion and can be classified as having gout and/or has a score ≥8|
+
+- id: swelling(+)-MSU(+)-bursa(1)-characteristic(1)-episode(1)
+  input:
+    1:
+      gt0003|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0004|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0005|Pattern of joint/bursa involvement during episodes: 1|local::at0022|Ankle or midfoot joint(s) as monoarticular or part of an oligoarticular presentation without first MTP joint involvement |
+      gt0006|How many characteristics during episode(s)?: 1|local::at0025|1 characteristic present |
+      gt0007|How many typical episodes with the following time-course?: 1|local::at0029|One|
+      gt0008|Evidence of tophus: 0|local::at0031|Absent|
+      gt0010|Synovial fluid analysis of a symptomatic (ever) joint or bursa: 0|local::at0039|Not done|
+      gt0011|Imaging evidence of urate deposition in symptomatic joint/bursa: 0|local::at0040|Absent or not done|
+      gt0012|Imaging evidence of gout-related joint damage: 0|local::at0042|Absent or not done|
+      gt0037|Urea: 4,mg/dl
+  expected_output:
+    1:
+      gt0020|Serum Urate - score: 0|local::at0034|≥ 4 or < 6mg/dL [≥ 0.24 or < 0.36mM] |
+      gt0024|Total score for Step 3: 3
+      gt0014|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0015|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0046|Diagnosis of Gout?: 1|local::at0004|Yes - This patient MEETS sufficient criterion and can be classified as having gout and/or has a score ≥8|
+
+- id: swelling(+)-MSU(+)-bursa(1)-characteristic(1)-episode(1)-tophus(+)
+  input:
+    1:
+      gt0003|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0004|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0005|Pattern of joint/bursa involvement during episodes: 1|local::at0022|Ankle or midfoot joint(s) as monoarticular or part of an oligoarticular presentation without first MTP joint involvement |
+      gt0006|How many characteristics during episode(s)?: 1|local::at0025|1 characteristic present |
+      gt0007|How many typical episodes with the following time-course?: 1|local::at0029|One|
+      gt0008|Evidence of tophus: 4|local::at0032|Present|
+      gt0010|Synovial fluid analysis of a symptomatic (ever) joint or bursa: 0|local::at0039|Not done|
+      gt0011|Imaging evidence of urate deposition in symptomatic joint/bursa: 0|local::at0040|Absent or not done|
+      gt0012|Imaging evidence of gout-related joint damage: 0|local::at0042|Absent or not done|
+      gt0037|Urea: 4,mg/dl
+  expected_output:
+    1:
+      gt0020|Serum Urate - score: 0|local::at0034|≥ 4 or < 6mg/dL [≥ 0.24 or < 0.36mM] |
+      gt0024|Total score for Step 3: 7
+      gt0014|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0015|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0046|Diagnosis of Gout?: 1|local::at0004|Yes - This patient MEETS sufficient criterion and can be classified as having gout and/or has a score ≥8|
+
+
+- id: swelling(+)-MSU(+)-bursa(1)-characteristic(1)-episode(1)-tophus(+)-synovial(-)
+  input:
+    1:
+      gt0003|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0004|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0005|Pattern of joint/bursa involvement during episodes: 1|local::at0022|Ankle or midfoot joint(s) as monoarticular or part of an oligoarticular presentation without first MTP joint involvement |
+      gt0006|How many characteristics during episode(s)?: 1|local::at0025|1 characteristic present |
+      gt0007|How many typical episodes with the following time-course?: 1|local::at0029|One|
+      gt0008|Evidence of tophus: 4|local::at0032|Present|
+      gt0010|Synovial fluid analysis of a symptomatic (ever) joint or bursa: -2|local::at0038|Negative for MSU|
+      gt0011|Imaging evidence of urate deposition in symptomatic joint/bursa: 0|local::at0040|Absent or not done|
+      gt0012|Imaging evidence of gout-related joint damage: 0|local::at0042|Absent or not done|
+      gt0037|Urea: 4,mg/dl
+  expected_output:
+    1:
+      gt0020|Serum Urate - score: 0|local::at0034|≥ 4 or < 6mg/dL [≥ 0.24 or < 0.36mM] |
+      gt0024|Total score for Step 3: 5
+      gt0014|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0015|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0046|Diagnosis of Gout?: 1|local::at0004|Yes - This patient MEETS sufficient criterion and can be classified as having gout and/or has a score ≥8|
+
+- id: swelling(+)-MSU(+)-bursa(1)-characteristic(1)-episode(1)-tophus(+)-synovial(-)-urate_imaging(+)
+  input:
+    1:
+      gt0003|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0004|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0005|Pattern of joint/bursa involvement during episodes: 1|local::at0022|Ankle or midfoot joint(s) as monoarticular or part of an oligoarticular presentation without first MTP joint involvement |
+      gt0006|How many characteristics during episode(s)?: 1|local::at0025|1 characteristic present |
+      gt0007|How many typical episodes with the following time-course?: 1|local::at0029|One|
+      gt0008|Evidence of tophus: 4|local::at0032|Present|
+      gt0010|Synovial fluid analysis of a symptomatic (ever) joint or bursa: -2|local::at0038|Negative for MSU|
+      gt0011|Imaging evidence of urate deposition in symptomatic joint/bursa: 4|local::at0041|Present (either modality)|
+      gt0012|Imaging evidence of gout-related joint damage: 0|local::at0042|Absent or not done|
+      gt0037|Urea: 4,mg/dl
+  expected_output:
+    1:
+      gt0020|Serum Urate - score: 0|local::at0034|≥ 4 or < 6mg/dL [≥ 0.24 or < 0.36mM] |
+      gt0024|Total score for Step 3: 9
+      gt0014|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0015|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0046|Diagnosis of Gout?: 1|local::at0004|Yes - This patient MEETS sufficient criterion and can be classified as having gout and/or has a score ≥8|
+
+- id: swelling(+)-MSU(+)-bursa(1)-characteristic(1)-episode(1)-tophus(+)-synovial(-)-urate_imaging(+)-joint_damage_imaging(+)
+  input:
+    1:
+      gt0003|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0004|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0005|Pattern of joint/bursa involvement during episodes: 1|local::at0022|Ankle or midfoot joint(s) as monoarticular or part of an oligoarticular presentation without first MTP joint involvement |
+      gt0006|How many characteristics during episode(s)?: 1|local::at0025|1 characteristic present |
+      gt0007|How many typical episodes with the following time-course?: 1|local::at0029|One|
+      gt0008|Evidence of tophus: 4|local::at0032|Present|
+      gt0010|Synovial fluid analysis of a symptomatic (ever) joint or bursa: -2|local::at0038|Negative for MSU|
+      gt0011|Imaging evidence of urate deposition in symptomatic joint/bursa: 4|local::at0041|Present (either modality)|
+      gt0012|Imaging evidence of gout-related joint damage: 4|local::at0043|Present|
+      gt0037|Urea: 4,mg/dl
+  expected_output:
+    1:
+      gt0020|Serum Urate - score: 0|local::at0034|≥ 4 or < 6mg/dL [≥ 0.24 or < 0.36mM] |
+      gt0024|Total score for Step 3: 13
+      gt0014|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0015|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0046|Diagnosis of Gout?: 1|local::at0004|Yes - This patient MEETS sufficient criterion and can be classified as having gout and/or has a score ≥8|
+
+- id: swelling(+)-MSU(+)-bursa(1)-characteristic(1)-episode(1)-tophus(+)-synovial(-)-urate_imaging(+)-joint_damage_imaging(+)-serum_urate(low)
+  input:
+    1:
+      gt0003|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0004|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0005|Pattern of joint/bursa involvement during episodes: 1|local::at0022|Ankle or midfoot joint(s) as monoarticular or part of an oligoarticular presentation without first MTP joint involvement |
+      gt0006|How many characteristics during episode(s)?: 1|local::at0025|1 characteristic present |
+      gt0007|How many typical episodes with the following time-course?: 1|local::at0029|One|
+      gt0008|Evidence of tophus: 4|local::at0032|Present|
+      gt0010|Synovial fluid analysis of a symptomatic (ever) joint or bursa: -2|local::at0038|Negative for MSU|
+      gt0011|Imaging evidence of urate deposition in symptomatic joint/bursa: 4|local::at0041|Present (either modality)|
+      gt0012|Imaging evidence of gout-related joint damage: 4|local::at0043|Present|
+      gt0037|Urea: 3,mg/dl
+  expected_output:
+    1:
+      gt0020|Serum Urate - score: -4|local::at0033|< 4mg/dL [< 0.24mM] |
+      gt0024|Total score for Step 3: 9
+      gt0014|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0015|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0046|Diagnosis of Gout?: 1|local::at0004|Yes - This patient MEETS sufficient criterion and can be classified as having gout and/or has a score ≥8|
+
+- id: swelling(+)-MSU(+)-bursa(1)-characteristic(1)-episode(1)-tophus(+)-synovial(-)-urate_imaging(+)-joint_damage_imaging(+)-serum_urate(normal-high)
+  input:
+    1:
+      gt0003|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0004|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0005|Pattern of joint/bursa involvement during episodes: 1|local::at0022|Ankle or midfoot joint(s) as monoarticular or part of an oligoarticular presentation without first MTP joint involvement |
+      gt0006|How many characteristics during episode(s)?: 1|local::at0025|1 characteristic present |
+      gt0007|How many typical episodes with the following time-course?: 1|local::at0029|One|
+      gt0008|Evidence of tophus: 4|local::at0032|Present|
+      gt0010|Synovial fluid analysis of a symptomatic (ever) joint or bursa: -2|local::at0038|Negative for MSU|
+      gt0011|Imaging evidence of urate deposition in symptomatic joint/bursa: 4|local::at0041|Present (either modality)|
+      gt0012|Imaging evidence of gout-related joint damage: 4|local::at0043|Present|
+      gt0037|Urea: 7,mg/dl
+  expected_output:
+    1:
+      gt0020|Serum Urate - score: 2|local::at0035|≥ 6 or < 8mg/dL [≥ 0.36 or < 0.48mM] |
+      gt0024|Total score for Step 3: 15
+      gt0014|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0015|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0046|Diagnosis of Gout?: 1|local::at0004|Yes - This patient MEETS sufficient criterion and can be classified as having gout and/or has a score ≥8|
+
+- id: swelling(+)-MSU(+)-bursa(1)-characteristic(1)-episode(1)-tophus(+)-synovial(-)-urate_imaging(+)-joint_damage_imaging(+)-serum_urate(high)
+  input:
+    1:
+      gt0003|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0004|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0005|Pattern of joint/bursa involvement during episodes: 1|local::at0022|Ankle or midfoot joint(s) as monoarticular or part of an oligoarticular presentation without first MTP joint involvement |
+      gt0006|How many characteristics during episode(s)?: 1|local::at0025|1 characteristic present |
+      gt0007|How many typical episodes with the following time-course?: 1|local::at0029|One|
+      gt0008|Evidence of tophus: 4|local::at0032|Present|
+      gt0010|Synovial fluid analysis of a symptomatic (ever) joint or bursa: -2|local::at0038|Negative for MSU|
+      gt0011|Imaging evidence of urate deposition in symptomatic joint/bursa: 4|local::at0041|Present (either modality)|
+      gt0012|Imaging evidence of gout-related joint damage: 4|local::at0043|Present|
+      gt0037|Urea: 9,mg/dl
+  expected_output:
+    1:
+      gt0020|Serum Urate - score: 3|local::at0036|≥ 8 or < 10mg/dL [≥ 0.48 or < 0.60mM] |
+      gt0024|Total score for Step 3: 16
+      gt0014|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0015|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0046|Diagnosis of Gout?: 1|local::at0004|Yes - This patient MEETS sufficient criterion and can be classified as having gout and/or has a score ≥8|
+
+- id:  swelling(+)-MSU(+)-bursa(1)-characteristic(1)-episode(1)-tophus(+)-synovial(-)-urate_imaging(+)-joint_damage_imaging(+)-serum_urate(very-high)
+  input:
+    1:
+      gt0003|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0004|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0005|Pattern of joint/bursa involvement during episodes: 1|local::at0022|Ankle or midfoot joint(s) as monoarticular or part of an oligoarticular presentation without first MTP joint involvement |
+      gt0006|How many characteristics during episode(s)?: 1|local::at0025|1 characteristic present |
+      gt0007|How many typical episodes with the following time-course?: 1|local::at0029|One|
+      gt0008|Evidence of tophus: 4|local::at0032|Present|
+      gt0010|Synovial fluid analysis of a symptomatic (ever) joint or bursa: -2|local::at0038|Negative for MSU|
+      gt0011|Imaging evidence of urate deposition in symptomatic joint/bursa: 4|local::at0041|Present (either modality)|
+      gt0012|Imaging evidence of gout-related joint damage: 4|local::at0043|Present|
+      gt0037|Urea: 11,mg/dl
+  expected_output:
+    1:
+      gt0020|Serum Urate - score: 4|local::at0037|≥ 10mg/dL [≥ 0.60mMnal|
+      gt0024|Total score for Step 3: 17
+      gt0014|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0015|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0046|Diagnosis of Gout?: 1|local::at0004|Yes - This patient MEETS sufficient criterion and can be classified as having gout and/or has a score ≥8|
+
+
+- id: swelling(+)-MSU(+)-bursa(1)-characteristic(1)-episode(1)-tophus(+)-synovial(not-done)-urate_imaging(+)-joint_damage_imaging(+)-serum_urate(very-high)
+  input:
+    1:
+      gt0003|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0004|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0005|Pattern of joint/bursa involvement during episodes: 1|local::at0022|Ankle or midfoot joint(s) as monoarticular or part of an oligoarticular presentation without first MTP joint involvement |
+      gt0006|How many characteristics during episode(s)?: 1|local::at0025|1 characteristic present |
+      gt0007|How many typical episodes with the following time-course?: 1|local::at0029|One|
+      gt0008|Evidence of tophus: 4|local::at0032|Present|
+      gt0010|Synovial fluid analysis of a symptomatic (ever) joint or bursa: 0|local::at0039|Not done|
+      gt0011|Imaging evidence of urate deposition in symptomatic joint/bursa: 4|local::at0041|Present (either modality)|
+      gt0012|Imaging evidence of gout-related joint damage: 4|local::at0043|Present|
+      gt0037|Urea: 11,mg/dl
+  expected_output:
+    1:
+      gt0020|Serum Urate - score: 4|local::at0037|≥ 10mg/dL [≥ 0.60mMnal|
+      gt0024|Total score for Step 3: 19
+      gt0014|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0015|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0046|Diagnosis of Gout?: 1|local::at0004|Yes - This patient MEETS sufficient criterion and can be classified as having gout and/or has a score ≥8|
+
+- id: swelling(-)-MSU(-)-bursa(1)-characteristic(1)-episode(1)-tophus(+)-synovial(not-done)-urate_imaging(+)-joint_damage_imaging(+)-serum_urate(very-high)
+  input:
+    1:
+      gt0003|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 0|local::at0017|No|
+      gt0004|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 0|local::at0019|No|
+      gt0005|Pattern of joint/bursa involvement during episodes: 1|local::at0022|Ankle or midfoot joint(s) as monoarticular or part of an oligoarticular presentation without first MTP joint involvement |
+      gt0006|How many characteristics during episode(s)?: 1|local::at0025|1 characteristic present |
+      gt0007|How many typical episodes with the following time-course?: 1|local::at0029|One|
+      gt0008|Evidence of tophus: 4|local::at0032|Present|
+      gt0010|Synovial fluid analysis of a symptomatic (ever) joint or bursa: 0|local::at0039|Not done|
+      gt0011|Imaging evidence of urate deposition in symptomatic joint/bursa: 4|local::at0041|Present (either modality)|
+      gt0012|Imaging evidence of gout-related joint damage: 4|local::at0043|Present|
+      gt0037|Urea: 11,mg/dl
+  expected_output:
+    1:
+      gt0020|Serum Urate - score: 4|local::at0037|≥ 10mg/dL [≥ 0.60mMnal|
+      gt0024|Total score for Step 3: 19
+      gt0014|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 0|local::at0017|No|
+      gt0015|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 0|local::at0019|No|
+      gt0046|Diagnosis of Gout?: 0|local::at0003|No - This patient does NOT meet criteria for gout classification (scores < 8).|
+
+- id: swelling(+)-MSU(+)-bursa(1)-characteristic(2)-episode(1)-tophus(+)-synovial(not-done)-urate_imaging(+)-joint_damage_imaging(+)-serum_urate(very-high)
+  input:
+    1:
+      gt0003|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0004|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0005|Pattern of joint/bursa involvement during episodes: 1|local::at0022|Ankle or midfoot joint(s) as monoarticular or part of an oligoarticular presentation without first MTP joint involvement |
+      gt0006|How many characteristics during episode(s)?: 2|local::at0026|2 characteristics present|
+      gt0007|How many typical episodes with the following time-course?: 1|local::at0029|One|
+      gt0008|Evidence of tophus: 4|local::at0032|Present|
+      gt0010|Synovial fluid analysis of a symptomatic (ever) joint or bursa: 0|local::at0039|Not done|
+      gt0011|Imaging evidence of urate deposition in symptomatic joint/bursa: 4|local::at0041|Present (either modality)|
+      gt0012|Imaging evidence of gout-related joint damage: 4|local::at0043|Present|
+      gt0037|Urea: 11,mg/dl
+  expected_output:
+    1:
+      gt0020|Serum Urate - score: 4|local::at0037|≥ 10mg/dL [≥ 0.60mMnal|
+      gt0024|Total score for Step 3: 20
+      gt0014|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0015|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0046|Diagnosis of Gout?: 1|local::at0004|Yes - This patient MEETS sufficient criterion and can be classified as having gout and/or has a score ≥8|
+
+- id: swelling(+)-MSU(+)-bursa(1)-characteristic(3)-episode(1)-tophus(+)-synovial(not-done)-urate_imaging(+)-joint_damage_imaging(+)-serum_urate(very-high)
+  input:
+    1:
+      gt0003|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0004|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0005|Pattern of joint/bursa involvement during episodes: 1|local::at0022|Ankle or midfoot joint(s) as monoarticular or part of an oligoarticular presentation without first MTP joint involvement |
+      gt0006|How many characteristics during episode(s)?: 3|local::at0027|3 characteristics present |
+      gt0007|How many typical episodes with the following time-course?: 1|local::at0029|One|
+      gt0008|Evidence of tophus: 4|local::at0032|Present|
+      gt0010|Synovial fluid analysis of a symptomatic (ever) joint or bursa: 0|local::at0039|Not done|
+      gt0011|Imaging evidence of urate deposition in symptomatic joint/bursa: 4|local::at0041|Present (either modality)|
+      gt0012|Imaging evidence of gout-related joint damage: 4|local::at0043|Present|
+      gt0037|Urea: 11,mg/dl
+  expected_output:
+    1:
+      gt0020|Serum Urate - score: 4|local::at0037|≥ 10mg/dL [≥ 0.60mMnal|
+      gt0024|Total score for Step 3: 21
+      gt0014|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0015|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0046|Diagnosis of Gout?: 1|local::at0004|Yes - This patient MEETS sufficient criterion and can be classified as having gout and/or has a score ≥8|
+
+- id: swelling(+)-MSU(+)-bursa(1)-characteristic(3)-episode(2)-tophus(+)-synovial(not-done)-urate_imaging(+)-joint_damage_imaging(+)-serum_urate(very-high)
+  input:
+    1:
+      gt0003|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0004|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0005|Pattern of joint/bursa involvement during episodes: 1|local::at0022|Ankle or midfoot joint(s) as monoarticular or part of an oligoarticular presentation without first MTP joint involvement |
+      gt0006|How many characteristics during episode(s)?: 3|local::at0027|3 characteristics present |
+      gt0007|How many typical episodes with the following time-course?: 2|local::at0030|Recurrent|
+      gt0008|Evidence of tophus: 4|local::at0032|Present|
+      gt0010|Synovial fluid analysis of a symptomatic (ever) joint or bursa: 0|local::at0039|Not done|
+      gt0011|Imaging evidence of urate deposition in symptomatic joint/bursa: 4|local::at0041|Present (either modality)|
+      gt0012|Imaging evidence of gout-related joint damage: 4|local::at0043|Present|
+      gt0037|Urea: 11,mg/dl
+  expected_output:
+    1:
+      gt0020|Serum Urate - score: 4|local::at0037|≥ 10mg/dL [≥ 0.60mMnal|
+      gt0024|Total score for Step 3: 22
+      gt0014|≥1 episode of swelling, pain, or tenderness in a peripheral joint/bursa: 1|local::at0018|Yes|
+      gt0015|Presence of Monosodium Urate (MSU) crystals in a symptomatic joint, bursa, or tophus: 1|local::at0020|Yes|
+      gt0046|Diagnosis of Gout?: 1|local::at0004|Yes - This patient MEETS sufficient criterion and can be classified as having gout and/or has a score ≥8|

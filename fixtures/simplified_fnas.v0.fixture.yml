@@ -1,0 +1,54 @@
+guidelines:
+  1: simplified_fnas.v0
+test_cases:
+- id: 1- All zero
+  input:
+    1:
+      gt0019|Cry: 0|local::at0046|Normal|
+      gt0020|Tremors: 0|local::at0051|None|
+      gt0021|Increased muscle tone: 0|local::at0055|No|
+      gt0022|Sleep: 0|local::at0046|Normal|
+      gt0023|Nasal stuffiness: 0|local::at0055|No|
+      gt0024|Respiratory rate: 0|local::at0046|Normal|
+      gt0025|Excessive sucking: 0|local::at0055|No|
+      gt0026|Poor feeding: 0|local::at0055|No|
+      gt0027|Feed tolerance: 0|local::at0055|No|
+      gt0028|Stools: 0|local::at0046|Normal|
+  expected_output:
+    1:
+      gt0034|Total score: 0
+      gt0036|Recommendation: Initiate pharmacologic therapy and supportive measures if three consecutive scores of 6 or greater or two consecutive scores of 10 or greater are observed. Continue monitoring score during treatment.
+- id: 2- Max score
+  input:
+    1:
+      gt0019|Cry: 2|local::at0047|Excessive or continuous|
+      gt0020|Tremors: 5|local::at0053|Tremors undisturbed (mild, moderate, or severe)|
+      gt0021|Increased muscle tone: 2|local::at0056|Yes|
+      gt0022|Sleep: 1|local::at0059|< 2 or 3 hours|
+      gt0023|Nasal stuffiness: 1|local::at0056|Yes|
+      gt0024|Respiratory rate: 1|local::at0072|> 60/min|
+      gt0025|Excessive sucking: 1|local::at0056|Yes|
+      gt0026|Poor feeding: 2|local::at0056|Yes|
+      gt0027|Feed tolerance: 1|local::at0084|Regurgitation or projectile vomiting|
+      gt0028|Stools: 2|local::at0087|Loose or watery stools|
+  expected_output:
+    1:
+      gt0034|Total score: 18
+      gt0036|Recommendation: Initiate pharmacologic therapy and supportive measures if three consecutive scores of 6 or greater or two consecutive scores of 10 or greater are observed. Continue monitoring score during treatment.
+- id: 3- Random score
+  input:
+    1:
+      gt0019|Cry: 2|local::at0047|Excessive or continuous|
+      gt0020|Tremors: 0|local::at0051|None|
+      gt0021|Increased muscle tone: 2|local::at0056|Yes|
+      gt0022|Sleep: 0|local::at0046|Normal|
+      gt0023|Nasal stuffiness: 0|local::at0055|No|
+      gt0024|Respiratory rate: 0|local::at0046|Normal|
+      gt0025|Excessive sucking: 1|local::at0056|Yes|
+      gt0026|Poor feeding: 2|local::at0056|Yes|
+      gt0027|Feed tolerance: 0|local::at0055|No|
+      gt0028|Stools: 0|local::at0046|Normal|
+  expected_output:
+    1:
+      gt0034|Total score: 7
+      gt0036|Recommendation: Initiate pharmacologic therapy and supportive measures if three consecutive scores of 6 or greater or two consecutive scores of 10 or greater are observed. Continue monitoring score during treatment. 

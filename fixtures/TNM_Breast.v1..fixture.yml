@@ -1,0 +1,182 @@
+guidelines:
+  1: TNM_Breast.v1
+test_cases:
+- id: case_1
+  input:
+    1:
+      gt0003|Tumour: 0|local::at0009|TX - Primary tumor cannot be assessed|
+      gt0004|Nodal involvement: 0|local::at0016|NX - Nearby lymph nodes cannot be assessed|
+      gt0005|Metastases: 0|local::at0032|MX - Distant spread (metastasis) cannot be assessed.|
+  expected_output:
+    1:
+      gt0009|Metastases: 0|local::at0032|MX - Distant spread (metastasis) cannot be assessed.|
+      gt0008|Nodal involvement: 0|local::at0016|NX - Nearby lymph nodes cannot be assessed|
+      gt0007|Tumour: 0|local::at0009|TX - Primary tumor cannot be assessed|
+
+- id: case_2
+  input:
+    1:
+      gt0003|Tumour: 1|local::at0010|T0 - No evidence of primary tumor|
+      gt0004|Nodal involvement: 1|local::at0017|N0 - Cancer has not spread to nearby lymph nodes.|
+      gt0005|Metastases: 1|local::at0033|M0 - No distant spread is found on x-rays (or other imaging tests) or by physical exam.|
+  expected_output:
+    1:
+      gt0009|Metastases: 1|local::at0033|M0 - No distant spread is found on x-rays (or other imaging tests) or by physical exam.|
+      gt0008|Nodal involvement: 1|local::at0017|N0 - Cancer has not spread to nearby lymph nodes.|
+      gt0007|Tumour: 1|local::at0010|T0 - No evidence of primary tumor|
+
+- id: case_3
+  input:
+    1:
+      gt0003|Tumour: 2|local::at0011|Tis - Carcinoma in situ |
+      gt0004|Nodal involvement: 2|local::at0018|N0(i+) - Cancer spread < 200 cells and is < 0.2 mm|
+      gt0005|Metastases: 2|local::at0034|cM0(i+) - Small no. of cancer cells found in blood/bone marrow or tiny areas of cancer spread =< 0.2 mm in regional lymph nodes|
+  expected_output:
+    1:
+      gt0009|Metastases: 2|local::at0034|cM0(i+) - Small no. of cancer cells found in blood/bone marrow or tiny areas of cancer spread =< 0.2 mm in regional lymph nodes|
+      gt0010|Breast cancer stage: 0|local::at0036|Stage 0|
+      gt0008|Nodal involvement: 2|local::at0018|N0(i+) - Cancer spread < 200 cells and is < 0.2 mm|
+      gt0007|Tumour: 2|local::at0011|Tis - Carcinoma in situ |
+      gt0031|5 Year Survival rates: 0|local::at0003|99% Stage 0|
+
+- id: case_4
+  input:
+    1:
+      gt0003|Tumour: 3|local::at0012|T1 (includes T1a, T1b, and T1c)|
+      gt0004|Nodal involvement: 3|local::at0019|N0(mol+) - Cancer cells cannot be seen in underarm lymph nodes but traces of cancer cells were detected using RT-PCR. |
+      gt0005|Metastases: 3|local::at0035|M1 - Cancer has spread to distant organs|
+  expected_output:
+    1:
+      gt0009|Metastases: 3|local::at0035|M1 - Cancer has spread to distant organs|
+      gt0010|Breast cancer stage: 8|local::at0044|Stage IV|
+      gt0008|Nodal involvement: 3|local::at0019|N0(mol+) - Cancer cells cannot be seen in underarm lymph nodes but traces of cancer cells were detected using RT-PCR. |
+      gt0007|Tumour: 3|local::at0012|T1 (includes T1a, T1b, and T1c)|
+      gt0031|5 Year Survival rates: 7|local::at0010|14% Stage IV|
+
+- id: case_5
+  input:
+    1:
+      gt0003|Tumour: 4|local::at0013|T2 - Tumor is more than 2 cm but not more than 5 cm (2 inches) across.|
+      gt0004|Nodal involvement: 4|local::at0021|N1mi - Micrometastases in 1 to 3 lymph nodes underarm. |
+      gt0005|Metastases: 3|local::at0035|M1 - Cancer has spread to distant organs|
+  expected_output:
+    1:
+      gt0009|Metastases: 3|local::at0035|M1 - Cancer has spread to distant organs|
+      gt0010|Breast cancer stage: 8|local::at0044|Stage IV|
+      gt0008|Nodal involvement: 4|local::at0021|N1mi - Micrometastases in 1 to 3 lymph nodes underarm. |
+      gt0007|Tumour: 4|local::at0013|T2 - Tumor is more than 2 cm but not more than 5 cm (2 inches) across.|
+      gt0031|5 Year Survival rates: 7|local::at0010|14% Stage IV|
+
+- id: case_6
+  input:
+    1:
+      gt0003|Tumour: 5|local::at0014|T3 - Tumor is more than 5 cm across.|
+      gt0004|Nodal involvement: 5|local::at0022|N1a - Spread to 1 to 3 lymph nodes with at least one area of cancer spread > 2 mm across.|
+      gt0005|Metastases: 3|local::at0035|M1 - Cancer has spread to distant organs|
+  expected_output:
+    1:
+      gt0009|Metastases: 3|local::at0035|M1 - Cancer has spread to distant organs|
+      gt0010|Breast cancer stage: 8|local::at0044|Stage IV|
+      gt0008|Nodal involvement: 5|local::at0022|N1a - Spread to 1 to 3 lymph nodes with at least one area of cancer spread > 2 mm across.|
+      gt0007|Tumour: 5|local::at0014|T3 - Tumor is more than 5 cm across.|
+      gt0031|5 Year Survival rates: 7|local::at0010|14% Stage IV|
+
+- id: case_7
+  input:
+    1:
+      gt0003|Tumour: 6|local::at0015|T4 (includes T4a, T4b, T4c, and T4d)|
+      gt0004|Nodal involvement: 6|local::at0023|N1b - Spread to internal mammary lymph nodes, but only found on sentinel lymph node biopsy|
+      gt0005|Metastases: 3|local::at0035|M1 - Cancer has spread to distant organs|
+  expected_output:
+    1:
+      gt0009|Metastases: 3|local::at0035|M1 - Cancer has spread to distant organs|
+      gt0010|Breast cancer stage: 8|local::at0044|Stage IV|
+      gt0008|Nodal involvement: 6|local::at0023|N1b - Spread to internal mammary lymph nodes, but only found on sentinel lymph node biopsy|
+      gt0007|Tumour: 6|local::at0015|T4 (includes T4a, T4b, T4c, and T4d)|
+      gt0007|Tumour: 6|local::at0015|T4 (includes T4a, T4b, T4c, and T4d)|
+      gt0031|5 Year Survival rates: 7|local::at0010|14% Stage IV|
+
+- id: case_8
+  input:
+    1:
+      gt0003|Tumour: 6|local::at0015|T4 (includes T4a, T4b, T4c, and T4d)|
+      gt0004|Nodal involvement: 7|local::at0024|N1c - Both N1a and N1b apply.|
+      gt0005|Metastases: 3|local::at0035|M1 - Cancer has spread to distant organs|
+  expected_output:
+    1:
+      gt0009|Metastases: 3|local::at0035|M1 - Cancer has spread to distant organs|
+      gt0010|Breast cancer stage: 8|local::at0044|Stage IV|
+      gt0008|Nodal involvement: 7|local::at0024|N1c - Both N1a and N1b apply.|
+      gt0007|Tumour: 6|local::at0015|T4 (includes T4a, T4b, T4c, and T4d)|
+      gt0031|5 Year Survival rates: 7|local::at0010|14% Stage IV|
+
+
+- id: case_9
+  input:
+    1:
+      gt0003|Tumour: 6|local::at0015|T4 (includes T4a, T4b, T4c, and T4d)|
+      gt0004|Nodal involvement: 8|local::at0025|N2a - Spread to 4-9 lymph nodes underarm, with at least one area of cancer spread larger than 2 mm.|
+      gt0005|Metastases: 3|local::at0035|M1 - Cancer has spread to distant organs|
+  expected_output:
+    1:
+      gt0009|Metastases: 3|local::at0035|M1 - Cancer has spread to distant organs|
+      gt0010|Breast cancer stage: 8|local::at0044|Stage IV|
+      gt0008|Nodal involvement: 8|local::at0025|N2a - Spread to 4-9 lymph nodes underarm, with at least one area of cancer spread larger than 2 mm.|
+      gt0007|Tumour: 6|local::at0015|T4 (includes T4a, T4b, T4c, and T4d)|
+      gt0031|5 Year Survival rates: 7|local::at0010|14% Stage IV|
+
+- id: case_10
+  input:
+    1:
+      gt0003|Tumour: 6|local::at0015|T4 (includes T4a, T4b, T4c, and T4d)|
+      gt0004|Nodal involvement: 9|local::at0026|N2b - Spread to one or more internal mammary lymph nodes, causing them to become enlarged.|
+      gt0005|Metastases: 3|local::at0035|M1 - Cancer has spread to distant organs|
+  expected_output:
+    1:
+      gt0009|Metastases: 3|local::at0035|M1 - Cancer has spread to distant organs|
+      gt0010|Breast cancer stage: 8|local::at0044|Stage IV|
+      gt0008|Nodal involvement: 9|local::at0026|N2b - Spread to one or more internal mammary lymph nodes, causing them to become enlarged.|
+      gt0007|Tumour: 6|local::at0015|T4 (includes T4a, T4b, T4c, and T4d)|
+      gt0031|5 Year Survival rates: 7|local::at0010|14% Stage IV|
+
+- id: case_11
+  input:
+    1:
+      gt0003|Tumour: 6|local::at0015|T4 (includes T4a, T4b, T4c, and T4d)|
+      gt0004|Nodal involvement: 10|local::at0027|N3a|
+      gt0005|Metastases: 3|local::at0035|M1 - Cancer has spread to distant organs|
+  expected_output:
+    1:
+      gt0009|Metastases: 3|local::at0035|M1 - Cancer has spread to distant organs|
+      gt0010|Breast cancer stage: 8|local::at0044|Stage IV|
+      gt0008|Nodal involvement: 10|local::at0027|N3a|
+      gt0007|Tumour: 6|local::at0015|T4 (includes T4a, T4b, T4c, and T4d)|
+      gt0031|5 Year Survival rates: 7|local::at0010|14% Stage IV|
+
+- id: case_12
+  input:
+    1:
+      gt0003|Tumour: 6|local::at0015|T4 (includes T4a, T4b, T4c, and T4d)|
+      gt0004|Nodal involvement: 11|local::at0028|N3b|
+      gt0005|Metastases: 3|local::at0035|M1 - Cancer has spread to distant organs|
+  expected_output:
+    1:
+      gt0009|Metastases: 3|local::at0035|M1 - Cancer has spread to distant organs|
+      gt0010|Breast cancer stage: 8|local::at0044|Stage IV|
+      gt0008|Nodal involvement: 11|local::at0028|N3b|
+      gt0007|Tumour: 6|local::at0015|T4 (includes T4a, T4b, T4c, and T4d)|
+      gt0031|5 Year Survival rates: 7|local::at0010|14% Stage IV|
+
+- id: case_13
+  input:
+    1:
+      gt0003|Tumour: 6|local::at0015|T4 (includes T4a, T4b, T4c, and T4d)|
+      gt0004|Nodal involvement: 12|local::at0029|N3c|
+      gt0005|Metastases: 3|local::at0035|M1 - Cancer has spread to distant organs|
+  expected_output:
+    1:
+      gt0009|Metastases: 3|local::at0035|M1 - Cancer has spread to distant organs|
+      gt0010|Breast cancer stage: 8|local::at0044|Stage IV|
+      gt0008|Nodal involvement: 12|local::at0029|N3c|
+      gt0007|Tumour: 6|local::at0015|T4 (includes T4a, T4b, T4c, and T4d)|
+      gt0031|5 Year Survival rates: 7|local::at0010|14% Stage IV|

@@ -1,0 +1,347 @@
+guidelines:
+  1: BOPS.v1
+test_cases:
+- id: facial_expression(0)-verbalization(0)-body_position(0)
+  input:
+    1:
+      gt0003|Facial expression: 0|local::at0009|Neutral/positive facial expression, composed, calm|
+      gt0004|Verbalization: 0|local::at0012|Normal conversation, laugh, crow|
+      gt0005|Body position: 0|local::at0015|Inactive, laying, relaxed with all extremities or sitting, walking|
+  expected_output:
+    1:
+      gt0010|Total score: 0
+      gt0017|Pain scale: 0|local::at0004|Minimal or no pain|
+      gt0018|Recommendation: 0|local::at0006|Consider reassessing after 30 minutes.|
+
+
+- id: facial_expression(0)-verbalization(0)-body_position(1)
+  input:
+    1:
+      gt0003|Facial expression: 0|local::at0009|Neutral/positive facial expression, composed, calm|
+      gt0004|Verbalization: 0|local::at0012|Normal conversation, laugh, crow|
+      gt0005|Body position: 1|local::at0016|Restless movements, shifting fashion and/or touching wound or wound area|
+  expected_output:
+    1:
+      gt0010|Total score: 1
+      gt0017|Pain scale: 0|local::at0004|Minimal or no pain|
+      gt0018|Recommendation: 0|local::at0006|Consider reassessing after 30 minutes.|
+
+
+- id: facial_expression(0)-verbalization(0)-body_position(2)
+  input:
+    1:
+      gt0003|Facial expression: 0|local::at0009|Neutral/positive facial expression, composed, calm|
+      gt0004|Verbalization: 0|local::at0012|Normal conversation, laugh, crow|
+      gt0005|Body position: 2|local::at0017|Lying rigid and/or drawn up with arms and legs to the body|
+  expected_output:
+    1:
+      gt0010|Total score: 2
+      gt0017|Pain scale: 0|local::at0004|Minimal or no pain|
+      gt0018|Recommendation: 0|local::at0006|Consider reassessing after 30 minutes.|
+
+- id: facial_expression(0)-verbalization(1)-body_position(0)
+  input:
+    1:
+      gt0003|Facial expression: 0|local::at0009|Neutral/positive facial expression, composed, calm|
+      gt0004|Verbalization: 1|local::at0013|Completely quiet, sobbing and/or complaining but not because of pain|
+      gt0005|Body position: 0|local::at0015|Inactive, laying, relaxed with all extremities or sitting, walking|
+  expected_output:
+    1:
+      gt0010|Total score: 1
+      gt0017|Pain scale: 0|local::at0004|Minimal or no pain|
+      gt0018|Recommendation: 0|local::at0006|Consider reassessing after 30 minutes.|
+
+
+- id: facial_expression(0)-verbalization(1)-body_position(1)
+  input:
+    1:
+      gt0003|Facial expression: 0|local::at0009|Neutral/positive facial expression, composed, calm|
+      gt0004|Verbalization: 1|local::at0013|Completely quiet, sobbing and/or complaining but not because of pain|
+      gt0005|Body position: 1|local::at0016|Restless movements, shifting fashion and/or touching wound or wound area|
+  expected_output:
+    1:
+      gt0010|Total score: 2
+      gt0017|Pain scale: 0|local::at0004|Minimal or no pain|
+      gt0018|Recommendation: 0|local::at0006|Consider reassessing after 30 minutes.|
+
+
+- id: facial_expression(0)-verbalization(1)-body_position(2)
+  input:
+    1:
+      gt0003|Facial expression: 0|local::at0009|Neutral/positive facial expression, composed, calm|
+      gt0004|Verbalization: 1|local::at0013|Completely quiet, sobbing and/or complaining but not because of pain|
+      gt0005|Body position: 2|local::at0017|Lying rigid and/or drawn up with arms and legs to the body|
+  expected_output:
+    1:
+      gt0010|Total score: 3
+      gt0017|Pain scale: 1|local::at0005|Significant pain present|
+      gt0018|Recommendation: 1|local::at0007|Consider analgesia and reassess afterward.|
+
+
+- id: facial_expression(0)-verbalization(2)-body_position(0)
+  input:
+    1:
+      gt0003|Facial expression: 0|local::at0009|Neutral/positive facial expression, composed, calm|
+      gt0004|Verbalization: 2|local::at0014|Crying, screaming and/or complaining about pain|
+      gt0005|Body position: 0|local::at0015|Inactive, laying, relaxed with all extremities or sitting, walking|
+  expected_output:
+    1:
+      gt0010|Total score: 2
+      gt0017|Pain scale: 0|local::at0004|Minimal or no pain|
+      gt0018|Recommendation: 0|local::at0006|Consider reassessing after 30 minutes.|
+
+
+- id: facial_expression(0)-verbalization(2)-body_position(1)
+  input:
+    1:
+      gt0003|Facial expression: 0|local::at0009|Neutral/positive facial expression, composed, calm|
+      gt0004|Verbalization: 2|local::at0014|Crying, screaming and/or complaining about pain|
+      gt0005|Body position: 1|local::at0016|Restless movements, shifting fashion and/or touching wound or wound area|
+  expected_output:
+    1:
+      gt0010|Total score: 3
+      gt0017|Pain scale: 1|local::at0005|Significant pain present|
+      gt0018|Recommendation: 1|local::at0007|Consider analgesia and reassess afterward.|
+
+
+- id: facial_expression(0)-verbalization(2)-body_position(2)
+  input:
+    1:
+      gt0003|Facial expression: 0|local::at0009|Neutral/positive facial expression, composed, calm|
+      gt0004|Verbalization: 2|local::at0014|Crying, screaming and/or complaining about pain|
+      gt0005|Body position: 2|local::at0017|Lying rigid and/or drawn up with arms and legs to the body|
+  expected_output:
+    1:
+      gt0010|Total score: 4
+      gt0017|Pain scale: 1|local::at0005|Significant pain present|
+      gt0018|Recommendation: 1|local::at0007|Consider analgesia and reassess afterward.|
+
+- id: facial_expression(1)-verbalization(0)-body_position(0)
+  input:
+    1:
+      gt0003|Facial expression: 1|local::at0010|Negative facial expression, concerned|
+      gt0004|Verbalization: 0|local::at0012|Normal conversation, laugh, crow|
+      gt0005|Body position: 0|local::at0015|Inactive, laying, relaxed with all extremities or sitting, walking|
+  expected_output:
+    1:
+      gt0010|Total score: 1
+      gt0017|Pain scale: 0|local::at0004|Minimal or no pain|
+      gt0018|Recommendation: 0|local::at0006|Consider reassessing after 30 minutes.|
+
+
+- id: facial_expression(1)-verbalization(0)-body_position(1)
+  input:
+    1:
+      gt0003|Facial expression: 1|local::at0010|Negative facial expression, concerned|
+      gt0004|Verbalization: 0|local::at0012|Normal conversation, laugh, crow|
+      gt0005|Body position: 1|local::at0016|Restless movements, shifting fashion and/or touching wound or wound area|
+  expected_output:
+    1:
+      gt0010|Total score: 2
+      gt0017|Pain scale: 0|local::at0004|Minimal or no pain|
+      gt0018|Recommendation: 0|local::at0006|Consider reassessing after 30 minutes.|
+
+
+- id: facial_expression(1)-verbalization(0)-body_position(2)
+  input:
+    1:
+      gt0003|Facial expression: 1|local::at0010|Negative facial expression, concerned|
+      gt0004|Verbalization: 0|local::at0012|Normal conversation, laugh, crow|
+      gt0005|Body position: 2|local::at0017|Lying rigid and/or drawn up with arms and legs to the body|
+  expected_output:
+    1:
+      gt0010|Total score: 3
+      gt0017|Pain scale: 1|local::at0005|Significant pain present|
+      gt0018|Recommendation: 1|local::at0007|Consider analgesia and reassess afterward.|
+
+- id: facial_expression(1)-verbalization(1)-body_position(0)
+  input:
+    1:
+      gt0003|Facial expression: 1|local::at0010|Negative facial expression, concerned|
+      gt0004|Verbalization: 1|local::at0013|Completely quiet, sobbing and/or complaining but not because of pain|
+      gt0005|Body position: 0|local::at0015|Inactive, laying, relaxed with all extremities or sitting, walking|
+  expected_output:
+    1:
+      gt0010|Total score: 2
+      gt0017|Pain scale: 0|local::at0004|Minimal or no pain|
+      gt0018|Recommendation: 0|local::at0006|Consider reassessing after 30 minutes.|
+
+
+- id: facial_expression(1)-verbalization(1)-body_position(1)
+  input:
+    1:
+      gt0003|Facial expression: 1|local::at0010|Negative facial expression, concerned|
+      gt0004|Verbalization: 1|local::at0013|Completely quiet, sobbing and/or complaining but not because of pain|
+      gt0005|Body position: 1|local::at0016|Restless movements, shifting fashion and/or touching wound or wound area|
+  expected_output:
+    1:
+      gt0010|Total score: 3
+      gt0017|Pain scale: 1|local::at0005|Significant pain present|
+      gt0018|Recommendation: 1|local::at0007|Consider analgesia and reassess afterward.|
+
+
+- id: facial_expression(1)-verbalization(1)-body_position(2)
+  input:
+    1:
+      gt0003|Facial expression: 1|local::at0010|Negative facial expression, concerned|
+      gt0004|Verbalization: 1|local::at0013|Completely quiet, sobbing and/or complaining but not because of pain|
+      gt0005|Body position: 2|local::at0017|Lying rigid and/or drawn up with arms and legs to the body|
+  expected_output:
+    1:
+      gt0010|Total score: 4
+      gt0017|Pain scale: 1|local::at0005|Significant pain present|
+      gt0018|Recommendation: 1|local::at0007|Consider analgesia and reassess afterward.|
+
+
+- id: facial_expression(1)-verbalization(2)-body_position(0)
+  input:
+    1:
+      gt0003|Facial expression: 1|local::at0010|Negative facial expression, concerned|
+      gt0004|Verbalization: 2|local::at0014|Crying, screaming and/or complaining about pain|
+      gt0005|Body position: 0|local::at0015|Inactive, laying, relaxed with all extremities or sitting, walking|
+  expected_output:
+    1:
+      gt0010|Total score: 3
+      gt0017|Pain scale: 1|local::at0005|Significant pain present|
+      gt0018|Recommendation: 1|local::at0007|Consider analgesia and reassess afterward.|
+
+
+- id: facial_expression(1)-verbalization(2)-body_position(1)
+  input:
+    1:
+      gt0003|Facial expression: 1|local::at0010|Negative facial expression, concerned|
+      gt0004|Verbalization: 2|local::at0014|Crying, screaming and/or complaining about pain|
+      gt0005|Body position: 1|local::at0016|Restless movements, shifting fashion and/or touching wound or wound area|
+  expected_output:
+    1:
+      gt0010|Total score: 4
+      gt0017|Pain scale: 1|local::at0005|Significant pain present|
+      gt0018|Recommendation: 1|local::at0007|Consider analgesia and reassess afterward.|
+
+
+- id: facial_expression(1)-verbalization(2)-body_position(2)
+  input:
+    1:
+      gt0003|Facial expression: 1|local::at0010|Negative facial expression, concerned|
+      gt0004|Verbalization: 2|local::at0014|Crying, screaming and/or complaining about pain|
+      gt0005|Body position: 2|local::at0017|Lying rigid and/or drawn up with arms and legs to the body|
+  expected_output:
+    1:
+      gt0010|Total score: 5
+      gt0017|Pain scale: 1|local::at0005|Significant pain present|
+      gt0018|Recommendation: 1|local::at0007|Consider analgesia and reassess afterward.|
+
+- id: facial_expression(2)-verbalization(0)-body_position(0)
+  input:
+    1:
+      gt0003|Facial expression: 2|local::at0011|Negative facial expression, grimace, distorted face|
+      gt0004|Verbalization: 0|local::at0012|Normal conversation, laugh, crow|
+      gt0005|Body position: 0|local::at0015|Inactive, laying, relaxed with all extremities or sitting, walking|
+  expected_output:
+    1:
+      gt0010|Total score: 2
+      gt0017|Pain scale: 0|local::at0004|Minimal or no pain|
+      gt0018|Recommendation: 0|local::at0006|Consider reassessing after 30 minutes.|
+
+- id: facial_expression(2)-verbalization(0)-body_position(1)
+  input:
+    1:
+      gt0003|Facial expression: 2|local::at0011|Negative facial expression, grimace, distorted face|
+      gt0004|Verbalization: 0|local::at0012|Normal conversation, laugh, crow|
+      gt0005|Body position: 1|local::at0016|Restless movements, shifting fashion and/or touching wound or wound area|
+  expected_output:
+    1:
+      gt0010|Total score: 3
+      gt0017|Pain scale: 1|local::at0005|Significant pain present|
+      gt0018|Recommendation: 1|local::at0007|Consider analgesia and reassess afterward.|
+
+
+- id: facial_expression(2)-verbalization(0)-body_position(2)
+  input:
+    1:
+      gt0003|Facial expression: 2|local::at0011|Negative facial expression, grimace, distorted face|
+      gt0004|Verbalization: 0|local::at0012|Normal conversation, laugh, crow|
+      gt0005|Body position: 2|local::at0017|Lying rigid and/or drawn up with arms and legs to the body|
+  expected_output:
+    1:
+      gt0010|Total score: 4
+      gt0017|Pain scale: 1|local::at0005|Significant pain present|
+      gt0018|Recommendation: 1|local::at0007|Consider analgesia and reassess afterward.|
+
+
+- id: facial_expression(2)-verbalization(1)-body_position(0)
+  input:
+    1:
+      gt0003|Facial expression: 2|local::at0011|Negative facial expression, grimace, distorted face|
+      gt0004|Verbalization: 1|local::at0013|Completely quiet, sobbing and/or complaining but not because of pain|
+      gt0005|Body position: 0|local::at0015|Inactive, laying, relaxed with all extremities or sitting, walking|
+  expected_output:
+    1:
+      gt0010|Total score: 3
+      gt0017|Pain scale: 1|local::at0005|Significant pain present|
+      gt0018|Recommendation: 1|local::at0007|Consider analgesia and reassess afterward.|
+
+
+- id: facial_expression(2)-verbalization(1)-body_position(1)
+  input:
+    1:
+      gt0003|Facial expression: 2|local::at0011|Negative facial expression, grimace, distorted face|
+      gt0004|Verbalization: 1|local::at0013|Completely quiet, sobbing and/or complaining but not because of pain|
+      gt0005|Body position: 1|local::at0016|Restless movements, shifting fashion and/or touching wound or wound area|
+  expected_output:
+    1:
+      gt0010|Total score: 4
+      gt0017|Pain scale: 1|local::at0005|Significant pain present|
+      gt0018|Recommendation: 1|local::at0007|Consider analgesia and reassess afterward.|
+
+
+- id: facial_expression(2)-verbalization(1)-body_position(2)
+  input:
+    1:
+      gt0003|Facial expression: 2|local::at0011|Negative facial expression, grimace, distorted face|
+      gt0004|Verbalization: 1|local::at0013|Completely quiet, sobbing and/or complaining but not because of pain|
+      gt0005|Body position: 2|local::at0017|Lying rigid and/or drawn up with arms and legs to the body|
+  expected_output:
+    1:
+      gt0010|Total score: 5
+      gt0017|Pain scale: 1|local::at0005|Significant pain present|
+      gt0018|Recommendation: 1|local::at0007|Consider analgesia and reassess afterward.|
+
+
+- id: facial_expression(2)-verbalization(2)-body_position(0)
+  input:
+    1:
+      gt0003|Facial expression: 2|local::at0011|Negative facial expression, grimace, distorted face|
+      gt0004|Verbalization: 2|local::at0014|Crying, screaming and/or complaining about pain|
+      gt0005|Body position: 0|local::at0015|Inactive, laying, relaxed with all extremities or sitting, walking|
+  expected_output:
+    1:
+      gt0010|Total score: 4
+      gt0017|Pain scale: 1|local::at0005|Significant pain present|
+      gt0018|Recommendation: 1|local::at0007|Consider analgesia and reassess afterward.|
+
+
+- id: facial_expression(2)-verbalization(2)-body_position(1)
+  input:
+    1:
+      gt0003|Facial expression: 2|local::at0011|Negative facial expression, grimace, distorted face|
+      gt0004|Verbalization: 2|local::at0014|Crying, screaming and/or complaining about pain|
+      gt0005|Body position: 1|local::at0016|Restless movements, shifting fashion and/or touching wound or wound area|
+  expected_output:
+    1:
+      gt0010|Total score: 5
+      gt0017|Pain scale: 1|local::at0005|Significant pain present|
+      gt0018|Recommendation: 1|local::at0007|Consider analgesia and reassess afterward.|
+
+
+- id: facial_expression(2)-verbalization(2)-body_position(2)
+  input:
+    1:
+      gt0003|Facial expression: 2|local::at0011|Negative facial expression, grimace, distorted face|
+      gt0004|Verbalization: 2|local::at0014|Crying, screaming and/or complaining about pain|
+      gt0005|Body position: 2|local::at0017|Lying rigid and/or drawn up with arms and legs to the body|
+  expected_output:
+    1:
+      gt0010|Total score: 6
+      gt0017|Pain scale: 1|local::at0005|Significant pain present|
+      gt0018|Recommendation: 1|local::at0007|Consider analgesia and reassess afterward.|

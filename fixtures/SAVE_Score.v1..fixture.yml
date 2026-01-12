@@ -1,0 +1,123 @@
+guidelines:
+  1: SAVE_score.v1
+test_cases:
+- id: 1. Risk class I
+  input:
+    1:
+      gt0003|Myocarditis |: 3|local::at0009|Yes|
+      gt0004|Refractory VT/VF|: 2|local::at0009|Yes|
+      gt0005|Post heart or lung transplantation|: 3|local::at0009|Yes|
+      gt0006|Congenital heart disease |: 0|local::at0008|No|
+      gt0007|Age|: 7|local::at0023|18-38|
+      gt0008|Weight|: 2|local::at0027|65–89|
+      gt0009|Pulse pressure pre ECMO ≤20 mmHg|: 0|local::at0008|No|
+      gt0010|Diastolic blood pressure before ECMO ≥40 mmHg|: 3|local::at0009|Yes|
+      gt0011|Pre-ECMO cardiac arrest|: 0|local::at0008|No|
+      gt0012|Peak inspiratory pressure ≤20 cmH2O |: 3|local::at0009|Yes|
+      gt0013|Duration of intubation prior to initiation of ECMO |: 0|local::at0043|≤10|
+      gt0014|Acute renal failure|: 0|local::at0008|No|
+      gt0015|Chronic renal failure|: 0|local::at0008|No|
+      gt0016|HCO3 pre ECMO ≤15 mmol/L|: 0|local::at0008|No|
+      gt0017|Central nervous system dysfunction|: 0|local::at0008|No|
+      gt0018|Liver failure|: 0|local::at0008|No|
+  expected_output:
+    1:
+      gt0020|SAVE score|: 17,1 
+      gt0022|Risk class |: local::at0003|I|
+      gt0023|In-hospital survival|: local::at0009|75%|
+- id: 2. Risk class II
+  input:
+    1:
+      gt0003|Myocarditis |: 3|local::at0009|Yes|
+      gt0004|Refractory VT/VF|: 0|local::at0008|No|
+      gt0005|Post heart or lung transplantation|: 0|local::at0008|No|
+      gt0006|Congenital heart disease |: 0|local::at0008|No|
+      gt0007|Age|: 7|local::at0023|18-38|
+      gt0008|Weight|: 1|local::at0026|<65|
+      gt0009|Pulse pressure pre ECMO ≤20 mmHg|: -2|local::at0009|Yes|
+      gt0010|Diastolic blood pressure before ECMO ≥40 mmHg|: 0|local::at0008|No|
+      gt0011|Pre-ECMO cardiac arrest|: 0|local::at0008|No|
+      gt0012|Peak inspiratory pressure ≤20 cmH2O |: 3|local::at0009|Yes|
+      gt0013|Duration of intubation prior to initiation of ECMO |: 0|local::at0043|≤10|
+      gt0014|Acute renal failure|: 0|local::at0008|No|
+      gt0015|Chronic renal failure|: 0|local::at0008|No|
+      gt0016|HCO3 pre ECMO ≤15 mmol/L|: 0|local::at0008|No|
+      gt0017|Central nervous system dysfunction|: 0|local::at0008|No|
+      gt0018|Liver failure|: -3|local::at0009|Yes|
+  expected_output:
+    1:
+      gt0020|SAVE score|: 3,1 
+      gt0022|Risk class |: local::at0004|II|
+      gt0023|In-hospital survival|: local::at0010|58%|
+- id: 3. Risk class III
+  input:
+    1:
+      gt0003|Myocarditis |: 0|local::at0008|No|
+      gt0004|Refractory VT/VF|: 0|local::at0008|No|
+      gt0005|Post heart or lung transplantation|: 0|local::at0008|No|
+      gt0006|Congenital heart disease |: 0|local::at0008|No|
+      gt0007|Age|: 4|local::at0022|39-52|
+      gt0008|Weight|: 1|local::at0026|<65|
+      gt0009|Pulse pressure pre ECMO ≤20 mmHg|: -2|local::at0009|Yes|
+      gt0010|Diastolic blood pressure before ECMO ≥40 mmHg|: 0|local::at0008|No|
+      gt0011|Pre-ECMO cardiac arrest|: 0|local::at0008|No|
+      gt0012|Peak inspiratory pressure ≤20 cmH2O |: 3|local::at0009|Yes|
+      gt0013|Duration of intubation prior to initiation of ECMO |: 0|local::at0043|≤10|
+      gt0014|Acute renal failure|: 0|local::at0008|No|
+      gt0015|Chronic renal failure|: 0|local::at0008|No|
+      gt0016|HCO3 pre ECMO ≤15 mmol/L|: 0|local::at0008|No|
+      gt0017|Central nervous system dysfunction|: 0|local::at0008|No|
+      gt0018|Liver failure|: -3|local::at0009|Yes|
+  expected_output:
+    1:
+      gt0020|SAVE score|: -3,1 
+      gt0022|Risk class |: local::at0005|III|
+      gt0023|In-hospital survival|: local::at0011|42%|
+- id: 4. Risk class IV
+  input:
+    1:
+      gt0003|Myocarditis |: 0|local::at0008|No|
+      gt0004|Refractory VT/VF|: 0|local::at0008|No|
+      gt0005|Post heart or lung transplantation|: 0|local::at0008|No|
+      gt0006|Congenital heart disease |: 0|local::at0008|No|
+      gt0007|Age|: 3|local::at0021|53–62|
+      gt0008|Weight|: 2|local::at0027|65–89|
+      gt0009|Pulse pressure pre ECMO ≤20 mmHg|: 0|local::at0008|No|
+      gt0010|Diastolic blood pressure before ECMO ≥40 mmHg|: 0|local::at0008|No|
+      gt0011|Pre-ECMO cardiac arrest|: 0|local::at0008|No|
+      gt0012|Peak inspiratory pressure ≤20 cmH2O |: 0|local::at0008|No|
+      gt0013|Duration of intubation prior to initiation of ECMO |: -2|local::at0044|11-29|
+      gt0014|Acute renal failure|: 0|local::at0008|No|
+      gt0015|Chronic renal failure|: 0|local::at0008|No|
+      gt0016|HCO3 pre ECMO ≤15 mmol/L|: 0|local::at0008|No|
+      gt0017|Central nervous system dysfunction|: -3|local::at0009|Yes|
+      gt0018|Liver failure|: -3|local::at0060|Yes|
+  expected_output:
+    1:
+      gt0020|SAVE score|: -9,1 
+      gt0022|Risk class |: local::at0006|IV|
+      gt0023|In-hospital survival|: local::at0012|30%|
+- id: 5. Risk class V
+  input:
+    1:
+      gt0003|Myocarditis |: 0|local::at0008|No|
+      gt0004|Refractory VT/VF|: 0|local::at0008|No|
+      gt0005|Post heart or lung transplantation|: 0|local::at0008|No|
+      gt0006|Congenital heart disease |: -3|local::at0009|Yes|
+      gt0007|Age|: 0|local::at0020|≥63|
+      gt0008|Weight|: 0|local::at0025|≥90|
+      gt0009|Pulse pressure pre ECMO ≤20 mmHg|: 0|local::at0008|No|
+      gt0010|Diastolic blood pressure before ECMO ≥40 mmHg|: 0|local::at0008|No|
+      gt0011|Pre-ECMO cardiac arrest|: 0|local::at0008|No|
+      gt0012|Peak inspiratory pressure ≤20 cmH2O |: 0|local::at0008|No|
+      gt0013|Duration of intubation prior to initiation of ECMO |: -4|local::at0045|>=30|
+      gt0014|Acute renal failure|: -3|local::at0009|Yes|
+      gt0015|Chronic renal failure|: -6|local::at0009|Yes|
+      gt0016|HCO3 pre ECMO ≤15 mmol/L|: -3|local::at0009|Yes|
+      gt0017|Central nervous system dysfunction|: 0|local::at0008|No|
+      gt0018|Liver failure|: 0|local::at0008|No|
+  expected_output:
+    1:
+      gt0020|SAVE score|: -25,1 
+      gt0022|Risk class |: local::at0007|V|
+      gt0023|In-hospital survival|: local::at0013|18%|

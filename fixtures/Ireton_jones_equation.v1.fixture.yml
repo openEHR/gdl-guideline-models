@@ -1,0 +1,44 @@
+guidelines:
+  1: Ireton_jones_equation.v1
+test_cases:
+- id: Default
+  input:
+    1: {}
+  expected_output:
+    1: {}
+- id: Calculate IJEE spontaneously breathing [kg]
+  input:
+    1:
+      gt0003|Patient age: 44,a
+      gt0004|Patient weight: 70,kg
+      gt0005|Breathing status: local::at0009|Spontaneously breathing|
+      gt0006|Is the patient obese?: 1|local::at0018|Yes|
+  expected_output:
+    1:
+      gt0009|IJEE (1992 version): 1286,kcal/day
+
+- id: Calculate IJEE spontaneously breathing [lbs]
+  input:
+    1:
+      gt0003|Patient age: 44,a
+      gt0004|Patient weight: 200,[lb_av]
+      gt0005|Breathing status: local::at0009|Spontaneously breathing|
+      gt0006|Is the patient obese?: 1|local::at0018|Yes|
+  expected_output:
+    1:
+      gt0009|IJEE (1992 version): 1804,kcal/day
+
+- id: Calculate IJEE ventilator dependent
+  input:
+    1:
+      gt0003|Patient age: 30,a
+      gt0004|Patient weight: 88,kg
+      gt0005|Breathing status: local::at0008|Ventilator dependent|
+      gt0006|Is the patient obese?: 1|local::at0018|Yes|
+      gt0012|Patient gender: 1|local::at0021|Male|
+      gt0013|Is this a trauma patient?: 1|local::at0018|Yes|
+      gt0014|Is this a burns patient?: 0|local::at0019|No|
+  expected_output:
+    1:
+      gt0015|IJEE (2002 version): 2377,kcal/day
+      gt0009|IJEE (1992 version): 2638,kcal/day

@@ -1,0 +1,50 @@
+guidelines:
+  1: PIAMA_Risk_Score.v1
+test_cases:
+- id: Risk of Asthma by School Age; 25%-60%
+  input:
+    1:
+      gt0003|Sex: local::at0005|Male|
+      gt0005|Medium/low parental education: 1|local::at0007|Yes +1|
+      gt0006|Parental asthma: 4|local::at0010|Yes +4|
+      gt0007|Preterm birth (<37 wk): 1|local::at0013|Yes +1|
+      gt0008|Wheezing frequency: 7|local::at0016|≥4 times/year +7|
+      gt0009|Wheezing/dyspnea apart from colds: 2|local::at0019|Yes +2|
+      gt0010|Eczema: 6|local::at0022|Yes +6|
+  expected_output:
+    1:
+      gt0012|Sex: 2|local::at0004|Male +2|
+      gt0014|Risk of Asthma by School Age: local::at0027|25%-60%|
+      gt0013|PIAMA Risk score: 23
+
+- id: Risk of Asthma by School Age; 6%-22%
+  input:
+    1:
+      gt0003|Sex: local::at0006|Female|
+      gt0005|Medium/low parental education: 1|local::at0007|Yes +1|
+      gt0006|Parental asthma: 0|local::at0009|No +0|
+      gt0007|Preterm birth (<37 wk): 0|local::at0012|No +0|
+      gt0008|Wheezing frequency: 4|local::at0015|1-3 times/year +4|
+      gt0009|Wheezing/dyspnea apart from colds: 2|local::at0019|Yes +2|
+      gt0010|Eczema: 6|local::at0022|Yes +6|
+  expected_output:
+    1:
+      gt0012|Sex: 0|local::at0003|Female +0|
+      gt0014|Risk of Asthma by School Age: local::at0026|6%-22%|
+      gt0013|PIAMA Risk score: 13
+
+- id: Risk of Asthma by School Age; ≤7
+  input:
+    1:
+      gt0003|Sex: local::at0005|Male|
+      gt0005|Medium/low parental education: 1|local::at0007|Yes +1|
+      gt0006|Parental asthma: 0|local::at0009|No +0|
+      gt0007|Preterm birth (<37 wk): 0|local::at0012|No +0|
+      gt0008|Wheezing frequency: 4|local::at0015|1-3 times/year +4|
+      gt0009|Wheezing/dyspnea apart from colds: 0|local::at0018|No +0|
+      gt0010|Eczema: 0|local::at0021|No +0|
+  expected_output:
+    1:
+      gt0012|Sex: 2|local::at0004|Male +2|
+      gt0014|Risk of Asthma by School Age: local::at0025|≤5%|
+      gt0013|PIAMA Risk score: 7

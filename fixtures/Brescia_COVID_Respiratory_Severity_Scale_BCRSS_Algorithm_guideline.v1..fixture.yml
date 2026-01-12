@@ -1,0 +1,209 @@
+guidelines:
+  1: Brescia_COVID_Respiratory_Severity_Scale_BCRSS_Algorithm_guideline.v1
+test_cases:
+- id: Level 0
+  input:
+    1:
+      gt0003|Patient has COVID-19 pneumonia: local::at0005|Yes|
+      gt0004|COVID-19 symptoms for ≥7 days: local::at0010|No|
+      gt0005|Patient is PCR positive: local::at0012|Yes|
+      gt0006|High suspicion for COVID-19/PCR pending: local::at0016|No|
+      gt0007|Patient wheezing OR unable to speak in full sentences while at rest/with minimal effort: 0|local::at0046|No|
+      gt0008|Respiratory rate >22: 0|local::at0048|No|
+      gt0009|PaO2 <65 mmHg or SpO2 <90%: 0|local::at0050|No|
+      gt0010|Repeat CXR is significantly worsening: 0|local::at0052|No|
+  expected_output:
+    1:
+      gt0017|Tesing criteria score: 0
+      gt0021|Medications: Lopinavir/ Ritonavir.
+      gt0019|Level: 0
+      gt0020|Management: Keep patient monitored with SpO2 (pulse oximetry) and clinical evaluation.
+- id: Level 1
+  input:
+    1:
+      gt0003|Patient has COVID-19 pneumonia: local::at0005|Yes|
+      gt0004|COVID-19 symptoms for ≥7 days: local::at0010|No|
+      gt0005|Patient is PCR positive: local::at0012|Yes|
+      gt0006|High suspicion for COVID-19/PCR pending: local::at0016|No|
+      gt0007|Patient wheezing OR unable to speak in full sentences while at rest/with minimal effort: 1|local::at0047|Yes|
+      gt0008|Respiratory rate >22: 0|local::at0048|No|
+      gt0009|PaO2 <65 mmHg or SpO2 <90%: 0|local::at0050|No|
+      gt0010|Repeat CXR is significantly worsening: 0|local::at0052|No|
+  expected_output:
+    1:
+      gt0017|Tesing criteria score: 1
+      gt0021|Medications: Lopinavir/ Ritonavir.
+      gt0019|Level: 1
+      gt0020|Management: Provide supplemental O2. Keep patient monitored with SpO2 (pulse oximetry) and clinical evaluation.
+- id: Level  2
+  input:
+    1:
+      gt0003|Patient has COVID-19 pneumonia: local::at0005|Yes|
+      gt0004|COVID-19 symptoms for ≥7 days: local::at0010|No|
+      gt0005|Patient is PCR positive: local::at0012|Yes|
+      gt0006|High suspicion for COVID-19/PCR pending: local::at0016|No|
+      gt0007|Patient wheezing OR unable to speak in full sentences while at rest/with minimal effort: 1|local::at0047|Yes|
+      gt0008|Respiratory rate >22: 1|local::at0049|Yes|
+      gt0009|PaO2 <65 mmHg or SpO2 <90%: 0|local::at0050|No|
+      gt0010|Repeat CXR is significantly worsening: 0|local::at0052|No|
+  expected_output:
+    1:
+      gt0017|Tesing criteria score: 2
+      gt0021|Medications: Lopinavir/ritonavir. Consider dexamethasone
+      gt0019|Level: 2
+      gt0020|Management: Perform CXR and ABG. Provide supplemental O2. Keep patient monitored with pulse oximetry and clinical evaluation.
+      gt0022|Medication consideration: local::at0007|Consider age/comorbidities, cognitive decline.|
+- id: Level  3
+  input:
+    1:
+      gt0003|Patient has COVID-19 pneumonia: local::at0005|Yes|
+      gt0004|COVID-19 symptoms for ≥7 days: local::at0010|No|
+      gt0005|Patient is PCR positive: local::at0012|Yes|
+      gt0006|High suspicion for COVID-19/PCR pending: local::at0016|No|
+      gt0007|Patient wheezing OR unable to speak in full sentences while at rest/with minimal effort: 1|local::at0047|Yes|
+      gt0008|Respiratory rate >22: 1|local::at0049|Yes|
+      gt0009|PaO2 <65 mmHg or SpO2 <90%: 1|local::at0051|Yes|
+      gt0010|Repeat CXR is significantly worsening: 0|local::at0052|No|
+  expected_output:
+    1:
+      gt0017|Tesing criteria score: 3
+      gt0021|Medications: Lopinavir/ritonavir. Consider dexamethasone and consider starting Tocilizumab.
+      gt0019|Level: 3
+      gt0020|Management: Trial of non-invasive ventilation (CPAP/BiPAP) or high-flow nasal canula (HFNC) recommended. If above clinical criteria worsening or patient clinically worsening despite this trial, intubation recommended. Otherwise, perform CXR every 2 days and ABG twice a day.
+      gt0023|Inclusion criteria for tocilizumab: First, end of the initial phase of high viral load of COVID-19 (e.g. apyretic from >72h and/or elapsed ≥7 days after the onset of symptoms). Second, worsening of respiratory exchanges, such as to require non-invasive or invasive support from ventilation (Level ≥3). Third, High levels of IL-6 (>40 pg/mL); alternatively high levels of d-dimer, CRP, ferritin, and/or fibrinogen progressively increasing.
+      gt0022|Medication consideration: local::at0007|Consider age/comorbidities, cognitive decline.|
+- id: Re-select number of criteria
+  input:
+    1:
+      gt0003|Patient has COVID-19 pneumonia: local::at0005|Yes|
+      gt0004|COVID-19 symptoms for ≥7 days: local::at0010|No|
+      gt0005|Patient is PCR positive: local::at0012|Yes|
+      gt0006|High suspicion for COVID-19/PCR pending: local::at0016|No|
+      gt0007|Patient wheezing OR unable to speak in full sentences while at rest/with minimal effort: 1|local::at0047|Yes|
+      gt0008|Respiratory rate >22: 1|local::at0049|Yes|
+      gt0009|PaO2 <65 mmHg or SpO2 <90%: 1|local::at0051|Yes|
+      gt0010|Repeat CXR is significantly worsening: 1|local::at0053|Yes|
+      gt0011|Does patient still have >2 criteria despite NIV/HFNC?: local::at0033|No|
+  expected_output:
+    1:
+      gt0017|Tesing criteria score: 4
+      gt0021|Medications: Lopinavir/ritonavir. Consider dexamethasone and consider starting Tocilizumab.
+      gt0019|Level: 3
+      gt0020|Management: Trial of non-invasive ventilation (CPAP/BiPAP) or high-flow nasal canula (HFNC) recommended. If above clinical criteria worsening or patient clinically worsening despite this trial, intubation recommended. Otherwise, perform CXR every 2 days and ABG twice a day.
+      gt0023|Inclusion criteria for tocilizumab: First, end of the initial phase of high viral load of COVID-19 (e.g. apyretic from >72h and/or elapsed ≥7 days after the onset of symptoms). Second, worsening of respiratory exchanges, such as to require non-invasive or invasive support from ventilation (Level ≥3). Third, High levels of IL-6 (>40 pg/mL); alternatively high levels of d-dimer, CRP, ferritin, and/or fibrinogen progressively increasing.
+      gt0022|Medication consideration: local::at0007|Consider age/comorbidities, cognitive decline.|
+      gt0036|Comment: Re-select number of criteria present and follow management.
+- id: Level 4
+  input:
+    1:
+      gt0003|Patient has COVID-19 pneumonia: local::at0005|Yes|
+      gt0004|COVID-19 symptoms for ≥7 days: local::at0010|No|
+      gt0005|Patient is PCR positive: local::at0012|Yes|
+      gt0006|High suspicion for COVID-19/PCR pending: local::at0016|No|
+      gt0007|Patient wheezing OR unable to speak in full sentences while at rest/with minimal effort: 1|local::at0047|Yes|
+      gt0008|Respiratory rate >22: 1|local::at0049|Yes|
+      gt0009|PaO2 <65 mmHg or SpO2 <90%: 1|local::at0051|Yes|
+      gt0010|Repeat CXR is significantly worsening: 1|local::at0053|Yes|
+      gt0011|Does patient still have >2 criteria despite NIV/HFNC?: local::at0032|Yes|
+      gt0012|Is the intubated patient on CMV?: local::at0036|No|
+  expected_output:
+    1:
+      gt0017|Tesing criteria score: 4
+      gt0021|Medications: Remdesivir (if not available, lopinavir/ritonavir) PLUS considering dexamethasone and tocilizumab.
+      gt0019|Level: 4
+      gt0020|Management: Follow ICU protocols; use local ventilator weaning protocol.
+      gt0023|Inclusion criteria for tocilizumab: First, end of the initial phase of high viral load of COVID-19 (e.g. apyretic from >72h and/or elapsed ≥7 days after the onset of symptoms). Second, worsening of respiratory exchanges, such as to require non-invasive or invasive support from ventilation (Level ≥3). Third, High levels of IL-6 (>40 pg/mL); alternatively high levels of d-dimer, CRP, ferritin, and/or fibrinogen progressively increasing.
+      gt0022|Medication consideration: local::at0007|Consider age/comorbidities, cognitive decline.|
+- id: Level 5
+  input:
+    1:
+      gt0003|Patient has COVID-19 pneumonia: local::at0005|Yes|
+      gt0004|COVID-19 symptoms for ≥7 days: local::at0010|No|
+      gt0005|Patient is PCR positive: local::at0012|Yes|
+      gt0006|High suspicion for COVID-19/PCR pending: local::at0016|No|
+      gt0007|Patient wheezing OR unable to speak in full sentences while at rest/with minimal effort: 1|local::at0047|Yes|
+      gt0008|Respiratory rate >22: 1|local::at0049|Yes|
+      gt0009|PaO2 <65 mmHg or SpO2 <90%: 1|local::at0051|Yes|
+      gt0010|Repeat CXR is significantly worsening: 1|local::at0053|Yes|
+      gt0011|Does patient still have >2 criteria despite NIV/HFNC?: local::at0032|Yes|
+      gt0012|Is the intubated patient on CMV?: local::at0035|Yes|
+      gt0013|PaO2/FiO2 <150 mmHg: local::at0039|No|
+  expected_output:
+    1:
+      gt0017|Tesing criteria score: 4
+      gt0021|Medications: Remdesivir (if not available, lopinavir/ritonavir) PLUS considering dexamethasone and tocilizumab.
+      gt0019|Level: 5
+      gt0020|Management: Try to minimize sedation (RASS -1 to 0). Perform SBT daily.
+      gt0023|Inclusion criteria for tocilizumab: First, end of the initial phase of high viral load of COVID-19 (e.g. apyretic from >72h and/or elapsed ≥7 days after the onset of symptoms). Second, worsening of respiratory exchanges, such as to require non-invasive or invasive support from ventilation (Level ≥3). Third, High levels of IL-6 (>40 pg/mL); alternatively high levels of d-dimer, CRP, ferritin, and/or fibrinogen progressively increasing.
+      gt0022|Medication consideration: local::at0007|Consider age/comorbidities, cognitive decline.|
+- id: Level 6
+  input:
+    1:
+      gt0003|Patient has COVID-19 pneumonia: local::at0005|Yes|
+      gt0004|COVID-19 symptoms for ≥7 days: local::at0010|No|
+      gt0005|Patient is PCR positive: local::at0012|Yes|
+      gt0006|High suspicion for COVID-19/PCR pending: local::at0016|No|
+      gt0007|Patient wheezing OR unable to speak in full sentences while at rest/with minimal effort: 1|local::at0047|Yes|
+      gt0008|Respiratory rate >22: 1|local::at0049|Yes|
+      gt0009|PaO2 <65 mmHg or SpO2 <90%: 1|local::at0051|Yes|
+      gt0010|Repeat CXR is significantly worsening: 1|local::at0053|Yes|
+      gt0011|Does patient still have >2 criteria despite NIV/HFNC?: local::at0032|Yes|
+      gt0012|Is the intubated patient on CMV?: local::at0035|Yes|
+      gt0013|PaO2/FiO2 <150 mmHg: local::at0038|Yes|
+      gt0014|Patient on neuromuscular blockade (NMBA): local::at0042|No|
+  expected_output:
+    1:
+      gt0017|Tesing criteria score: 4
+      gt0021|Medications: Remdesivir (if not available, lopinavir/ritonavir) PLUS considering dexamethasone and tocilizumab.
+      gt0019|Level: 6
+      gt0020|Management: Try to minimize sedation (RASS -1 to 0).
+      gt0023|Inclusion criteria for tocilizumab: First, end of the initial phase of high viral load of COVID-19 (e.g. apyretic from >72h and/or elapsed ≥7 days after the onset of symptoms). Second, worsening of respiratory exchanges, such as to require non-invasive or invasive support from ventilation (Level ≥3). Third, High levels of IL-6 (>40 pg/mL); alternatively high levels of d-dimer, CRP, ferritin, and/or fibrinogen progressively increasing.
+      gt0022|Medication consideration: local::at0007|Consider age/comorbidities, cognitive decline.|
+- id: Level 7
+  input:
+    1:
+      gt0003|Patient has COVID-19 pneumonia: local::at0005|Yes|
+      gt0004|COVID-19 symptoms for ≥7 days: local::at0010|No|
+      gt0005|Patient is PCR positive: local::at0012|Yes|
+      gt0006|High suspicion for COVID-19/PCR pending: local::at0016|No|
+      gt0007|Patient wheezing OR unable to speak in full sentences while at rest/with minimal effort: 1|local::at0047|Yes|
+      gt0008|Respiratory rate >22: 1|local::at0049|Yes|
+      gt0009|PaO2 <65 mmHg or SpO2 <90%: 1|local::at0051|Yes|
+      gt0010|Repeat CXR is significantly worsening: 1|local::at0053|Yes|
+      gt0011|Does patient still have >2 criteria despite NIV/HFNC?: local::at0032|Yes|
+      gt0012|Is the intubated patient on CMV?: local::at0035|Yes|
+      gt0013|PaO2/FiO2 <150 mmHg: local::at0038|Yes|
+      gt0014|Patient on neuromuscular blockade (NMBA): local::at0041|Yes|
+      gt0015|Patient prone or on ECMO: local::at0045|No|
+  expected_output:
+    1:
+      gt0017|Tesing criteria score: 4
+      gt0021|Medications: Remdesivir (if not available, lopinavir/ritonavir) PLUS considering dexamethasone and tocilizumab.
+      gt0019|Level: 7
+      gt0020|Management: Perform best PEEP and Compliance calculation. Try to suspend NMBA. Optimize volume status.
+      gt0023|Inclusion criteria for tocilizumab: First, end of the initial phase of high viral load of COVID-19 (e.g. apyretic from >72h and/or elapsed ≥7 days after the onset of symptoms). Second, worsening of respiratory exchanges, such as to require non-invasive or invasive support from ventilation (Level ≥3). Third, High levels of IL-6 (>40 pg/mL); alternatively high levels of d-dimer, CRP, ferritin, and/or fibrinogen progressively increasing.
+      gt0022|Medication consideration: local::at0007|Consider age/comorbidities, cognitive decline.|
+- id: Level 8
+  input:
+    1:
+      gt0003|Patient has COVID-19 pneumonia: local::at0005|Yes|
+      gt0004|COVID-19 symptoms for ≥7 days: local::at0010|No|
+      gt0005|Patient is PCR positive: local::at0012|Yes|
+      gt0006|High suspicion for COVID-19/PCR pending: local::at0016|No|
+      gt0007|Patient wheezing OR unable to speak in full sentences while at rest/with minimal effort: 1|local::at0047|Yes|
+      gt0008|Respiratory rate >22: 1|local::at0049|Yes|
+      gt0009|PaO2 <65 mmHg or SpO2 <90%: 1|local::at0051|Yes|
+      gt0010|Repeat CXR is significantly worsening: 1|local::at0053|Yes|
+      gt0011|Does patient still have >2 criteria despite NIV/HFNC?: local::at0032|Yes|
+      gt0012|Is the intubated patient on CMV?: local::at0035|Yes|
+      gt0013|PaO2/FiO2 <150 mmHg: local::at0038|Yes|
+      gt0014|Patient on neuromuscular blockade (NMBA): local::at0041|Yes|
+      gt0015|Patient prone or on ECMO: local::at0044|Yes|
+  expected_output:
+    1:
+      gt0017|Tesing criteria score: 4
+      gt0021|Medications: Remdesivir (if not available, lopinavir/ritonavir) PLUS considering dexamethasone and tocilizumab.
+      gt0019|Level: 8
+      gt0020|Management: Extreme level of medical complexity given failing other management options; defer to clinician expertise.
+      gt0023|Inclusion criteria for tocilizumab: First, end of the initial phase of high viral load of COVID-19 (e.g. apyretic from >72h and/or elapsed ≥7 days after the onset of symptoms). Second, worsening of respiratory exchanges, such as to require non-invasive or invasive support from ventilation (Level ≥3). Third, High levels of IL-6 (>40 pg/mL); alternatively high levels of d-dimer, CRP, ferritin, and/or fibrinogen progressively increasing.
+      gt0022|Medication consideration: local::at0007|Consider age/comorbidities, cognitive decline.|

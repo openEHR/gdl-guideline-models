@@ -1,0 +1,77 @@
+guidelines:
+  1: EUTOS_score_CML.v1
+test_cases:
+- id: Default
+  input: {}
+  expected_output: {}
+  
+- id: Set Risk Category to Low
+  input:
+    1:
+      gt0003|Spleen size|: 2,cm
+      gt0004|% basophils|: 3,%
+  expected_output:
+    1:
+      gt0006|CCyR at 18 months|: local::at0011|86%|
+      gt0007|EUTOS Score|: 29,1
+      gt0008|Likelihood of NOT achieving CCyR|: 14,%
+      gt0009|5 year progression-free survival|: local::at0008|90%|
+      gt0010|Risk category|: local::at0005|Low|
+
+- id: Set Risk Category to High
+  input:
+    1:
+      gt0003|Spleen size|: 6,in
+      gt0004|% basophils|: 10,%
+  expected_output:
+    1:
+      gt0006|CCyR at 18 months|: local::at0012|66%|
+      gt0007|EUTOS Score|: 131,1
+      gt0008|Likelihood of NOT achieving CCyR|: 31,%
+      gt0009|5 year progression-free survival|: local::at0009|82%|
+      gt0010|Risk category|: local::at0006|High|
+
+- id: Warning Spleen Size Too High
+  input:
+    1:
+      gt0003|Spleen size|: 21,cm
+      gt0004|% basophils|: 5,%
+  expected_output:
+    1:
+      gt0017|Warning- Spleen Size|: 'Too high; please change to proceed.'
+
+- id: Warning Spleen Size Very High
+  input:
+    1:
+      gt0003|Spleen size|: 11,cm
+      gt0004|% basophils|: 5,%
+  expected_output:
+    1:
+      gt0017|Warning- Spleen Size|: 'Very high; double-check.'
+
+- id: Warning Spleen Size Too low
+  input:
+    1:
+      gt0003|Spleen size|: -1,cm
+      gt0004|% basophils|: 5,%
+  expected_output:
+    1:
+      gt0017|Warning- Spleen Size|: 'Too low; please change to proceed.'
+
+- id: Warning % Basophils Too High
+  input:
+    1:
+      gt0003|Spleen size|: 5,cm
+      gt0004|% basophils|: 101,%
+  expected_output:
+    1:
+      gt0018|Warning- % basophils|: 'Too high; please change to proceed.'
+
+- id: Warning % Basophils Too low
+  input:
+    1:
+      gt0003|Spleen size|: 5,cm
+      gt0004|% basophils|: -1,%
+  expected_output:
+    1:
+      gt0018|Warning- % basophils|: 'Too low; please change to proceed.'

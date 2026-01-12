@@ -1,0 +1,75 @@
+guidelines:
+  1: Haemorr2hages.v1
+test_cases:
+- id: score 0
+  input:
+    1:
+      gt0003|Birthdate: 1959-03-12T22:45Z
+      gt0021|Hepatic or renal disease: 0|local::at0017|No|
+      gt0022|Ethanol (alcohol) abuse: 0|local::at0019|No|
+      gt0023|Malignancy History: 0|local::at0021|No|
+      gt0025|Reduced Platelet count/function: 0|local::at0025|No|
+      gt0026|History of past bleeding: 0|local::at0027|No|
+      gt0027|Hypertension (uncontrolled): 0|local::at0029|No|
+      gt0028|Anaemia: 0|local::at0031|No|
+      gt0029|Genetic factors: 0|local::at0033|No|
+      gt0030|Excessive fall risk: 0|local::at0035|No|
+      gt0031|Stroke History: 0|local::at0037|No|
+  expected_output:
+    1:
+      gt0033|Total score: 0
+- id: score 2
+  input:
+    1:
+      gt0003|Birthdate: 1959-03-12T22:45Z
+      gt0021|Hepatic or renal disease: 0|local::at0017|No|
+      gt0022|Ethanol (alcohol) abuse: 1|local::at0020|Yes|
+      gt0023|Malignancy History: 0|local::at0021|No|
+      gt0025|Reduced Platelet count/function: 0|local::at0025|No|
+      gt0026|History of past bleeding: 0|local::at0027|No|
+      gt0027|Hypertension (uncontrolled): 1|local::at0030|Yes|
+      gt0028|Anaemia: 0|local::at0031|No|
+      gt0029|Genetic factors: 0|local::at0033|No|
+      gt0030|Excessive fall risk: 0|local::at0035|No|
+      gt0031|Stroke History: 0|local::at0037|No|
+  expected_output:
+    1:
+      gt0006|Age: 60,a
+      gt0033|Total score: 2
+- id: over 75 years
+  input:
+    1:
+      gt0003|Birthdate: 1939-03-12T22:45Z
+      gt0021|Hepatic or renal disease: 0|local::at0017|No|
+      gt0022|Ethanol (alcohol) abuse: 1|local::at0020|Yes|
+      gt0023|Malignancy History: 0|local::at0021|No|
+      gt0025|Reduced Platelet count/function: 0|local::at0025|No|
+      gt0026|History of past bleeding: 0|local::at0027|No|
+      gt0027|Hypertension (uncontrolled): 1|local::at0030|Yes|
+      gt0028|Anaemia: 1|local::at0032|Yes|
+      gt0029|Genetic factors: 1|local::at0034|Yes|
+      gt0030|Excessive fall risk: 0|local::at0035|No|
+      gt0031|Stroke History: 0|local::at0037|No|
+  expected_output:
+    1:
+      gt0006|Age: 80,a
+      gt0033|Total score: 5
+- id: Worst
+  input:
+    1:
+      gt0003|Birthdate: 1939-03-12T22:45Z
+      gt0021|Hepatic or renal disease: 1|local::at0018|Yes|
+      gt0022|Ethanol (alcohol) abuse: 1|local::at0020|Yes|
+      gt0023|Malignancy History: 1|local::at0022|Yes|
+      gt0025|Reduced Platelet count/function: 1|local::at0026|Yes|
+      gt0026|History of past bleeding: 2|local::at0028|Yes|
+      gt0027|Hypertension (uncontrolled): 1|local::at0030|Yes|
+      gt0028|Anaemia: 1|local::at0032|Yes|
+      gt0029|Genetic factors: 1|local::at0034|Yes|
+      gt0030|Excessive fall risk: 1|local::at0036|Yes|
+      gt0031|Stroke History: 1|local::at0038|Yes|
+  expected_output:
+    1:
+      gt0006|Age: 80,a
+      gt0033|Total score: 12
+

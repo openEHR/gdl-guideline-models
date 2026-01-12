@@ -1,0 +1,65 @@
+guidelines:
+  1: Mekhail_Extension_of_the_Motzer_Score.v1
+test_cases:
+- id: Default
+  input:
+    1: {}
+  expected_output:
+    1:
+      gt0016|LDH >1.5× upper limit of normal. (Normal 140 U/L): 0|local::at0005|No|
+      gt0018|Corrected serum calcium >10 mg/dL (2.5 mmol/L): 0|local::at0011|No|
+      gt0017|Hemoglobin <lower limit of normal. (Normal <12 g/dL (120 g/L)): 0|local::at0008|No|
+
+- id: Favorable Risk
+  input:
+    1:
+      gt0003|Hemoglobin: 10,gm/l
+      gt0005|Corrected Serum Calcium: 9,mg/dl
+      gt0007|Time from initial diagnosis to systemic treatment <1 year: 0|local::at0015|No|
+      gt0008|Prior treatment with radiation: 0|local::at0017|No|
+      gt0009|≥2 sites of metastasis: 0|local::at0019|No|
+      gt0025|LDH result: 150,/L
+  expected_output:
+    1:
+      gt0013|Median Survival: local::at0012|28 months|
+      gt0012|Risk: local::at0008|Favorable|
+      gt0011|Mekhail Score: 1
+      gt0016|LDH >1.5× upper limit of normal. (Normal 140 U/L): 0|local::at0005|No|
+      gt0018|Corrected serum calcium >10 mg/dL (2.5 mmol/L): 0|local::at0011|No|
+      gt0017|Hemoglobin <lower limit of normal. (Normal <12 g/dL (120 g/L)): 1|local::at0009|Yes|
+
+- id: Intermediate Risk
+  input:
+    1:
+      gt0003|Hemoglobin: 10,gm/l
+      gt0005|Corrected Serum Calcium: 9,mg/dl
+      gt0007|Time from initial diagnosis to systemic treatment <1 year: 0|local::at0015|No|
+      gt0008|Prior treatment with radiation: 0|local::at0017|No|
+      gt0009|≥2 sites of metastasis: 0|local::at0019|No|
+      gt0025|LDH result: 250,/L
+  expected_output:
+    1:
+      gt0013|Median Survival: local::at0013|14 months|
+      gt0012|Risk: local::at0009|Intermediate|
+      gt0011|Mekhail Score: 2
+      gt0016|LDH >1.5× upper limit of normal. (Normal 140 U/L): 1|local::at0006|Yes|
+      gt0018|Corrected serum calcium >10 mg/dL (2.5 mmol/L): 0|local::at0011|No|
+      gt0017|Hemoglobin <lower limit of normal. (Normal <12 g/dL (120 g/L)): 1|local::at0009|Yes|
+
+- id: Poor Risk
+  input:
+    1:
+      gt0003|Hemoglobin: 10,gm/l
+      gt0005|Corrected Serum Calcium: 15,mg/dl
+      gt0007|Time from initial diagnosis to systemic treatment <1 year: 1|local::at0016|Yes|
+      gt0008|Prior treatment with radiation: 0|local::at0017|No|
+      gt0009|≥2 sites of metastasis: 0|local::at0019|No|
+      gt0025|LDH result: 150,/L
+  expected_output:
+    1:
+      gt0013|Median Survival: local::at0014|5 months|
+      gt0012|Risk: local::at0010|Poor|
+      gt0011|Mekhail Score: 3
+      gt0016|LDH >1.5× upper limit of normal. (Normal 140 U/L): 0|local::at0005|No|
+      gt0018|Corrected serum calcium >10 mg/dL (2.5 mmol/L): 1|local::at0012|Yes|
+      gt0017|Hemoglobin <lower limit of normal. (Normal <12 g/dL (120 g/L)): 1|local::at0009|Yes|

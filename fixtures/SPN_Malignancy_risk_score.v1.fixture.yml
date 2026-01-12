@@ -1,0 +1,150 @@
+guidelines:
+  1: SPN_Malignancy_risk_score.v1
+test_cases:
+- id: Test no input
+  input:
+    1: {}
+  expected_output:
+    1: {}
+- id: Current or former smoker missing (negative test)
+  input:
+    1:
+      gt0007|Extrathoracic cancer diagnosis ≥5 years prior: 1|local::at0009|Yes|
+      gt0008|Upper lobe location of tumor: 0|local::at0008|No|
+      gt0010|Nodule spiculation: 1|local::at0009|Yes|
+      gt0011|FDG-PET: local::at0025|Faint uptake|
+      gt0028|Nodule diameter: 4,mm
+      gt0043|Age: 50,a
+  expected_output:
+    1: {}
+- id: Extrathoracic cancer diagnosis missing (negative test)
+  input:
+    1:
+      gt0006|Current or former smoker: 0|local::at0008|No|
+      gt0008|Upper lobe location of tumor: 0|local::at0008|No|
+      gt0010|Nodule spiculation: 1|local::at0009|Yes|
+      gt0011|FDG-PET: local::at0025|Faint uptake|
+      gt0028|Nodule diameter: 4,mm
+      gt0043|Age: 50,a
+  expected_output:
+    1: {}
+- id: Upper lobe location of tumor missing (negative test)
+  input:
+    1:
+      gt0006|Current or former smoker: 0|local::at0008|No|
+      gt0007|Extrathoracic cancer diagnosis ≥5 years prior: 0|local::at0008|No|
+      gt0010|Nodule spiculation: 1|local::at0009|Yes|
+      gt0011|FDG-PET: local::at0025|Faint uptake|
+      gt0028|Nodule diameter: 4,mm
+      gt0043|Age: 50,a
+  expected_output:
+    1: {}
+- id: Nodule spiculation missing (negative test)
+  input:
+    1:
+      gt0006|Current or former smoker: 0|local::at0008|No|
+      gt0007|Extrathoracic cancer diagnosis ≥5 years prior: 0|local::at0008|No|
+      gt0008|Upper lobe location of tumor: 1|local::at0009|Yes|
+      gt0011|FDG-PET: local::at0025|Faint uptake|
+      gt0028|Nodule diameter: 4,mm
+      gt0043|Age: 50,a
+  expected_output:
+    1: {}
+- id: FDG-PET missing (negative test)
+  input:
+    1:
+      gt0006|Current or former smoker: 0|local::at0008|No|
+      gt0007|Extrathoracic cancer diagnosis ≥5 years prior: 0|local::at0008|No|
+      gt0008|Upper lobe location of tumor: 1|local::at0009|Yes|
+      gt0010|Nodule spiculation: 0|local::at0008|No|
+      gt0028|Nodule diameter: 4,mm
+      gt0043|Age: 50,a
+  expected_output:
+    1: {}
+- id: Nodule diameter missing (negative test)
+  input:
+    1:
+      gt0006|Current or former smoker: 0|local::at0008|No|
+      gt0007|Extrathoracic cancer diagnosis ≥5 years prior: 0|local::at0008|No|
+      gt0008|Upper lobe location of tumor: 1|local::at0009|Yes|
+      gt0010|Nodule spiculation: 0|local::at0008|No|
+      gt0011|FDG-PET: local::at0025|Faint uptake|
+      gt0043|Age: 50,a
+  expected_output:
+    1: {}
+- id: Age missing (negative test)
+  input:
+    1:
+      gt0006|Current or former smoker: 0|local::at0008|No|
+      gt0007|Extrathoracic cancer diagnosis ≥5 years prior: 0|local::at0008|No|
+      gt0008|Upper lobe location of tumor: 1|local::at0009|Yes|
+      gt0010|Nodule spiculation: 0|local::at0008|No|
+      gt0011|FDG-PET: local::at0025|Faint uptake|
+      gt0028|Nodule diameter: 4,mm
+  expected_output:
+    1: {}
+- id: Test PET not performed
+  input:
+    1:
+      gt0006|Current or former smoker: 0|local::at0008|No|
+      gt0007|Extrathoracic cancer diagnosis ≥5 years prior: 0|local::at0008|No|
+      gt0008|Upper lobe location of tumor: 1|local::at0009|Yes|
+      gt0010|Nodule spiculation: 0|local::at0008|No|
+      gt0011|FDG-PET: local::at0023|PET not performed|
+      gt0028|Nodule diameter: 4,mm
+      gt0043|Age: 50,a
+  expected_output:
+    1:
+      gt0033|Probability of malignancy: 2.7,%
+- id: Test PET performed - Intense uptake
+  input:
+    1:
+      gt0006|Current or former smoker: 0|local::at0008|No|
+      gt0007|Extrathoracic cancer diagnosis ≥5 years prior: 0|local::at0008|No|
+      gt0008|Upper lobe location of tumor: 1|local::at0009|Yes|
+      gt0010|Nodule spiculation: 0|local::at0008|No|
+      gt0011|FDG-PET: local::at0027|Intense uptake|
+      gt0028|Nodule diameter: 4,mm
+      gt0043|Age: 50,a
+  expected_output:
+    1:
+      gt0033|Probability of malignancy: 53.3,%
+- id: Test PET performed - Faint uptake
+  input:
+    1:
+      gt0006|Current or former smoker: 0|local::at0008|No|
+      gt0007|Extrathoracic cancer diagnosis ≥5 years prior: 0|local::at0008|No|
+      gt0008|Upper lobe location of tumor: 1|local::at0009|Yes|
+      gt0010|Nodule spiculation: 0|local::at0008|No|
+      gt0011|FDG-PET: local::at0025|Faint uptake|
+      gt0028|Nodule diameter: 4,mm
+      gt0043|Age: 50,a
+  expected_output:
+    1:
+      gt0033|Probability of malignancy: 9.0,%
+- id: Test PET performed - Moderate uptake
+  input:
+    1:
+      gt0006|Current or former smoker: 0|local::at0008|No|
+      gt0007|Extrathoracic cancer diagnosis ≥5 years prior: 0|local::at0008|No|
+      gt0008|Upper lobe location of tumor: 1|local::at0009|Yes|
+      gt0010|Nodule spiculation: 0|local::at0008|No|
+      gt0011|FDG-PET: local::at0026|Moderate uptake|
+      gt0028|Nodule diameter: 4,mm
+      gt0043|Age: 50,a
+  expected_output:
+    1:
+      gt0033|Probability of malignancy: 49.5,%
+- id: Test PET performed - No uptake
+  input:
+    1:
+      gt0006|Current or former smoker: 0|local::at0008|No|
+      gt0007|Extrathoracic cancer diagnosis ≥5 years prior: 0|local::at0008|No|
+      gt0008|Upper lobe location of tumor: 1|local::at0009|Yes|
+      gt0010|Nodule spiculation: 0|local::at0008|No|
+      gt0011|FDG-PET: local::at0024|No uptake|
+      gt0028|Nodule diameter: 4,mm
+      gt0043|Age: 50,a
+  expected_output:
+    1:
+      gt0033|Probability of malignancy: 1.0,%

@@ -1,0 +1,67 @@
+guidelines:
+  1: Sickle_Cell_RBC_Exchange_Volume_guideline.v0
+test_cases:
+- id: test 1
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0005|Height/Length: 180,cm
+      gt0007|Weight: 90,kg
+      gt0014|Patient hematocrit: 25,%
+      gt0015|Patient's initial HgbS: 50,%
+      gt0016|Goal HgbS: 25,%
+      gt0017|Hematocrit of transfused RBCs: 85,%
+  expected_output:
+    1:
+      gt0019|Total blood volume: 5237,mL
+      gt0022|Approximate number of Blood Units (assuming 350 mL RBCs per unit): 3
+      gt0020|RBC volume: 1309,mL
+      gt0021|RBC exchange replacement volume: 1067,mL
+- id: test 2
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0005|Height/Length: 180,cm
+      gt0007|Weight: 90,kg
+      gt0014|Patient hematocrit: 25,%
+      gt0015|Patient's initial HgbS: 50,%
+      gt0016|Goal HgbS: 25,%
+      gt0017|Hematocrit of transfused RBCs: 85,%
+  expected_output:
+    1:
+      gt0019|Total blood volume: 5641,mL
+      gt0022|Approximate number of Blood Units (assuming 350 mL RBCs per unit): 3
+      gt0020|RBC volume: 1410,mL
+      gt0021|RBC exchange replacement volume: 1150,mL
+- id: test 3
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0005|Height/Length: 180,cm
+      gt0007|Weight: 70,kg
+      gt0014|Patient hematocrit: 20,%
+      gt0015|Patient's initial HgbS: 50,%
+      gt0016|Goal HgbS: 20,%
+      gt0017|Hematocrit of transfused RBCs: 80,%
+  expected_output:
+    1:
+      gt0019|Total blood volume: 4576,mL
+      gt0022|Approximate number of Blood Units (assuming 350 mL RBCs per unit): 2
+      gt0020|RBC volume: 915,mL
+      gt0021|RBC exchange replacement volume: 1048,mL
+- id: test 4
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0005|Height/Length: 180,cm
+      gt0007|Weight: 70,kg
+      gt0014|Patient hematocrit: 20,%
+      gt0015|Patient's initial HgbS: 50,%
+      gt0016|Goal HgbS: 20,%
+      gt0017|Hematocrit of transfused RBCs: 80,%
+  expected_output:
+    1:
+      gt0019|Total blood volume: 4997,mL
+      gt0022|Approximate number of Blood Units (assuming 350 mL RBCs per unit): 3
+      gt0020|RBC volume: 999,mL
+      gt0021|RBC exchange replacement volume: 1144,mL

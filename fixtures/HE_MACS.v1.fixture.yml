@@ -1,0 +1,93 @@
+guidelines:
+  1: HE_MACS.v1
+test_cases:
+- id: ACS <4.0% returns 'Very low'
+  input:
+    1:
+      gt0005|Sweating observed: 0|local::at0018|No|
+      gt0006|Acute EKG ischemia: 0|local::at0018|No|
+      gt0007|Pain radiating to the right arm or shoulder: 0|local::at0018|No|
+      gt0008|Vomiting associated with pain: 0|local::at0018|No|
+      gt0010|Current tobacco smoker: 0|local::at0018|No|
+      gt0028|Sex: 0|local::at0034|Female|
+      gt0024|Age: 20,a
+      gt0033|Systolic BP <100 mmHg: 0|local::at0018|No|
+  expected_output:
+    1:
+      gt0012|Probability of ACS: 2.0,%
+      gt0015|Risk group: Very low
+- id: ACS 4.0-6.9% returns 'Low'
+  input:
+    1:
+      gt0005|Sweating observed: 0|local::at0018|No|
+      gt0006|Acute EKG ischemia: 0|local::at0018|No|
+      gt0007|Pain radiating to the right arm or shoulder: 0|local::at0018|No|
+      gt0008|Vomiting associated with pain: 1|local::at0019|Yes|
+      gt0010|Current tobacco smoker: 0|local::at0018|No|
+      gt0028|Sex: 0|local::at0034|Female|
+      gt0024|Age: 30,a
+      gt0033|Systolic BP <100 mmHg: 0|local::at0018|No|
+  expected_output:
+    1:
+      gt0012|Probability of ACS: 6.3,%
+      gt0015|Risk group: Low
+- id: ACS 7.0-49.9% returns 'Moderate'
+  input:
+    1:
+      gt0005|Sweating observed: 0|local::at0018|No|
+      gt0006|Acute EKG ischemia: 0|local::at0018|No|
+      gt0007|Pain radiating to the right arm or shoulder: 0|local::at0018|No|
+      gt0008|Vomiting associated with pain: 1|local::at0019|Yes|
+      gt0010|Current tobacco smoker: 1|local::at0019|Yes|
+      gt0028|Sex: 0|local::at0034|Female|
+      gt0024|Age: 30,a
+      gt0033|Systolic BP <100 mmHg: 0|local::at0018|No|
+  expected_output:
+    1:
+      gt0012|Probability of ACS: 11.9,%
+      gt0015|Risk group: Moderate
+- id: ACS ≥50.0% returns 'High'
+  input:
+    1:
+      gt0005|Sweating observed: 0|local::at0018|No|
+      gt0006|Acute EKG ischemia: 1|local::at0019|Yes|
+      gt0007|Pain radiating to the right arm or shoulder: 0|local::at0018|No|
+      gt0008|Vomiting associated with pain: 1|local::at0019|Yes|
+      gt0010|Current tobacco smoker: 1|local::at0019|Yes|
+      gt0028|Sex: 0|local::at0034|Female|
+      gt0024|Age: 70,a
+      gt0033|Systolic BP <100 mmHg: 0|local::at0018|No|
+  expected_output:
+    1:
+      gt0012|Probability of ACS: 69.0,%
+      gt0015|Risk group: High
+- id: Test BP < 100
+  input:
+    1:
+      gt0005|Sweating observed: 0|local::at0018|No|
+      gt0006|Acute EKG ischemia: 1|local::at0019|Yes|
+      gt0007|Pain radiating to the right arm or shoulder: 0|local::at0018|No|
+      gt0008|Vomiting associated with pain: 1|local::at0019|Yes|
+      gt0010|Current tobacco smoker: 1|local::at0019|Yes|
+      gt0028|Sex: 0|local::at0034|Female|
+      gt0024|Age: 70,a
+      gt0033|Systolic BP <100 mmHg: 1|local::at0019|Yes|
+  expected_output:
+    1:
+      gt0012|Probability of ACS: 89.1,%
+      gt0015|Risk group: High
+- id: Test Gender = Male
+  input:
+    1:
+      gt0005|Sweating observed: 0|local::at0018|No|
+      gt0006|Acute EKG ischemia: 1|local::at0019|Yes|
+      gt0007|Pain radiating to the right arm or shoulder: 0|local::at0018|No|
+      gt0008|Vomiting associated with pain: 1|local::at0019|Yes|
+      gt0010|Current tobacco smoker: 1|local::at0019|Yes|
+      gt0028|Sex: 1|local::at0035|Male|
+      gt0024|Age: 70,a
+      gt0033|Systolic BP <100 mmHg: 1|local::at0019|Yes|
+  expected_output:
+    1:
+      gt0012|Probability of ACS: 93.1,%
+      gt0015|Risk group: High

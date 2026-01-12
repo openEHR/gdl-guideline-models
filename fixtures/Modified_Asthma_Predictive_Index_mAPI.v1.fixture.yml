@@ -1,0 +1,82 @@
+guidelines:
+  1: Modified_Asthma_Predictive_Index_mAPI.v1
+test_cases:
+- id: 1. Less than 4 wheezing episodes per year
+  input:
+    1:
+      gt0007|>= 4 wheezing episodes/year: 0|local::at0018|No|
+      gt0008|Parent with asthma: 1|local::at0021|Yes|
+      gt0009|Patient has atopic dermatitis: 1|local::at0023|Yes|
+      'gt0010|Patient with aeroallergen sensitivity (ex: hay fever)': 1|local::at0025|Yes|
+      gt0011|Wheezing unrelated to colds: 1|local::at0027|Yes|
+      gt0012|Eosinophils >= 4% (on CBC): 1|local::at0029|Yes|
+      gt0013|Patient with allergy to milk, egg, or peanuts: 1|local::at0031|Yes|
+  expected_output:
+    1:
+      gt0018|Score interpretation: local::at0017|Negative - Patient less likely to develop asthma by age 11.|
+
+- id: 2. Wheezing episodes >=4/yr and no major or minor criteria
+  input:
+    1:
+      gt0007|>= 4 wheezing episodes/year: 1|local::at0019|Yes|
+      gt0008|Parent with asthma: 0|local::at0020|No|
+      gt0009|Patient has atopic dermatitis: 0|local::at0022|No|
+      'gt0010|Patient with aeroallergen sensitivity (ex: hay fever)': 0|local::at0024|No|
+      gt0011|Wheezing unrelated to colds: 0|local::at0026|No|
+      gt0012|Eosinophils >= 4% (on CBC): 0|local::at0028|No|
+      gt0013|Patient with allergy to milk, egg, or peanuts: 0|local::at0030|No|
+  expected_output:
+    1:
+      gt0017|Minor criteria score: 0
+      gt0018|Score interpretation: local::at0017|Negative - Patient less likely to develop asthma by age 11.|
+
+- id: 3. One major criteria
+  input:
+    1:
+      gt0007|>= 4 wheezing episodes/year: 1|local::at0019|Yes|
+      gt0008|Parent with asthma: 1|local::at0021|Yes|
+      gt0009|Patient has atopic dermatitis: 0|local::at0022|No|
+      'gt0010|Patient with aeroallergen sensitivity (ex: hay fever)': 0|local::at0024|No|
+      gt0011|Wheezing unrelated to colds: 0|local::at0026|No|
+      gt0012|Eosinophils >= 4% (on CBC): 0|local::at0028|No|
+      gt0013|Patient with allergy to milk, egg, or peanuts: 0|local::at0030|No|
+  expected_output:
+    1:
+      gt0017|Minor criteria score: 0
+      gt0018|Score interpretation: local::at0016|Positive - >98% specific for asthma diagnosis by age 11.|
+      gt0016|Major criteria score: 1
+
+- id: 4. No major criteria and two minor criteria
+  input:
+    1:
+      gt0007|>= 4 wheezing episodes/year: 1|local::at0019|Yes|
+      gt0008|Parent with asthma: 0|local::at0020|No|
+      gt0009|Patient has atopic dermatitis: 0|local::at0022|No|
+      'gt0010|Patient with aeroallergen sensitivity (ex: hay fever)': 0|local::at0024|No|
+      gt0011|Wheezing unrelated to colds: 1|local::at0027|Yes|
+      gt0012|Eosinophils >= 4% (on CBC): 1|local::at0029|Yes|
+      gt0013|Patient with allergy to milk, egg, or peanuts: 0|local::at0030|No|
+  expected_output:
+    1:
+      gt0017|Minor criteria score: 2
+      gt0018|Score interpretation: local::at0016|Positive - >98% specific for asthma diagnosis by age 11.|
+      gt0016|Major criteria score: 0
+
+- id: 5. Full score
+  input:
+    1:
+      gt0007|>= 4 wheezing episodes/year: 1|local::at0019|Yes|
+      gt0008|Parent with asthma: 1|local::at0021|Yes|
+      gt0009|Patient has atopic dermatitis: 1|local::at0023|Yes|
+      'gt0010|Patient with aeroallergen sensitivity (ex: hay fever)': 1|local::at0025|Yes|
+      gt0011|Wheezing unrelated to colds: 1|local::at0027|Yes|
+      gt0012|Eosinophils >= 4% (on CBC): 1|local::at0029|Yes|
+      gt0013|Patient with allergy to milk, egg, or peanuts: 1|local::at0031|Yes|
+  expected_output:
+    1:
+      gt0017|Minor criteria score: 3
+      gt0018|Score interpretation: local::at0016|Positive - >98% specific for asthma diagnosis by age 11.|
+      gt0016|Major criteria score: 3
+
+
+     

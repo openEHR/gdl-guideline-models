@@ -1,0 +1,73 @@
+guidelines:
+  1: PEWS.v1
+test_cases:
+- id: case_1:Total score = 0 (Low risk)
+  input:
+    1:
+      gt0004|Behaviour: 0|local::at0010|Playing/appropriate|
+      gt0005|Cardiovascular: 0|local::at0014|Pink OR capillary refill 1-2s|
+      gt0006|Respiratory: 0|local::at0017|Within normal parameters|
+      gt0007|Use of nebulizer every 15 minutes: 0|local::at0034|No|
+      gt0008|Persisting vomiting following surgery: 0|local::at0036|No|
+  expected_output:
+    1:
+      gt0014|Total score: 0
+      gt0023|Risk level: 0|local::at0004|Low risk|
+      gt0024|Recommendation: 0|local::at0007|Reassess as needed|
+
+- id: case_2:Total score = 3 (intermediate risk)
+  input:
+    1:
+      gt0004|Behaviour: 1|local::at0011|Sleeping|
+      gt0005|Cardiovascular: 1|local::at0015|Pale OR capillary refill 3s|
+      gt0006|Respiratory: 1|local::at0018|>10 above normal parameters using accessory muscles OR 3+ L/min O2|
+      gt0007|Use of nebulizer every 15 minutes: 0|local::at0034|No|
+      gt0008|Persisting vomiting following surgery: 0|local::at0036|No|
+  expected_output:
+    1:
+      gt0014|Total score: 3
+      gt0023|Risk level: 1|local::at0005|Intermediate risk|
+      gt0024|Recommendation: 1|local::at0008|Alert charge nurse and staff MD|
+
+
+- id: case_3:Total score = 7 (high risk)
+  input:
+    1:
+      gt0004|Behaviour: 1|local::at0011|Sleeping|
+      gt0005|Cardiovascular: 1|local::at0015|Pale OR capillary refill 3s|
+      gt0006|Respiratory: 1|local::at0018|>10 above normal parameters using accessory muscles OR 3+ L/min O2|
+      gt0007|Use of nebulizer every 15 minutes: 2|local::at0035|Yes|
+      gt0008|Persisting vomiting following surgery: 2|local::at0037|Yes|
+  expected_output:
+    1:
+      gt0014|Total score: 7
+      gt0023|Risk level: 2|local::at0006|High risk|
+      gt0024|Recommendation: 2|local::at0009|Initiate rapid response team|
+
+- id: case_4:Total score = 10 (high risk)
+  input:
+    1:
+      gt0004|Behaviour: 2|local::at0012|Irritable|
+      gt0005|Cardiovascular: 2|local::at0016|Gray OR capillary refill 4s OR techycardia of 20 bpm above normal|
+      gt0006|Respiratory: 2|local::at0019|>20 above normal parameters and retractions OR 6+ L/min O2|
+      gt0007|Use of nebulizer every 15 minutes: 2|local::at0035|Yes|
+      gt0008|Persisting vomiting following surgery: 2|local::at0037|Yes|
+  expected_output:
+    1:
+      gt0014|Total score: 10
+      gt0023|Risk level: 2|local::at0006|High risk|
+      gt0024|Recommendation: 2|local::at0009|Initiate rapid response team|
+
+- id: case_5:Total score = 13 (high risk)
+  input:
+    1:
+      gt0004|Behaviour: 3|local::at0013|Lethargic/confused or reduced response to pain|
+      gt0005|Cardiovascular: 3|local::at0031|Gray and mottled OR capillary refill +5s OR tachycardia of 30 bpm above normal OR bradycardia|
+      gt0006|Respiratory: 3|local::at0020|Five below normal parameters with retractions and grunting OR 8+ L/min O2|
+      gt0007|Use of nebulizer every 15 minutes: 2|local::at0035|Yes|
+      gt0008|Persisting vomiting following surgery: 2|local::at0037|Yes|
+  expected_output:
+    1:
+      gt0014|Total score: 13
+      gt0023|Risk level: 2|local::at0006|High risk|
+      gt0024|Recommendation: 2|local::at0009|Initiate rapid response team|

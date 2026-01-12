@@ -1,0 +1,217 @@
+current_datetime: '2020-01-01T00:00:00+01:00'
+guidelines:
+  1: EuroSCORE_II.v1
+test_cases:
+- id: Lowest score, male
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Birthdate: 1967-01-07T09:18+01:00[Europe/Stockholm]
+      gt0006|Creatinine clearance: 0|local::at0008|> 85 ml/min|
+      gt0007|Extracardiac arteriopathy: 0|local::at0012|No|
+      gt0008|Poor mobility: 0|local::at0015|No|
+      gt0009|Previous cardiac surgery: 0|local::at0021|No|
+      gt0010|Chronic lung disease: 0|local::at0018|No|
+      gt0011|Active endocarditis: 0|local::at0024|No|
+      gt0012|Critical preoperative state: 0|local::at0030|No|
+      gt0013|Diabetes or insulin: 0|local::at0033|No|
+      gt0014|NYHA Class: 0|local::at0036|Class I|
+      gt0015|CCS Class 4 angina: 0|local::at0041|No|
+      gt0016|LV function: 0|local::at0044|> 50 %|
+      gt0017|Recent MI: 0|local::at0049|No|
+      gt0018|Pulmonary hypertension: 0|local::at0052|No|
+      gt0019|Urgency: 0|local::at0056|Elective|
+      gt0020|Weight of the intervention: 0|local::at0062|Isolated CABG|
+      gt0021|Surgery on Thoracic Aorta: 0|local::at0067|No|
+  expected_output:
+    1:
+      gt0023|Age: 52
+      gt0025|Predicted mortality: 0.50,%
+
+- id: Only age score, male
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Birthdate: 1943-01-07T09:18+01:00[Europe/Stockholm]
+      gt0006|Creatinine clearance: 0|local::at0008|> 85 ml/min|
+      gt0007|Extracardiac arteriopathy: 0|local::at0012|No|
+      gt0008|Poor mobility: 0|local::at0015|No|
+      gt0009|Previous cardiac surgery: 0|local::at0021|No|
+      gt0010|Chronic lung disease: 0|local::at0018|No|
+      gt0011|Active endocarditis: 0|local::at0024|No|
+      gt0012|Critical preoperative state: 0|local::at0030|No|
+      gt0013|Diabetes or insulin: 0|local::at0033|No|
+      gt0014|NYHA Class: 0|local::at0036|Class I|
+      gt0015|CCS Class 4 angina: 0|local::at0041|No|
+      gt0016|LV function: 0|local::at0044|> 50 %|
+      gt0017|Recent MI: 0|local::at0049|No|
+      gt0018|Pulmonary hypertension: 0|local::at0052|No|
+      gt0019|Urgency: 0|local::at0056|Elective|
+      gt0020|Weight of the intervention: 0|local::at0062|Isolated CABG|
+      gt0021|Surgery on Thoracic Aorta: 0|local::at0067|No|
+  expected_output:
+    1:
+      gt0023|Age: 76
+      gt0025|Predicted mortality: 0.78,%
+
+
+- id: Only age score, female
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Birthdate: 1943-01-07T09:18+01:00[Europe/Stockholm]
+      gt0006|Creatinine clearance: 0|local::at0008|> 85 ml/min|
+      gt0007|Extracardiac arteriopathy: 0|local::at0012|No|
+      gt0008|Poor mobility: 0|local::at0015|No|
+      gt0009|Previous cardiac surgery: 0|local::at0021|No|
+      gt0010|Chronic lung disease: 0|local::at0018|No|
+      gt0011|Active endocarditis: 0|local::at0024|No|
+      gt0012|Critical preoperative state: 0|local::at0030|No|
+      gt0013|Diabetes or insulin: 0|local::at0033|No|
+      gt0014|NYHA Class: 0|local::at0036|Class I|
+      gt0015|CCS Class 4 angina: 0|local::at0041|No|
+      gt0016|LV function: 0|local::at0044|> 50 %|
+      gt0017|Recent MI: 0|local::at0049|No|
+      gt0018|Pulmonary hypertension: 0|local::at0052|No|
+      gt0019|Urgency: 0|local::at0056|Elective|
+      gt0020|Weight of the intervention: 0|local::at0062|Isolated CABG|
+      gt0021|Surgery on Thoracic Aorta: 0|local::at0067|No|
+  expected_output:
+    1:
+      gt0023|Age: 76
+      gt0025|Predicted mortality: 0.98,%
+
+
+- id: Female, 56.4 %
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Birthdate: 1943-01-07T09:18+01:00[Europe/Stockholm]
+      gt0006|Creatinine clearance: 1|local::at0009|50-85 ml/min|
+      gt0007|Extracardiac arteriopathy: 1|local::at0013|Yes|
+      gt0008|Poor mobility: 1|local::at0016|Yes|
+      gt0009|Previous cardiac surgery: 0|local::at0021|No|
+      gt0010|Chronic lung disease: 0|local::at0018|No|
+      gt0011|Active endocarditis: 0|local::at0024|No|
+      gt0012|Critical preoperative state: 1|local::at0031|Yes|
+      gt0013|Diabetes or insulin: 0|local::at0033|No|
+      gt0014|NYHA Class: 2|local::at0038|Class III|
+      gt0015|CCS Class 4 angina: 1|local::at0042|Yes|
+      gt0016|LV function: 2|local::at0046|21-30 %|
+      gt0017|Recent MI: 0|local::at0049|No|
+      gt0018|Pulmonary hypertension: 1|local::at0053|Moderate (PA systolic 31-55 mmHg)|
+      gt0019|Urgency: 0|local::at0056|Elective|
+      gt0020|Weight of the intervention: 2|local::at0064|2 procedures|
+      gt0021|Surgery on Thoracic Aorta: 1|local::at0068|Yes|
+  expected_output:
+    1:
+      gt0023|Age: 76
+      gt0025|Predicted mortality: 56.40,%
+
+
+- id: Male, 84.1 %
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Birthdate: 1943-01-07T09:18+01:00[Europe/Stockholm]
+      gt0006|Creatinine clearance: 2|local::at0027|≤ 50 ml/min|
+      gt0007|Extracardiac arteriopathy: 1|local::at0013|Yes|
+      gt0008|Poor mobility: 1|local::at0016|Yes|
+      gt0009|Previous cardiac surgery: 1|local::at0022|Yes|
+      gt0010|Chronic lung disease: 1|local::at0019|Yes|
+      gt0011|Active endocarditis: 0|local::at0024|No|
+      gt0012|Critical preoperative state: 1|local::at0031|Yes|
+      gt0013|Diabetes or insulin: 0|local::at0033|No|
+      gt0014|NYHA Class: 2|local::at0038|Class III|
+      gt0015|CCS Class 4 angina: 1|local::at0042|Yes|
+      gt0016|LV function: 2|local::at0046|21-30 %|
+      gt0017|Recent MI: 0|local::at0049|No|
+      gt0018|Pulmonary hypertension: 1|local::at0053|Moderate (PA systolic 31-55 mmHg)|
+      gt0019|Urgency: 1|local::at0057|Urgent|
+      gt0020|Weight of the intervention: 0|local::at0062|Isolated CABG|
+      gt0021|Surgery on Thoracic Aorta: 1|local::at0068|Yes|
+  expected_output:
+    1:
+      gt0023|Age: 76
+      gt0025|Predicted mortality: 84.10,%
+
+
+- id: Male 86.3 %
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Birthdate: 1943-01-07T09:18+01:00[Europe/Stockholm]
+      gt0006|Creatinine clearance: 2|local::at0027|≤ 50 ml/min|
+      gt0007|Extracardiac arteriopathy: 1|local::at0013|Yes|
+      gt0008|Poor mobility: 1|local::at0016|Yes|
+      gt0009|Previous cardiac surgery: 1|local::at0022|Yes|
+      gt0010|Chronic lung disease: 0|local::at0018|No|
+      gt0011|Active endocarditis: 1|local::at0025|Yes|
+      gt0012|Critical preoperative state: 1|local::at0031|Yes|
+      gt0013|Diabetes or insulin: 0|local::at0033|No|
+      gt0014|NYHA Class: 3|local::at0039|Class IV|
+      gt0015|CCS Class 4 angina: 1|local::at0042|Yes|
+      gt0016|LV function: 3|local::at0047|≤ 20 %|
+      gt0017|Recent MI: 0|local::at0049|No|
+      gt0018|Pulmonary hypertension: 1|local::at0053|Moderate (PA systolic 31-55 mmHg)|
+      gt0019|Urgency: 1|local::at0057|Urgent|
+      gt0020|Weight of the intervention: 1|local::at0063|Single non-CABG|
+      gt0021|Surgery on Thoracic Aorta: 0|local::at0067|No|
+  expected_output:
+    1:
+      gt0023|Age: 76
+      gt0025|Predicted mortality: 86.30,%
+
+- id: Male, 52.71 %
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Birthdate: 1943-01-07T09:18+01:00[Europe/Stockholm]
+      gt0006|Creatinine clearance: 0|local::at0008|> 85 ml/min|
+      gt0007|Extracardiac arteriopathy: 0|local::at0012|No|
+      gt0008|Poor mobility: 0|local::at0015|No|
+      gt0009|Previous cardiac surgery: 0|local::at0021|No|
+      gt0010|Chronic lung disease: 0|local::at0018|No|
+      gt0011|Active endocarditis: 1|local::at0025|Yes|
+      gt0012|Critical preoperative state: 0|local::at0030|No|
+      gt0013|Diabetes or insulin: 1|local::at0034|Yes|
+      gt0014|NYHA Class: 2|local::at0038|Class III|
+      gt0015|CCS Class 4 angina: 1|local::at0042|Yes|
+      gt0016|LV function: 1|local::at0045|31-50 %|
+      gt0017|Recent MI: 1|local::at0050|Yes|
+      gt0018|Pulmonary hypertension: 0|local::at0052|No|
+      gt0019|Urgency: 3|local::at0059|Salvage|
+      gt0020|Weight of the intervention: 3|local::at0065|3 procedures|
+      gt0021|Surgery on Thoracic Aorta: 1|local::at0068|Yes|
+  expected_output:
+    1:
+      gt0023|Age: 76
+      gt0025|Predicted mortality: 52.71,%
+
+- id: Female, 101 y, 73.91 %
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Birthdate: 1918-01-07T09:18+01:00[Europe/Stockholm]
+      gt0006|Creatinine clearance: 0|local::at0008|> 85 ml/min|
+      gt0007|Extracardiac arteriopathy: 0|local::at0012|No|
+      gt0008|Poor mobility: 0|local::at0015|No|
+      gt0009|Previous cardiac surgery: 0|local::at0021|No|
+      gt0010|Chronic lung disease: 0|local::at0018|No|
+      gt0011|Active endocarditis: 1|local::at0025|Yes|
+      gt0012|Critical preoperative state: 0|local::at0030|No|
+      gt0013|Diabetes or insulin: 1|local::at0034|Yes|
+      gt0014|NYHA Class: 2|local::at0038|Class III|
+      gt0015|CCS Class 4 angina: 1|local::at0042|Yes|
+      gt0016|LV function: 1|local::at0045|31-50 %|
+      gt0017|Recent MI: 1|local::at0050|Yes|
+      gt0018|Pulmonary hypertension: 0|local::at0052|No|
+      gt0019|Urgency: 3|local::at0059|Salvage|
+      gt0020|Weight of the intervention: 3|local::at0065|3 procedures|
+      gt0021|Surgery on Thoracic Aorta: 1|local::at0068|Yes|
+  expected_output:
+    1:
+      gt0023|Age: 101
+      gt0025|Predicted mortality: 73.91,%
+
+

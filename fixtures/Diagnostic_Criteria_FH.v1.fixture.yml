@@ -1,0 +1,219 @@
+guidelines:
+  1: Diagnostic_Criteria_FH.v1
+test_cases:
+- id: 1. Age <20 yrs, 1st Degree relative, unlikely FH
+  input:
+    1:
+      gt0004|Age, years: local::at0018|<20|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0022|1st Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 5.4,mmol/l
+  expected_output:
+    1:
+      gt0013|Interpretation: Unlikely FH
+- id: 2. Age <20 yrs, 1st Degree relative, Definite FH
+  input:
+    1:
+      gt0004|Age, years: local::at0018|<20|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0022|1st Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 5.8,mmol/l
+  expected_output:
+    1:
+      gt0013|Interpretation: Definite FH
+- id: 3. Age <20 yrs, 2nd Degree relative, unlikely FH
+  input:
+    1:
+      gt0004|Age, years: local::at0018|<20|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0023|2nd Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 5.8,mmol/l
+  expected_output:
+    1:
+      gt0013|Interpretation: Unlikely FH
+- id: 4. Age <20 yrs, 2nd Degree relative, Definite FH
+  input:
+    1:
+      gt0004|Age, years: local::at0018|<20|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0023|2nd Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 6,mmol/l
+  expected_output:
+    1:
+      gt0013|Interpretation: Definite FH
+- id: 5. Age <20 yrs, 3rd Degree relative, unlikely FH
+  input:
+    1:
+      gt0004|Age, years: local::at0018|<20|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0024|3rd Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 6,mmol/l
+  expected_output:
+    1:
+      gt0013|Interpretation: Unlikely FH
+- id: 6. Age <20 yrs, 3rd Degree relative, Definite FH
+  input:
+    1:
+      gt0004|Age, years: local::at0018|<20|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0024|3rd Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 6.4,mmol/l
+  expected_output:
+    1:
+      gt0013|Interpretation: Definite FH
+- id: 7. Age 20-29, 1st Degree relative, unlikely FH
+  input:
+    1:
+      gt0004|Age, years: local::at0019|20-29|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0022|1st Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 6.1,mmol/l
+  expected_output:
+    1:
+      gt0013|Interpretation: Unlikely FH
+- id: 8. Age 20-29, 1st Degree relative, Definite FH
+  input:
+    1:
+      gt0004|Age, years: local::at0019|20-29|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0022|1st Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 6.5,mmol/l
+  expected_output:
+    1:
+      gt0013|Interpretation: Definite FH
+- id: 9. Age 20-29, 2nd Degree relative, unlikely FH
+  input:
+    1:
+      gt0004|Age, years: local::at0019|20-29|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0023|2nd Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 6.4,mmol/l
+  expected_output:
+    1:
+      gt0013|Interpretation: Unlikely FH
+- id: 10. Age 20-29, 2nd Degree relative, Definite FH
+  input:
+    1:
+      gt0004|Age, years: local::at0019|20-29|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0023|2nd Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 6.8,mmol/l
+  expected_output:
+    1:
+      gt0013|Interpretation: Definite FH
+- id: 11. Age 20-29, 3rd Degree relative, unlikely FH
+  input:
+    1:
+      gt0004|Age, years: local::at0019|20-29|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0024|3rd Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 6.6,mmol/l
+  expected_output:
+    1:
+      gt0013|Interpretation: Unlikely FH
+- id: 12. Age 20-29, 3rd Degree relative, Definite FH
+  input:
+    1:
+      gt0004|Age, years: local::at0019|20-29|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0024|3rd Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 6.9,mmol/l
+  expected_output:
+    1:
+      gt0013|Interpretation: Definite FH
+- id: 13. Age 30-39, 1st Degree relative, unlikely FH
+  input:
+    1:
+      gt0004|Age, years: local::at0020|30-39|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0022|1st Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 6.9,mmol/l
+  expected_output:
+    1:
+      gt0013|Interpretation: Unlikely FH
+- id: 14. Age 30-39, 1st Degree relative, Definite FH
+  input:
+    1:
+      gt0004|Age, years: local::at0020|30-39|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0022|1st Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 7,mmol/l
+  expected_output:
+    1:
+      gt0013|Interpretation: Definite FH
+- id: 15. Age 30-39, 2nd Degree relative, unlikely FH
+  input:
+    1:
+      gt0004|Age, years: local::at0020|30-39|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0023|2nd Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 7,mmol/l
+  expected_output:
+    1:
+      gt0013|Interpretation: Unlikely FH
+- id: 16. Age 30-39, 2nd Degree relative, Definite FH
+  input:
+    1:
+      gt0004|Age, years: local::at0020|30-39|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0023|2nd Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 7.4,mmol/l
+  expected_output:
+    1:
+      gt0013|Interpretation: Definite FH
+- id: 17. Age 30-39, 3rd Degree relative, unlikely FH
+  input:
+    1:
+      gt0004|Age, years: local::at0020|30-39|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0024|3rd Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 7.4,mmol/l
+  expected_output:
+    1:
+      gt0013|Interpretation: Unlikely FH
+- id: 18. Age 30-39, 3rd Degree relative, Definite FH
+  input:
+    1:
+      gt0004|Age, years: local::at0020|30-39|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0024|3rd Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 7.8,mmol/l
+  expected_output:
+    1:
+      gt0013|Interpretation: Definite FH
+- id: 19. Age >40, 1st Degree relative, unlikely FH
+  input:
+    1:
+      gt0004|Age, years: local::at0021|>40|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0022|1st Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 280,mg/dl
+  expected_output:
+    1:
+      gt0013|Interpretation: Unlikely FH
+- id: 20. Age >40, 1st Degree relative, Definite FH
+  input:
+    1:
+      gt0004|Age, years: local::at0021|>40|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0022|1st Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 290,mg/dl
+  expected_output:
+    1:
+      gt0013|Interpretation: Definite FH
+- id: 21. Age >40, 2nd Degree relative, unlikely FH
+  input:
+    1:
+      gt0004|Age, years: local::at0021|>40|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0023|2nd Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 290,mg/dl
+  expected_output:
+    1:
+      gt0013|Interpretation: Unlikely FH
+- id: 22. Age >40, 1st Degree relative, unlikely FH
+  input:
+    1:
+      gt0004|Age, years: local::at0021|>40|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0023|2nd Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 300,mg/dl
+  expected_output:
+    1:
+      gt0013|Interpretation: Definite FH
+- id: 23. Age >40, 3rd Degree relative, unlikely FH
+  input:
+    1:
+      gt0004|Age, years: local::at0021|>40|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0024|3rd Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 300,mg/dl
+  expected_output:
+    1:
+      gt0013|Interpretation: Unlikely FH
+- id: 24. Age >40, 1st Degree relative, Definite FH
+  input:
+    1:
+      gt0004|Age, years: local::at0021|>40|
+      gt0005|Closest degree relative with confirmed FH diagnosis: local::at0024|3rd Degree|
+      'gt0015|Total Cholesterol (Norm: 3.9 - 5.2 mmol/L)': 320,mg/dl
+  expected_output:
+    1:
+      gt0013|Interpretation: Definite FH

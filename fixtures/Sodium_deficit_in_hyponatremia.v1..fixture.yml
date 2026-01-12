@@ -1,0 +1,83 @@
+guidelines:
+  1: Sodium_deficit_in_hyponatremia.v1
+test_cases:
+- id: Sodium deficit - Adult Female 
+  input:
+    1:
+      gt0003|Sex: local::at0006|Female|
+      gt0017|Age: 30,a
+      gt0005|Sodium (Norm 136-145 mmol/L): 144,mmol/l
+      gt0027|Age range: local::at0007|Adult|
+      gt0028|Desired sodium (Norm 136-145 mmol/L): 155,mmol/l
+      gt0008|Height: 170,cm
+      gt0019|Weight: 60,kg
+  expected_output:
+    1:
+      gt0030|Total body water: 30.872,l
+      gt0029|Sodium deficit: 339.6,mEq
+
+- id: Sodium deficit - Adult Male 
+  input:
+    1:
+      gt0003|Sex: local::at0005|Male|
+      gt0017|Age: 36,a
+      gt0005|Sodium (Norm 136-145 mmol/L): 140,mmol/l
+      gt0027|Age range: local::at0007|Adult|
+      gt0028|Desired sodium (Norm 136-145 mmol/L): 144,mmol/l
+      gt0008|Height: 75,in
+      gt0019|Weight: 160,lb
+  expected_output:
+    1:
+      gt0030|Total body water: 43.881,l
+      gt0029|Sodium deficit: 175.5,mEq
+
+- id: Sodium deficit - Child Female 
+  input:
+    1:
+      gt0003|Sex: local::at0006|Female|
+      gt0005|Sodium (Norm 136-145 mmol/L): 135,mEq/l
+      gt0027|Age range: local::at0006|Child|
+      gt0028|Desired sodium (Norm 136-145 mmol/L): 140,mEq/l
+      gt0019|Weight: 30,kg
+  expected_output:
+    1:
+      gt0030|Total body water: 18.000,l
+      gt0029|Sodium deficit: 90.0,mEq
+
+- id: Sodium deficit - Child Male 
+  input:
+    1:
+      gt0003|Sex: local::at0005|Male|
+      gt0005|Sodium (Norm 136-145 mmol/L): 135,mEq/l
+      gt0027|Age range: local::at0006|Child|
+      gt0028|Desired sodium (Norm 136-145 mmol/L): 140,mEq/l
+      gt0019|Weight: 30,kg
+  expected_output:
+    1:
+      gt0030|Total body water: 18.000,l
+      gt0029|Sodium deficit: 90.0,mEq
+
+
+- id: Default Child - Age exisiting 
+  input:
+    1:
+      gt0003|Sex: local::at0005|Male|
+      gt0017|Age: 6,a
+      gt0005|Sodium (Norm 136-145 mmol/L): 135,mEq/l
+      gt0027|Age range: local::at0006|Child|
+      gt0028|Desired sodium (Norm 136-145 mmol/L): 140,mEq/l
+      gt0019|Weight: 30,kg
+  expected_output:
+    1: {}
+
+- id: Default Child - Height exisiting 
+  input:
+    1:
+      gt0003|Sex: local::at0005|Male|
+      gt0005|Sodium (Norm 136-145 mmol/L): 135,mEq/l
+      gt0027|Age range: local::at0006|Child|
+      gt0028|Desired sodium (Norm 136-145 mmol/L): 140,mEq/l
+      gt0008|Height: 100,cm
+      gt0019|Weight: 30,kg
+  expected_output:
+    1: {}

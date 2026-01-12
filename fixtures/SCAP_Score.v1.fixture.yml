@@ -1,0 +1,215 @@
+guidelines:
+  1: SCAP_Score.v1
+test_cases:
+- id: case_1  Age >= 80 yrs, SCAP Score 5
+  input:
+    1:
+      gt0003|Age, years: 83,a
+      gt0005|Systolic BP, mmHg: 110,mm[Hg]
+      gt0007|Respiration rate, breaths/min: 20,/min
+      gt0009|pH <7.30: 0|local::at0006|No|
+      gt0010|BUN >30 mg/dL (>10.7 mmol/L): 0|local::at0015|No|
+      gt0011|Altered mental status (Eg. Confusion): 0|local::at0018|No|
+      gt0012|PaO2 <54 mmHg (or PaO2/FiO2 <250 mmHg): 0|local::at0021|No|
+      gt0013|Multilobar/bilateral involvement in Chest X-ray: 0|local::at0027|No|
+      gt0014|If the patient has COVID-19?: 2|local::at0032|Unlikely|
+  expected_output:
+    1:
+      gt0018|Respiratory rate Score: 0|local::at0012|No|
+      gt0016|Age Score: 5|local::at0025|Yes |
+      gt0017|Systolic pressure Score: 0|local::at0009|No|
+      gt0019|SCAP Score: 5
+      gt0021|Risk of SCAP: 1|local::at0004|0.66-3.25%|
+
+- id: case_2  Age >= 80 yrs, SCAP Score 14
+  input:
+    1:
+      gt0003|Age, years: 83,a
+      gt0005|Systolic BP, mmHg: 100,mm[Hg]
+      gt0007|Respiration rate, breaths/min: 31,/min
+      gt0009|pH <7.30: 0|local::at0006|No|
+      gt0010|BUN >30 mg/dL (>10.7 mmol/L): 0|local::at0015|No|
+      gt0011|Altered mental status (Eg. Confusion): 0|local::at0018|No|
+      gt0012|PaO2 <54 mmHg (or PaO2/FiO2 <250 mmHg): 0|local::at0021|No|
+      gt0013|Multilobar/bilateral involvement in Chest X-ray: 0|local::at0027|No|
+      gt0014|If the patient has COVID-19?: 2|local::at0032|Unlikely|
+  expected_output:
+    1:
+      gt0018|Respiratory rate Score: 9|local::at0013|Yes|
+      gt0016|Age Score: 5|local::at0025|Yes |
+      gt0017|Systolic pressure Score: 0|local::at0009|No|
+      gt0019|SCAP Score: 14
+      gt0021|Risk of SCAP: 2|local::at0005|9.23-11.24%|
+      gt0022|Recommendation: local::at0014|Classified as Severe CAP. Recommended for ICU, monitored bed, and/or immediate intervention|
+
+
+- id: case_3  Age >= 80 yrs, SCAP Score 19
+  input:
+    1:
+      gt0003|Age, years: 83,a
+      gt0005|Systolic BP, mmHg: 100,mm[Hg]
+      gt0007|Respiration rate, breaths/min: 31,/min
+      gt0009|pH <7.30: 0|local::at0006|No|
+      gt0010|BUN >30 mg/dL (>10.7 mmol/L): 5|local::at0016|Yes|
+      gt0011|Altered mental status (Eg. Confusion): 0|local::at0018|No|
+      gt0012|PaO2 <54 mmHg (or PaO2/FiO2 <250 mmHg): 0|local::at0021|No|
+      gt0013|Multilobar/bilateral involvement in Chest X-ray: 0|local::at0027|No|
+      gt0014|If the patient has COVID-19?: 2|local::at0032|Unlikely|
+  expected_output:
+    1:
+      gt0018|Respiratory rate Score: 9|local::at0013|Yes|
+      gt0016|Age Score: 5|local::at0025|Yes |
+      gt0017|Systolic pressure Score: 0|local::at0009|No|
+      gt0019|SCAP Score: 19
+      gt0021|Risk of SCAP: 2|local::at0005|9.23-11.24%|
+      gt0022|Recommendation: local::at0014|Classified as Severe CAP. Recommended for ICU, monitored bed, and/or immediate intervention|
+
+
+- id: case_4  Age >= 80 yrs, SCAP Score 25
+  input:
+    1:
+      gt0003|Age, years: 83,a
+      gt0005|Systolic BP, mmHg: 100,mm[Hg]
+      gt0007|Respiration rate, breaths/min: 31,/min
+      gt0009|pH <7.30: 0|local::at0006|No|
+      gt0010|BUN >30 mg/dL (>10.7 mmol/L): 0|local::at0015|No|
+      gt0011|Altered mental status (Eg. Confusion): 5|local::at0019|Yes|
+      gt0012|PaO2 <54 mmHg (or PaO2/FiO2 <250 mmHg): 6|local::at0022|Yes|
+      gt0013|Multilobar/bilateral involvement in Chest X-ray: 0|local::at0027|No|
+      gt0014|If the patient has COVID-19?: 1|local::at0031|Suspected|
+  expected_output:
+    1:
+      gt0018|Respiratory rate Score: 9|local::at0013|Yes|
+      gt0016|Age Score: 5|local::at0025|Yes |
+      gt0017|Systolic pressure Score: 0|local::at0009|No|
+      gt0019|SCAP Score: 25
+      gt0021|Risk of SCAP: 3|local::at0006|36.62-41.82%|
+      gt0022|Recommendation: local::at0014|Classified as Severe CAP. Recommended for ICU, monitored bed, and/or immediate intervention|
+
+- id: case_5  Age >= 80 yrs, SCAP Score 30
+  input:
+    1:
+      gt0003|Age, years: 83,a
+      gt0005|Systolic BP, mmHg: 100,mm[Hg]
+      gt0007|Respiration rate, breaths/min: 31,/min
+      gt0009|pH <7.30: 0|local::at0006|No|
+      gt0010|BUN >30 mg/dL (>10.7 mmol/L): 5|local::at0016|Yes|
+      gt0011|Altered mental status (Eg. Confusion): 5|local::at0019|Yes|
+      gt0012|PaO2 <54 mmHg (or PaO2/FiO2 <250 mmHg): 6|local::at0022|Yes|
+      gt0013|Multilobar/bilateral involvement in Chest X-ray: 0|local::at0027|No|
+      gt0014|If the patient has COVID-19?: 1|local::at0031|Suspected|
+  expected_output:
+    1:
+      gt0018|Respiratory rate Score: 9|local::at0013|Yes|
+      gt0016|Age Score: 5|local::at0025|Yes |
+      gt0017|Systolic pressure Score: 0|local::at0009|No|
+      gt0019|SCAP Score: 30
+      gt0021|Risk of SCAP: 4|local::at0007|50%|
+      gt0022|Recommendation: local::at0014|Classified as Severe CAP. Recommended for ICU, monitored bed, and/or immediate intervention|
+
+- id: case_6  Age < 80 yrs, SCAP Score 0
+  input:
+    1:
+      gt0003|Age, years: 68,a
+      gt0005|Systolic BP, mmHg: 100,mm[Hg]
+      gt0007|Respiration rate, breaths/min: 21,/min
+      gt0009|pH <7.30: 0|local::at0006|No|
+      gt0010|BUN >30 mg/dL (>10.7 mmol/L): 0|local::at0015|No|
+      gt0011|Altered mental status (Eg. Confusion): 0|local::at0018|No|
+      gt0012|PaO2 <54 mmHg (or PaO2/FiO2 <250 mmHg): 0|local::at0021|No|
+      gt0013|Multilobar/bilateral involvement in Chest X-ray: 0|local::at0027|No|
+      gt0014|If the patient has COVID-19?: 2|local::at0032|Unlikely|
+  expected_output:
+    1:
+      gt0018|Respiratory rate Score: 0|local::at0012|No|
+      gt0016|Age Score: 0|local::at0024|No|
+      gt0017|Systolic pressure Score: 0|local::at0009|No|
+      gt0019|SCAP Score: 0
+      gt0021|Risk of SCAP: 0|local::at0003|0.27-3.43%|
+
+- id: case_7  Age < 80 yrs, SCAP Score 9
+  input:
+    1:
+      gt0003|Age, years: 68,a
+      gt0005|Systolic BP, mmHg: 100,mm[Hg]
+      gt0007|Respiration rate, breaths/min: 31,/min
+      gt0009|pH <7.30: 0|local::at0006|No|
+      gt0010|BUN >30 mg/dL (>10.7 mmol/L): 0|local::at0015|No|
+      gt0011|Altered mental status (Eg. Confusion): 0|local::at0018|No|
+      gt0012|PaO2 <54 mmHg (or PaO2/FiO2 <250 mmHg): 0|local::at0021|No|
+      gt0013|Multilobar/bilateral involvement in Chest X-ray: 0|local::at0027|No|
+      gt0014|If the patient has COVID-19?: 1|local::at0031|Suspected|
+  expected_output:
+    1:
+      gt0018|Respiratory rate Score: 9|local::at0013|Yes|
+      gt0016|Age Score: 0|local::at0024|No|
+      gt0017|Systolic pressure Score: 0|local::at0009|No|
+      gt0019|SCAP Score: 9
+      gt0021|Risk of SCAP: 1|local::at0004|0.66-3.25%|
+
+- id: case_8  Age < 80 yrs, SCAP Score 14
+  input:
+    1:
+      gt0003|Age, years: 68,a
+      gt0005|Systolic BP, mmHg: 100,mm[Hg]
+      gt0007|Respiration rate, breaths/min: 31,/min
+      gt0009|pH <7.30: 0|local::at0006|No|
+      gt0010|BUN >30 mg/dL (>10.7 mmol/L): 0|local::at0015|No|
+      gt0011|Altered mental status (Eg. Confusion): 0|local::at0018|No|
+      gt0012|PaO2 <54 mmHg (or PaO2/FiO2 <250 mmHg): 0|local::at0021|No|
+      gt0013|Multilobar/bilateral involvement in Chest X-ray: 5|local::at0028|Yes|
+      gt0014|If the patient has COVID-19?: 1|local::at0031|Suspected|
+  expected_output:
+    1:
+      gt0018|Respiratory rate Score: 9|local::at0013|Yes|
+      gt0016|Age Score: 0|local::at0024|No|
+      gt0017|Systolic pressure Score: 0|local::at0009|No|
+      gt0019|SCAP Score: 14
+      gt0021|Risk of SCAP: 2|local::at0005|9.23-11.24%|
+      gt0022|Recommendation: local::at0014|Classified as Severe CAP. Recommended for ICU, monitored bed, and/or immediate intervention|
+
+- id: case_9  Age < 80 yrs, SCAP Score 24
+  input:
+    1:
+      gt0003|Age, years: 68,a
+      gt0005|Systolic BP, mmHg: 90,mm[Hg]
+      gt0007|Respiration rate, breaths/min: 31,/min
+      gt0009|pH <7.30: 0|local::at0006|No|
+      gt0010|BUN >30 mg/dL (>10.7 mmol/L): 5|local::at0016|Yes|
+      gt0011|Altered mental status (Eg. Confusion): 5|local::at0019|Yes|
+      gt0012|PaO2 <54 mmHg (or PaO2/FiO2 <250 mmHg): 0|local::at0021|No|
+      gt0013|Multilobar/bilateral involvement in Chest X-ray: 5|local::at0028|Yes|
+      gt0014|If the patient has COVID-19?: 1|local::at0031|Suspected|
+  expected_output:
+    1:
+      gt0018|Respiratory rate Score: 9|local::at0013|Yes|
+      gt0016|Age Score: 0|local::at0024|No|
+      gt0017|Systolic pressure Score: 0|local::at0009|No|
+      gt0019|SCAP Score: 24
+      gt0021|Risk of SCAP: 3|local::at0006|36.62-41.82%|
+      gt0022|Recommendation: local::at0014|Classified as Severe CAP. Recommended for ICU, monitored bed, and/or immediate intervention|
+
+
+- id: case_10   Age < 80 yrs, SCAP Score 41
+  input:
+    1:
+      gt0003|Age, years: 68,a
+      gt0005|Systolic BP, mmHg: 89,mm[Hg]
+      gt0007|Respiration rate, breaths/min: 31,/min
+      gt0009|pH <7.30: 0|local::at0006|No|
+      gt0010|BUN >30 mg/dL (>10.7 mmol/L): 5|local::at0016|Yes|
+      gt0011|Altered mental status (Eg. Confusion): 5|local::at0019|Yes|
+      gt0012|PaO2 <54 mmHg (or PaO2/FiO2 <250 mmHg): 6|local::at0022|Yes|
+      gt0013|Multilobar/bilateral involvement in Chest X-ray: 5|local::at0028|Yes|
+      gt0014|If the patient has COVID-19?: 0|local::at0030|Confirmed positive|
+  expected_output:
+    1:
+      gt0018|Respiratory rate Score: 9|local::at0013|Yes|
+      gt0016|Age Score: 0|local::at0024|No|
+      gt0017|Systolic pressure Score: 11|local::at0010|Yes|
+      gt0019|SCAP Score: 41
+      gt0021|Risk of SCAP: 4|local::at0007|50%|
+      gt0022|Recommendation: local::at0014|Classified as Severe CAP. Recommended for ICU, monitored bed, and/or immediate intervention|
+
+
+

@@ -1,0 +1,68 @@
+guidelines:
+  1: Cumulative_Illness_Rating_Scale_Geriatric_CIRS_G.v1
+test_cases:
+- id: 1. Minimum score
+  input:
+    1:
+      gt0006|Heart: 0|local::at0021|No problem|
+      gt0007|Vascular: 0|local::at0026|No problem|
+      gt0008|Hematopoietic: 0|local::at0031|No problem|
+      gt0009|Respiratory: 0|local::at0036|No problem|
+      gt0010|Eyes, ears, nose, throat, and larynx: 0|local::at0041|No problem|
+      gt0011|Upper GI: 0|local::at0046|No problem|
+      gt0012|Lower GI: 0|local::at0051|No problem|
+      gt0013|Liver, pancreas, and biliary: 0|local::at0056|No problem|
+      gt0014|Renal: 0|local::at0061|No problem|
+      gt0015|Genitourinary: 0|local::at0066|No problem|
+      gt0016|Musculoskeletal and skin: 0|local::at0071|No problem|
+      gt0017|Neurologic: 0|local::at0076|No problem|
+      gt0018|Endocrine and breast: 0|local::at0081|No problem|
+      gt0019|Psychiatric illness: 0|local::at0086|No problem|
+  expected_output:
+    1:
+      gt0004|CIRS-G total score: 0
+      gt0005|CIRS-G score interpretation: local::at0020|Higher scores indicate higher severity (maximum score = 56 points)|
+
+- id: 2. Testing the divided inputs
+  input:
+    1:
+      gt0006|Heart: 2|local::at0023|CHF compensated with meds, daily antianginal meds, left ventricular hypertrophy, atrial fibrillation, bundle branch block, daily antiarrhythmic drugs|
+      gt0007|Vascular: 2|local::at0028|Daily antihypertensive meds, one symptom of atherosclerotic disease (angina, claudication, bruit, amaurosis fugax, absent pedal pulses), aortic aneurysm <4 cm|
+      gt0008|Hematopoietic: 2|local::at0091|Hemoglobin for females 8 to <10 g/dL or males 10 to <12 g/dL|
+      gt0009|Respiratory: 2|local::at0038|X-ray evidence of COPD, requires daily theophylline or inhalers|
+      gt0010|Eyes, ears, nose, throat, and larynx: 2|local::at0043|Corrected vision 20/60 or reads newsprint with difficulty, requires hearing aid, chronic sinonasal complaints requiring medication, requires medication for vertigo|
+      gt0011|Upper GI: 2|local::at0048|Needs daily H2 blocker or antacid, documented gastric or duodenal ulcer within 5 years|
+      gt0012|Lower GI: 2|local::at0053|Requires daily bulk laxatives or stool softeners, diverticulosis, untreated hernia|
+      gt0013|Liver, pancreas, and biliary: 3|local::at0059|Elevated bilirubin (total >2 mg/dL), marked elevation of LFTs (>150% of normal), requires supplemental pancreatic enzymes for digestion|
+      gt0014|Renal: 1|local::at0062|Kidney stone passage within the past 10 years or asymptomatic kidney stone, pyelonephritis within 5 years|
+      gt0015|Genitourinary: 2|local::at0094|BPH with hesitancy or frequency, current UTI, any urinary diversion procedure, status post TURP|
+      gt0016|Musculoskeletal and skin: 1|local::at0095|Excised non-melanoma skin cancers, skin infections requiring antibiotics within a year|
+      gt0017|Neurologic: 2|local::at0096|Status post CVA without significant residual, mild neurodegenerative disease (Parkinson's, MS, ALS, etc)|
+      gt0018|Endocrine and breast: 4|local::at0097|Requires adrenal hormone replacement, adrenal, thyroid, or breast carcinoma|
+      gt0019|Psychiatric illness: 4|local::at0090|Current mental illness requiring psychiatric hospitalization, institutionalization, or intensive outpatient management (e.g. patients with severe or suicidal depression|
+  expected_output:
+    1:
+      gt0004|CIRS-G total score: 31
+      gt0005|CIRS-G score interpretation: local::at0020|Higher scores indicate higher severity (maximum score = 56 points)|
+
+- id: 3. Maximum points
+  input:
+    1:
+      gt0006|Heart: 4|local::at0025|Marked activity restriction secondary to cardiac status (i.e., unstable angina or intractable CHF)|
+      gt0007|Vascular: 4|local::at0030|Previous vascular surgery, aortic aneurysm ≥4 cm|
+      gt0008|Hematopoietic: 4|local::at0035|Any leukemia or lymphoma|
+      gt0009|Respiratory: 4|local::at0040|Requires supplemental oxygen, ≥1 episode of respiratory failure requiring assisted ventilation, any lung cancer|
+      gt0010|Eyes, ears, nose, throat, and larynx: 4|local::at0045|Functional blindness, functional deafness, laryngectomy, requires surgical intervention for vertigo|
+      gt0011|Upper GI: 4|local::at0050|Gastric cancer, history of perforated ulcer, melena or hematochezia from upper GI source|
+      gt0012|Lower GI: 4|local::at0055|Hematochezia from lower GI source, currently impacted, diverticulitis flare up, status post bowel obstruction, bowel carcinoma|
+      gt0013|Liver, pancreas, and biliary: 4|local::at0060|Clinical or lab evidence of biliary obstruction, any biliary tree carcinoma, cholecystitis, pancreatitis, active hepatitis|
+      gt0014|Renal: 4|local::at0065|Requires dialysis, renal carcinoma|
+      gt0015|Genitourinary: 4|local::at0070|Acute urinary retention, any GU carcinoma except as above|
+      gt0016|Musculoskeletal and skin: 4|local::at0075|Wheelchair bound, severe joint deformity or severely impaired usage, osteomyelitis, any bone or muscle carcinoma, metastatic melanoma|
+      gt0017|Neurologic: 4|local::at0080|Status post CVA with residual functional hemiparesis or aphasia, severe neurodegenerative disease|
+      gt0018|Endocrine and breast: 4|local::at0085|Brittle or poorly controlled diabetes mellitus or diabetic coma in the past year, requires adrenal hormone replacement, adrenal, thyroid, or breast carcinoma|
+      gt0019|Psychiatric illness: 4|local::at0090|Current mental illness requiring psychiatric hospitalization, institutionalization, or intensive outpatient management (e.g. patients with severe or suicidal depression, acute psychosis or psychotic decompensation, severe agitation from dementia, severe substance abuse, etc), severe dementia|
+  expected_output:
+    1:
+      gt0004|CIRS-G total score: 56
+      gt0005|CIRS-G score interpretation: local::at0020|Higher scores indicate higher severity (maximum score = 56 points)|

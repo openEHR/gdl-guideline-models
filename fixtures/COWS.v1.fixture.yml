@@ -1,0 +1,402 @@
+guidelines:
+  1: COWS.v1
+test_cases:
+- id: HR(60)-Sweat(0)-Restlessness(0)-Pupil(0)-Bone(0)-RunnyNose(0)-GIUpset(0)-Tremor(0)-Yawning(0)-Anxiety(0)-Skin(0)
+  input:
+    1:
+      gt0003|Rate: 60,/min
+      gt0006|Sweating: 0|local::at0021|No report of chills or flushing|
+      gt0007|Restlessness observation during assessment: 0|local::at0026|Able to sit still|
+      gt0008|Pupil size: 0|local::at0030|Pupils pinned or normal size for room light|
+      gt0009|Bone or joint aches: 0|local::at0034|Not present|
+      gt0010|Runny nose or tearing: 0|local::at0038|Not present|
+      gt0011|GI Upset over the last 0.5hrs: 0|local::at0042|No GI symptoms|
+      gt0012|Tremor observation of outstretched hands: 0|local::at0047|No tremor|
+      gt0013|Yawning observation during assessment: 0|local::at0051|No yawning|
+      gt0014|Anxiety or irritability: 0|local::at0055|None|
+      gt0015|Gooseflesh skin: 0|local::at0059|Skin is smooth|
+  expected_output:
+    1:
+      gt0028|Total score: 0
+      gt0017|Resting Pulse rate (BPM): 0|local::at0017|≤ 80|
+
+- id: HR(60)-Sweat(1)-Restlessness(0)-Pupil(0)-Bone(0)-RunnyNose(0)-GIUpset(0)-Tremor(0)-Yawning(0)-Anxiety(0)-Skin(0)
+  input:
+    1:
+      gt0003|Rate: 60,/min
+      gt0006|Sweating: 1|local::at0022|Subjective report of chills or flushing|
+      gt0007|Restlessness observation during assessment: 0|local::at0026|Able to sit still|
+      gt0008|Pupil size: 0|local::at0030|Pupils pinned or normal size for room light|
+      gt0009|Bone or joint aches: 0|local::at0034|Not present|
+      gt0010|Runny nose or tearing: 0|local::at0038|Not present|
+      gt0011|GI Upset over the last 0.5hrs: 0|local::at0042|No GI symptoms|
+      gt0012|Tremor observation of outstretched hands: 0|local::at0047|No tremor|
+      gt0013|Yawning observation during assessment: 0|local::at0051|No yawning|
+      gt0014|Anxiety or irritability: 0|local::at0055|None|
+      gt0015|Gooseflesh skin: 0|local::at0059|Skin is smooth|
+  expected_output:
+    1:
+      gt0028|Total score: 1
+      gt0017|Resting Pulse rate (BPM): 0|local::at0017|≤ 80|
+
+- id: HR(60)-Sweat(1)-Restlessness(1)-Pupil(0)-Bone(0)-RunnyNose(0)-GIUpset(0)-Tremor(0)-Yawning(0)-Anxiety(0)-Skin(0)
+  input:
+    1:
+      gt0003|Rate: 60,/min
+      gt0006|Sweating: 1|local::at0022|Subjective report of chills or flushing|
+      gt0007|Restlessness observation during assessment: 1|local::at0027|Reports difficulty sitting still, but is able to do so|
+      gt0008|Pupil size: 0|local::at0030|Pupils pinned or normal size for room light|
+      gt0009|Bone or joint aches: 0|local::at0034|Not present|
+      gt0010|Runny nose or tearing: 0|local::at0038|Not present|
+      gt0011|GI Upset over the last 0.5hrs: 0|local::at0042|No GI symptoms|
+      gt0012|Tremor observation of outstretched hands: 0|local::at0047|No tremor|
+      gt0013|Yawning observation during assessment: 0|local::at0051|No yawning|
+      gt0014|Anxiety or irritability: 0|local::at0055|None|
+      gt0015|Gooseflesh skin: 0|local::at0059|Skin is smooth|
+  expected_output:
+    1:
+      gt0028|Total score: 2
+      gt0017|Resting Pulse rate (BPM): 0|local::at0017|≤ 80|
+
+- id: HR(60)-Sweat(1)-Restlessness(1)-Pupil(1)-Bone(0)-RunnyNose(0)-GIUpset(0)-Tremor(0)-Yawning(0)-Anxiety(0)-Skin(0)
+  input:
+    1:
+      gt0003|Rate: 60,/min
+      gt0045|Event time: 2019-04-30T14:43Z
+      gt0006|Sweating: 1|local::at0022|Subjective report of chills or flushing|
+      gt0007|Restlessness observation during assessment: 1|local::at0027|Reports difficulty sitting still, but is able to do so|
+      gt0008|Pupil size: 1|local::at0031|Pupils possibly larger than normal for room light|
+      gt0009|Bone or joint aches: 0|local::at0034|Not present|
+      gt0010|Runny nose or tearing: 0|local::at0038|Not present|
+      gt0011|GI Upset over the last 0.5hrs: 0|local::at0042|No GI symptoms|
+      gt0012|Tremor observation of outstretched hands: 0|local::at0047|No tremor|
+      gt0013|Yawning observation during assessment: 0|local::at0051|No yawning|
+      gt0014|Anxiety or irritability: 0|local::at0055|None|
+      gt0015|Gooseflesh skin: 0|local::at0059|Skin is smooth|
+      gt0046|Event time: 2019-04-30T14:44Z
+  expected_output:
+    1:
+      gt0020|Pupil size: 1|local::at0031|Pupils possibly larger than normal for room light|
+      gt0022|Runny nose or tearing: 0|local::at0038|Not present|
+      gt0024|Tremor observation of outstretched hands: 0|local::at0047|No tremor|
+      gt0027|Gooseflesh skin: 0|local::at0059|Skin is smooth|
+      gt0018|Sweating: 1|local::at0022|Subjective report of chills or flushing|
+      gt0028|Total score: 3
+      gt0025|Yawning observation during assessment: 0|local::at0051|No yawning|
+      gt0019|Restlessness observation during assessment: 1|local::at0027|Reports difficulty sitting still, but is able to do so|
+      gt0023|GI Upset over the last 0.5hrs: 0|local::at0042|No GI symptoms|
+      gt0021|Bone or joint aches: 0|local::at0034|Not present|
+      gt0017|Resting Pulse rate (BPM): 0|local::at0017|≤ 80|
+      gt0026|Anxiety or irritability: 0|local::at0055|None|
+
+- id: HR(60)-Sweat(1)-Restlessness(1)-Pupil(1)-Bone(1)-RunnyNose(0)-GIUpset(0)-Tremor(0)-Yawning(0)-Anxiety(0)-Skin(0)
+  input:
+    1:
+      gt0003|Rate: 60,/min
+      gt0045|Event time: 2019-04-30T14:43Z
+      gt0006|Sweating: 1|local::at0022|Subjective report of chills or flushing|
+      gt0007|Restlessness observation during assessment: 1|local::at0027|Reports difficulty sitting still, but is able to do so|
+      gt0008|Pupil size: 1|local::at0031|Pupils possibly larger than normal for room light|
+      gt0009|Bone or joint aches: 1|local::at0035|Mild diffuse discomfort|
+      gt0010|Runny nose or tearing: 0|local::at0038|Not present|
+      gt0011|GI Upset over the last 0.5hrs: 0|local::at0042|No GI symptoms|
+      gt0012|Tremor observation of outstretched hands: 0|local::at0047|No tremor|
+      gt0013|Yawning observation during assessment: 0|local::at0051|No yawning|
+      gt0014|Anxiety or irritability: 0|local::at0055|None|
+      gt0015|Gooseflesh skin: 0|local::at0059|Skin is smooth|
+      gt0046|Event time: 2019-04-30T14:44Z
+  expected_output:
+    1:
+      gt0020|Pupil size: 1|local::at0031|Pupils possibly larger than normal for room light|
+      gt0022|Runny nose or tearing: 0|local::at0038|Not present|
+      gt0024|Tremor observation of outstretched hands: 0|local::at0047|No tremor|
+      gt0027|Gooseflesh skin: 0|local::at0059|Skin is smooth|
+      gt0018|Sweating: 1|local::at0022|Subjective report of chills or flushing|
+      gt0028|Total score: 4
+      gt0025|Yawning observation during assessment: 0|local::at0051|No yawning|
+      gt0019|Restlessness observation during assessment: 1|local::at0027|Reports difficulty sitting still, but is able to do so|
+      gt0023|GI Upset over the last 0.5hrs: 0|local::at0042|No GI symptoms|
+      gt0021|Bone or joint aches: 1|local::at0035|Mild diffuse discomfort|
+      gt0017|Resting Pulse rate (BPM): 0|local::at0017|≤ 80|
+      gt0026|Anxiety or irritability: 0|local::at0055|None|
+
+- id: HR(60)-Sweat(1)-Restlessness(1)-Pupil(1)-Bone(1)-RunnyNose(1)-GIUpset(0)-Tremor(0)-Yawning(0)-Anxiety(0)-Skin(0)
+  input:
+    1:
+      gt0003|Rate: 60,/min
+      gt0045|Event time: 2019-04-30T14:43Z
+      gt0006|Sweating: 1|local::at0022|Subjective report of chills or flushing|
+      gt0007|Restlessness observation during assessment: 1|local::at0027|Reports difficulty sitting still, but is able to do so|
+      gt0008|Pupil size: 1|local::at0031|Pupils possibly larger than normal for room light|
+      gt0009|Bone or joint aches: 1|local::at0035|Mild diffuse discomfort|
+      gt0010|Runny nose or tearing: 1|local::at0039|Nasal stuffiness or unusually moist eyes|
+      gt0011|GI Upset over the last 0.5hrs: 0|local::at0042|No GI symptoms|
+      gt0012|Tremor observation of outstretched hands: 0|local::at0047|No tremor|
+      gt0013|Yawning observation during assessment: 0|local::at0051|No yawning|
+      gt0014|Anxiety or irritability: 0|local::at0055|None|
+      gt0015|Gooseflesh skin: 0|local::at0059|Skin is smooth|
+      gt0046|Event time: 2019-04-30T14:44Z
+  expected_output:
+    1:
+      gt0020|Pupil size: 1|local::at0031|Pupils possibly larger than normal for room light|
+      gt0022|Runny nose or tearing: 1|local::at0039|Nasal stuffiness or unusually moist eyes|
+      gt0024|Tremor observation of outstretched hands: 0|local::at0047|No tremor|
+      gt0027|Gooseflesh skin: 0|local::at0059|Skin is smooth|
+      gt0018|Sweating: 1|local::at0022|Subjective report of chills or flushing|
+      gt0028|Total score: 5
+      gt0025|Yawning observation during assessment: 0|local::at0051|No yawning|
+      gt0019|Restlessness observation during assessment: 1|local::at0027|Reports difficulty sitting still, but is able to do so|
+      gt0023|GI Upset over the last 0.5hrs: 0|local::at0042|No GI symptoms|
+      gt0021|Bone or joint aches: 1|local::at0035|Mild diffuse discomfort|
+      gt0017|Resting Pulse rate (BPM): 0|local::at0017|≤ 80|
+      gt0026|Anxiety or irritability: 0|local::at0055|None|
+
+- id: HR(60)-Sweat(1)-Restlessness(1)-Pupil(1)-Bone(1)-RunnyNose(1)-GIUpset(1)-Tremor(0)-Yawning(0)-Anxiety(0)-Skin(0)
+  input:
+    1:
+      gt0003|Rate: 60,/min
+      gt0045|Event time: 2019-04-30T14:43Z
+      gt0006|Sweating: 1|local::at0022|Subjective report of chills or flushing|
+      gt0007|Restlessness observation during assessment: 1|local::at0027|Reports difficulty sitting still, but is able to do so|
+      gt0008|Pupil size: 1|local::at0031|Pupils possibly larger than normal for room light|
+      gt0009|Bone or joint aches: 1|local::at0035|Mild diffuse discomfort|
+      gt0010|Runny nose or tearing: 1|local::at0039|Nasal stuffiness or unusually moist eyes|
+      gt0011|GI Upset over the last 0.5hrs: 1|local::at0043|Stomach Cramps|
+      gt0012|Tremor observation of outstretched hands: 0|local::at0047|No tremor|
+      gt0013|Yawning observation during assessment: 0|local::at0051|No yawning|
+      gt0014|Anxiety or irritability: 0|local::at0055|None|
+      gt0015|Gooseflesh skin: 0|local::at0059|Skin is smooth|
+      gt0046|Event time: 2019-04-30T14:44Z
+  expected_output:
+    1:
+      gt0020|Pupil size: 1|local::at0031|Pupils possibly larger than normal for room light|
+      gt0022|Runny nose or tearing: 1|local::at0039|Nasal stuffiness or unusually moist eyes|
+      gt0024|Tremor observation of outstretched hands: 0|local::at0047|No tremor|
+      gt0027|Gooseflesh skin: 0|local::at0059|Skin is smooth|
+      gt0018|Sweating: 1|local::at0022|Subjective report of chills or flushing|
+      gt0028|Total score: 6
+      gt0025|Yawning observation during assessment: 0|local::at0051|No yawning|
+      gt0019|Restlessness observation during assessment: 1|local::at0027|Reports difficulty sitting still, but is able to do so|
+      gt0023|GI Upset over the last 0.5hrs: 1|local::at0043|Stomach Cramps|
+      gt0021|Bone or joint aches: 1|local::at0035|Mild diffuse discomfort|
+      gt0017|Resting Pulse rate (BPM): 0|local::at0017|≤ 80|
+      gt0026|Anxiety or irritability: 0|local::at0055|None|
+
+- id: HR(60)-Sweat(1)-Restlessness(1)-Pupil(1)-Bone(1)-RunnyNose(1)-GIUpset(1)-Tremor(1)-Yawning(0)-Anxiety(0)-Skin(0)
+  input:
+    1:
+      gt0003|Rate: 60,/min
+      gt0045|Event time: 2019-04-30T14:43Z
+      gt0006|Sweating: 1|local::at0022|Subjective report of chills or flushing|
+      gt0007|Restlessness observation during assessment: 1|local::at0027|Reports difficulty sitting still, but is able to do so|
+      gt0008|Pupil size: 1|local::at0031|Pupils possibly larger than normal for room light|
+      gt0009|Bone or joint aches: 1|local::at0035|Mild diffuse discomfort|
+      gt0010|Runny nose or tearing: 1|local::at0039|Nasal stuffiness or unusually moist eyes|
+      gt0011|GI Upset over the last 0.5hrs: 1|local::at0043|Stomach Cramps|
+      gt0012|Tremor observation of outstretched hands: 1|local::at0048|Tremor can be felt, but not observed|
+      gt0013|Yawning observation during assessment: 0|local::at0051|No yawning|
+      gt0014|Anxiety or irritability: 0|local::at0055|None|
+      gt0015|Gooseflesh skin: 0|local::at0059|Skin is smooth|
+      gt0046|Event time: 2019-04-30T14:44Z
+  expected_output:
+    1:
+      gt0020|Pupil size: 1|local::at0031|Pupils possibly larger than normal for room light|
+      gt0022|Runny nose or tearing: 1|local::at0039|Nasal stuffiness or unusually moist eyes|
+      gt0024|Tremor observation of outstretched hands: 1|local::at0048|Tremor can be felt, but not observed|
+      gt0027|Gooseflesh skin: 0|local::at0059|Skin is smooth|
+      gt0018|Sweating: 1|local::at0022|Subjective report of chills or flushing|
+      gt0028|Total score: 7
+      gt0025|Yawning observation during assessment: 0|local::at0051|No yawning|
+      gt0019|Restlessness observation during assessment: 1|local::at0027|Reports difficulty sitting still, but is able to do so|
+      gt0023|GI Upset over the last 0.5hrs: 1|local::at0043|Stomach Cramps|
+      gt0021|Bone or joint aches: 1|local::at0035|Mild diffuse discomfort|
+      gt0017|Resting Pulse rate (BPM): 0|local::at0017|≤ 80|
+      gt0026|Anxiety or irritability: 0|local::at0055|None|
+
+- id: HR(60)-Sweat(1)-Restlessness(1)-Pupil(1)-Bone(1)-RunnyNose(1)-GIUpset(1)-Tremor(1)-Yawning(1)-Anxiety(0)-Skin(0)
+  input:
+    1:
+      gt0003|Rate: 60,/min
+      gt0045|Event time: 2019-04-30T14:43Z
+      gt0006|Sweating: 1|local::at0022|Subjective report of chills or flushing|
+      gt0007|Restlessness observation during assessment: 1|local::at0027|Reports difficulty sitting still, but is able to do so|
+      gt0008|Pupil size: 1|local::at0031|Pupils possibly larger than normal for room light|
+      gt0009|Bone or joint aches: 1|local::at0035|Mild diffuse discomfort|
+      gt0010|Runny nose or tearing: 1|local::at0039|Nasal stuffiness or unusually moist eyes|
+      gt0011|GI Upset over the last 0.5hrs: 1|local::at0043|Stomach Cramps|
+      gt0012|Tremor observation of outstretched hands: 1|local::at0048|Tremor can be felt, but not observed|
+      gt0013|Yawning observation during assessment: 1|local::at0052|Yawning once or twice during assessment|
+      gt0014|Anxiety or irritability: 0|local::at0055|None|
+      gt0015|Gooseflesh skin: 0|local::at0059|Skin is smooth|
+      gt0046|Event time: 2019-04-30T14:44Z
+  expected_output:
+    1:
+      gt0020|Pupil size: 1|local::at0031|Pupils possibly larger than normal for room light|
+      gt0022|Runny nose or tearing: 1|local::at0039|Nasal stuffiness or unusually moist eyes|
+      gt0024|Tremor observation of outstretched hands: 1|local::at0048|Tremor can be felt, but not observed|
+      gt0027|Gooseflesh skin: 0|local::at0059|Skin is smooth|
+      gt0018|Sweating: 1|local::at0022|Subjective report of chills or flushing|
+      gt0028|Total score: 8
+      gt0025|Yawning observation during assessment: 1|local::at0052|Yawning once or twice during assessment|
+      gt0019|Restlessness observation during assessment: 1|local::at0027|Reports difficulty sitting still, but is able to do so|
+      gt0023|GI Upset over the last 0.5hrs: 1|local::at0043|Stomach Cramps|
+      gt0021|Bone or joint aches: 1|local::at0035|Mild diffuse discomfort|
+      gt0017|Resting Pulse rate (BPM): 0|local::at0017|≤ 80|
+      gt0026|Anxiety or irritability: 0|local::at0055|None|
+
+- id: HR(60)-Sweat(1)-Restlessness(1)-Pupil(1)-Bone(1)-RunnyNose(1)-GIUpset(1)-Tremor(1)-Yawning(1)-Anxiety(1)-Skin(0)
+  input:
+    1:
+      gt0003|Rate: 60,/min
+      gt0045|Event time: 2019-04-30T14:43Z
+      gt0006|Sweating: 1|local::at0022|Subjective report of chills or flushing|
+      gt0007|Restlessness observation during assessment: 1|local::at0027|Reports difficulty sitting still, but is able to do so|
+      gt0008|Pupil size: 1|local::at0031|Pupils possibly larger than normal for room light|
+      gt0009|Bone or joint aches: 1|local::at0035|Mild diffuse discomfort|
+      gt0010|Runny nose or tearing: 1|local::at0039|Nasal stuffiness or unusually moist eyes|
+      gt0011|GI Upset over the last 0.5hrs: 1|local::at0043|Stomach Cramps|
+      gt0012|Tremor observation of outstretched hands: 1|local::at0048|Tremor can be felt, but not observed|
+      gt0013|Yawning observation during assessment: 1|local::at0052|Yawning once or twice during assessment|
+      gt0014|Anxiety or irritability: 1|local::at0056|Patient reports increasing irritability or anxiousness|
+      gt0015|Gooseflesh skin: 0|local::at0059|Skin is smooth|
+      gt0046|Event time: 2019-04-30T14:44Z
+  expected_output:
+    1:
+      gt0020|Pupil size: 1|local::at0031|Pupils possibly larger than normal for room light|
+      gt0022|Runny nose or tearing: 1|local::at0039|Nasal stuffiness or unusually moist eyes|
+      gt0024|Tremor observation of outstretched hands: 1|local::at0048|Tremor can be felt, but not observed|
+      gt0027|Gooseflesh skin: 0|local::at0059|Skin is smooth|
+      gt0018|Sweating: 1|local::at0022|Subjective report of chills or flushing|
+      gt0028|Total score: 9
+      gt0025|Yawning observation during assessment: 1|local::at0052|Yawning once or twice during assessment|
+      gt0019|Restlessness observation during assessment: 1|local::at0027|Reports difficulty sitting still, but is able to do so|
+      gt0023|GI Upset over the last 0.5hrs: 1|local::at0043|Stomach Cramps|
+      gt0021|Bone or joint aches: 1|local::at0035|Mild diffuse discomfort|
+      gt0017|Resting Pulse rate (BPM): 0|local::at0017|≤ 80|
+      gt0026|Anxiety or irritability: 1|local::at0056|Patient reports increasing irritability or anxiousness|
+
+- id: HR(60)-Sweat(1)-Restlessness(1)-Pupil(1)-Bone(1)-RunnyNose(1)-GIUpset(1)-Tremor(1)-Yawning(1)-Anxiety(1)-Skin(3)
+  input:
+    1:
+      gt0003|Rate: 60,/min
+      gt0045|Event time: 2019-04-30T14:43Z
+      gt0006|Sweating: 1|local::at0022|Subjective report of chills or flushing|
+      gt0007|Restlessness observation during assessment: 1|local::at0027|Reports difficulty sitting still, but is able to do so|
+      gt0008|Pupil size: 1|local::at0031|Pupils possibly larger than normal for room light|
+      gt0009|Bone or joint aches: 1|local::at0035|Mild diffuse discomfort|
+      gt0010|Runny nose or tearing: 1|local::at0039|Nasal stuffiness or unusually moist eyes|
+      gt0011|GI Upset over the last 0.5hrs: 1|local::at0043|Stomach Cramps|
+      gt0012|Tremor observation of outstretched hands: 1|local::at0048|Tremor can be felt, but not observed|
+      gt0013|Yawning observation during assessment: 1|local::at0052|Yawning once or twice during assessment|
+      gt0014|Anxiety or irritability: 1|local::at0056|Patient reports increasing irritability or anxiousness|
+      gt0015|Gooseflesh skin: 3|local::at0060|Piloerection of skin can be felt or hairs standing up on arms|
+      gt0046|Event time: 2019-04-30T14:44Z
+  expected_output:
+    1:
+      gt0020|Pupil size: 1|local::at0031|Pupils possibly larger than normal for room light|
+      gt0022|Runny nose or tearing: 1|local::at0039|Nasal stuffiness or unusually moist eyes|
+      gt0024|Tremor observation of outstretched hands: 1|local::at0048|Tremor can be felt, but not observed|
+      gt0027|Gooseflesh skin: 3|local::at0060|Piloerection of skin can be felt or hairs standing up on arms|
+      gt0018|Sweating: 1|local::at0022|Subjective report of chills or flushing|
+      gt0028|Total score: 12
+      gt0025|Yawning observation during assessment: 1|local::at0052|Yawning once or twice during assessment|
+      gt0019|Restlessness observation during assessment: 1|local::at0027|Reports difficulty sitting still, but is able to do so|
+      gt0023|GI Upset over the last 0.5hrs: 1|local::at0043|Stomach Cramps|
+      gt0021|Bone or joint aches: 1|local::at0035|Mild diffuse discomfort|
+      gt0017|Resting Pulse rate (BPM): 0|local::at0017|≤ 80|
+      gt0026|Anxiety or irritability: 1|local::at0056|Patient reports increasing irritability or anxiousness|
+
+- id: HR(90)-Sweat(4)-Restlessness(5)-Pupil(5)-Bone(4)-RunnyNose(4)-GIUpset(5)-Tremor(4)-Yawning(4)-Anxiety(4)-Skin(5)
+  input:
+    1:
+      gt0003|Rate: 90,/min
+      gt0045|Event time: 2019-04-30T14:43Z
+      gt0006|Sweating: 4|local::at0025|Sweat streaming off face|
+      gt0007|Restlessness observation during assessment: 5|local::at0029|Unable to sit still for more than a few seconds|
+      gt0008|Pupil size: 5|local::at0033|Pupils so dilated that only the rim of the iris is visible|
+      gt0009|Bone or joint aches: 4|local::at0037|Patient is rubbing joints or muscles and is unable to sit still because of discomfort|
+      gt0010|Runny nose or tearing: 4|local::at0041|Nose constantly running or tears streaming down cheeks|
+      gt0011|GI Upset over the last 0.5hrs: 5|local::at0046|Multiple episodes of vomiting or diarrhea|
+      gt0012|Tremor observation of outstretched hands: 4|local::at0050|Gross tremor or muscle twitching|
+      gt0013|Yawning observation during assessment: 4|local::at0054|Yawning several times/minute|
+      gt0014|Anxiety or irritability: 4|local::at0058|Patient so irritable or anxious that participation in the assessment is difficult|
+      gt0015|Gooseflesh skin: 5|local::at0061|Prominent piloerection|
+      gt0046|Event time: 2019-04-30T14:44Z
+  expected_output:
+    1:
+      gt0020|Pupil size: 5|local::at0033|Pupils so dilated that only the rim of the iris is visible|
+      gt0022|Runny nose or tearing: 4|local::at0041|Nose constantly running or tears streaming down cheeks|
+      gt0024|Tremor observation of outstretched hands: 4|local::at0050|Gross tremor or muscle twitching|
+      gt0027|Gooseflesh skin: 5|local::at0061|Prominent piloerection|
+      gt0018|Sweating: 4|local::at0025|Sweat streaming off face|
+      gt0028|Total score: 45
+      gt0025|Yawning observation during assessment: 4|local::at0054|Yawning several times/minute|
+      gt0019|Restlessness observation during assessment: 5|local::at0029|Unable to sit still for more than a few seconds|
+      gt0023|GI Upset over the last 0.5hrs: 5|local::at0046|Multiple episodes of vomiting or diarrhea|
+      gt0021|Bone or joint aches: 4|local::at0037|Patient is rubbing joints or muscles and is unable to sit still because of discomfort|
+      gt0017|Resting Pulse rate (BPM): 1|local::at0018|81-100|
+      gt0026|Anxiety or irritability: 4|local::at0058|Patient so irritable or anxious that participation in the assessment is difficult|
+
+
+- id: HR(110)-Sweat(4)-Restlessness(5)-Pupil(5)-Bone(4)-RunnyNose(4)-GIUpset(5)-Tremor(4)-Yawning(4)-Anxiety(4)-Skin(5)
+  input:
+    1:
+      gt0003|Rate: 110,/min
+      gt0045|Event time: 2019-04-30T14:43Z
+      gt0006|Sweating: 4|local::at0025|Sweat streaming off face|
+      gt0007|Restlessness observation during assessment: 5|local::at0029|Unable to sit still for more than a few seconds|
+      gt0008|Pupil size: 5|local::at0033|Pupils so dilated that only the rim of the iris is visible|
+      gt0009|Bone or joint aches: 4|local::at0037|Patient is rubbing joints or muscles and is unable to sit still because of discomfort|
+      gt0010|Runny nose or tearing: 4|local::at0041|Nose constantly running or tears streaming down cheeks|
+      gt0011|GI Upset over the last 0.5hrs: 5|local::at0046|Multiple episodes of vomiting or diarrhea|
+      gt0012|Tremor observation of outstretched hands: 4|local::at0050|Gross tremor or muscle twitching|
+      gt0013|Yawning observation during assessment: 4|local::at0054|Yawning several times/minute|
+      gt0014|Anxiety or irritability: 4|local::at0058|Patient so irritable or anxious that participation in the assessment is difficult|
+      gt0015|Gooseflesh skin: 5|local::at0061|Prominent piloerection|
+      gt0046|Event time: 2019-04-30T14:44Z
+  expected_output:
+    1:
+      gt0020|Pupil size: 5|local::at0033|Pupils so dilated that only the rim of the iris is visible|
+      gt0022|Runny nose or tearing: 4|local::at0041|Nose constantly running or tears streaming down cheeks|
+      gt0024|Tremor observation of outstretched hands: 4|local::at0050|Gross tremor or muscle twitching|
+      gt0027|Gooseflesh skin: 5|local::at0061|Prominent piloerection|
+      gt0018|Sweating: 4|local::at0025|Sweat streaming off face|
+      gt0028|Total score: 46
+      gt0025|Yawning observation during assessment: 4|local::at0054|Yawning several times/minute|
+      gt0019|Restlessness observation during assessment: 5|local::at0029|Unable to sit still for more than a few seconds|
+      gt0023|GI Upset over the last 0.5hrs: 5|local::at0046|Multiple episodes of vomiting or diarrhea|
+      gt0021|Bone or joint aches: 4|local::at0037|Patient is rubbing joints or muscles and is unable to sit still because of discomfort|
+      gt0017|Resting Pulse rate (BPM): 2|local::at0019|101-120|
+      gt0026|Anxiety or irritability: 4|local::at0058|Patient so irritable or anxious that participation in the assessment is difficult|
+
+
+- id: HR(130)-Sweat(4)-Restlessness(5)-Pupil(5)-Bone(4)-RunnyNose(4)-GIUpset(5)-Tremor(4)-Yawning(4)-Anxiety(4)-Skin(5)
+  input:
+    1:
+      gt0003|Rate: 130,/min
+      gt0045|Event time: 2019-04-30T14:43Z
+      gt0006|Sweating: 4|local::at0025|Sweat streaming off face|
+      gt0007|Restlessness observation during assessment: 5|local::at0029|Unable to sit still for more than a few seconds|
+      gt0008|Pupil size: 5|local::at0033|Pupils so dilated that only the rim of the iris is visible|
+      gt0009|Bone or joint aches: 4|local::at0037|Patient is rubbing joints or muscles and is unable to sit still because of discomfort|
+      gt0010|Runny nose or tearing: 4|local::at0041|Nose constantly running or tears streaming down cheeks|
+      gt0011|GI Upset over the last 0.5hrs: 5|local::at0046|Multiple episodes of vomiting or diarrhea|
+      gt0012|Tremor observation of outstretched hands: 4|local::at0050|Gross tremor or muscle twitching|
+      gt0013|Yawning observation during assessment: 4|local::at0054|Yawning several times/minute|
+      gt0014|Anxiety or irritability: 4|local::at0058|Patient so irritable or anxious that participation in the assessment is difficult|
+      gt0015|Gooseflesh skin: 5|local::at0061|Prominent piloerection|
+      gt0046|Event time: 2019-04-30T14:44Z
+  expected_output:
+    1:
+      gt0020|Pupil size: 5|local::at0033|Pupils so dilated that only the rim of the iris is visible|
+      gt0022|Runny nose or tearing: 4|local::at0041|Nose constantly running or tears streaming down cheeks|
+      gt0024|Tremor observation of outstretched hands: 4|local::at0050|Gross tremor or muscle twitching|
+      gt0027|Gooseflesh skin: 5|local::at0061|Prominent piloerection|
+      gt0018|Sweating: 4|local::at0025|Sweat streaming off face|
+      gt0028|Total score: 48
+      gt0025|Yawning observation during assessment: 4|local::at0054|Yawning several times/minute|
+      gt0019|Restlessness observation during assessment: 5|local::at0029|Unable to sit still for more than a few seconds|
+      gt0023|GI Upset over the last 0.5hrs: 5|local::at0046|Multiple episodes of vomiting or diarrhea|
+      gt0021|Bone or joint aches: 4|local::at0037|Patient is rubbing joints or muscles and is unable to sit still because of discomfort|
+      gt0017|Resting Pulse rate (BPM): 4|local::at0020|> 120|
+      gt0026|Anxiety or irritability: 4|local::at0058|Patient so irritable or anxious that participation in the assessment is difficult|

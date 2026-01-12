@@ -1,0 +1,454 @@
+guidelines:
+  1: Immunization_Schedule_Calculator_guideline.v1
+test_cases:
+- id: 1 mo
+  input:
+    1:
+      gt0003|Age Range: local::at0006|<2 years, use Age in months|
+      gt0007|Age: 1,mo
+  expected_output:
+    1:
+      gt0020|Hep B: 2nd dose (1st dose at birth)
+- id: Warning for age 0
+  input:
+    1:
+      gt0003|Age Range: local::at0006|<2 years, use Age in months|
+      gt0007|Age: 0,mo
+  expected_output:
+    1:
+      gt0072|warning: Please enter an appropriate age range.
+- id: warning for 24 mo in age<2
+  input:
+    1:
+      gt0003|Age Range: local::at0006|<2 years, use Age in months|
+      gt0007|Age: 24,mo
+  expected_output:
+    1:
+      gt0072|warning: Please enter an appropriate age range.
+- id: 2 mo
+  input:
+    1:
+      gt0003|Age Range: local::at0006|<2 years, use Age in months|
+      gt0007|Age: 2,mo
+  expected_output:
+    1:
+      gt0023|H. flu (Hib): 1st dose
+      gt0021|Rotavirus (RV): 1st dose
+      gt0025|Inactivated polio (IPV <18 yrs): 1st dose
+      gt0022|DTaP (<7 yrs): 1st dose
+      gt0020|Hep B: 2nd dose (if not yet given)
+      gt0024|Pneumococcal (PCV13): 1st dose
+- id: 4 mo
+  input:
+    1:
+      gt0003|Age Range: local::at0006|<2 years, use Age in months|
+      gt0007|Age: 4,mo
+  expected_output:
+    1:
+      gt0023|H. flu (Hib): 2nd dose
+      gt0021|Rotavirus (RV): 2nd dose
+      gt0025|Inactivated polio (IPV <18 yrs): 2nd dose
+      gt0022|DTaP (<7 yrs): 2nd dose
+      gt0020|Hep B: Catch-up dose (if 2nd dose not yet given)
+      gt0024|Pneumococcal (PCV13): 2nd dose
+- id: 6 mo
+  input:
+    1:
+      gt0003|Age Range: local::at0006|<2 years, use Age in months|
+      gt0007|Age: 6,mo
+  expected_output:
+    1:
+      gt0023|H. flu (Hib): 3rd dose (if 3-dose primary series)
+      gt0021|Rotavirus (RV): 3rd dose (if RV5)
+      gt0025|Inactivated polio (IPV <18 yrs): 3rd dose
+      gt0022|DTaP (<7 yrs): 3rd dose
+      gt0020|Hep B: 3rd dose
+      gt0026|Influenza: Annual vaccination (IIV only - 1 or 2 doses)
+      gt0024|Pneumococcal (PCV13): 3rd dose
+- id: 7 mo
+  input:
+    1:
+      gt0003|Age Range: local::at0006|<2 years, use Age in months|
+      gt0007|Age: 7,mo
+  expected_output:
+    1:
+      gt0025|Inactivated polio (IPV <18 yrs): 3rd dose (if not yet given)
+      gt0022|DTaP (<7 yrs): 3rd dose (if not yet given)
+      gt0020|Hep B: 3rd dose (if not yet given)
+      gt0026|Influenza: Annual vaccination (IIV only - 1 or 2 doses)
+      gt0024|Pneumococcal (PCV13): 3rd dose (if not yet given)
+- id: 8 mo
+  input:
+    1:
+      gt0003|Age Range: local::at0006|<2 years, use Age in months|
+      gt0007|Age: 8,mo
+  expected_output:
+    1:
+      gt0023|H. flu (Hib): Catch-up dose (if 2nd dose not yet given)
+      gt0025|Inactivated polio (IPV <18 yrs): 3rd dose (if not yet given)
+      gt0022|DTaP (<7 yrs): Catch-up dose (if 3rd dose not yet given)
+      gt0020|Hep B: 3rd dose (if not yet given)
+      gt0026|Influenza: Annual vaccination (IIV only - 1 or 2 doses)
+      gt0024|Pneumococcal (PCV13): Catch-up dose (if 3rd dose not yet given)
+- id: 9 mo
+  input:
+    1:
+      gt0003|Age Range: local::at0006|<2 years, use Age in months|
+      gt0007|Age: 9,mo
+  expected_output:
+    1:
+      gt0023|H. flu (Hib): Catch-up dose (if 2nd dose not yet given)
+      gt0025|Inactivated polio (IPV <18 yrs): 3rd dose (if not yet given)
+      gt0022|DTaP (<7 yrs): Catch-up dose (if 3rd dose not yet given)
+      gt0020|Hep B: 3rd dose (if not yet given)
+      gt0026|Influenza: Annual vaccination (IIV only - 1 or 2 doses)
+      gt0024|Pneumococcal (PCV13): Catch-up dose (if 3rd dose not yet given)
+- id: 10 mo
+  input:
+    1:
+      gt0003|Age Range: local::at0006|<2 years, use Age in months|
+      gt0007|Age: 10,mo
+  expected_output:
+    1:
+      gt0023|H. flu (Hib): Catch-up dose (if 2nd dose not yet given)
+      gt0025|Inactivated polio (IPV <18 yrs): 3rd dose (if not yet given)
+      gt0022|DTaP (<7 yrs): Catch-up dose (if 3rd dose not yet given)
+      gt0020|Hep B: 3rd dose (if not yet given)
+      gt0026|Influenza: Annual vaccination (IIV only - 1 or 2 doses)
+      gt0024|Pneumococcal (PCV13): Catch-up dose (if 3rd dose not yet given)
+- id: 11 mo
+  input:
+    1:
+      gt0003|Age Range: local::at0006|<2 years, use Age in months|
+      gt0007|Age: 11,mo
+  expected_output:
+    1:
+      gt0023|H. flu (Hib): Catch-up dose (if 2nd dose not yet given)
+      gt0025|Inactivated polio (IPV <18 yrs): 3rd dose (if not yet given)
+      gt0022|DTaP (<7 yrs): Catch-up dose (if 3rd dose not yet given)
+      gt0020|Hep B: 3rd dose (if not yet given)
+      gt0026|Influenza: Annual vaccination (IIV only - 1 or 2 doses)
+      gt0024|Pneumococcal (PCV13): Catch-up dose (if 3rd dose not yet given)
+- id: 12
+  input:
+    1:
+      gt0003|Age Range: local::at0006|<2 years, use Age in months|
+      gt0007|Age: 12,mo
+  expected_output:
+    1:
+      gt0023|H. flu (Hib): 3rd or 4th dose (dependent on primary series)
+      gt0025|Inactivated polio (IPV <18 yrs): 3rd dose (if not yet given)
+      gt0028|Varicella (VAR): 1st dose
+      gt0022|DTaP (<7 yrs): Catch-up dose (if 3rd dose not yet given)
+      gt0020|Hep B: 3rd dose (if not yet given)
+      gt0029|Hep A: 2 dose series (Initiate the 2-dose Hep A vaccine series at 12 through 23 months; separate the 2 doses by 6 to 18 months)
+      gt0026|Influenza: Annual vaccination (IIV only - 1 or 2 doses)
+      gt0027|MMR: 1st dose
+      gt0024|Pneumococcal (PCV13): 4th dose
+- id: 13 mo
+  input:
+    1:
+      gt0003|Age Range: local::at0006|<2 years, use Age in months|
+      gt0007|Age: 13,mo
+  expected_output:
+    1:
+      gt0023|H. flu (Hib): 3rd or 4th dose (if not yet given- dependent on primary series)
+      gt0025|Inactivated polio (IPV <18 yrs): 3rd dose (if not yet given)
+      gt0028|Varicella (VAR): 1st dose (if not yet given)
+      gt0022|DTaP (<7 yrs): Catch-up dose (if 3rd dose not yet given)
+      gt0020|Hep B: 3rd dose (if not yet given)
+      gt0029|Hep A: 2 dose series (Initiate the 2-dose Hep A vaccine series at 12 through 23 months and separate the 2 doses by 6 to 18 months)
+      gt0026|Influenza: Annual vaccination (IIV only - 1 or 2 doses)
+      gt0027|MMR: 1st dose (if not yet given)
+      gt0024|Pneumococcal (PCV13): 4th dose (if not yet given)
+- id: 15 mo
+  input:
+    1:
+      gt0003|Age Range: local::at0006|<2 years, use Age in months|
+      gt0007|Age: 15,mo
+  expected_output:
+    1:
+      gt0023|H. flu (Hib): 3rd or 4th dose (if not yet given- dependent on primary series)
+      gt0025|Inactivated polio (IPV <18 yrs): 3rd dose (if not yet given)
+      gt0028|Varicella (VAR): 1st dose (if not yet given)
+      gt0022|DTaP (<7 yrs): 4th dose
+      gt0020|Hep B: 3rd dose (if not yet given)
+      gt0029|Hep A: 2 dose series (Initiate the 2-dose Hep A vaccine series at 12 through 23 months and separate the 2 doses by 6 to 18 months)
+      gt0026|Influenza: Annual vaccination (IIV only - 1 or 2 doses)
+      gt0027|MMR: 1st dose (if not yet given)
+      gt0024|Pneumococcal (PCV13): 4th dose (if not yet given)
+- id: 18 mo
+  input:
+    1:
+      gt0003|Age Range: local::at0006|<2 years, use Age in months|
+      gt0007|Age: 16,mo
+  expected_output:
+    1:
+      gt0023|H. flu (Hib): Catch-up dose (if 4rd or 4th dose not yet given- dependent on primary series)
+      gt0025|Inactivated polio (IPV <18 yrs): 3rd dose (if not yet given)
+      gt0028|Varicella (VAR): Catch-up dose (if 1st dose not yet given)
+      gt0022|DTaP (<7 yrs): 4th dose (if not yet given)
+      gt0020|Hep B: 3rd dose (if not yet given)
+      gt0029|Hep A: 2 dose series (Initiate the 2-dose Hep A vaccine series at 12 through 23 months and separate the 2 doses by 6 to 18 months)
+      gt0026|Influenza: Annual vaccination (IIV only - 1 or 2 doses)
+      gt0027|MMR: Catch-up dose (if 1st dose not yet given)
+      gt0024|Pneumococcal (PCV13): Catch-up dose (if 4th dose not yet given)
+- id: 19 mo
+  input:
+    1:
+      gt0003|Age Range: local::at0006|<2 years, use Age in months|
+      gt0007|Age: 19,mo
+  expected_output:
+    1:
+      gt0023|H. flu (Hib): Catch-up dose (if 3rd dose not yet given)
+      gt0025|Inactivated polio (IPV <18 yrs): Catch-up dose (if 3rd dose not yet given)
+      gt0028|Varicella (VAR): Catch-up dose (if 1st dose not yet given)
+      gt0022|DTaP (<7 yrs): Catch-up dose (if 4th dose not yet given)
+      gt0020|Hep B: Catch-up dose (if 3rd dose not yet given)
+      gt0029|Hep A: 2 dose series (Initiate the 2-dose Hep A vaccine series at 12 through 23 months and separate the 2 doses by 6 to 18 months)
+      gt0026|Influenza: Annual vaccination (IIV only - 1 or 2 doses)
+      gt0027|MMR: Catch-up dose (if 1st dose not yet given)
+      gt0024|Pneumococcal (PCV13): Catch-up dose (if 4th dose not yet given)
+- id: 23 mo
+  input:
+    1:
+      gt0003|Age Range: local::at0006|<2 years, use Age in months|
+      gt0007|Age: 23,mo
+  expected_output:
+    1:
+      gt0023|H. flu (Hib): Catch-up dose (if 3rd dose not yet given)
+      gt0025|Inactivated polio (IPV <18 yrs): Catch-up dose (if 3rd dose not yet given)
+      gt0028|Varicella (VAR): Catch-up dose (if 1st dose not yet given)
+      gt0022|DTaP (<7 yrs): Catch-up dose (if 4th dose not yet given)
+      gt0020|Hep B: Catch-up dose (if 3rd dose not yet given)
+      gt0029|Hep A: 2 dose series (Initiate the 2-dose Hep A vaccine series at 12 through 23 months and separate the 2 doses by 6 to 18 months)
+      gt0026|Influenza: Annual vaccination (IIV only - 1 or 2 doses)
+      gt0027|MMR: Catch-up dose (if 1st dose not yet given)
+      gt0024|Pneumococcal (PCV13): Catch-up dose (if 4th dose not yet given)
+- id: 2 yrs
+  input:
+    1:
+      gt0003|Age Range: local::at0005|≥2 years, use Age in years|
+      gt0007|Age: 2,a
+  expected_output:
+    1:
+      gt0023|H. flu (Hib): Catch-up dose (if 3rd dose not yet given)
+      gt0025|Inactivated polio (IPV <18 yrs): Catch-up dose (if 3rd dose not yet given)
+      gt0028|Varicella (VAR): Catch-up dose (if 1st dose not yet given)
+      gt0022|DTaP (<7 yrs): Catch-up dose (if 4th dose not yet given)
+      gt0020|Hep B: Catch-up dose (if 3rd dose not yet given)
+      gt0029|Hep A: Catch-up dose (if 2 dose series not complete)
+      gt0026|Influenza: Annual vaccination (LAIV or IIV - 1 or 2 doses)
+      gt0027|MMR: Catch-up dose (if 1st dose not yet given)
+      gt0024|Pneumococcal (PCV13): Catch-up dose (if 4th dose not yet given)
+- id: 4 yrs
+  input:
+    1:
+      gt0003|Age Range: local::at0005|≥2 years, use Age in years|
+      gt0007|Age: 4,a
+  expected_output:
+    1:
+      gt0023|H. flu (Hib): Catch-up dose (if 3rd dose not yet given)
+      gt0025|Inactivated polio (IPV <18 yrs): 4th dose
+      gt0028|Varicella (VAR): 2nd dose
+      gt0022|DTaP (<7 yrs): 5th dose
+      gt0020|Hep B: Catch-up dose (if 3rd dose not yet given)
+      gt0029|Hep A: Catch-up dose (if 2 dose series not complete)
+      gt0026|Influenza: Annual vaccination (LAIV or IIV - 1 or 2 doses)
+      gt0027|MMR: 2nd dose
+      gt0024|Pneumococcal (PCV13): Catch-up dose (if 4th dose not yet given)
+- id: 7 yrs
+  input:
+    1:
+      gt0003|Age Range: local::at0005|≥2 years, use Age in years|
+      gt0007|Age: 7,a
+  expected_output:
+    1:
+      gt0032|Tetanus- diphtheria- acellular pertussis (Tdap ≥7 yrs): Catch-up dose
+      gt0025|Inactivated polio (IPV <18 yrs): Catch-up dose (if 4th dose not yet given)
+      gt0028|Varicella (VAR): Catch-up dose (if 2nd dose not yet given)
+      gt0020|Hep B: Catch-up dose (if 3rd dose not yet given)
+      gt0029|Hep A: Catch-up dose (if 2 dose series not complete)
+      gt0026|Influenza: Annual vaccination (LAIV or IIV - 1 or 2 doses)
+      gt0027|MMR: Catch-up dose (if 2nd dose not yet given)
+- id: 11 yrs
+  input:
+    1:
+      gt0003|Age Range: local::at0005|≥2 years, use Age in years|
+      gt0007|Age: 11,a
+  expected_output:
+    1:
+      gt0031|Meningococcal (MenACWY-D): 1st dose
+      gt0032|Tetanus- diphtheria- acellular pertussis (Tdap ≥7 yrs): Tdap only
+      gt0025|Inactivated polio (IPV <18 yrs): Catch-up dose (if 4th dose not yet given)
+      gt0033|HPV (2vHPV for females only AND 4vHPV- 9vHPV for males and females): 3 dose series
+      gt0028|Varicella (VAR): Catch-up dose (if 2nd dose not yet given)
+      gt0020|Hep B: Catch-up dose (if 3rd dose not yet given)
+      gt0029|Hep A: Catch-up dose (if 2 dose series not complete)
+      gt0026|Influenza: Annual vaccination (LAIV or IIV - 1 doses only)
+      gt0027|MMR: Catch-up dose (if 2nd dose not yet given)
+- id: 13 yrs
+  input:
+    1:
+      gt0003|Age Range: local::at0005|≥2 years, use Age in years|
+      gt0007|Age: 13,a
+  expected_output:
+    1:
+      gt0031|Meningococcal (MenACWY-D): Catch-up dose (if not yet given)
+      gt0025|Inactivated polio (IPV <18 yrs): Catch-up dose (if 4th dose not yet given)
+      gt0033|HPV (2vHPV for females only AND 4vHPV- 9vHPV for males and females): 3 dose series
+      gt0028|Varicella (VAR): Catch-up dose (if 2nd dose not yet given)
+      gt0063|Tdap: Catch-up dose (if not yet given)
+      gt0020|Hep B: Catch-up dose (if 3rd dose not yet given)
+      gt0029|Hep A: Catch-up dose (if 2 dose series not complete)
+      gt0026|Influenza: Annual vaccination (LAIV or IIV - 1 doses only)
+      gt0027|MMR: Catch-up dose (if 2nd dose not yet given)
+- id: 16 yrs
+  input:
+    1:
+      gt0003|Age Range: local::at0005|≥2 years, use Age in years|
+      gt0007|Age: 16,a
+  expected_output:
+    1:
+      gt0031|Meningococcal (MenACWY-D): Booster
+      gt0025|Inactivated polio (IPV <18 yrs): Catch-up dose (if 4th dose not yet given)
+      gt0033|HPV (2vHPV for females only AND 4vHPV- 9vHPV for males and females): 3 dose series
+      gt0028|Varicella (VAR): Catch-up dose (if 2nd dose not yet given)
+      gt0063|Tdap: Catch-up dose (if not yet given)
+      gt0020|Hep B: Catch-up dose (if 3rd dose not yet given)
+      gt0029|Hep A: Catch-up dose (if 2 dose series not complete)
+      gt0026|Influenza: Annual vaccination (LAIV or IIV - 1 doses only)
+      gt0027|MMR: Catch-up dose (if 2nd dose not yet given)
+- id: 19 yrs
+  input:
+    1:
+      gt0003|Age Range: local::at0005|≥2 years, use Age in years|
+      gt0007|Age: 19,a
+  expected_output:
+    1:
+      gt0066|HPV (Female): 3 doses
+      gt0065|Tetanus, diphtheria, pertussis (Td/Tdap): Substitute Tdap for Td once then Td booster every 10 years
+      gt0067|HPV (Male): 3 doses
+      gt0026|Influenza: 1 dose annually
+      gt0027|MMR: 1 or 2 doses depending on indication (if childhood doses not yet given)
+      gt0076|Varicella: 2 doses (if childhood doses not yet given)
+      gt0071|If high risk for any of the following, administer: Pneumococcal 13-valent conjugate (PCV13)- Pneumococcal polysaccharide (PPSV23) (1 or 2 doses dependent on indication)- Hep A (2 or 3 doses dependent on indication)- Hep B (3 doses)- Meningococcal (MenACWY or MPSV4) (1 or more doses dependent on indication)- Meningococcal B (MenB) (2 or 3 doses dependent on vaccine)- H. flu (Hib) (1 or 3 doses dependent on indication)
+- id: 22 yrs
+  input:
+    1:
+      gt0003|Age Range: local::at0005|≥2 years, use Age in years|
+      gt0007|Age: 22,a
+  expected_output:
+    1:
+      gt0066|HPV (Female): 3 doses
+      gt0065|Tetanus, diphtheria, pertussis (Td/Tdap): Substitute Tdap for Td once then Td booster every 10 years
+      gt0026|Influenza: 1 dose annually
+      gt0027|MMR: 1 or 2 doses depending on indication (if childhood doses not yet given)
+      gt0076|Varicella: 2 doses (if childhood doses not yet given)
+      gt0071|If high risk for any of the following, administer: HPV (Male) (3 doses)- Pneumococcal 13-valent conjugate (PCV13)- Pneumococcal polysaccharide (PPSV23)- (1 or 2 doses dependent on indication)- Hep A (2 or 3 doses dependent on indication)- Hep B (3 doses)- Meningococcal (MenACWY or MPSV4) (1 or more doses dependent on indication)- Meningococcal B (MenB) (2 or 3 doses dependent on vaccine)- H. flu (Hib) (1 or 3 doses dependent on indication)
+- id: 27 yrs
+  input:
+    1:
+      gt0003|Age Range: local::at0005|≥2 years, use Age in years|
+      gt0007|Age: 27,a
+  expected_output:
+    1:
+      gt0065|Tetanus, diphtheria, pertussis (Td/Tdap): Substitute Tdap for Td once then Td booster every 10 years
+      gt0026|Influenza: 1 dose annually
+      gt0027|MMR: 1 or 2 doses depending on indication (if childhood doses not yet given)
+      gt0076|Varicella: 2 doses (if childhood doses not yet given)
+      gt0071|If high risk for any of the following, administer: Pneumococcal 13-valent conjugate (PCV13)- Pneumococcal polysaccharide (PPSV23)- (1 or 2 doses dependent on indication)- Hep A (2 or 3 doses dependent on indication)- Hep B (3 doses)- Meningococcal (MenACWY or MPSV4) (1 or more doses dependent on indication)- Meningococcal B (MenB) (2 or 3 doses dependent on vaccine)- H. flu (Hib) (1 or 3 doses dependent on indication)
+- id: 58 yrs
+  input:
+    1:
+      gt0003|Age Range: local::at0005|≥2 years, use Age in years|
+      gt0007|Age: 58,a
+  expected_output:
+    1:
+      gt0065|Tetanus, diphtheria, pertussis (Td/Tdap): Substitute Tdap for Td once then Td booster every 10 years
+      gt0026|Influenza: 1 dose annually
+      gt0076|Varicella: 2 doses (if childhood doses not yet given)
+      gt0071|If high risk for any of the following, administer: Pneumococcal 13-valent conjugate (PCV13)- Pneumococcal polysaccharide (PPSV23)- (1 or 2 doses dependent on indication)- Hep A (2 or 3 doses dependent on indication)- Hep B (3 doses)- Meningococcal (MenACWY or MPSV4) (1 or more doses dependent on indication)- Meningococcal B (MenB) (2 or 3 doses dependent on vaccine)- H. flu (Hib) (1 or 3 doses dependent on indication)
+- id: 60 yrs
+  input:
+    1:
+      gt0003|Age Range: local::at0005|≥2 years, use Age in years|
+      gt0007|Age: 60,a
+  expected_output:
+    1:
+      gt0065|Tetanus, diphtheria, pertussis (Td/Tdap): Substitute Tdap for Td once then Td booster every 10 years
+      gt0068|Zoster: 1 dose (if not yet given)
+      gt0026|Influenza: 1 dose annually
+      gt0076|Varicella: 2 doses (if childhood doses not yet given)
+      gt0071|If high risk for any of the following, administer: Pneumococcal 13-valent conjugate (PCV13)- Pneumococcal polysaccharide (PPSV23)- (1 or 2 doses dependent on indication)- Hep A (2 or 3 doses dependent on indication)- Hep B (3 doses)- Meningococcal (MenACWY or MPSV4) (1 or more doses dependent on indication)- Meningococcal B (MenB) (2 or 3 doses dependent on vaccine)- H. flu (Hib) (1 or 3 doses dependent on indication)
+- id: 65 yrs
+  input:
+    1:
+      gt0003|Age Range: local::at0005|≥2 years, use Age in years|
+      gt0007|Age: 65,a
+  expected_output:
+    1:
+      gt0065|Tetanus, diphtheria, pertussis (Td/Tdap): Substitute Tdap for Td once then Td booster every 10 years
+      gt0068|Zoster: 1 dose (if not yet given)
+      gt0069|Pneumococcal 13-valent conjugate (PCV13): 1 dose
+      gt0070|Pneumococcal polysaccharide (PPSV23): 1 dose
+      gt0026|Influenza: 1 dose annually
+      gt0076|Varicella: 2 doses (if childhood doses not yet given)
+      gt0071|If high risk for any of the following, administer: Hep A (2 or 3 doses)- Hep B (3 doses)- Meningococcal (MenACWY or MPSV4) (1 or more doses)- Meningococcal B (MenB) (2 or 3 doses), H. flu (Hib) (1 or 3 doses)
+- id: Age >100
+  input:
+    1:
+      gt0003|Age Range: local::at0005|≥2 years, use Age in years|
+      gt0007|Age: 110,a
+  expected_output:
+    1:
+      gt0065|Tetanus, diphtheria, pertussis (Td/Tdap): Substitute Tdap for Td once then Td booster every 10 years
+      gt0068|Zoster: 1 dose (if not yet given)
+      gt0069|Pneumococcal 13-valent conjugate (PCV13): 1 dose
+      gt0070|Pneumococcal polysaccharide (PPSV23): 1 dose
+      gt0026|Influenza: 1 dose annually
+      gt0076|Varicella: 2 doses (if childhood doses not yet given)
+      gt0071|If high risk for any of the following, administer: Hep A (2 or 3 doses)- Hep B (3 doses)- Meningococcal (MenACWY or MPSV4) (1 or more doses)- Meningococcal B (MenB) (2 or 3 doses), H. flu (Hib) (1 or 3 doses)
+      gt0072|warning: Age is very high double-check.
+- id: 3 mo
+  input:
+    1:
+      gt0003|Age Range: local::at0006|<2 years, use Age in months|
+      gt0007|Age: 3,mo
+  expected_output:
+    1:
+      gt0023|H. flu (Hib): 1st dose (if not yet given)
+      gt0021|Rotavirus (RV): 1st dose (if not yet given)
+      gt0025|Inactivated polio (IPV <18 yrs): 1st dose (if not yet given)
+      gt0022|DTaP (<7 yrs): 1st dose (if not yet given)
+      gt0020|Hep B: 2nd dose (if not yet given)
+      gt0024|Pneumococcal (PCV13): 1st dose (if not yet given)
+- id: 5 mo
+  input:
+    1:
+      gt0003|Age Range: local::at0006|<2 years, use Age in months|
+      gt0007|Age: 5,mo
+  expected_output:
+    1:
+      gt0023|H. flu (Hib): 2nd dose (if not yet given)
+      gt0021|Rotavirus (RV): 2nd dose (if not yet given)
+      gt0025|Inactivated polio (IPV <18 yrs): 2nd dose (if not yet given)
+      gt0022|DTaP (<7 yrs): 2nd dose (if not yet given)
+      gt0020|Hep B: Catch-up dose (if 2nd dose not yet given)
+      gt0024|Pneumococcal (PCV13): 2nd dose (if not yet given)
+- id: warning Age >=24 in age range<2
+  input:
+    1:
+      gt0003|Age Range: local::at0006|<2 years, use Age in months|
+      gt0007|Age: 25,mo
+  expected_output:
+    1:
+      gt0072|warning: Please enter an appropriate age range.
+- id: warnin age <2 in age range>=2
+  input:
+    1:
+      gt0003|Age Range: local::at0005|≥2 years, use Age in years|
+      gt0007|Age: 1,a
+  expected_output:
+    1:
+      gt0072|warning: Please enter an appropriate age range.

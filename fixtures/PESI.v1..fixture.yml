@@ -1,0 +1,123 @@
+current_datetime: "2019-11-28T00:00:00+01:00"
+guidelines:
+  1: PESI.v1
+test_cases:
+  - id: case_1:Female =Age score 35
+    input:
+      1:
+        gt0003|Birthdate: 1984-02-08T15:15Z
+        gt0004|Gender: local::at0006|Female|
+        gt0006|Cancer (unspecified): 0|local::at0051|No|
+        gt0007|Heart failure (unspecified): 0|local::at0044|No|
+        gt0008|Chronic lung disease: 0|local::at0048|No|
+        gt0010|Rate: 77,/min
+        gt0012|Systolic: 120,mm[Hg]
+        gt0014|Respiration rate: 25,/min
+        gt0016|Temperature: 37,Cel
+        gt0018|spO2: 99,%
+        gt0020|Altered mental status: 0|local::at0031|Absent|
+    expected_output:
+      1:
+        gt0030|Temperature < 36°C: 0|local::at0029|Absent|
+        gt0029|Respiratory rate ≥ 30/min: 0|local::at0027|Absent|
+        gt0022|Age score: 35
+        gt0027|Pulse ≥ 110/min: 0|local::at0023|Absent|
+        gt0033|Total score: 35
+        gt0028|Systolic blood pressure < 100 mmHg: 0|local::at0025|Absent|
+        gt0025|Heart failure (comorbidity): 0|local::at0019|Absent|
+        gt0026|Chronic lung disease (comorbidity): 0|local::at0021|Absent|
+        gt0023|Male sex: 0|local::at0015|Absent|
+        gt0024|Cancer (comorbidity): 0|local::at0017|Absent|
+        gt0032|Arterial oxygen saturation < 90%: 0|local::at0033|Absent|
+        gt0048|Risk class: local::at0003|Class I (very low risk)|
+        gt0049|30-day mortality: local::at0009|0.0 - 1.6%|
+
+  - id: case_2:Male= age score 35+ 10
+    input:
+      1:
+        gt0003|Birthdate: 1984-02-08T15:15Z
+        gt0004|Gender: local::at0005|Male|
+        gt0006|Cancer (unspecified): 0|local::at0051|No|
+        gt0007|Heart failure (unspecified): 0|local::at0044|No|
+        gt0008|Chronic lung disease: 0|local::at0048|No|
+        gt0010|Rate: 77,/min
+        gt0012|Systolic: 120,mm[Hg]
+        gt0014|Respiration rate: 25,/min
+        gt0016|Temperature: 37,Cel
+        gt0018|spO2: 99,%
+        gt0020|Altered mental status: 0|local::at0031|Absent|
+    expected_output:
+      1:
+        gt0030|Temperature < 36°C: 0|local::at0029|Absent|
+        gt0029|Respiratory rate ≥ 30/min: 0|local::at0027|Absent|
+        gt0022|Age score: 35
+        gt0027|Pulse ≥ 110/min: 0|local::at0023|Absent|
+        gt0033|Total score: 45
+        gt0028|Systolic blood pressure < 100 mmHg: 0|local::at0025|Absent|
+        gt0025|Heart failure (comorbidity): 0|local::at0019|Absent|
+        gt0026|Chronic lung disease (comorbidity): 0|local::at0021|Absent|
+        gt0023|Male sex: 10|local::at0016|Present|
+        gt0024|Cancer (comorbidity): 0|local::at0017|Absent|
+        gt0032|Arterial oxygen saturation < 90%: 0|local::at0033|Absent|
+        gt0048|Risk class: local::at0003|Class I (very low risk)|
+        gt0049|30-day mortality: local::at0009|0.0 - 1.6%|
+
+  - id: case_3:Male = age score 35 +10;heart failure+10; chronic lung disease+10; cancer +30
+    input:
+      1:
+        gt0003|Birthdate: 1984-02-08T15:15Z
+        gt0004|Gender: local::at0005|Male|
+        gt0006|Cancer (unspecified): 1|local::at0052|Yes|
+        gt0007|Heart failure (unspecified): 1|local::at0045|Yes|
+        gt0008|Chronic lung disease: 1|local::at0049|Yes|
+        gt0010|Rate: 77,/min
+        gt0012|Systolic: 120,mm[Hg]
+        gt0014|Respiration rate: 25,/min
+        gt0016|Temperature: 37,Cel
+        gt0018|spO2: 99,%
+        gt0020|Altered mental status: 0|local::at0031|Absent|
+    expected_output:
+      1:
+        gt0030|Temperature < 36°C: 0|local::at0029|Absent|
+        gt0029|Respiratory rate ≥ 30/min: 0|local::at0027|Absent|
+        gt0022|Age score: 35
+        gt0027|Pulse ≥ 110/min: 0|local::at0023|Absent|
+        gt0033|Total score: 95
+        gt0028|Systolic blood pressure < 100 mmHg: 0|local::at0025|Absent|
+        gt0025|Heart failure (comorbidity): 10|local::at0020|Present|
+        gt0026|Chronic lung disease (comorbidity): 10|local::at0022|Present|
+        gt0023|Male sex: 10|local::at0016|Present|
+        gt0024|Cancer (comorbidity): 30|local::at0018|Present|
+        gt0032|Arterial oxygen saturation < 90%: 0|local::at0033|Absent|
+        gt0048|Risk class: local::at0005|Class III (intermediate risk)|
+        gt0049|30-day mortality: local::at0011|3.2 - 7.1%|
+
+  - id: case_4:Male =age score 35+10; Pespiratory rate +20; Pules +20; SBP +30; Altered mental status +60; heart failure+10; chronic lung disease+10; cancer +30
+    input:
+      1:
+        gt0003|Birthdate: 1984-02-08T15:15Z
+        gt0004|Gender: local::at0005|Male|
+        gt0006|Cancer (unspecified): 1|local::at0052|Yes|
+        gt0007|Heart failure (unspecified): 1|local::at0045|Yes|
+        gt0008|Chronic lung disease: 1|local::at0049|Yes|
+        gt0010|Rate: 112,/min
+        gt0012|Systolic: 99,mm[Hg]
+        gt0014|Respiration rate: 33,/min
+        gt0016|Temperature: 36,Cel
+        gt0018|spO2: 90,%
+        gt0020|Altered mental status: 60|local::at0032|Present|
+    expected_output:
+      1:
+        gt0030|Temperature < 36°C: 0|local::at0029|Absent|
+        gt0029|Respiratory rate ≥ 30/min: 20|local::at0028|Present|
+        gt0022|Age score: 35
+        gt0027|Pulse ≥ 110/min: 20|local::at0024|Present|
+        gt0033|Total score: 225
+        gt0028|Systolic blood pressure < 100 mmHg: 30|local::at0026|Present|
+        gt0025|Heart failure (comorbidity): 10|local::at0020|Present|
+        gt0026|Chronic lung disease (comorbidity): 10|local::at0022|Present|
+        gt0023|Male sex: 10|local::at0016|Present|
+        gt0024|Cancer (comorbidity): 30|local::at0018|Present|
+        gt0032|Arterial oxygen saturation < 90%: 0|local::at0033|Absent|
+        gt0048|Risk class: local::at0007|Class V (very high risk)|
+        gt0049|30-day mortality: local::at0013|10.0 - 24.5%|

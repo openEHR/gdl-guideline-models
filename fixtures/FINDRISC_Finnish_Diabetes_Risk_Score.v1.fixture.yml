@@ -1,0 +1,202 @@
+guidelines:
+  1: FINDRISC_Finnish_Diabetes_Risk_Score.v1
+test_cases:
+- id: 1. Male score 0
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Age: 25,a
+      gt0006|Body Mass Index: 24,kg/m2
+      gt0008|Waist circumference: 90,cm
+      gt0009|Use of blood pressure medication: 0|local::at0028|No|
+      gt0010|History of high blood glucose: 0|local::at0026|No|
+      gt0011|Physical activity: 0|local::at0024|≥4 hr/week|
+      gt0012|Daily consumption of vegetables, fruits, or berries: 0|local::at0023|Yes|
+      gt0013|Family history of diabetes: 0|local::at0019|No|
+  expected_output:
+    1:
+      gt0042|FINDRISC score interpretation male: local::at0039|Score 0-3. Risk very low. 10-year risk of developing T2DM 0.3% for Men.|
+      gt0020|FINDRSIC total score: 0
+      gt0015|BMI, kg/m²: 0|local::at0030|<25|
+      gt0017|Age, years: 0|local::at0033|<45|
+      gt0019|Waist circumference male: 0|local::at0013|<94 cm (37 in)|
+
+- id: 2. Male score 4-8
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Age: 25,a
+      gt0006|Body Mass Index: 30,kg/m2
+      gt0008|Waist circumference: 90,cm
+      gt0009|Use of blood pressure medication: 2|local::at0029|Yes|
+      gt0010|History of high blood glucose: 0|local::at0026|No|
+      gt0011|Physical activity: 0|local::at0024|≥4 hr/week|
+      gt0012|Daily consumption of vegetables, fruits, or berries: 1|local::at0022|No|
+      gt0013|Family history of diabetes: 0|local::at0019|No|
+  expected_output:
+    1:
+      gt0042|FINDRISC score interpretation male: local::at0040|Score 4-8. Risk low. 10-year risk of developing T2DM 0.8% for Men.|
+      gt0020|FINDRSIC total score: 4
+      gt0015|BMI, kg/m²: 1|local::at0031|>25 to 30|
+      gt0017|Age, years: 0|local::at0033|<45|
+      gt0019|Waist circumference male: 0|local::at0013|<94 cm (37 in)|
+
+- id: 3. Male score 9-12
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Age: 25,a
+      gt0006|Body Mass Index: 30,kg/m2
+      gt0008|Waist circumference: 120,cm
+      gt0009|Use of blood pressure medication: 2|local::at0029|Yes|
+      gt0010|History of high blood glucose: 0|local::at0026|No|
+      gt0011|Physical activity: 0|local::at0024|≥4 hr/week|
+      gt0012|Daily consumption of vegetables, fruits, or berries: 1|local::at0022|No|
+      gt0013|Family history of diabetes: 3|local::at0020|Yes, 2nd degree relative|
+  expected_output:
+    1:
+      gt0042|FINDRISC score interpretation male: local::at0041|Score 9-12. Risk moderate. 10-year risk of developing T2DM 2.6% for Men. Guidelines vary by setting, but consider formal screening with HgbA1c for moderate or greater risk patients, and addressing modifiable risk factors with all patients.|
+      gt0020|FINDRSIC total score: 11
+      gt0015|BMI, kg/m²: 1|local::at0031|>25 to 30|
+      gt0017|Age, years: 0|local::at0033|<45|
+      gt0019|Waist circumference male: 4|local::at0015|≥102 cm (≥40 in)|
+
+- id: 4. Male score 13-20
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Age: 25,a
+      gt0006|Body Mass Index: 30,kg/m2
+      gt0008|Waist circumference: 120,cm
+      gt0009|Use of blood pressure medication: 2|local::at0029|Yes|
+      gt0010|History of high blood glucose: 5|local::at0027|Yes|
+      gt0011|Physical activity: 0|local::at0024|≥4 hr/week|
+      gt0012|Daily consumption of vegetables, fruits, or berries: 1|local::at0022|No|
+      gt0013|Family history of diabetes: 3|local::at0020|Yes, 2nd degree relative|
+  expected_output:
+    1:
+      gt0042|FINDRISC score interpretation male: local::at0042|Score 13-20. Risk high. 10-year risk of developing T2DM 23.1% for Men. Guidelines vary by setting, but consider formal screening with HgbA1c for moderate or greater risk patients, and addressing modifiable risk factors with all patients.|
+      gt0020|FINDRSIC total score: 16
+      gt0015|BMI, kg/m²: 1|local::at0031|>25 to 30|
+      gt0017|Age, years: 0|local::at0033|<45|
+      gt0019|Waist circumference male: 4|local::at0015|≥102 cm (≥40 in)|
+
+- id: 5. Male score >21
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Age: 40,a
+      gt0006|Body Mass Index: 35,kg/m2
+      gt0008|Waist circumference: 120,cm
+      gt0009|Use of blood pressure medication: 2|local::at0029|Yes|
+      gt0010|History of high blood glucose: 5|local::at0027|Yes|
+      gt0011|Physical activity: 2|local::at0025|<4 hr/week|
+      gt0012|Daily consumption of vegetables, fruits, or berries: 1|local::at0022|No|
+      gt0013|Family history of diabetes: 5|local::at0021|Yes, 1st degree relative|
+  expected_output:
+    1:
+      gt0042|FINDRISC score interpretation male: local::at0043|Score >21. Risk very high. 10-year risk of developing T2DM ≈50% for Men. Guidelines vary by setting, but consider formal screening with HgbA1c for moderate or greater risk patients, and addressing modifiable risk factors with all patients.|
+      gt0020|FINDRSIC total score: 22
+      gt0015|BMI, kg/m²: 3|local::at0032|>30|
+      gt0017|Age, years: 0|local::at0033|<45|
+      gt0019|Waist circumference male: 4|local::at0015|≥102 cm (≥40 in)|
+
+- id: 6. Female score 0
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Age: 25,a
+      gt0006|Body Mass Index: 24,kg/m2
+      gt0008|Waist circumference: 70,cm
+      gt0009|Use of blood pressure medication: 0|local::at0028|No|
+      gt0010|History of high blood glucose: 0|local::at0026|No|
+      gt0011|Physical activity: 0|local::at0024|≥4 hr/week|
+      gt0012|Daily consumption of vegetables, fruits, or berries: 0|local::at0023|Yes|
+      gt0013|Family history of diabetes: 0|local::at0019|No|
+  expected_output:
+    1:
+      gt0020|FINDRSIC total score: 0
+      gt0015|BMI, kg/m²: 0|local::at0030|<25|
+      gt0017|Age, years: 0|local::at0033|<45|
+      gt0043|FINDRISC score interpretation female: local::at0046|Score 0-3. Risk very low. 10-year risk of developing T2DM 0.1% for Women.|
+      gt0018|Waist circumference female: 0|local::at0016|<80 cm (31 in)|
+
+- id: 7. Female score 4-8
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Age: 25,a
+      gt0006|Body Mass Index: 24,kg/m2
+      gt0008|Waist circumference: 90,cm
+      gt0009|Use of blood pressure medication: 0|local::at0028|No|
+      gt0010|History of high blood glucose: 0|local::at0026|No|
+      gt0011|Physical activity: 0|local::at0024|≥4 hr/week|
+      gt0012|Daily consumption of vegetables, fruits, or berries: 0|local::at0023|Yes|
+      gt0013|Family history of diabetes: 3|local::at0020|Yes, 2nd degree relative|
+  expected_output:
+    1:
+      gt0020|FINDRSIC total score: 7
+      gt0015|BMI, kg/m²: 0|local::at0030|<25|
+      gt0017|Age, years: 0|local::at0033|<45|
+      gt0043|FINDRISC score interpretation female: local::at0047|Score 4-8. Risk low. 10-year risk of developing T2DM 0.4% for Women. |
+      gt0018|Waist circumference female: 4|local::at0018|≥88 cm (≥35 in)|
+
+- id: 8. Female score 9-12
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Age: 50,a
+      gt0006|Body Mass Index: 28,kg/m2
+      gt0008|Waist circumference: 100,cm
+      gt0009|Use of blood pressure medication: 0|local::at0028|No|
+      gt0010|History of high blood glucose: 0|local::at0026|No|
+      gt0011|Physical activity: 0|local::at0024|≥4 hr/week|
+      gt0012|Daily consumption of vegetables, fruits, or berries: 0|local::at0023|Yes|
+      gt0013|Family history of diabetes: 5|local::at0021|Yes, 1st degree relative|
+  expected_output:
+    1:
+      gt0020|FINDRSIC total score: 12
+      gt0015|BMI, kg/m²: 1|local::at0031|>25 to 30|
+      gt0017|Age, years: 2|local::at0034|45-54|
+      gt0043|FINDRISC score interpretation female: local::at0048|Score 9-12. Risk moderate. 10-year risk of developing T2DM 2.2% for Women. Guidelines vary by setting, but consider formal screening with HgbA1c for moderate or greater risk patients, and addressing modifiable risk factors with all patients.|
+      gt0018|Waist circumference female: 4|local::at0018|≥88 cm (≥35 in)|
+
+- id: 9. Female score 13-20
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Age: 50,a
+      gt0006|Body Mass Index: 28,kg/m2
+      gt0008|Waist circumference: 100,cm
+      gt0009|Use of blood pressure medication: 0|local::at0028|No|
+      gt0010|History of high blood glucose: 5|local::at0027|Yes|
+      gt0011|Physical activity: 2|local::at0025|<4 hr/week|
+      gt0012|Daily consumption of vegetables, fruits, or berries: 0|local::at0023|Yes|
+      gt0013|Family history of diabetes: 5|local::at0021|Yes, 1st degree relative|
+  expected_output:
+    1:
+      gt0020|FINDRSIC total score: 19
+      gt0015|BMI, kg/m²: 1|local::at0031|>25 to 30|
+      gt0017|Age, years: 2|local::at0034|45-54|
+      gt0043|FINDRISC score interpretation female: local::at0049|Score 13-20. Risk high. 10-year risk of developing T2DM 14.1% for Women. Guidelines vary by setting, but consider formal screening with HgbA1c for moderate or greater risk patients, and addressing modifiable risk factors with all patients.|
+      gt0018|Waist circumference female: 4|local::at0018|≥88 cm (≥35 in)|
+
+- id: 10. Female score >21
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Age: 50,a
+      gt0006|Body Mass Index: 35,kg/m2
+      gt0008|Waist circumference: 110,cm
+      gt0009|Use of blood pressure medication: 2|local::at0029|Yes|
+      gt0010|History of high blood glucose: 5|local::at0027|Yes|
+      gt0011|Physical activity: 2|local::at0025|<4 hr/week|
+      gt0012|Daily consumption of vegetables, fruits, or berries: 1|local::at0022|No|
+      gt0013|Family history of diabetes: 5|local::at0021|Yes, 1st degree relative|
+  expected_output:
+    1:
+      gt0020|FINDRSIC total score: 24
+      gt0015|BMI, kg/m²: 3|local::at0032|>30|
+      gt0017|Age, years: 2|local::at0034|45-54|
+      gt0043|FINDRISC score interpretation female: local::at0050|Score >21. Risk very high. 10-year risk of developing T2DM ≈50% for Women. Guidelines vary by setting, but consider formal screening with HgbA1c for moderate or greater risk patients, and addressing modifiable risk factors with all patients.|
+      gt0018|Waist circumference female: 4|local::at0018|≥88 cm (≥35 in)|

@@ -1,0 +1,71 @@
+guidelines:
+  1: PLASMIC_Score_for_TTP.v1
+test_cases:
+- id: High Risk group
+  input:
+    1:
+      gt0005|Platelet count: 40,10*9/l
+      gt0023|Mean cell volume (MCV): 70,fl
+      gt0028|Reticulocyte count: 3,%
+      gt0007|Creatinine: 150,umol/l
+      gt0009|INR: 1,1
+      gt0011|Indirect Bilirubin: 35,umol/l
+      gt0025|Heptoblobin detectable?: local::at0037|No|
+      gt0030|Active cancer (Treated for cancer within the past year): 1|local::at0009|No|
+      gt0031|History of solid-organ or stem-cell transplant: 1|local::at0012|No|
+  expected_output:
+    1:
+      gt0020|Risk group: local::at0026|High|
+      gt0014|Hemolysis. Reticulocyte count >2.5%, haptoglobin undetectable, or indirect bilirubin >2.0 mg/dL (34.2 µmol/L): 1|local::at0007|Yes|
+      gt0013|Platelet count <30x10^9/L: 0|local::at0003|No|
+      gt0017|MCV <9.0x10^-14 L (<90fL): 1|local::at0016|Yes|
+      gt0021|Risk of severe ADAMST13 deficiency: local::at0030|72%|
+      gt0018|INR <1.5: 1|local::at0022|Yes|
+      gt0019|Creatinine <2.0 mg/dl (176,8 umol/L): 1|local::at0020|Yes|
+      gt0022|PLASMIC Score: 6
+
+- id: Intermediate Risk group
+  input:
+    1:
+      gt0005|Platelet count: 40,10*9/l
+      gt0023|Mean cell volume (MCV): 70,fl
+      gt0028|Reticulocyte count: 2,%
+      gt0007|Creatinine: 150,umol/l
+      gt0009|INR: 1,1
+      gt0011|Indirect Bilirubin: 40,umol/l
+      gt0025|Heptoblobin detectable?: local::at0036|Yes|
+      gt0030|Active cancer (Treated for cancer within the past year): 1|local::at0009|No|
+      gt0031|History of solid-organ or stem-cell transplant: 1|local::at0012|No|
+  expected_output:
+    1:
+      gt0020|Risk group: local::at0025|Intermediate|
+      gt0014|Hemolysis. Reticulocyte count >2.5%, haptoglobin undetectable, or indirect bilirubin >2.0 mg/dL (34.2 µmol/L): 0|local::at0006|No|
+      gt0013|Platelet count <30x10^9/L: 0|local::at0003|No|
+      gt0017|MCV <9.0x10^-14 L (<90fL): 1|local::at0016|Yes|
+      gt0021|Risk of severe ADAMST13 deficiency: local::at0029|6%|
+      gt0018|INR <1.5: 1|local::at0022|Yes|
+      gt0019|Creatinine <2.0 mg/dl (176,8 umol/L): 1|local::at0020|Yes|
+      gt0022|PLASMIC Score: 5
+
+- id: Low Risk group
+  input:
+    1:
+      gt0005|Platelet count: 25,10*9/l
+      gt0023|Mean cell volume (MCV): 70,fl
+      gt0028|Reticulocyte count: 2,%
+      gt0007|Creatinine: 150,umol/l
+      gt0009|INR: 2,1
+      gt0011|Indirect Bilirubin: 40,umol/l
+      gt0025|Heptoblobin detectable?: local::at0036|Yes|
+      gt0030|Active cancer (Treated for cancer within the past year): 1|local::at0009|No|
+      gt0031|History of solid-organ or stem-cell transplant: 0|local::at0013|Yes|
+  expected_output:
+    1:
+      gt0020|Risk group: local::at0024|Low|
+      gt0014|Hemolysis. Reticulocyte count >2.5%, haptoglobin undetectable, or indirect bilirubin >2.0 mg/dL (34.2 µmol/L): 0|local::at0006|No|
+      gt0013|Platelet count <30x10^9/L: 1|local::at0004|Yes|
+      gt0017|MCV <9.0x10^-14 L (<90fL): 1|local::at0016|Yes|
+      gt0021|Risk of severe ADAMST13 deficiency: local::at0028|0%|
+      gt0018|INR <1.5: 0|local::at0021|No|
+      gt0019|Creatinine <2.0 mg/dl (176,8 umol/L): 1|local::at0020|Yes|
+      gt0022|PLASMIC Score: 4

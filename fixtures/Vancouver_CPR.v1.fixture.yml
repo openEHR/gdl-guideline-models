@@ -1,0 +1,109 @@
+guidelines:
+  1: Vancouver_CPR.v1
+test_cases:
+- id: case_1:Age<50 
+  input:
+    1:
+      gt0003|Birthdate: 1998-06-09T16:16Z
+      gt0007|Abnormal intial EKG?: 0|local::at0020|False|
+      gt0008|Positive troponin at 2 hours?: 0|local::at0022|False|
+      gt0009|Prior ACS (Acute Coronary Syndrome) or nitrate use?: 0|local::at0024|False|
+      gt0010|Does palpation reproduce pain?: 0|local::at0026|False|
+      gt0011|Does pain radiate to neck, jaw, or left arm: 0|local::at0030|False|
+  expected_output:
+    1:
+      gt0005|Age: 21,a
+      gt0014|Step 1 result: 0|local::at0016|Go to step 2|
+      gt0015|Step 2 result: 1|local::at0019|Go to 3|
+
+- id: case_2:Age <50 
+  input:
+    1:
+      gt0003|Birthdate: 1998-06-09T16:16Z
+      gt0007|Abnormal intial EKG?: 1|local::at0021|True|
+      gt0008|Positive troponin at 2 hours?: 1|local::at0023|True|
+      gt0009|Prior ACS (Acute Coronary Syndrome) or nitrate use?: 1|local::at0025|True|
+      gt0010|Does palpation reproduce pain?: 1|local::at0027|True|
+      gt0011|Does pain radiate to neck, jaw, or left arm: 1|local::at0031|True|
+  expected_output:
+    1:
+      gt0005|Age: 21,a
+      gt0014|Step 1 result: 1|local::at0017|Not safe to discharge|
+      gt0016|Step 3 result: 1|local::at0015|Not safe to discharge|
+      gt0015|Step 2 result: 0|local::at0018|Safe to discharge|
+
+- id: case_3:Age>50 
+  input:
+    1:
+      gt0003|Birthdate: 1963-06-11T16:16Z
+      gt0007|Abnormal intial EKG?: 1|local::at0021|True|
+      gt0008|Positive troponin at 2 hours?: 1|local::at0023|True|
+      gt0009|Prior ACS (Acute Coronary Syndrome) or nitrate use?: 1|local::at0025|True|
+      gt0010|Does palpation reproduce pain?: 1|local::at0027|True|
+      gt0011|Does pain radiate to neck, jaw, or left arm: 1|local::at0031|True|
+  expected_output:
+    1:
+      gt0005|Age: 56,a
+      gt0014|Step 1 result: 1|local::at0017|Not safe to discharge|
+      gt0016|Step 3 result: 1|local::at0015|Not safe to discharge|
+      gt0015|Step 2 result: 0|local::at0018|Safe to discharge|
+
+- id: case_4:Age>50 
+  input:
+    1:
+      gt0003|Birthdate: 1963-06-11T16:16Z
+      gt0007|Abnormal intial EKG?: 0|local::at0020|False|
+      gt0008|Positive troponin at 2 hours?: 0|local::at0022|False|
+      gt0009|Prior ACS (Acute Coronary Syndrome) or nitrate use?: 0|local::at0024|False|
+      gt0010|Does palpation reproduce pain?: 1|local::at0027|True|
+      gt0011|Does pain radiate to neck, jaw, or left arm: 1|local::at0031|True|
+  expected_output:
+    1:
+      gt0005|Age: 56,a
+      gt0014|Step 1 result: 0|local::at0016|Go to step 2|
+      gt0016|Step 3 result: 1|local::at0015|Not safe to discharge|
+      gt0015|Step 2 result: 0|local::at0018|Safe to discharge|
+
+- id: case_5:Age>50 
+  input:
+    1:
+      gt0003|Birthdate: 1963-06-11T16:16Z
+      gt0007|Abnormal intial EKG?: 1|local::at0021|True|
+      gt0008|Positive troponin at 2 hours?: 1|local::at0023|True|
+      gt0009|Prior ACS (Acute Coronary Syndrome) or nitrate use?: 1|local::at0025|True|
+      gt0010|Does palpation reproduce pain?: 0|local::at0026|False|
+      gt0011|Does pain radiate to neck, jaw, or left arm: 0|local::at0030|False|
+  expected_output:
+    1:
+      gt0005|Age: 56,a
+      gt0014|Step 1 result: 1|local::at0017|Not safe to discharge|
+      gt0015|Step 2 result: 1|local::at0019|Go to 3|
+
+- id: case_6:Age >50 
+  input:
+    1:
+      gt0003|Birthdate: 1963-06-11T16:16Z
+      gt0007|Abnormal intial EKG?: 1|local::at0021|True|
+      gt0008|Positive troponin at 2 hours?: 0|local::at0022|False|
+      gt0009|Prior ACS (Acute Coronary Syndrome) or nitrate use?: 0|local::at0024|False|
+      gt0010|Does palpation reproduce pain?: 0|local::at0026|False|
+      gt0011|Does pain radiate to neck, jaw, or left arm: 0|local::at0030|False|
+  expected_output:
+    1:
+      gt0005|Age: 56,a
+      gt0014|Step 1 result: 1|local::at0017|Not safe to discharge|
+      gt0015|Step 2 result: 1|local::at0019|Go to 3|
+
+- id: case_7:Age <50 
+  input:
+    1:
+      gt0003|Birthdate: 1976-06-16T16:16Z
+      gt0007|Abnormal intial EKG?: 1|local::at0021|True|
+      gt0008|Positive troponin at 2 hours?: 0|local::at0022|False|
+      gt0009|Prior ACS (Acute Coronary Syndrome) or nitrate use?: 0|local::at0024|False|
+      gt0010|Does palpation reproduce pain?: 0|local::at0026|False|
+      gt0011|Does pain radiate to neck, jaw, or left arm: 0|local::at0030|False|
+  expected_output:
+    1:
+      gt0005|Age: 43,a
+      gt0014|Step 1 result: 1|local::at0017|Not safe to discharge|

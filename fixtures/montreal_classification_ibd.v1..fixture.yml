@@ -1,0 +1,157 @@
+guidelines:
+  1: montreal_classification_ibd.v1
+test_cases:
+- id: Crohn's disease A1L1B1
+  input:
+    1:
+      gt0003|Type of IBD: local::at0016|Crohn's disease|
+      'gt0004|If Crohn''s disease choose : Age at diagnosis, years (A)': local::at0018|≤16 |
+      gt0005|If Crohn's disease choose:Location (L): local::at0021|Terminal ileum|
+      gt0006|if Crohn's disease choose:Behavior (B): local::at0028|Nonstricturing, nonpenetrating|
+  expected_output:
+    1:
+      gt0015|Type of IBD: local::at0036|Crohn's disease|
+      gt0011|Location (L): local::at0013|L1|
+      gt0012|Behavior (B): local::at0018|B1|
+      gt0010|Age at diagnosis, years (A): local::at0009|A1|
+- id: Crohn's disease A2L2B2
+  input:
+    1:
+      gt0003|Type of IBD: local::at0016|Crohn's disease|
+      'gt0004|If Crohn''s disease choose : Age at diagnosis, years (A)': local::at0019|17-40|
+      gt0005|If Crohn's disease choose:Location (L): local::at0022|Colon|
+      gt0006|if Crohn's disease choose:Behavior (B): local::at0029|Stricturing|
+  expected_output:
+    1:
+      gt0015|Type of IBD: local::at0036|Crohn's disease|
+      gt0011|Location (L): local::at0014|L2|
+      gt0012|Behavior (B): local::at0019|B2|
+      gt0010|Age at diagnosis, years (A): local::at0010|A2|
+- id: Crohn's disease A3L3B3
+  input:
+    1:
+      gt0003|Type of IBD: local::at0016|Crohn's disease|
+      'gt0004|If Crohn''s disease choose : Age at diagnosis, years (A)': local::at0020|>40|
+      gt0005|If Crohn's disease choose:Location (L): local::at0023|Ileocolon |
+      gt0006|if Crohn's disease choose:Behavior (B): local::at0030|Penetrating |
+  expected_output:
+    1:
+      gt0015|Type of IBD: local::at0036|Crohn's disease|
+      gt0011|Location (L): local::at0015|L3|
+      gt0012|Behavior (B): local::at0020|B3|
+      gt0010|Age at diagnosis, years (A): local::at0011|A3|
+- id: Crohn's disease A3L4B1p
+  input:
+    1:
+      gt0003|Type of IBD: local::at0016|Crohn's disease|
+      'gt0004|If Crohn''s disease choose : Age at diagnosis, years (A)': local::at0020|>40|
+      gt0005|If Crohn's disease choose:Location (L): local::at0024|Upper GI |
+      gt0006|if Crohn's disease choose:Behavior (B): local::at0031|Nonstricturing, nonpenetrating with perianal disease |
+  expected_output:
+    1:
+      gt0015|Type of IBD: local::at0036|Crohn's disease|
+      gt0011|Location (L): local::at0016|L4|
+      gt0012|Behavior (B): local::at0021|B1p|
+      gt0010|Age at diagnosis, years (A): local::at0011|A3|
+- id: Crohn's disease A3(L1+L4)B2p
+  input:
+    1:
+      gt0003|Type of IBD: local::at0016|Crohn's disease|
+      'gt0004|If Crohn''s disease choose : Age at diagnosis, years (A)': local::at0020|>40|
+      gt0005|If Crohn's disease choose:Location (L): local::at0025|Terminal ileum and upper GI |
+      gt0006|if Crohn's disease choose:Behavior (B): local::at0032|Stricturing with perianal disease|
+  expected_output:
+    1:
+      gt0015|Type of IBD: local::at0036|Crohn's disease|
+      gt0011|Location (L): local::at0038|(L1+L4)|
+      gt0012|Behavior (B): local::at0022|B2p|
+      gt0010|Age at diagnosis, years (A): local::at0011|A3|
+- id: Crohn's disease A3(L2+L4)B3p
+  input:
+    1:
+      gt0003|Type of IBD: local::at0016|Crohn's disease|
+      'gt0004|If Crohn''s disease choose : Age at diagnosis, years (A)': local::at0020|>40|
+      gt0005|If Crohn's disease choose:Location (L): local::at0026|Colon and upper GI |
+      gt0006|if Crohn's disease choose:Behavior (B): local::at0033|Penetrating with perianal disease|
+  expected_output:
+    1:
+      gt0015|Type of IBD: local::at0036|Crohn's disease|
+      gt0011|Location (L): local::at0039|(L2+L4)|
+      gt0012|Behavior (B): local::at0023|B3p|
+      gt0010|Age at diagnosis, years (A): local::at0011|A3|
+- id: Crohn's disease A2(L3+L4)B1
+  input:
+    1:
+      gt0003|Type of IBD: local::at0016|Crohn's disease|
+      'gt0004|If Crohn''s disease choose : Age at diagnosis, years (A)': local::at0019|17-40|
+      gt0005|If Crohn's disease choose:Location (L): local::at0027|Ileocolon and upper GI |
+      gt0006|if Crohn's disease choose:Behavior (B): local::at0028|Nonstricturing, nonpenetrating|
+  expected_output:
+    1:
+      gt0015|Type of IBD: local::at0036|Crohn's disease|
+      gt0011|Location (L): local::at0040|(L3+L4)|
+      gt0012|Behavior (B): local::at0018|B1|
+      gt0010|Age at diagnosis, years (A): local::at0010|A2|
+- id: Ulcerative colitis E1S0
+  input:
+    1:
+      gt0003|Type of IBD: local::at0017|Ulcerative colitis|
+      'gt0008|If Ulcerative colitis choose: Severity (S)': local::at0037|UC in clinical remission, no symptoms of UC|
+      'gt0044|If Ulcerative colitis choose: Extent (E)': local::at0034|Ulcerative proctitis, involvement limited to the rectum (i.e., proximal extent of inflammation is distal to the rectosigmoid junction) |
+  expected_output:
+    1:
+      gt0015|Type of IBD: local::at0037|Ulcerative colitis|
+      gt0014|Severity (S): local::at0041|S0|
+      gt0013|Extent (E): local::at0029|E1|
+- id: Ulcerative colitis E2S1
+  input:
+    1:
+      gt0003|Type of IBD: local::at0017|Ulcerative colitis|
+      'gt0008|If Ulcerative colitis choose: Severity (S)': local::at0038|Mild UC, ≤4 bloody stools daily, lack of fever, pulse <90 bpm, hemoglobin ≥10.5 g/dL (105 g/L), erythrocyte sedimentation rate <30 mm/hr |
+      'gt0044|If Ulcerative colitis choose: Extent (E)': local::at0035|Left sided UC (also known as distal UC), involvement limited to the portion of the colorectum distal to the splenic flexure|
+  expected_output:
+    1:
+      gt0015|Type of IBD: local::at0037|Ulcerative colitis|
+      gt0014|Severity (S): local::at0032|S1|
+      gt0013|Extent (E): local::at0030|E2|
+- id: Ulcerative colitis E3S2
+  input:
+    1:
+      gt0003|Type of IBD: local::at0017|Ulcerative colitis|
+      'gt0008|If Ulcerative colitis choose: Severity (S)': local::at0039|Moderate UC , >4-5 stools daily but with minimal signs of systemic toxicity|
+      'gt0044|If Ulcerative colitis choose: Extent (E)': local::at0036|Extensive UC (also known as pancolitis), involvement extends proximal to the splenic flexure |
+  expected_output:
+    1:
+      gt0015|Type of IBD: local::at0037|Ulcerative colitis|
+      gt0014|Severity (S): local::at0033|S2|
+      gt0013|Extent (E): local::at0031|E3|
+- id: Ulcerative colitis E3S3
+  input:
+    1:
+      gt0003|Type of IBD: local::at0017|Ulcerative colitis|
+      'gt0008|If Ulcerative colitis choose: Severity (S)': local::at0040|Severe UC , ≥6 bloody stools daily, pulse ≥90 bpm, temperature ≥99.5°F (37.5°C), hemoglobin <10.5 g/dL (105 g/L), and erythrocyte sedimentation rate ≥30 mm/hr|
+      'gt0044|If Ulcerative colitis choose: Extent (E)': local::at0036|Extensive UC (also known as pancolitis), involvement extends proximal to the splenic flexure |
+  expected_output:
+    1:
+      gt0015|Type of IBD: local::at0037|Ulcerative colitis|
+      gt0014|Severity (S): local::at0034|S3|
+      gt0013|Extent (E): local::at0031|E3|
+- id: Crohn's disease and ulcerative colitis criteria
+  input:
+    1:
+      gt0003|Type of IBD: local::at0016|Crohn's disease|
+      'gt0008|If Ulcerative colitis choose: Severity (S)': local::at0037|UC in clinical remission, no symptoms of UC|
+      'gt0044|If Ulcerative colitis choose: Extent (E)': local::at0036|Extensive UC (also known as pancolitis), involvement extends proximal to the splenic flexure |
+  expected_output:
+    1:
+      gt0015|Type of IBD: local::at0036|Crohn's disease|
+- id: Ulcerative colitis and Crohn's disease criteria
+  input:
+    1:
+      gt0003|Type of IBD: local::at0017|Ulcerative colitis|
+      'gt0004|If Crohn''s disease choose : Age at diagnosis, years (A)': local::at0018|≤16 |
+      gt0005|If Crohn's disease choose:Location (L): local::at0025|Terminal ileum and upper GI |
+      gt0006|if Crohn's disease choose:Behavior (B): local::at0028|Nonstricturing, nonpenetrating|
+  expected_output:
+    1:
+      gt0015|Type of IBD: local::at0037|Ulcerative colitis|

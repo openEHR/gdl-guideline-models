@@ -1,0 +1,99 @@
+guidelines:
+  1: R-ISS_calculator.v1
+test_cases:
+  - id: ISS I
+    input:
+      1:
+        gt0003|Serum β2 microglobulin: local::at0005|<3.5 mg/L|
+        gt0004|Serum albumin: local::at0010|≥3.5 g/dL|
+        gt0005|CA by iFISH: local::at0.2|Standard risk|
+        gt0006|LDH: local::at0.5|Normal|
+    expected_output:
+      1:
+        gt0009|R-ISS Stage: local::at0.8|R-ISS I|
+        gt0008|ISS stage: local::at0012|ISS I|
+        gt0018|Median progression-free survival: 66 months median progression-free survival
+  - id: ISS II case 1
+    input:
+      1:
+        gt0003|Serum β2 microglobulin: local::at0005|<3.5 mg/L|
+        gt0004|Serum albumin: local::at0009|<3.5 g/dL|
+        gt0005|CA by iFISH: local::at0.2|Standard risk|
+        gt0006|LDH: local::at0.5|Normal|
+    expected_output:
+      1:
+        gt0009|R-ISS Stage: local::at0.9|R-ISS II|
+        gt0008|ISS stage: local::at0013|ISS II|
+        gt0018|Median progression-free survival: 42 months median progression-free survival
+  - id: ISS II case 2
+    input:
+      1:
+        gt0003|Serum β2 microglobulin: local::at0006|3.5-5.4 mg/L|
+        gt0004|Serum albumin: local::at0010|≥3.5 g/dL|
+        gt0005|CA by iFISH: local::at0.2|Standard risk|
+        gt0006|LDH: local::at0.5|Normal|
+    expected_output:
+      1:
+        gt0009|R-ISS Stage: local::at0.9|R-ISS II|
+        gt0008|ISS stage: local::at0013|ISS II|
+        gt0018|Median progression-free survival: 42 months median progression-free survival
+  - id: ISS II case 3
+    input:
+      1:
+        gt0003|Serum β2 microglobulin: local::at0006|3.5-5.4 mg/L|
+        gt0004|Serum albumin: local::at0009|<3.5 g/dL|
+        gt0005|CA by iFISH: local::at0.2|Standard risk|
+        gt0006|LDH: local::at0.5|Normal|
+    expected_output:
+      1:
+        gt0009|R-ISS Stage: local::at0.9|R-ISS II|
+        gt0008|ISS stage: local::at0013|ISS II|
+        gt0018|Median progression-free survival: 42 months median progression-free survival
+  - id: ISS III case 1
+    input:
+      1:
+        gt0003|Serum β2 microglobulin: local::at0007|>5.4 mg/L|
+        gt0004|Serum albumin: local::at0010|≥3.5 g/dL|
+        gt0005|CA by iFISH: local::at0.2|Standard risk|
+        gt0006|LDH: local::at0.5|Normal|
+    expected_output:
+      1:
+        gt0009|R-ISS Stage: local::at0.9|R-ISS II|
+        gt0008|ISS stage: local::at0014|ISS III|
+        gt0018|Median progression-free survival: 42 months median progression-free survival
+  - id: ISS III case 2
+    input:
+      1:
+        gt0003|Serum β2 microglobulin: local::at0007|>5.4 mg/L|
+        gt0004|Serum albumin: local::at0009|<3.5 g/dL|
+        gt0005|CA by iFISH: local::at0.2|Standard risk|
+        gt0006|LDH: local::at0.5|Normal|
+    expected_output:
+      1:
+        gt0009|R-ISS Stage: local::at0.9|R-ISS II|
+        gt0008|ISS stage: local::at0014|ISS III|
+        gt0018|Median progression-free survival: 42 months median progression-free survival
+  - id: R-ISS III
+    input:
+      1:
+        gt0003|Serum β2 microglobulin: local::at0007|>5.4 mg/L|
+        gt0004|Serum albumin: local::at0009|<3.5 g/dL|
+        gt0005|CA by iFISH: local::at0.2|Standard risk|
+        gt0006|LDH: local::at0.6|High|
+    expected_output:
+      1:
+        gt0009|R-ISS Stage: local::at0.10|R-ISS III|
+        gt0008|ISS stage: local::at0014|ISS III|
+        gt0018|Median progression-free survival: 29 months median progression-free survival
+  - id: R-ISS II
+    input:
+      1:
+        gt0003|Serum β2 microglobulin: local::at0005|<3.5 mg/L|
+        gt0004|Serum albumin: local::at0010|≥3.5 g/dL|
+        gt0005|CA by iFISH: local::at0.2|Standard risk|
+        gt0006|LDH: local::at0.6|High|
+    expected_output:
+      1:
+        gt0009|R-ISS Stage: local::at0.9|R-ISS II|
+        gt0008|ISS stage: local::at0012|ISS I|
+        gt0018|Median progression-free survival: 42 months median progression-free survival

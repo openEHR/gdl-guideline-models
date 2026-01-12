@@ -1,0 +1,97 @@
+guidelines:
+  1: Webster_Rating_Scale_for_Parkinsons_Disease_guideline.v1
+test_cases:
+- id: Severe 25
+  input:
+    1:
+      gt0003|Bradykinesia of hands: 3|local::at0009|Severe slowing of supination-pronation rate; unable to write or button clothes; marked difficulty in handling utensils|
+      gt0004|Rigidity: 3|local::at0014|Severe rigidity (neck and shoulders); resting rigidity cannot be reversed by meds|
+      gt0005|Posture: 0|local::at0016|Normal posture; head flexed forward <4”|
+      gt0006|Upper extremity swing: 3|local::at0024|Both arms fail to swing|
+      gt0007|Gait: 3|local::at0029|Onset of shuffling gait; steps <3”; occasional stuttering-type or blocking gait; walks on toes; turns around very slowly|
+      gt0008|Tremor: 3|local::at0034|Tremor envelope >4”; constant severe tremor; persistent while awake unless pure cerebellar type; writing and feeding self are impossible|
+      gt0010|Facies: 1|local::at0037|Detectable immobility; mouth closed; beginning anxiety/depression features|
+      gt0011|Seborrhea: 3|local::at0044|Marked seborrhea, entire face and head covered by thick secretions|
+      gt0012|Speech: 3|local::at0049|Marked harshness/weakness, very difficult to hear and understand|
+      gt0013|Self-care: 3|local::at0054|Continuously disabled; unable to dress/feed self or walk alone|
+  expected_output:
+    1:
+      gt0015|score: 25
+      gt0017|Interpretation: local::at0008|Severe or advanced|
+- id: severe 21
+  input:
+    1:
+      gt0003|Bradykinesia of hands: 3|local::at0009|Severe slowing of supination-pronation rate; unable to write or button clothes; marked difficulty in handling utensils|
+      gt0004|Rigidity: 1|local::at0012|Detectable rigidity in neck and shoulders; activation phenomenon present; mild negative resting arm rigidity (one or both)|
+      gt0005|Posture: 3|local::at0019|Onset of simian posture; head flexed forward >6”; hands elevated above waist (one or both); sharp flexion of hands; beginning interphalangeal extension; beginning flexion of knees|
+      gt0006|Upper extremity swing: 2|local::at0023|One arm fails to swing|
+      gt0007|Gait: 2|local::at0028|Stride moderately shortened to 6-12”; both heels beginning to strike floor forcefully|
+      gt0008|Tremor: 2|local::at0033|Maximum tremor envelope fails to exceed 4”;. severe but not constant tremor; patient retains some control of hands|
+      gt0010|Facies: 2|local::at0038|Moderate immobility; emotion breaks through at markedly increased threshold; lips parted some of the time; moderate appearance of anxiety or depression; drooling may be present|
+      gt0011|Seborrhea: 2|local::at0043|Obvious oiliness present, secretion much thicker|
+      gt0012|Speech: 2|local::at0048|Moderate hoarseness/weakness; constant monotone unvaried pitch; beginning of dysarthria, hesitance, stuttering, difficult to understand|
+      gt0013|Self-care: 2|local::at0053|Requires help in certain critical areas; very slow in performing most activities but manages by taking much time|
+  expected_output:
+    1:
+      gt0015|score: 21
+      gt0017|Interpretation: local::at0008|Severe or advanced|
+
+
+- id: no illness 0
+  input:
+    1:
+      gt0003|Bradykinesia of hands: 0|local::at0006|None|
+      gt0004|Rigidity: 0|local::at0011|Non-detectable|
+      gt0005|Posture: 0|local::at0016|Normal posture; head flexed forward <4”|
+      gt0006|Upper extremity swing: 1|local::at0022|One arm swing definitely decreased|
+      gt0007|Gait: 0|local::at0026|Steps out will with 18-30” stride, turns about effortlessly|
+      gt0008|Tremor: 0|local::at0031|No detectable tremor|
+      gt0010|Facies: 0|local::at0036|Normal; full animation; no stare|
+      gt0011|Seborrhea: 0|local::at0041|None|
+      gt0012|Speech: 0|local::at0046|Clear, loud, resonant, easily understood|
+      gt0013|Self-care: 0|local::at0051|No impairment|
+  expected_output:
+    1:
+      gt0015|score: 1
+      gt0017|Interpretation: local::at0006|Early illness|
+
+
+- id: moderate
+  input:
+    1:
+      gt0003|Bradykinesia of hands: 3|local::at0009|Severe slowing of supination-pronation rate; unable to write or button clothes; marked difficulty in handling utensils|
+      gt0004|Rigidity: 2|local::at0013|Moderate rigidity (neck and shoulders); resting rigidity present if not on meds|
+      gt0005|Posture: 3|local::at0019|Onset of simian posture; head flexed forward >6”; hands elevated above waist (one or both); sharp flexion of hands; beginning interphalangeal extension; beginning flexion of knees|
+      gt0006|Upper extremity swing: 1|local::at0022|One arm swing definitely decreased|
+      gt0007|Gait: 1|local::at0027|Gait shortened to 12-18” stride; beginning to strike one heel; turnaround time slowing; requires several steps|
+      gt0008|Tremor: 1|local::at0032|<1” of peak-to-peak tremor movement (limbs or head) at rest, or in either hand while walking or during finger-to-nose test|
+      gt0010|Facies: 0|local::at0036|Normal; full animation; no stare|
+      gt0011|Seborrhea: 0|local::at0041|None|
+      gt0012|Speech: 0|local::at0046|Clear, loud, resonant, easily understood|
+      gt0013|Self-care: 0|local::at0051|No impairment|
+  expected_output:
+    1:
+      gt0015|score: 11
+      gt0017|Interpretation: local::at0007|Moderate|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

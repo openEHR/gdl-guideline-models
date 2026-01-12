@@ -1,0 +1,25 @@
+guidelines:
+  1: Quick_SOFA_guideline.v1
+test_cases:
+- id: score 1
+  input:
+    1:
+      gt0003|Altered mental status GCS <15: 0|local::at0005|No|
+      gt0004|Respiratory rate ≥22: 0|local::at0008|No|
+      gt0005|Systolic blood pressure ≤100: 1|local::at0012|Yes|
+  expected_output:
+    1:
+      gt0008|qSOFA Score: 1
+      gt0014|Comment: local::at0006|If sepsis is still suspected, continue to monitor, evaluate, and initiate treatment as appropriate, including serial qSOFA assessments.|
+      gt0010|Risk group: local::at0003|Not high risk for in-hospital mortality|
+- id: score 2
+  input:
+    1:
+      gt0003|Altered mental status GCS <15: 0|local::at0005|No|
+      gt0004|Respiratory rate ≥22: 1|local::at0009|Yes|
+      gt0005|Systolic blood pressure ≤100: 1|local::at0012|Yes|
+  expected_output:
+    1:
+      gt0008|qSOFA Score: 2
+      gt0014|Comment: local::at0007|qSOFA Scores 2-3 are associated with a 3- to 14-fold increase in in-hospital mortality. Assess for evidence of organ dysfunction with blood testing including serum lactate and calculation of the full SOFA Score. Patients meeting these qSOFA criteria should have infection considered even if it was previously not.|
+      gt0010|Risk group: local::at0004|High risk for in-hospital mortality (3- to 14-fold increase)|

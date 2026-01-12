@@ -1,0 +1,101 @@
+guidelines:
+  1: Michigan_Risk_Score_guideline.v1
+test_cases:
+- id: score >5
+  input:
+    1:
+      gt0004|Age: 18,a
+      gt0006|Another central venous catheter present: 1|local::at0006|Yes|
+      gt0007|WBC >12.0 × 10⁹/µL: 1|local::at0009|Yes|
+      gt0008|Number of PICC lumens: 2|local::at0013|3-4|
+      gt0009|History of VTE: 3|local::at0017|Yes, within 30 days|
+      gt0010|Active cancer: 3|local::at0020|Yes|
+  expected_output:
+    1:
+      gt0013|Probability of VTE: 4.7%
+      gt0012|Risk Class: IV
+      gt0014|Michigan risk score: 10
+- id: score 5
+  input:
+    1:
+      gt0004|Age: 18,a
+      gt0006|Another central venous catheter present: 1|local::at0006|Yes|
+      gt0007|WBC >12.0 × 10⁹/µL: 0|local::at0008|No|
+      gt0008|Number of PICC lumens: 2|local::at0013|3-4|
+      gt0009|History of VTE: 2|local::at0016|Yes, >30 days prior|
+      gt0010|Active cancer: 0|local::at0019|No|
+  expected_output:
+    1:
+      gt0013|Probability of VTE: 4.7%
+      gt0012|Risk Class: IV
+      gt0014|Michigan risk score: 5
+- id: score 4
+  input:
+    1:
+      gt0004|Age: 18,a
+      gt0006|Another central venous catheter present: 1|local::at0006|Yes|
+      gt0007|WBC >12.0 × 10⁹/µL: 0|local::at0008|No|
+      gt0008|Number of PICC lumens: 1|local::at0012|2|
+      gt0009|History of VTE: 2|local::at0016|Yes, >30 days prior|
+      gt0010|Active cancer: 0|local::at0019|No|
+  expected_output:
+    1:
+      gt0013|Probability of VTE: 2.7%
+      gt0012|Risk Class: III
+      gt0014|Michigan risk score: 4
+- id: score 3
+  input:
+    1:
+      gt0004|Age: 18,a
+      gt0006|Another central venous catheter present: 0|local::at0005|No|
+      gt0007|WBC >12.0 × 10⁹/µL: 0|local::at0008|No|
+      gt0008|Number of PICC lumens: 1|local::at0012|2|
+      gt0009|History of VTE: 2|local::at0016|Yes, >30 days prior|
+      gt0010|Active cancer: 0|local::at0019|No|
+  expected_output:
+    1:
+      gt0013|Probability of VTE: 2.7%
+      gt0012|Risk Class: III
+      gt0014|Michigan risk score: 3
+- id: score 2
+  input:
+    1:
+      gt0004|Age: 18,a
+      gt0006|Another central venous catheter present: 0|local::at0005|No|
+      gt0007|WBC >12.0 × 10⁹/µL: 0|local::at0008|No|
+      gt0008|Number of PICC lumens: 0|local::at0011|1|
+      gt0009|History of VTE: 2|local::at0016|Yes, >30 days prior|
+      gt0010|Active cancer: 0|local::at0019|No|
+  expected_output:
+    1:
+      gt0013|Probability of VTE: 1.6%
+      gt0012|Risk Class: II
+      gt0014|Michigan risk score: 2
+- id: score 1
+  input:
+    1:
+      gt0004|Age: 18,a
+      gt0006|Another central venous catheter present: 0|local::at0005|No|
+      gt0007|WBC >12.0 × 10⁹/µL: 0|local::at0008|No|
+      gt0008|Number of PICC lumens: 1|local::at0012|2|
+      gt0009|History of VTE: 0|local::at0015|Never|
+      gt0010|Active cancer: 0|local::at0019|No|
+  expected_output:
+    1:
+      gt0013|Probability of VTE: 1.6%
+      gt0012|Risk Class: II
+      gt0014|Michigan risk score: 1
+- id: score 0
+  input:
+    1:
+      gt0004|Age: 18,a
+      gt0006|Another central venous catheter present: 0|local::at0005|No|
+      gt0007|WBC >12.0 × 10⁹/µL: 0|local::at0008|No|
+      gt0008|Number of PICC lumens: 0|local::at0011|1|
+      gt0009|History of VTE: 0|local::at0015|Never|
+      gt0010|Active cancer: 0|local::at0019|No|
+  expected_output:
+    1:
+      gt0013|Probability of VTE: 0.9%
+      gt0012|Risk Class: I
+      gt0014|Michigan risk score: 0

@@ -1,0 +1,132 @@
+guidelines:
+  1: Emergency_department_assessment_of_chest_pain_score.v1
+test_cases:
+- id: case_1:Female, age 18-50, no positive condition, score 2
+  input:
+    1:
+      gt0009|Aged 18-50 yrs and either known CAD or >= 3 risk factors: 0|local::at0024|No|
+      gt0010|Diaphoresis: 0|local::at0020|No|
+      gt0011|Pain radiates to arm, shoulder, neck or jaw: 0|local::at0018|No|
+      gt0012|Pain occurred or worsened with inspiration: 0|local::at0016|No|
+      gt0013|Pain is reproduced by palpation: 0|local::at0014|No|
+      gt0014|Was there new ischemia on ECG?: 0|local::at0044|No|
+      gt0015|Was both 0hr and 2hr troponin negative?: 0|local::at0040|Both 0hr and 2hr Troponin was negative|
+      gt0005|Birthdate: 1985-04-23T07:29Z
+      gt0029|Gender: local::at0006|Female|
+  expected_output:
+    1:
+      gt0006|Age: 34,a
+      gt0024|Was there new ischemia on ECG?: 0|local::at0044|No|
+      gt0026|Total score: 2
+      gt0025|Was both 0hr and 2hr troponin negative?: 0|local::at0040|Both 0hr and 2hr Troponin was negative|
+      gt0018|Sex score: 0|local::at0022|Female|
+      gt0017|Age score: 2|local::at0027|18–45 years|
+
+- id: case_2:Female, age 94, no positive condition, score 20 
+  input:
+    1:
+      gt0009|Aged 18-50 yrs and either known CAD or >= 3 risk factors: 0|local::at0024|No|
+      gt0010|Diaphoresis: 0|local::at0020|No|
+      gt0011|Pain radiates to arm, shoulder, neck or jaw: 0|local::at0018|No|
+      gt0012|Pain occurred or worsened with inspiration: 0|local::at0016|No|
+      gt0013|Pain is reproduced by palpation: 0|local::at0014|No|
+      gt0014|Was there new ischemia on ECG?: 0|local::at0044|No|
+      gt0015|Was both 0hr and 2hr troponin negative?: 0|local::at0040|Both 0hr and 2hr Troponin was negative|
+      gt0005|Birthdate: 1925-04-01T07:29Z
+      gt0029|Gender: local::at0006|Female|
+  expected_output:
+    1:
+      gt0006|Age: 94,a
+      gt0024|Was there new ischemia on ECG?: 0|local::at0044|No|
+      gt0026|Total score: 20
+      gt0025|Was both 0hr and 2hr troponin negative?: 0|local::at0040|Both 0hr and 2hr Troponin was negative|
+      gt0018|Sex score: 0|local::at0022|Female|
+      gt0017|Age score: 20|local::at0036|86+ years|
+
+- id: case_3:Female age 94, max score 28
+  input:
+    1:
+      gt0009|Aged 18-50 yrs and either known CAD or >= 3 risk factors: 4|local::at0025|Yes|
+      gt0010|Diaphoresis: 3|local::at0021|Yes|
+      gt0011|Pain radiates to arm, shoulder, neck or jaw: 5|local::at0019|Yes|
+      gt0012|Pain occurred or worsened with inspiration: 0|local::at0016|No|
+      gt0013|Pain is reproduced by palpation: 0|local::at0014|No|
+      gt0014|Was there new ischemia on ECG?: 1|local::at0045|Yes|
+      gt0015|Was both 0hr and 2hr troponin negative?: 1|local::at0041|Either 0hr or 2hr Troponin was positive|
+      gt0005|Birthdate: 1925-04-01T07:29Z
+      gt0029|Gender: local::at0006|Female|
+  expected_output:
+    1:
+      gt0006|Age: 94,a
+      gt0024|Was there new ischemia on ECG?: 1|local::at0045|Yes|
+      gt0026|Total score: 28
+      gt0025|Was both 0hr and 2hr troponin negative?: 1|local::at0041|Either 0hr or 2hr Troponin was positive|
+      gt0018|Sex score: 0|local::at0022|Female|
+      gt0017|Age score: 20|local::at0036|86+ years|
+
+- id: case_4:Male, age 94, max score 34 
+  input:
+    1:
+      gt0009|Aged 18-50 yrs and either known CAD or >= 3 risk factors: 4|local::at0025|Yes|
+      gt0010|Diaphoresis: 3|local::at0021|Yes|
+      gt0011|Pain radiates to arm, shoulder, neck or jaw: 5|local::at0019|Yes|
+      gt0012|Pain occurred or worsened with inspiration: 0|local::at0016|No|
+      gt0013|Pain is reproduced by palpation: 0|local::at0014|No|
+      gt0014|Was there new ischemia on ECG?: 1|local::at0045|Yes|
+      gt0015|Was both 0hr and 2hr troponin negative?: 1|local::at0041|Either 0hr or 2hr Troponin was positive|
+      gt0005|Birthdate: 1925-04-01T07:29Z
+      gt0029|Gender: local::at0005|Male|
+  expected_output:
+    1:
+      gt0006|Age: 94,a
+      gt0024|Was there new ischemia on ECG?: 1|local::at0045|Yes|
+      gt0026|Total score: 34
+      gt0025|Was both 0hr and 2hr troponin negative?: 1|local::at0041|Either 0hr or 2hr Troponin was positive|
+      gt0018|Sex score: 6|local::at0023|Male|
+      gt0017|Age score: 20|local::at0036|86+ years|
+
+- id: case_5:Male, age 18-50, min score 0
+  input:
+    1:
+      gt0009|Aged 18-50 yrs and either known CAD or >= 3 risk factors: 0|local::at0024|No|
+      gt0010|Diaphoresis: 0|local::at0020|No|
+      gt0011|Pain radiates to arm, shoulder, neck or jaw: 0|local::at0018|No|
+      gt0012|Pain occurred or worsened with inspiration: -4|local::at0017|Yes|
+      gt0013|Pain is reproduced by palpation: -6|local::at0015|Yes|
+      gt0014|Was there new ischemia on ECG?: 0|local::at0044|No|
+      gt0015|Was both 0hr and 2hr troponin negative?: 0|local::at0040|Both 0hr and 2hr Troponin was negative|
+      gt0005|Birthdate: 1972-08-30T07:29Z
+      gt0029|Gender: local::at0005|Male|
+  expected_output:
+    1:
+      gt0006|Age: 47,a
+      gt0024|Was there new ischemia on ECG?: 0|local::at0044|No|
+      gt0026|Total score: 0
+      gt0025|Was both 0hr and 2hr troponin negative?: 0|local::at0040|Both 0hr and 2hr Troponin was negative|
+      gt0018|Sex score: 6|local::at0023|Male|
+      gt0017|Age score: 4|local::at0028|46–50 years|
+
+- id: case_6:Female, age 18-50, min score -6
+  input:
+    1:
+      gt0009|Aged 18-50 yrs and either known CAD or >= 3 risk factors: 0|local::at0024|No|
+      gt0010|Diaphoresis: 0|local::at0020|No|
+      gt0011|Pain radiates to arm, shoulder, neck or jaw: 0|local::at0018|No|
+      gt0012|Pain occurred or worsened with inspiration: -4|local::at0017|Yes|
+      gt0013|Pain is reproduced by palpation: -6|local::at0015|Yes|
+      gt0014|Was there new ischemia on ECG?: 0|local::at0044|No|
+      gt0015|Was both 0hr and 2hr troponin negative?: 0|local::at0040|Both 0hr and 2hr Troponin was negative|
+      gt0005|Birthdate: 1972-08-30T07:29Z
+      gt0029|Gender: local::at0006|Female|
+  expected_output:
+    1:
+      gt0006|Age: 47,a
+      gt0024|Was there new ischemia on ECG?: 0|local::at0044|No|
+      gt0026|Total score: -6
+      gt0025|Was both 0hr and 2hr troponin negative?: 0|local::at0040|Both 0hr and 2hr Troponin was negative|
+      gt0018|Sex score: 0|local::at0022|Female|
+      gt0017|Age score: 4|local::at0028|46–50 years|
+
+
+
+

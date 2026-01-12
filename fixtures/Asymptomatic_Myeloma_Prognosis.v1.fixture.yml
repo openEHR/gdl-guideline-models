@@ -1,0 +1,31 @@
+guidelines:
+  1: Asymptomatic_Myeloma_Prognosis.v1
+test_cases:
+- id: Low Risk
+  input:
+    1:
+      gt0003|Bone marrow plasmacytosis: 1|local::at0007|<10% |
+      gt0004|Serum monoclonal protein, g/dL: 0|local::at0008| ≥3 g/dL|
+  expected_output:
+    1:
+      gt0006|Risk Level: 0|local::at0003|Low risk|
+
+- id: Intermediate Risk
+  input:
+    1:
+      gt0003|Bone marrow plasmacytosis: 0|local::at0005| ≥10% |
+      gt0004|Serum monoclonal protein, g/dL: 1|local::at0009|<3 g/dL|
+  expected_output:
+    1:
+      gt0006|Risk Level: 1|local::at0004|Intermediate risk|
+
+- id: High Risk
+  input:
+    1:
+      gt0003|Bone marrow plasmacytosis: 0|local::at0005| ≥10% |
+      gt0004|Serum monoclonal protein, g/dL: 0|local::at0008| ≥3 g/dL|
+  expected_output:
+    1:
+      gt0006|Risk Level: 2|local::at0005|High risk|
+
+

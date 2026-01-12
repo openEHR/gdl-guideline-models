@@ -1,0 +1,66 @@
+guidelines:
+  1: DLCN_score.v1
+test_cases:
+- id: 1 - score 3
+  input:
+    1:
+      gt0003|LDL Cholesterol: 160,mg/dl
+      gt0005|Birthdate: 1936-07-19T14:37+01:00[Europe/Stockholm]
+      gt0006|Gender: local::at0005|Male|
+      gt0010|History of cerebrovascular disease: 1|local::at0085|Yes|
+      gt0011|History of peripheral vascular disease: 0|local::at0086|No|
+      gt0050|History of coronary heart disease: 1|local::at0081|Yes|
+      gt0013|Finding of tendon xanthoma on examination: 0|local::at0034|No|
+      gt0014|Finding of corneal arcus on examination in a person <45 years: 0|local::at0036|No|
+      gt0015|First-degree relative with known premature (<55 years, men; <60 years, women) coronary heart disease: 1|local::at0023|Yes|
+      gt0016|First-degree relative with known LDL cholesterol >95th percentile by age and gender for country : 0|local::at0024|No|
+      gt0017|First-degree relative with tendon xanthoma and/or corneal arcus: 2|local::at0027|Yes|
+      gt0018|Mutation in the LDLR, APOB, or PCSK9 genes: 0|local::at0046|No|
+      gt0049|Child(ren) <18 years with LDL cholesterol >95th percentile by age and gender for country : 2|local::at0029|Yes|
+  expected_output:
+    1:
+      gt0024|Individual has premature (<55 years, men; <60 years, women) coronary heart disease: 0|local::at0030|No|
+      gt0023|Child(ren) <18 years with LDL cholesterol >95th percentile by age and gender for country : 0|local::at0028|No|
+      gt0030|Mutation shown in the LDLR, APOB, or PCSK9 genes: 0|local::at0046|No|
+      gt0021|First-degree relative with known LDL cholesterol >95th percentile by age and gender for country : 0|local::at0024|No|
+      gt0054|Total score: 3
+      gt0025|Individual has premature (<55 years, men; <60 years, women) cerebral or peripheral vascular disease : 0|local::at0032|No|
+      gt0020|First-degree relative with known premature (<55 years, men; <60 years, women) coronary heart disease: 0|local::at0022|No|
+      gt0026|Finding of tendon xanthoma : 0|local::at0034|No|
+      gt0028|LDL cholesterol: 1|local::at0039|4.0–4.9 mmol/L (155–190 mg/dL)|
+      gt0022|First-degree relative with tendon xanthoma and/or corneal arcus: 2|local::at0027|Yes|
+      gt0027|Finding of corneal arcus in a person <45 years: 0|local::at0036|No|
+      gt0032|LDL Cholesterol: 160,mg/dl
+      gt0062|DLCN score assessment: local::at0005|Possible familial hypercholesterolemia (FH)|
+
+- id: 2 - score 21
+  input:
+    1:
+      gt0003|LDL Cholesterol: 300,mg/dl
+      gt0005|Birthdate: 1976-07-19T14:37+01:00[Europe/Stockholm]
+      gt0006|Gender: local::at0006|Female|
+      gt0010|History of cerebrovascular disease: 0|local::at0084|No|
+      gt0011|History of peripheral vascular disease: 1|local::at0087|Yes|
+      gt0050|History of coronary heart disease: 0|local::at0080|No|
+      gt0013|Finding of tendon xanthoma on examination: 6|local::at0035|Yes|
+      gt0014|Finding of corneal arcus on examination in a person <45 years: 4|local::at0037|Yes|
+      gt0015|First-degree relative with known premature (<55 years, men; <60 years, women) coronary heart disease: 0|local::at0022|No|
+      gt0016|First-degree relative with known LDL cholesterol >95th percentile by age and gender for country : 1|local::at0025|Yes|
+      gt0017|First-degree relative with tendon xanthoma and/or corneal arcus: 0|local::at0026|No|
+      gt0018|Mutation in the LDLR, APOB, or PCSK9 genes: 8|local::at0047|Yes|
+      gt0049|Child(ren) <18 years with LDL cholesterol >95th percentile by age and gender for country : 0|local::at0028|No|
+  expected_output:
+    1:
+      gt0024|Individual has premature (<55 years, men; <60 years, women) coronary heart disease: 0|local::at0030|No|
+      gt0023|Child(ren) <18 years with LDL cholesterol >95th percentile by age and gender for country : 0|local::at0028|No|
+      gt0030|Mutation shown in the LDLR, APOB, or PCSK9 genes: 8|local::at0047|Yes|
+      gt0021|First-degree relative with known LDL cholesterol >95th percentile by age and gender for country : 1|local::at0025|Yes|
+      gt0054|Total score: 21
+      gt0025|Individual has premature (<55 years, men; <60 years, women) cerebral or peripheral vascular disease : 1|local::at0033|Yes|
+      gt0020|First-degree relative with known premature (<55 years, men; <60 years, women) coronary heart disease: 0|local::at0022|No|
+      gt0026|Finding of tendon xanthoma : 6|local::at0035|Yes|
+      gt0028|LDL cholesterol: 5|local::at0050|6.5–8.4 mmol/L (251–325 mg/dL)|
+      gt0022|First-degree relative with tendon xanthoma and/or corneal arcus: 0|local::at0026|No|
+      gt0027|Finding of corneal arcus in a person <45 years: 0|local::at0036|No|
+      gt0032|LDL Cholesterol: 300,mg/dl
+      gt0062|DLCN score assessment: local::at0003|Definite familial hypercholesterolemia (FH)|

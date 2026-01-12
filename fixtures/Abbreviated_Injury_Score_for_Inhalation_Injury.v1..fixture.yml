@@ -1,0 +1,48 @@
+guidelines:
+  1: Abbreviated_Injury_Score_for_Inhalation_Injury.v1
+test_cases:
+- id: No Injury
+  input:
+    1:
+      gt0012|Bronchoscopic findings: 0|local::at0005|No carbonaceous deposits, erythema, edema, bronchorrhea|
+  expected_output:
+    1:
+      gt0015|Description: 0|local::at0003|No injury|
+      gt0014|Survival Rate: 0|local::at0009|84%|
+      gt0017|Grade: 0
+- id: Mild Injury
+  input:
+    1:
+      gt0012|Bronchoscopic findings: 1|local::at0006|Minor or patchy areas of erythema, carbonaceous deposits, bronchorrhea|
+  expected_output:
+    1:
+      gt0015|Description: 1|local::at0004|Mild injury|
+      gt0014|Survival Rate: 0|local::at0009|84%|
+      gt0017|Grade: 1
+- id: Moderate Injury
+  input:
+    1:
+      gt0012|Bronchoscopic findings: 2|local::at0007|Moderate erythema, carbonaceous deposits, bronchorrhea, or bronchial obstruction|
+  expected_output:
+    1:
+      gt0015|Description: 2|local::at0005|Moderate injury|
+      gt0014|Survival Rate: 1|local::at0010|57%|
+      gt0017|Grade: 2
+- id: Severe Injury
+  input:
+    1:
+      gt0012|Bronchoscopic findings: 3|local::at0008|Severe inflammation with friability, copious carbonaceous deposits, bronchorrhea,|
+  expected_output:
+    1:
+      gt0015|Description: 3|local::at0006|Severe injury|
+      gt0014|Survival Rate: 1|local::at0010|57%|
+      gt0017|Grade: 3
+- id: Massive Injury
+  input:
+    1:
+      gt0012|Bronchoscopic findings: 4|local::at0009|Mucosal sloughing, necrosis, or endoluminal obstruction present|
+  expected_output:
+    1:
+      gt0015|Description: 4|local::at0007|Massive injury|
+      gt0014|Survival Rate: 1|local::at0010|57%|
+      gt0017|Grade: 4

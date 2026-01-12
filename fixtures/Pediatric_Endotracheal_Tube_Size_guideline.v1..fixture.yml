@@ -1,0 +1,39 @@
+guidelines:
+  1: Pediatric_Endotracheal_Tube_Size_guideline.v1
+test_cases:
+- id: Age 0
+  input:
+    1:
+      gt0003|Age: 0,a
+      gt0006|Is this a COVID-19 patient?: local::at0008|Confirmed negative|
+  expected_output:
+    1:
+      gt0011|Note: Too low please change to proceed.
+- id: Age>12
+  input:
+    1:
+      gt0003|Age: 13,a
+      gt0006|Is this a COVID-19 patient?: local::at0008|Confirmed negative|
+  expected_output:
+    1:
+      gt0011|Note: By age 12, most experts recommend switching to adult ETT sizes.
+- id: Age 1
+  input:
+    1:
+      gt0003|Age: 1,a
+      gt0006|Is this a COVID-19 patient?: local::at0007|Unlikely|
+  expected_output:
+    1:
+      gt0007|Predicted Size Uncuffed Tube: 4.2,mm
+      gt0008|Predicted Size Cuffed Tube: 3.2,mm
+      gt0011|Note: In preparation for intubation with either a cuffed or an uncuffed endotracheal tube, confirm that tubes with an internal diameter (ID) 0.5 mm smaller and 0.5 mm larger than the estimated size are available. 
+- id: Age 11
+  input:
+    1:
+      gt0003|Age: 11,a
+      gt0006|Is this a COVID-19 patient?: local::at0007|Unlikely|
+  expected_output:
+    1:
+      gt0007|Predicted Size Uncuffed Tube: 6.8,mm
+      gt0008|Predicted Size Cuffed Tube: 5.8,mm
+      gt0011|Note: In preparation for intubation with either a cuffed or an uncuffed endotracheal tube, confirm that tubes with an internal diameter (ID) 0.5 mm smaller and 0.5 mm larger than the estimated size are available. 

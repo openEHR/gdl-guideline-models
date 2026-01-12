@@ -1,0 +1,77 @@
+guidelines:
+  1: ndr_type1_diabetes_cardiovascular_risk.v1
+test_cases:
+- id: 1. Expected score 2.9
+  input:
+    1:
+      gt0006|Diabetes duration|: "5,a"
+      gt0007|TC:HDL ratio|: "4.3,1"
+      gt0008|Smoker|: "0|local::at0015|No|"
+      gt0009|Previous CVD|: "0|local::at0029|No|"
+      gt0010|Macroalbuminuria|: "0|local::at0023|No|"
+      gt0012|Age (years)|: "58,a"
+      gt0014|HbA1c|: "8,%"
+      gt0016|Systolic BP|: "150,mm[Hg]"
+  expected_output:
+    1:
+      gt0003|5-year CVD risk|: "2.9"
+
+- id: 2. Expected score 27.7
+  input:
+    1:
+      gt0006|Diabetes duration|: "11,a"
+      gt0007|TC:HDL ratio|: "3.5,1"
+      gt0008|Smoker|: "1|local::at0014|Yes|"
+      gt0009|Previous CVD|: "1|local::at0030|Yes|"
+      gt0010|Macroalbuminuria|: "0|local::at0023|No|"
+      gt0012|Age (years)|: "67,a"
+      gt0014|HbA1c|: "8,%"
+      gt0016|Systolic BP|: "160,mm[Hg]"
+  expected_output:
+    1:
+      gt0003|5-year CVD risk|: "27.7"
+
+- id: 3. Expected score 7.7
+  input:
+    1:
+      gt0006|Diabetes duration|: "11,a"
+      gt0007|TC:HDL ratio|: "3.5,1"
+      gt0008|Smoker|: "0|local::at0015|No|"
+      gt0009|Previous CVD|: "0|local::at0029|No|"
+      gt0010|Macroalbuminuria|: "1|local::at0024|Yes|"
+      gt0012|Age (years)|: "67,a"
+      gt0014|HbA1c|: "8,%"
+      gt0016|Systolic BP|: "160,mm[Hg]"
+  expected_output:
+    1:
+      gt0003|5-year CVD risk|: "7.7"
+
+- id: 4. Expected score 32.2 - HbA1c in mmol/mol
+  input:
+    1:
+      gt0006|Diabetes duration|: "11,a"
+      gt0007|TC:HDL ratio|: "4,1"
+      gt0008|Smoker|: "1|local::at0014|Yes|"
+      gt0009|Previous CVD|: "1|local::at0030|Yes|"
+      gt0010|Macroalbuminuria|: "1|local::at0024|Yes|"
+      gt0012|Age (years)|: "67,a"
+      gt0014|HbA1c|: "64,mmol/mol"
+      gt0016|Systolic BP|: "120,mm[Hg]"
+  expected_output:
+    1:
+      gt0003|5-year CVD risk|: "32.2"
+
+- id: 5. Expected score 0.1 - HbA1c in mmol/mol
+  input:
+    1:
+      gt0006|Diabetes duration|: "3,a"
+      gt0007|TC:HDL ratio|: "1,1"
+      gt0008|Smoker|: "0|local::at0015|No|"
+      gt0009|Previous CVD|: "0|local::at0029|No|"
+      gt0010|Macroalbuminuria|: "0|local::at0023|No|"
+      gt0012|Age (years)|: "18,a"
+      gt0014|HbA1c|: "31,mmol/mol"
+      gt0016|Systolic BP|: "120,mm[Hg]"
+  expected_output:
+    1:
+      gt0003|5-year CVD risk|: "0.1"

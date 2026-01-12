@@ -1,0 +1,53 @@
+guidelines:
+  1: NYHA.v1
+test_cases:
+- id: case_1
+  input:
+    1:
+      'gt0021|What are the patient symptoms?:': 1|local::at0006|NYHA Class I|
+      'gt0022|What is the objective assessment?:': 1|local::at0010|Class A|
+  expected_output:
+    1:
+      gt0025|Objective assessment: 1|local::at0010|Class A|
+      gt0024|Patient Symptoms: 1|local::at0005|NYHA Class I|
+
+- id: case_2
+  input:
+    1:
+      'gt0021|What are the patient symptoms?:': 2|local::at0007|NYHA Class II|
+      'gt0022|What is the objective assessment?:': 2|local::at0011|Class B|
+  expected_output:
+    1:
+      gt0025|Objective assessment: 2|local::at0011|Class B|
+      gt0024|Patient Symptoms: 2|local::at0006|NYHA Class II|
+
+- id: case_3
+  input:
+    1:
+      'gt0021|What are the patient symptoms?:': 3|local::at0008|NYHA Class III|
+      'gt0022|What is the objective assessment?:': 3|local::at0012|Class C|
+  expected_output:
+    1:
+      gt0025|Objective assessment: 3|local::at0012|Class C|
+      gt0024|Patient Symptoms: 3|local::at0007|NYHA Class III|
+
+- id: case_4
+  input:
+    1:
+      'gt0021|What are the patient symptoms?:': 4|local::at0009|NYHA Class IV|
+      'gt0022|What is the objective assessment?:': 2|local::at0011|Class B|
+  expected_output:
+    1:
+      gt0025|Objective assessment: 2|local::at0011|Class B|
+      gt0024|Patient Symptoms: 4|local::at0008|NYHA Class IV|
+
+- id: case_5
+  input:
+    1:
+      'gt0021|What are the patient symptoms?:': 4|local::at0009|NYHA Class IV|
+      'gt0022|What is the objective assessment?:': 4|local::at0013|Class D|
+  expected_output:
+    1:
+      gt0025|Objective assessment: 4|local::at0013|Class D|
+      gt0024|Patient Symptoms: 4|local::at0008|NYHA Class IV|
+

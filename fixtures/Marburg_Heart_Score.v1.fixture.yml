@@ -1,0 +1,182 @@
+current_datetime: '2020-01-23T12:00:00+01:00'
+guidelines:
+  1: Marburg_Heart_Score.v1
+test_cases:
+- id: Male old, not reproducible, MHS 2
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Birthdate: 1943-12-30T16:27+01:00[Europe/Budapest]
+      gt0048|Pain reproducible by palpation: 1|local::at0006|No|
+      gt0049|History of CAD, cerebrovascular disease, or peripheral vascular disease: 0|local::at0013|No|
+      gt0050|Pain worse with exercise: 0|local::at0017|No|
+      gt0051|Patient assumes pain is cardiac: 0|local::at0015|No|
+  expected_output:
+    1:
+      gt0015|Age: 76,a
+      gt0053|CAD risk: 0|local::at0003|3%|
+      gt0054|Recommendation: 0|local::at0006|Outpatient evaluation as needed|
+      gt0066|Total score: 2
+      gt0057|Age >= 65 years for female or >=55 for male: 1|local::at0009|Yes|
+
+- id: Male young, not reproducible, MHS 1
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Birthdate: 1973-12-30T16:27+01:00[Europe/Budapest]
+      gt0048|Pain reproducible by palpation: 1|local::at0006|No|
+      gt0049|History of CAD, cerebrovascular disease, or peripheral vascular disease: 0|local::at0013|No|
+      gt0050|Pain worse with exercise: 0|local::at0017|No|
+      gt0051|Patient assumes pain is cardiac: 0|local::at0015|No|
+  expected_output:
+    1:
+      gt0015|Age: 46,a
+      gt0053|CAD risk: 0|local::at0003|3%|
+      gt0054|Recommendation: 0|local::at0006|Outpatient evaluation as needed|
+      gt0066|Total score: 1
+      gt0057|Age >= 65 years for female or >=55 for male: 0|local::at0008|No|
+
+- id: Male 54 years, not reproducible, MHS 1
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Birthdate: 1965-12-30T16:27+01:00[Europe/Budapest]
+      gt0048|Pain reproducible by palpation: 1|local::at0006|No|
+      gt0049|History of CAD, cerebrovascular disease, or peripheral vascular disease: 0|local::at0013|No|
+      gt0050|Pain worse with exercise: 0|local::at0017|No|
+      gt0051|Patient assumes pain is cardiac: 0|local::at0015|No|
+  expected_output:
+    1:
+      gt0015|Age: 54,a
+      gt0053|CAD risk: 0|local::at0003|3%|
+      gt0054|Recommendation: 0|local::at0006|Outpatient evaluation as needed|
+      gt0066|Total score: 1
+      gt0057|Age >= 65 years for female or >=55 for male: 0|local::at0008|No|
+
+
+- id: Male 55 years, not reproducible, MHS 2
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Birthdate: 1964-07-30T16:27+01:00[Europe/Budapest]
+      gt0048|Pain reproducible by palpation: 1|local::at0006|No|
+      gt0049|History of CAD, cerebrovascular disease, or peripheral vascular disease: 0|local::at0013|No|
+      gt0050|Pain worse with exercise: 0|local::at0017|No|
+      gt0051|Patient assumes pain is cardiac: 0|local::at0015|No|
+  expected_output:
+    1:
+      gt0015|Age: 55,a
+      gt0053|CAD risk: 0|local::at0003|3%|
+      gt0054|Recommendation: 0|local::at0006|Outpatient evaluation as needed|
+      gt0066|Total score: 2
+      gt0057|Age >= 65 years for female or >=55 for male: 1|local::at0009|Yes|
+
+
+- id: Female 64 years, not reproducible, MHS 1
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Birthdate: 1955-12-30T16:27+01:00[Europe/Budapest]
+      gt0048|Pain reproducible by palpation: 1|local::at0006|No|
+      gt0049|History of CAD, cerebrovascular disease, or peripheral vascular disease: 0|local::at0013|No|
+      gt0050|Pain worse with exercise: 0|local::at0017|No|
+      gt0051|Patient assumes pain is cardiac: 0|local::at0015|No|
+  expected_output:
+    1:
+      gt0015|Age: 64,a
+      gt0053|CAD risk: 0|local::at0003|3%|
+      gt0054|Recommendation: 0|local::at0006|Outpatient evaluation as needed|
+      gt0066|Total score: 1
+      gt0057|Age >= 65 years for female or >=55 for male: 0|local::at0008|No|
+
+
+
+- id: Female 65 years, not reproducible, MHS 2
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Birthdate: 1954-07-30T16:27+01:00[Europe/Budapest]
+      gt0048|Pain reproducible by palpation: 1|local::at0006|No|
+      gt0049|History of CAD, cerebrovascular disease, or peripheral vascular disease: 0|local::at0013|No|
+      gt0050|Pain worse with exercise: 0|local::at0017|No|
+      gt0051|Patient assumes pain is cardiac: 0|local::at0015|No|
+  expected_output:
+    1:
+      gt0015|Age: 65,a
+      gt0053|CAD risk: 0|local::at0003|3%|
+      gt0054|Recommendation: 0|local::at0006|Outpatient evaluation as needed|
+      gt0066|Total score: 2
+      gt0057|Age >= 65 years for female or >=55 for male: 1|local::at0009|Yes|
+
+
+
+- id: Male, old, reproducible, but with history, MHS 2
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Birthdate: 1943-12-30T16:27+01:00[Europe/Budapest]
+      gt0048|Pain reproducible by palpation: 0|local::at0005|Yes|
+      gt0049|History of CAD, cerebrovascular disease, or peripheral vascular disease: 1|local::at0014|Yes|
+      gt0050|Pain worse with exercise: 0|local::at0017|No|
+      gt0051|Patient assumes pain is cardiac: 0|local::at0015|No|
+  expected_output:
+    1:
+      gt0015|Age: 76,a
+      gt0053|CAD risk: 0|local::at0003|3%|
+      gt0054|Recommendation: 0|local::at0006|Outpatient evaluation as needed|
+      gt0066|Total score: 2
+      gt0057|Age >= 65 years for female or >=55 for male: 1|local::at0009|Yes|
+
+
+- id: Previous but worse with exercise, MHS 3
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Birthdate: 1943-12-30T16:27+01:00[Europe/Budapest]
+      gt0048|Pain reproducible by palpation: 0|local::at0005|Yes|
+      gt0049|History of CAD, cerebrovascular disease, or peripheral vascular disease: 1|local::at0014|Yes|
+      gt0050|Pain worse with exercise: 1|local::at0018|Yes|
+      gt0051|Patient assumes pain is cardiac: 0|local::at0015|No|
+  expected_output:
+    1:
+      gt0015|Age: 76,a
+      gt0053|CAD risk: 1|local::at0004|23%|
+      gt0054|Recommendation: 1|local::at0007|Consider urgent evaluation or inpatient admission|
+      gt0066|Total score: 3
+      gt0057|Age >= 65 years for female or >=55 for male: 1|local::at0009|Yes|
+
+
+- id: Patient also assumes it is cardiac, MHS 4
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Birthdate: 1943-12-30T16:27+01:00[Europe/Budapest]
+      gt0048|Pain reproducible by palpation: 0|local::at0005|Yes|
+      gt0049|History of CAD, cerebrovascular disease, or peripheral vascular disease: 1|local::at0014|Yes|
+      gt0050|Pain worse with exercise: 1|local::at0018|Yes|
+      gt0051|Patient assumes pain is cardiac: 1|local::at0016|Yes|
+  expected_output:
+    1:
+      gt0015|Age: 76,a
+      gt0053|CAD risk: 1|local::at0004|23%|
+      gt0054|Recommendation: 1|local::at0007|Consider urgent evaluation or inpatient admission|
+      gt0066|Total score: 4
+      gt0057|Age >= 65 years for female or >=55 for male: 1|local::at0009|Yes|
+
+
+- id: All +1 scores
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Birthdate: 1943-12-30T16:27+01:00[Europe/Budapest]
+      gt0048|Pain reproducible by palpation: 1|local::at0006|No|
+      gt0049|History of CAD, cerebrovascular disease, or peripheral vascular disease: 1|local::at0014|Yes|
+      gt0050|Pain worse with exercise: 1|local::at0018|Yes|
+      gt0051|Patient assumes pain is cardiac: 1|local::at0016|Yes|
+  expected_output:
+    1:
+      gt0015|Age: 76,a
+      gt0053|CAD risk: 1|local::at0004|23%|
+      gt0054|Recommendation: 1|local::at0007|Consider urgent evaluation or inpatient admission|
+      gt0066|Total score: 5
+      gt0057|Age >= 65 years for female or >=55 for male: 1|local::at0009|Yes|

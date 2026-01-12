@@ -1,0 +1,99 @@
+guidelines:
+  1: Local_Anesthetic_Dosing_Calculator_guideline.v1
+test_cases:
+- id: Bupivacaine
+  input:
+    1:
+      gt0003|Drug: local::at0005|Bupivacaine|
+      gt0004|With epinephrine?: local::at0010|No|
+      gt0005|Concentration: 16|local::at0028|4%|
+      gt0008|Weight: 70,kg
+  expected_output:
+    1:
+      gt0011|Max allowable subQ dose, mL: 4,ml
+      gt0010|Max allowable subQ dose, mg: 140,mg
+- id: Bupivacaine with epi
+  input:
+    1:
+      gt0003|Drug: local::at0005|Bupivacaine|
+      gt0004|With epinephrine?: local::at0011|Yes|
+      gt0005|Concentration: 16|local::at0028|4%|
+      gt0008|Weight: 70,kg
+  expected_output:
+    1:
+      gt0017|Max allowable subQ dose with Epi, ml, from: 10.5,ml
+      gt0016|Max allowable subQ dose with Epi, mg, to: 630,mg
+      gt0015|Max allowable subQ dose with Epi, mg, from: 420,mg
+      gt0018|Max allowable subQ dose with Epi, ml, to: 15.8,ml
+- id: Lidocaine
+  input:
+    1:
+      gt0003|Drug: local::at0006|Lidocaine|
+      gt0004|With epinephrine?: local::at0010|No|
+      gt0005|Concentration: 16|local::at0028|4%|
+      gt0008|Weight: 70,kg
+  expected_output:
+    1:
+      gt0011|Max allowable subQ dose, mL: 8,ml
+      gt0010|Max allowable subQ dose, mg: 315,mg
+- id: Lidocaine with epi
+  input:
+    1:
+      gt0003|Drug: local::at0006|Lidocaine|
+      gt0004|With epinephrine?: local::at0011|Yes|
+      gt0005|Concentration: 16|local::at0028|4%|
+      gt0008|Weight: 70,kg
+  expected_output:
+    1:
+      gt0017|Max allowable subQ dose with Epi, ml, from: 14.9,ml
+      gt0016|Max allowable subQ dose with Epi, mg, to: 805,mg
+      gt0015|Max allowable subQ dose with Epi, mg, from: 595,mg
+      gt0018|Max allowable subQ dose with Epi, ml, to: 20.1,ml
+- id: Mepivacaine
+  input:
+    1:
+      gt0003|Drug: local::at0007|Mepivacaine|
+      gt0004|With epinephrine?: local::at0010|No|
+      gt0005|Concentration: 16|local::at0028|4%|
+      gt0008|Weight: 70,kg
+  expected_output:
+    1:
+      gt0011|Max allowable subQ dose, mL: 8,ml
+      gt0010|Max allowable subQ dose, mg: 315,mg
+- id: Mepivacaine with epi
+  input:
+    1:
+      gt0003|Drug: local::at0007|Mepivacaine|
+      gt0004|With epinephrine?: local::at0011|Yes|
+      gt0005|Concentration: 16|local::at0028|4%|
+      gt0008|Weight: 70,kg
+  expected_output:
+    1:
+      gt0017|Max allowable subQ dose with Epi, ml, from: 14.9,ml
+      gt0016|Max allowable subQ dose with Epi, mg, to: 805,mg
+      gt0015|Max allowable subQ dose with Epi, mg, from: 595,mg
+      gt0018|Max allowable subQ dose with Epi, ml, to: 20.1,ml
+- id: Ropivacaine
+  input:
+    1:
+      gt0003|Drug: local::at0008|Ropivacaine|
+      gt0004|With epinephrine?: local::at0010|No|
+      gt0005|Concentration: 16|local::at0028|4%|
+      gt0008|Weight: 70,kg
+  expected_output:
+    1:
+      gt0011|Max allowable subQ dose, mL: 5,ml
+      gt0010|Max allowable subQ dose, mg: 210,mg
+- id: Ropivacaine
+  input:
+    1:
+      gt0003|Drug: local::at0008|Ropivacaine|
+      gt0004|With epinephrine?: local::at0011|Yes|
+      gt0005|Concentration: 16|local::at0028|4%|
+      gt0008|Weight: 70,kg
+  expected_output:
+    1:
+      gt0017|Max allowable subQ dose with Epi, ml, from: 12.2,ml
+      gt0016|Max allowable subQ dose with Epi, mg, to: 700,mg
+      gt0015|Max allowable subQ dose with Epi, mg, from: 490,mg
+      gt0018|Max allowable subQ dose with Epi, ml, to: 17.5,ml

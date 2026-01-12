@@ -1,0 +1,85 @@
+guidelines:
+  1: transtubular_potassium_gradient_guideline.v1
+test_cases:
+- id: 0. No input
+  input:
+    1: {}
+  expected_output:
+    1: {}
+- id: 1. Normal for the given K+
+  input:
+    1:
+      gt0029|Serum osmolality: 50,mmol/kg
+      gt0031|Serum potassium: 2,mmol/l
+      gt0033|Urine osmolality: 500,mmol/kg
+      gt0035|Urine potassium: 50,mmol/l
+  expected_output:
+    1:
+      gt0010|TTKG: 2,1
+      gt0037|Interpretation: Normal for the given serum potassium concentration.
+- id: 2. Normal in patients with normal diet
+  input:
+    1:
+      gt0029|Serum osmolality: 600,mmol/kg
+      gt0031|Serum potassium: 6,mmol/l
+      gt0033|Urine osmolality: 300,mmol/kg
+      gt0035|Urine potassium: 25,mmol/l
+  expected_output:
+    1:
+      gt0010|TTKG: 8,1
+      gt0037|Interpretation: Normal in patients with a normal diet.
+- id: 3. Hypoaldosteronism
+  input:
+    1:
+      gt0029|Serum osmolality: 300,mmol/kg
+      gt0031|Serum potassium: 6,mmol/l
+      gt0033|Urine osmolality: 400,mmol/kg
+      gt0035|Urine potassium: 10,mmol/l
+  expected_output:
+    1:
+      gt0010|TTKG: 2,1
+      gt0037|Interpretation: The result is too low. It suggests hypoaldosteronism.
+- id: 4. Normal renal excretion of potassium
+  input:
+    1:
+      gt0029|Serum osmolality: 700,mmol/kg
+      gt0031|Serum potassium: 6,mmol/l
+      gt0033|Urine osmolality: 300,mmol/kg
+      gt0035|Urine potassium: 29,mmol/l
+  expected_output:
+    1:
+      gt0010|TTKG: 12,1
+      gt0037|Interpretation: It suggests normal renal excretion of potassium.
+- id: 5. Renal potassium wasting
+  input:
+    1:
+      gt0029|Serum osmolality: 300,mmol/kg
+      gt0031|Serum potassium: 2,mmol/l
+      gt0033|Urine osmolality: 400,mmol/kg
+      gt0035|Urine potassium: 10,mmol/l
+  expected_output:
+    1:
+      gt0010|TTKG: 4,1
+      gt0037|Interpretation: It suggests renal potassium wasting.
+- id: 6. Too low
+  input:
+    1:
+      gt0029|Serum osmolality: 50,mmol/kg
+      gt0031|Serum potassium: 4,mmol/l
+      gt0033|Urine osmolality: 500,mmol/kg
+      gt0035|Urine potassium: 50,mmol/l
+  expected_output:
+    1:
+      gt0010|TTKG: 1,1
+      gt0037|Interpretation: The result is too low. Further diagnosis is required.
+- id: 7. Too high
+  input:
+    1:
+      gt0029|Serum osmolality: 300,mmol/kg
+      gt0031|Serum potassium: 4,mmol/l
+      gt0033|Urine osmolality: 600,mmol/kg
+      gt0035|Urine potassium: 100,mmol/l
+  expected_output:
+    1:
+      gt0010|TTKG: 12,1
+      gt0037|Interpretation: The result is too high. Further diagnosis is required.

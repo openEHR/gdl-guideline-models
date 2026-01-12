@@ -1,0 +1,36 @@
+guidelines:
+  1: Prognostic_Index_for_Cancer_Outcomes.v1
+test_cases:
+- id: Prognostic index = 0
+  input:
+    1:
+      gt0003|White blood cell count, x 10⁹/L: 10,10*9/l
+      gt0005|CRP, mg/L: 9,mg/l
+  expected_output:
+    1:
+      gt0009|Prognostic index: 0
+      gt0007|White blood cell count: 0|local::at0005|WBC ≤ 11 x 10⁹/L|
+      gt0008|CRP: 0|local::at0012|CRP ≤10 mg/L|
+      gt0020|Prognostic index interpretation: local::at0015|Good prognosis|
+- id: Prognostic index = 1
+  input:
+    1:
+      gt0003|White blood cell count, x 10⁹/L: 10,10*9/l
+      gt0005|CRP, mg/L: 11,mg/l
+  expected_output:
+    1:
+      gt0009|Prognostic index: 1
+      gt0007|White blood cell count: 0|local::at0005|WBC ≤ 11 x 10⁹/L|
+      gt0008|CRP: 1|local::at0013|CRP >10 mg/L|
+      gt0020|Prognostic index interpretation: local::at0016|Intermediate prognosis|
+- id: Prognostic index = 2
+  input:
+    1:
+      gt0003|White blood cell count, x 10⁹/L: 15,10*9/l
+      gt0005|CRP, mg/L: 11,mg/l
+  expected_output:
+    1:
+      gt0009|Prognostic index: 2
+      gt0007|White blood cell count: 1|local::at0006|WBC > 11 x 10⁹/L|
+      gt0008|CRP: 1|local::at0013|CRP >10 mg/L|
+      gt0020|Prognostic index interpretation: local::at0017|Poor prognosis|

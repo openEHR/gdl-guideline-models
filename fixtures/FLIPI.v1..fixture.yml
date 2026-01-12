@@ -1,0 +1,115 @@
+current_datetime: '2019-11-28T00:00:00+01:00'
+guidelines:
+  1: FLIPI.v1
+test_cases:
+- id: All no
+  input:
+    1:
+      gt0003|>4 nodal sites: 0|local::at0015|No|
+      gt0004|LDH elevated: 0|local::at0017|No|
+      gt0005|Stage III-IV: 0|local::at0009|No|
+      gt0014|Birthdate: 1959-04-09T10:02Z
+      gt0018|Haemoglobin: 100,gm/l
+  expected_output:
+    1:
+      gt0010|Hemoglobin <120 g/L or 12 g/dL: 1|local::at0012|Yes|
+      gt0012|Total score: 1
+      gt0016|Age: 60,a
+      gt0033|10 Year Overall Survival: 0|local::at0007|70%|
+      gt0032|Risk Group: 0|local::at0003|Low|
+
+- id: 4+ nodal sites
+  input:
+    1:
+      gt0003|>4 nodal sites: 1|local::at0016|Yes|
+      gt0004|LDH elevated: 0|local::at0017|No|
+      gt0005|Stage III-IV: 0|local::at0009|No|
+      gt0014|Birthdate: 1959-04-09T10:02Z
+      gt0018|Haemoglobin: 100,gm/l
+  expected_output:
+    1:
+      gt0010|Hemoglobin <120 g/L or 12 g/dL: 1|local::at0012|Yes|
+      gt0012|Total score: 2
+      gt0016|Age: 60,a
+      gt0033|10 Year Overall Survival: 1|local::at0008|50%|
+      gt0032|Risk Group: 1|local::at0004|Intermediate|
+
+- id: LDH elevated
+  input:
+    1:
+      gt0003|>4 nodal sites: 1|local::at0016|Yes|
+      gt0004|LDH elevated: 1|local::at0018|Yes|
+      gt0005|Stage III-IV: 0|local::at0009|No|
+      gt0014|Birthdate: 1959-04-09T10:02Z
+      gt0018|Haemoglobin: 100,gm/l
+  expected_output:
+    1:
+      gt0010|Hemoglobin <120 g/L or 12 g/dL: 1|local::at0012|Yes|
+      gt0012|Total score: 3
+      gt0016|Age: 60,a
+      gt0033|10 Year Overall Survival: 2|local::at0009|35%|
+      gt0032|Risk Group: 2|local::at0006|High|
+
+- id: Stage 3-4
+  input:
+    1:
+      gt0003|>4 nodal sites: 1|local::at0016|Yes|
+      gt0004|LDH elevated: 1|local::at0018|Yes|
+      gt0005|Stage III-IV: 1|local::at0010|Yes|
+      gt0014|Birthdate: 1959-04-09T10:02Z
+      gt0018|Haemoglobin: 100,gm/l
+  expected_output:
+    1:
+      gt0010|Hemoglobin <120 g/L or 12 g/dL: 1|local::at0012|Yes|
+      gt0012|Total score: 4
+      gt0016|Age: 60,a
+      gt0033|10 Year Overall Survival: 2|local::at0009|35%|
+      gt0032|Risk Group: 2|local::at0006|High|
+
+- id: Age over 60
+  input:
+    1:
+      gt0003|>4 nodal sites: 1|local::at0016|Yes|
+      gt0004|LDH elevated: 1|local::at0018|Yes|
+      gt0005|Stage III-IV: 1|local::at0010|Yes|
+      gt0014|Birthdate: 1958-04-09T10:02Z
+      gt0018|Haemoglobin: 100,gm/l
+  expected_output:
+    1:
+      gt0010|Hemoglobin <120 g/L or 12 g/dL: 1|local::at0012|Yes|
+      gt0012|Total score: 5
+      gt0016|Age: 61,a
+      gt0033|10 Year Overall Survival: 2|local::at0009|35%|
+      gt0032|Risk Group: 2|local::at0006|High|
+
+- id: Age close to 60 case 1
+  input:
+    1:
+      gt0003|>4 nodal sites: 1|local::at0016|Yes|
+      gt0004|LDH elevated: 1|local::at0018|Yes|
+      gt0005|Stage III-IV: 1|local::at0010|Yes|
+      gt0014|Birthdate: 1958-12-31T10:02Z
+      gt0018|Haemoglobin: 100,gm/l
+  expected_output:
+    1:
+      gt0010|Hemoglobin <120 g/L or 12 g/dL: 1|local::at0012|Yes|
+      gt0012|Total score: 5
+      gt0016|Age: 61,a
+      gt0033|10 Year Overall Survival: 2|local::at0009|35%|
+      gt0032|Risk Group: 2|local::at0006|High|
+
+- id: Age close to 60 case 2
+  input:
+    1:
+      gt0003|>4 nodal sites: 1|local::at0016|Yes|
+      gt0004|LDH elevated: 1|local::at0018|Yes|
+      gt0005|Stage III-IV: 1|local::at0010|Yes|
+      gt0014|Birthdate: 1959-01-01T10:02Z
+      gt0018|Haemoglobin: 100,gm/l
+  expected_output:
+    1:
+      gt0010|Hemoglobin <120 g/L or 12 g/dL: 1|local::at0012|Yes|
+      gt0012|Total score: 4
+      gt0016|Age: 60,a
+      gt0033|10 Year Overall Survival: 2|local::at0009|35%|
+      gt0032|Risk Group: 2|local::at0006|High|

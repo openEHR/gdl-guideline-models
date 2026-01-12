@@ -1,0 +1,52 @@
+guidelines:
+  1: Rome_IV_constipation.v1
+test_cases:
+- id: Positive case, fulfilling the must have criteria and two of the 3 months persisting symptoms
+  input:
+    1:
+      gt0004|Straining: 1|local::at0007|Yes|
+      gt0005|Lumpy or hard stools: 1|local::at0010|Yes|
+      gt0006|Sensation of incomplete evacuation: 0|local::at0012|No|
+      gt0007|Sensation of anorectal obstruction/blockage: 0|local::at0015|No|
+      gt0008|Manual maneuvers to facilitate defecation: 0|local::at0018|No|
+      gt0009|<3 spontaneous vowel movements per week: 0|local::at0035|No|
+      gt0011|Loose stools rarely present without use of laxatives: 1|local::at0024|Yes|
+      gt0012|Does not meet Rome IV criteria for IBS: 1|local::at0027|Yes|
+  expected_output:
+    1:
+      gt0013|Subtotal B: 2
+      gt0016|Diagnostic Evaluation: 1|local::at0034|Positive|
+      gt0010|Subtotal A: 2
+
+- id: Negative case, fulfilling the must have criteria, missing all of the 3 months persisting symptoms
+  input:
+    1:
+      gt0004|Straining: 0|local::at0006|No|
+      gt0005|Lumpy or hard stools: 0|local::at0009|No|
+      gt0006|Sensation of incomplete evacuation: 0|local::at0012|No|
+      gt0007|Sensation of anorectal obstruction/blockage: 0|local::at0015|No|
+      gt0008|Manual maneuvers to facilitate defecation: 0|local::at0018|No|
+      gt0009|<3 spontaneous vowel movements per week: 0|local::at0035|No|
+      gt0011|Loose stools rarely present without use of laxatives: 1|local::at0024|Yes|
+      gt0012|Does not meet Rome IV criteria for IBS: 1|local::at0027|Yes|
+  expected_output:
+    1:
+      gt0013|Subtotal B: 2
+      gt0016|Diagnostic Evaluation: 0|local::at0033|Negative|
+
+- id: Negative case, not fulfilling the must have criteria, have all of the 3 months persisting symptoms
+  input:
+    1:
+      gt0004|Straining: 1|local::at0007|Yes|
+      gt0005|Lumpy or hard stools: 1|local::at0010|Yes|
+      gt0006|Sensation of incomplete evacuation: 1|local::at0013|Yes|
+      gt0007|Sensation of anorectal obstruction/blockage: 1|local::at0016|Yes|
+      gt0008|Manual maneuvers to facilitate defecation: 1|local::at0019|Yes|
+      gt0009|<3 spontaneous vowel movements per week: 1|local::at0036|Yes|
+      gt0011|Loose stools rarely present without use of laxatives: 0|local::at0023|No|
+      gt0012|Does not meet Rome IV criteria for IBS: 0|local::at0026|No|
+  expected_output:
+    1:
+      gt0013|Subtotal B: 0
+      gt0016|Diagnostic Evaluation: 0|local::at0033|Negative|
+      gt0010|Subtotal A: 6

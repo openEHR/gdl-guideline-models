@@ -1,0 +1,56 @@
+guidelines:
+  1: Norton_Score.v1
+test_cases:
+- id: Test no input
+  input:
+    1: {}
+  expected_output:
+    1: {}
+- id: Test all inputs 1 point
+  input:
+    1:
+      gt0003|Physical condition: 1|local::at0008|Very bad|
+      gt0004|Mental condition: 1|local::at0013|Stupor|
+      gt0005|Activity: 1|local::at0018|Bed bound|
+      gt0006|Mobility: 1|local::at0023|Immobile|
+      gt0007|Incontinence: 1|local::at0028|Doubly|
+  expected_output:
+    1:
+      gt0009|Interpretation: Very high risk of pressure ulcer development.
+      gt0011|Norton score: 5
+- id: Test all inputs 2 points
+  input:
+    1:
+      gt0003|Physical condition: 2|local::at0007|Poor|
+      gt0004|Mental condition: 2|local::at0012|Confused|
+      gt0005|Activity: 2|local::at0017|Chair bound|
+      gt0006|Mobility: 2|local::at0022|Very impaired|
+      gt0007|Incontinence: 2|local::at0027|Usually/Urine|
+  expected_output:
+    1:
+      gt0009|Interpretation: High risk of pressure ulcer development.
+      gt0011|Norton score: 10
+- id: Test all inputs 3 point
+  input:
+    1:
+      gt0003|Physical condition: 3|local::at0006|Fair|
+      gt0004|Mental condition: 3|local::at0011|Apathetic|
+      gt0005|Activity: 3|local::at0016|Walk with help|
+      gt0006|Mobility: 3|local::at0021|Slightly impaired|
+      gt0007|Incontinence: 3|local::at0026|Occasionally|
+  expected_output:
+    1:
+      gt0009|Interpretation: Medium risk of pressure ulcer development.
+      gt0011|Norton score: 15
+- id: Test all inputs 4 point
+  input:
+    1:
+      gt0003|Physical condition: 4|local::at0005|Good|
+      gt0004|Mental condition: 4|local::at0010|Alert|
+      gt0005|Activity: 4|local::at0015|Ambulant|
+      gt0006|Mobility: 4|local::at0020|Full|
+      gt0007|Incontinence: 4|local::at0025|Not|
+  expected_output:
+    1:
+      gt0009|Interpretation: Low risk of pressure ulcer development.
+      gt0011|Norton score: 20

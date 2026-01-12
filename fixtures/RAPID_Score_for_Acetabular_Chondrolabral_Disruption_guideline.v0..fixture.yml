@@ -1,0 +1,63 @@
+guidelines:
+  1: RAPID_Score_for_Acetabular_Chondrolabral_Disruption_guideline.v0
+test_cases:
+- id: score 0
+  input:
+    1:
+      gt0003|Sex: 0|local::at0005|Female|
+      gt0004|Tönnis classification: 0|local::at0008|Grade 0 No signs of osteoarthritis|
+      gt0005|Cam morphology (alpha angle >55°): 0|local::at0012|Not present|
+  expected_output:
+    1:
+      gt0007|RAPID Score: 0
+      gt0008|Risk of high-grade delamination: 10.5%
+- id: score 1
+  input:
+    1:
+      gt0003|Sex: 0|local::at0005|Female|
+      gt0004|Tönnis classification: 0|local::at0008|Grade 0 No signs of osteoarthritis|
+      gt0005|Cam morphology (alpha angle >55°): 1|local::at0013|Present|
+  expected_output:
+    1:
+      gt0007|RAPID Score: 1
+      gt0008|Risk of high-grade delamination: 27.0%
+- id: score 2
+  input:
+    1:
+      gt0003|Sex: 1|local::at0006|Male|
+      gt0004|Tönnis classification: 0|local::at0008|Grade 0 No signs of osteoarthritis|
+      gt0005|Cam morphology (alpha angle >55°): 1|local::at0013|Present|
+  expected_output:
+    1:
+      gt0007|RAPID Score: 2
+      gt0008|Risk of high-grade delamination: 36.6%
+- id: score 3
+  input:
+    1:
+      gt0003|Sex: 1|local::at0006|Male|
+      gt0004|Tönnis classification: 2|local::at0009|Grade 1 Increased sclerosis of the head and acetabulum, slight narrowing of the joint space, and slight lipping at the joint margins|
+      gt0005|Cam morphology (alpha angle >55°): 0|local::at0012|Not present|
+  expected_output:
+    1:
+      gt0007|RAPID Score: 3
+      gt0008|Risk of high-grade delamination: 45.9%
+- id: score 4
+  input:
+    1:
+      gt0003|Sex: 1|local::at0006|Male|
+      gt0004|Tönnis classification: 2|local::at0009|Grade 1 Increased sclerosis of the head and acetabulum, slight narrowing of the joint space, and slight lipping at the joint margins|
+      gt0005|Cam morphology (alpha angle >55°): 1|local::at0013|Present|
+  expected_output:
+    1:
+      gt0007|RAPID Score: 4
+      gt0008|Risk of high-grade delamination: 73.7%
+- id: score 5
+  input:
+    1:
+      gt0003|Sex: 1|local::at0006|Male|
+      gt0004|Tönnis classification: 3|local::at0010|Grade 2 Small cysts in the head or acetabulum, increased narrowing of the joint space, and moderate loss of sphericity of the head|
+      gt0005|Cam morphology (alpha angle >55°): 1|local::at0013|Present|
+  expected_output:
+    1:
+      gt0007|RAPID Score: 5
+      gt0008|Risk of high-grade delamination: 88.0%

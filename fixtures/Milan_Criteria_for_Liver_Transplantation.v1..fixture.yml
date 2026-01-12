@@ -1,0 +1,26 @@
+guidelines:
+  1: Milan_Criteria_for_Liver_Transplantation.v1
+test_cases:
+- id: Milan Criteria met 
+  input:
+    1:
+      gt0003|Single tumor with diameter ≤5 cm: 1|local::at0004|Yes|
+      gt0004|Up to 3 tumors each with diameter ≤3 cm: 0|local::at0006|No|
+      gt0005|Extra-hepatic involvement: 1|local::at0010|No|
+      gt0006|Major vessel involvement: 1|local::at0013|No|
+  expected_output:
+    1:
+      gt0009|Comment: local::at0019|Milan Criteria fulfilled. Patient is a viable transplant candidate.|
+      gt0008|Milan Critera: local::at0015|Criteria met|
+
+- id: Milan Criteria not met
+  input:
+    1:
+      gt0003|Single tumor with diameter ≤5 cm: 0|local::at0003|No|
+      gt0004|Up to 3 tumors each with diameter ≤3 cm: 0|local::at0006|No|
+      gt0005|Extra-hepatic involvement: 0|local::at0009|Yes|
+      gt0006|Major vessel involvement: 0|local::at0012|Yes|
+  expected_output:
+    1:
+      gt0009|Comment: local::at0018|Milan Criteria NOT fulfilled. Patient is NOT a viable transplant candidate.|
+      gt0008|Milan Critera: local::at0016|Criteria not met|

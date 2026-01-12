@@ -1,0 +1,70 @@
+guidelines:
+  1: Serum_Ascites_Albumin_Gradient_SAAG_guideline.v1
+test_cases:
+- id: Alb g/dl, SAAG > 1.1 g/dL
+  input:
+    1:
+      gt0003|Albumin concentration of serum: 5,gm/dl
+      gt0004|Albumin concentration of ascitic fluid: 3,gm/dl
+  expected_output:
+    1:
+      gt0007|Interpretation: SAAG > 1.1 g/dL. Portal hypertension is likely the cause of ascites, with 97% accuracy.
+      gt0006|SAAG: 2.0,gm/dl
+- id: Alb gm/l, SAAG > 1.1 g/dL
+  input:
+    1:
+      gt0003|Albumin concentration of serum: 55,gm/l
+      gt0004|Albumin concentration of ascitic fluid: 30,gm/l
+  expected_output:
+    1:
+      gt0007|Interpretation: SAAG > 1.1 g/dL. Portal hypertension is likely the cause of ascites, with 97% accuracy.
+      gt0006|SAAG: 2.5,gm/dl
+- id: SAAG < 1.1
+  input:
+    1:
+      gt0003|Albumin concentration of serum: 5.5,gm/dl
+      gt0004|Albumin concentration of ascitic fluid: 4.9,gm/dl
+  expected_output:
+    1:
+      gt0007|Interpretation: SAAG < 1.1 g/dL. Portal hypertension is not necessarily the cause of ascites.
+      gt0006|SAAG: 0.6,gm/dl
+- id: Warning very Low
+  input:
+    1:
+      gt0003|Albumin concentration of serum: 0,gm/dl
+      gt0004|Albumin concentration of ascitic fluid: 0,gm/dl
+  expected_output:
+    1:
+      gt0011|Warning Serum Albumin: Very low; double-check.
+      gt0007|Interpretation: SAAG < 1.1 g/dL. Portal hypertension is not necessarily the cause of ascites.
+      gt0006|SAAG: 0.0,gm/dl
+      gt0012|Warning Ascitic fluid Albumin: Very low; double-check.
+- id: Warning Too High
+  input:
+    1:
+      gt0003|Albumin concentration of serum: 8,gm/dl
+      gt0004|Albumin concentration of ascitic fluid: 8,gm/dl
+  expected_output:
+    1:
+      gt0011|Warning Serum Albumin: Too high; please change to proceed.
+      gt0012|Warning Ascitic fluid Albumin: Too high; please change to proceed.
+- id: Warning Very High
+  input:
+    1:
+      gt0003|Albumin concentration of serum: 7,gm/dl
+      gt0004|Albumin concentration of ascitic fluid: 7,gm/dl
+  expected_output:
+    1:
+      gt0011|Warning Serum Albumin: Very high; double-check.
+      gt0007|Interpretation: SAAG < 1.1 g/dL. Portal hypertension is not necessarily the cause of ascites.
+      gt0006|SAAG: 0.0,gm/dl
+      gt0012|Warning Ascitic fluid Albumin: Very high; double-check.
+- id: SAAG 1.1
+  input:
+    1:
+      gt0003|Albumin concentration of serum: 5.5,gm/dl
+      gt0004|Albumin concentration of ascitic fluid: 4.4,gm/dl
+  expected_output:
+    1:
+      gt0007|Interpretation: SAAG < 1.1 g/dL. Portal hypertension is not necessarily the cause of ascites.
+      gt0006|SAAG: 1.1,gm/dl

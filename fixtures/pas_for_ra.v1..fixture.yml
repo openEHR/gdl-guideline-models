@@ -1,0 +1,532 @@
+guidelines:
+  1: pas_for_ra.v1
+test_cases:
+  - id: 01. No input
+    input:
+      1: {}
+    expected_output:
+      1: {}
+  - id: 02. Set grip score based on Self-dress
+    input:
+      1:
+        gt0015|Self-dress: 2|local::at0050|With much difficulty|
+        gt0016|Shampoo hair: 1|local::at0049|With some difficulty|
+        gt0017|Patient uses additional help for dressing/grooming: local::at0052|No|
+    expected_output:
+      1:
+        gt0003|Dress and groom score: 2
+  - id: 03. Set grip score based on Shampoo
+    input:
+      1:
+        gt0015|Self-dress: 1|local::at0049|With some difficulty|
+        gt0016|Shampoo hair: 2|local::at0050|With much difficulty|
+        gt0017|Patient uses additional help for dressing/grooming: local::at0052|No|
+    expected_output:
+      1:
+        gt0003|Dress and groom score: 2
+  - id: 04. Set rise score based on Stand up
+    input:
+      1:
+        gt0018|Stand up from a straight chair: 2|local::at0050|With much difficulty|
+        gt0019|Get in and out of bed: 1|local::at0049|With some difficulty|
+        gt0020|Patient uses additional help to rise: local::at0052|No|
+    expected_output:
+      1:
+        gt0004|Rise score: 2
+  - id: 05. Set rise score based on Get in
+    input:
+      1:
+        gt0018|Stand up from a straight chair: 1|local::at0049|With some difficulty|
+        gt0019|Get in and out of bed: 2|local::at0050|With much difficulty|
+        gt0020|Patient uses additional help to rise: local::at0052|No|
+    expected_output:
+      1:
+        gt0004|Rise score: 2
+  - id: 06. Set eat score based on cut own meat
+    input:
+      1:
+        gt0021|Cut own meat: 3|local::at0051|Unable|
+        gt0022|Lift a full cup or glass to mouth: 2|local::at0050|With much difficulty|
+        gt0023|Open a new milk carton: 1|local::at0049|With some difficulty|
+        gt0024|Patient uses additional help to eat: local::at0052|No|
+    expected_output:
+      1:
+        gt0005|Eat score: 3
+  - id: 07. Set eat score based on lift a full cup or glass to mouth
+    input:
+      1:
+        gt0021|Cut own meat: 1|local::at0049|With some difficulty|
+        gt0022|Lift a full cup or glass to mouth: 3|local::at0051|Unable|
+        gt0023|Open a new milk carton: 2|local::at0050|With much difficulty|
+        gt0024|Patient uses additional help to eat: local::at0052|No|
+    expected_output:
+      1:
+        gt0005|Eat score: 3
+  - id: 08. Set eat score based on open a new milk carton
+    input:
+      1:
+        gt0021|Cut own meat: 1|local::at0049|With some difficulty|
+        gt0022|Lift a full cup or glass to mouth: 2|local::at0050|With much difficulty|
+        gt0023|Open a new milk carton: 3|local::at0051|Unable|
+        gt0024|Patient uses additional help to eat: local::at0052|No|
+    expected_output:
+      1:
+        gt0005|Eat score: 3
+  - id: 09. Set walk score based on walk outdoors
+    input:
+      1:
+        gt0025|Walk outdoors on flat ground: 2|local::at0050|With much difficulty|
+        gt0026|Climb up five steps: 1|local::at0049|With some difficulty|
+        gt0027|Patient uses additional help to walk: local::at0052|No|
+    expected_output:
+      1:
+        gt0006|Walk score: 2
+  - id: 10. Set walk score based on climb up five steps
+    input:
+      1:
+        gt0025|Walk outdoors on flat ground: 1|local::at0049|With some difficulty|
+        gt0026|Climb up five steps: 2|local::at0050|With much difficulty|
+        gt0027|Patient uses additional help to walk: local::at0052|No|
+    expected_output:
+      1:
+        gt0006|Walk score: 2
+  - id: 11. Set hygiene score based on wash and dry body
+    input:
+      1:
+        gt0028|Wash and dry body: 3|local::at0051|Unable|
+        gt0029|Take a tub bath: 2|local::at0050|With much difficulty|
+        gt0030|Get on and off toilet: 1|local::at0049|With some difficulty|
+        gt0031|Patient uses additional help for hygiene: local::at0052|No|
+    expected_output:
+      1:
+        gt0007|Hygiene score: 3
+  - id: 12. Set hygiene score based on take a tub bath
+    input:
+      1:
+        gt0028|Wash and dry body: 1|local::at0049|With some difficulty|
+        gt0029|Take a tub bath: 3|local::at0051|Unable|
+        gt0030|Get on and off toilet: 2|local::at0050|With much difficulty|
+        gt0031|Patient uses additional help for hygiene: local::at0052|No|
+    expected_output:
+      1:
+        gt0007|Hygiene score: 3
+  - id: 13. Set hygiene score based on get on and off toilet
+    input:
+      1:
+        gt0028|Wash and dry body: 1|local::at0049|With some difficulty|
+        gt0029|Take a tub bath: 2|local::at0050|With much difficulty|
+        gt0030|Get on and off toilet: 3|local::at0051|Unable|
+        gt0031|Patient uses additional help for hygiene: local::at0052|No|
+    expected_output:
+      1:
+        gt0007|Hygiene score: 3
+  - id: 14. Set reach score based on reach and get down an object
+    input:
+      1:
+        gt0032|Reach and get down a 5-pound (≈2.3 kg) object from above the head: 2|local::at0050|With much difficulty|
+        gt0033|Bend down to pick up clothing from floor: 1|local::at0049|With some difficulty|
+        gt0034|Patient uses additional help to reach: local::at0052|No|
+    expected_output:
+      1:
+        gt0008|Reach score: 2
+  - id: 15. Set reach score based on bend down to pick up clothing
+    input:
+      1:
+        gt0032|Reach and get down a 5-pound (≈2.3 kg) object from above the head: 1|local::at0049|With some difficulty|
+        gt0033|Bend down to pick up clothing from floor: 2|local::at0050|With much difficulty|
+        gt0034|Patient uses additional help to reach: local::at0052|No|
+    expected_output:
+      1:
+        gt0008|Reach score: 2
+  - id: 16. Set grip score based on open car doors
+    input:
+      1:
+        gt0035|Open car doors: 3|local::at0051|Unable|
+        gt0036|Open previously opened jars: 2|local::at0050|With much difficulty|
+        gt0037|Turn faucets on and off: 1|local::at0049|With some difficulty|
+        gt0038|Patient uses additional help to grip: local::at0052|No|
+    expected_output:
+      1:
+        gt0009|Grip score: 3
+  - id: 17. Set grip score based on open previously opened jars
+    input:
+      1:
+        gt0035|Open car doors: 1|local::at0049|With some difficulty|
+        gt0036|Open previously opened jars: 3|local::at0051|Unable|
+        gt0037|Turn faucets on and off: 2|local::at0050|With much difficulty|
+        gt0038|Patient uses additional help to grip: local::at0052|No|
+    expected_output:
+      1:
+        gt0009|Grip score: 3
+  - id: 18. Set grip score based on turn faucets on and off
+    input:
+      1:
+        gt0035|Open car doors: 1|local::at0049|With some difficulty|
+        gt0036|Open previously opened jars: 2|local::at0050|With much difficulty|
+        gt0037|Turn faucets on and off: 3|local::at0051|Unable|
+        gt0038|Patient uses additional help to grip: local::at0052|No|
+    expected_output:
+      1:
+        gt0009|Grip score: 3
+  - id: 19. Set other score based on run errands and shop
+    input:
+      1:
+        gt0039|Run errands and shop: 3|local::at0051|Unable|
+        gt0040|Get in and out of car: 2|local::at0050|With much difficulty|
+        gt0041|Do chores such as vacuuming or yard work: 1|local::at0049|With some difficulty|
+        gt0042|Patient uses additional help for other activities: local::at0052|No|
+    expected_output:
+      1:
+        gt0010|Other score: 3
+  - id: 20. Set other score based on get in and out of car
+    input:
+      1:
+        gt0039|Run errands and shop: 1|local::at0049|With some difficulty|
+        gt0040|Get in and out of car: 3|local::at0051|Unable|
+        gt0041|Do chores such as vacuuming or yard work: 1|local::at0049|With some difficulty|
+        gt0042|Patient uses additional help for other activities: local::at0052|No|
+    expected_output:
+      1:
+        gt0010|Other score: 3
+  - id: 21. Set other score based on do chores
+    input:
+      1:
+        gt0039|Run errands and shop: 1|local::at0049|With some difficulty|
+        gt0040|Get in and out of car: 2|local::at0050|With much difficulty|
+        gt0041|Do chores such as vacuuming or yard work: 3|local::at0051|Unable|
+        gt0042|Patient uses additional help for other activities: local::at0052|No|
+    expected_output:
+      1:
+        gt0010|Other score: 3
+  - id: 22. Keep dress and groom score to 1
+    input:
+      1:
+        gt0015|Self-dress: 0|local::at0048|Without any difficulty|
+        gt0016|Shampoo hair: 1|local::at0049|With some difficulty|
+        gt0017|Patient uses additional help for dressing/grooming: local::at0052|No|
+    expected_output:
+      1:
+        gt0003|Dress and groom score: 1
+  - id: 23. Keep rise score to 1
+    input:
+      1:
+        gt0018|Stand up from a straight chair: 0|local::at0048|Without any difficulty|
+        gt0019|Get in and out of bed: 1|local::at0049|With some difficulty|
+        gt0020|Patient uses additional help to rise: local::at0052|No|
+    expected_output:
+      1:
+        gt0004|Rise score: 1
+  - id: 24. Keep eat score to 1
+    input:
+      1:
+        gt0021|Cut own meat: 0|local::at0048|Without any difficulty|
+        gt0022|Lift a full cup or glass to mouth: 0|local::at0048|Without any difficulty|
+        gt0023|Open a new milk carton: 1|local::at0049|With some difficulty|
+        gt0024|Patient uses additional help to eat: local::at0052|No|
+    expected_output:
+      1:
+        gt0005|Eat score: 1
+  - id: 25. Keep walk score to 1
+    input:
+      1:
+        gt0025|Walk outdoors on flat ground: 0|local::at0048|Without any difficulty|
+        gt0026|Climb up five steps: 1|local::at0049|With some difficulty|
+        gt0027|Patient uses additional help to walk: local::at0052|No|
+    expected_output:
+      1:
+        gt0006|Walk score: 1
+  - id: 26. Keep hygiene score to 1
+    input:
+      1:
+        gt0028|Wash and dry body: 0|local::at0048|Without any difficulty|
+        gt0029|Take a tub bath: 0|local::at0048|Without any difficulty|
+        gt0030|Get on and off toilet: 1|local::at0049|With some difficulty|
+        gt0031|Patient uses additional help for hygiene: local::at0052|No|
+    expected_output:
+      1:
+        gt0007|Hygiene score: 1
+  - id: 27. Keep reach score to 1
+    input:
+      1:
+        gt0032|Reach and get down a 5-pound (≈2.3 kg) object from above the head: 0|local::at0048|Without any difficulty|
+        gt0033|Bend down to pick up clothing from floor: 1|local::at0049|With some difficulty|
+        gt0034|Patient uses additional help to reach: local::at0052|No|
+    expected_output:
+      1:
+        gt0008|Reach score: 1
+  - id: 28. Keep grip score to 1
+    input:
+      1:
+        gt0035|Open car doors: 0|local::at0048|Without any difficulty|
+        gt0036|Open previously opened jars: 0|local::at0048|Without any difficulty|
+        gt0037|Turn faucets on and off: 1|local::at0049|With some difficulty|
+        gt0038|Patient uses additional help to grip: local::at0052|No|
+    expected_output:
+      1:
+        gt0009|Grip score: 1
+  - id: 29. Keep other score to 1
+    input:
+      1:
+        gt0039|Run errands and shop: 0|local::at0048|Without any difficulty|
+        gt0040|Get in and out of car: 0|local::at0048|Without any difficulty|
+        gt0041|Do chores such as vacuuming or yard work: 1|local::at0049|With some difficulty|
+        gt0042|Patient uses additional help for other activities: local::at0052|No|
+    expected_output:
+      1:
+        gt0010|Other score: 1
+  - id: 30. Boost dress and groom score to 2
+    input:
+      1:
+        gt0015|Self-dress: 0|local::at0048|Without any difficulty|
+        gt0016|Shampoo hair: 1|local::at0049|With some difficulty|
+        gt0017|Patient uses additional help for dressing/grooming: local::at0053|Yes|
+    expected_output:
+      1:
+        gt0003|Dress and groom score: 2
+  - id: 31. Boost rise score to 2
+    input:
+      1:
+        gt0018|Stand up from a straight chair: 0|local::at0048|Without any difficulty|
+        gt0019|Get in and out of bed: 1|local::at0049|With some difficulty|
+        gt0020|Patient uses additional help to rise: local::at0053|Yes|
+    expected_output:
+      1:
+        gt0004|Rise score: 2
+  - id: 32. Boost eat score to 2
+    input:
+      1:
+        gt0021|Cut own meat: 0|local::at0048|Without any difficulty|
+        gt0022|Lift a full cup or glass to mouth: 0|local::at0048|Without any difficulty|
+        gt0023|Open a new milk carton: 1|local::at0049|With some difficulty|
+        gt0024|Patient uses additional help to eat: local::at0053|Yes|
+    expected_output:
+      1:
+        gt0005|Eat score: 2
+  - id: 33. Boost walk score to 2
+    input:
+      1:
+        gt0025|Walk outdoors on flat ground: 0|local::at0048|Without any difficulty|
+        gt0026|Climb up five steps: 1|local::at0049|With some difficulty|
+        gt0027|Patient uses additional help to walk: local::at0053|Yes|
+    expected_output:
+      1:
+        gt0006|Walk score: 2
+  - id: 34. Boost hygiene score to 2
+    input:
+      1:
+        gt0028|Wash and dry body: 0|local::at0048|Without any difficulty|
+        gt0029|Take a tub bath: 0|local::at0048|Without any difficulty|
+        gt0030|Get on and off toilet: 1|local::at0049|With some difficulty|
+        gt0031|Patient uses additional help for hygiene: local::at0053|Yes|
+    expected_output:
+      1:
+        gt0007|Hygiene score: 2
+  - id: 35. Boost reach score to 2
+    input:
+      1:
+        gt0032|Reach and get down a 5-pound (≈2.3 kg) object from above the head: 0|local::at0048|Without any difficulty|
+        gt0033|Bend down to pick up clothing from floor: 1|local::at0049|With some difficulty|
+        gt0034|Patient uses additional help to reach: local::at0053|Yes|
+    expected_output:
+      1:
+        gt0008|Reach score: 2
+  - id: 36. Boost grip score to 2
+    input:
+      1:
+        gt0035|Open car doors: 0|local::at0048|Without any difficulty|
+        gt0036|Open previously opened jars: 0|local::at0048|Without any difficulty|
+        gt0037|Turn faucets on and off: 1|local::at0049|With some difficulty|
+        gt0038|Patient uses additional help to grip: local::at0053|Yes|
+    expected_output:
+      1:
+        gt0009|Grip score: 2
+  - id: 37. Boost other score to 2
+    input:
+      1:
+        gt0039|Run errands and shop: 0|local::at0048|Without any difficulty|
+        gt0040|Get in and out of car: 0|local::at0048|Without any difficulty|
+        gt0041|Do chores such as vacuuming or yard work: 1|local::at0049|With some difficulty|
+        gt0042|Patient uses additional help for other activities: local::at0053|Yes|
+    expected_output:
+      1:
+        gt0010|Other score: 2
+  - id: 38. Highest possible PAS score - High/severe disease activity
+    input:
+      1:
+        gt0015|Self-dress|: "3|local::at0051|Unable|"
+        gt0016|Shampoo hair|: "3|local::at0051|Unable|"
+        gt0017|Patient uses additional help for dressing/grooming|: "local::at0053|Yes|"
+        gt0018|Stand up from a straight chair|: "3|local::at0051|Unable|"
+        gt0019|Get in and out of bed|: "3|local::at0051|Unable|"
+        gt0020|Patient uses additional help to rise|: "local::at0053|Yes|"
+        gt0021|Cut own meat|: "3|local::at0051|Unable|"
+        gt0022|Lift a full cup or glass to mouth|: "3|local::at0051|Unable|"
+        gt0023|Open a new milk carton|: "3|local::at0051|Unable|"
+        gt0024|Patient uses additional help to eat|: "local::at0053|Yes|"
+        gt0025|Walk outdoors on flat ground|: "3|local::at0051|Unable|"
+        gt0026|Climb up five steps|: "3|local::at0051|Unable|"
+        gt0027|Patient uses additional help to walk|: "local::at0053|Yes|"
+        gt0028|Wash and dry body|: "3|local::at0051|Unable|"
+        gt0029|Take a tub bath|: "3|local::at0051|Unable|"
+        gt0030|Get on and off toilet|: "3|local::at0051|Unable|"
+        gt0031|Patient uses additional help for hygiene|: "local::at0053|Yes|"
+        gt0032|Reach and get down a 5-pound (≈2.3 kg) object from above the head: "3|local::at0051|Unable|"
+        gt0033|Bend down to pick up clothing from floor|: "3|local::at0051|Unable|"
+        gt0034|Patient uses additional help to reach|: "local::at0053|Yes|"
+        gt0035|Open car doors|: "3|local::at0051|Unable|"
+        gt0036|Open previously opened jars|: "3|local::at0051|Unable|"
+        gt0037|Turn faucets on and off|: "3|local::at0051|Unable|"
+        gt0038|Patient uses additional help to grip|: "local::at0053|Yes|"
+        gt0039|Run errands and shop|: "3|local::at0051|Unable|"
+        gt0040|Get in and out of car|: "3|local::at0051|Unable|"
+        gt0041|Do chores such as vacuuming or yard work|: "3|local::at0051|Unable|"
+        gt0042|Patient uses additional help for other activities|: "local::at0053|Yes|"
+        gt0043|Pain VAS|: 10
+        gt0044|PGADA|: 10
+    expected_output:
+      1:
+        gt0003|Dress and groom score|: 3
+        gt0004|Rise score|: 3
+        gt0005|Eat score|: 3
+        gt0006|Walk score|: 3
+        gt0007|Hygiene score|: 3
+        gt0008|Reach score|: 3
+        gt0009|Grip score|: 3
+        gt0010|Other score|: 3
+        gt0011|PAS|: "10.00,1"
+        gt0013|Disease activity|: "local::at0006|High/severe|"
+  - id: 39. Lowest possible PAS score - Remission disease activity
+    input:
+      1:
+        gt0015|Self-dress|: "0|local::at0048|Without any difficulty|"
+        gt0016|Shampoo hair|: "0|local::at0048|Without any difficulty|"
+        gt0017|Patient uses additional help for dressing/grooming|: "local::at0052|No|"
+        gt0018|Stand up from a straight chair|: "0|local::at0048|Without any difficulty|"
+        gt0019|Get in and out of bed|: "0|local::at0048|Without any difficulty|"
+        gt0020|Patient uses additional help to rise|: "local::at0052|No|"
+        gt0021|Cut own meat|: "0|local::at0048|Without any difficulty|"
+        gt0022|Lift a full cup or glass to mouth|: "0|local::at0048|Without any difficulty|"
+        gt0023|Open a new milk carton|: "0|local::at0048|Without any difficulty|"
+        gt0024|Patient uses additional help to eat|: "local::at0052|No|"
+        gt0025|Walk outdoors on flat ground|: "0|local::at0048|Without any difficulty|"
+        gt0026|Climb up five steps|: "0|local::at0048|Without any difficulty|"
+        gt0027|Patient uses additional help to walk|: "local::at0052|No|"
+        gt0028|Wash and dry body|: "0|local::at0048|Without any difficulty|"
+        gt0029|Take a tub bath|: "0|local::at0048|Without any difficulty|"
+        gt0030|Get on and off toilet|: "0|local::at0048|Without any difficulty|"
+        gt0031|Patient uses additional help for hygiene|: "local::at0052|No|"
+        gt0032|Reach and get down a 5-pound (≈2.3 kg) object from above the head: "0|local::at0048|Without any difficulty|"
+        gt0033|Bend down to pick up clothing from floor|: "0|local::at0048|Without any difficulty|"
+        gt0034|Patient uses additional help to reach|: "local::at0052|No|"
+        gt0035|Open car doors|: "0|local::at0048|Without any difficulty|"
+        gt0036|Open previously opened jars|: "0|local::at0048|Without any difficulty|"
+        gt0037|Turn faucets on and off|: "0|local::at0048|Without any difficulty|"
+        gt0038|Patient uses additional help to grip|: "local::at0052|No|"
+        gt0039|Run errands and shop|: "0|local::at0048|Without any difficulty|"
+        gt0040|Get in and out of car|: "0|local::at0048|Without any difficulty|"
+        gt0041|Do chores such as vacuuming or yard work|: "0|local::at0048|Without any difficulty|"
+        gt0042|Patient uses additional help for other activities|: "local::at0052|No|"
+        gt0043|Pain VAS|: 0
+        gt0044|PGADA|: 0
+    expected_output:
+      1:
+        gt0003|Dress and groom score|: 0
+        gt0004|Rise score|: 0
+        gt0005|Eat score|: 0
+        gt0006|Walk score|: 0
+        gt0007|Hygiene score|: 0
+        gt0008|Reach score|: 0
+        gt0009|Grip score|: 0
+        gt0010|Other score|: 0
+        gt0011|PAS|: "0.00,1"
+        gt0013|Disease activity|: "local::at0003|Remission|"
+  - id: 40. Average PAS score - Moderate disease activity
+    input:
+      1:
+        gt0015|Self-dress|: "0|local::at0048|Without any difficulty|"
+        gt0016|Shampoo hair|: "0|local::at0048|Without any difficulty|"
+        gt0017|Patient uses additional help for dressing/grooming|: "local::at0053|Yes|"
+        gt0018|Stand up from a straight chair|: "0|local::at0048|Without any difficulty|"
+        gt0019|Get in and out of bed|: "0|local::at0048|Without any difficulty|"
+        gt0020|Patient uses additional help to rise|: "local::at0053|Yes|"
+        gt0021|Cut own meat|: "0|local::at0048|Without any difficulty|"
+        gt0022|Lift a full cup or glass to mouth|: "0|local::at0048|Without any difficulty|"
+        gt0023|Open a new milk carton|: "0|local::at0048|Without any difficulty|"
+        gt0024|Patient uses additional help to eat|: "local::at0053|Yes|"
+        gt0025|Walk outdoors on flat ground|: "0|local::at0048|Without any difficulty|"
+        gt0026|Climb up five steps|: "0|local::at0048|Without any difficulty|"
+        gt0027|Patient uses additional help to walk|: "local::at0053|Yes|"
+        gt0028|Wash and dry body|: "0|local::at0048|Without any difficulty|"
+        gt0029|Take a tub bath|: "0|local::at0048|Without any difficulty|"
+        gt0030|Get on and off toilet|: "0|local::at0048|Without any difficulty|"
+        gt0031|Patient uses additional help for hygiene|: "local::at0053|Yes|"
+        gt0032|Reach and get down a 5-pound (≈2.3 kg) object from above the head: "0|local::at0048|Without any difficulty|"
+        gt0033|Bend down to pick up clothing from floor|: "0|local::at0048|Without any difficulty|"
+        gt0034|Patient uses additional help to reach|: "local::at0053|Yes|"
+        gt0035|Open car doors|: "0|local::at0048|Without any difficulty|"
+        gt0036|Open previously opened jars|: "0|local::at0048|Without any difficulty|"
+        gt0037|Turn faucets on and off|: "0|local::at0048|Without any difficulty|"
+        gt0038|Patient uses additional help to grip|: "local::at0053|Yes|"
+        gt0039|Run errands and shop|: "0|local::at0048|Without any difficulty|"
+        gt0040|Get in and out of car|: "0|local::at0048|Without any difficulty|"
+        gt0041|Do chores such as vacuuming or yard work|: "0|local::at0048|Without any difficulty|"
+        gt0042|Patient uses additional help for other activities|: "local::at0053|Yes|"
+        gt0043|Pain VAS|: 5
+        gt0044|PGADA|: 5
+    expected_output:
+      1:
+        gt0003|Dress and groom score|: 2
+        gt0004|Rise score|: 2
+        gt0005|Eat score|: 2
+        gt0006|Walk score|: 2
+        gt0007|Hygiene score|: 2
+        gt0008|Reach score|: 2
+        gt0009|Grip score|: 2
+        gt0010|Other score|: 2
+        gt0011|PAS|: "5.55,1"
+        gt0013|Disease activity|: "local::at0005|Moderate|"
+  - id: 41. Low PAS score - Low/minimal disease activity
+    input:
+      1:
+        gt0015|Self-dress|: "3|local::at0051|Unable|"
+        gt0016|Shampoo hair|: "3|local::at0051|Unable|"
+        gt0017|Patient uses additional help for dressing/grooming|: "local::at0053|Yes|"
+        gt0018|Stand up from a straight chair|: "3|local::at0051|Unable|"
+        gt0019|Get in and out of bed|: "3|local::at0051|Unable|"
+        gt0020|Patient uses additional help to rise|: "local::at0053|Yes|"
+        gt0021|Cut own meat|: "3|local::at0051|Unable|"
+        gt0022|Lift a full cup or glass to mouth|: "3|local::at0051|Unable|"
+        gt0023|Open a new milk carton|: "3|local::at0051|Unable|"
+        gt0024|Patient uses additional help to eat|: "local::at0053|Yes|"
+        gt0025|Walk outdoors on flat ground|: "3|local::at0051|Unable|"
+        gt0026|Climb up five steps|: "3|local::at0051|Unable|"
+        gt0027|Patient uses additional help to walk|: "local::at0053|Yes|"
+        gt0028|Wash and dry body|: "3|local::at0051|Unable|"
+        gt0029|Take a tub bath|: "3|local::at0051|Unable|"
+        gt0030|Get on and off toilet|: "3|local::at0051|Unable|"
+        gt0031|Patient uses additional help for hygiene|: "local::at0053|Yes|"
+        gt0032|Reach and get down a 5-pound (≈2.3 kg) object from above the head: "3|local::at0051|Unable|"
+        gt0033|Bend down to pick up clothing from floor|: "3|local::at0051|Unable|"
+        gt0034|Patient uses additional help to reach|: "local::at0053|Yes|"
+        gt0035|Open car doors|: "3|local::at0051|Unable|"
+        gt0036|Open previously opened jars|: "3|local::at0051|Unable|"
+        gt0037|Turn faucets on and off|: "3|local::at0051|Unable|"
+        gt0038|Patient uses additional help to grip|: "local::at0053|Yes|"
+        gt0039|Run errands and shop|: "3|local::at0051|Unable|"
+        gt0040|Get in and out of car|: "3|local::at0051|Unable|"
+        gt0041|Do chores such as vacuuming or yard work|: "3|local::at0051|Unable|"
+        gt0042|Patient uses additional help for other activities|: "local::at0053|Yes|"
+        gt0043|Pain VAS|: 0
+        gt0044|PGADA|: 0
+    expected_output:
+      1:
+        gt0003|Dress and groom score|: 3
+        gt0004|Rise score|: 3
+        gt0005|Eat score|: 3
+        gt0006|Walk score|: 3
+        gt0007|Hygiene score|: 3
+        gt0008|Reach score|: 3
+        gt0009|Grip score|: 3
+        gt0010|Other score|: 3
+        gt0011|PAS|: "3.33,1"
+        gt0013|Disease activity|: "local::at0004|Low/minimal|"

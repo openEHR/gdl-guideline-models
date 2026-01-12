@@ -1,0 +1,101 @@
+guidelines:
+  1: SLICC_Criteria_for_Systemic_Lupus_Erythematosus_2012_guideline.v1
+test_cases:
+- id: Positive SLE Lupus nephritis
+  input:
+    1:
+      gt0003|Biopsy-proven nephritis compatible with SLE: 1|local::at0008|Yes|
+      gt0004|ANA or anti-dsDNA antibodies: 1|local::at0010|Yes|
+  expected_output:
+    1:
+      gt0026|SLE diagnosis: Positive by 2012 SLICC criteria.
+- id: Positive SLE 1 immunological, 3 clinical criteria
+  input:
+    1:
+      gt0003|Biopsy-proven nephritis compatible with SLE: 0|local::at0007|No|
+      gt0004|ANA or anti-dsDNA antibodies: 0|local::at0009|No|
+      gt0005|Acute cutaneous lupus: 1|local::at0014|Yes|
+      gt0006|Chronic cutaneous lupus: 1|local::at0017|Yes|
+      gt0007|Oral ulcers: 1|local::at0020|Yes|
+      gt0008|Nonscarring alopecia: 0|local::at0025|No|
+      gt0009|Synovitis (Involving ≥2 joints): 0|local::at0023|No|
+      gt0010|Serositis: 0|local::at0028|No|
+      gt0011|Renal (Urine protein/creatinine (or 24 hr urine protein) representing 500 mg of protein/24 hr, RBC casts): 0|local::at0031|No|
+      gt0012|Neurologic: 0|local::at0034|No|
+      gt0013|Hemolytic anemia (In absence of other causes): 0|local::at0037|No|
+      gt0014|Leukopenia or lymphopenia: 0|local::at0040|No|
+      gt0015|Thrombocytopenia (<100,000/mm³ at least once; in absence of other causes): 0|local::at0043|No|
+      gt0016|ANA above laboratory reference range: 1|local::at0048|Yes|
+      gt0017|Anti-dsDNA above laboratory reference range, except ELISA (2x above laboratory reference range): 0|local::at0050|No|
+      gt0018|Anti-Sm: 0|local::at0053|No|
+      gt0019|Antiphospholipid antibody: 0|local::at0056|No|
+      gt0020|Low complement (Low C3, low C4, low CH50): 0|local::at0059|No|
+      gt0021|Positive direct Coombs test (In the absence of hemolytic anemia): 0|local::at0062|No|
+  expected_output:
+    1:
+      gt0025|Total score: 4
+      gt0024|Immunological score: 1
+      gt0026|SLE diagnosis: Positive by 2012 SLICC criteria.
+      gt0023|Clinical score: 3
+- id: Positive SLE all immunological and clinical criteria
+  input:
+    1:
+      gt0003|Biopsy-proven nephritis compatible with SLE: 0|local::at0007|No|
+      gt0004|ANA or anti-dsDNA antibodies: 0|local::at0009|No|
+      gt0005|Acute cutaneous lupus: 1|local::at0014|Yes|
+      gt0006|Chronic cutaneous lupus: 1|local::at0017|Yes|
+      gt0007|Oral ulcers: 1|local::at0020|Yes|
+      gt0008|Nonscarring alopecia: 1|local::at0026|Yes|
+      gt0009|Synovitis (Involving ≥2 joints): 1|local::at0024|Yes|
+      gt0010|Serositis: 1|local::at0029|Yes|
+      gt0011|Renal (Urine protein/creatinine (or 24 hr urine protein) representing 500 mg of protein/24 hr, RBC casts): 1|local::at0032|Yes|
+      gt0012|Neurologic: 1|local::at0035|Yes|
+      gt0013|Hemolytic anemia (In absence of other causes): 1|local::at0038|Yes|
+      gt0014|Leukopenia or lymphopenia: 1|local::at0041|Yes|
+      gt0015|Thrombocytopenia (<100,000/mm³ at least once; in absence of other causes): 1|local::at0044|Yes|
+      gt0016|ANA above laboratory reference range: 1|local::at0048|Yes|
+      gt0017|Anti-dsDNA above laboratory reference range, except ELISA (2x above laboratory reference range): 1|local::at0051|Yes|
+      gt0018|Anti-Sm: 1|local::at0054|Yes|
+      gt0019|Antiphospholipid antibody: 1|local::at0057|Yes|
+      gt0020|Low complement (Low C3, low C4, low CH50): 1|local::at0060|Yes|
+      gt0021|Positive direct Coombs test (In the absence of hemolytic anemia): 1|local::at0063|Yes|
+  expected_output:
+    1:
+      gt0025|Total score: 17
+      gt0024|Immunological score: 6
+      gt0026|SLE diagnosis: Positive by 2012 SLICC criteria.
+      gt0023|Clinical score: 11
+- id: Not positive
+  input:
+    1:
+      gt0003|Biopsy-proven nephritis compatible with SLE: 1|local::at0008|Yes|
+      gt0004|ANA or anti-dsDNA antibodies: 0|local::at0009|No|
+  expected_output:
+    1:
+      gt0026|SLE diagnosis: Not Positive by 2012 SLICC criteria.
+- id: Not positive total criteria<=4
+  input:
+    1:
+      gt0005|Acute cutaneous lupus: 1|local::at0014|Yes|
+      gt0006|Chronic cutaneous lupus: 0|local::at0016|No|
+      gt0007|Oral ulcers: 0|local::at0019|No|
+      gt0008|Nonscarring alopecia: 0|local::at0025|No|
+      gt0009|Synovitis (Involving ≥2 joints): 0|local::at0023|No|
+      gt0010|Serositis: 0|local::at0028|No|
+      gt0011|Renal (Urine protein/creatinine (or 24 hr urine protein) representing 500 mg of protein/24 hr, RBC casts): 0|local::at0031|No|
+      gt0012|Neurologic: 0|local::at0034|No|
+      gt0013|Hemolytic anemia (In absence of other causes): 0|local::at0037|No|
+      gt0014|Leukopenia or lymphopenia: 0|local::at0040|No|
+      gt0015|Thrombocytopenia (<100,000/mm³ at least once; in absence of other causes): 0|local::at0043|No|
+      gt0016|ANA above laboratory reference range: 1|local::at0048|Yes|
+      gt0017|Anti-dsDNA above laboratory reference range, except ELISA (2x above laboratory reference range): 0|local::at0050|No|
+      gt0018|Anti-Sm: 0|local::at0053|No|
+      gt0019|Antiphospholipid antibody: 0|local::at0056|No|
+      gt0020|Low complement (Low C3, low C4, low CH50): 0|local::at0059|No|
+      gt0021|Positive direct Coombs test (In the absence of hemolytic anemia): 0|local::at0062|No|
+  expected_output:
+    1:
+      gt0025|Total score: 2
+      gt0024|Immunological score: 1
+      gt0026|SLE diagnosis: Not Positive by 2012 SLICC criteria.
+      gt0023|Clinical score: 1

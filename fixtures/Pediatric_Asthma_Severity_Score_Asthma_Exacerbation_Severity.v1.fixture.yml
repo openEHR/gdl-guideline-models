@@ -1,0 +1,28 @@
+guidelines:
+  1: Pediatric_Asthma_Severity_Score_Asthma_Exacerbation_Severity.v1
+test_cases:
+- id: Default
+  input:
+    1: {}
+  expected_output:
+    1: {}
+- id: PASS Score <2
+  input:
+    1:
+      gt0003|Wheezing: 0|local::at0003|None or mild +0|
+      gt0004|Work of breathing. Use of accessory muscles, retractions: 0|local::at0007|Normal or mildly diminished +0|
+      gt0005|Prolongation of expiration. Ratio of expiration to inspiration: 1|local::at0012|Moderately prolonged|
+  expected_output:
+    1:
+      gt0007|PASS Score: 1
+      gt0008|Recommendation: PASS suggests asthma may be treatable as outpatient.
+- id: PASS Score ≥2
+  input:
+    1:
+      gt0003|Wheezing: 0|local::at0003|None or mild +0|
+      gt0004|Work of breathing. Use of accessory muscles, retractions: 2|local::at0009|Severe +2|
+      gt0005|Prolongation of expiration. Ratio of expiration to inspiration: 1|local::at0012|Moderately prolonged|
+  expected_output:
+    1:
+      gt0007|PASS Score: 3
+      gt0008|Recommendation: PASS suggests severe asthma - consider admission to PICU.

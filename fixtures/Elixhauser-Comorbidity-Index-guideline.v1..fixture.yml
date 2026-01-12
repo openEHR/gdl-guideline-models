@@ -1,0 +1,795 @@
+guidelines:
+  1: Elixhauser-Comorbidity-Index-guideline.v1
+test_cases:
+- id: score -19
+  input:
+    1:
+      gt0004|Congestive heart failure: 0|local::at0005|No|
+      gt0005|Cardiac arrhythmias: 0|local::at0008|No|
+      gt0006|Valvular disease: -1|local::at0012|Yes|
+      gt0007|Pulmonary circulation disorders: 0|local::at0014|No|
+      gt0008|Peripheral vascular disorders: 0|local::at0091|No|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 0|local::at0022|No|
+      gt0011|Neurodegenerative disorders: 0|local::at0025|No|
+      gt0012|Chronic pulmonary disease: 0|local::at0028|No|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 0|local::at0038|No|
+      gt0016|Liver disease: 0|local::at0041|No|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 0|local::at0050|No|
+      gt0020|Metastatic cancer: 0|local::at0053|No|
+      gt0021|Solid tumor without metastasis: 0|local::at0056|No|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 0|local::at0062|No|
+      gt0024|Obesity: -4|local::at0066|Yes|
+      gt0025|Weight loss: 0|local::at0068|No|
+      gt0026|Fluid and electrolyte disorders: 0|local::at0071|No|
+      gt0027|Blood loss anemia: -2|local::at0075|Yes|
+      gt0028|Deficiency anemia: -2|local::at0077|Yes|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: -7|local::at0083|Yes|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: -3|local::at0089|Yes|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: 0.37%
+      gt0034|ECI score: -19
+- id: score -18
+  input:
+    1:
+      gt0004|Congestive heart failure: 0|local::at0005|No|
+      gt0005|Cardiac arrhythmias: 0|local::at0008|No|
+      gt0006|Valvular disease: 0|local::at0011|No|
+      gt0007|Pulmonary circulation disorders: 0|local::at0014|No|
+      gt0008|Peripheral vascular disorders: 0|local::at0091|No|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 0|local::at0022|No|
+      gt0011|Neurodegenerative disorders: 0|local::at0025|No|
+      gt0012|Chronic pulmonary disease: 0|local::at0028|No|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 0|local::at0038|No|
+      gt0016|Liver disease: 0|local::at0041|No|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 0|local::at0050|No|
+      gt0020|Metastatic cancer: 0|local::at0053|No|
+      gt0021|Solid tumor without metastasis: 0|local::at0056|No|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 0|local::at0062|No|
+      gt0024|Obesity: -4|local::at0066|Yes|
+      gt0025|Weight loss: 0|local::at0068|No|
+      gt0026|Fluid and electrolyte disorders: 0|local::at0071|No|
+      gt0027|Blood loss anemia: -2|local::at0075|Yes|
+      gt0028|Deficiency anemia: -2|local::at0077|Yes|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: -7|local::at0083|Yes|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: -3|local::at0089|Yes|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: More than 0.37% to less than 2%
+      gt0034|ECI score: -18
+- id: score -10
+  input:
+    1:
+      gt0004|Congestive heart failure: 0|local::at0005|No|
+      gt0005|Cardiac arrhythmias: 0|local::at0008|No|
+      gt0006|Valvular disease: 0|local::at0011|No|
+      gt0007|Pulmonary circulation disorders: 0|local::at0014|No|
+      gt0008|Peripheral vascular disorders: 0|local::at0091|No|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 0|local::at0022|No|
+      gt0011|Neurodegenerative disorders: 0|local::at0025|No|
+      gt0012|Chronic pulmonary disease: 0|local::at0028|No|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 0|local::at0038|No|
+      gt0016|Liver disease: 0|local::at0041|No|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 0|local::at0050|No|
+      gt0020|Metastatic cancer: 0|local::at0053|No|
+      gt0021|Solid tumor without metastasis: 0|local::at0056|No|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 0|local::at0062|No|
+      gt0024|Obesity: 0|local::at0065|No|
+      gt0025|Weight loss: 0|local::at0068|No|
+      gt0026|Fluid and electrolyte disorders: 0|local::at0071|No|
+      gt0027|Blood loss anemia: 0|local::at0074|No|
+      gt0028|Deficiency anemia: 0|local::at0078|No|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: -7|local::at0083|Yes|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: -3|local::at0089|Yes|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: More than 0.37% to less than 2%
+      gt0034|ECI score: -10
+- id: score 0
+  input:
+    1:
+      gt0004|Congestive heart failure: 7|local::at0006|Yes|
+      gt0005|Cardiac arrhythmias: 0|local::at0008|No|
+      gt0006|Valvular disease: 0|local::at0011|No|
+      gt0007|Pulmonary circulation disorders: 0|local::at0014|No|
+      gt0008|Peripheral vascular disorders: 0|local::at0091|No|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 0|local::at0022|No|
+      gt0011|Neurodegenerative disorders: 0|local::at0025|No|
+      gt0012|Chronic pulmonary disease: 3|local::at0029|Yes|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 0|local::at0038|No|
+      gt0016|Liver disease: 0|local::at0041|No|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 0|local::at0050|No|
+      gt0020|Metastatic cancer: 0|local::at0053|No|
+      gt0021|Solid tumor without metastasis: 0|local::at0056|No|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 0|local::at0062|No|
+      gt0024|Obesity: 0|local::at0065|No|
+      gt0025|Weight loss: 0|local::at0068|No|
+      gt0026|Fluid and electrolyte disorders: 0|local::at0071|No|
+      gt0027|Blood loss anemia: 0|local::at0074|No|
+      gt0028|Deficiency anemia: 0|local::at0078|No|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: -7|local::at0083|Yes|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: -3|local::at0089|Yes|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: More than 1% to less than 3%
+      gt0034|ECI score: 0
+- id: score -9
+  input:
+    1:
+      gt0004|Congestive heart failure: 0|local::at0005|No|
+      gt0005|Cardiac arrhythmias: 0|local::at0008|No|
+      gt0006|Valvular disease: 0|local::at0011|No|
+      gt0007|Pulmonary circulation disorders: 0|local::at0014|No|
+      gt0008|Peripheral vascular disorders: 0|local::at0091|No|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 0|local::at0022|No|
+      gt0011|Neurodegenerative disorders: 0|local::at0025|No|
+      gt0012|Chronic pulmonary disease: 0|local::at0028|No|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 0|local::at0038|No|
+      gt0016|Liver disease: 0|local::at0041|No|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 0|local::at0050|No|
+      gt0020|Metastatic cancer: 0|local::at0053|No|
+      gt0021|Solid tumor without metastasis: 0|local::at0056|No|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 0|local::at0062|No|
+      gt0024|Obesity: 0|local::at0065|No|
+      gt0025|Weight loss: 0|local::at0068|No|
+      gt0026|Fluid and electrolyte disorders: 0|local::at0071|No|
+      gt0027|Blood loss anemia: 0|local::at0074|No|
+      gt0028|Deficiency anemia: -2|local::at0077|Yes|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: -7|local::at0083|Yes|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: 0|local::at0090|No|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: More than 1% to less than 3%
+      gt0034|ECI score: -9
+- id: score 1
+  input:
+    1:
+      gt0004|Congestive heart failure: 0|local::at0005|No|
+      gt0005|Cardiac arrhythmias: 0|local::at0008|No|
+      gt0006|Valvular disease: 0|local::at0011|No|
+      gt0007|Pulmonary circulation disorders: 4|local::at0015|Yes|
+      gt0008|Peripheral vascular disorders: 0|local::at0091|No|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 0|local::at0022|No|
+      gt0011|Neurodegenerative disorders: 0|local::at0025|No|
+      gt0012|Chronic pulmonary disease: 0|local::at0028|No|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 0|local::at0038|No|
+      gt0016|Liver disease: 0|local::at0041|No|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 0|local::at0050|No|
+      gt0020|Metastatic cancer: 0|local::at0053|No|
+      gt0021|Solid tumor without metastasis: 0|local::at0056|No|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 0|local::at0062|No|
+      gt0024|Obesity: 0|local::at0065|No|
+      gt0025|Weight loss: 0|local::at0068|No|
+      gt0026|Fluid and electrolyte disorders: 0|local::at0071|No|
+      gt0027|Blood loss anemia: 0|local::at0074|No|
+      gt0028|Deficiency anemia: 0|local::at0078|No|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: 0|local::at0084|No|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: -3|local::at0089|Yes|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: More than 3% to less than 6%
+      gt0034|ECI score: 1
+- id: score 10
+  input:
+    1:
+      gt0004|Congestive heart failure: 7|local::at0006|Yes|
+      gt0005|Cardiac arrhythmias: 0|local::at0008|No|
+      gt0006|Valvular disease: -1|local::at0012|Yes|
+      gt0007|Pulmonary circulation disorders: 4|local::at0015|Yes|
+      gt0008|Peripheral vascular disorders: 0|local::at0091|No|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 0|local::at0022|No|
+      gt0011|Neurodegenerative disorders: 0|local::at0025|No|
+      gt0012|Chronic pulmonary disease: 0|local::at0028|No|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 0|local::at0038|No|
+      gt0016|Liver disease: 0|local::at0041|No|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 0|local::at0050|No|
+      gt0020|Metastatic cancer: 0|local::at0053|No|
+      gt0021|Solid tumor without metastasis: 0|local::at0056|No|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 0|local::at0062|No|
+      gt0024|Obesity: 0|local::at0065|No|
+      gt0025|Weight loss: 0|local::at0068|No|
+      gt0026|Fluid and electrolyte disorders: 0|local::at0071|No|
+      gt0027|Blood loss anemia: 0|local::at0074|No|
+      gt0028|Deficiency anemia: 0|local::at0078|No|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: 0|local::at0084|No|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: 0|local::at0090|No|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: More than 3% to less than 6%
+      gt0034|ECI score: 10
+- id: score 11
+  input:
+    1:
+      gt0004|Congestive heart failure: 7|local::at0006|Yes|
+      gt0005|Cardiac arrhythmias: 0|local::at0008|No|
+      gt0006|Valvular disease: -1|local::at0012|Yes|
+      gt0007|Pulmonary circulation disorders: 4|local::at0015|Yes|
+      gt0008|Peripheral vascular disorders: 2|local::at0092|Yes|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 0|local::at0022|No|
+      gt0011|Neurodegenerative disorders: 0|local::at0025|No|
+      gt0012|Chronic pulmonary disease: 0|local::at0028|No|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 0|local::at0038|No|
+      gt0016|Liver disease: 0|local::at0041|No|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 0|local::at0050|No|
+      gt0020|Metastatic cancer: 0|local::at0053|No|
+      gt0021|Solid tumor without metastasis: 0|local::at0056|No|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 3|local::at0063|Yes|
+      gt0024|Obesity: -4|local::at0066|Yes|
+      gt0025|Weight loss: 0|local::at0068|No|
+      gt0026|Fluid and electrolyte disorders: 0|local::at0071|No|
+      gt0027|Blood loss anemia: 0|local::at0074|No|
+      gt0028|Deficiency anemia: 0|local::at0078|No|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: 0|local::at0084|No|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: 0|local::at0090|No|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: More than 6% to less than 16%
+      gt0034|ECI score: 11
+- id: score 20
+  input:
+    1:
+      gt0004|Congestive heart failure: 7|local::at0006|Yes|
+      gt0005|Cardiac arrhythmias: 5|local::at0009|Yes|
+      gt0006|Valvular disease: -1|local::at0012|Yes|
+      gt0007|Pulmonary circulation disorders: 4|local::at0015|Yes|
+      gt0008|Peripheral vascular disorders: 2|local::at0092|Yes|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 7|local::at0023|Yes|
+      gt0011|Neurodegenerative disorders: 0|local::at0025|No|
+      gt0012|Chronic pulmonary disease: 0|local::at0028|No|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 0|local::at0038|No|
+      gt0016|Liver disease: 0|local::at0041|No|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 0|local::at0050|No|
+      gt0020|Metastatic cancer: 0|local::at0053|No|
+      gt0021|Solid tumor without metastasis: 0|local::at0056|No|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 3|local::at0063|Yes|
+      gt0024|Obesity: -4|local::at0066|Yes|
+      gt0025|Weight loss: 0|local::at0068|No|
+      gt0026|Fluid and electrolyte disorders: 0|local::at0071|No|
+      gt0027|Blood loss anemia: 0|local::at0074|No|
+      gt0028|Deficiency anemia: 0|local::at0078|No|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: 0|local::at0084|No|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: -3|local::at0089|Yes|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: More than 6% to less than 16%
+      gt0034|ECI score: 20
+- id: score 21
+  input:
+    1:
+      gt0004|Congestive heart failure: 7|local::at0006|Yes|
+      gt0005|Cardiac arrhythmias: 5|local::at0009|Yes|
+      gt0006|Valvular disease: -1|local::at0012|Yes|
+      gt0007|Pulmonary circulation disorders: 4|local::at0015|Yes|
+      gt0008|Peripheral vascular disorders: 2|local::at0092|Yes|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 7|local::at0023|Yes|
+      gt0011|Neurodegenerative disorders: 0|local::at0025|No|
+      gt0012|Chronic pulmonary disease: 0|local::at0028|No|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 5|local::at0039|Yes|
+      gt0016|Liver disease: 0|local::at0041|No|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 0|local::at0050|No|
+      gt0020|Metastatic cancer: 0|local::at0053|No|
+      gt0021|Solid tumor without metastasis: 0|local::at0056|No|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 3|local::at0063|Yes|
+      gt0024|Obesity: -4|local::at0066|Yes|
+      gt0025|Weight loss: 0|local::at0068|No|
+      gt0026|Fluid and electrolyte disorders: 0|local::at0071|No|
+      gt0027|Blood loss anemia: -2|local::at0075|Yes|
+      gt0028|Deficiency anemia: -2|local::at0077|Yes|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: 0|local::at0084|No|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: -3|local::at0089|Yes|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: More than 15% to less than 33%
+      gt0034|ECI score: 21
+- id: score 30
+  input:
+    1:
+      gt0004|Congestive heart failure: 7|local::at0006|Yes|
+      gt0005|Cardiac arrhythmias: 5|local::at0009|Yes|
+      gt0006|Valvular disease: 0|local::at0011|No|
+      gt0007|Pulmonary circulation disorders: 4|local::at0015|Yes|
+      gt0008|Peripheral vascular disorders: 2|local::at0092|Yes|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 7|local::at0023|Yes|
+      gt0011|Neurodegenerative disorders: 0|local::at0025|No|
+      gt0012|Chronic pulmonary disease: 0|local::at0028|No|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 5|local::at0039|Yes|
+      gt0016|Liver disease: 0|local::at0041|No|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 0|local::at0050|No|
+      gt0020|Metastatic cancer: 0|local::at0053|No|
+      gt0021|Solid tumor without metastasis: 0|local::at0056|No|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 3|local::at0063|Yes|
+      gt0024|Obesity: -4|local::at0066|Yes|
+      gt0025|Weight loss: 0|local::at0068|No|
+      gt0026|Fluid and electrolyte disorders: 5|local::at0072|Yes|
+      gt0027|Blood loss anemia: -2|local::at0075|Yes|
+      gt0028|Deficiency anemia: -2|local::at0077|Yes|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: 0|local::at0084|No|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: 0|local::at0090|No|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: More than 15% to less than 33%
+      gt0034|ECI score: 30
+- id: score 31
+  input:
+    1:
+      gt0004|Congestive heart failure: 7|local::at0006|Yes|
+      gt0005|Cardiac arrhythmias: 5|local::at0009|Yes|
+      gt0006|Valvular disease: -1|local::at0012|Yes|
+      gt0007|Pulmonary circulation disorders: 0|local::at0014|No|
+      gt0008|Peripheral vascular disorders: 2|local::at0092|Yes|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 7|local::at0023|Yes|
+      gt0011|Neurodegenerative disorders: 6|local::at0026|Yes|
+      gt0012|Chronic pulmonary disease: 0|local::at0028|No|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 5|local::at0039|Yes|
+      gt0016|Liver disease: 0|local::at0041|No|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 0|local::at0050|No|
+      gt0020|Metastatic cancer: 0|local::at0053|No|
+      gt0021|Solid tumor without metastasis: 0|local::at0056|No|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 3|local::at0063|Yes|
+      gt0024|Obesity: -4|local::at0066|Yes|
+      gt0025|Weight loss: 0|local::at0068|No|
+      gt0026|Fluid and electrolyte disorders: 5|local::at0072|Yes|
+      gt0027|Blood loss anemia: -2|local::at0075|Yes|
+      gt0028|Deficiency anemia: -2|local::at0077|Yes|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: 0|local::at0084|No|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: 0|local::at0090|No|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: More than 32% to less than 57%
+      gt0034|ECI score: 31
+- id: score 40
+  input:
+    1:
+      gt0004|Congestive heart failure: 7|local::at0006|Yes|
+      gt0005|Cardiac arrhythmias: 5|local::at0009|Yes|
+      gt0006|Valvular disease: -1|local::at0012|Yes|
+      gt0007|Pulmonary circulation disorders: 0|local::at0014|No|
+      gt0008|Peripheral vascular disorders: 2|local::at0092|Yes|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 7|local::at0023|Yes|
+      gt0011|Neurodegenerative disorders: 6|local::at0026|Yes|
+      gt0012|Chronic pulmonary disease: 3|local::at0029|Yes|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 5|local::at0039|Yes|
+      gt0016|Liver disease: 0|local::at0041|No|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 0|local::at0050|No|
+      gt0020|Metastatic cancer: 0|local::at0053|No|
+      gt0021|Solid tumor without metastasis: 4|local::at0057|Yes|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 3|local::at0063|Yes|
+      gt0024|Obesity: -4|local::at0066|Yes|
+      gt0025|Weight loss: 0|local::at0068|No|
+      gt0026|Fluid and electrolyte disorders: 5|local::at0072|Yes|
+      gt0027|Blood loss anemia: -2|local::at0075|Yes|
+      gt0028|Deficiency anemia: 0|local::at0078|No|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: 0|local::at0084|No|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: 0|local::at0090|No|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: More than 32% to less than 57%
+      gt0034|ECI score: 40
+- id: score 41
+  input:
+    1:
+      gt0004|Congestive heart failure: 7|local::at0006|Yes|
+      gt0005|Cardiac arrhythmias: 5|local::at0009|Yes|
+      gt0006|Valvular disease: 0|local::at0011|No|
+      gt0007|Pulmonary circulation disorders: 0|local::at0014|No|
+      gt0008|Peripheral vascular disorders: 2|local::at0092|Yes|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 7|local::at0023|Yes|
+      gt0011|Neurodegenerative disorders: 6|local::at0026|Yes|
+      gt0012|Chronic pulmonary disease: 3|local::at0029|Yes|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 5|local::at0039|Yes|
+      gt0016|Liver disease: 0|local::at0041|No|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 0|local::at0050|No|
+      gt0020|Metastatic cancer: 0|local::at0053|No|
+      gt0021|Solid tumor without metastasis: 4|local::at0057|Yes|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 3|local::at0063|Yes|
+      gt0024|Obesity: -4|local::at0066|Yes|
+      gt0025|Weight loss: 0|local::at0068|No|
+      gt0026|Fluid and electrolyte disorders: 5|local::at0072|Yes|
+      gt0027|Blood loss anemia: -2|local::at0075|Yes|
+      gt0028|Deficiency anemia: 0|local::at0078|No|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: 0|local::at0084|No|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: 0|local::at0090|No|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: More than 57% to less than 79%
+      gt0034|ECI score: 41
+- id: score 50
+  input:
+    1:
+      gt0004|Congestive heart failure: 7|local::at0006|Yes|
+      gt0005|Cardiac arrhythmias: 5|local::at0009|Yes|
+      gt0006|Valvular disease: -1|local::at0012|Yes|
+      gt0007|Pulmonary circulation disorders: 0|local::at0014|No|
+      gt0008|Peripheral vascular disorders: 2|local::at0092|Yes|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 7|local::at0023|Yes|
+      gt0011|Neurodegenerative disorders: 6|local::at0026|Yes|
+      gt0012|Chronic pulmonary disease: 3|local::at0029|Yes|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 5|local::at0039|Yes|
+      gt0016|Liver disease: 11|local::at0042|Yes|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 0|local::at0050|No|
+      gt0020|Metastatic cancer: 0|local::at0053|No|
+      gt0021|Solid tumor without metastasis: 4|local::at0057|Yes|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 3|local::at0063|Yes|
+      gt0024|Obesity: 0|local::at0065|No|
+      gt0025|Weight loss: 0|local::at0068|No|
+      gt0026|Fluid and electrolyte disorders: 0|local::at0071|No|
+      gt0027|Blood loss anemia: -2|local::at0075|Yes|
+      gt0028|Deficiency anemia: 0|local::at0078|No|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: 0|local::at0084|No|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: 0|local::at0090|No|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: More than 57% to less than 79%
+      gt0034|ECI score: 50
+- id: score 51
+  input:
+    1:
+      gt0004|Congestive heart failure: 7|local::at0006|Yes|
+      gt0005|Cardiac arrhythmias: 5|local::at0009|Yes|
+      gt0006|Valvular disease: 0|local::at0011|No|
+      gt0007|Pulmonary circulation disorders: 0|local::at0014|No|
+      gt0008|Peripheral vascular disorders: 2|local::at0092|Yes|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 7|local::at0023|Yes|
+      gt0011|Neurodegenerative disorders: 6|local::at0026|Yes|
+      gt0012|Chronic pulmonary disease: 3|local::at0029|Yes|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 5|local::at0039|Yes|
+      gt0016|Liver disease: 11|local::at0042|Yes|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 0|local::at0050|No|
+      gt0020|Metastatic cancer: 0|local::at0053|No|
+      gt0021|Solid tumor without metastasis: 4|local::at0057|Yes|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 3|local::at0063|Yes|
+      gt0024|Obesity: 0|local::at0065|No|
+      gt0025|Weight loss: 0|local::at0068|No|
+      gt0026|Fluid and electrolyte disorders: 0|local::at0071|No|
+      gt0027|Blood loss anemia: -2|local::at0075|Yes|
+      gt0028|Deficiency anemia: 0|local::at0078|No|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: 0|local::at0084|No|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: 0|local::at0090|No|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: More than 79% to less than 92%
+      gt0034|ECI score: 51
+- id: score 60
+  input:
+    1:
+      gt0004|Congestive heart failure: 7|local::at0006|Yes|
+      gt0005|Cardiac arrhythmias: 5|local::at0009|Yes|
+      gt0006|Valvular disease: -1|local::at0012|Yes|
+      gt0007|Pulmonary circulation disorders: 0|local::at0014|No|
+      gt0008|Peripheral vascular disorders: 2|local::at0092|Yes|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 7|local::at0023|Yes|
+      gt0011|Neurodegenerative disorders: 6|local::at0026|Yes|
+      gt0012|Chronic pulmonary disease: 3|local::at0029|Yes|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 5|local::at0039|Yes|
+      gt0016|Liver disease: 11|local::at0042|Yes|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 0|local::at0050|No|
+      gt0020|Metastatic cancer: 12|local::at0054|Yes|
+      gt0021|Solid tumor without metastasis: 4|local::at0057|Yes|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 3|local::at0063|Yes|
+      gt0024|Obesity: 0|local::at0065|No|
+      gt0025|Weight loss: 0|local::at0068|No|
+      gt0026|Fluid and electrolyte disorders: 0|local::at0071|No|
+      gt0027|Blood loss anemia: -2|local::at0075|Yes|
+      gt0028|Deficiency anemia: -2|local::at0077|Yes|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: 0|local::at0084|No|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: 0|local::at0090|No|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: More than 79% to less than 92%
+      gt0034|ECI score: 60
+- id: score 61
+  input:
+    1:
+      gt0004|Congestive heart failure: 7|local::at0006|Yes|
+      gt0005|Cardiac arrhythmias: 5|local::at0009|Yes|
+      gt0006|Valvular disease: 0|local::at0011|No|
+      gt0007|Pulmonary circulation disorders: 0|local::at0014|No|
+      gt0008|Peripheral vascular disorders: 2|local::at0092|Yes|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 7|local::at0023|Yes|
+      gt0011|Neurodegenerative disorders: 6|local::at0026|Yes|
+      gt0012|Chronic pulmonary disease: 3|local::at0029|Yes|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 5|local::at0039|Yes|
+      gt0016|Liver disease: 11|local::at0042|Yes|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 0|local::at0050|No|
+      gt0020|Metastatic cancer: 12|local::at0054|Yes|
+      gt0021|Solid tumor without metastasis: 4|local::at0057|Yes|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 3|local::at0063|Yes|
+      gt0024|Obesity: 0|local::at0065|No|
+      gt0025|Weight loss: 0|local::at0068|No|
+      gt0026|Fluid and electrolyte disorders: 0|local::at0071|No|
+      gt0027|Blood loss anemia: -2|local::at0075|Yes|
+      gt0028|Deficiency anemia: -2|local::at0077|Yes|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: 0|local::at0084|No|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: 0|local::at0090|No|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: More than 92% to less than 97%
+      gt0034|ECI score: 61
+- id: score 70
+  input:
+    1:
+      gt0004|Congestive heart failure: 7|local::at0006|Yes|
+      gt0005|Cardiac arrhythmias: 5|local::at0009|Yes|
+      gt0006|Valvular disease: 0|local::at0011|No|
+      gt0007|Pulmonary circulation disorders: 0|local::at0014|No|
+      gt0008|Peripheral vascular disorders: 2|local::at0092|Yes|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 7|local::at0023|Yes|
+      gt0011|Neurodegenerative disorders: 6|local::at0026|Yes|
+      gt0012|Chronic pulmonary disease: 3|local::at0029|Yes|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 5|local::at0039|Yes|
+      gt0016|Liver disease: 11|local::at0042|Yes|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 9|local::at0051|Yes|
+      gt0020|Metastatic cancer: 12|local::at0054|Yes|
+      gt0021|Solid tumor without metastasis: 4|local::at0057|Yes|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 3|local::at0063|Yes|
+      gt0024|Obesity: 0|local::at0065|No|
+      gt0025|Weight loss: 0|local::at0068|No|
+      gt0026|Fluid and electrolyte disorders: 0|local::at0071|No|
+      gt0027|Blood loss anemia: -2|local::at0075|Yes|
+      gt0028|Deficiency anemia: -2|local::at0077|Yes|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: 0|local::at0084|No|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: 0|local::at0090|No|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: More than 92% to less than 97%
+      gt0034|ECI score: 70
+- id: score 80
+  input:
+    1:
+      gt0004|Congestive heart failure: 7|local::at0006|Yes|
+      gt0005|Cardiac arrhythmias: 5|local::at0009|Yes|
+      gt0006|Valvular disease: 0|local::at0011|No|
+      gt0007|Pulmonary circulation disorders: 0|local::at0014|No|
+      gt0008|Peripheral vascular disorders: 2|local::at0092|Yes|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 7|local::at0023|Yes|
+      gt0011|Neurodegenerative disorders: 6|local::at0026|Yes|
+      gt0012|Chronic pulmonary disease: 3|local::at0029|Yes|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 5|local::at0039|Yes|
+      gt0016|Liver disease: 11|local::at0042|Yes|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 9|local::at0051|Yes|
+      gt0020|Metastatic cancer: 12|local::at0054|Yes|
+      gt0021|Solid tumor without metastasis: 4|local::at0057|Yes|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 3|local::at0063|Yes|
+      gt0024|Obesity: 0|local::at0065|No|
+      gt0025|Weight loss: 6|local::at0069|Yes|
+      gt0026|Fluid and electrolyte disorders: 0|local::at0071|No|
+      gt0027|Blood loss anemia: 0|local::at0074|No|
+      gt0028|Deficiency anemia: 0|local::at0078|No|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: 0|local::at0084|No|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: 0|local::at0090|No|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: More than 97% to less than 99%
+      gt0034|ECI score: 80
+- id: score 89
+  input:
+    1:
+      gt0004|Congestive heart failure: 7|local::at0006|Yes|
+      gt0005|Cardiac arrhythmias: 5|local::at0009|Yes|
+      gt0006|Valvular disease: -1|local::at0012|Yes|
+      gt0007|Pulmonary circulation disorders: 4|local::at0015|Yes|
+      gt0008|Peripheral vascular disorders: 2|local::at0092|Yes|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 7|local::at0023|Yes|
+      gt0011|Neurodegenerative disorders: 6|local::at0026|Yes|
+      gt0012|Chronic pulmonary disease: 3|local::at0029|Yes|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 5|local::at0039|Yes|
+      gt0016|Liver disease: 11|local::at0042|Yes|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 9|local::at0051|Yes|
+      gt0020|Metastatic cancer: 12|local::at0054|Yes|
+      gt0021|Solid tumor without metastasis: 4|local::at0057|Yes|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 3|local::at0063|Yes|
+      gt0024|Obesity: 0|local::at0065|No|
+      gt0025|Weight loss: 6|local::at0069|Yes|
+      gt0026|Fluid and electrolyte disorders: 5|local::at0072|Yes|
+      gt0027|Blood loss anemia: 0|local::at0074|No|
+      gt0028|Deficiency anemia: 0|local::at0078|No|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: 0|local::at0084|No|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: 0|local::at0090|No|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: More than 99% to less than 99.41%
+      gt0034|ECI score: 88
+- id: score 89
+  input:
+    1:
+      gt0004|Congestive heart failure: 7|local::at0006|Yes|
+      gt0005|Cardiac arrhythmias: 5|local::at0009|Yes|
+      gt0006|Valvular disease: 0|local::at0011|No|
+      gt0007|Pulmonary circulation disorders: 4|local::at0015|Yes|
+      gt0008|Peripheral vascular disorders: 2|local::at0092|Yes|
+      gt0009|Hypertension: 0|local::at0020|Yes|
+      gt0010|Paralysis: 7|local::at0023|Yes|
+      gt0011|Neurodegenerative disorders: 6|local::at0026|Yes|
+      gt0012|Chronic pulmonary disease: 3|local::at0029|Yes|
+      gt0013|Diabetes: 0|local::at0031|No|
+      gt0014|Hypothyroidism: 0|local::at0036|Yes|
+      gt0015|Renal failure: 5|local::at0039|Yes|
+      gt0016|Liver disease: 11|local::at0042|Yes|
+      gt0017|Peptic ulcer disease, no bleeding: 0|local::at0045|Yes|
+      gt0018|AIDS/HIV: 0|local::at0048|Yes|
+      gt0019|Lymphoma: 9|local::at0051|Yes|
+      gt0020|Metastatic cancer: 12|local::at0054|Yes|
+      gt0021|Solid tumor without metastasis: 4|local::at0057|Yes|
+      gt0022|Rheumatoid arthritis/collagen vascular diseases: 0|local::at0060|Yes|
+      gt0023|Coagulopathy: 3|local::at0063|Yes|
+      gt0024|Obesity: 0|local::at0065|No|
+      gt0025|Weight loss: 6|local::at0069|Yes|
+      gt0026|Fluid and electrolyte disorders: 5|local::at0072|Yes|
+      gt0027|Blood loss anemia: 0|local::at0074|No|
+      gt0028|Deficiency anemia: 0|local::at0078|No|
+      gt0029|Alcohol abuse: 0|local::at0080|No|
+      gt0030|Drug abuse: 0|local::at0084|No|
+      gt0031|Psychosis: 0|local::at0087|Yes|
+      gt0032|Depressions: 0|local::at0090|No|
+  expected_output:
+    1:
+      gt0035|Probablity of inpatient death: 99.41%
+      gt0034|ECI score: 89

@@ -1,0 +1,96 @@
+guidelines:
+  1: barthel_index_ADL.v1
+test_cases:
+- id: Default
+  input: {}
+  expected_output: {}
+
+- id: Set Index Interpretation to Independent 
+  input:
+    1:
+      gt0004|Toilet use: 10|local::at0028|Independent  +10|
+      gt0005|Stairs: 10|local::at0042|Independent  +10|
+      gt0007|Bowel Control: 10|local::at0020|Continent  +10|
+      gt0008|Transfer (bed to chair and back): 15|local::at0033|Independent  +15|
+      gt0010|Mobility on level surfaces: 15|local::at0038|Independent (but may use and aid, e.g. stick) >50 yards  +15|
+      gt0011|Bladder control: 10|local::at0024|Continent  +10|
+      gt0012|Feeding: 10|local::at0004|Independtent  +10|
+      gt0009|Grooming: 5|local::at0012|Independent  +5|
+      gt0003|Dressing: 10|local::at0016|Independent  +10|
+      gt0006|Bathing: 5|local::at0009|Independent  +5|
+  expected_output:
+    1:
+      gt0014|Index Interpretation: Independent
+      gt0015|Barthel Index: 100
+
+- id: Set Index Interpretation to Minimally dependent 
+  input:
+    1:
+      gt0004|Toilet use: 0|local::at0026|Unable  +0|
+      gt0005|Stairs: 0|local::at0040|Unable  +0|
+      gt0007|Bowel Control: 0|local::at0018|Incontinent (or needs to be given enemas) +0|
+      gt0008|Transfer (bed to chair and back): 15|local::at0033|Independent  +15|
+      gt0010|Mobility on level surfaces: 15|local::at0038|Independent (but may use\ and aid, e.g. stick) >50 yards  +15|
+      gt0011|Bladder control: 10|local::at0024|Continent  +10|
+      gt0012|Feeding: 10|local::at0004|Independtent  +10|
+      gt0009|Grooming: 5|local::at0012|Independent  +5|
+      gt0003|Dressing: 10|local::at0016|Independent  +10|
+      gt0006|Bathing: 5|local::at0009|Independent  +5|
+  expected_output:
+    1:
+      gt0014|Index Interpretation: Minimally dependent
+      gt0015|Barthel Index: 70
+
+- id: Set Index Interpretation to Partially dependent 
+  input:
+    1:
+      gt0004|Toilet use: 0|local::at0026|Unable  +0|
+      gt0005|Stairs: 0|local::at0040|Unable  +0|
+      gt0007|Bowel Control: 0|local::at0018|Incontinent (or needs to be given enemas) +0|
+      gt0008|Transfer (bed to chair and back): 0|local::at0030|Unable|
+      gt0010|Mobility on level surfaces: 15|local::at0038|Independent (but may use and aid, e.g. stick) >50 yards  +15|
+      gt0011|Bladder control: 10|local::at0024|Continent  +10|
+      gt0012|Feeding: 10|local::at0004|Independtent  +10|
+      gt0009|Grooming: 5|local::at0012|Independent  +5|
+      gt0003|Dressing: 10|local::at0016|Independent  +10|
+      gt0006|Bathing: 5|local::at0009|Independent  +5|
+  expected_output:
+    1:
+      gt0014|Index Interpretation: Partially dependent
+      gt0015|Barthel Index: 55
+      
+- id: Set Index Interpretation to Very dependent 
+  input:
+    1:
+      gt0004|Toilet use: 0|local::at0026|Unable  +0|
+      gt0005|Stairs: 0|local::at0040|Unable  +0|
+      gt0007|Bowel Control: 0|local::at0018|Incontinent (or needs to be given enemas) +0|
+      gt0008|Transfer (bed to chair and back): 0|local::at0030|Unable|
+      gt0010|Mobility on level surfaces: 0|local::at0035|Immobile or <50 yards  +0|
+      gt0011|Bladder control: 0|local::at0022|Incontinent (catheterized, unable to manage alone) +0|
+      gt0012|Feeding: 10|local::at0004|Independtent  +10|
+      gt0009|Grooming: 5|local::at0012|Independent  +5|
+      gt0003|Dressing: 10|local::at0016|Independent  +10|
+      gt0006|Bathing: 5|local::at0009|Independent  +5|
+  expected_output:
+    1:
+      gt0014|Index Interpretation: Very dependent
+      gt0015|Barthel Index: 30
+
+- id: Set Index Interpretation to Totally dependent 
+  input:
+    1:
+      gt0004|Toilet use: 0|local::at0026|Unable  +0|
+      gt0005|Stairs: 0|local::at0040|Unable  +0|
+      gt0007|Bowel Control: 0|local::at0018|Incontinent (or needs to be given enemas) +0|
+      gt0008|Transfer (bed to chair and back): 0|local::at0030|Unable|
+      gt0010|Mobility on level surfaces: 0|local::at0035|Immobile or <50 yards  +0|
+      gt0011|Bladder control: 0|local::at0022|Incontinent (catheterized, unable to manage alone) +0|
+      gt0012|Feeding: 0|local::at0006|Unable|
+      gt0009|Grooming: 0|local::at0011|Unable  +0|
+      gt0003|Dressing: 10|local::at0016|Independent  +10|
+      gt0006|Bathing: 5|local::at0009|Independent  +5|
+  expected_output:
+    1:
+      gt0014|Index Interpretation: Totally dependent
+      gt0015|Barthel Index: 15

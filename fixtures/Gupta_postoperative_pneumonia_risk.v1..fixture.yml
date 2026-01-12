@@ -1,0 +1,49 @@
+guidelines:
+  1: Gupta_postoperative_pneumonia_risk.v1
+current_datetime:
+language:
+test_cases:
+- id: 01. Constant X= -1.7873, Risk= 14.3%
+  input:
+    1:
+      gt0006|Age|: "70,a"
+      gt0008|COPD|: "local::at0005|Yes|"
+      gt0009|Functional status|: "local::at0008|Partially dependent|"
+      gt0010|ASA class|: "local::at0013|3: severe systemic disease|"
+      gt0011|Sepsis|: "local::at0019|Preoperative sepsis|"
+      gt0012|Smoking within last year|: "local::at0005|Yes|"
+      gt0013|Type of procedure|: "local::at0034|Neck|"
+  expected_output:
+    1:
+      gt0003|X|: "-1.7873,1"
+      gt0004|Risk of postoperative pneumonia|: "14.3,%"
+
+- id: 02. Constant X= 0.6531, Risk= 65.8%
+  input:
+    1:
+      gt0006|Age|: "100,a"
+      gt0008|COPD|: "local::at0005|Yes|"
+      gt0009|Functional status|: "local::at0009|Totally dependent|"
+      gt0010|ASA class|: "local::at0015|5: moribund, not expected to survive without surgery|"
+      gt0011|Sepsis|: "local::at0020|Preoperative septic shock|"
+      gt0012|Smoking within last year|: "local::at0005|Yes|"
+      gt0013|Type of procedure|: "local::at0030|Foregut or hepatopancreatobiliary|"
+  expected_output:
+    1:
+      gt0003|X|: "0.6531,1"
+      gt0004|Risk of postoperative pneumonia|: "65.8,%"
+
+- id: 03. Constant X= -9.4692, Risk= 0.0%
+  input:
+    1:
+      gt0006|Age|: "30,a"
+      gt0008|COPD|: "local::at0004|No|"
+      gt0009|Functional status|: "local::at0007|Independent|"
+      gt0010|ASA class|: "local::at0011|1: normal healthy patient|"
+      gt0011|Sepsis|: "local::at0017|None|"
+      gt0012|Smoking within last year|: "local::at0004|No|"
+      gt0013|Type of procedure|: "local::at0027|Breast|"
+  expected_output:
+    1:
+      gt0003|X|: "-9.4692,1"
+      gt0004|Risk of postoperative pneumonia|: "0.0,%"

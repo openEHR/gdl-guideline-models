@@ -1,0 +1,268 @@
+guidelines:
+  1: ROAG.v1
+test_cases:
+- id: case_1
+  input:
+    1:
+      gt0003|Voice: 0|local::at0013|Not relevant for assessment|
+      gt0004|Lips: 1|local::at0017|Smooth and pink|
+      gt0005|Mucous Membrane: 1|local::at0020|Pink and moist|
+      gt0006|Tongue: 1|local::at0023|Pink, moist,  papillae present|
+      gt0040|Gums: 0|local::at0026|No gums present, only mucous membrane|
+      gt0048|Teeth/dentures: 0|local::at0030|No teeth|
+      gt0056|Prosthesis: 0|local::at0034|Has no prosthesis|
+      gt0064|Saliva: 1|local::at0038|No friction|
+      gt0072|Swallowing: 0|local::at0041|Not relevant for assessment|
+      gt0036|Voice Action: local::at0024|Moisten mouth|
+      gt0037|Lips Action: local::at0025|Lubricate lips|
+      gt0038|Mucous Membrane Action: local::at0026|Clean and lubricate mucous membrane|
+      gt0039|Tongue Action: local::at0061|Local pain relief of tongue|
+      gt0043|Gums Action: local::at0073|Additional oral care if patient is on enhanced\
+        \ diet|
+      gt0051|Teeth/dentures Action: local::at0064|Information and/or training regarding\
+        \ oral care in order for the patient to conduct oral care independently|
+      gt0059|Prosthesis Action: local::at0062|Clean prosthesis|
+      gt0067|Saliva Action: local::at0031|Moisten mucous membrane|
+      gt0075|Swallowing Action: local::at0032|Alleviate swallowing by moistening\
+        \ the mouth|
+  expected_output:
+    1:
+      gt0042|Gums Recommendation: 0|local::at0042|No action|
+      gt0074|Swallowing Recommendation: 0|local::at0054|No action|
+      gt0031|Mucous Membrane Recommendation: 0|local::at0036|No action|
+      gt0058|Prosthesis Recommendation: 0|local::at0048|No action|
+      gt0008|Voice Recommendation: 0|local::at0004|No action|
+      gt0009|Lips Recommendation: 0|local::at0033|No action|
+      gt0011|Tongue Recommendation: 0|local::at0039|No action|
+      gt0050|Teeth/dentures Recommendation: 0|local::at0045|No action|
+      gt0066|Saliva Recommendation: 0|local::at0051|No action|
+      gt0065|H. Saliva: 1|local::at0038|No friction|
+      gt0020|D. Tongue: 1|local::at0023|Pink, moist,  papillae present|
+      gt0057|G. Prosthesis: 0|local::at0034|Has no prosthesis|
+      gt0073|I. Swallowing: 0|local::at0041|Not relevant for assessment|
+      gt0019|C. Mucous Membrane: 1|local::at0020|Pink and moist|
+      gt0017|A. Voice: 0|local::at0013|Not relevant for assessment|
+      gt0018|B. Lips: 1|local::at0017|Smooth and pink|
+      gt0041|E. Gums: 0|local::at0026|No gums present, only mucous membrane|
+
+- id: case_2
+  input:
+    1:
+      gt0003|Voice: 1|local::at0014|Normal|
+      gt0004|Lips: 2|local::at0018|Dry or cracked, and/or angular cheilitis|
+      gt0005|Mucous Membrane: 2|local::at0021|Dry and/or change in colour, red, blue-red or white|
+      gt0006|Tongue: 2|local::at0024|Dry, no papillae present or change in colour (red or white)|
+      gt0040|Gums: 1|local::at0027|Pink and firm|
+      gt0048|Teeth/dentures: 1|local::at0031|Clean, no debris|
+      gt0056|Prosthesis: 1|local::at0035|Clean and functions properly|
+      gt0064|Saliva: 2|local::at0039|Slightly increased friction|
+      gt0072|Swallowing: 1|local::at0042|Normal swallow|
+      gt0036|Voice Action: local::at0024|Moisten mouth|
+      gt0037|Lips Action: local::at0057|Local pain relief of lips|
+      gt0038|Mucous Membrane Action: local::at0059|Local pain relief of mucous membrane|
+      gt0039|Tongue Action: local::at0060|Moisten tongue|
+      gt0043|Gums Action: local::at0072|Fluorine supplement in addition to tooth\
+        \ paste containing fluorine|
+      gt0051|Teeth/dentures Action: local::at0029|Brush teeth|
+      gt0059|Prosthesis Action: local::at0030|Information and/or training regarding\
+        \ oral care in order for the patient to conduct oral care/cleansing of prosthesis\
+        \ independently|
+      gt0067|Saliva Action: local::at0031|Moisten mucous membrane|
+      gt0075|Swallowing Action: local::at0032|Alleviate swallowing by moistening\
+        \ the mouth|
+  expected_output:
+    1:
+      gt0042|Gums Recommendation: 0|local::at0042|No action|
+      gt0074|Swallowing Recommendation: 0|local::at0054|No action|
+      gt0031|Mucous Membrane Recommendation: 1|local::at0037|Action|
+      gt0058|Prosthesis Recommendation: 0|local::at0048|No action|
+      gt0008|Voice Recommendation: 0|local::at0004|No action|
+      gt0009|Lips Recommendation: 1|local::at0034|Action|
+      gt0011|Tongue Recommendation: 1|local::at0040|Action|
+      gt0050|Teeth/dentures Recommendation: 0|local::at0045|No action|
+      gt0066|Saliva Recommendation: 1|local::at0052|Action|
+      gt0065|H. Saliva: 2|local::at0039|Slightly increased friction|
+      gt0020|D. Tongue: 2|local::at0024|Dry, no papillae present or change in colour (red or white)|
+      gt0057|G. Prosthesis: 1|local::at0035|Clean and functions properly|
+      gt0073|I. Swallowing: 1|local::at0042|Normal swallow|
+      gt0019|C. Mucous Membrane: 2|local::at0021|Dry and/or change in colour, red, blue-red or white|
+      gt0017|A. Voice: 1|local::at0014|Normal|
+      gt0018|B. Lips: 2|local::at0018|Dry or cracked, and/or angular cheilitis|
+      gt0041|E. Gums: 1|local::at0027|Pink and firm|
+      gt0049|F. Teeth/dentures: 1|local::at0031|Clean, no debris|
+
+- id: case_3
+  input:
+    1:
+      gt0003|Voice: 2|local::at0015|Deep or rasping|
+      gt0004|Lips: 3|local::at0019|Ulcerated or bleeding|
+      gt0005|Mucous Membrane: 3|local::at0022|Very red, or thick, white coating or blisters /ulceration with or without bleeding|
+      gt0006|Tongue: 3|local::at0025|Very thick white coating; blisters or ulceration|
+      gt0040|Gums: 2|local::at0028|Oedematous and/or red|
+      gt0048|Teeth/dentures: 2|local::at0032|Plaque or debris in local areas|
+      gt0056|Prosthesis: 2|local::at0036|Plaque or debris|
+      gt0064|Saliva: 3|local::at0040|Significantly increased friction|
+      gt0072|Swallowing: 2|local::at0043|Some pain or difficulty on swallowing|
+      gt0036|Voice Action: local::at0024|Moisten mouth|
+      gt0037|Lips Action: local::at0057|Local pain relief of lips|
+      gt0038|Mucous Membrane Action: local::at0058|Removal of scabs|
+      gt0039|Tongue Action: local::at0027|Clean tongue|
+      gt0043|Gums Action: local::at0071|Clean mouth with foam rubber|
+      gt0051|Teeth/dentures Action: local::at0066|Clean mouth with foam rubber|
+      gt0059|Prosthesis Action: local::at0063|Clean the remaining teeth and gums|
+      gt0067|Saliva Action: local::at0031|Moisten mucous membrane|
+      gt0075|Swallowing Action: local::at0032|Alleviate swallowing by moistening\
+        \ the mouth|
+  expected_output:
+    1:
+      gt0042|Gums Recommendation: 1|local::at0043|Action|
+      gt0074|Swallowing Recommendation: 1|local::at0055|Action|
+      gt0031|Mucous Membrane Recommendation: 2|local::at0038|Action + referral|
+      gt0058|Prosthesis Recommendation: 1|local::at0049|Action|
+      gt0008|Voice Recommendation: 1|local::at0005|Action|
+      gt0009|Lips Recommendation: 2|local::at0035|Action + referral|
+      gt0011|Tongue Recommendation: 2|local::at0041|Action + referral|
+      gt0050|Teeth/dentures Recommendation: 1|local::at0046|Action|
+      gt0066|Saliva Recommendation: 2|local::at0053|Action + referral|
+      gt0065|H. Saliva: 3|local::at0040|Significantly increased friction|
+      gt0020|D. Tongue: 3|local::at0025|Very thick white coating; blisters or ulceration|
+      gt0057|G. Prosthesis: 2|local::at0036|Plaque or debris|
+      gt0073|I. Swallowing: 2|local::at0043|Some pain or difficulty on swallowing|
+      gt0019|C. Mucous Membrane: 3|local::at0022|Very red, or thick, white coating or blisters /ulceration with or without bleeding|
+      gt0017|A. Voice: 2|local::at0015|Deep or rasping|
+      gt0018|B. Lips: 3|local::at0019|Ulcerated or bleeding|
+      gt0041|E. Gums: 2|local::at0028|Oedematous and/or red|
+      gt0049|F. Teeth/dentures: 2|local::at0032|Plaque or debris in local areas|
+
+- id: case_4
+  input:
+    1:
+      gt0003|Voice: 3|local::at0016|Difficulty talking or painful|
+      gt0004|Lips: 3|local::at0019|Ulcerated or bleeding|
+      gt0005|Mucous Membrane: 3|local::at0022|Very red, or thick, white coating or blisters /ulceration with or without bleeding|
+      gt0006|Tongue: 3|local::at0025|Very thick white coating; blisters or ulceration|
+      gt0040|Gums: 3|local::at0029|Bleeding easily under finger pressure|
+      gt0048|Teeth/dentures: 3|local::at0033|Plaque or debris generalised|
+      gt0056|Prosthesis: 3|local::at0037|Not used or malfunctioning|
+      gt0064|Saliva: 3|local::at0040|Significantly increased friction|
+      gt0072|Swallowing: 3|local::at0044|Unable to swallow|
+      gt0036|Voice Action: local::at0024|Moisten mouth|
+      gt0037|Lips Action: local::at0057|Local pain relief of lips|
+      gt0038|Mucous Membrane Action: local::at0058|Removal of scabs|
+      gt0039|Tongue Action: local::at0027|Clean tongue|
+      gt0043|Gums Action: local::at0070|Cleanse area between teeth|
+      gt0051|Teeth/dentures Action: local::at0065|Cleanse area between teeth|
+      gt0059|Prosthesis Action: local::at0063|Clean the remaining teeth and gums|
+      gt0067|Saliva Action: local::at0031|Moisten mucous membrane|
+      gt0075|Swallowing Action: local::at0032|Alleviate swallowing by moistening\
+        \ the mouth|
+  expected_output:
+    1:
+      gt0042|Gums Recommendation: 2|local::at0044|Action + referral|
+      gt0074|Swallowing Recommendation: 2|local::at0056|Action + referral|
+      gt0031|Mucous Membrane Recommendation: 2|local::at0038|Action + referral|
+      gt0058|Prosthesis Recommendation: 2|local::at0050|Action + referral|
+      gt0008|Voice Recommendation: 2|local::at0007|Action + referral|
+      gt0009|Lips Recommendation: 2|local::at0035|Action + referral|
+      gt0011|Tongue Recommendation: 2|local::at0041|Action + referral|
+      gt0050|Teeth/dentures Recommendation: 2|local::at0047|Action + referral|
+      gt0066|Saliva Recommendation: 2|local::at0053|Action + referral|
+      gt0065|H. Saliva: 3|local::at0040|Significantly increased friction|
+      gt0020|D. Tongue: 3|local::at0025|Very thick white coating; blisters or ulceration|
+      gt0057|G. Prosthesis: 3|local::at0037|Not used or malfunctioning|
+      gt0073|I. Swallowing: 3|local::at0044|Unable to swallow|
+      gt0019|C. Mucous Membrane: 3|local::at0022|Very red, or thick, white coating or blisters /ulceration with or without bleeding|
+      gt0017|A. Voice: 3|local::at0016|Difficulty talking or painful|
+      gt0018|B. Lips: 3|local::at0019|Ulcerated or bleeding|
+      gt0041|E. Gums: 3|local::at0029|Bleeding easily under finger pressure|
+      gt0049|F. Teeth/dentures: 3|local::at0033|Plaque or debris generalised|
+
+- id: case_5
+  input:
+    1:
+      gt0003|Voice: 3|local::at0016|Difficulty talking or painful|
+      gt0004|Lips: 3|local::at0019|Ulcerated or bleeding|
+      gt0005|Mucous Membrane: 3|local::at0022|Very red, or thick, white coating or blisters /ulceration with or without bleeding|
+      gt0006|Tongue: 3|local::at0025|Very thick white coating; blisters or ulceration|
+      gt0040|Gums: 3|local::at0029|Bleeding easily under finger pressure|
+      gt0048|Teeth/dentures: 3|local::at0033|Plaque or debris generalised|
+      gt0056|Prosthesis: 3|local::at0037|Not used or malfunctioning|
+      gt0064|Saliva: 3|local::at0040|Significantly increased friction|
+      gt0072|Swallowing: 3|local::at0044|Unable to swallow|
+      gt0036|Voice Action: local::at0024|Moisten mouth|
+      gt0037|Lips Action: local::at0057|Local pain relief of lips|
+      gt0038|Mucous Membrane Action: local::at0058|Removal of scabs|
+      gt0039|Tongue Action: local::at0027|Clean tongue|
+      gt0043|Gums Action: local::at0069|Brush teeth|
+      gt0051|Teeth/dentures Action: local::at0068|Additional oral care if patient\
+        \ is on enhanced diet|
+      gt0059|Prosthesis Action: local::at0063|Clean the remaining teeth and gums|
+      gt0067|Saliva Action: local::at0031|Moisten mucous membrane|
+      gt0075|Swallowing Action: local::at0032|Alleviate swallowing by moistening\
+        \ the mouth|
+  expected_output:
+    1:
+      gt0042|Gums Recommendation: 2|local::at0044|Action + referral|
+      gt0074|Swallowing Recommendation: 2|local::at0056|Action + referral|
+      gt0031|Mucous Membrane Recommendation: 2|local::at0038|Action + referral|
+      gt0058|Prosthesis Recommendation: 2|local::at0050|Action + referral|
+      gt0008|Voice Recommendation: 2|local::at0007|Action + referral|
+      gt0009|Lips Recommendation: 2|local::at0035|Action + referral|
+      gt0011|Tongue Recommendation: 2|local::at0041|Action + referral|
+      gt0050|Teeth/dentures Recommendation: 2|local::at0047|Action + referral|
+      gt0066|Saliva Recommendation: 2|local::at0053|Action + referral|
+      gt0065|H. Saliva: 3|local::at0040|Significantly increased friction|
+      gt0020|D. Tongue: 3|local::at0025|Very thick white coating; blisters or ulceration|
+      gt0057|G. Prosthesis: 3|local::at0037|Not used or malfunctioning|
+      gt0073|I. Swallowing: 3|local::at0044|Unable to swallow|
+      gt0019|C. Mucous Membrane: 3|local::at0022|Very red, or thick, white coating or blisters /ulceration with or without bleeding|
+      gt0017|A. Voice: 3|local::at0016|Difficulty talking or painful|
+      gt0018|B. Lips: 3|local::at0019|Ulcerated or bleeding|
+      gt0041|E. Gums: 3|local::at0029|Bleeding easily under finger pressure|
+      gt0049|F. Teeth/dentures: 3|local::at0033|Plaque or debris generalised|
+
+- id: case_6
+  input:
+    1:
+      gt0003|Voice: 3|local::at0016|Difficulty talking or painful|
+      gt0004|Lips: 3|local::at0019|Ulcerated or bleeding|
+      gt0005|Mucous Membrane: 3|local::at0022|Very red, or thick, white coating or blisters /ulceration with or without bleeding|
+      gt0006|Tongue: 3|local::at0025|Very thick white coating; blisters or ulceration|
+      gt0040|Gums: 3|local::at0029|Bleeding easily under finger pressure|
+      gt0048|Teeth/dentures: 3|local::at0033|Plaque or debris generalised|
+      gt0056|Prosthesis: 3|local::at0037|Not used or malfunctioning|
+      gt0064|Saliva: 3|local::at0040|Significantly increased friction|
+      gt0072|Swallowing: 3|local::at0044|Unable to swallow|
+      gt0036|Voice Action: local::at0024|Moisten mouth|
+      gt0037|Lips Action: local::at0057|Local pain relief of lips|
+      gt0038|Mucous Membrane Action: local::at0058|Removal of scabs|
+      gt0039|Tongue Action: local::at0027|Clean tongue|
+      gt0043|Gums Action: local::at0028|Information and/or training regarding oral\
+        \ care in order for the patient to conduct oral care independently|
+      gt0051|Teeth/dentures Action: local::at0067|Fluorine supplement in addition\
+        \ to tooth paste containing fluorine|
+      gt0059|Prosthesis Action: local::at0063|Clean the remaining teeth and gums|
+      gt0067|Saliva Action: local::at0031|Moisten mucous membrane|
+      gt0075|Swallowing Action: local::at0032|Alleviate swallowing by moistening\
+        \ the mouth|
+  expected_output:
+    1:
+      gt0042|Gums Recommendation: 2|local::at0044|Action + referral|
+      gt0074|Swallowing Recommendation: 2|local::at0056|Action + referral|
+      gt0031|Mucous Membrane Recommendation: 2|local::at0038|Action + referral|
+      gt0058|Prosthesis Recommendation: 2|local::at0050|Action + referral|
+      gt0008|Voice Recommendation: 2|local::at0007|Action + referral|
+      gt0009|Lips Recommendation: 2|local::at0035|Action + referral|
+      gt0011|Tongue Recommendation: 2|local::at0041|Action + referral|
+      gt0050|Teeth/dentures Recommendation: 2|local::at0047|Action + referral|
+      gt0066|Saliva Recommendation: 2|local::at0053|Action + referral|
+      gt0065|H. Saliva: 3|local::at0040|Significantly increased friction|
+      gt0020|D. Tongue: 3|local::at0025|Very thick white coating; blisters or ulceration|
+      gt0057|G. Prosthesis: 3|local::at0037|Not used or malfunctioning|
+      gt0073|I. Swallowing: 3|local::at0044|Unable to swallow|
+      gt0019|C. Mucous Membrane: 3|local::at0022|Very red, or thick, white coating or blisters /ulceration with or without bleeding|
+      gt0017|A. Voice: 3|local::at0016|Difficulty talking or painful|
+      gt0018|B. Lips: 3|local::at0019|Ulcerated or bleeding|
+      gt0041|E. Gums: 3|local::at0029|Bleeding easily under finger pressure|
+      gt0049|F. Teeth/dentures: 3|local::at0033|Plaque or debris generalised|
+

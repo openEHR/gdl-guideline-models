@@ -1,0 +1,403 @@
+guidelines:
+  1: GWTG_HF.v1
+test_cases:
+- id: Healthy 52 years old
+  input:
+    1:
+      gt0003|BUN value: 5,mmol/l
+      gt0004|Points for Black race: 3|local::at0052|No|
+      gt0006|Points for COPD: 0|local::at0049|No|
+      gt0019|Systolic: 115,mm[Hg]
+      gt0023|Sodium: 140,mmol/l
+      gt0091|Birthdate: 1967-03-11T20:33Z
+      gt0027|Rate: 72,/min
+  expected_output:
+    1:
+      gt0015|Points for Black race: 3|local::at0052|No|
+      gt0013|Points for Age: 11|local::at0064|50-59|
+      gt0014|Points for HR: 0|local::at0053|≤ 79|
+      gt0016|Points for COPD: 0|local::at0049|No|
+      gt0010|Points for Sys BP: 17|local::at0014|110-119|
+      gt0012|Points for Sodium: 0|local::at0039|>=139|
+      gt0017|Total sum: 31
+      gt0011|Points for BUN: 0|local::at0022|<= 9|
+      gt0093|Age: 52,a
+- id: BUN 10 mmol/l
+  input:
+    1:
+      gt0003|BUN value: 10,mmol/l
+      gt0004|Points for Black race: 3|local::at0052|No|
+      gt0006|Points for COPD: 0|local::at0049|No|
+      gt0019|Systolic: 115,mm[Hg]
+      gt0023|Sodium: 140,mmol/l
+      gt0091|Birthdate: 1967-03-11T20:33Z
+      gt0027|Rate: 72,/min
+  expected_output:
+    1:
+      gt0015|Points for Black race: 3|local::at0052|No|
+      gt0013|Points for Age: 11|local::at0064|50-59|
+      gt0014|Points for HR: 0|local::at0053|≤ 79|
+      gt0016|Points for COPD: 0|local::at0049|No|
+      gt0010|Points for Sys BP: 17|local::at0014|110-119|
+      gt0012|Points for Sodium: 0|local::at0039|>=139|
+      gt0017|Total sum: 33
+      gt0011|Points for BUN: 2|local::at0023|10-19|
+      gt0093|Age: 52,a
+- id: mild HF black mid-aged
+  input:
+    1:
+      gt0003|BUN value: 20,mmol/l
+      gt0004|Points for Black race: 0|local::at0051|Yes|
+      gt0006|Points for COPD: 2|local::at0050|Yes|
+      gt0019|Systolic: 104,mm[Hg]
+      gt0023|Sodium: 138,mmol/l
+      gt0091|Birthdate: 1962-03-11T20:33Z
+      gt0027|Rate: 80,/min
+  expected_output:
+    1:
+      gt0015|Points for Black race: 0|local::at0051|Yes|
+      gt0013|Points for Age: 11|local::at0064|50-59|
+      gt0014|Points for HR: 1|local::at0054|80-84|
+      gt0016|Points for COPD: 2|local::at0050|Yes|
+      gt0010|Points for Sys BP: 19|local::at0015|100-109|
+      gt0012|Points for Sodium: 1|local::at0040|137-138|
+      gt0017|Total sum: 38
+      gt0011|Points for BUN: 4|local::at0024|20-29|
+      gt0093|Age: 57,a
+- id: One stage worse
+  input:
+    1:
+      gt0003|BUN value: 30,mmol/l
+      gt0004|Points for Black race: 0|local::at0051|Yes|
+      gt0006|Points for COPD: 2|local::at0050|Yes|
+      gt0019|Systolic: 99,mm[Hg]
+      gt0023|Sodium: 136,mmol/l
+      gt0091|Birthdate: 1952-03-11T20:33Z
+      gt0027|Rate: 85,/min
+  expected_output:
+    1:
+      gt0015|Points for Black race: 0|local::at0051|Yes|
+      gt0013|Points for Age: 14|local::at0065|60-69|
+      gt0014|Points for HR: 3|local::at0055|85-89|
+      gt0016|Points for COPD: 2|local::at0050|Yes|
+      gt0010|Points for Sys BP: 21|local::at0016|90-99|
+      gt0012|Points for Sodium: 2|local::at0042|134-136|
+      gt0017|Total sum: 48
+      gt0011|Points for BUN: 6|local::at0025|30-39|
+      gt0093|Age: 67,a
+- id: Even worse HF old non-black
+  input:
+    1:
+      gt0003|BUN value: 40,mmol/l
+      gt0004|Points for Black race: 3|local::at0052|No|
+      gt0006|Points for COPD: 2|local::at0050|Yes|
+      gt0019|Systolic: 99,mm[Hg]
+      gt0023|Sodium: 133,mmol/l
+      gt0091|Birthdate: 1948-03-11T20:33Z
+      gt0027|Rate: 100,/min
+  expected_output:
+    1:
+      gt0015|Points for Black race: 3|local::at0052|No|
+      gt0013|Points for Age: 17|local::at0066|70-79|
+      gt0014|Points for HR: 6|local::at0058|100-104|
+      gt0016|Points for COPD: 2|local::at0050|Yes|
+      gt0010|Points for Sys BP: 21|local::at0016|90-99|
+      gt0012|Points for Sodium: 3|local::at0043|131-133|
+      gt0017|Total sum: 60
+      gt0011|Points for BUN: 8|local::at0026|40-49|
+      gt0093|Age: 71,a
+- id: 81 years old severe HF
+  input:
+    1:
+      gt0003|BUN value: 40,mmol/l
+      gt0004|Points for Black race: 3|local::at0052|No|
+      gt0006|Points for COPD: 2|local::at0050|Yes|
+      gt0019|Systolic: 89,mm[Hg]
+      gt0023|Sodium: 130,mmol/l
+      gt0091|Birthdate: 1938-03-11T20:33Z
+      gt0027|Rate: 105,/min
+  expected_output:
+    1:
+      gt0015|Points for Black race: 3|local::at0052|No|
+      gt0013|Points for Age: 19|local::at0067|80-89|
+      gt0014|Points for HR: 8|local::at0059|>= 105|
+      gt0016|Points for COPD: 2|local::at0050|Yes|
+      gt0010|Points for Sys BP: 23|local::at0017|80-89|
+      gt0012|Points for Sodium: 4|local::at0044|<= 130|
+      gt0017|Total sum: 67
+      gt0011|Points for BUN: 8|local::at0026|40-49|
+      gt0093|Age: 81,a
+- id: Worse BUN
+  input:
+    1:
+      gt0003|BUN value: 50,mmol/l
+      gt0004|Points for Black race: 3|local::at0052|No|
+      gt0006|Points for COPD: 2|local::at0050|Yes|
+      gt0019|Systolic: 79,mm[Hg]
+      gt0023|Sodium: 130,mmol/l
+      gt0091|Birthdate: 1938-03-11T20:33Z
+      gt0027|Rate: 105,/min
+  expected_output:
+    1:
+      gt0015|Points for Black race: 3|local::at0052|No|
+      gt0013|Points for Age: 19|local::at0067|80-89|
+      gt0014|Points for HR: 8|local::at0059|>= 105|
+      gt0016|Points for COPD: 2|local::at0050|Yes|
+      gt0010|Points for Sys BP: 24|local::at0018|70-79|
+      gt0012|Points for Sodium: 4|local::at0044|<= 130|
+      gt0017|Total sum: 69
+      gt0011|Points for BUN: 9|local::at0027|50-59|
+      gt0093|Age: 81,a
+- id: 91 years old severe HF
+  input:
+    1:
+      gt0003|BUN value: 60,mmol/l
+      gt0004|Points for Black race: 3|local::at0052|No|
+      gt0006|Points for COPD: 2|local::at0050|Yes|
+      gt0019|Systolic: 69,mm[Hg]
+      gt0023|Sodium: 130,mmol/l
+      gt0091|Birthdate: 1928-03-11T20:33Z
+      gt0027|Rate: 105,/min
+  expected_output:
+    1:
+      gt0015|Points for Black race: 3|local::at0052|No|
+      gt0013|Points for Age: 22|local::at0068|90-99|
+      gt0014|Points for HR: 8|local::at0059|>= 105|
+      gt0016|Points for COPD: 2|local::at0050|Yes|
+      gt0010|Points for Sys BP: 26|local::at0019|60-69|
+      gt0012|Points for Sodium: 4|local::at0044|<= 130|
+      gt0017|Total sum: 76
+      gt0011|Points for BUN: 11|local::at0028|60-69|
+      gt0093|Age: 91,a
+- id: 101 years old with HF
+  input:
+    1:
+      gt0003|BUN value: 70,mmol/l
+      gt0004|Points for Black race: 3|local::at0052|No|
+      gt0006|Points for COPD: 2|local::at0050|Yes|
+      gt0019|Systolic: 59,mm[Hg]
+      gt0023|Sodium: 130,mmol/l
+      gt0091|Birthdate: 1918-03-11T20:33Z
+      gt0027|Rate: 105,/min
+  expected_output:
+    1:
+      gt0015|Points for Black race: 3|local::at0052|No|
+      gt0013|Points for Age: 25|local::at0069|100-109|
+      gt0014|Points for HR: 8|local::at0059|>= 105|
+      gt0016|Points for COPD: 2|local::at0050|Yes|
+      gt0010|Points for Sys BP: 28|local::at0020|50-59 |
+      gt0012|Points for Sodium: 4|local::at0044|<= 130|
+      gt0017|Total sum: 83
+      gt0011|Points for BUN: 13|local::at0029|70-79|
+      gt0093|Age: 101,a
+- id: 110 years old
+  input:
+    1:
+      gt0003|BUN value: 80,mmol/l
+      gt0004|Points for Black race: 3|local::at0052|No|
+      gt0006|Points for COPD: 2|local::at0050|Yes|
+      gt0019|Systolic: 59,mm[Hg]
+      gt0023|Sodium: 130,mmol/l
+      gt0091|Birthdate: 1909-03-11T20:33Z
+      gt0027|Rate: 105,/min
+  expected_output:
+    1:
+      gt0015|Points for Black race: 3|local::at0052|No|
+      gt0013|Points for Age: 28|local::at0070|>= 110|
+      gt0014|Points for HR: 8|local::at0059|>= 105|
+      gt0016|Points for COPD: 2|local::at0050|Yes|
+      gt0010|Points for Sys BP: 28|local::at0020|50-59 |
+      gt0012|Points for Sodium: 4|local::at0044|<= 130|
+      gt0017|Total sum: 88
+      gt0011|Points for BUN: 15|local::at0030|80-89|
+      gt0093|Age: 110,a
+- id: BUN 90
+  input:
+    1:
+      gt0003|BUN value: 90,mmol/l
+      gt0004|Points for Black race: 3|local::at0052|No|
+      gt0006|Points for COPD: 2|local::at0050|Yes|
+      gt0019|Systolic: 59,mm[Hg]
+      gt0023|Sodium: 131,mmol/l
+      gt0091|Birthdate: 1949-03-11T20:33Z
+      gt0027|Rate: 80,/min
+  expected_output:
+    1:
+      gt0015|Points for Black race: 3|local::at0052|No|
+      gt0013|Points for Age: 17|local::at0066|70-79|
+      gt0014|Points for HR: 1|local::at0054|80-84|
+      gt0016|Points for COPD: 2|local::at0050|Yes|
+      gt0010|Points for Sys BP: 28|local::at0020|50-59 |
+      gt0012|Points for Sodium: 3|local::at0043|131-133|
+      gt0017|Total sum: 71
+      gt0011|Points for BUN: 17|local::at0031|90-99|
+      gt0093|Age: 70,a
+- id: BUN 100
+  input:
+    1:
+      gt0003|BUN value: 100,mmol/l
+      gt0004|Points for Black race: 3|local::at0052|No|
+      gt0006|Points for COPD: 2|local::at0050|Yes|
+      gt0019|Systolic: 59,mm[Hg]
+      gt0023|Sodium: 131,mmol/l
+      gt0091|Birthdate: 1949-03-11T20:33Z
+      gt0027|Rate: 80,/min
+  expected_output:
+    1:
+      gt0015|Points for Black race: 3|local::at0052|No|
+      gt0013|Points for Age: 17|local::at0066|70-79|
+      gt0014|Points for HR: 1|local::at0054|80-84|
+      gt0016|Points for COPD: 2|local::at0050|Yes|
+      gt0010|Points for Sys BP: 28|local::at0020|50-59 |
+      gt0012|Points for Sodium: 3|local::at0043|131-133|
+      gt0017|Total sum: 73
+      gt0011|Points for BUN: 19|local::at0032|100-109|
+      gt0093|Age: 70,a
+- id: BUN 110
+  input:
+    1:
+      gt0003|BUN value: 110,mmol/l
+      gt0004|Points for Black race: 3|local::at0052|No|
+      gt0006|Points for COPD: 2|local::at0050|Yes|
+      gt0019|Systolic: 59,mm[Hg]
+      gt0023|Sodium: 131,mmol/l
+      gt0091|Birthdate: 1949-03-11T20:33Z
+      gt0027|Rate: 80,/min
+  expected_output:
+    1:
+      gt0015|Points for Black race: 3|local::at0052|No|
+      gt0013|Points for Age: 17|local::at0066|70-79|
+      gt0014|Points for HR: 1|local::at0054|80-84|
+      gt0016|Points for COPD: 2|local::at0050|Yes|
+      gt0010|Points for Sys BP: 28|local::at0020|50-59 |
+      gt0012|Points for Sodium: 3|local::at0043|131-133|
+      gt0017|Total sum: 75
+      gt0011|Points for BUN: 21|local::at0033|110-119|
+      gt0093|Age: 70,a
+- id: BUN 120
+  input:
+    1:
+      gt0003|BUN value: 120,mmol/l
+      gt0004|Points for Black race: 3|local::at0052|No|
+      gt0006|Points for COPD: 2|local::at0050|Yes|
+      gt0019|Systolic: 59,mm[Hg]
+      gt0023|Sodium: 131,mmol/l
+      gt0091|Birthdate: 1949-03-11T20:33Z
+      gt0027|Rate: 80,/min
+  expected_output:
+    1:
+      gt0015|Points for Black race: 3|local::at0052|No|
+      gt0013|Points for Age: 17|local::at0066|70-79|
+      gt0014|Points for HR: 1|local::at0054|80-84|
+      gt0016|Points for COPD: 2|local::at0050|Yes|
+      gt0010|Points for Sys BP: 28|local::at0020|50-59 |
+      gt0012|Points for Sodium: 3|local::at0043|131-133|
+      gt0017|Total sum: 77
+      gt0011|Points for BUN: 23|local::at0034|120-129|
+      gt0093|Age: 70,a
+- id: BUN 130
+  input:
+    1:
+      gt0003|BUN value: 130,mmol/l
+      gt0004|Points for Black race: 3|local::at0052|No|
+      gt0006|Points for COPD: 2|local::at0050|Yes|
+      gt0019|Systolic: 59,mm[Hg]
+      gt0023|Sodium: 131,mmol/l
+      gt0091|Birthdate: 1989-03-11T20:33Z
+      gt0027|Rate: 80,/min
+  expected_output:
+    1:
+      gt0015|Points for Black race: 3|local::at0052|No|
+      gt0013|Points for Age: 6|local::at0062|30-39|
+      gt0014|Points for HR: 1|local::at0054|80-84|
+      gt0016|Points for COPD: 2|local::at0050|Yes|
+      gt0010|Points for Sys BP: 28|local::at0020|50-59 |
+      gt0012|Points for Sodium: 3|local::at0043|131-133|
+      gt0017|Total sum: 68
+      gt0011|Points for BUN: 25|local::at0035|130-139|
+      gt0093|Age: 30,a
+- id: BUN 140 Age 40 High BP
+  input:
+    1:
+      gt0003|BUN value: 140,mmol/l
+      gt0004|Points for Black race: 3|local::at0052|No|
+      gt0006|Points for COPD: 2|local::at0050|Yes|
+      gt0019|Systolic: 188,mm[Hg]
+      gt0023|Sodium: 131,mmol/l
+      gt0091|Birthdate: 1979-03-11T20:33Z
+      gt0027|Rate: 80,/min
+  expected_output:
+    1:
+      gt0015|Points for Black race: 3|local::at0052|No|
+      gt0013|Points for Age: 8|local::at0063|40-49|
+      gt0014|Points for HR: 1|local::at0054|80-84|
+      gt0016|Points for COPD: 2|local::at0050|Yes|
+      gt0010|Points for Sys BP: 4|local::at0007|180-189|
+      gt0012|Points for Sodium: 3|local::at0043|131-133|
+      gt0017|Total sum: 48
+      gt0011|Points for BUN: 27|local::at0036|140-149|
+      gt0093|Age: 40,a
+- id: Very high BUN
+  input:
+    1:
+      gt0003|BUN value: 150,mmol/l
+      gt0004|Points for Black race: 3|local::at0052|No|
+      gt0006|Points for COPD: 2|local::at0050|Yes|
+      gt0019|Systolic: 178,mm[Hg]
+      gt0023|Sodium: 131,mmol/l
+      gt0091|Birthdate: 1999-03-11T20:33Z
+      gt0027|Rate: 80,/min
+  expected_output:
+    1:
+      gt0015|Points for Black race: 3|local::at0052|No|
+      gt0013|Points for Age: 3|local::at0061|20-29|
+      gt0014|Points for HR: 1|local::at0054|80-84|
+      gt0016|Points for COPD: 2|local::at0050|Yes|
+      gt0010|Points for Sys BP: 6|local::at0008|170-179|
+      gt0012|Points for Sodium: 3|local::at0043|131-133|
+      gt0017|Total sum: 46
+      gt0011|Points for BUN: 28|local::at0037|>= 150|
+      gt0093|Age: 20,a
+- id: Young high BP
+  input:
+    1:
+      gt0003|BUN value: 30,mmol/l
+      gt0004|Points for Black race: 3|local::at0052|No|
+      gt0006|Points for COPD: 2|local::at0050|Yes|
+      gt0019|Systolic: 168,mm[Hg]
+      gt0023|Sodium: 131,mmol/l
+      gt0091|Birthdate: 2001-03-11T20:33Z
+      gt0027|Rate: 80,/min
+  expected_output:
+    1:
+      gt0015|Points for Black race: 3|local::at0052|No|
+      gt0013|Points for Age: 0|local::at0060|<= 19|
+      gt0014|Points for HR: 1|local::at0054|80-84|
+      gt0016|Points for COPD: 2|local::at0050|Yes|
+      gt0010|Points for Sys BP: 8|local::at0009|160-169|
+      gt0012|Points for Sodium: 3|local::at0043|131-133|
+      gt0017|Total sum: 23
+      gt0011|Points for BUN: 6|local::at0025|30-39|
+      gt0093|Age: 18,a
+- id: Young mid-high BP
+  input:
+    1:
+      gt0003|BUN value: 30,mmol/l
+      gt0004|Points for Black race: 3|local::at0052|No|
+      gt0006|Points for COPD: 2|local::at0050|Yes|
+      gt0019|Systolic: 158,mm[Hg]
+      gt0023|Sodium: 131,mmol/l
+      gt0091|Birthdate: 2001-03-11T20:33Z
+      gt0027|Rate: 80,/min
+  expected_output:
+    1:
+      gt0015|Points for Black race: 3|local::at0052|No|
+      gt0013|Points for Age: 0|local::at0060|<= 19|
+      gt0014|Points for HR: 1|local::at0054|80-84|
+      gt0016|Points for COPD: 2|local::at0050|Yes|
+      gt0010|Points for Sys BP: 9|local::at0010|150-159|
+      gt0012|Points for Sodium: 3|local::at0043|131-133|
+      gt0017|Total sum: 24
+      gt0011|Points for BUN: 6|local::at0025|30-39|
+      gt0093|Age: 18,a
+

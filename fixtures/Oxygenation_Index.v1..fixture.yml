@@ -1,0 +1,139 @@
+guidelines:
+  1: Oxygenation_Index.v1
+test_cases:
+- id: FiO2 Too Low
+  input:
+    1:
+      gt0003|PaO2: 80,mm[Hg]
+      gt0005|PAW: 20,mm[Hg]
+      gt0007|FiO₂: 9,%
+  expected_output:
+    1:
+      gt0010|Warning FiO2: Too low; please change to proceed.
+      gt0015|PaO2 [mmHg]: 80,mm[Hg]
+      gt0016|PAW [mmHg]: 20,mm[Hg]
+
+- id: FiO2 Very low
+  input:
+    1:
+      gt0003|PaO2: 80,mm[Hg]
+      gt0005|PAW: 20,mm[Hg]
+      gt0007|FiO₂: 15,%
+  expected_output:
+    1:
+      gt0010|Warning FiO2: Very low; double-check.
+      gt0009|Oxygenation index: 3.8,1
+      gt0015|PaO2 [mmHg]: 80,mm[Hg]
+      gt0016|PAW [mmHg]: 20,mm[Hg]
+
+- id: FiO2 Too high
+  input:
+    1:
+      gt0003|PaO2: 80,mm[Hg]
+      gt0005|PAW: 20,mm[Hg]
+      gt0007|FiO₂: 101,%
+  expected_output:
+    1:
+      gt0010|Warning FiO2: Too high; please change to proceed.
+      gt0015|PaO2 [mmHg]: 80,mm[Hg]
+      gt0016|PAW [mmHg]: 20,mm[Hg]
+
+- id: PAW Too low
+  input:
+    1:
+      gt0003|PaO2: 80,mm[Hg]
+      gt0005|PAW: -1,mm[Hg]
+      gt0007|FiO₂: 70,%
+  expected_output:
+    1:
+      gt0012|Warning PAW: Too low; please change to proceed.
+      gt0015|PaO2 [mmHg]: 80,mm[Hg]
+      gt0016|PAW [mmHg]: -1,mm[Hg]
+
+- id: PAW Very low
+  input:
+    1:
+      gt0003|PaO2: 80,mm[Hg]
+      gt0005|PAW: 0,mm[Hg]
+      gt0007|FiO₂: 70,%
+  expected_output:
+    1:
+      gt0012|Warning PAW: Very low; double-check.
+      gt0009|Oxygenation index: 0.0,1
+      gt0015|PaO2 [mmHg]: 80,mm[Hg]
+      gt0016|PAW [mmHg]: 0,mm[Hg]
+
+- id: PAW Too high
+  input:
+    1:
+      gt0003|PaO2: 80,mm[Hg]
+      gt0005|PAW: 81,mm[Hg]
+      gt0007|FiO₂: 70,%
+  expected_output:
+    1:
+      gt0012|Warning PAW: Too high; please change to proceed.
+      gt0015|PaO2 [mmHg]: 80,mm[Hg]
+      gt0016|PAW [mmHg]: 81,mm[Hg]
+
+- id: PAW Very high
+  input:
+    1:
+      gt0003|PaO2: 80,mm[Hg]
+      gt0005|PAW: 60,mm[Hg]
+      gt0007|FiO₂: 70,%
+  expected_output:
+    1:
+      gt0012|Warning PAW: Very high; double-check.
+      gt0009|Oxygenation index: 52.5,1
+      gt0015|PaO2 [mmHg]: 80,mm[Hg]
+      gt0016|PAW [mmHg]: 60,mm[Hg]
+
+- id: PaO2 Too low
+  input:
+    1:
+      gt0003|PaO2: 0,mm[Hg]
+      gt0005|PAW: 30,mm[Hg]
+      gt0007|FiO₂: 70,%
+  expected_output:
+    1:
+      gt0011|Warning PaO2: Too low; please change to proceed.
+      gt0015|PaO2 [mmHg]: 0,mm[Hg]
+      gt0016|PAW [mmHg]: 30,mm[Hg]
+
+- id: PaO2 Very low
+  input:
+    1:
+      gt0003|PaO2: 1,mm[Hg]
+      gt0005|PAW: 30,mm[Hg]
+      gt0007|FiO₂: 70,%
+  expected_output:
+    1:
+      gt0009|Oxygenation index: 2100.0,1
+      gt0011|Warning PaO2: Very low; double-check.
+      gt0015|PaO2 [mmHg]: 1,mm[Hg]
+      gt0016|PAW [mmHg]: 30,mm[Hg]
+
+- id: PaO2 Too high
+  input:
+    1:
+      gt0003|PaO2: 90,kPa
+      gt0005|PAW: 30,cm[H20]
+      gt0007|FiO₂: 70,%
+  expected_output:
+    1:
+      gt0011|Warning PaO2: Too high; please change to proceed.
+      gt0015|PaO2 [mmHg]: 675.06,mm[Hg]
+      gt0016|PAW [mmHg]: 22.07,mm[Hg]
+
+- id: PaO2 Very high
+  input:
+    1:
+      gt0003|PaO2: 80,kPa
+      gt0005|PAW: 30,cm[H20]
+      gt0007|FiO₂: 70,%
+  expected_output:
+    1:
+      gt0009|Oxygenation index: 2.6,1
+      gt0011|Warning PaO2: Very high; double-check.
+      gt0015|PaO2 [mmHg]: 600.05,mm[Hg]
+      gt0016|PAW [mmHg]: 22.07,mm[Hg]

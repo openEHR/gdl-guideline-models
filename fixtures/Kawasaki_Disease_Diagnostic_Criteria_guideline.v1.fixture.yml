@@ -1,0 +1,76 @@
+guidelines:
+  1: Kawasaki_Disease_Diagnostic_Criteria_guideline.v1
+test_cases:
+- id: fever<4, all criteria exist, CAD exist, Negative KD
+  input:
+    1:
+      gt0003|Fever (days): 3,d
+      gt0004|Acute change in extremities: 1|local::at0015|Yes|
+      gt0005|Subacute change in extremities: 1|local::at0017|Yes|
+      gt0006|Polymorphous exanthem: 1|local::at0019|Yes|
+      gt0008|Bilateral bulbar conjunctival injection without exudate: 1|local::at0021|Yes|
+      gt0009|Changes in lips and oral cavity: 1|local::at0023|Yes|
+      gt0010|Cervical lymphadenopathy: 1|local::at0025|Yes|
+      gt0011|Coronary artery disease detected by 2D echo or coronary angiogram: local::at0031|Yes|
+  expected_output:
+    1:
+      gt0013|Diagnostic Result: Negative for Kawasaki Disease
+      gt0018|Points: 5
+- id: Fever=4, all criteria exist, Positive KD
+  input:
+    1:
+      gt0003|Fever (days): 4,d
+      gt0004|Acute change in extremities: 1|local::at0015|Yes|
+      gt0005|Subacute change in extremities: 1|local::at0017|Yes|
+      gt0006|Polymorphous exanthem: 1|local::at0019|Yes|
+      gt0008|Bilateral bulbar conjunctival injection without exudate: 1|local::at0021|Yes|
+      gt0009|Changes in lips and oral cavity: 1|local::at0023|Yes|
+      gt0010|Cervical lymphadenopathy: 1|local::at0025|Yes|
+  expected_output:
+    1:
+      gt0013|Diagnostic Result: Positive for Kawasaki Disease
+      gt0018|Points: 5
+- id: Fever 4, criteria 4, Positive KD
+  input:
+    1:
+      gt0003|Fever (days): 4,d
+      gt0004|Acute change in extremities: 1|local::at0015|Yes|
+      gt0005|Subacute change in extremities: 1|local::at0017|Yes|
+      gt0006|Polymorphous exanthem: 1|local::at0019|Yes|
+      gt0008|Bilateral bulbar conjunctival injection without exudate: 0|local::at0020|No|
+      gt0009|Changes in lips and oral cavity: 1|local::at0023|Yes|
+      gt0010|Cervical lymphadenopathy: 1|local::at0025|Yes|
+  expected_output:
+    1:
+      gt0013|Diagnostic Result: Positive for Kawasaki Disease
+      gt0018|Points: 4
+- id: Fever <5, criteria<4, CAD exist, KD negative
+  input:
+    1:
+      gt0003|Fever (days): 4,d
+      gt0004|Acute change in extremities: 1|local::at0015|Yes|
+      gt0005|Subacute change in extremities: 0|local::at0016|No|
+      gt0006|Polymorphous exanthem: 1|local::at0019|Yes|
+      gt0008|Bilateral bulbar conjunctival injection without exudate: 0|local::at0020|No|
+      gt0009|Changes in lips and oral cavity: 1|local::at0023|Yes|
+      gt0010|Cervical lymphadenopathy: 1|local::at0025|Yes|
+      gt0011|Coronary artery disease detected by 2D echo or coronary angiogram: local::at0031|Yes|
+  expected_output:
+    1:
+      gt0013|Diagnostic Result: Negative for Kawasaki Disease
+      gt0018|Points: 3
+- id: Fever 5, criteria <4, CAD exist, Positive KD
+  input:
+    1:
+      gt0003|Fever (days): 5,d
+      gt0004|Acute change in extremities: 1|local::at0015|Yes|
+      gt0005|Subacute change in extremities: 0|local::at0016|No|
+      gt0006|Polymorphous exanthem: 1|local::at0019|Yes|
+      gt0008|Bilateral bulbar conjunctival injection without exudate: 0|local::at0020|No|
+      gt0009|Changes in lips and oral cavity: 0|local::at0022|No|
+      gt0010|Cervical lymphadenopathy: 0|local::at0024|No|
+      gt0011|Coronary artery disease detected by 2D echo or coronary angiogram: local::at0031|Yes|
+  expected_output:
+    1:
+      gt0013|Diagnostic Result: Positive for Kawasaki Disease
+      gt0018|Points: 1

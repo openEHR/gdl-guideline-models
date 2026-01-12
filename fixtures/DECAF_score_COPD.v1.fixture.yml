@@ -1,0 +1,129 @@
+guidelines:
+  1: DECAF_score_COPD.v1
+test_cases:
+- id: low risk, DECAF score 0, eosinophil >0.05, pH>7.30
+  input:
+    1:
+      gt0003|eMRC Dyspnea Scale: 4|local::at0008|4 - Stops after walking 100 m, or for a few minutes, on the level|
+      gt0005|Eosinophils: 0.06,10*9/l
+      gt0007|Arterial pH: 7.31,[pH]
+      gt0009|Consolidation on Chest X-ray: 0|local::at0009|No|
+      gt0010|Atrial fibrillation: 0|local::at0015|No|
+  expected_output:
+    1:
+      gt0015|DECAF Score: 0
+      gt0014|Acidemia (pH <7.30): 0|local::at0012|No|
+      gt0012|Extended MRC (eMRC) Dyspnea Scale: 0|local::at0018|eMRCD 1-4|
+      gt0013|Eosinopenia (Eosinophils <0.05×10⁹/L): 0|local::at0007|No|
+      gt0017|In-hospital mortality rate: 0|local::at0024|0%|
+      gt0018|Risk: 1|local::at0020|Low|
+      gt0019|Recommendation: 1|local::at0032|Routine management|
+
+- id: low risk, DECAF score 1, eosinophil >0.05, pH>7.30
+  input:
+    1:
+      gt0003|eMRC Dyspnea Scale: 5|local::at0009|5a - Too breathless to leave the house and independent in washing and/or dressing|
+      gt0005|Eosinophils: 0.06,10*9/l
+      gt0007|Arterial pH: 7.31,[pH]
+      gt0009|Consolidation on Chest X-ray: 0|local::at0009|No|
+      gt0010|Atrial fibrillation: 0|local::at0015|No|
+  expected_output:
+    1:
+      gt0015|DECAF Score: 1
+      gt0014|Acidemia (pH <7.30): 0|local::at0012|No|
+      gt0012|Extended MRC (eMRC) Dyspnea Scale: 1|local::at0019|eMRCD 5a|
+      gt0013|Eosinopenia (Eosinophils <0.05×10⁹/L): 0|local::at0007|No|
+      gt0017|In-hospital mortality rate: 1|local::at0025|1.5%|
+
+      gt0018|Risk: 1|local::at0020|Low|
+      gt0019|Recommendation: 1|local::at0032|Routine management|
+
+- id: intermediate risk, DECAF score 2, eosinophil >0.05, pH>7.30 
+  input:
+    1:
+      gt0003|eMRC Dyspnea Scale: 6|local::at0010|5b - Too breathless to leave the house and dependent in washing and/or dressing|
+      gt0005|Eosinophils: 0.06,10*9/l
+      gt0007|Arterial pH: 7.31,[pH]
+      gt0009|Consolidation on Chest X-ray: 0|local::at0009|No|
+      gt0010|Atrial fibrillation: 0|local::at0015|No|
+  expected_output:
+    1:
+      gt0015|DECAF Score: 2
+      gt0014|Acidemia (pH <7.30): 0|local::at0012|No|
+      gt0012|Extended MRC (eMRC) Dyspnea Scale: 2|local::at0020|eMRCD 5b|
+      gt0013|Eosinopenia (Eosinophils <0.05×10⁹/L): 0|local::at0007|No|
+      gt0017|In-hospital mortality rate: 2|local::at0026|5.4%|
+      gt0018|Risk: 2|local::at0021|Intermediate|
+      gt0019|Recommendation: 2|local::at0033|Clinical judgment is required based on the case|
+
+- id: high risk, DECAF score 3, eosinophil <0.05, pH>7.30 
+  input:
+    1:
+      gt0003|eMRC Dyspnea Scale: 6|local::at0010|5b - Too breathless to leave the house and dependent in washing and/or dressing|
+      gt0005|Eosinophils: 0.04,10*9/l
+      gt0007|Arterial pH: 7.31,[pH]
+      gt0009|Consolidation on Chest X-ray: 0|local::at0009|No|
+      gt0010|Atrial fibrillation: 0|local::at0015|No|
+  expected_output:
+    1:
+      gt0015|DECAF Score: 3
+      gt0014|Acidemia (pH <7.30): 0|local::at0012|No|
+      gt0012|Extended MRC (eMRC) Dyspnea Scale: 2|local::at0020|eMRCD 5b|
+      gt0013|Eosinopenia (Eosinophils <0.05×10⁹/L): 1|local::at0008|Yes|
+      gt0017|In-hospital mortality rate: 3|local::at0027|14.3%|
+      gt0018|Risk: 3|local::at0022|High|
+      gt0019|Recommendation: 3|local::at0034|Consider escalation of care or palliative care|
+
+- id: high risk, DECAF score 4, eosinophil <0.05, pH<7.30 
+  input:
+    1:
+      gt0003|eMRC Dyspnea Scale: 6|local::at0010|5b - Too breathless to leave the house and dependent in washing and/or dressing|
+      gt0005|Eosinophils: 0.04,10*9/l
+      gt0007|Arterial pH: 7.29,[pH]
+      gt0009|Consolidation on Chest X-ray: 0|local::at0009|No|
+      gt0010|Atrial fibrillation: 0|local::at0015|No|
+  expected_output:
+    1:
+      gt0015|DECAF Score: 4
+      gt0014|Acidemia (pH <7.30): 1|local::at0013|Yes|
+      gt0012|Extended MRC (eMRC) Dyspnea Scale: 2|local::at0020|eMRCD 5b|
+      gt0013|Eosinopenia (Eosinophils <0.05×10⁹/L): 1|local::at0008|Yes|
+      gt0017|In-hospital mortality rate: 4|local::at0028|31%|
+      gt0018|Risk: 3|local::at0022|High|
+      gt0019|Recommendation: 3|local::at0034|Consider escalation of care or palliative care|
+
+- id: high risk, DECAF score 5, eosinophil <0.05, pH<7.30 
+  input:
+    1:
+      gt0003|eMRC Dyspnea Scale: 6|local::at0010|5b - Too breathless to leave the house and dependent in washing and/or dressing|
+      gt0005|Eosinophils: 0.04,10*9/l
+      gt0007|Arterial pH: 7.29,[pH]
+      gt0009|Consolidation on Chest X-ray: 1|local::at0010|Yes|
+      gt0010|Atrial fibrillation: 0|local::at0015|No|
+  expected_output:
+    1:
+      gt0015|DECAF Score: 5
+      gt0014|Acidemia (pH <7.30): 1|local::at0013|Yes|
+      gt0012|Extended MRC (eMRC) Dyspnea Scale: 2|local::at0020|eMRCD 5b|
+      gt0013|Eosinopenia (Eosinophils <0.05×10⁹/L): 1|local::at0008|Yes|
+      gt0017|In-hospital mortality rate: 5|local::at0029|40.5%|
+      gt0018|Risk: 3|local::at0022|High|
+      gt0019|Recommendation: 3|local::at0034|Consider escalation of care or palliative care|
+
+- id: high risk, DECAF score 6, eosinophil <0.05, pH<7.30
+  input:
+    1:
+      gt0003|eMRC Dyspnea Scale: 6|local::at0010|5b - Too breathless to leave the house and dependent in washing and/or dressing|
+      gt0005|Eosinophils: 0.04,10*9/l
+      gt0007|Arterial pH: 7.29,[pH]
+      gt0009|Consolidation on Chest X-ray: 1|local::at0010|Yes|
+      gt0010|Atrial fibrillation: 1|local::at0016|Yes|
+  expected_output:
+    1:
+      gt0015|DECAF Score: 6
+      gt0014|Acidemia (pH <7.30): 1|local::at0013|Yes|
+      gt0012|Extended MRC (eMRC) Dyspnea Scale: 2|local::at0020|eMRCD 5b|
+      gt0013|Eosinopenia (Eosinophils <0.05×10⁹/L): 1|local::at0008|Yes|
+      gt0017|In-hospital mortality rate: 6|local::at0030|50%|
+      gt0018|Risk: 3|local::at0022|High|
+      gt0019|Recommendation: 3|local::at0034|Consider escalation of care or palliative care|

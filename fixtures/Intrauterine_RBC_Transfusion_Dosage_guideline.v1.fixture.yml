@@ -1,0 +1,168 @@
+guidelines:
+  1: Intrauterine_RBC_Transfusion_Dosage_guideline.v1
+test_cases:
+- id: RBC 7.6 and warning very low for weight
+  input:
+    1:
+      gt0003|Fetal weight, gm: 100,gm
+      gt0004|Initial fetal hematocrit: 20,%
+      gt0005|Goal fetal hematocrit: 50,%
+      gt0006|Hematocrit of transfused RBCs: 55,%
+  expected_output:
+    1:
+      gt0008|RBC volume for transfusion: 7.6,ml
+      gt0016|Fetal weight is: Very low please double check.
+      gt0009|Fetoplacental volume: 14.0,ml
+- id: Goal Hct should be greater than initial Hct.
+  input:
+    1:
+      gt0003|Fetal weight, gm: 600,gm
+      gt0004|Initial fetal hematocrit: 50,%
+      gt0005|Goal fetal hematocrit: 50,%
+      gt0006|Hematocrit of transfused RBCs: 55,%
+  expected_output:
+    1:
+      gt0017|Initial fetal Hct is: Very high please double check.
+      gt0033|Warning: Goal Hct should be greater than initial Hct.
+      gt0009|Fetoplacental volume: 84.0,ml
+- id: Fetal weight is Too high please change to proceed
+  input:
+    1:
+      gt0003|Fetal weight, gm: 9072,gm
+      gt0004|Initial fetal hematocrit: 20,%
+      gt0005|Goal fetal hematocrit: 36,%
+      gt0006|Hematocrit of transfused RBCs: 55,%
+  expected_output:
+    1:
+      gt0016|Fetal weight is: Too high please change to proceed.
+      gt0009|Fetoplacental volume: 1270.1,ml
+- id: Initial hct too high and goal hct should be greater than initial hct
+  input:
+    1:
+      gt0003|Fetal weight, gm: 600,gm
+      gt0004|Initial fetal hematocrit: 120,%
+      gt0005|Goal fetal hematocrit: 36,%
+      gt0006|Hematocrit of transfused RBCs: 55,%
+  expected_output:
+    1:
+      gt0017|Initial fetal Hct is: Too high please change to proceed.
+      gt0033|Warning: Goal Hct should be greater than initial Hct.
+      gt0009|Fetoplacental volume: 84.0,ml
+- id: RBC volume 24.4 ml
+  input:
+    1:
+      gt0003|Fetal weight, gm: 600,gm
+      gt0004|Initial fetal hematocrit: 20,%
+      gt0005|Goal fetal hematocrit: 36,%
+      gt0006|Hematocrit of transfused RBCs: 55,%
+  expected_output:
+    1:
+      gt0008|RBC volume for transfusion: 24.4,ml
+      gt0009|Fetoplacental volume: 84.0,ml
+- id: Initial hct very low
+  input:
+    1:
+      gt0003|Fetal weight, gm: 600,gm
+      gt0004|Initial fetal hematocrit: 9,%
+      gt0005|Goal fetal hematocrit: 36,%
+      gt0006|Hematocrit of transfused RBCs: 55,%
+  expected_output:
+    1:
+      gt0017|Initial fetal Hct is: Very low please double check.
+      gt0008|RBC volume for transfusion: 41.2,ml
+      gt0009|Fetoplacental volume: 84.0,ml
+- id: initial hct very high and greater than goal
+  input:
+    1:
+      gt0003|Fetal weight, gm: 600,gm
+      gt0004|Initial fetal hematocrit: 100,%
+      gt0005|Goal fetal hematocrit: 36,%
+      gt0006|Hematocrit of transfused RBCs: 55,%
+  expected_output:
+    1:
+      gt0017|Initial fetal Hct is: Very high please double check.
+      gt0033|Warning: Goal Hct should be greater than initial Hct.
+      gt0009|Fetoplacental volume: 84.0,ml
+- id: goal hct very low
+  input:
+    1:
+      gt0003|Fetal weight, gm: 600,gm
+      gt0004|Initial fetal hematocrit: 10,%
+      gt0005|Goal fetal hematocrit: 19,%
+      gt0006|Hematocrit of transfused RBCs: 55,%
+  expected_output:
+    1:
+      gt0008|RBC volume for transfusion: 13.7,ml
+      gt0009|Fetoplacental volume: 84.0,ml
+      gt0018|Goal fetal Hct is: Very low please double check.
+- id: Goal hct very high
+  input:
+    1:
+      gt0003|Fetal weight, gm: 600,gm
+      gt0004|Initial fetal hematocrit: 10,%
+      gt0005|Goal fetal hematocrit: 56,%
+      gt0006|Hematocrit of transfused RBCs: 55,%
+  expected_output:
+    1:
+      gt0008|RBC volume for transfusion: 70.3,ml
+      gt0009|Fetoplacental volume: 84.0,ml
+      gt0018|Goal fetal Hct is: Very high please double-check.
+- id: goal hct very high 70%
+  input:
+    1:
+      gt0003|Fetal weight, gm: 600,gm
+      gt0004|Initial fetal hematocrit: 10,%
+      gt0005|Goal fetal hematocrit: 70,%
+      gt0006|Hematocrit of transfused RBCs: 55,%
+  expected_output:
+    1:
+      gt0008|RBC volume for transfusion: 91.6,ml
+      gt0009|Fetoplacental volume: 84.0,ml
+      gt0018|Goal fetal Hct is: Very high please double-check.
+- id: Goal hct too high
+  input:
+    1:
+      gt0003|Fetal weight, gm: 600,gm
+      gt0004|Initial fetal hematocrit: 10,%
+      gt0005|Goal fetal hematocrit: 71,%
+      gt0006|Hematocrit of transfused RBCs: 55,%
+  expected_output:
+    1:
+      gt0009|Fetoplacental volume: 84.0,ml
+      gt0018|Goal fetal Hct is: Too high please change to proceed.
+- id: Hematocrit of transfused RBCs very low
+  input:
+    1:
+      gt0003|Fetal weight, gm: 600,gm
+      gt0004|Initial fetal hematocrit: 10,%
+      gt0005|Goal fetal hematocrit: 36,%
+      gt0006|Hematocrit of transfused RBCs: 54,%
+  expected_output:
+    1:
+      gt0008|RBC volume for transfusion: 40.4,ml
+      gt0019|Hct of transfused RBCs is: Very low please double check.
+      gt0009|Fetoplacental volume: 84.0,ml
+- id: Hct of transfused RBCs Very high
+  input:
+    1:
+      gt0003|Fetal weight, gm: 600,gm
+      gt0004|Initial fetal hematocrit: 10,%
+      gt0005|Goal fetal hematocrit: 36,%
+      gt0006|Hematocrit of transfused RBCs: 86,%
+  expected_output:
+    1:
+      gt0008|RBC volume for transfusion: 25.4,ml
+      gt0019|Hct of transfused RBCs is: Very high please double check.
+      gt0009|Fetoplacental volume: 84.0,ml
+- id: Hct of transfused RBCs Too high
+  input:
+    1:
+      gt0003|Fetal weight, gm: 600,gm
+      gt0004|Initial fetal hematocrit: 10,%
+      gt0005|Goal fetal hematocrit: 36,%
+      gt0006|Hematocrit of transfused RBCs: 101,%
+  expected_output:
+    1:
+      gt0008|RBC volume for transfusion: 21.6,ml
+      gt0019|Hct of transfused RBCs is: Too high please change to proceed.
+      gt0009|Fetoplacental volume: 84.0,ml

@@ -1,0 +1,126 @@
+guidelines:
+  1: Surgical_Apgar_Score_SAS_for_Postoperative_Risk.v1
+test_cases:
+- id: very high risk score 1
+  input:
+    1:
+      gt0004|Estimated blood loss (mL): 1|local::at0012|600-1,000|
+      gt0005|Lowest mean arterial pressure (mmHg): 0|local::at0015|<40|
+      gt0006|Lowest heart rate (beats / min): 0|local::at0019|>85 or pathologic bradyarrhythmia\
+        \ or systol|
+  expected_output:
+    1:
+      gt0007|Points: 1
+      gt0009|score interpretation: 0|local::at0003|Very high risk patient of poor outcome. 14% mortality rate, overall 75% risk of major complication including death.In one follow-up study, patients with scores ≤4 were 97% specific for post-operative ICU admission if not initially admitted there.|
+
+- id: very high risk score 4
+  input:
+    1:
+      gt0004|Estimated blood loss (mL): 1|local::at0012|600-1,000|
+      gt0005|Lowest mean arterial pressure (mmHg): 2|local::at0017|55-69|
+      gt0006|Lowest heart rate (beats / min): 1|local::at0020|76-85|
+  expected_output:
+    1:
+      gt0007|Points: 4
+      gt0009|score interpretation: 0|local::at0003|Very high risk patient of poor outcome. 14% mortality rate, overall 75% risk of major complication including death.In one follow-up study, patients with scores ≤4 were 97% specific for post-operative ICU admission if not initially admitted there.|
+
+
+- id: high risk score 5
+  input:
+    1:
+      gt0004|Estimated blood loss (mL): 2|local::at0013|101-600|
+      gt0005|Lowest mean arterial pressure (mmHg): 2|local::at0017|55-69|
+      gt0006|Lowest heart rate (beats / min): 1|local::at0020|76-85|
+  expected_output:
+    1:
+      gt0007|Points: 5
+      gt0009|score interpretation: 1|local::at0004|High risk patient of poor outcome. 4% mortality rate, overall 16% risk of major complication including death.|
+
+
+- id: high risk score 6
+  input:
+    1:
+      gt0004|Estimated blood loss (mL): 2|local::at0013|101-600|
+      gt0005|Lowest mean arterial pressure (mmHg): 2|local::at0017|55-69|
+      gt0006|Lowest heart rate (beats / min): 2|local::at0021|66-75|
+  expected_output:
+    1:
+      gt0007|Points: 6
+      gt0009|score interpretation: 1|local::at0004|High risk patient of poor outcome. 4% mortality rate, overall 16% risk of major complication including death.|
+
+
+
+- id: moderate risk score 7
+  input:
+    1:
+      gt0004|Estimated blood loss (mL): 3|local::at0014|≤100|
+      gt0005|Lowest mean arterial pressure (mmHg): 2|local::at0017|55-69|
+      gt0006|Lowest heart rate (beats / min): 2|local::at0021|66-75|
+  expected_output:
+    1:
+      gt0007|Points: 7
+      gt0009|score interpretation: 2|local::at0005|Moderate risk patient of poor outcome. 1% mortality rate, overall 6% risk of major complication including death.|
+
+
+
+- id: moderate risk score  8
+  input:
+    1:
+      gt0004|Estimated blood loss (mL): 3|local::at0014|≤100|
+      gt0005|Lowest mean arterial pressure (mmHg): 3|local::at0018|≥70|
+      gt0006|Lowest heart rate (beats / min): 2|local::at0021|66-75|
+  expected_output:
+    1:
+      gt0007|Points: 8
+      gt0009|score interpretation: 2|local::at0005|Moderate risk patient of poor outcome. 1% mortality rate, overall 6% risk of major complication including death.|
+
+
+- id: low risk score 9
+  input:
+    1:
+      gt0004|Estimated blood loss (mL): 3|local::at0014|≤100|
+      gt0005|Lowest mean arterial pressure (mmHg): 3|local::at0018|≥70|
+      gt0006|Lowest heart rate (beats / min): 3|local::at0022|56-65|
+  expected_output:
+    1:
+      gt0007|Points: 9
+      gt0009|score interpretation: 3|local::at0006|Low risk patient of poor outcome. 0% mortality rate, overall <4% risk of major complication including death.|
+
+
+
+- id: Low risk score 10
+  input:
+    1:
+      gt0004|Estimated blood loss (mL): 3|local::at0014|≤100|
+      gt0005|Lowest mean arterial pressure (mmHg): 3|local::at0018|≥70|
+      gt0006|Lowest heart rate (beats / min): 4|local::at0023|≤55|
+  expected_output:
+    1:
+      gt0007|Points: 10
+      gt0009|score interpretation: 3|local::at0006|Low risk patient of poor outcome. 0% mortality rate, overall <4% risk of major complication including death.|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

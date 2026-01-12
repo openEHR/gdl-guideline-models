@@ -1,0 +1,135 @@
+guidelines:
+  1: HEP_Score_for_Heparin_Induced_Thrombocytopenia_guideline.v1
+test_cases:
+- id: Rapid HEP score <2
+  input:
+    1:
+      gt0003|Type of heparin-induced thrombocytopenia (HIT) onset suspected: local::at0007|Rapid|
+      gt0004|Magnitude of platelet count fall: -1|local::at0009|<30%|
+      gt0023|Timing of platelet count fall (Rapid onset of HIT): -1|local::at0060|Fall begins >48 hours after heparin re-exposure|
+      gt0024|Nadir platelet count: -2|local::at0019|≤20|
+      gt0026|Thrombosis (Rapid onset of HIT): 3|local::at0064|New venous thromboembolism (VTE) or arterial thromboembolism (ATE) after heparin exposure|
+      gt0027|Skin necrosis at subcutaneous heparin injection sites: 3|local::at0027|Yes|
+      gt0028|Acute systemic reaction after IV heparin bolus: 2|local::at0030|Yes|
+      gt0029|Presence of bleeding, petechiae or extensive bruising: -1|local::at0033|Yes|
+      gt0030|Presence of chronic thrombocytopenic disorder: -1|local::at0038|Yes|
+      gt0031|Newly initiated non-heparin medication known to cause thrombocytopenia: -1|local::at0040|Yes|
+      gt0032|Severe infection: -2|local::at0043|Yes|
+      gt0033|Severe disseminated intravascular coagulation (DIC) (Fibrinogen <100 mg/dL and D-dimer >5 µg/mL): -2|local::at0046|Yes|
+      gt0034|Indwelling intra-arterial device IABP,VAD, ECMO: -2|local::at0049|Yes|
+      gt0035|Cardiopulmonary bypass within previous 96 hours: -1|local::at0052|Yes|
+      gt0036|No other apparent cause: 3|local::at0055|Yes|
+  expected_output:
+    1:
+      gt0021|Interpretation: Scores <2 suggest a lower probability of HIT.
+      gt0020|HEP score: -3
+- id: Rapid HEP score =2
+  input:
+    1:
+      gt0003|Type of heparin-induced thrombocytopenia (HIT) onset suspected: local::at0007|Rapid|
+      gt0004|Magnitude of platelet count fall: -1|local::at0009|<30%|
+      gt0023|Timing of platelet count fall (Rapid onset of HIT): -1|local::at0060|Fall begins >48 hours after heparin re-exposure|
+      gt0024|Nadir platelet count: -2|local::at0019|≤20|
+      gt0026|Thrombosis (Rapid onset of HIT): 3|local::at0064|New venous thromboembolism (VTE) or arterial thromboembolism (ATE) after heparin exposure|
+      gt0027|Skin necrosis at subcutaneous heparin injection sites: 3|local::at0027|Yes|
+      gt0028|Acute systemic reaction after IV heparin bolus: 2|local::at0030|Yes|
+      gt0029|Presence of bleeding, petechiae or extensive bruising: -1|local::at0033|Yes|
+      gt0030|Presence of chronic thrombocytopenic disorder: 0|local::at0037|No|
+      gt0031|Newly initiated non-heparin medication known to cause thrombocytopenia: 0|local::at0039|No|
+      gt0032|Severe infection: -2|local::at0043|Yes|
+      gt0033|Severe disseminated intravascular coagulation (DIC) (Fibrinogen <100 mg/dL and D-dimer >5 µg/mL): -2|local::at0046|Yes|
+      gt0034|Indwelling intra-arterial device IABP,VAD, ECMO: 0|local::at0048|No|
+      gt0035|Cardiopulmonary bypass within previous 96 hours: 0|local::at0051|No|
+      gt0036|No other apparent cause: 3|local::at0055|Yes|
+  expected_output:
+    1:
+      gt0021|Interpretation: Scores ≥2 are 100% sensitive for HIT.
+      gt0020|HEP score: 2
+- id: Rapid HEP score >2
+  input:
+    1:
+      gt0003|Type of heparin-induced thrombocytopenia (HIT) onset suspected: local::at0007|Rapid|
+      gt0004|Magnitude of platelet count fall: 3|local::at0011|>50%|
+      gt0023|Timing of platelet count fall (Rapid onset of HIT): 2|local::at0059|Fall begins <48 hours after heparin re-exposure|
+      gt0024|Nadir platelet count: 2|local::at0020|>20|
+      gt0026|Thrombosis (Rapid onset of HIT): 3|local::at0064|New venous thromboembolism (VTE) or arterial thromboembolism (ATE) after heparin exposure|
+      gt0027|Skin necrosis at subcutaneous heparin injection sites: 3|local::at0027|Yes|
+      gt0028|Acute systemic reaction after IV heparin bolus: 2|local::at0030|Yes|
+      gt0029|Presence of bleeding, petechiae or extensive bruising: 0|local::at0032|No|
+      gt0030|Presence of chronic thrombocytopenic disorder: 0|local::at0037|No|
+      gt0031|Newly initiated non-heparin medication known to cause thrombocytopenia: 0|local::at0039|No|
+      gt0032|Severe infection: 0|local::at0042|No|
+      gt0033|Severe disseminated intravascular coagulation (DIC) (Fibrinogen <100 mg/dL and D-dimer >5 µg/mL): 0|local::at0045|No|
+      gt0034|Indwelling intra-arterial device IABP,VAD, ECMO: 0|local::at0048|No|
+      gt0035|Cardiopulmonary bypass within previous 96 hours: 0|local::at0051|No|
+      gt0036|No other apparent cause: 3|local::at0055|Yes|
+  expected_output:
+    1:
+      gt0021|Interpretation: Scores ≥2 are 100% sensitive for HIT.
+      gt0020|HEP score: 18
+- id: HEP score <2 Typical
+  input:
+    1:
+      gt0003|Type of heparin-induced thrombocytopenia (HIT) onset suspected: local::at0006|Typical|
+      gt0004|Magnitude of platelet count fall: -1|local::at0009|<30%|
+      gt0022|Timing of platelet count fall (Typical onset of HIT): -2|local::at0013|Fall begins <4 days after heparin exposure|
+      gt0024|Nadir platelet count: -2|local::at0019|≤20|
+      gt0025|Thrombosis (Typical onset of HIT): 3|local::at0022|New venous thromboembolism (VTE) or arterial thromboembolism (ATE) ≥4 days after heparin exposure|
+      gt0027|Skin necrosis at subcutaneous heparin injection sites: 0|local::at0026|No|
+      gt0028|Acute systemic reaction after IV heparin bolus: 0|local::at0029|No|
+      gt0029|Presence of bleeding, petechiae or extensive bruising: -1|local::at0033|Yes|
+      gt0030|Presence of chronic thrombocytopenic disorder: -1|local::at0038|Yes|
+      gt0031|Newly initiated non-heparin medication known to cause thrombocytopenia: -1|local::at0040|Yes|
+      gt0032|Severe infection: -2|local::at0043|Yes|
+      gt0033|Severe disseminated intravascular coagulation (DIC) (Fibrinogen <100 mg/dL and D-dimer >5 µg/mL): -2|local::at0046|Yes|
+      gt0034|Indwelling intra-arterial device IABP,VAD, ECMO: -2|local::at0049|Yes|
+      gt0035|Cardiopulmonary bypass within previous 96 hours: -1|local::at0052|Yes|
+      gt0036|No other apparent cause: 0|local::at0054|No|
+  expected_output:
+    1:
+      gt0021|Interpretation: Scores <2 suggest a lower probability of HIT.
+      gt0020|HEP score: -12
+- id: HEP score =2 Typical
+  input:
+    1:
+      gt0003|Type of heparin-induced thrombocytopenia (HIT) onset suspected: local::at0006|Typical|
+      gt0004|Magnitude of platelet count fall: 1|local::at0010|30-50%|
+      gt0022|Timing of platelet count fall (Typical onset of HIT): 3|local::at0015|Fall begins 5-10 days after heparin exposure|
+      gt0024|Nadir platelet count: 2|local::at0020|>20|
+      gt0025|Thrombosis (Typical onset of HIT): 2|local::at0023|Progression of pre-existing venous thromboembolism (VTE) or arterial thromboembolism (ATE) while receiving heparin|
+      gt0027|Skin necrosis at subcutaneous heparin injection sites: 0|local::at0026|No|
+      gt0028|Acute systemic reaction after IV heparin bolus: 2|local::at0030|Yes|
+      gt0029|Presence of bleeding, petechiae or extensive bruising: 0|local::at0032|No|
+      gt0030|Presence of chronic thrombocytopenic disorder: -1|local::at0038|Yes|
+      gt0031|Newly initiated non-heparin medication known to cause thrombocytopenia: 0|local::at0039|No|
+      gt0032|Severe infection: -2|local::at0043|Yes|
+      gt0033|Severe disseminated intravascular coagulation (DIC) (Fibrinogen <100 mg/dL and D-dimer >5 µg/mL): -2|local::at0046|Yes|
+      gt0034|Indwelling intra-arterial device IABP,VAD, ECMO: -2|local::at0049|Yes|
+      gt0035|Cardiopulmonary bypass within previous 96 hours: -1|local::at0052|Yes|
+      gt0036|No other apparent cause: 0|local::at0054|No|
+  expected_output:
+    1:
+      gt0021|Interpretation: Scores ≥2 are 100% sensitive for HIT.
+      gt0020|HEP score: 2
+- id: HEP score > 2 Typical
+  input:
+    1:
+      gt0003|Type of heparin-induced thrombocytopenia (HIT) onset suspected: local::at0006|Typical|
+      gt0004|Magnitude of platelet count fall: 1|local::at0010|30-50%|
+      gt0022|Timing of platelet count fall (Typical onset of HIT): 3|local::at0015|Fall begins 5-10 days after heparin exposure|
+      gt0024|Nadir platelet count: 2|local::at0020|>20|
+      gt0025|Thrombosis (Typical onset of HIT): 2|local::at0023|Progression of pre-existing venous thromboembolism (VTE) or arterial thromboembolism (ATE) while receiving heparin|
+      gt0027|Skin necrosis at subcutaneous heparin injection sites: 0|local::at0026|No|
+      gt0028|Acute systemic reaction after IV heparin bolus: 2|local::at0030|Yes|
+      gt0029|Presence of bleeding, petechiae or extensive bruising: 0|local::at0032|No|
+      gt0030|Presence of chronic thrombocytopenic disorder: 0|local::at0037|No|
+      gt0031|Newly initiated non-heparin medication known to cause thrombocytopenia: 0|local::at0039|No|
+      gt0032|Severe infection: 0|local::at0042|No|
+      gt0033|Severe disseminated intravascular coagulation (DIC) (Fibrinogen <100 mg/dL and D-dimer >5 µg/mL): 0|local::at0045|No|
+      gt0034|Indwelling intra-arterial device IABP,VAD, ECMO: 0|local::at0048|No|
+      gt0035|Cardiopulmonary bypass within previous 96 hours: 0|local::at0051|No|
+      gt0036|No other apparent cause: 3|local::at0055|Yes|
+  expected_output:
+    1:
+      gt0021|Interpretation: Scores ≥2 are 100% sensitive for HIT.
+      gt0020|HEP score: 13

@@ -1,0 +1,33 @@
+guidelines:
+  1: Warfarin_Dosing_Calculator_guideline.v1
+test_cases:
+- id: BSA lb & in
+  input:
+    1:
+      gt0003|Age: 50,a
+      gt0005|Weight: 154.32,lb
+      gt0009|Height: 66.92,in
+      gt0011|Target INR: 35|local::at0008|3.5|
+      gt0012|Amiodarone in progress: 1|local::at0011|Yes|
+      gt0013|Race: 1|local::at0018|African-American|
+      gt0014|Smoker: 1|local::at0025|Yes|
+      gt0015|DVT or PE present: 1|local::at0023|Yes|
+  expected_output:
+    1:
+      gt0007|Body Surface Area: 1.81,m2
+      gt0017|Estimated Warfarin Maintenance Dose: 6.35,mg
+- id: BSA kg & cm
+  input:
+    1:
+      gt0003|Age: 50,a
+      gt0005|Weight: 70,kg
+      gt0009|Height: 170,cm
+      gt0011|Target INR: 35|local::at0008|3.5|
+      gt0012|Amiodarone in progress: 1|local::at0011|Yes|
+      gt0013|Race: 1|local::at0018|African-American|
+      gt0014|Smoker: 1|local::at0025|Yes|
+      gt0015|DVT or PE present: 1|local::at0023|Yes|
+  expected_output:
+    1:
+      gt0007|Body Surface Area: 1.81,m2
+      gt0017|Estimated Warfarin Maintenance Dose: 6.35,mg

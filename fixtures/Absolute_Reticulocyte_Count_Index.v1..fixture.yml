@@ -1,0 +1,131 @@
+guidelines:
+  1: Absolute_Reticulocyte_Count_Index.v1
+test_cases:
+- id: Very high Normal Hematocrit value 
+  input:
+    1:
+      gt0003|% of reticulocytes: 2,%
+      gt0004|Hematocrit: 50,%
+      gt0005|Normal Hematocrit: 58,%
+  expected_output:
+    1:
+      gt0021|Warning: 'Normal Hematocrit: Very high; double-check.'
+      gt0008|Reticulocyte Index: 1.72,1
+      gt0007|Absolute Reticulocyte Count: 1.72
+
+- id: Very low Normal Hematocrit value
+  input:
+    1:
+      gt0003|% of reticulocytes: 2,%
+      gt0004|Hematocrit: 50,%
+      gt0005|Normal Hematocrit: 18,%
+  expected_output:
+    1:
+      gt0021|Warning: 'Normal Hematocrit: Very low; double-check.'
+      gt0008|Reticulocyte Index: 5.56,1
+      gt0007|Absolute Reticulocyte Count: 5.56
+
+- id: Very high Hematocrit value 
+  input:
+    1:
+      gt0003|% of reticulocytes: 2,%
+      gt0004|Hematocrit: 58,%
+      gt0005|Normal Hematocrit: 20,%
+  expected_output:
+    1:
+      gt0021|Warning: 'Hematocrit: Very high; double-check.'
+      gt0008|Reticulocyte Index: 5.80,1
+      gt0007|Absolute Reticulocyte Count: 5.80
+
+- id: Very low Hematocrit value
+  input:
+    1:
+      gt0003|% of reticulocytes: 2,%
+      gt0004|Hematocrit: 18,%
+      gt0005|Normal Hematocrit: 20,%
+  expected_output:
+    1:
+      gt0021|Warning: 'Hematocrit: Very low; double-check.'
+      gt0008|Reticulocyte Index: 0.72,1
+      gt0007|Absolute Reticulocyte Count: 1.80
+
+- id: Absolute Reticulocyte Count = (% of reticulocytes)*(Hematocrit/Normal Hematocrit)
+  input:
+    1:
+      gt0003|% of reticulocytes: 2,%
+      gt0004|Hematocrit: 50,%
+      gt0005|Normal Hematocrit: 50,%
+  expected_output:
+    1:
+      gt0008|Reticulocyte Index: 2.00,1
+      gt0007|Absolute Reticulocyte Count: 2.00
+
+
+- id: Reticulocyte Index (Hematocrit >=35%) = Absolute Reticulocyte Count
+  input:
+    1:
+      gt0003|% of reticulocytes: 2,%
+      gt0004|Hematocrit: 50,%
+      gt0005|Normal Hematocrit: 50,%
+  expected_output:
+    1:
+      gt0008|Reticulocyte Index: 2.00,1
+      gt0007|Absolute Reticulocyte Count: 2.00
+
+- id: Reticulocyte Index (25=< Hematocrit <35%) = Absolute Reticulocyte Count/1.5
+  input:
+    1:
+      gt0003|% of reticulocytes: 2,%
+      gt0004|Hematocrit: 25,%
+      gt0005|Normal Hematocrit: 50,%
+  expected_output:
+    1:
+      gt0008|Reticulocyte Index: 0.67,1
+      gt0007|Absolute Reticulocyte Count: 1.00
+
+- id: Reticulocyte Index (20=< Hematocrit <25%) = Absolute Reticulocyte Count/2.0
+  input:
+    1:
+      gt0003|% of reticulocytes: 2,%
+      gt0004|Hematocrit: 20,%
+      gt0005|Normal Hematocrit: 50,%
+  expected_output:
+    1:
+      gt0008|Reticulocyte Index: 0.40,1
+      gt0007|Absolute Reticulocyte Count: 0.80
+
+- id: Reticulocyte Index (20=< Hematocrit <25%) = Absolute Reticulocyte Count/2.5
+  input:
+    1:
+      gt0003|% of reticulocytes: 2,%
+      gt0004|Hematocrit: 18,%
+      gt0005|Normal Hematocrit: 50,%
+  expected_output:
+    1:
+      gt0021|Warning: 'Hematocrit: Very low; double-check.'
+      gt0008|Reticulocyte Index: 0.29,1
+      gt0007|Absolute Reticulocyte Count: 0.72
+
+- id: Index interpretation = Adequate
+  input:
+    1:
+      gt0003|% of reticulocytes: 3,%
+      gt0004|Hematocrit: 55,%
+      gt0005|Normal Hematocrit: 34,%
+  expected_output:
+    1:
+      gt0008|Reticulocyte Index: 4.85,1
+      gt0007|Absolute Reticulocyte Count: 4.85
+      gt0009|Index interpretation: local::at0008|Adequate. Reticulocyte Index ≥ 2 indicates adequate response. |
+
+- id: Index interpretation = Hypoproliferation
+  input:
+    1:
+      gt0003|% of reticulocytes: 1,%
+      gt0004|Hematocrit: 32,%
+      gt0005|Normal Hematocrit: 21,%
+  expected_output:
+    1:
+      gt0008|Reticulocyte Index: 1.02,1
+      gt0007|Absolute Reticulocyte Count: 1.52
+      gt0009|Index interpretation: local::at0009|Hypoproliferation. Reticulocyte Index<2 indicates hypoproliferation.|

@@ -1,0 +1,212 @@
+guidelines:
+  1: ETDRS_Diabetic_Retinopathy_SeverityRating_MacEdema.v0
+test_cases:
+- id: 1. Score 0 - No Diabetic Retinopathy
+  input:
+    1:
+      gt0006|Microaneurysms: false
+      gt0007|Intra-Retinal Hemorrhages: 0|local::at0031|No Intra-Retinal Hemorrhages in all Quadrants|
+      gt0008|Venous Beading: 0,Quadrants
+      gt0009|Intra-retinal Microvascular abnormalities: 0,Quadrants
+      gt0010|Neovascularization: false
+      gt0011|Vitreous Hemorrhage: false
+      gt0012|Pre-retinal Hemorrhage: false
+  expected_output:
+    1:
+      gt0004|Diabetic Retinopathy Severity Rating: 0|local::at0004|No Diabetic Retinopathy|
+- id: 2. Score 0 - No Diabetic Retinopathy - No Macular Edema
+  input:
+    1:
+      gt0006|Microaneurysms: false
+      gt0007|Intra-Retinal Hemorrhages: 0|local::at0031|No Intra-Retinal Hemorrhages in all Quadrants|
+      gt0008|Venous Beading: 0,Quadrants
+      gt0009|Intra-retinal Microvascular abnormalities: 0,Quadrants
+      gt0010|Neovascularization: false
+      gt0011|Vitreous Hemorrhage: false
+      gt0012|Pre-retinal Hemorrhage: false
+      gt0013|Exudates within 1 disc diameter from fovea: false
+      gt0014|Thickening within 1 disc diameter from fovea: false
+  expected_output:
+    1:
+      gt0005|Macular Edema Severity Rating: 0|local::at0010|No Macular Edema|
+      gt0004|Diabetic Retinopathy Severity Rating: 0|local::at0004|No Diabetic Retinopathy|
+- id: 3. Score 0/1 - No Diabetic Retinopathy - W/ Macular Edema
+  input:
+    1:
+      gt0006|Microaneurysms: false
+      gt0007|Intra-Retinal Hemorrhages: 0|local::at0031|No Intra-Retinal Hemorrhages in all Quadrants|
+      gt0008|Venous Beading: 0,Quadrants
+      gt0009|Intra-retinal Microvascular abnormalities: 0,Quadrants
+      gt0010|Neovascularization: false
+      gt0011|Vitreous Hemorrhage: false
+      gt0012|Pre-retinal Hemorrhage: false
+      gt0013|Exudates within 1 disc diameter from fovea: false
+      gt0014|Thickening within 1 disc diameter from fovea: true
+  expected_output:
+    1:
+      gt0005|Macular Edema Severity Rating: 1|local::at0011|Macular Edema|
+      gt0004|Diabetic Retinopathy Severity Rating: 0|local::at0004|No Diabetic Retinopathy|
+- id: 4. Score 1 - Mild NPDR
+  input:
+    1:
+      gt0006|Microaneurysms: true
+      gt0007|Intra-Retinal Hemorrhages: 0|local::at0031|No Intra-Retinal Hemorrhages in all Quadrants|
+      gt0008|Venous Beading: 0,Quadrants
+      gt0009|Intra-retinal Microvascular abnormalities: 0,Quadrants
+      gt0010|Neovascularization: false
+      gt0011|Vitreous Hemorrhage: false
+      gt0012|Pre-retinal Hemorrhage: false
+  expected_output:
+    1:
+      gt0004|Diabetic Retinopathy Severity Rating: 1|local::at0005|Mild Non-proliferative Diabetic Retinopathy|
+- id: 5. Score 1/1 - Mild NPDR - W/ Macular Edema
+  input:
+    1:
+      gt0006|Microaneurysms: true
+      gt0007|Intra-Retinal Hemorrhages: 0|local::at0031|No Intra-Retinal Hemorrhages in all Quadrants|
+      gt0008|Venous Beading: 0,Quadrants
+      gt0009|Intra-retinal Microvascular abnormalities: 0,Quadrants
+      gt0010|Neovascularization: false
+      gt0011|Vitreous Hemorrhage: false
+      gt0012|Pre-retinal Hemorrhage: false
+      gt0013|Exudates within 1 disc diameter from fovea: true
+      gt0014|Thickening within 1 disc diameter from fovea: false
+  expected_output:
+    1:
+      gt0005|Macular Edema Severity Rating: 1|local::at0011|Macular Edema|
+      gt0004|Diabetic Retinopathy Severity Rating: 1|local::at0005|Mild Non-proliferative Diabetic Retinopathy|
+- id: 6. Score 2 - Moderate NPDR Scenario 1
+  input:
+    1:
+      gt0007|Intra-Retinal Hemorrhages: 1|local::at0032|<20 Intra-Retinal Hemorrhages in all Quadrants|
+      gt0008|Venous Beading: 0,Quadrants
+      gt0009|Intra-retinal Microvascular abnormalities: 0,Quadrants
+      gt0010|Neovascularization: false
+      gt0011|Vitreous Hemorrhage: false
+      gt0012|Pre-retinal Hemorrhage: false
+  expected_output:
+    1:
+      gt0004|Diabetic Retinopathy Severity Rating: 2|local::at0006|Moderate Non-proliferative Diabetic Retinopathy|
+- id: 7. Score 2/0 - Moderate NPDR Scenario 2 - No Macular Edema
+  input:
+    1:
+      gt0007|Intra-Retinal Hemorrhages: 0|local::at0031|No Intra-Retinal Hemorrhages in all Quadrants|
+      gt0008|Venous Beading: 1,Quadrants
+      gt0009|Intra-retinal Microvascular abnormalities: 0,Quadrants
+      gt0010|Neovascularization: false
+      gt0011|Vitreous Hemorrhage: false
+      gt0012|Pre-retinal Hemorrhage: false
+      gt0013|Exudates within 1 disc diameter from fovea: false
+      gt0014|Thickening within 1 disc diameter from fovea: false
+  expected_output:
+    1:
+      gt0005|Macular Edema Severity Rating: 0|local::at0010|No Macular Edema|
+      gt0004|Diabetic Retinopathy Severity Rating: 2|local::at0006|Moderate Non-proliferative Diabetic Retinopathy|
+- id: 8. Score 3 - Severe NPDR Scenario 1
+  input:
+    1:
+      gt0007|Intra-Retinal Hemorrhages: 2|local::at0033|>20 Intra-Retinal Hemorrhages in all Quadrants|
+      gt0008|Venous Beading: 1,Quadrants
+      gt0009|Intra-retinal Microvascular abnormalities: 0,Quadrants
+      gt0010|Neovascularization: false
+      gt0011|Vitreous Hemorrhage: false
+      gt0012|Pre-retinal Hemorrhage: false
+  expected_output:
+    1:
+      gt0004|Diabetic Retinopathy Severity Rating: 3|local::at0007|Severe Non-proliferative Diabetic Retinopathy|
+- id: 9. Score 3/1 Severe NPDR Scenario 2 with Macular edema
+  input:
+    1:
+      gt0006|Microaneurysms: false
+      gt0007|Intra-Retinal Hemorrhages: 1|local::at0032|<20 Intra-Retinal Hemorrhages in all Quadrants|
+      gt0008|Venous Beading: 2,Quadrants
+      gt0009|Intra-retinal Microvascular abnormalities: 0,Quadrants
+      gt0010|Neovascularization: false
+      gt0011|Vitreous Hemorrhage: false
+      gt0012|Pre-retinal Hemorrhage: false
+      gt0013|Exudates within 1 disc diameter from fovea: true
+      gt0014|Thickening within 1 disc diameter from fovea: true
+  expected_output:
+    1:
+      gt0005|Macular Edema Severity Rating: 1|local::at0011|Macular Edema|
+      gt0004|Diabetic Retinopathy Severity Rating: 3|local::at0007|Severe Non-proliferative Diabetic Retinopathy|
+- id: 10. Score 3/1 Severe NPDR scenario 3 with Macular Edema
+  input:
+    1:
+      gt0006|Microaneurysms: false
+      gt0007|Intra-Retinal Hemorrhages: 1|local::at0032|<20 Intra-Retinal Hemorrhages in all Quadrants|
+      gt0008|Venous Beading: 0,Quadrants
+      gt0009|Intra-retinal Microvascular abnormalities: 1,Quadrants
+      gt0010|Neovascularization: false
+      gt0011|Vitreous Hemorrhage: false
+      gt0012|Pre-retinal Hemorrhage: false
+      gt0013|Exudates within 1 disc diameter from fovea: false
+      gt0014|Thickening within 1 disc diameter from fovea: true
+  expected_output:
+    1:
+      gt0005|Macular Edema Severity Rating: 1|local::at0011|Macular Edema|
+      gt0004|Diabetic Retinopathy Severity Rating: 3|local::at0007|Severe Non-proliferative Diabetic Retinopathy|
+- id: 11. Score 4/0 PDR Scenario 1 - No Macular Edema
+  input:
+    1:
+      gt0006|Microaneurysms: false
+      gt0007|Intra-Retinal Hemorrhages: 1|local::at0032|<20 Intra-Retinal Hemorrhages in all Quadrants|
+      gt0008|Venous Beading: 1,Quadrants
+      gt0009|Intra-retinal Microvascular abnormalities: 0,Quadrants
+      gt0010|Neovascularization: true
+      gt0011|Vitreous Hemorrhage: false
+      gt0012|Pre-retinal Hemorrhage: false
+      gt0013|Exudates within 1 disc diameter from fovea: false
+      gt0014|Thickening within 1 disc diameter from fovea: false
+  expected_output:
+    1:
+      gt0005|Macular Edema Severity Rating: 0|local::at0010|No Macular Edema|
+      gt0004|Diabetic Retinopathy Severity Rating: 4|local::at0008|Proliferative Diabetic Retinopathy|
+- id: 12. Score 4/1 - PDR Scenario 2 with Macular Edema
+  input:
+    1:
+      gt0006|Microaneurysms: false
+      gt0007|Intra-Retinal Hemorrhages: 1|local::at0032|<20 Intra-Retinal Hemorrhages in all Quadrants|
+      gt0008|Venous Beading: 1,Quadrants
+      gt0009|Intra-retinal Microvascular abnormalities: 0,Quadrants
+      gt0010|Neovascularization: false
+      gt0011|Vitreous Hemorrhage: true
+      gt0012|Pre-retinal Hemorrhage: false
+      gt0013|Exudates within 1 disc diameter from fovea: true
+      gt0014|Thickening within 1 disc diameter from fovea: false
+  expected_output:
+    1:
+      gt0005|Macular Edema Severity Rating: 1|local::at0011|Macular Edema|
+      gt0004|Diabetic Retinopathy Severity Rating: 4|local::at0008|Proliferative Diabetic Retinopathy|
+- id: 13. Score 4/1 PDR Scenario 3 with Macular Edema
+  input:
+    1:
+      gt0006|Microaneurysms: false
+      gt0007|Intra-Retinal Hemorrhages: 2|local::at0033|>20 Intra-Retinal Hemorrhages in all Quadrants|
+      gt0008|Venous Beading: 2,Quadrants
+      gt0009|Intra-retinal Microvascular abnormalities: 4,Quadrants
+      gt0010|Neovascularization: false
+      gt0011|Vitreous Hemorrhage: false
+      gt0012|Pre-retinal Hemorrhage: true
+      gt0013|Exudates within 1 disc diameter from fovea: false
+      gt0014|Thickening within 1 disc diameter from fovea: true
+  expected_output:
+    1:
+      gt0005|Macular Edema Severity Rating: 1|local::at0011|Macular Edema|
+      gt0004|Diabetic Retinopathy Severity Rating: 4|local::at0008|Proliferative Diabetic Retinopathy|
+- id: 14. Score 4/0 PDR Scenario 4 No Macular Edema
+  input:
+    1:
+      gt0006|Microaneurysms: true
+      gt0007|Intra-Retinal Hemorrhages: 0|local::at0031|No Intra-Retinal Hemorrhages in all Quadrants|
+      gt0008|Venous Beading: 0,Quadrants
+      gt0009|Intra-retinal Microvascular abnormalities: 0,Quadrants
+      gt0010|Neovascularization: true
+      gt0011|Vitreous Hemorrhage: true
+      gt0012|Pre-retinal Hemorrhage: false
+      gt0013|Exudates within 1 disc diameter from fovea: false
+      gt0014|Thickening within 1 disc diameter from fovea: false
+  expected_output:
+    1:
+      gt0005|Macular Edema Severity Rating: 0|local::at0010|No Macular Edema|
+      gt0004|Diabetic Retinopathy Severity Rating: 4|local::at0008|Proliferative Diabetic Retinopathy|

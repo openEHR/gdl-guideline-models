@@ -1,0 +1,138 @@
+guidelines:
+  1: ATLAS_score_for_C_difficile_infection.v1
+test_cases:
+- id: score 0
+  input:
+    1:
+      gt0003|Age: 59,a
+      gt0005|Treatment with systemic antitiotics of ≥1 day duration: 0|local::at0009|No|
+      gt0007|Leukocyte count: 15,10*9/l
+      gt0026|Serum albumin: 36,gm/l
+      gt0011|Serum creatinine: 120,µmol/l
+  expected_output:
+    1:
+      gt0015|Serum albumin: 0|local::at0016|>3.5 g/dL (>35 g/L)|
+      gt0014|Leukocyte count: 0|local::at0012|<16,000 cells/µL|
+      gt0013|Age: 0|local::at0005|<60 years|
+      gt0017|Total score: 0
+      gt0018|Predicted cure rate: 100.0,%
+      gt0016|Serum creatinine: 0|local::at0020|≤1.3 mg/dL (≤120 μmol/L)|
+
+- id: age 60, leukocyte 16, albumin 35, creatinine 121 µmol/l
+  input:
+    1:
+      gt0003|Age: 60,a
+      gt0005|Treatment with systemic antitiotics of ≥1 day duration: 0|local::at0009|No|
+      gt0007|Leukocyte count: 16,10*9/l
+      gt0026|Serum albumin: 35,gm/l
+      gt0011|Serum creatinine: 121,µmol/l
+  expected_output:
+    1:
+      gt0015|Serum albumin: 1|local::at0017|2.6-3.5 g/dL (26-35 g/L)|
+      gt0014|Leukocyte count: 1|local::at0013|16,000-25,000 cells/µL|
+      gt0013|Age: 1|local::at0006|60-79 years|
+      gt0017|Total score: 4
+      gt0018|Predicted cure rate: 79.7,%
+      gt0016|Serum creatinine: 1|local::at0021|1.4-2.0 mg/dL (121-179 μmol/L)|
+
+- id: age 79, leukocyte 25, albumin 26, creatinine 179 µmol/l
+  input:
+    1:
+      gt0003|Age: 79,a
+      gt0005|Treatment with systemic antitiotics of ≥1 day duration: 2|local::at0010|Yes|
+      gt0007|Leukocyte count: 25,10*9/l
+      gt0026|Serum albumin: 26,gm/l
+      gt0011|Serum creatinine: 179,µmol/l
+  expected_output:
+    1:
+      gt0015|Serum albumin: 1|local::at0017|2.6-3.5 g/dL (26-35 g/L)|
+      gt0014|Leukocyte count: 1|local::at0013|16,000-25,000 cells/µL|
+      gt0013|Age: 1|local::at0006|60-79 years|
+      gt0017|Total score: 6
+      gt0018|Predicted cure rate: 69.5,%
+      gt0016|Serum creatinine: 1|local::at0021|1.4-2.0 mg/dL (121-179 μmol/L)|
+
+- id: age 80, leukocyte 26, albumin 25, creatinine 180 µmol/l
+  input:
+    1:
+      gt0003|Age: 80,a
+      gt0005|Treatment with systemic antitiotics of ≥1 day duration: 2|local::at0010|Yes|
+      gt0007|Leukocyte count: 26,10*9/l
+      gt0026|Serum albumin: 25,gm/l
+      gt0011|Serum creatinine: 180,µmol/l
+  expected_output:
+    1:
+      gt0015|Serum albumin: 2|local::at0018|<2.6 g/dL (<26 g/L)|
+      gt0014|Leukocyte count: 2|local::at0014|>25,000 cells/µL|
+      gt0013|Age: 2|local::at0007|≥80 years|
+      gt0017|Total score: 10
+      gt0018|Predicted cure rate: 49.2,%
+      gt0016|Serum creatinine: 2|local::at0022|≥2.1 mg/dL (≥180 μmol/L)|
+
+- id: age 80, leukocyte 26*10^3/mm3, albumin 25, creatinine 2.1 mg/dl
+  input:
+    1:
+      gt0003|Age: 80,a
+      gt0005|Treatment with systemic antitiotics of ≥1 day duration: 2|local::at0010|Yes|
+      gt0007|Leukocyte count: 26,10*3/mm3
+      gt0026|Serum albumin: 25,gm/l
+      gt0011|Serum creatinine: 2.1,mg/dl
+  expected_output:
+    1:
+      gt0015|Serum albumin: 2|local::at0018|<2.6 g/dL (<26 g/L)|
+      gt0014|Leukocyte count: 2|local::at0014|>25,000 cells/µL|
+      gt0013|Age: 2|local::at0007|≥80 years|
+      gt0017|Total score: 10
+      gt0018|Predicted cure rate: 49.2,%
+      gt0016|Serum creatinine: 2|local::at0022|≥2.1 mg/dL (≥180 μmol/L)|
+
+- id: age 80, leukocyte 25*10^3/mm3, albumin 25, creatinine 2.0 mg/dl
+  input:
+    1:
+      gt0003|Age: 80,a
+      gt0005|Treatment with systemic antitiotics of ≥1 day duration: 2|local::at0010|Yes|
+      gt0007|Leukocyte count: 25,10*3/mm3
+      gt0026|Serum albumin: 25,gm/l
+      gt0011|Serum creatinine: 2.0,mg/dl
+  expected_output:
+    1:
+      gt0015|Serum albumin: 2|local::at0018|<2.6 g/dL (<26 g/L)|
+      gt0014|Leukocyte count: 1|local::at0013|16,000-25,000 cells/µL|
+      gt0013|Age: 2|local::at0007|≥80 years|
+      gt0017|Total score: 8
+      gt0018|Predicted cure rate: 59.4,%
+      gt0016|Serum creatinine: 1|local::at0021|1.4-2.0 mg/dL (121-179 μmol/L)|
+
+- id: age 80, leukocyte 16*10^3/mm3, albumin 25, creatinine 1.4 mg/dl
+  input:
+    1:
+      gt0003|Age: 80,a
+      gt0005|Treatment with systemic antitiotics of ≥1 day duration: 2|local::at0010|Yes|
+      gt0007|Leukocyte count: 16,10*3/mm3
+      gt0026|Serum albumin: 25,gm/l
+      gt0011|Serum creatinine: 1.4,mg/dl
+  expected_output:
+    1:
+      gt0015|Serum albumin: 2|local::at0018|<2.6 g/dL (<26 g/L)|
+      gt0014|Leukocyte count: 1|local::at0013|16,000-25,000 cells/µL|
+      gt0013|Age: 2|local::at0007|≥80 years|
+      gt0017|Total score: 8
+      gt0018|Predicted cure rate: 59.4,%
+      gt0016|Serum creatinine: 1|local::at0021|1.4-2.0 mg/dL (121-179 μmol/L)|
+
+- id: age 80, leukocyte 15*10^3/mm3, albumin 25, creatinine 1.3 mg/dl
+  input:
+    1:
+      gt0003|Age: 80,a
+      gt0005|Treatment with systemic antitiotics of ≥1 day duration: 2|local::at0010|Yes|
+      gt0007|Leukocyte count: 15,10*3/mm3
+      gt0026|Serum albumin: 25,gm/l
+      gt0011|Serum creatinine: 1.3,mg/dl
+  expected_output:
+    1:
+      gt0015|Serum albumin: 2|local::at0018|<2.6 g/dL (<26 g/L)|
+      gt0014|Leukocyte count: 0|local::at0012|<16,000 cells/µL|
+      gt0013|Age: 2|local::at0007|≥80 years|
+      gt0017|Total score: 6
+      gt0018|Predicted cure rate: 69.5,%
+      gt0016|Serum creatinine: 0|local::at0020|≤1.3 mg/dL (≤120 μmol/L)|

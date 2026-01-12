@@ -1,0 +1,58 @@
+guidelines:
+  1: ASAS_Criteria_for_Axial_Spondyloarthritis_SpA_guideline.v1
+test_cases:
+- id: Axial SpA, SpA score 1, imaging
+  input:
+    1:
+      gt0003|Age at onset: 44,a
+      gt0041|Back pain: 1|local::at0010|>=3 months|
+      gt0042|Sacroiliitis on imaging: 1|local::at0065|Yes|
+      gt0043|HLA-B27: 1|local::at0067|Yes|
+  expected_output:
+    1:
+      gt0066|Diagnostic Result: local::at0068|Axial SpA|
+      gt0035|SpA Score: 1
+
+- id: Axial SpA, SpA score 11, imaging
+  input:
+    1:
+      gt0003|Age at onset: 44,a
+      gt0041|Back pain: 1|local::at0010|>=3 months|
+      gt0042|Sacroiliitis on imaging: 1|local::at0065|Yes|
+      gt0043|HLA-B27: 1|local::at0067|Yes|
+      gt0044|Inflammatory back pain: 1|local::at0023|Yes|
+      gt0045|Arthritis: 1|local::at0028|Yes|
+      gt0046|Enthesitis (heel): 1|local::at0031|Yes|
+      gt0047|Uveitis: 1|local::at0034|Yes|
+      gt0048|Dactylitis: 1|local::at0037|Yes|
+      gt0049|Psoriasis: 1|local::at0040|Yes|
+      gt0050|Crohn’s disease or ulcerative colitis: 1|local::at0043|Yes|
+      gt0051|Good response to NSAIDs: 1|local::at0046|Yes|
+      gt0052|Family history of SpA: 1|local::at0049|Yes|
+      gt0054|Elevated CRP: 1|local::at0052|Yes|
+  expected_output:
+    1:
+      gt0066|Diagnostic Result: local::at0068|Axial SpA|
+      gt0035|SpA Score: 11
+
+- id: Axial SpA, SpA score 11, HLA-B27
+  input:
+    1:
+      gt0003|Age at onset: 44,a
+      gt0041|Back pain: 1|local::at0010|>=3 months|
+      gt0042|Sacroiliitis on imaging: 0|local::at0064|No|
+      gt0043|HLA-B27: 1|local::at0067|Yes|
+      gt0044|Inflammatory back pain: 1|local::at0023|Yes|
+      gt0045|Arthritis: 1|local::at0028|Yes|
+      gt0046|Enthesitis (heel): 1|local::at0031|Yes|
+      gt0047|Uveitis: 1|local::at0034|Yes|
+      gt0048|Dactylitis: 1|local::at0037|Yes|
+      gt0049|Psoriasis: 1|local::at0040|Yes|
+      gt0050|Crohn’s disease or ulcerative colitis: 1|local::at0043|Yes|
+      gt0051|Good response to NSAIDs: 1|local::at0046|Yes|
+      gt0052|Family history of SpA: 1|local::at0049|Yes|
+      gt0054|Elevated CRP: 1|local::at0052|Yes|
+  expected_output:
+    1:
+      gt0066|Diagnostic Result: local::at0068|Axial SpA|
+      gt0035|SpA Score: 11

@@ -1,0 +1,64 @@
+guidelines:
+  1: Wells_Criteria_PE.v1
+test_cases:
+- id: case_1:Total score = 0.0
+  input:
+    1:
+      gt0003|Heart Rate: 60,/min
+      gt0005|Clinical signs and symptoms of DVT?: 0|local::at0013|No|
+      gt0006|Is PE the number one diagnosis OR equally likely?: 0|local::at0015|No|
+      gt0008|Immobilization at least 3 days OR surgery in the Previous 4 weeks?: 0|local::at0019|No|
+      gt0009|Previous, objectively diagnosed PE or DVT?: 0|local::at0021|No|
+      gt0010|Hemoptysis?: 0|local::at0023|No|
+      gt0011|Malignancy with treatment within 6 months or palliative?: 0|local::at0025|No|
+  expected_output:
+    1:
+      gt0021|Total score: 0.0
+      gt0016|Heart rate > 100 BPM?: 0|local::at0017|No|
+      gt0033|3 Tier Risk Level: 0|local::at0005|Low Risk|
+      gt0034|2 Tier Risk Level: 0|local::at0008|Pulmonary embolism unlikely (with d-dimer)|
+      gt0035|Risk Prevelance: 0|local::at0015|1.3% risk prevalence|
+      gt0036|Risk Incidence: 0|local::at0021|12.1% risk incidence|
+      gt0037|Recommendation: 0|local::at0010|Consider d-dimer testing to rule out pulmonary embolism or a rule out criteria such as PERC|
+
+
+- id: case_2:Total score = 11.0
+  input:
+    1:
+      gt0003|Heart Rate: 100,/min
+      gt0005|Clinical signs and symptoms of DVT?: 6|local::at0014|Yes|
+      gt0006|Is PE the number one diagnosis OR equally likely?: 6|local::at0016|Yes|
+      gt0008|Immobilization at least 3 days OR surgery in the Previous 4 weeks?: 3|local::at0020|Yes|
+      gt0009|Previous, objectively diagnosed PE or DVT?: 3|local::at0022|Yes|
+      gt0010|Hemoptysis?: 2|local::at0024|Yes|
+      gt0011|Malignancy with treatment within 6 months or palliative?: 2|local::at0026|Yes|
+  expected_output:
+    1:
+      gt0021|Total score: 11.0
+      gt0016|Heart rate > 100 BPM?: 0|local::at0017|No|
+      gt0033|3 Tier Risk Level: 2|local::at0007|High Risk|
+      gt0034|2 Tier Risk Level: 1|local::at0009|Pulmonary embolism likely (with CTA)|
+      gt0035|Risk Prevelance: 2|local::at0019|37.5% risk prevalence|
+      gt0036|Risk Incidence: 1|local::at0022|37.1% risk incidence|
+      gt0037|Recommendation: 3|local::at0013|Consider CTA testing|
+
+
+- id: case_3:Total score = 12.5 (max)
+  input:
+    1:
+      gt0003|Heart Rate: 110,/min
+      gt0005|Clinical signs and symptoms of DVT?: 6|local::at0014|Yes|
+      gt0006|Is PE the number one diagnosis OR equally likely?: 6|local::at0016|Yes|
+      gt0008|Immobilization at least 3 days OR surgery in the Previous 4 weeks?: 3|local::at0020|Yes|
+      gt0009|Previous, objectively diagnosed PE or DVT?: 3|local::at0022|Yes|
+      gt0010|Hemoptysis?: 2|local::at0024|Yes|
+      gt0011|Malignancy with treatment within 6 months or palliative?: 2|local::at0026|Yes|
+  expected_output:
+    1:
+      gt0021|Total score: 12.5
+      gt0016|Heart rate > 100 BPM?: 3|local::at0018|Yes|
+      gt0033|3 Tier Risk Level: 2|local::at0007|High Risk|
+      gt0034|2 Tier Risk Level: 1|local::at0009|Pulmonary embolism likely (with CTA)|
+      gt0035|Risk Prevelance: 2|local::at0019|37.5% risk prevalence|
+      gt0036|Risk Incidence: 1|local::at0022|37.1% risk incidence|
+      gt0037|Recommendation: 3|local::at0013|Consider CTA testing|

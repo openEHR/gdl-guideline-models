@@ -1,0 +1,32 @@
+guidelines:
+  1: EGSYS_Score_Syncope.v1
+test_cases:
+- id: Set Cardiac Syncope likely 
+  input:
+    1:
+      gt0004|Palpitations before syncope: 0|local::at0010|No +0|
+      gt0005|Syncope during effort: 3|local::at0013|Yes +3|
+      gt0006|Abnormal EKG and/or heart disease: 0|local::at0008|No +0|
+      gt0007|Autonomic prodromes: 1|local::at0016|Yes -1|
+      gt0009|Predisposing and/or precipitating factors: 1|local::at0018|Yes -1|
+      gt0008|Syncope in supine position: 2|local::at0026|Yes +2|
+  expected_output:
+    1:
+      gt0011|Interpretation: local::at0021|Cardiac syncope likely (95% sensitive)|
+      gt0012|EGSYS Score: 3,1
+      gt0013|Mortality at 21-24 months: local::at0024|17%|
+
+- id: Set Cardiac Syncope less likely 
+  input:
+    1:
+      gt0004|Palpitations before syncope: 0|local::at0010|No +0|
+      gt0005|Syncope during effort: 0|local::at0011|No +0|
+      gt0006|Abnormal EKG and/or heart disease: 0|local::at0008|No +0|
+      gt0007|Autonomic prodromes: 1|local::at0016|Yes -1|
+      gt0009|Predisposing and/or precipitating factors: 0|local::at0017|No +0|
+      gt0008|Syncope in supine position: 2|local::at0026|Yes +2|
+  expected_output:
+    1:
+      gt0011|Interpretation: local::at0022|Cardiac syncope less likely|
+      gt0012|EGSYS Score: 1,1
+      gt0013|Mortality at 21-24 months: local::at0025|3%|

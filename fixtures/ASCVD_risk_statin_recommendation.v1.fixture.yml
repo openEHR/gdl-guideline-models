@@ -1,0 +1,238 @@
+guidelines:
+  1: ASCVD_risk_statin_recommendation.v1
+test_cases:
+- id: 1. Test no input
+  input:
+    1: {}
+  expected_output:
+    1: {}
+- id: 2. Age too high
+  input:
+    1:
+      gt0055|Age: 80,a
+      gt0064|History of ASCVD: local::at0006|Yes|
+  expected_output:
+    1:
+      gt0091|Comment: Age too high; please change to proceed.
+- id: 3. Age too low
+  input:
+    1:
+      gt0055|Age: 30,a
+      gt0064|History of ASCVD: local::at0006|Yes|
+  expected_output:
+    1:
+      gt0091|Comment: Age too low; please change to proceed.
+- id: 4. Age 40-75 yrs, h/o ASCVD, High-intensity statins
+  input:
+    1:
+      gt0055|Age: 56,a
+      gt0064|History of ASCVD: local::at0006|Yes|
+  expected_output:
+    1:
+      gt0074|Recommendation: High-intensity statin recommended.
+- id: 5. No h/o ASCVD, LDL >= 190mg/dl, High-intensity statins
+  input:
+    1:
+      gt0064|History of ASCVD: local::at0005|No|
+      gt0065|LDL Cholesterol ≥190mg/dL (4.92 mmol/L): local::at0009|Yes|
+  expected_output:
+    1:
+      gt0074|Recommendation: High-intensity statin recommended.
+- id: 6. Female, white, not treated for HTN
+  input:
+    1:
+      gt0015|Systolic blood pressure: 120,mm[Hg]
+      gt0017|HDL Cholesterol: 50,mg/dl
+      gt0018|Total Cholesterol: 214,mg/dl
+      gt0055|Age: 55,a
+      gt0056|Sex: local::at0006|Female|
+      gt0064|History of ASCVD: local::at0005|No|
+      gt0065|LDL Cholesterol ≥190mg/dL (4.92 mmol/L): local::at0008|No|
+      gt0067|Race: local::at0011|White|
+      gt0068|Treatment for hypertension: local::at0032|No|
+      gt0069|Diabetes: 0|local::at0038|No|
+      gt0070|Smoker: 0|local::at0041|No|
+  expected_output:
+    1:
+      gt0074|Recommendation: No statin recommended.
+      gt0073|Estimated 10-y risk: 2.1,%
+- id: 7. Female, others, treated for HTN
+  input:
+    1:
+      gt0015|Systolic blood pressure: 140,mm[Hg]
+      gt0017|HDL Cholesterol: 50,mg/dl
+      gt0018|Total Cholesterol: 214,mg/dl
+      gt0055|Age: 55,a
+      gt0056|Sex: local::at0006|Female|
+      gt0064|History of ASCVD: local::at0005|No|
+      gt0065|LDL Cholesterol ≥190mg/dL (4.92 mmol/L): local::at0008|No|
+      gt0067|Race: local::at0013|Other|
+      gt0068|Treatment for hypertension: local::at0033|Yes|
+      gt0069|Diabetes: 0|local::at0038|No|
+      gt0070|Smoker: 0|local::at0041|No|
+  expected_output:
+    1:
+      gt0074|Recommendation: No statin recommended.
+      gt0073|Estimated 10-y risk: 3.83,%
+- id: 8. Female, white, treated for HTN, high intensity statin
+  input:
+    1:
+      gt0015|Systolic blood pressure: 140,mm[Hg]
+      gt0017|HDL Cholesterol: 40,mg/dl
+      gt0018|Total Cholesterol: 250,mg/dl
+      gt0055|Age: 55,a
+      gt0056|Sex: local::at0006|Female|
+      gt0064|History of ASCVD: local::at0005|No|
+      gt0065|LDL Cholesterol ≥190mg/dL (4.92 mmol/L): local::at0008|No|
+      gt0067|Race: local::at0011|White|
+      gt0068|Treatment for hypertension: local::at0033|Yes|
+      gt0069|Diabetes: 1|local::at0039|Yes|
+      gt0070|Smoker: 1|local::at0042|Yes|
+  expected_output:
+    1:
+      gt0074|Recommendation: High-intensity statin recommended.
+      gt0073|Estimated 10-y risk: 23.83,%
+- id: 9. Female, African American, treated for HTN, high intensity statin
+  input:
+    1:
+      gt0015|Systolic blood pressure: 140,mm[Hg]
+      gt0017|HDL Cholesterol: 40,mg/dl
+      gt0018|Total Cholesterol: 250,mg/dl
+      gt0055|Age: 55,a
+      gt0056|Sex: local::at0006|Female|
+      gt0064|History of ASCVD: local::at0005|No|
+      gt0065|LDL Cholesterol ≥190mg/dL (4.92 mmol/L): local::at0008|No|
+      gt0067|Race: local::at0012|African American|
+      gt0068|Treatment for hypertension: local::at0033|Yes|
+      gt0069|Diabetes: 1|local::at0039|Yes|
+      gt0070|Smoker: 1|local::at0042|Yes|
+  expected_output:
+    1:
+      gt0074|Recommendation: High-intensity statin recommended.
+      gt0073|Estimated 10-y risk: 42.8,%
+- id: 10. Female, African American, not treated for HTN, no statin
+  input:
+    1:
+      gt0015|Systolic blood pressure: 110,mm[Hg]
+      gt0017|HDL Cholesterol: 50,mg/dl
+      gt0018|Total Cholesterol: 215,mg/dl
+      gt0055|Age: 55,a
+      gt0056|Sex: local::at0006|Female|
+      gt0064|History of ASCVD: local::at0005|No|
+      gt0065|LDL Cholesterol ≥190mg/dL (4.92 mmol/L): local::at0008|No|
+      gt0067|Race: local::at0012|African American|
+      gt0068|Treatment for hypertension: local::at0032|No|
+      gt0069|Diabetes: 0|local::at0038|No|
+      gt0070|Smoker: 0|local::at0041|No|
+  expected_output:
+    1:
+      gt0074|Recommendation: No statin recommended.
+      gt0073|Estimated 10-y risk: 2.3,%
+- id: 11. Male, white, not treated for HTN, no statin
+  input:
+    1:
+      gt0015|Systolic blood pressure: 110,mm[Hg]
+      gt0017|HDL Cholesterol: 50,mg/dl
+      gt0018|Total Cholesterol: 215,mg/dl
+      gt0055|Age: 55,a
+      gt0056|Sex: local::at0005|Male|
+      gt0064|History of ASCVD: local::at0005|No|
+      gt0065|LDL Cholesterol ≥190mg/dL (4.92 mmol/L): local::at0008|No|
+      gt0067|Race: local::at0011|White|
+      gt0068|Treatment for hypertension: local::at0032|No|
+      gt0069|Diabetes: 0|local::at0038|No|
+      gt0070|Smoker: 0|local::at0041|No|
+  expected_output:
+    1:
+      gt0074|Recommendation: No statin recommended.
+      gt0073|Estimated 10-y risk: 4.7,%
+- id: 12. Male, white, treated for HTN, moderate to high intensity statin
+  input:
+    1:
+      gt0015|Systolic blood pressure: 150,mm[Hg]
+      gt0017|HDL Cholesterol: 45,mg/dl
+      gt0018|Total Cholesterol: 215,mg/dl
+      gt0055|Age: 55,a
+      gt0056|Sex: local::at0005|Male|
+      gt0064|History of ASCVD: local::at0005|No|
+      gt0065|LDL Cholesterol ≥190mg/dL (4.92 mmol/L): local::at0008|No|
+      gt0067|Race: local::at0011|White|
+      gt0068|Treatment for hypertension: local::at0033|Yes|
+      gt0069|Diabetes: 0|local::at0038|No|
+      gt0070|Smoker: 0|local::at0041|No|
+  expected_output:
+    1:
+      gt0074|Recommendation: Moderate to high-intensity statin recommended.
+      gt0073|Estimated 10-y risk: 10.2,%
+- id: 13. Male, African American, not treated for HTN, moderate to high intensity statin
+  input:
+    1:
+      gt0015|Systolic blood pressure: 120,mm[Hg]
+      gt0017|HDL Cholesterol: 50,mg/dl
+      gt0018|Total Cholesterol: 200,mg/dl
+      gt0055|Age: 55,a
+      gt0056|Sex: local::at0005|Male|
+      gt0064|History of ASCVD: local::at0005|No|
+      gt0065|LDL Cholesterol ≥190mg/dL (4.92 mmol/L): local::at0008|No|
+      gt0067|Race: local::at0012|African American|
+      gt0068|Treatment for hypertension: local::at0032|No|
+      gt0069|Diabetes: 0|local::at0038|No|
+      gt0070|Smoker: 1|local::at0042|Yes|
+  expected_output:
+    1:
+      gt0074|Recommendation: Moderate to high-intensity statin recommended.
+      gt0073|Estimated 10-y risk: 10.1,%
+- id: 14. Male, African American, treated for HTN, moderate to high intensity statin
+  input:
+    1:
+      gt0015|Systolic blood pressure: 130,mm[Hg]
+      gt0017|HDL Cholesterol: 1.29,mmol/l
+      gt0018|Total Cholesterol: 5.51,mmol/l
+      gt0055|Age: 55,a
+      gt0056|Sex: local::at0005|Male|
+      gt0064|History of ASCVD: local::at0005|No|
+      gt0065|LDL Cholesterol ≥190mg/dL (4.92 mmol/L): local::at0008|No|
+      gt0067|Race: local::at0012|African American|
+      gt0068|Treatment for hypertension: local::at0033|Yes|
+      gt0069|Diabetes: 0|local::at0038|No|
+      gt0070|Smoker: 1|local::at0042|Yes|
+  expected_output:
+    1:
+      gt0074|Recommendation: Moderate to high-intensity statin recommended.
+      gt0073|Estimated 10-y risk: 19.0,%
+- id: 15. Female, others, moderate intensity statins
+  input:
+    1:
+      gt0015|Systolic blood pressure: 120,mm[Hg]
+      gt0017|HDL Cholesterol: 1.29,mmol/l
+      gt0018|Total Cholesterol: 5.51,mmol/l
+      gt0055|Age: 55,a
+      gt0056|Sex: local::at0006|Female|
+      gt0064|History of ASCVD: local::at0005|No|
+      gt0065|LDL Cholesterol ≥190mg/dL (4.92 mmol/L): local::at0008|No|
+      gt0067|Race: local::at0013|Other|
+      gt0068|Treatment for hypertension: local::at0032|No|
+      gt0069|Diabetes: 0|local::at0038|No|
+      gt0070|Smoker: 1|local::at0042|Yes|
+  expected_output:
+    1:
+      gt0074|Recommendation: Moderate-intensity statin recommended.
+      gt0073|Estimated 10-y risk: 5.1,%
+- id: 16. Male, others, high intensity statin
+  input:
+    1:
+      gt0015|Systolic blood pressure: 140,mm[Hg]
+      gt0017|HDL Cholesterol: 50,mg/dl
+      gt0018|Total Cholesterol: 260,mg/dl
+      gt0055|Age: 67,a
+      gt0056|Sex: local::at0005|Male|
+      gt0064|History of ASCVD: local::at0005|No|
+      gt0065|LDL Cholesterol ≥190mg/dL (4.92 mmol/L): local::at0008|No|
+      gt0067|Race: local::at0013|Other|
+      gt0068|Treatment for hypertension: local::at0033|Yes|
+      gt0069|Diabetes: 1|local::at0039|Yes|
+      gt0070|Smoker: 1|local::at0042|Yes|
+  expected_output:
+    1:
+      gt0074|Recommendation: High-intensity statin recommended.
+      gt0073|Estimated 10-y risk: 48.9,%

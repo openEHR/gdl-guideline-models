@@ -1,0 +1,65 @@
+guidelines:
+  1: PASI_guideline.v1
+test_cases:
+- id: Max PASI
+  input:
+    1:
+      gt0003|Head/neck Erythema: 4|local::at0010|Very severe|
+      gt0004|Head/neck Induration/thickness: 4|local::at0016|Very severe|
+      gt0005|Head/neck Desquamation/scaling: 4|local::at0022|Very severe|
+      gt0006|Percentage of head/neck affected: 6|local::at0043|90-100%|
+      gt0007|Upper limbs Erythema: 4|local::at0059|Very severe|
+      gt0008|Upper limbs Induration/thickness: 4|local::at0060|Very severe|
+      gt0009|Upper limbs Desquamation/scaling: 4|local::at0061|Very severe|
+      gt0010|Percentage of upper limbs affected: 6|local::at0049|90-100%|
+      gt0011|Trunk Erythema: 4|local::at0090|Very severe|
+      gt0012|Trunk Induration/thickness: 4|local::at0085|Very severe|
+      gt0013|Trunk Desquamation/scaling: 4|local::at0080|Very severe|
+      gt0014|Percentage of trunk affected: 6|local::at0075|90-100%|
+      gt0015|Lower limbs Erythema: 4|local::at0100|Very severe|
+      gt0016|Lower limbs Induration/thickness: 4|local::at0105|Very severe|
+      gt0017|Lower limbs Desquamation/scaling: 4|local::at0110|Very severe|
+      gt0018|Percentage of lower limbs affected: 6|local::at0117|90-100%|
+  expected_output:
+    1:
+      gt0027|PASI Lower limb: 28.8,1
+      gt0029|PASI interpretation: Higher PASI scores indicate higher severity of psoriasis; scores range from 0 (no disease) to 72 (maximal disease severity)
+      gt0021|PASI Head/Neck: 7.2,1
+      gt0020|Lesion severity Head/neck: 12,1
+      gt0022|Lesion severity Upper limbs: 12,1
+      gt0024|Lesion severity Trunk: 12,1
+      gt0026|Lesion severity Lower limb: 12,1
+      gt0025|PASI Trunk: 21.6,1
+      gt0023|PASI Upper limbs: 14.4,1
+      gt0028|Total PASI: 72.0,1
+- id: Min PASI
+  input:
+    1:
+      gt0003|Head/neck Erythema: 0|local::at0006|None|
+      gt0004|Head/neck Induration/thickness: 0|local::at0012|None|
+      gt0005|Head/neck Desquamation/scaling: 0|local::at0018|None|
+      gt0006|Percentage of head/neck affected: 0|local::at0037|0%|
+      gt0007|Upper limbs Erythema: 0|local::at0036|None|
+      gt0008|Upper limbs Induration/thickness: 0|local::at0035|None|
+      gt0009|Upper limbs Desquamation/scaling: 0|local::at0034|None|
+      gt0010|Percentage of upper limbs affected: 0|local::at0033|0%|
+      gt0011|Trunk Erythema: 0|local::at0086|None|
+      gt0012|Trunk Induration/thickness: 0|local::at0081|None|
+      gt0013|Trunk Desquamation/scaling: 0|local::at0076|None|
+      gt0014|Percentage of trunk affected: 0|local::at0069|0%|
+      gt0015|Lower limbs Erythema: 0|local::at0096|None|
+      gt0016|Lower limbs Induration/thickness: 0|local::at0101|None|
+      gt0017|Lower limbs Desquamation/scaling: 0|local::at0106|None|
+      gt0018|Percentage of lower limbs affected: 0|local::at0111|0%|
+  expected_output:
+    1:
+      gt0027|PASI Lower limb: 0.0,1
+      gt0029|PASI interpretation: Higher PASI scores indicate higher severity of psoriasis; scores range from 0 (no disease) to 72 (maximal disease severity)
+      gt0021|PASI Head/Neck: 0.0,1
+      gt0020|Lesion severity Head/neck: 0,1
+      gt0022|Lesion severity Upper limbs: 0,1
+      gt0024|Lesion severity Trunk: 0,1
+      gt0026|Lesion severity Lower limb: 0,1
+      gt0025|PASI Trunk: 0.0,1
+      gt0023|PASI Upper limbs: 0.0,1
+      gt0028|Total PASI: 0.0,1

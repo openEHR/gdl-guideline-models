@@ -1,0 +1,88 @@
+guidelines:
+  1: ACEF-II_Score.v1
+test_cases:
+- id: case_1 S.creatinine- <177 µmol/L, Hematocrit- <36%
+  input:
+    1:
+      gt0003|Age: 60,a
+      gt0005|Creatinine: 176,µmol/l
+      gt0007|Hematocrit: 34,%
+      gt0009|Ejection Fraction: 45,%
+      gt0010|Emergency surgery: 0|local::at0009|No|
+  expected_output:
+    1:
+      gt0022|Predicted 30-day operative mortality: 2.7,%
+      gt0021|ACEF II Score: 1.7,1
+      gt0018|Serum creatinine: 0|local::at0006|<=2.0 mg/dL (177 µmol/L)|
+
+- id: case_2 S.creatinine- <177 µmol/L, Hematocrit- >=36%
+  input:
+    1:
+      gt0003|Age: 60,a
+      gt0005|Creatinine: 176,µmol/l
+      gt0007|Hematocrit: 38,%
+      gt0009|Ejection Fraction: 44,%
+      gt0010|Emergency surgery: 0|local::at0009|No|
+  expected_output:
+    1:
+      gt0022|Predicted 30-day operative mortality: 2.2,%
+      gt0021|ACEF II Score: 1.4,1
+      gt0018|Serum creatinine: 0|local::at0006|<=2.0 mg/dL (177 µmol/L)|
+
+- id: case_3  S.creatinine- >177 µmol/L, Hematocrit- >=36%
+  input:
+    1:
+      gt0003|Age: 60,a
+      gt0005|Creatinine: 178,µmol/l
+      gt0007|Hematocrit: 38,%
+      gt0009|Ejection Fraction: 44,%
+      gt0010|Emergency surgery: 0|local::at0009|No|
+  expected_output:
+    1:
+      gt0022|Predicted 30-day operative mortality: 9.0,%
+      gt0021|ACEF II Score: 3.4,1
+      gt0018|Serum creatinine: 2|local::at0007|>2mg/dl (177 µmol/L)|
+
+- id: case_4  Age-80 yrs, S.creatinine-< 2mg/dl,emergency surgery-yes
+  input:
+    1:
+      gt0003|Age: 80,a
+      gt0005|Creatinine: 1,mg/dl
+      gt0007|Hematocrit: 32,%
+      gt0009|Ejection Fraction: 35,%
+      gt0010|Emergency surgery: 3|local::at0010|Yes|
+  expected_output:
+    1:
+      gt0022|Predicted 30-day operative mortality: 42.9,%
+      gt0021|ACEF II Score: 6.1,1
+      gt0018|Serum creatinine: 0|local::at0006|<=2.0 mg/dL (177 µmol/L)|
+
+- id: case_5 Higher ACEF II Risk Score & predicted 30-day operative mortality 
+  input:
+    1:
+      gt0003|Age: 80,a
+      gt0005|Creatinine: 1,mg/dl
+      gt0007|Hematocrit: 28,%
+      gt0009|Ejection Fraction: 30,%
+      gt0010|Emergency surgery: 3|local::at0010|Yes|
+  expected_output:
+    1:
+      gt0022|Predicted 30-day operative mortality: 64.9,%
+      gt0021|ACEF II Score: 7.3,1
+      gt0018|Serum creatinine: 0|local::at0006|<=2.0 mg/dL (177 µmol/L)|
+
+- id: case_6 Lower ACEF II risk score & lower predicted 30-day operative mortality 
+  input:
+    1:
+      gt0003|Age: 50,a
+      gt0005|Creatinine: 2,mg/dl
+      gt0007|Hematocrit: 50,%
+      gt0009|Ejection Fraction: 50,%
+      gt0010|Emergency surgery: 0|local::at0009|No|
+  expected_output:
+    1:
+      gt0022|Predicted 30-day operative mortality: 1.6,%
+      gt0021|ACEF II Score: 1.0,1
+      gt0018|Serum creatinine: 0|local::at0006|<=2.0 mg/dL (177 µmol/L)|
+
+

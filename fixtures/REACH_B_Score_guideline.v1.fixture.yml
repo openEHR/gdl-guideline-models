@@ -1,0 +1,283 @@
+guidelines:
+  1: REACH_B_Score_guideline.v1
+test_cases:
+- id: score 0 case 1
+  input:
+    1:
+      gt0040|Sex|: 0|local::at0005|Female|
+      gt0041|Age (years)|: 0|local::at0008|30–34|
+      gt0042|ALT (U/L)|: 0|local::at0016|<15|
+      gt0043|HBeAg|: 0|local::at0020|Negative|
+      gt0044|Hepatitis B virus DNA level (copies/mL)|: 0|local::at0023|<300 (undetectable)|
+  expected_output:
+    1:
+      gt0036|HCC risk 3-year|: 0.0%
+      gt0037|HCC risk 5-year|: 0.0%
+      gt0038|HCC risk 10-year|: 0.0%
+      gt0045|Total score|: 0
+- id: score 0 case 2
+  input:
+    1:
+      gt0040|Sex|: 0|local::at0005|Female|
+      gt0041|Age (years)|: 0|local::at0008|30–34|
+      gt0042|ALT (U/L)|: 0|local::at0016|<15|
+      gt0043|HBeAg|: 0|local::at0020|Negative|
+      gt0044|Hepatitis B virus DNA level (copies/mL)|: 0|local::at0024|300–9,999|
+  expected_output:
+    1:
+      gt0036|HCC risk 3-year|: 0.0%
+      gt0037|HCC risk 5-year|: 0.0%
+      gt0038|HCC risk 10-year|: 0.0%
+      gt0045|Total score|: 0
+- id: score 17
+  input:
+    1:
+      gt0040|Sex|: 2|local::at0006|Male|
+      gt0041|Age (years)|: 6|local::at0014|60–65|
+      gt0042|ALT (U/L)|: 2|local::at0018|≥45|
+      gt0043|HBeAg|: 2|local::at0021|Positive|
+      gt0044|Hepatitis B virus DNA level (copies/mL)|: 5|local::at0026|100,000–999,999|
+  expected_output:
+    1:
+      gt0036|HCC risk 3-year|: 23.6%
+      gt0037|HCC risk 5-year|: 47.4%
+      gt0038|HCC risk 10-year|: 81.6%
+      gt0045|Total score|: 17
+- id: score 7
+  input:
+    1:
+      gt0040|Sex|: 0|local::at0005|Female|
+      gt0041|Age (years)|: 1|local::at0009|35–39|
+      gt0042|ALT (U/L)|: 1|local::at0017|15-44|
+      gt0043|HBeAg|: 2|local::at0021|Positive|
+      gt0044|Hepatitis B virus DNA level (copies/mL)|: 3|local::at0025|10,000–99,999|
+  expected_output:
+    1:
+      gt0036|HCC risk 3-year|: 0.2%
+      gt0037|HCC risk 5-year|: 0.5%
+      gt0038|HCC risk 10-year|: 1.2%
+      gt0045|Total score|: 7
+- id: score 3
+  input:
+    1:
+      gt0040|Sex|: 0|local::at0005|Female|
+      gt0041|Age (years)|: 1|local::at0009|35–39|
+      gt0042|ALT (U/L)|: 2|local::at0018|≥45|
+      gt0043|HBeAg|: 0|local::at0020|Negative|
+      gt0044|Hepatitis B virus DNA level (copies/mL)|: 0|local::at0023|<300 (undetectable)|
+  expected_output:
+    1:
+      gt0036|HCC risk 3-year|: 0.0%
+      gt0037|HCC risk 5-year|: 0.1%
+      gt0038|HCC risk 10-year|: 0.2%
+      gt0045|Total score|: 3
+- id: score 4
+  input:
+    1:
+      gt0040|Sex|: 0|local::at0005|Female|
+      gt0041|Age (years)|: 0|local::at0008|30–34|
+      gt0042|ALT (U/L)|: 2|local::at0018|≥45|
+      gt0043|HBeAg|: 2|local::at0021|Positive|
+      gt0044|Hepatitis B virus DNA level (copies/mL)|: 0|local::at0023|<300 (undetectable)|
+  expected_output:
+    1:
+      gt0036|HCC risk 3-year|: 0.0%
+      gt0037|HCC risk 5-year|: 0.1%
+      gt0038|HCC risk 10-year|: 0.3%
+      gt0045|Total score|: 4
+- id: score 5
+  input:
+    1:
+      gt0040|Sex|: 0|local::at0005|Female|
+      gt0041|Age (years)|: 1|local::at0009|35–39|
+      gt0042|ALT (U/L)|: 2|local::at0018|≥45|
+      gt0043|HBeAg|: 2|local::at0021|Positive|
+      gt0044|Hepatitis B virus DNA level (copies/mL)|: 0|local::at0023|<300 (undetectable)|
+  expected_output:
+    1:
+      gt0045|Total score|: 5
+      gt0036|HCC risk 3-year|: 0.1%
+      gt0038|HCC risk 10-year|: 0.5%
+      gt0037|HCC risk 5-year|: 0.2%
+- id: score 6
+  input:
+    1:
+      gt0040|Sex|: 0|local::at0005|Female|
+      gt0041|Age (years)|: 2|local::at0010|40–44|
+      gt0042|ALT (U/L)|: 2|local::at0018|≥45|
+      gt0043|HBeAg|: 2|local::at0021|Positive|
+      gt0044|Hepatitis B virus DNA level (copies/mL)|: 0|local::at0023|<300 (undetectable)|
+  expected_output:
+    1:
+      gt0045|Total score|: 6
+      gt0036|HCC risk 3-year|: 0.1%
+      gt0038|HCC risk 10-year|: 0.7%
+      gt0037|HCC risk 5-year|: 0.3%
+- id: score 8
+  input:
+    1:
+      gt0040|Sex|: 0|local::at0005|Female|
+      gt0041|Age (years)|: 4|local::at0012|50–54|
+      gt0042|ALT (U/L)|: 2|local::at0018|≥45|
+      gt0043|HBeAg|: 2|local::at0021|Positive|
+      gt0044|Hepatitis B virus DNA level (copies/mL)|: 0|local::at0023|<300 (undetectable)|
+  expected_output:
+    1:
+      gt0045|Total score|: 8
+      gt0036|HCC risk 3-year|: 0.3%
+      gt0038|HCC risk 10-year|: 2.0%
+      gt0037|HCC risk 5-year|: 0.8%
+- id: score 9
+  input:
+    1:
+      gt0040|Sex|: 0|local::at0005|Female|
+      gt0041|Age (years)|: 5|local::at0013|55–59|
+      gt0042|ALT (U/L)|: 2|local::at0018|≥45|
+      gt0043|HBeAg|: 2|local::at0021|Positive|
+      gt0044|Hepatitis B virus DNA level (copies/mL)|: 0|local::at0023|<300 (undetectable)|
+  expected_output:
+    1:
+      gt0045|Total score|: 9
+      gt0036|HCC risk 3-year|: 0.5%
+      gt0038|HCC risk 10-year|: 3.2%
+      gt0037|HCC risk 5-year|: 1.2%
+- id: score 10
+  input:
+    1:
+      gt0040|Sex|: 0|local::at0005|Female|
+      gt0041|Age (years)|: 6|local::at0014|60–65|
+      gt0042|ALT (U/L)|: 2|local::at0018|≥45|
+      gt0043|HBeAg|: 2|local::at0021|Positive|
+      gt0044|Hepatitis B virus DNA level (copies/mL)|: 0|local::at0023|<300 (undetectable)|
+  expected_output:
+    1:
+      gt0045|Total score|: 10
+      gt0036|HCC risk 3-year|: 0.9%
+      gt0038|HCC risk 10-year|: 5.2%
+      gt0037|HCC risk 5-year|: 2.0%
+- id: score 11
+  input:
+    1:
+      gt0040|Sex|: 0|local::at0005|Female|
+      gt0041|Age (years)|: 6|local::at0014|60–65|
+      gt0042|ALT (U/L)|: 0|local::at0016|<15|
+      gt0043|HBeAg|: 2|local::at0021|Positive|
+      gt0044|Hepatitis B virus DNA level (copies/mL)|: 3|local::at0025|10,000–99,999|
+  expected_output:
+    1:
+      gt0045|Total score|: 11
+      gt0036|HCC risk 3-year|: 1.4%
+      gt0038|HCC risk 10-year|: 8.4%
+      gt0037|HCC risk 5-year|: 3.3%
+- id: score 12
+  input:
+    1:
+      gt0040|Sex|: 0|local::at0005|Female|
+      gt0041|Age (years)|: 6|local::at0014|60–65|
+      gt0042|ALT (U/L)|: 0|local::at0016|<15|
+      gt0043|HBeAg|: 2|local::at0021|Positive|
+      gt0044|Hepatitis B virus DNA level (copies/mL)|: 4|local::at0027|≥10⁶|
+  expected_output:
+    1:
+      gt0045|Total score|: 12
+      gt0036|HCC risk 3-year|: 2.3%
+      gt0038|HCC risk 10-year|: 13.4%
+      gt0037|HCC risk 5-year|: 5.3%
+- id: score 13
+  input:
+    1:
+      gt0040|Sex|: 0|local::at0005|Female|
+      gt0041|Age (years)|: 6|local::at0014|60–65|
+      gt0042|ALT (U/L)|: 0|local::at0016|<15|
+      gt0043|HBeAg|: 2|local::at0021|Positive|
+      gt0044|Hepatitis B virus DNA level (copies/mL)|: 5|local::at0026|100,000–999,999|
+  expected_output:
+    1:
+      gt0045|Total score|: 13
+      gt0036|HCC risk 3-year|: 3.7%
+      gt0038|HCC risk 10-year|: 21.0%
+      gt0037|HCC risk 5-year|: 8.5%
+- id: score 14
+  input:
+    1:
+      gt0040|Sex|: 2|local::at0006|Male|
+      gt0041|Age (years)|: 5|local::at0013|55–59|
+      gt0042|ALT (U/L)|: 0|local::at0016|<15|
+      gt0043|HBeAg|: 2|local::at0021|Positive|
+      gt0044|Hepatitis B virus DNA level (copies/mL)|: 5|local::at0026|100,000–999,999|
+  expected_output:
+    1:
+      gt0045|Total score|: 14
+      gt0036|HCC risk 3-year|: 6.0%
+      gt0038|HCC risk 10-year|: 32.0%
+      gt0037|HCC risk 5-year|: 13.6%
+- id: score 15
+  input:
+    1:
+      gt0040|Sex|: 2|local::at0006|Male|
+      gt0041|Age (years)|: 6|local::at0014|60–65|
+      gt0042|ALT (U/L)|: 0|local::at0016|<15|
+      gt0043|HBeAg|: 2|local::at0021|Positive|
+      gt0044|Hepatitis B virus DNA level (copies/mL)|: 5|local::at0026|100,000–999,999|
+  expected_output:
+    1:
+      gt0045|Total score|: 15
+      gt0036|HCC risk 3-year|: 9.6%
+      gt0038|HCC risk 10-year|: 46.8%
+      gt0037|HCC risk 5-year|: 21.3%
+- id: score 16
+  input:
+    1:
+      gt0040|Sex|: 2|local::at0006|Male|
+      gt0041|Age (years)|: 6|local::at0014|60–65|
+      gt0042|ALT (U/L)|: 1|local::at0017|15-44|
+      gt0043|HBeAg|: 2|local::at0021|Positive|
+      gt0044|Hepatitis B virus DNA level (copies/mL)|: 5|local::at0026|100,000–999,999|
+  expected_output:
+    1:
+      gt0045|Total score|: 16
+      gt0036|HCC risk 3-year|: 15.2%
+      gt0038|HCC risk 10-year|: 64.4%
+      gt0037|HCC risk 5-year|: 32.4%
+- id: score 15
+  input:
+    1:
+      gt0040|Sex|: 2|local::at0006|Male|
+      gt0041|Age (years)|: 5|local::at0013|55–59|
+      gt0042|ALT (U/L)|: 1|local::at0017|15-44|
+      gt0043|HBeAg|: 2|local::at0021|Positive|
+      gt0044|Hepatitis B virus DNA level (copies/mL)|: 5|local::at0026|100,000–999,999|
+  expected_output:
+    1:
+      gt0045|Total score|: 15
+      gt0036|HCC risk 3-year|: 9.6%
+      gt0038|HCC risk 10-year|: 46.8%
+      gt0037|HCC risk 5-year|: 21.3%
+- id: score 1
+  input:
+    1:
+      gt0040|Sex: 0|local::at0005|Female|
+      gt0041|Age (years): 0|local::at0008|30–34|
+      gt0042|ALT (U/L): 1|local::at0017|15-44|
+      gt0043|HBeAg: 0|local::at0020|Negative|
+      gt0044|Hepatitis B virus DNA level (copies/mL): 0|local::at0023|<300 (undetectable)|
+  expected_output:
+    1:
+      gt0045|Total score: 1
+      gt0038|HCC risk 10-year: 0.1%
+      gt0036|HCC risk 3-year: 0.0%
+      gt0037|HCC risk 5-year: 0.0%
+- id: score 2
+  input:
+    1:
+      gt0040|Sex: 0|local::at0005|Female|
+      gt0041|Age (years): 2|local::at0010|40–44|
+      gt0042|ALT (U/L): 0|local::at0016|<15|
+      gt0043|HBeAg: 0|local::at0020|Negative|
+      gt0044|Hepatitis B virus DNA level (copies/mL): 0|local::at0023|<300 (undetectable)|
+  expected_output:
+    1:
+      gt0045|Total score: 2
+      gt0038|HCC risk 10-year: 0.1%
+      gt0036|HCC risk 3-year: 0.0%
+      gt0037|HCC risk 5-year: 0.0%

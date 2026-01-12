@@ -1,0 +1,56 @@
+guidelines:
+  1: 4TS_HIT.v1
+test_cases:
+- id: case_1
+  input:
+    1:
+      gt0004|Thrombocytopenia: 0|local::at0010|Platelet count fall < 30% OR platelet nadir < 10 × 109L−1|
+      gt0005|Timing of platelet count fall: 1|local::at0014|Consistent with days 5–10 fall, but not clear (e.g. missing platelet counts) OR onset after day 10 OR fall ≤ 1 day (prior heparin exposure 30–100 days ago)|
+      gt0006|Thrombosis or other sequelae: 1|local::at0017|Progressive or recurrent thrombosis or nonnecrotizing (erythematous) skin lesions or suspected thrombosis (not proven)|
+      gt0007|Other causes for thrombocytopenia: 1|local::at0020|Possible|
+  expected_output:
+    1:
+      gt0012|Total score: 3
+      gt0022|Management: 0|local::at0011|No intervention required|
+      gt0021|Risk level: 0|local::at0005|Low Risk, points ≤3|
+
+
+- id: case_2
+  input:
+    1:
+      gt0004|Thrombocytopenia: 1|local::at0011|Platelet count fall 30%–50% OR platelet nadir 10–19 × 109 L−1|
+      gt0005|Timing of platelet count fall: 2|local::at0015|Clear onset between days 5 and 10 OR platelet fall ≤ 1 day (prior heparin exposure within 30 days)|
+      gt0006|Thrombosis or other sequelae: 1|local::at0017|Progressive or recurrent thrombosis or nonnecrotizing (erythematous) skin lesions or suspected thrombosis (not proven)|
+      gt0007|Other causes for thrombocytopenia: 2|local::at0021|None apparent|
+  expected_output:
+    1:
+      gt0012|Total score: 6
+      gt0022|Management: 1|local::at0012|Intervention required|
+      gt0021|Risk level: 2|local::at0007|High Risk, points 6-8|
+
+
+- id: case_3
+  input:
+    1:
+      gt0004|Thrombocytopenia: 2|local::at0012|Platelet count fall > 50% AND platelet nadir ≥ 20 × 109 L−1|
+      gt0005|Timing of platelet count fall: 2|local::at0015|Clear onset between days 5 and 10 OR platelet fall ≤ 1 day (prior heparin exposure within 30 days)|
+      gt0006|Thrombosis or other sequelae: 2|local::at0018|New thrombosis (confirmed) OR skin necrosis at heparin injection sites OR acute systemic reaction after intravenous heparin bolus|
+      gt0007|Other causes for thrombocytopenia: 2|local::at0021|None apparent|
+  expected_output:
+    1:
+      gt0012|Total score: 8
+      gt0022|Management: 1|local::at0012|Intervention required|
+      gt0021|Risk level: 2|local::at0007|High Risk, points 6-8|
+
+- id: case_4
+  input:
+    1:
+      gt0004|Thrombocytopenia: 1|local::at0011|Platelet count fall 30%–50% OR platelet nadir 10–19 × 109 L−1|
+      gt0005|Timing of platelet count fall: 2|local::at0015|Clear onset between days 5 and 10 OR platelet fall ≤ 1 day (prior heparin exposure within 30 days)|
+      gt0006|Thrombosis or other sequelae: 1|local::at0017|Progressive or recurrent thrombosis or nonnecrotizing (erythematous) skin lesions or suspected thrombosis (not proven)|
+      gt0007|Other causes for thrombocytopenia: 1|local::at0020|Possible|
+  expected_output:
+    1:
+      gt0012|Total score: 5
+      gt0022|Management: 1|local::at0012|Intervention required|
+      gt0021|Risk level: 1|local::at0006|Intermediate Risk, points 4-5|

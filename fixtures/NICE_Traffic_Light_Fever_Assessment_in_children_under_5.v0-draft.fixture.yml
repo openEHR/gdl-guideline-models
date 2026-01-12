@@ -1,3 +1,373 @@
 guidelines:
   "1": NICE_Traffic_Light_Fever_Assessment_in_children_under_5.v0-draft
-test_cases: []
+test_cases:
+  - id: "1"
+    input:
+      "1":
+        gt0006|Chronological age: 6,a_j
+        gt0008|Temperature: 30,Cel
+        gt0009|Fever duration: 2,d
+        gt0011|Respiratory Rate: 30,/min
+        gt0015|Heart Rate: 140,/min
+        gt0017|CRT Refill time: 2,s
+        gt0102|SpO₂: 98,%
+        "gt0120|Colour (of skin, lips or tongue)": local::at0006|Pallor|
+        gt0121|Response to social cues: local::at0009|Responds normally|
+        gt0122|Nasal flaring present?: local::at0048|No|
+        gt0123|Smile?: local::at0050|No|
+        gt0124|Awake state: local::at0038|Stays awake or awakens quickly|
+        gt0125|Cry strength: local::at0042|Strong normal cry/not crying|
+        gt0126|Decreased activity present?: local::at0052|No|
+        gt0127|Child appears ill to healthcare professional?: local::at0054|No|
+        gt0128|Grunting present?: local::at0056|No|
+        gt0129|Crackles in chest present?: local::at0058|No|
+        gt0130|Chest indrawing severity: local::at0023|None|
+        gt0131|Reduced skin turgor present?: local::at0060|No|
+        gt0132|Mucous membranes status: local::at0014|Moist mucous membranes|
+        gt0133|Poor feeding in infants?: local::at0062|No|
+        gt0134|Reduced urine output present?: local::at0064|No|
+        gt0135|Rigor present?: local::at0066|No|
+        gt0136|Swelling of limb/joint present?: local::at0068|No|
+        gt0137|Non-weight-bearing limb present?: local::at0070|No|
+        gt0138|Non-blanching rash present?: local::at0072|No|
+        gt0139|Bulging fontanelle present?: local::at0074|No|
+        gt0140|Neck stiffness present?: local::at0076|No|
+        gt0141|Status epilepticus present?: local::at0078|No|
+        gt0142|Focal neurological signs present?: local::at0080|No|
+        gt0143|Focal seizures present?: local::at0082|No|
+    expected_output:
+      "1":
+        gt0153|Risk category: local::at0005|Amber|
+  - id: "0"
+    input:
+      "1":
+        gt0006|Chronological age: 6,a_j
+        gt0008|Temperature: 30,Cel
+        gt0009|Fever duration: 2,d
+        gt0011|Respiratory Rate: 30,/min
+        gt0015|Heart Rate: 120,/min
+        gt0017|CRT Refill time: 2,s
+        gt0102|SpO₂: 99,%
+        "gt0120|Colour (of skin, lips or tongue)": local::at0005|Normal colour|
+        gt0121|Response to social cues: local::at0009|Responds normally|
+        gt0122|Nasal flaring present?: local::at0048|No|
+        gt0123|Smile?: local::at0050|No|
+        gt0124|Awake state: local::at0038|Stays awake or awakens quickly|
+        gt0125|Cry strength: local::at0042|Strong normal cry/not crying|
+        gt0126|Decreased activity present?: local::at0052|No|
+        gt0127|Child appears ill to healthcare professional?: local::at0054|No|
+        gt0128|Grunting present?: local::at0056|No|
+        gt0129|Crackles in chest present?: local::at0058|No|
+        gt0130|Chest indrawing severity: local::at0023|None|
+        gt0131|Reduced skin turgor present?: local::at0060|No|
+        gt0132|Mucous membranes status: local::at0014|Moist mucous membranes|
+        gt0133|Poor feeding in infants?: local::at0062|No|
+        gt0134|Reduced urine output present?: local::at0064|No|
+        gt0135|Rigor present?: local::at0066|No|
+        gt0136|Swelling of limb/joint present?: local::at0068|No|
+        gt0137|Non-weight-bearing limb present?: local::at0070|No|
+        gt0138|Non-blanching rash present?: local::at0072|No|
+        gt0139|Bulging fontanelle present?: local::at0074|No|
+        gt0140|Neck stiffness present?: local::at0076|No|
+        gt0141|Status epilepticus present?: local::at0078|No|
+        gt0142|Focal neurological signs present?: local::at0080|No|
+        gt0143|Focal seizures present?: local::at0082|No|
+    expected_output:
+      "1":
+        gt0153|Risk category: local::at0004|Green|
+  - id: "3"
+    input:
+      "1":
+        gt0006|Chronological age: 6,a_j
+        gt0008|Temperature: 30,Cel
+        gt0009|Fever duration: 2,d
+        gt0011|Respiratory Rate: 30,/min
+        gt0015|Heart Rate: 140,/min
+        gt0017|CRT Refill time: 2,s
+        gt0102|SpO₂: 98,%
+        "gt0120|Colour (of skin, lips or tongue)": local::at0006|Pallor|
+        gt0121|Response to social cues: local::at0009|Responds normally|
+        gt0122|Nasal flaring present?: local::at0048|No|
+        gt0123|Smile?: local::at0050|No|
+        gt0124|Awake state: local::at0038|Stays awake or awakens quickly|
+        gt0125|Cry strength: local::at0042|Strong normal cry/not crying|
+        gt0126|Decreased activity present?: local::at0052|No|
+        gt0127|Child appears ill to healthcare professional?: local::at0054|No|
+        gt0128|Grunting present?: local::at0056|No|
+        gt0129|Crackles in chest present?: local::at0058|No|
+        gt0130|Chest indrawing severity: local::at0023|None|
+        gt0131|Reduced skin turgor present?: local::at0060|No|
+        gt0132|Mucous membranes status: local::at0014|Moist mucous membranes|
+        gt0133|Poor feeding in infants?: local::at0061|Yes|
+        gt0134|Reduced urine output present?: local::at0064|No|
+        gt0135|Rigor present?: local::at0066|No|
+        gt0136|Swelling of limb/joint present?: local::at0068|No|
+        gt0137|Non-weight-bearing limb present?: local::at0070|No|
+        gt0138|Non-blanching rash present?: local::at0072|No|
+        gt0139|Bulging fontanelle present?: local::at0074|No|
+        gt0140|Neck stiffness present?: local::at0076|No|
+        gt0141|Status epilepticus present?: local::at0078|No|
+        gt0142|Focal neurological signs present?: local::at0079|Yes|
+        gt0143|Focal seizures present?: local::at0082|No|
+    expected_output:
+      "1":
+        gt0153|Risk category: local::at0006|Red|
+  - id: "4"
+    input:
+      "1":
+        gt0006|Chronological age: 6,a_j
+        gt0008|Temperature: 39,Cel
+        gt0009|Fever duration: 5,d
+        gt0011|Respiratory Rate: 50,/min
+        gt0015|Heart Rate: 160,/min
+        gt0017|CRT Refill time: 3,s
+        gt0102|SpO₂: 95,%
+        "gt0120|Colour (of skin, lips or tongue)": local::at0005|Normal colour|
+        gt0121|Response to social cues: local::at0009|Responds normally|
+        gt0122|Nasal flaring present?: local::at0047|Yes|
+        gt0123|Smile?: local::at0049|Yes|
+        gt0124|Awake state: local::at0038|Stays awake or awakens quickly|
+        gt0125|Cry strength: local::at0042|Strong normal cry/not crying|
+        gt0126|Decreased activity present?: local::at0051|Yes|
+        gt0127|Child appears ill to healthcare professional?: local::at0053|Yes|
+        gt0128|Grunting present?: local::at0055|Yes|
+        gt0129|Crackles in chest present?: local::at0057|Yes|
+        gt0130|Chest indrawing severity: local::at0023|None|
+        gt0131|Reduced skin turgor present?: local::at0059|Yes|
+        gt0132|Mucous membranes status: local::at0014|Moist mucous membranes|
+        gt0133|Poor feeding in infants?: local::at0061|Yes|
+        gt0134|Reduced urine output present?: local::at0063|Yes|
+        gt0135|Rigor present?: local::at0065|Yes|
+        gt0136|Swelling of limb/joint present?: local::at0067|Yes|
+        gt0137|Non-weight-bearing limb present?: local::at0069|Yes|
+        gt0138|Non-blanching rash present?: local::at0071|Yes|
+        gt0139|Bulging fontanelle present?: local::at0073|Yes|
+        gt0140|Neck stiffness present?: local::at0075|Yes|
+        gt0141|Status epilepticus present?: local::at0077|Yes|
+        gt0142|Focal neurological signs present?: local::at0079|Yes|
+        gt0143|Focal seizures present?: local::at0081|Yes|
+    expected_output:
+      "1":
+        gt0153|Risk category: local::at0006|Red|
+  - id: "5"
+    input:
+      "1":
+        gt0006|Chronological age: 6,a_j
+        gt0008|Temperature: 40,Cel
+        gt0009|Fever duration: 6,d
+        gt0011|Respiratory Rate: 60,/min
+        gt0015|Heart Rate: 180,/min
+        gt0017|CRT Refill time: 5,s
+        gt0102|SpO₂: 93,%
+        "gt0120|Colour (of skin, lips or tongue)": local::at0007|Pale/mottled/ashen/ blue|
+        gt0121|Response to social cues: local::at0011|No respond|
+        gt0122|Nasal flaring present?: local::at0047|Yes|
+        gt0123|Smile?: local::at0049|Yes|
+        gt0124|Awake state: local::at0040|Does not wake or if roused does not stay awake|
+        gt0125|Cry strength: local::at0043|Weak, high-pitched or continuous cry|
+        gt0126|Decreased activity present?: local::at0051|Yes|
+        gt0127|Child appears ill to healthcare professional?: local::at0053|Yes|
+        gt0128|Grunting present?: local::at0055|Yes|
+        gt0129|Crackles in chest present?: local::at0057|Yes|
+        gt0130|Chest indrawing severity: local::at0025|Severe|
+        gt0131|Reduced skin turgor present?: local::at0059|Yes|
+        gt0132|Mucous membranes status: local::at0015|Dry mucous membranes|
+        gt0133|Poor feeding in infants?: local::at0061|Yes|
+        gt0134|Reduced urine output present?: local::at0063|Yes|
+        gt0135|Rigor present?: local::at0065|Yes|
+        gt0136|Swelling of limb/joint present?: local::at0067|Yes|
+        gt0137|Non-weight-bearing limb present?: local::at0069|Yes|
+        gt0138|Non-blanching rash present?: local::at0071|Yes|
+        gt0139|Bulging fontanelle present?: local::at0073|Yes|
+        gt0140|Neck stiffness present?: local::at0075|Yes|
+        gt0141|Status epilepticus present?: local::at0077|Yes|
+        gt0142|Focal neurological signs present?: local::at0079|Yes|
+        gt0143|Focal seizures present?: local::at0081|Yes|
+    expected_output:
+      "1":
+        gt0153|Risk category: local::at0006|Red|
+  - id: "6"
+    input:
+      "1":
+        gt0006|Chronological age: 8,a_j
+        gt0008|Temperature: 30,Cel
+        gt0009|Fever duration: 2,d
+        gt0011|Respiratory Rate: 60,/min
+        gt0015|Heart Rate: 120,/min
+        gt0017|CRT Refill time: 2,s
+        gt0102|SpO₂: 99,%
+        "gt0120|Colour (of skin, lips or tongue)": local::at0005|Normal colour|
+        gt0121|Response to social cues: local::at0011|No respond|
+        gt0122|Nasal flaring present?: local::at0048|No|
+        gt0123|Smile?: local::at0050|No|
+        gt0124|Awake state: local::at0038|Stays awake or awakens quickly|
+        gt0125|Cry strength: local::at0042|Strong normal cry/not crying|
+        gt0126|Decreased activity present?: local::at0052|No|
+        gt0127|Child appears ill to healthcare professional?: local::at0054|No|
+        gt0128|Grunting present?: local::at0056|No|
+        gt0129|Crackles in chest present?: local::at0058|No|
+        gt0130|Chest indrawing severity: local::at0023|None|
+        gt0131|Reduced skin turgor present?: local::at0060|No|
+        gt0132|Mucous membranes status: local::at0014|Moist mucous membranes|
+        gt0133|Poor feeding in infants?: local::at0062|No|
+        gt0134|Reduced urine output present?: local::at0064|No|
+        gt0135|Rigor present?: local::at0066|No|
+        gt0136|Swelling of limb/joint present?: local::at0068|No|
+        gt0137|Non-weight-bearing limb present?: local::at0070|No|
+        gt0138|Non-blanching rash present?: local::at0072|No|
+        gt0139|Bulging fontanelle present?: local::at0074|No|
+        gt0140|Neck stiffness present?: local::at0076|No|
+        gt0141|Status epilepticus present?: local::at0078|No|
+        gt0142|Focal neurological signs present?: local::at0080|No|
+        gt0143|Focal seizures present?: local::at0082|No|
+    expected_output:
+      "1":
+        gt0153|Risk category: local::at0006|Red|
+  - id: "7"
+    input:
+      "1":
+        gt0006|Chronological age: 15,a_j
+        gt0008|Temperature: 39,Cel
+        gt0009|Fever duration: 5,d
+        gt0011|Respiratory Rate: 70,/min
+        gt0015|Heart Rate: 180,/min
+        gt0017|CRT Refill time: 3,s
+        gt0102|SpO₂: 95,%
+        "gt0120|Colour (of skin, lips or tongue)": local::at0005|Normal colour|
+        gt0121|Response to social cues: local::at0010|Responds abnormally|
+        gt0122|Nasal flaring present?: local::at0047|Yes|
+        gt0123|Smile?: local::at0049|Yes|
+        gt0124|Awake state: local::at0038|Stays awake or awakens quickly|
+        gt0125|Cry strength: local::at0042|Strong normal cry/not crying|
+        gt0126|Decreased activity present?: local::at0051|Yes|
+        gt0127|Child appears ill to healthcare professional?: local::at0053|Yes|
+        gt0128|Grunting present?: local::at0055|Yes|
+        gt0129|Crackles in chest present?: local::at0057|Yes|
+        gt0130|Chest indrawing severity: local::at0023|None|
+        gt0131|Reduced skin turgor present?: local::at0059|Yes|
+        gt0132|Mucous membranes status: local::at0014|Moist mucous membranes|
+        gt0133|Poor feeding in infants?: local::at0061|Yes|
+        gt0134|Reduced urine output present?: local::at0063|Yes|
+        gt0135|Rigor present?: local::at0065|Yes|
+        gt0136|Swelling of limb/joint present?: local::at0067|Yes|
+        gt0137|Non-weight-bearing limb present?: local::at0069|Yes|
+        gt0138|Non-blanching rash present?: local::at0071|Yes|
+        gt0139|Bulging fontanelle present?: local::at0073|Yes|
+        gt0140|Neck stiffness present?: local::at0075|Yes|
+        gt0141|Status epilepticus present?: local::at0077|Yes|
+        gt0142|Focal neurological signs present?: local::at0079|Yes|
+        gt0143|Focal seizures present?: local::at0081|Yes|
+    expected_output:
+      "1":
+        gt0153|Risk category: local::at0006|Red|
+  - id: "8"
+    input:
+      "1":
+        gt0006|Chronological age: 36,a_j
+        gt0008|Temperature: 39,Cel
+        gt0009|Fever duration: 5,d
+        gt0011|Respiratory Rate: 70,/min
+        gt0015|Heart Rate: 160,/min
+        gt0017|CRT Refill time: 3,s
+        gt0102|SpO₂: 95,%
+        "gt0120|Colour (of skin, lips or tongue)": local::at0005|Normal colour|
+        gt0121|Response to social cues: local::at0010|Responds abnormally|
+        gt0122|Nasal flaring present?: local::at0047|Yes|
+        gt0123|Smile?: local::at0049|Yes|
+        gt0124|Awake state: local::at0038|Stays awake or awakens quickly|
+        gt0125|Cry strength: local::at0042|Strong normal cry/not crying|
+        gt0126|Decreased activity present?: local::at0051|Yes|
+        gt0127|Child appears ill to healthcare professional?: local::at0053|Yes|
+        gt0128|Grunting present?: local::at0055|Yes|
+        gt0129|Crackles in chest present?: local::at0057|Yes|
+        gt0130|Chest indrawing severity: local::at0023|None|
+        gt0131|Reduced skin turgor present?: local::at0059|Yes|
+        gt0132|Mucous membranes status: local::at0014|Moist mucous membranes|
+        gt0133|Poor feeding in infants?: local::at0061|Yes|
+        gt0134|Reduced urine output present?: local::at0063|Yes|
+        gt0135|Rigor present?: local::at0065|Yes|
+        gt0136|Swelling of limb/joint present?: local::at0067|Yes|
+        gt0137|Non-weight-bearing limb present?: local::at0069|Yes|
+        gt0138|Non-blanching rash present?: local::at0071|Yes|
+        gt0139|Bulging fontanelle present?: local::at0073|Yes|
+        gt0140|Neck stiffness present?: local::at0075|Yes|
+        gt0141|Status epilepticus present?: local::at0077|Yes|
+        gt0142|Focal neurological signs present?: local::at0079|Yes|
+        gt0143|Focal seizures present?: local::at0081|Yes|
+    expected_output:
+      "1":
+        gt0153|Risk category: local::at0006|Red|
+  - id: "9"
+    input:
+      "1":
+        gt0006|Chronological age: 3,a_j
+        gt0008|Temperature: 39,Cel
+        gt0009|Fever duration: 5,d
+        gt0011|Respiratory Rate: 70,/min
+        gt0015|Heart Rate: 160,/min
+        gt0017|CRT Refill time: 3,s
+        gt0102|SpO₂: 95,%
+        "gt0120|Colour (of skin, lips or tongue)": local::at0005|Normal colour|
+        gt0121|Response to social cues: local::at0010|Responds abnormally|
+        gt0122|Nasal flaring present?: local::at0047|Yes|
+        gt0123|Smile?: local::at0049|Yes|
+        gt0124|Awake state: local::at0038|Stays awake or awakens quickly|
+        gt0125|Cry strength: local::at0042|Strong normal cry/not crying|
+        gt0126|Decreased activity present?: local::at0051|Yes|
+        gt0127|Child appears ill to healthcare professional?: local::at0053|Yes|
+        gt0128|Grunting present?: local::at0055|Yes|
+        gt0129|Crackles in chest present?: local::at0057|Yes|
+        gt0130|Chest indrawing severity: local::at0023|None|
+        gt0131|Reduced skin turgor present?: local::at0059|Yes|
+        gt0132|Mucous membranes status: local::at0014|Moist mucous membranes|
+        gt0133|Poor feeding in infants?: local::at0061|Yes|
+        gt0134|Reduced urine output present?: local::at0063|Yes|
+        gt0135|Rigor present?: local::at0065|Yes|
+        gt0136|Swelling of limb/joint present?: local::at0067|Yes|
+        gt0137|Non-weight-bearing limb present?: local::at0069|Yes|
+        gt0138|Non-blanching rash present?: local::at0071|Yes|
+        gt0139|Bulging fontanelle present?: local::at0073|Yes|
+        gt0140|Neck stiffness present?: local::at0075|Yes|
+        gt0141|Status epilepticus present?: local::at0077|Yes|
+        gt0142|Focal neurological signs present?: local::at0079|Yes|
+        gt0143|Focal seizures present?: local::at0081|Yes|
+    expected_output:
+      "1":
+        gt0153|Risk category: local::at0006|Red|
+  - id: "10"
+    input:
+      "1":
+        gt0006|Chronological age: 2,a_j
+        gt0008|Temperature: 39,Cel
+        gt0009|Fever duration: 5,d
+        gt0011|Respiratory Rate: 70,/min
+        gt0015|Heart Rate: 160,/min
+        gt0017|CRT Refill time: 3,s
+        gt0102|SpO₂: 95,%
+        "gt0120|Colour (of skin, lips or tongue)": local::at0005|Normal colour|
+        gt0121|Response to social cues: local::at0010|Responds abnormally|
+        gt0122|Nasal flaring present?: local::at0047|Yes|
+        gt0123|Smile?: local::at0049|Yes|
+        gt0124|Awake state: local::at0038|Stays awake or awakens quickly|
+        gt0125|Cry strength: local::at0042|Strong normal cry/not crying|
+        gt0126|Decreased activity present?: local::at0051|Yes|
+        gt0127|Child appears ill to healthcare professional?: local::at0053|Yes|
+        gt0128|Grunting present?: local::at0055|Yes|
+        gt0129|Crackles in chest present?: local::at0057|Yes|
+        gt0130|Chest indrawing severity: local::at0023|None|
+        gt0131|Reduced skin turgor present?: local::at0059|Yes|
+        gt0132|Mucous membranes status: local::at0014|Moist mucous membranes|
+        gt0133|Poor feeding in infants?: local::at0061|Yes|
+        gt0134|Reduced urine output present?: local::at0063|Yes|
+        gt0135|Rigor present?: local::at0065|Yes|
+        gt0136|Swelling of limb/joint present?: local::at0067|Yes|
+        gt0137|Non-weight-bearing limb present?: local::at0069|Yes|
+        gt0138|Non-blanching rash present?: local::at0071|Yes|
+        gt0139|Bulging fontanelle present?: local::at0073|Yes|
+        gt0140|Neck stiffness present?: local::at0075|Yes|
+        gt0141|Status epilepticus present?: local::at0077|Yes|
+        gt0142|Focal neurological signs present?: local::at0079|Yes|
+        gt0143|Focal seizures present?: local::at0081|Yes|
+    expected_output:
+      "1":
+        gt0153|Risk category: local::at0006|Red|

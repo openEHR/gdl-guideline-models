@@ -1,0 +1,87 @@
+guidelines:
+  1: Fatty_Liver_Index.v1
+test_cases:
+- id: 1. Low risk using mmol/l
+  input:
+    1:
+      gt0003|Body Mass Index (kg/m2): 25,kg/m2
+      gt0005|Waist circumference (cm): 75,cm
+      gt0007|Gamm glutamyl transferase (GGT) (U/L): 23,U/l
+      gt0009|Triglycerides (mg/dl): 2,mmol/l
+  expected_output:
+    1:
+      gt0024|Diagnosis: local::at0011|Fatty liver ruled out (LR- = 0.2)|
+      gt0012|Fatty Liver Index (FLI) interpretation: local::at0005|Fatty Liver Index <30|
+      gt0023|Risk interpretation: local::at0014|Low risk|
+      gt0019|Value Y: -1.1108
+      gt0013|Calculate Fatty Liver Index (FLI): 25,1
+- id: 2. Intermediate risk using mmol/l
+  input:
+    1:
+      gt0003|Body Mass Index (kg/m2): 32,kg/m2
+      gt0005|Waist circumference (cm): 75,cm
+      gt0007|Gamm glutamyl transferase (GGT) (U/L): 23,U/l
+      gt0009|Triglycerides (mg/dl): 2,mmol/l
+  expected_output:
+    1:
+      gt0024|Diagnosis: local::at0012|Fatty liver neither ruled in nor ruled out|
+      gt0012|Fatty Liver Index (FLI) interpretation: local::at0006|Fatty Liver Index 30 to <60|
+      gt0023|Risk interpretation: local::at0015|Intermediate risk|
+      gt0019|Value Y: -0.1378
+      gt0013|Calculate Fatty Liver Index (FLI): 47,1
+- id: 3. High risk using mmol/l
+  input:
+    1:
+      gt0003|Body Mass Index (kg/m2): 32,kg/m2
+      gt0005|Waist circumference (cm): 90,cm
+      gt0007|Gamm glutamyl transferase (GGT) (U/L): 23,U/l
+      gt0009|Triglycerides (mg/dl): 2,mmol/l
+  expected_output:
+    1:
+      gt0024|Diagnosis: local::at0013|Fatty liver ruled in (LR+ = 4.3)|
+      gt0012|Fatty Liver Index (FLI) interpretation: local::at0007|Fatty Liver Index ≥60|
+      gt0023|Risk interpretation: local::at0016|High risk|
+      gt0019|Value Y: 0.6572
+      gt0013|Calculate Fatty Liver Index (FLI): 66,1
+- id: 4. Intermediate risk using mg/dl
+  input:
+    1:
+      gt0003|Body Mass Index (kg/m2): 32,kg/m2
+      gt0005|Waist circumference (cm): 70,cm
+      gt0007|Gamm glutamyl transferase (GGT) (U/L): 23,U/l
+      gt0009|Triglycerides (mg/dl): 150,mg/dl
+  expected_output:
+    1:
+      gt0024|Diagnosis: local::at0012|Fatty liver neither ruled in nor ruled out|
+      gt0012|Fatty Liver Index (FLI) interpretation: local::at0006|Fatty Liver Index 30 to <60|
+      gt0023|Risk interpretation: local::at0015|Intermediate risk|
+      gt0019|Value Y: -0.5606
+      gt0013|Calculate Fatty Liver Index (FLI): 36,1
+- id: 5. Low risk using mg/dl
+  input:
+    1:
+      gt0003|Body Mass Index (kg/m2): 25,kg/m2
+      gt0005|Waist circumference (cm): 70,cm
+      gt0007|Gamm glutamyl transferase (GGT) (U/L): 23,U/l
+      gt0009|Triglycerides (mg/dl): 150,mg/dl
+  expected_output:
+    1:
+      gt0024|Diagnosis: local::at0011|Fatty liver ruled out (LR- = 0.2)|
+      gt0012|Fatty Liver Index (FLI) interpretation: local::at0005|Fatty Liver Index <30|
+      gt0023|Risk interpretation: local::at0014|Low risk|
+      gt0019|Value Y: -1.5336
+      gt0013|Calculate Fatty Liver Index (FLI): 18,1
+- id: 6. High risk using mg/dl
+  input:
+    1:
+      gt0003|Body Mass Index (kg/m2): 32,kg/m2
+      gt0005|Waist circumference (cm): 90,cm
+      gt0007|Gamm glutamyl transferase (GGT) (U/L): 23,U/l
+      gt0009|Triglycerides (mg/dl): 200,mg/dl
+  expected_output:
+    1:
+      gt0024|Diagnosis: local::at0013|Fatty liver ruled in (LR+ = 4.3)|
+      gt0012|Fatty Liver Index (FLI) interpretation: local::at0007|Fatty Liver Index ≥60|
+      gt0023|Risk interpretation: local::at0016|High risk|
+      gt0019|Value Y: 0.7736
+      gt0013|Calculate Fatty Liver Index (FLI): 68,1

@@ -1,0 +1,51 @@
+guidelines:
+  1: Tisdale_risk_score_for_QT_prolongation.v1
+test_cases:
+- id: Low
+  input:
+    1:
+      gt0003|Age 68 years: 1|local::at0018|Yes|
+      gt0004|Sex: 1|local::at0021|Female|
+      gt0005|Patient on loop diuretic: 1|local::at0025|Yes|
+      gt0006|Potassium 3.5 mEq/L: 2|local::at0028|Yes|
+      gt0007|Admission QTc 450 msec: 0|local::at0030|No|
+      gt0008|Being admitted for acute myocardial infarction: 0|local::at0034|No|
+      gt0009|Being admitted for sepsis: 0|local::at0038|No|
+      gt0010|Being admitted for heart failure: 0|local::at0043|No|
+      gt0011|Number of QTc-prolonging drugs given: 0|local::at0048|None|
+  expected_output:
+    1:
+      gt0013|Interpretation: 0|local::at0003|Low - Always consider that higher risk may develop depending on clinical course and drug interactions and pharmacokinetics.|
+      gt0015|Tisdale Risk Score: 5
+- id: Moderate
+  input:
+    1:
+      gt0003|Age 68 years: 1|local::at0018|Yes|
+      gt0004|Sex: 1|local::at0021|Female|
+      gt0005|Patient on loop diuretic: 1|local::at0025|Yes|
+      gt0006|Potassium 3.5 mEq/L: 2|local::at0028|Yes|
+      gt0007|Admission QTc 450 msec: 2|local::at0032|Yes|
+      gt0008|Being admitted for acute myocardial infarction: 2|local::at0036|Yes|
+      gt0009|Being admitted for sepsis: 0|local::at0038|No|
+      gt0010|Being admitted for heart failure: 0|local::at0043|No|
+      gt0011|Number of QTc-prolonging drugs given: 0|local::at0048|None|
+  expected_output:
+    1:
+      gt0013|Interpretation: 1|local::at0004|Moderate - Consider consultation with pharmacist, adjusting risk factors as much as possible. EKG should be repeated after 5 half-lives of QT-prolonging drugs given to evaluate QTc. |
+      gt0015|Tisdale Risk Score: 9
+- id: High
+  input:
+    1:
+      gt0003|Age 68 years: 1|local::at0018|Yes|
+      gt0004|Sex: 1|local::at0021|Female|
+      gt0005|Patient on loop diuretic: 1|local::at0025|Yes|
+      gt0006|Potassium 3.5 mEq/L: 2|local::at0028|Yes|
+      gt0007|Admission QTc 450 msec: 2|local::at0032|Yes|
+      gt0008|Being admitted for acute myocardial infarction: 2|local::at0036|Yes|
+      gt0009|Being admitted for sepsis: 3|local::at0041|Yes|
+      gt0010|Being admitted for heart failure: 3|local::at0046|Yes|
+      gt0011|Number of QTc-prolonging drugs given: 6|local::at0054|≥2 QTc-prolonging drugs|
+  expected_output:
+    1:
+      gt0013|Interpretation: 2|local::at0005|High - Consider consultation with pharmacist, adjusting risk factors as much as possible, and using alternative medications if possible. EKG should be repeated after 5 half-lives of QT-prolonging drugs given to evaluate QTc.|
+      gt0015|Tisdale Risk Score: 21

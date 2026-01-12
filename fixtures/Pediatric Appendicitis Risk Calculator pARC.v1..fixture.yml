@@ -1,0 +1,249 @@
+guidelines:
+  1: Pediatric_Appendicitis_Risk_Calculator_pARC.v1
+test_cases:
+- id: 1. Ultra low risk in ED setting
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Age: 5,a
+      gt0006|Setting: local::at0007|Pediatric ED|
+      gt0007|Duration of pain, hours: local::at0019|>96|
+      gt0008|Presence of pain with walking: local::at0023|No|
+      gt0009|Maximal tenderness in RLQ: local::at0026|No|
+      gt0010|Abdominal guarding: local::at0029|No|
+      gt0011|History of migration of pain to RLQ: local::at0032|No|
+      gt0012|Neutrophil: 55,%
+      gt0014|White cell count: 12,10^3/uL
+  expected_output:
+    1:
+      gt0020|Risk Group: Ultra low Risk
+      gt0017|ANC Value: 4.5559,1
+      gt0016|ANC, cells x 10^3/µL: 6.6000,10^3/uL
+      gt0021|Clinical recommendation: Outpatient follow up appropriate if PCP evaluation available within 24 hrs, no diagnostic imaging required
+      gt0018|pARC Score (ED): 3,%
+      gt0022|x: -3.52,1
+- id: 2. Low risk in ED setting
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Age: 5,a
+      gt0006|Setting: local::at0007|Pediatric ED|
+      gt0007|Duration of pain, hours: local::at0017|24 to <48|
+      gt0008|Presence of pain with walking: local::at0023|No|
+      gt0009|Maximal tenderness in RLQ: local::at0027|Yes|
+      gt0010|Abdominal guarding: local::at0029|No|
+      gt0011|History of migration of pain to RLQ: local::at0032|No|
+      gt0012|Neutrophil: 55,%
+      gt0014|White cell count: 12,10^3/uL
+  expected_output:
+    1:
+      gt0020|Risk Group: Low Risk
+      gt0017|ANC Value: 4.5559,1
+      gt0016|ANC, cells x 10^3/µL: 6.6000,10^3/uL
+      gt0021|Clinical recommendation: Consider ED observation for 6 hrs for serial exams. If improved, ensure outpatient follow-up in 24 hrs, no imaging required.
+      gt0018|pARC Score (ED): 11,%
+      gt0022|x: -2.14,1
+- id: 3. Low-moderate risk in ED setting
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Age: 8,a
+      gt0006|Setting: local::at0007|Pediatric ED|
+      gt0007|Duration of pain, hours: local::at0019|>96|
+      gt0008|Presence of pain with walking: local::at0024|Yes|
+      gt0009|Maximal tenderness in RLQ: local::at0026|No|
+      gt0010|Abdominal guarding: local::at0029|No|
+      gt0011|History of migration of pain to RLQ: local::at0032|No|
+      gt0012|Neutrophil: 55,%
+      gt0014|White cell count: 18,10^3/uL
+  expected_output:
+    1:
+      gt0020|Risk Group: Low-moderate Risk
+      gt0017|ANC Value: 5.5799,1
+      gt0016|ANC, cells x 10^3/µL: 9.9000,10^3/uL
+      gt0021|Clinical recommendation: If patients symptoms <24 hrs, consider observation for 12 hrs. If not improved, obtain ultrasound and repeat CBC. If pain ≥24 hrs of symptoms, obtain ultrasound to evaluate for appendicitis
+      gt0018|pARC Score (ED): 20,%
+      gt0022|x: -1.40,1
+- id: 4. Moderate risk in ED setting (Observation)
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Age: 8,a
+      gt0006|Setting: local::at0007|Pediatric ED|
+      gt0007|Duration of pain, hours: local::at0017|24 to <48|
+      gt0008|Presence of pain with walking: local::at0024|Yes|
+      gt0009|Maximal tenderness in RLQ: local::at0027|Yes|
+      gt0010|Abdominal guarding: local::at0029|No|
+      gt0011|History of migration of pain to RLQ: local::at0032|No|
+      gt0012|Neutrophil: 55,%
+      gt0014|White cell count: 12,10^3/uL
+  expected_output:
+    1:
+      gt0020|Risk Group: Moderate Risk
+      gt0017|ANC Value: 4.5559,1
+      gt0016|ANC, cells x 10^3/µL: 6.6000,10^3/uL
+      gt0021|Clinical recommendation: Ultrasound recommended as first line imaging. Admit for observation if ultrasound equivocal
+      gt0018|pARC Score (ED): 31,%
+      gt0022|x: -0.82,1
+- id: 5. Moderate risk in ED setting. (CT)
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Age: 8,a
+      gt0006|Setting: local::at0007|Pediatric ED|
+      gt0007|Duration of pain, hours: local::at0018|48 to 96|
+      gt0008|Presence of pain with walking: local::at0024|Yes|
+      gt0009|Maximal tenderness in RLQ: local::at0027|Yes|
+      gt0010|Abdominal guarding: local::at0029|No|
+      gt0011|History of migration of pain to RLQ: local::at0033|Yes|
+      gt0012|Neutrophil: 55,%
+      gt0014|White cell count: 18,10^3/uL
+  expected_output:
+    1:
+      gt0020|Risk Group: Moderate Risk
+      gt0017|ANC Value: 5.5799,1
+      gt0016|ANC, cells x 10^3/µL: 9.9000,10^3/uL
+      gt0021|Clinical recommendation: Ultrasound recommended as first line imaging, CT if ultrasound equivocal
+      gt0018|pARC Score (ED): 57,%
+      gt0022|x: 0.29,1
+- id: 6. Moderate-high risk in ED setting
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Age: 10,a
+      gt0006|Setting: local::at0007|Pediatric ED|
+      gt0007|Duration of pain, hours: local::at0018|48 to 96|
+      gt0008|Presence of pain with walking: local::at0024|Yes|
+      gt0009|Maximal tenderness in RLQ: local::at0027|Yes|
+      gt0010|Abdominal guarding: local::at0030|Yes|
+      gt0011|History of migration of pain to RLQ: local::at0033|Yes|
+      gt0012|Neutrophil: 55,%
+      gt0014|White cell count: 18,10^3/uL
+  expected_output:
+    1:
+      gt0020|Risk Group: Moderate-high Risk
+      gt0017|ANC Value: 5.5799,1
+      gt0016|ANC, cells x 10^3/µL: 9.9000,10^3/uL
+      gt0021|Clinical recommendation: Consult surgery. Consider imaging based on surgery recommendations
+      gt0018|pARC Score (ED): 82,%
+      gt0022|x: 1.53,1
+- id: 7. High risk in ED setting
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Age: 14,a
+      gt0006|Setting: local::at0007|Pediatric ED|
+      gt0007|Duration of pain, hours: local::at0017|24 to <48|
+      gt0008|Presence of pain with walking: local::at0024|Yes|
+      gt0009|Maximal tenderness in RLQ: local::at0027|Yes|
+      gt0010|Abdominal guarding: local::at0030|Yes|
+      gt0011|History of migration of pain to RLQ: local::at0033|Yes|
+      gt0012|Neutrophil: 70,%
+      gt0014|White cell count: 25,10^3/uL
+  expected_output:
+    1:
+      gt0020|Risk Group: High Risk
+      gt0017|ANC Value: 6.6195,1
+      gt0016|ANC, cells x 10^3/µL: 17.5000,10^3/uL
+      gt0021|Clinical recommendation: Consult surgery, imaging not required
+      gt0018|pARC Score (ED): 95,%
+      gt0022|x: 3.00,1
+- id: 8. High risk in Community setting
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Age: 14,a
+      gt0006|Setting: local::at0006|Community|
+      gt0007|Duration of pain, hours: local::at0017|24 to <48|
+      gt0008|Presence of pain with walking: local::at0024|Yes|
+      gt0009|Maximal tenderness in RLQ: local::at0027|Yes|
+      gt0010|Abdominal guarding: local::at0030|Yes|
+      gt0011|History of migration of pain to RLQ: local::at0033|Yes|
+      gt0012|Neutrophil: 70,%
+      gt0014|White cell count: 25,10^3/uL
+  expected_output:
+    1:
+      gt0020|Risk Group: High Risk
+      gt0019|pARC Score (Community): 94,%
+      gt0017|ANC Value: 6.6195,1
+      gt0016|ANC, cells x 10^3/µL: 17.5000,10^3/uL
+      gt0022|x: 3.00,1
+- id: 9. Intermediate risk in community setting
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Age: 14,a
+      gt0006|Setting: local::at0006|Community|
+      gt0007|Duration of pain, hours: local::at0017|24 to <48|
+      gt0008|Presence of pain with walking: local::at0024|Yes|
+      gt0009|Maximal tenderness in RLQ: local::at0026|No|
+      gt0010|Abdominal guarding: local::at0030|Yes|
+      gt0011|History of migration of pain to RLQ: local::at0032|No|
+      gt0012|Neutrophil: 55,%
+      gt0014|White cell count: 18,10^3/uL
+  expected_output:
+    1:
+      gt0020|Risk Group: Intermediate Risk
+      gt0019|pARC Score (Community): 45,%
+      gt0017|ANC Value: 5.5799,1
+      gt0016|ANC, cells x 10^3/µL: 9.9000,10^3/uL
+      gt0022|x: 0.36,1
+- id: 10. low risk in community setting
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Age: 14,a
+      gt0006|Setting: local::at0006|Community|
+      gt0007|Duration of pain, hours: local::at0019|>96|
+      gt0008|Presence of pain with walking: local::at0024|Yes|
+      gt0009|Maximal tenderness in RLQ: local::at0026|No|
+      gt0010|Abdominal guarding: local::at0029|No|
+      gt0011|History of migration of pain to RLQ: local::at0032|No|
+      gt0012|Neutrophil: 55,%
+      gt0014|White cell count: 18,10^3/uL
+  expected_output:
+    1:
+      gt0020|Risk Group: Low Risk
+      gt0019|pARC Score (Community): 5,%
+      gt0017|ANC Value: 5.5799,1
+      gt0016|ANC, cells x 10^3/µL: 9.9000,10^3/uL
+      gt0022|x: -2.06,1
+- id: 11. Very low risk in community settinmg
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Age: 14,a
+      gt0006|Setting: local::at0006|Community|
+      gt0007|Duration of pain, hours: local::at0017|24 to <48|
+      gt0008|Presence of pain with walking: local::at0023|No|
+      gt0009|Maximal tenderness in RLQ: local::at0026|No|
+      gt0010|Abdominal guarding: local::at0029|No|
+      gt0011|History of migration of pain to RLQ: local::at0032|No|
+      gt0012|Neutrophil: 55,%
+      gt0014|White cell count: 18,10^3/uL
+  expected_output:
+    1:
+      gt0020|Risk Group: Very Low Risk
+      gt0019|pARC Score (Community): 3,%
+      gt0017|ANC Value: 5.5799,1
+      gt0016|ANC, cells x 10^3/µL: 9.9000,10^3/uL
+      gt0022|x: -2.64,1
+- id: 12. pARC score when neutrophil not available
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Age: 6,a
+      gt0006|Setting: local::at0006|Community|
+      gt0007|Duration of pain, hours: local::at0017|24 to <48|
+      gt0008|Presence of pain with walking: local::at0023|No|
+      gt0009|Maximal tenderness in RLQ: local::at0026|No|
+      gt0010|Abdominal guarding: local::at0029|No|
+      gt0011|History of migration of pain to RLQ: local::at0032|No|
+      gt0014|White cell count: 18,10^3/uL
+  expected_output:
+    1:
+      gt0020|Risk Group: Intermediate Risk
+      gt0019|pARC Score (Community): 16,%
+      gt0017|ANC Value: 6.6195,1
+      gt0016|ANC, cells x 10^3/µL: 14.3793,10^3/uL
+      gt0022|x: -0.98,1

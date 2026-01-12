@@ -1,0 +1,177 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.akin_classification_for_acute_kidney_injury.v0
+
+concept
+	[at0000]	-- AKIN classification for acute kidney injury
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Daniel Keszthelyi">
+		["email"] = <"models@cambiocds.com">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2020-04-27">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record observations relevant to AKIN Classification for Acute Kidney Injury, classifying the severity of acute kidney injury, similar to RIFLE Criteria.">
+			use = <"To be used to hold the observations necessary for AKIN Classification for Acute Kidney Injury. AKIN Classification for Acute Kidney Injury helps diagnosing Acute Kidney Injury and classifying its severity. Acute kidney injury (AKI) is a complex disease process that is increasingly common and has an increased rate of adverse outcomes and mortality. It is commonly underdiagnosed in inpatient and community settings by many providers. 
+
+To be diagnosed with acute kidney injury by the AKIN definition, patient must have at least one of the following within the past 48 hours:
+- Absolute increase in serum creatinine ≥0.3 mg/dL (≥26.4 μmol/L).
+- Increase in serum creatinine ≥1.5x above baseline.
+- Oliguria (urine output <0.5 mL/kg per hour) for more than 6 hours.
+
+Then, select the appropriate criterion leading to the highest possible stage, e.g. if serum creatinine is normal but urine output is <0.5 mL/kg/hour for more than 12 hours, AKIN Stage is 2. Patients on renal replacement therapy (RRT) are considered to be stage 3 regardless of whether they meet formal criteria.
+">
+			keywords = <"Creatinine", "Kidney", "Acute Kidney Injury", "AKI">
+			misuse = <"Consider using RIFLE criteria as well. Overall, the AKIN modification does not perform better than the RIFLE criteria in studies.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"[1] Mehta RL, Kellum JA, Shah SV, et al. Acute Kidney Injury Network: report of an initiative to improve outcomes in acute kidney injury. Crit Care. 2007;11(2):R31.
+[2] Lopes JA, Jorge S. The RIFLE and AKIN classifications for acute kidney injury: a critical and comprehensive review. Clinical Kidney Journal. 2013;6(1):8-14.
+[3] Xiong J, Tang X, Hu Z, Nie L, Wang Y, Zhao J. The RIFLE versus AKIN classification for incidence and mortality of acute kidney injury in critical ill patients: A meta-analysis. Sci Rep. 2015;5:17917.
+[4] Van biesen W, Vanholder R, Lameire N. Defining acute renal failure: RIFLE and beyond. Clin J Am Soc Nephrol. 2006;1(6):1314-9.">
+		["MD5-CAM-1.0.1"] = <"065D56FAA1A238A772ADCCEEF930C1A5">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- AKIN classification for acute kidney injury
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {	-- Urine output
+										value matches {
+											0|[local::at0007], 	-- ≥0.5 mL/kg per hour for >6 hours
+											1|[local::at0008], 	-- <0.5 mL/kg per hour for 6-12 hours
+											2|[local::at0009], 	-- <0.5 mL/kg per hour for 12-23 hours
+											2|[local::at0012], 	-- 0.3-0.5 mL/kg per hour for ≥24 hours
+											3|[local::at0010], 	-- Anuria for ≥12 hours
+											3|[local::at0011]  	-- <0.3 mL/kg per hour for ≥24 hours
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {	-- Creatinine
+										value matches {
+											0|[local::at0017], 	-- Normal creatinine, or <1.5x from baseline
+											1|[local::at0018], 	-- Absolute increase ≥0.3 mg/dL (≥26.4 μmol/L)
+											1|[local::at0019], 	-- ≥1.5-2x from baseline
+											2|[local::at0020], 	-- Increase to >2-3x from baseline
+											3|[local::at0021], 	-- Increase to >3x from baseline
+											3|[local::at0022]  	--  ≥4.0 mg/dL (≥354 μmol/L) with acute increase 
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {	-- Renal replacement therapy
+										value matches {
+											0|[local::at0015], 	-- No
+											3|[local::at0016]  	-- Yes
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"AKIN classification for acute kidney injury">
+					description = <"AKIN classification for acute kidney injury classifying the severity of acute kidney injury, similar to RIFLE Criteria">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0006"] = <
+					text = <"Urine output">
+					description = <"Urine output for the previous 6, 12 and 24 hours. If several co">
+				>
+				["at0007"] = <
+					text = <"≥0.5 mL/kg per hour for >6 hours">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"<0.5 mL/kg per hour for 6-12 hours">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"<0.5 mL/kg per hour for 12-23 hours">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Anuria for ≥12 hours">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"<0.3 mL/kg per hour for ≥24 hours">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"0.3-0.5 mL/kg per hour for ≥24 hours">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Creatinine">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Renal replacement therapy">
+					description = <"Whether the patient is on renal replacement therapy (RRT)">
+				>
+				["at0015"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Normal creatinine, or <1.5x from baseline">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Absolute increase ≥0.3 mg/dL (≥26.4 μmol/L)">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"≥1.5-2x from baseline">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"Increase to >2-3x from baseline">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"Increase to >3x from baseline">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <" ≥4.0 mg/dL (≥354 μmol/L) with acute increase ">
+					description = <"*">
+				>
+			>
+		>
+	>

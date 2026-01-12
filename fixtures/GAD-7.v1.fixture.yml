@@ -1,0 +1,63 @@
+guidelines:
+  1: GAD-7.v1
+test_cases:
+- id: Negative
+  input:
+    1:
+      gt0008|Feeling nervous, anxious or on edge: 0|local::at0006|Not at all|
+      gt0009|Not being able to stop or control worrying: 0|local::at0011|Not at all|
+      gt0010|Worrying too much about different things: 0|local::at0016|Not at all|
+      gt0011|Trouble relaxing: 0|local::at0022|Not at all|
+      gt0012|Being so restless that it is hard to sit still: 0|local::at0027|Not at all|
+      gt0013|Becoming easily annoyed or irritable: 0|local::at0032|Not at all|
+      gt0014|Feeling afraid as if something awful might happen: 0|local::at0037|Not at all|
+  expected_output:
+    1:
+      gt0055|GAD-7 Total score: 0
+- id: Mild anxiety
+  input:
+    1:
+      gt0008|Feeling nervous, anxious or on edge: 1|local::at0007|Several days|
+      gt0009|Not being able to stop or control worrying: 1|local::at0012|Several days|
+      gt0010|Worrying too much about different things: 0|local::at0016|Not at all|
+      gt0011|Trouble relaxing: 2|local::at0024|More than half the days|
+      gt0012|Being so restless that it is hard to sit still: 0|local::at0027|Not at all|
+      gt0013|Becoming easily annoyed or irritable: 2|local::at0034|More than half the days|
+      gt0014|Feeling afraid as if something awful might happen: 0|local::at0037|Not at all|
+  expected_output:
+    1:
+      gt0055|GAD-7 Total score: 6
+      gt0057|Anxiety severity: local::at0003|Mild anxiety|
+      gt0058|Recommendation: local::at0009|Monitor anxiety symptoms|
+
+- id: Moderate anxiety
+  input:
+    1:
+      gt0008|Feeling nervous, anxious or on edge: 3|local::at0009|Nearly every day|
+      gt0009|Not being able to stop or control worrying: 2|local::at0013|More than half the days|
+      gt0010|Worrying too much about different things: 3|local::at0019|Nearly every day|
+      gt0011|Trouble relaxing: 2|local::at0024|More than half the days|
+      gt0012|Being so restless that it is hard to sit still: 0|local::at0027|Not at all|
+      gt0013|Becoming easily annoyed or irritable: 2|local::at0034|More than half the days|
+      gt0014|Feeling afraid as if something awful might happen: 1|local::at0038|Several days|
+  expected_output:
+    1:
+      gt0055|GAD-7 Total score: 13
+      gt0057|Anxiety severity: local::at0004|Moderate anxiety|
+      gt0058|Recommendation: local::at0010|Probable GAD-7; requires further evaluation|
+
+- id: Severe anxiety
+  input:
+    1:
+      gt0008|Feeling nervous, anxious or on edge: 3|local::at0009|Nearly every day|
+      gt0009|Not being able to stop or control worrying: 2|local::at0013|More than half the days|
+      gt0010|Worrying too much about different things: 3|local::at0019|Nearly every day|
+      gt0011|Trouble relaxing: 3|local::at0025|Nearly every day|
+      gt0012|Being so restless that it is hard to sit still: 3|local::at0030|Nearly every day|
+      gt0013|Becoming easily annoyed or irritable: 2|local::at0034|More than half the days|
+      gt0014|Feeling afraid as if something awful might happen: 3|local::at0040|Nearly every day|
+  expected_output:
+    1:
+      gt0055|GAD-7 Total score: 19
+      gt0057|Anxiety severity: local::at0005|Severe anxiety|
+      gt0058|Recommendation: local::at0011|Active treatment probably warranted|

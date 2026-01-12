@@ -1,0 +1,38 @@
+guidelines:
+  1: Immune_related_adverse_events_GI_toxicity_colitis.v0
+test_cases:
+- id: Colitis Grade G4
+  input:
+    1:
+      gt0003|CTCAE for diarrhea: 4|local::at0006|Life-threatening consequences; urgent intervention indicated +4|
+  expected_output:
+    1:
+      gt0006|Colitis Grade: local::at0011|G4|
+      gt0005|Comment: Permanently d/c ICPis; admit if clinically indicated (monitor closely if outpatient); start steroids and give until symptoms improve, then taper; consider early infliximab if steroid-refractory; consider lower GI endoscopy if refractory symptoms or concern for new infections.
+
+- id: Colitis Grade G3
+  input:
+    1:
+      gt0003|CTCAE for diarrhea: 3|local::at0005|Increase of ≥7 stools per day over baseline; incontinence; hospitalization indicated; severe increase in ostomy output compared with baseline; limiting self-care/activities of daily living +3|
+  expected_output:
+    1:
+      gt0006|Colitis Grade: local::at0010|G3|
+      gt0005|Comment: Consider permanently d/c CTLA-4; may restart PD-1, PD-L1 if pt recovers to grade ≤1; start steroids; consider admission or outpatient facility if dehydration/electrolyte imbalance; consider IV steroids or infliximab if persistent/recurrent symptoms; consider colonoscopy if on immunosuppression.
+
+- id: Colitis Grade G2
+  input:
+    1:
+      gt0003|CTCAE for diarrhea: 2|local::at0004|Increase of 4-6 stools per day over baseline; moderate increase in ostomy output compared with baseline +2|
+  expected_output:
+    1:
+      gt0006|Colitis Grade: local::at0009|G2|
+      gt0005|Comment: Hold ICPi until pt recovers to grade 1; consider permanently d/c CTLA-4; may restart PD-1, PD-L1 if pt recovers to grade ≤1; consider steroids; consider loperamide if infection is ruled out; If diarrhea is not transient, start steroids, then taper if symptoms improve to grade ≤1; GI consult; consider EGD/colonoscopy.
+
+- id: Colitis Grade G1
+  input:
+    1:
+      gt0003|CTCAE for diarrhea: 1|local::at0003|Increase of <4 stools per day over baseline; mild increase in ostomy output compared with baseline +1|
+  expected_output:
+    1:
+      gt0006|Colitis Grade: local::at0008|G1|
+      gt0005|Comment: Continue ICPi (or hold temporarily and resume if toxicity remains grade ≤1); monitor for dehydration; recommend dietary changes; GI consult for prolonged cases.

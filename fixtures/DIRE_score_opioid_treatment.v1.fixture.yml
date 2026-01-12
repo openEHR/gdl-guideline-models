@@ -1,0 +1,36 @@
+guidelines:
+  1: DIRE_score_opioid_treatment.v1
+test_cases:
+- id: case_1
+  input: {}
+  expected_output: {}
+
+- id: Set Candidacy for long-term opioid analgesia to Good Candidate
+  input:
+    1:
+      gt0003|Reliability risk: 3|local::at0021|Highly reliable patient with meds, appointments, and treatment.|
+      gt0004|Intractability: 3|local::at0009|Patient fully engaged in spectrum of appropriate treatments but with inadequate response.|
+      gt0005|Diagnosis: 3|local::at0005|Advanced condition concordant with severe pain with objective findings (examples; severe ischemic vascular disease, advanced neuropathy, severe spinal stenosis).|
+      gt0006|Psychological risk: 3|local::at0013|Good communication with clinic, no significant personality dysfunction or mental illness.|
+      gt0007|Chemical health risk: 3|local::at0017|No CD history, not drug-focused or chemically reliant.|
+      gt0008|Social support risk: 3|local::at0025|Supportive family/close relationships, involved in work or school and no social isolation.|
+      gt0009|Efficacy: 3|local::at0029|Good improvement in pain/function and quality of life with stable doses over time.|
+  expected_output:
+    1:
+      gt0012|DIRE score: 21
+      gt0011|Candidacy for long-term opioid analgesia: local::at0033|Good candidate|
+
+- id: Set Candidacy for long-term opioid analgesia to Not a suitable candidate
+  input:
+    1:
+      gt0003|Reliability risk: 3|local::at0021|Highly reliable patient with meds, appointments, and treatment.|
+      gt0004|Intractability: 3|local::at0009|Patient fully engaged in spectrum of appropriate treatments but with inadequate response.|
+      gt0006|Psychological risk: 3|local::at0013|Good communication with clinic, no significant personality dysfunction or mental illness.|
+      gt0007|Chemical health risk: 1|local::at0015|Active or very recent use of illicit drugs, excessive alcohol, or prescription drug abuse.|
+      gt0008|Social support risk: 1|local::at0023|Life in chaos, little family support, few close relationships, loss of most normal life roles.|
+      gt0009|Efficacy: 1|local::at0027|Poor function or minimal pain relief despite moderate to high doses.|
+      gt0005|Diagnosis: 1|local::at0003|Benign chronic condition, minimal objective findings, or no definite diagnosis (examples; fibromyalgia, migraine headaches, non-specific back pain).|
+  expected_output:
+    1:
+      gt0012|DIRE score: 13
+      gt0011|Candidacy for long-term opioid analgesia: local::at0032|Not a suitable candidate|

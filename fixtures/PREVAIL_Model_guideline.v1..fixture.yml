@@ -1,0 +1,37 @@
+guidelines:
+  1: PREVAIL_Model_guideline.v1
+test_cases:
+- id: Score with Alb and Hb in gm/dl
+  input:
+    1:
+      gt0005|PSA value: 10,ng/mL
+      gt0009|Serum Albumin: 3.5,gm/dl
+      gt0011|Hemoglobin: 12,gm/dl
+      gt0033|Treatment with enzalutamide planned: 1|local::at0006|No|
+      gt0034|Time since diagnosis: 1,mo
+      gt0035|Neutrophil to lymphocyte ratio <2.5 (Neutrophil number divided by lymphocyte number): 1|local::at0010|No|
+      gt0036|LDH below upper limit of normal: 1|local::at0013|No|
+      gt0037|Pain 0-1 (On a scale of 0-10, 10 being the worst pain imaginable, highest pain rating in last 24 hrs): 1|local::at0016|No|
+      gt0038|<10 bone metastases on bone scan: 1|local::at0019|No|
+      gt0039|Alkaline phosphatase less than upper limit of normal: 1|local::at0022|No|
+      gt0040|Pattern of spread: 1|local::at0025|Any visceral liver metastases|
+  expected_output:
+    1:
+      gt0020|Total score: 275,1
+- id: Score with Alb and Hb in gm/l
+  input:
+    1:
+      gt0005|PSA value: 10,ng/mL
+      gt0009|Serum Albumin: 35,gm/l
+      gt0011|Hemoglobin: 120,gm/l
+      gt0033|Treatment with enzalutamide planned: 1|local::at0006|No|
+      gt0034|Time since diagnosis: 1,mo
+      gt0035|Neutrophil to lymphocyte ratio <2.5 (Neutrophil number divided by lymphocyte number): 1|local::at0010|No|
+      gt0036|LDH below upper limit of normal: 1|local::at0013|No|
+      gt0037|Pain 0-1 (On a scale of 0-10, 10 being the worst pain imaginable, highest pain rating in last 24 hrs): 1|local::at0016|No|
+      gt0038|<10 bone metastases on bone scan: 1|local::at0019|No|
+      gt0039|Alkaline phosphatase less than upper limit of normal: 1|local::at0022|No|
+      gt0040|Pattern of spread: 1|local::at0025|Any visceral liver metastases|
+  expected_output:
+    1:
+      gt0020|Total score: 275,1

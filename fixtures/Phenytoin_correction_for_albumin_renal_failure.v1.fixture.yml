@@ -1,0 +1,42 @@
+guidelines:
+  1: Phenytoin_correction_for_albumin_renal_failure.v1
+test_cases:
+- id: No correction needed
+  input:
+    1:
+      gt0003|Measured phenytoin level: 158.72,ug/ml
+      gt0005|Creatinine clearance <20 mL/min: local::at0003|No|
+      gt0014|Albumin (If albumin >3.2 g/dL (32 g/L), this correction is not needed): 3.5,gm/dl
+  expected_output:
+    1:
+      gt0017|Comment: No correction needed
+
+- id: Measured phenytoin level [umol/l]
+  input:
+    1:
+      gt0003|Measured phenytoin level: 158.72,umol/l
+      gt0005|Creatinine clearance <20 mL/min: local::at0004|Yes|
+      gt0014|Albumin (If albumin >3.2 g/dL (32 g/L), this correction is not needed): 3,gm/dl
+  expected_output:
+    1:
+      gt0007|Corrected phenytoin: 57.1,ug/ml
+
+- id: Measured phenytoin level [ug/ml]
+  input:
+    1:
+      gt0003|Measured phenytoin level: 40,ug/ml
+      gt0005|Creatinine clearance <20 mL/min: local::at0004|Yes|
+      gt0014|Albumin (If albumin >3.2 g/dL (32 g/L), this correction is not needed): 3,gm/dl
+  expected_output:
+    1:
+      gt0007|Corrected phenytoin: 57.1,ug/ml
+
+- id: Corrected phenytoin [umol/l]
+  input:
+    1:
+      gt0003|Measured phenytoin level: 160,umol/l
+      gt0005|Creatinine clearance <20 mL/min: local::at0004|Yes|
+      gt0014|Albumin (If albumin >3.2 g/dL (32 g/L), this correction is not needed): 30,gm/l
+  expected_output:
+    1:
+      gt0007|Corrected phenytoin: 228.6,umol/l

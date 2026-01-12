@@ -1,0 +1,71 @@
+  
+guidelines:
+  1: PEDIS_Score.v0
+test_cases:
+- id: case_1 High Risk Rule
+  input:
+    1:
+      gt0003|Perfusion: 2|local::at0009|Critical limb ischemia |
+      gt0004|Extent: 2|local::at0013|1 – 3 cm2 |
+      gt0005|Depth: 2|local::at0018|Fascia, muscle, tendon |
+      gt0006|Infection: 2|local::at0023|Abscess, fasciitis, and/or septic arthritis|
+      gt0007|Sensation: 1|local::at0027|Loss of sensation  |
+  expected_output:
+    1:
+      gt0009|PEDIS Score: 9
+      gt0011| PEDIS Score assessment: 1|local::at0005|High risk for adverse outcomes|
+
+- id: case_2 High Risk Rule
+  input:
+    1:
+      gt0003|Perfusion: 1|local::at0008|Peripheral arterial disease, no critical limb ischemia|
+      gt0004|Extent: 2|local::at0013|1 – 3 cm2 |
+      gt0005|Depth: 2|local::at0018|Fascia, muscle, tendon |
+      gt0006|Infection: 2|local::at0023|Abscess, fasciitis, and/or septic arthritis|
+      gt0007|Sensation: 1|local::at0027|Loss of sensation  |
+  expected_output:
+    1:
+      gt0009|PEDIS Score: 8
+      gt0011| PEDIS Score assessment: 1|local::at0005|High risk for adverse outcomes|
+
+- id: case_3 Low Risk rule
+  input:
+    1:
+      gt0003|Perfusion: 0|local::at0007|No peripheral arterial disease  |
+      gt0004|Extent: 1|local::at0012|< 1 cm2 |
+      gt0005|Depth: 0|local::at0016|Skin intact |
+      gt0006|Infection: 1|local::at0022|Surface   |
+      gt0007|Sensation: 0|local::at0026|Sensation intact  |
+  expected_output:
+    1:
+      gt0009|PEDIS Score: 2
+      gt0011| PEDIS Score assessment: 0|local::at0004|Low risk for adverse outcomes|
+
+- id: case_4 High Risk Rule (Score =7, cut off value)
+  input:
+    1:
+      gt0003|Perfusion: 1|local::at0008|Peripheral arterial disease, no critical\
+        \ limb ischemia|
+      gt0004|Extent: 2|local::at0013|1 – 3 cm2 |
+      gt0005|Depth: 2|local::at0018|Fascia, muscle, tendon |
+      gt0006|Infection: 1|local::at0022|Surface   |
+      gt0007|Sensation: 1|local::at0027|Loss of sensation  |
+  expected_output:
+    1:
+      gt0009|PEDIS Score: 7
+      gt0011| PEDIS Score assessment: 1|local::at0005|High risk for adverse outcomes|
+
+
+- id: case_5 Low Risk Rule
+  input:
+    1:
+      gt0003|Perfusion: 0|local::at0007|No peripheral arterial disease  |
+      gt0004|Extent: 2|local::at0013|1 – 3 cm2 |
+      gt0005|Depth: 2|local::at0018|Fascia, muscle, tendon |
+      gt0006|Infection: 1|local::at0022|Surface   |
+      gt0007|Sensation: 0|local::at0026|Sensation intact  |
+  expected_output:
+    1:
+      gt0009|PEDIS Score: 5
+      gt0011| PEDIS Score assessment: 0|local::at0004|Low risk for adverse outcomes|
+

@@ -1,0 +1,71 @@
+guidelines:
+  1: humpty_dumpty.v0
+test_cases:
+- id: humpty_dumpty_Test1
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Age: 14,a
+      gt0006|Diagnosis: 1|local::at0013|Other diagnosis|
+      gt0007|Medication usage: 1|local::at0028|Other medication than sedative OR no prescribed medication|
+      gt0008|Cognitive impairment: 1|local::at0015|Oriented to own ability|
+      gt0009|Environmental factors: 1|local::at0020|Outpatient area|
+      gt0010|Response to Surgery/ Sedation/ Anaesthesia: 1|local::at0023|More than 48 hours OR none|
+  expected_output:
+    1:
+      gt0012|Fall Risk: local::at0006|Low risk for fall|
+      gt0013|Recommendation: local::at0009|Low Risk Standard Protocol|
+      gt0024|Total score: 7
+      gt0016|Age Classification: 1|local::at0034|13 years old and above|
+      gt0022|Gender: 1|local::at0007|Female|
+- id: humpty_dumpty_Test2
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Age: 11,a
+      gt0006|Diagnosis: 2|local::at0012|Psyhcological/ behavioral disorder|
+      gt0007|Medication usage: 3|local::at0030|Multiple usage of sedatives|
+      gt0008|Cognitive impairment: 2|local::at0016|Forget limitations|
+      gt0009|Environmental factors: 4|local::at0021|History of falls OR infant-toddler placed in bed|
+      gt0010|Response to Surgery/ Sedation/ Anaesthesia: 3|local::at0025|Within 24 hours|
+  expected_output:
+    1:
+      gt0012|Fall Risk: local::at0007|High risk for fall|
+      gt0013|Recommendation: local::at0010|High Risk Standard Protocol|
+      gt0024|Total score: 18
+      gt0016|Age Classification: 2|local::at0035|7 to less than 13 years old|
+      gt0022|Gender: 2|local::at0008|Male|
+- id: humpty_dumpty_Test3
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Age: 6,a
+      gt0006|Diagnosis: 1|local::at0013|Other diagnosis|
+      gt0007|Medication usage: 2|local::at0029|One sedative usage|
+      gt0008|Cognitive impairment: 1|local::at0015|Oriented to own ability|
+      gt0009|Environmental factors: 2|local::at0018|Patient placed in bed|
+      gt0010|Response to Surgery/ Sedation/ Anaesthesia: 1|local::at0023|More than 48 hours OR none|
+  expected_output:
+    1:
+      gt0012|Fall Risk: local::at0006|Low risk for fall|
+      gt0013|Recommendation: local::at0009|Low Risk Standard Protocol|
+      gt0024|Total score: 11
+      gt0016|Age Classification: 3|local::at0036|3 to less than 7 years old|
+      gt0022|Gender: 1|local::at0007|Female|
+- id: humpty_dumpty_Test4
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Age: 1,a
+      gt0006|Diagnosis: 4|local::at0010|Neurological diagnosis|
+      gt0007|Medication usage: 2|local::at0029|One sedative usage|
+      gt0008|Cognitive impairment: 2|local::at0016|Forget limitations|
+      gt0009|Environmental factors: 4|local::at0021|History of falls OR infant-toddler placed in bed|
+      gt0010|Response to Surgery/ Sedation/ Anaesthesia: 2|local::at0024|Within 48 hours|
+  expected_output:
+    1:
+      gt0012|Fall Risk: local::at0007|High risk for fall|
+      gt0013|Recommendation: local::at0010|High Risk Standard Protocol|
+      gt0024|Total score: 20
+      gt0016|Age Classification: 4|local::at0037|Less than 3 years old|
+      gt0022|Gender: 2|local::at0008|Male|

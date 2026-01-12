@@ -1,0 +1,175 @@
+guidelines:
+  1: DSM_5_Criteria_for_Major_Depressive_Disorder_guideline.v1
+test_cases:
+- id: Positive diagnosis-all answers Yes 
+  input:
+    1:
+      gt0003|Depressed mood: 1|local::at0007|Yes|
+      gt0004|Loss of interest/pleasure: 1|local::at0010|Yes|
+      gt0005|Weight loss or gain: 1|local::at0013|Yes|
+      gt0006|Insomnia or hypersomnia: 1|local::at0016|Yes|
+      gt0007|Psychomotor agitation or retardation: 1|local::at0019|Yes|
+      gt0008|Fatigue: 1|local::at0022|Yes|
+      gt0009|Feeling worthless or excessive/inappropriate guilt: 1|local::at0025|Yes|
+      gt0010|Decreased concentration: 1|local::at0028|Yes|
+      gt0011|Thoughts of death/suicide: 1|local::at0031|Yes|
+      ? gt0012|Symptoms cause clinically significant distress or impairment in social,
+        occupational, or other important areas of functioning
+      : 1|local::at0035|Yes|
+      gt0013|Episode not attributable to physiological effects of a substance or another medical condition: 1|local::at0038|Yes|
+      ? gt0014|Episode not better explained by schizoaffective disorder, schizophrenia,
+        schizophreniform disorder, delusional disorder, or other specified and unspecified
+        schizophrenia spectrum and other psychotic disorders
+      : 1|local::at0041|Yes|
+      gt0015|No history of manic or hypomanic episode: 1|local::at0044|Yes|
+  expected_output:
+    1:
+      gt0018|Additional required criteria Score: 4
+      gt0017|Depressive symtoms score: 9
+      gt0023|Diagnostic Result: local::at0005|Positive Diagnosis of MDD by DSM-5 Criteria|
+
+- id: Not positive diagnosis, Additional required criteria answers are no
+  input:
+    1:
+      gt0003|Depressed mood: 1|local::at0007|Yes|
+      gt0004|Loss of interest/pleasure: 1|local::at0010|Yes|
+      gt0005|Weight loss or gain: 1|local::at0013|Yes|
+      gt0006|Insomnia or hypersomnia: 1|local::at0016|Yes|
+      gt0007|Psychomotor agitation or retardation: 1|local::at0019|Yes|
+      gt0008|Fatigue: 1|local::at0022|Yes|
+      gt0009|Feeling worthless or excessive/inappropriate guilt: 1|local::at0025|Yes|
+      gt0010|Decreased concentration: 1|local::at0028|Yes|
+      gt0011|Thoughts of death/suicide: 1|local::at0031|Yes|
+      ? gt0012|Symptoms cause clinically significant distress or impairment in social,
+        occupational, or other important areas of functioning
+      : 0|local::at0034|No|
+      gt0013|Episode not attributable to physiological effects of a substance or another medical condition: 0|local::at0037|No|
+      ? gt0014|Episode not better explained by schizoaffective disorder, schizophrenia,
+        schizophreniform disorder, delusional disorder, or other specified and unspecified
+        schizophrenia spectrum and other psychotic disorders
+      : 0|local::at0040|No|
+      gt0015|No history of manic or hypomanic episode: 0|local::at0043|No|
+  expected_output:
+    1:
+      gt0018|Additional required criteria Score: 0
+      gt0017|Depressive symtoms score: 9
+      gt0023|Diagnostic Result: local::at0006|Not positive Diagnosis of MDD by DSM-5 Criteria|
+
+- id: Not positive, depressed mood is no and loss of interest  is no all other answers are yes
+  input:
+    1:
+      gt0003|Depressed mood: 0|local::at0006|No|
+      gt0004|Loss of interest/pleasure: 0|local::at0009|No|
+      gt0005|Weight loss or gain: 1|local::at0013|Yes|
+      gt0006|Insomnia or hypersomnia: 1|local::at0016|Yes|
+      gt0007|Psychomotor agitation or retardation: 1|local::at0019|Yes|
+      gt0008|Fatigue: 1|local::at0022|Yes|
+      gt0009|Feeling worthless or excessive/inappropriate guilt: 1|local::at0025|Yes|
+      gt0010|Decreased concentration: 1|local::at0028|Yes|
+      gt0011|Thoughts of death/suicide: 1|local::at0031|Yes|
+      ? gt0012|Symptoms cause clinically significant distress or impairment in social,
+        occupational, or other important areas of functioning
+      : 1|local::at0035|Yes|
+      gt0013|Episode not attributable to physiological effects of a substance or another medical condition: 1|local::at0038|Yes|
+      ? gt0014|Episode not better explained by schizoaffective disorder, schizophrenia,
+        schizophreniform disorder, delusional disorder, or other specified and unspecified
+        schizophrenia spectrum and other psychotic disorders
+      : 1|local::at0041|Yes|
+      gt0015|No history of manic or hypomanic episode: 1|local::at0044|Yes|
+  expected_output:
+    1:
+      gt0018|Additional required criteria Score: 4
+      gt0017|Depressive symtoms score: 7
+      gt0023|Diagnostic Result: local::at0006|Not positive Diagnosis of MDD by DSM-5 Criteria|
+
+
+
+- id: Not positive all answers are no
+  input:
+    1:
+      gt0003|Depressed mood: 0|local::at0006|No|
+      gt0004|Loss of interest/pleasure: 0|local::at0009|No|
+      gt0005|Weight loss or gain: 0|local::at0012|No|
+      gt0006|Insomnia or hypersomnia: 0|local::at0015|No|
+      gt0007|Psychomotor agitation or retardation: 0|local::at0018|No|
+      gt0008|Fatigue: 0|local::at0021|No|
+      gt0009|Feeling worthless or excessive/inappropriate guilt: 0|local::at0024|No|
+      gt0010|Decreased concentration: 0|local::at0027|No|
+      gt0011|Thoughts of death/suicide: 0|local::at0030|No|
+      ? gt0012|Symptoms cause clinically significant distress or impairment in social,
+        occupational, or other important areas of functioning
+      : 0|local::at0034|No|
+      gt0013|Episode not attributable to physiological effects of a substance or another medical condition: 0|local::at0037|No|
+      ? gt0014|Episode not better explained by schizoaffective disorder, schizophrenia,
+        schizophreniform disorder, delusional disorder, or other specified and unspecified
+        schizophrenia spectrum and other psychotic disorders
+      : 0|local::at0040|No|
+      gt0015|No history of manic or hypomanic episode: 0|local::at0043|No|
+  expected_output:
+    1:
+      gt0018|Additional required criteria Score: 0
+      gt0017|Depressive symtoms score: 0
+      gt0023|Diagnostic Result: local::at0006|Not positive Diagnosis of MDD by DSM-5 Criteria|
+
+- id: Not positive depressed mood is yes, loss of interest is yes, others are no, additional criteria are yes
+  input:
+    1:
+      gt0003|Depressed mood: 1|local::at0007|Yes|
+      gt0004|Loss of interest/pleasure: 1|local::at0010|Yes|
+      gt0005|Weight loss or gain: 0|local::at0012|No|
+      gt0006|Insomnia or hypersomnia: 0|local::at0015|No|
+      gt0007|Psychomotor agitation or retardation: 0|local::at0018|No|
+      gt0008|Fatigue: 0|local::at0021|No|
+      gt0009|Feeling worthless or excessive/inappropriate guilt: 0|local::at0024|No|
+      gt0010|Decreased concentration: 0|local::at0027|No|
+      gt0011|Thoughts of death/suicide: 0|local::at0030|No|
+      ? gt0012|Symptoms cause clinically significant distress or impairment in social,
+        occupational, or other important areas of functioning
+      : 1|local::at0035|Yes|
+      gt0013|Episode not attributable to physiological effects of a substance or another medical condition: 1|local::at0038|Yes|
+      ? gt0014|Episode not better explained by schizoaffective disorder, schizophrenia,
+        schizophreniform disorder, delusional disorder, or other specified and unspecified
+        schizophrenia spectrum and other psychotic disorders
+      : 1|local::at0041|Yes|
+      gt0015|No history of manic or hypomanic episode: 1|local::at0044|Yes|
+  expected_output:
+    1:
+      gt0018|Additional required criteria Score: 4
+      gt0017|Depressive symtoms score: 2
+      gt0023|Diagnostic Result: local::at0006|Not positive Diagnosis of MDD by DSM-5 Criteria|
+
+
+- id: Positive, depressed mood is yes, loss of interest is no, others are yes, additional criteria are yes
+  input:
+    1:
+      gt0003|Depressed mood: 1|local::at0007|Yes|
+      gt0004|Loss of interest/pleasure: 0|local::at0009|No|
+      gt0005|Weight loss or gain: 1|local::at0013|Yes|
+      gt0006|Insomnia or hypersomnia: 1|local::at0016|Yes|
+      gt0007|Psychomotor agitation or retardation: 1|local::at0019|Yes|
+      gt0008|Fatigue: 1|local::at0022|Yes|
+      gt0009|Feeling worthless or excessive/inappropriate guilt: 1|local::at0025|Yes|
+      gt0010|Decreased concentration: 1|local::at0028|Yes|
+      gt0011|Thoughts of death/suicide: 1|local::at0031|Yes|
+      ? gt0012|Symptoms cause clinically significant distress or impairment in social,
+        occupational, or other important areas of functioning
+      : 1|local::at0035|Yes|
+      gt0013|Episode not attributable to physiological effects of a substance or another medical condition: 1|local::at0038|Yes|
+      ? gt0014|Episode not better explained by schizoaffective disorder, schizophrenia,
+        schizophreniform disorder, delusional disorder, or other specified and unspecified
+        schizophrenia spectrum and other psychotic disorders
+      : 1|local::at0041|Yes|
+      gt0015|No history of manic or hypomanic episode: 1|local::at0044|Yes|
+  expected_output:
+    1:
+      gt0018|Additional required criteria Score: 4
+      gt0017|Depressive symtoms score: 8
+      gt0023|Diagnostic Result: local::at0005|Positive Diagnosis of MDD by DSM-5 Criteria|
+
+
+
+
+
+
+
+

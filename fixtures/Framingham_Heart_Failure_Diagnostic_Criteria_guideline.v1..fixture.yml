@@ -1,0 +1,123 @@
+guidelines:
+  1: Framingham_Heart_Failure_Diagnostic_Criteria_guideline.v1
+test_cases:
+- id: Positive HF with 2 Major Criteria
+  input:
+    1:
+      gt0004|Paroxysmal nocturnal dyspnea or orthopnea?: 1|local::at0019|Yes|
+      gt0005|Neck vein distention?: 1|local::at0016|Yes|
+      gt0006|Rales?: 0|local::at0021|No|
+      gt0007|Cardiomegaly?: 0|local::at0009|No|
+      gt0008|Acute pulmonary edema?: 0|local::at0006|No|
+      gt0009|Third heart sound (S3 gallop rhythm)?: 0|local::at0024|No|
+      gt0010|Increased venous pressure >16 cm H2O?: 0|local::at0056|No|
+      gt0011|Hepatojugular reflux?: 0|local::at0012|No|
+      gt0012|Weight loss >=4.5 kg in 5 days in response to treatment?: 0|local::at0027|No|
+      gt0013|Ankle edema?: 0|local::at0031|No|
+      gt0014|Nocturnal cough?: 0|local::at0040|No|
+      gt0015|Dyspnea on exertion?: 0|local::at0034|No|
+      gt0016|Hepatomegaly?: 0|local::at0037|No|
+      gt0017|Pleural effusion?: 0|local::at0043|No|
+      gt0018|Decrease in Vital Capacity by 1/3 from Maximum recorded?: 0|local::at0062|No|
+      gt0019|Tachycardia (HR >120)?: 0|local::at0046|No|
+  expected_output:
+    1:
+      gt0021|Minor criteria score: 0
+      gt0020|Major criteria score: 2
+      gt0022|Diagnostic Result: POSITIVE Diagnosis for Heart Failure
+- id: Positive HF with 2 major criteria and 1 minor criteria
+  input:
+    1:
+      gt0004|Paroxysmal nocturnal dyspnea or orthopnea?: 1|local::at0019|Yes|
+      gt0005|Neck vein distention?: 1|local::at0016|Yes|
+      gt0006|Rales?: 0|local::at0021|No|
+      gt0007|Cardiomegaly?: 0|local::at0009|No|
+      gt0008|Acute pulmonary edema?: 0|local::at0006|No|
+      gt0009|Third heart sound (S3 gallop rhythm)?: 0|local::at0024|No|
+      gt0010|Increased venous pressure >16 cm H2O?: 0|local::at0056|No|
+      gt0011|Hepatojugular reflux?: 0|local::at0012|No|
+      gt0012|Weight loss >=4.5 kg in 5 days in response to treatment?: 0|local::at0027|No|
+      gt0013|Ankle edema?: 0|local::at0031|No|
+      gt0014|Nocturnal cough?: 0|local::at0040|No|
+      gt0015|Dyspnea on exertion?: 0|local::at0034|No|
+      gt0016|Hepatomegaly?: 0|local::at0037|No|
+      gt0017|Pleural effusion?: 0|local::at0043|No|
+      gt0018|Decrease in Vital Capacity by 1/3 from Maximum recorded?: 0|local::at0062|No|
+      gt0019|Tachycardia (HR >120)?: 1|local::at0047|Yes|
+  expected_output:
+    1:
+      gt0021|Minor criteria score: 1
+      gt0020|Major criteria score: 2
+      gt0022|Diagnostic Result: POSITIVE Diagnosis for Heart Failure
+- id: All criteria exist
+  input:
+    1:
+      gt0004|Paroxysmal nocturnal dyspnea or orthopnea?: 1|local::at0019|Yes|
+      gt0005|Neck vein distention?: 1|local::at0016|Yes|
+      gt0006|Rales?: 1|local::at0022|Yes|
+      gt0007|Cardiomegaly?: 1|local::at0010|Yes|
+      gt0008|Acute pulmonary edema?: 1|local::at0007|Yes|
+      gt0009|Third heart sound (S3 gallop rhythm)?: 1|local::at0025|Yes|
+      gt0010|Increased venous pressure >16 cm H2O?: 1|local::at0057|Yes|
+      gt0011|Hepatojugular reflux?: 1|local::at0013|Yes|
+      gt0012|Weight loss >=4.5 kg in 5 days in response to treatment?: 1|local::at0028|Yes|
+      gt0013|Ankle edema?: 1|local::at0032|Yes|
+      gt0014|Nocturnal cough?: 1|local::at0041|Yes|
+      gt0015|Dyspnea on exertion?: 1|local::at0035|Yes|
+      gt0016|Hepatomegaly?: 1|local::at0038|Yes|
+      gt0017|Pleural effusion?: 1|local::at0044|Yes|
+      gt0018|Decrease in Vital Capacity by 1/3 from Maximum recorded?: 1|local::at0063|Yes|
+      gt0019|Tachycardia (HR >120)?: 1|local::at0047|Yes|
+  expected_output:
+    1:
+      gt0021|Minor criteria score: 7
+      gt0020|Major criteria score: 9
+      gt0022|Diagnostic Result: POSITIVE Diagnosis for Heart Failure
+- id: Negative HF, no criteria exist
+  input:
+    1:
+      gt0004|Paroxysmal nocturnal dyspnea or orthopnea?: 0|local::at0018|No|
+      gt0005|Neck vein distention?: 0|local::at0015|No|
+      gt0006|Rales?: 0|local::at0021|No|
+      gt0007|Cardiomegaly?: 0|local::at0009|No|
+      gt0008|Acute pulmonary edema?: 0|local::at0006|No|
+      gt0009|Third heart sound (S3 gallop rhythm)?: 0|local::at0024|No|
+      gt0010|Increased venous pressure >16 cm H2O?: 0|local::at0056|No|
+      gt0011|Hepatojugular reflux?: 0|local::at0012|No|
+      gt0012|Weight loss >=4.5 kg in 5 days in response to treatment?: 0|local::at0027|No|
+      gt0013|Ankle edema?: 0|local::at0031|No|
+      gt0014|Nocturnal cough?: 0|local::at0040|No|
+      gt0015|Dyspnea on exertion?: 0|local::at0034|No|
+      gt0016|Hepatomegaly?: 0|local::at0037|No|
+      gt0017|Pleural effusion?: 0|local::at0043|No|
+      gt0018|Decrease in Vital Capacity by 1/3 from Maximum recorded?: 0|local::at0062|No|
+      gt0019|Tachycardia (HR >120)?: 0|local::at0046|No|
+  expected_output:
+    1:
+      gt0021|Minor criteria score: 0
+      gt0020|Major criteria score: 0
+      gt0022|Diagnostic Result: NEGATIVE Diagnosis of Heart Failure
+- id: Negative HF, 1 major and 1 minor
+  input:
+    1:
+      gt0004|Paroxysmal nocturnal dyspnea or orthopnea?: 1|local::at0019|Yes|
+      gt0005|Neck vein distention?: 0|local::at0015|No|
+      gt0006|Rales?: 0|local::at0021|No|
+      gt0007|Cardiomegaly?: 0|local::at0009|No|
+      gt0008|Acute pulmonary edema?: 0|local::at0006|No|
+      gt0009|Third heart sound (S3 gallop rhythm)?: 0|local::at0024|No|
+      gt0010|Increased venous pressure >16 cm H2O?: 0|local::at0056|No|
+      gt0011|Hepatojugular reflux?: 0|local::at0012|No|
+      gt0012|Weight loss >=4.5 kg in 5 days in response to treatment?: 0|local::at0027|No|
+      gt0013|Ankle edema?: 0|local::at0031|No|
+      gt0014|Nocturnal cough?: 0|local::at0040|No|
+      gt0015|Dyspnea on exertion?: 0|local::at0034|No|
+      gt0016|Hepatomegaly?: 1|local::at0038|Yes|
+      gt0017|Pleural effusion?: 0|local::at0043|No|
+      gt0018|Decrease in Vital Capacity by 1/3 from Maximum recorded?: 0|local::at0062|No|
+      gt0019|Tachycardia (HR >120)?: 0|local::at0046|No|
+  expected_output:
+    1:
+      gt0021|Minor criteria score: 1
+      gt0020|Major criteria score: 1
+      gt0022|Diagnostic Result: NEGATIVE Diagnosis of Heart Failure

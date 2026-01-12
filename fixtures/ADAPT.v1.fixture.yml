@@ -1,0 +1,112 @@
+guidelines:
+  1: ADAPT.v1
+current_datetime: "2020-04-01T00:00:00Z"
+test_cases:
+- id: All negative, age 40
+  input:
+    1:
+      gt0005|Birthdate: 1980-02-03T13:58+01:00[Europe/Budapest]
+      gt0008|≥ 3 CAD Risk Factors*: 0|local::at0010|No|
+      gt0010|Known CAD (Stenosis ≥ 50%): 0|local::at0012|No|
+      gt0012|ASA Use in Past 7 days: 0|local::at0014|No|
+      gt0015|Severe angina (≥ 2 episodes in 24 hrs): 0|local::at0016|No|
+      gt0017|Positive Cardiac Marker: 0|local::at0020|No|
+      gt0044|Abnormal troponin: 0|local::at0009|No|
+      gt0045|Ischemic changes on the ECG: 0|local::at0012|No|
+  expected_output:
+    1:
+      gt0004|Age: 40,a
+      gt0022|TIMI score: 0
+      gt0009|Age ≥ 65: 0|local::at0024|No|
+      gt0038|Risk group: 0|local::at0004|Low|
+      gt0039|Risk of major adverse cardiac event in 30 days: 0|local::at0007|0-0.3%|
+- id: Above 65, all negative, intermediate
+  input:
+    1:
+      gt0005|Birthdate: 1949-06-28T09:03Z
+      gt0008|≥ 3 CAD Risk Factors*: 0|local::at0010|No|
+      gt0010|Known CAD (Stenosis ≥ 50%): 0|local::at0012|No|
+      gt0012|ASA Use in Past 7 days: 0|local::at0014|No|
+      gt0015|Severe angina (≥ 2 episodes in 24 hrs): 0|local::at0016|No|
+      gt0017|Positive Cardiac Marker: 0|local::at0020|No|
+      gt0044|Abnormal troponin: 0|local::at0009|No|
+      gt0045|Ischemic changes on the ECG: 0|local::at0012|No|
+  expected_output:
+    1:
+      gt0004|Age: 71,a
+      gt0022|TIMI score: 1
+      gt0009|Age ≥ 65: 1|local::at0025|Yes|
+      gt0038|Risk group: 1|local::at0005|Intermediate|
+      gt0039|Risk of major adverse cardiac event in 30 days: 1|local::at0008|0.8%|
+- id: Some positive TIMI, intermediate
+  input:
+    1:
+      gt0005|Birthdate: 1952-06-28T09:03Z
+      gt0008|≥ 3 CAD Risk Factors*: 1|local::at0011|Yes|
+      gt0010|Known CAD (Stenosis ≥ 50%): 1|local::at0013|Yes|
+      gt0012|ASA Use in Past 7 days: 0|local::at0014|No|
+      gt0015|Severe angina (≥ 2 episodes in 24 hrs): 1|local::at0017|Yes|
+      gt0017|Positive Cardiac Marker: 0|local::at0020|No|
+      gt0044|Abnormal troponin: 0|local::at0009|No|
+      gt0045|Ischemic changes on the ECG: 0|local::at0012|No|
+  expected_output:
+    1:
+      gt0004|Age: 68,a
+      gt0022|TIMI score: 4
+      gt0009|Age ≥ 65: 1|local::at0025|Yes|
+      gt0038|Risk group: 1|local::at0005|Intermediate|
+      gt0039|Risk of major adverse cardiac event in 30 days: 1|local::at0008|0.8%|
+- id: All positive TIMI, intermediate
+  input:
+    1:
+      gt0005|Birthdate: 1952-06-28T09:03Z
+      gt0008|≥ 3 CAD Risk Factors*: 1|local::at0011|Yes|
+      gt0010|Known CAD (Stenosis ≥ 50%): 1|local::at0013|Yes|
+      gt0012|ASA Use in Past 7 days: 1|local::at0015|Yes|
+      gt0015|Severe angina (≥ 2 episodes in 24 hrs): 1|local::at0017|Yes|
+      gt0017|Positive Cardiac Marker: 1|local::at0021|Yes|
+      gt0044|Abnormal troponin: 0|local::at0009|No|
+      gt0045|Ischemic changes on the ECG: 0|local::at0012|No|
+  expected_output:
+    1:
+      gt0004|Age: 68,a
+      gt0022|TIMI score: 6
+      gt0009|Age ≥ 65: 1|local::at0025|Yes|
+      gt0038|Risk group: 1|local::at0005|Intermediate|
+      gt0039|Risk of major adverse cardiac event in 30 days: 1|local::at0008|0.8%|
+- id: Ischemic changes, High
+  input:
+    1:
+      gt0005|Birthdate: 1952-06-28T09:03Z
+      gt0008|≥ 3 CAD Risk Factors*: 1|local::at0011|Yes|
+      gt0010|Known CAD (Stenosis ≥ 50%): 1|local::at0013|Yes|
+      gt0012|ASA Use in Past 7 days: 1|local::at0015|Yes|
+      gt0015|Severe angina (≥ 2 episodes in 24 hrs): 1|local::at0017|Yes|
+      gt0017|Positive Cardiac Marker: 1|local::at0021|Yes|
+      gt0044|Abnormal troponin: 0|local::at0009|No|
+      gt0045|Ischemic changes on the ECG: 1|local::at0013|Yes|
+  expected_output:
+    1:
+      gt0004|Age: 68,a
+      gt0022|TIMI score: 6
+      gt0009|Age ≥ 65: 1|local::at0025|Yes|
+      gt0038|Risk group: 2|local::at0006|High|
+      gt0039|Risk of major adverse cardiac event in 30 days: 2|local::at0009|15.3%|
+- id: Troponin, High
+  input:
+    1:
+      gt0005|Birthdate: 1952-06-28T09:03Z
+      gt0008|≥ 3 CAD Risk Factors*: 1|local::at0011|Yes|
+      gt0010|Known CAD (Stenosis ≥ 50%): 1|local::at0013|Yes|
+      gt0012|ASA Use in Past 7 days: 1|local::at0015|Yes|
+      gt0015|Severe angina (≥ 2 episodes in 24 hrs): 1|local::at0017|Yes|
+      gt0017|Positive Cardiac Marker: 1|local::at0021|Yes|
+      gt0045|Ischemic changes on the ECG: 0|local::at0012|No|
+      gt0044|Abnormal troponin: 1|local::at0010|Yes|
+  expected_output:
+    1:
+      gt0004|Age: 68,a
+      gt0022|TIMI score: 6
+      gt0009|Age ≥ 65: 1|local::at0025|Yes|
+      gt0038|Risk group: 2|local::at0006|High|
+      gt0039|Risk of major adverse cardiac event in 30 days: 2|local::at0009|15.3%|

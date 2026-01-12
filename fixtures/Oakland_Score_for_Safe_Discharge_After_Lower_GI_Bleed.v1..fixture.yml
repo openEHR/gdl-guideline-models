@@ -1,0 +1,322 @@
+guidelines:
+  1: Oakland_Score_for_Safe_Discharge_After_Lower_GI_Bleed.v1
+test_cases:
+- id: Probability of safe discharge 99%
+  input:
+    1:
+      gt0003|Hemoglobin, mg/dl (g/dl): 17,mg/dl
+      gt0005|Systolic blood pressure: 165,mm[Hg]
+      gt0007|Heart rate: 65,/min
+      gt0009|DRE findings: 0|local::at0010|No blood|
+      gt0043|Previous lower GI bleeding admission: 0|local::at0040|No|
+      gt0046|Sex: 1|local::at0008|Male|
+      gt0012|Age: 33,a
+  expected_output:
+    1:
+      gt0020|Probability of safe discharge: 99%
+      gt0017|Systolic blood pressure, mmHg: 0|local::at0018|≥160|
+      gt0018|Hemoglobin, mg/dl (g/dl): 0|local::at0024|≥16.0 (160)|
+      gt0014|Age, years: 0|local::at0003|<40|
+      gt0021|Recommendation: Consider discharge, with appropriate precautions.
+      gt0019|Oakland Score: 1
+      gt0016|Heart rate, bpm: 0|local::at0013|<70|
+
+- id: Probability of safe discharge 98%
+  input:
+    1:
+      gt0003|Hemoglobin, mg/dl (g/dl): 17,mg/dl
+      gt0005|Systolic blood pressure: 165,mm[Hg]
+      gt0007|Heart rate: 80,/min
+      gt0009|DRE findings: 0|local::at0010|No blood|
+      gt0043|Previous lower GI bleeding admission: 1|local::at0041|Yes|
+      gt0046|Sex: 1|local::at0008|Male|
+      gt0012|Age: 33,a
+  expected_output:
+    1:
+      gt0020|Probability of safe discharge: 98%
+      gt0017|Systolic blood pressure, mmHg: 0|local::at0018|≥160|
+      gt0018|Hemoglobin, mg/dl (g/dl): 0|local::at0024|≥16.0 (160)|
+      gt0014|Age, years: 0|local::at0003|<40|
+      gt0021|Recommendation: Consider discharge, with appropriate precautions
+      gt0019|Oakland Score: 3
+      gt0016|Heart rate, bpm: 1|local::at0014|70-89|
+
+- id: Probability of safe discharge 97%
+  input:
+    1:
+      gt0003|Hemoglobin, mg/dl (g/dl): 17,mg/dl
+      gt0005|Systolic blood pressure: 165,mm[Hg]
+      gt0007|Heart rate: 95,/min
+      gt0009|DRE findings: 1|local::at0011|Blood|
+      gt0043|Previous lower GI bleeding admission: 1|local::at0041|Yes|
+      gt0046|Sex: 1|local::at0008|Male|
+      gt0012|Age: 33,a
+  expected_output:
+    1:
+      gt0020|Probability of safe discharge: 97%
+      gt0017|Systolic blood pressure, mmHg: 0|local::at0018|≥160|
+      gt0018|Hemoglobin, mg/dl (g/dl): 0|local::at0024|≥16.0 (160)|
+      gt0014|Age, years: 0|local::at0003|<40|
+      gt0021|Recommendation: Consider discharge, with appropriate precautions
+      gt0019|Oakland Score: 5
+      gt0016|Heart rate, bpm: 2|local::at0015|90-109|
+
+- id: Probability of safe discharge 96%
+  input:
+    1:
+      gt0003|Hemoglobin, mg/dl (g/dl): 17,mg/dl
+      gt0005|Systolic blood pressure: 165,mm[Hg]
+      gt0007|Heart rate: 112,/min
+      gt0009|DRE findings: 1|local::at0011|Blood|
+      gt0043|Previous lower GI bleeding admission: 1|local::at0041|Yes|
+      gt0046|Sex: 1|local::at0008|Male|
+      gt0012|Age: 33,a
+  expected_output:
+    1:
+      gt0020|Probability of safe discharge: 96%
+      gt0017|Systolic blood pressure, mmHg: 0|local::at0018|≥160|
+      gt0018|Hemoglobin, mg/dl (g/dl): 0|local::at0024|≥16.0 (160)|
+      gt0014|Age, years: 0|local::at0003|<40|
+      gt0021|Recommendation: Consider discharge, with appropriate precautions
+      gt0019|Oakland Score: 6
+      gt0016|Heart rate, bpm: 3|local::at0016|≥110|
+
+- id: Probability of safe discharge 95%
+  input:
+    1:
+      gt0003|Hemoglobin, mg/dl (g/dl): 17,mg/dl
+      gt0005|Systolic blood pressure: 140,mm[Hg]
+      gt0007|Heart rate: 112,/min
+      gt0009|DRE findings: 1|local::at0011|Blood|
+      gt0043|Previous lower GI bleeding admission: 1|local::at0041|Yes|
+      gt0046|Sex: 1|local::at0008|Male|
+      gt0012|Age: 33,a
+  expected_output:
+    1:
+      gt0020|Probability of safe discharge: 95%
+      gt0017|Systolic blood pressure, mmHg: 2|local::at0019|130-159|
+      gt0018|Hemoglobin, mg/dl (g/dl): 0|local::at0024|≥16.0 (160)|
+      gt0014|Age, years: 0|local::at0003|<40|
+      gt0021|Recommendation: Consider discharge, with appropriate precautions
+      gt0019|Oakland Score: 8
+      gt0016|Heart rate, bpm: 3|local::at0016|≥110|
+
+- id: Probability of safe discharge 93%
+  input:
+    1:
+      gt0003|Hemoglobin, mg/dl (g/dl): 17,mg/dl
+      gt0005|Systolic blood pressure: 122,mm[Hg]
+      gt0007|Heart rate: 112,/min
+      gt0009|DRE findings: 1|local::at0011|Blood|
+      gt0043|Previous lower GI bleeding admission: 1|local::at0041|Yes|
+      gt0046|Sex: 1|local::at0008|Male|
+      gt0012|Age: 33,a
+  expected_output:
+    1:
+      gt0020|Probability of safe discharge: 93%
+      gt0017|Systolic blood pressure, mmHg: 3|local::at0020|120-29|
+      gt0018|Hemoglobin, mg/dl (g/dl): 0|local::at0024|≥16.0 (160)|
+      gt0014|Age, years: 0|local::at0003|<40|
+      gt0021|Recommendation: Admission with further workup and resuscitation as necessary
+      gt0019|Oakland Score: 9
+      gt0016|Heart rate, bpm: 3|local::at0016|≥110|
+
+- id: Probability of safe discharge 91%
+  input:
+    1:
+      gt0003|Hemoglobin, mg/dl (g/dl): 17,mg/dl
+      gt0005|Systolic blood pressure: 100,mm[Hg]
+      gt0007|Heart rate: 112,/min
+      gt0009|DRE findings: 1|local::at0011|Blood|
+      gt0043|Previous lower GI bleeding admission: 1|local::at0041|Yes|
+      gt0046|Sex: 1|local::at0008|Male|
+      gt0012|Age: 33,a
+  expected_output:
+    1:
+      gt0020|Probability of safe discharge: 91%
+      gt0017|Systolic blood pressure, mmHg: 4|local::at0021|90-119|
+      gt0018|Hemoglobin, mg/dl (g/dl): 0|local::at0024|≥16.0 (160)|
+      gt0014|Age, years: 0|local::at0003|<40|
+      gt0021|Recommendation: Admission with further workup and resuscitation as necessary
+      gt0019|Oakland Score: 10
+      gt0016|Heart rate, bpm: 3|local::at0016|≥110|
+
+- id: Probability of safe discharge 89%
+  input:
+    1:
+      gt0003|Hemoglobin, mg/dl (g/dl): 17,mg/dl
+      gt0005|Systolic blood pressure: 72,mm[Hg]
+      gt0007|Heart rate: 112,/min
+      gt0009|DRE findings: 1|local::at0011|Blood|
+      gt0043|Previous lower GI bleeding admission: 1|local::at0041|Yes|
+      gt0046|Sex: 1|local::at0008|Male|
+      gt0012|Age: 33,a
+  expected_output:
+    1:
+      gt0020|Probability of safe discharge: 89%
+      gt0017|Systolic blood pressure, mmHg: 5|local::at0022|50-89|
+      gt0018|Hemoglobin, mg/dl (g/dl): 0|local::at0024|≥16.0 (160)|
+      gt0014|Age, years: 0|local::at0003|<40|
+      gt0021|Recommendation: Admission with further workup and resuscitation as necessary
+      gt0019|Oakland Score: 11
+      gt0016|Heart rate, bpm: 3|local::at0016|≥110|
+
+- id: Probability of safe discharge 87-89%
+  input:
+    1:
+      gt0003|Hemoglobin, mg/dl (g/dl): 17,mg/dl
+      gt0005|Systolic blood pressure: 72,mm[Hg]
+      gt0007|Heart rate: 112,/min
+      gt0009|DRE findings: 1|local::at0011|Blood|
+      gt0043|Previous lower GI bleeding admission: 1|local::at0041|Yes|
+      gt0046|Sex: 1|local::at0008|Male|
+      gt0012|Age: 50,a
+  expected_output:
+    1:
+      gt0020|Probability of safe discharge: 87-89%
+      gt0017|Systolic blood pressure, mmHg: 5|local::at0022|50-89|
+      gt0018|Hemoglobin, mg/dl (g/dl): 0|local::at0024|≥16.0 (160)|
+      gt0014|Age, years: 1|local::at0004|40-69|
+      gt0021|Recommendation: Admission with further workup and resuscitation as necessary
+      gt0019|Oakland Score: 12
+      gt0016|Heart rate, bpm: 3|local::at0016|≥110|
+
+- id: Probability of safe discharge 77-81%
+  input:
+    1:
+      gt0003|Hemoglobin, mg/dl (g/dl): 14,mg/dl
+      gt0005|Systolic blood pressure: 140,mm[Hg]
+      gt0007|Heart rate: 112,/min
+      gt0009|DRE findings: 1|local::at0011|Blood|
+      gt0043|Previous lower GI bleeding admission: 1|local::at0041|Yes|
+      gt0046|Sex: 1|local::at0008|Male|
+      gt0012|Age: 72,a
+  expected_output:
+    1:
+      gt0020|Probability of safe discharge: 77-81%
+      gt0017|Systolic blood pressure, mmHg: 2|local::at0019|130-159|
+      gt0018|Hemoglobin, mg/dl (g/dl): 4|local::at0025|13.0-15.9 (130-159)|
+      gt0014|Age, years: 2|local::at0005|≥70|
+      gt0021|Recommendation: Admission with further workup and resuscitation as necessary
+      gt0019|Oakland Score: 14
+      gt0016|Heart rate, bpm: 3|local::at0016|≥110|
+
+- id: Probability of safe discharge 67-72%
+  input:
+    1:
+      gt0003|Hemoglobin, mg/dl (g/dl): 11,mg/dl
+      gt0005|Systolic blood pressure: 165,mm[Hg]
+      gt0007|Heart rate: 112,/min
+      gt0009|DRE findings: 1|local::at0011|Blood|
+      gt0043|Previous lower GI bleeding admission: 1|local::at0041|Yes|
+      gt0046|Sex: 1|local::at0008|Male|
+      gt0012|Age: 72,a
+  expected_output:
+    1:
+      gt0020|Probability of safe discharge: 67-72%
+      gt0017|Systolic blood pressure, mmHg: 0|local::at0018|≥160|
+      gt0018|Hemoglobin, mg/dl (g/dl): 8|local::at0026|11.0-12.9 (110-129)|
+      gt0014|Age, years: 2|local::at0005|≥70|
+      gt0021|Recommendation: Admission with further workup and resuscitation as necessary
+      gt0019|Oakland Score: 16
+      gt0016|Heart rate, bpm: 3|local::at0016|≥110|
+
+- id: Probability of safe discharge 50-62%
+  input:
+    1:
+      gt0003|Hemoglobin, mg/dl (g/dl): 10,mg/dl
+      gt0005|Systolic blood pressure: 165,mm[Hg]
+      gt0007|Heart rate: 112,/min
+      gt0009|DRE findings: 1|local::at0011|Blood|
+      gt0043|Previous lower GI bleeding admission: 1|local::at0041|Yes|
+      gt0046|Sex: 1|local::at0008|Male|
+      gt0012|Age: 35,a
+  expected_output:
+    1:
+      gt0020|Probability of safe discharge: 50-62%
+      gt0017|Systolic blood pressure, mmHg: 0|local::at0018|≥160|
+      gt0018|Hemoglobin, mg/dl (g/dl): 13|local::at0027|9.0-10.9 (90-109)|
+      gt0014|Age, years: 0|local::at0003|<40|
+      gt0021|Recommendation: Admission with further workup and resuscitation as necessary
+      gt0019|Oakland Score: 19
+      gt0016|Heart rate, bpm: 3|local::at0016|≥110|
+
+- id: Probability of safe discharge 33-45%
+  input:
+    1:
+      gt0003|Hemoglobin, mg/dl (g/dl): 8,mg/dl
+      gt0005|Systolic blood pressure: 165,mm[Hg]
+      gt0007|Heart rate: 75,/min
+      gt0009|DRE findings: 1|local::at0011|Blood|
+      gt0043|Previous lower GI bleeding admission: 1|local::at0041|Yes|
+      gt0046|Sex: 1|local::at0008|Male|
+      gt0012|Age: 35,a
+  expected_output:
+    1:
+      gt0020|Probability of safe discharge: 33-45%
+      gt0017|Systolic blood pressure, mmHg: 0|local::at0018|≥160|
+      gt0018|Hemoglobin, mg/dl (g/dl): 17|local::at0028|7.0-8.9 (70-89)|
+      gt0014|Age, years: 0|local::at0003|<40|
+      gt0021|Recommendation: Admission with further workup and resuscitation as necessary
+      gt0019|Oakland Score: 21
+      gt0016|Heart rate, bpm: 1|local::at0014|70-89|
+
+- id: Probability of safe discharge 20-28%
+  input:
+    1:
+      gt0003|Hemoglobin, mg/dl (g/dl): 5,mg/dl
+      gt0005|Systolic blood pressure: 165,mm[Hg]
+      gt0007|Heart rate: 66,/min
+      gt0009|DRE findings: 1|local::at0011|Blood|
+      gt0043|Previous lower GI bleeding admission: 1|local::at0041|Yes|
+      gt0046|Sex: 0|local::at0007|Female|
+      gt0012|Age: 35,a
+  expected_output:
+    1:
+      gt0020|Probability of safe discharge: 20-28%
+      gt0017|Systolic blood pressure, mmHg: 0|local::at0018|≥160|
+      gt0018|Hemoglobin, mg/dl (g/dl): 22|local::at0029|3.6-6.9 (36-69)|
+      gt0014|Age, years: 0|local::at0003|<40|
+      gt0021|Recommendation: Admission with further workup and resuscitation as necessary
+      gt0019|Oakland Score: 24
+      gt0016|Heart rate, bpm: 0|local::at0013|<70|
+
+- id: Probability of safe discharge 11-16%
+  input:
+    1:
+      gt0003|Hemoglobin, mg/dl (g/dl): 5,mg/dl
+      gt0005|Systolic blood pressure: 165,mm[Hg]
+      gt0007|Heart rate: 66,/min
+      gt0009|DRE findings: 1|local::at0011|Blood|
+      gt0043|Previous lower GI bleeding admission: 1|local::at0041|Yes|
+      gt0046|Sex: 1|local::at0008|Male|
+      gt0012|Age: 77,a
+  expected_output:
+    1:
+      gt0020|Probability of safe discharge: 11-16%
+      gt0017|Systolic blood pressure, mmHg: 0|local::at0018|≥160|
+      gt0018|Hemoglobin, mg/dl (g/dl): 22|local::at0029|3.6-6.9 (36-69)|
+      gt0014|Age, years: 2|local::at0005|≥70|
+      gt0021|Recommendation: Admission with further workup and resuscitation as necessary
+      gt0019|Oakland Score: 27
+      gt0016|Heart rate, bpm: 0|local::at0013|<70|
+    
+- id: Probability of safe discharge 0-1%
+  input:
+    1:
+      gt0003|Hemoglobin, mg/dl (g/dl): 5,mg/dl
+      gt0005|Systolic blood pressure: 100,mm[Hg]
+      gt0007|Heart rate: 66,/min
+      gt0009|DRE findings: 1|local::at0011|Blood|
+      gt0043|Previous lower GI bleeding admission: 1|local::at0041|Yes|
+      gt0046|Sex: 1|local::at0008|Male|
+      gt0012|Age: 77,a
+  expected_output:
+    1:
+      gt0020|Probability of safe discharge: 0-1%
+      gt0017|Systolic blood pressure, mmHg: 4|local::at0021|90-119|
+      gt0018|Hemoglobin, mg/dl (g/dl): 22|local::at0029|3.6-6.9 (36-69)|
+      gt0014|Age, years: 2|local::at0005|≥70|
+      gt0021|Recommendation: Admission with further workup and resuscitation as necessary
+      gt0019|Oakland Score: 31
+      gt0016|Heart rate, bpm: 0|local::at0013|<70|

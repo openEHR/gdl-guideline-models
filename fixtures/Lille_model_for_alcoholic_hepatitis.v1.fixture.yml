@@ -1,0 +1,98 @@
+current_datetime: '2019-09-01T00:00:00+01:00'
+
+guidelines:
+  1: Lille_model_for_alcoholic_hepatitis.v1
+test_cases:
+- id: not fulfilling precondition
+  input:
+    1:
+      gt0003|Alcoholic hepatitis: 0|local::at0015|No|
+      gt0004|Is the patient being treated with steroid?: 0|local::at0017|No|
+      gt0006|Birthdate: 2015-03-16T21:44+01:00[Europe/Stockholm]
+      gt0008|Initial Bilirubin: 3,umol/l
+      gt0009|Bilirubin day-7: 4,umol/l
+      gt0010|Albumin: 5,gm/l
+      gt0011|Creatinine: 6,mg/dl
+      gt0012|PT: 7,s
+  expected_output:
+    1:
+      gt0016|Bilirubin day-7: 4,umol/l
+      gt0017|Albumin: 5,gm/l
+      gt0019|PT: 7,s
+      gt0015|Initial Bilirubin: 3,umol/l
+
+- id: bilirubin unit in mg/dL, renal insufficiency = 1, Lille model score <0.45, good prognosis
+  input:
+    1:
+      gt0003|Alcoholic hepatitis: 1|local::at0016|Yes|
+      gt0004|Is the patient being treated with steroid?: 1|local::at0018|Yes|
+      gt0006|Birthdate: 1999-09-01T22:33+02:00[Europe/Stockholm]
+      gt0008|Initial Bilirubin: 5.5,mg/dl
+      gt0009|Bilirubin day-7: 3.5,mg/dl
+      gt0010|Albumin: 20,gm/l
+      gt0011|Creatinine: 6,mg/dl
+      gt0012|PT: 20,s
+  expected_output:
+    1:
+      gt0016|Bilirubin day-7: 59.85,umol/l
+      gt0014|Age: 20,a
+      gt0017|Albumin: 20,gm/l
+      gt0018|Renal Insuficiency: 1|local::at0009| Cr >1.3 mg/dL or 115 µmol/L|
+      gt0019|PT: 20,s
+      gt0015|Initial Bilirubin: 94.05,umol/l
+      gt0021|R: 3.6638
+      gt0024|6-month survival rate: 1|local::at0006|6-month survival rate of 85%.|
+      gt0023|Prognosis: 1|local::at0009|Good prognosis.|
+      gt0025|Recommendation: 1|local::at0012|The patient might respond to steroid therapy. Consider to continue the treatment.|
+      gt0022|Lille model score: 0.025
+
+- id: albumin in gm/dL, creatinine in umol/L, renal insufficiency = 1, Lille model score >0.45, poor prognosis
+  input:
+    1:
+      gt0003|Alcoholic hepatitis: 1|local::at0016|Yes|
+      gt0004|Is the patient being treated with steroid?: 1|local::at0018|Yes|
+      gt0006|Birthdate: 1979-09-01T22:33+01:00[Europe/Stockholm]
+      gt0008|Initial Bilirubin: 94,umol/l
+      gt0009|Bilirubin day-7: 156,umol/l
+      gt0010|Albumin: 1.5,gm/dl
+      gt0011|Creatinine: 140,umol/l
+      gt0012|PT: 20,s
+  expected_output:
+    1:
+      gt0016|Bilirubin day-7: 156,umol/l
+      gt0014|Age: 40,a
+      gt0017|Albumin: 15.00,gm/l
+      gt0018|Renal Insuficiency: 1|local::at0009| Cr >1.3 mg/dL or 115 µmol/L|
+      gt0019|PT: 20,s
+      gt0015|Initial Bilirubin: 94,umol/l
+      gt0021|R: -0.6795
+      gt0024|6-month survival rate: 0|local::at0005|6-month survival rate of 25%.|
+      gt0023|Prognosis: 0|local::at0008|Poor prognosis.|
+      gt0025|Recommendation: 0|local::at0011|The patient may be a non-responder to steroids therapy. Consider alternative therapies and/or referral for liver transplant.|
+      gt0022|Lille model score: 0.664
+
+- id: bilirubin unit in mg/dL, renal insufficiency = 0, Lille model score <0.45, good prognosis
+  input:
+    1:
+      gt0003|Alcoholic hepatitis: 1|local::at0016|Yes|
+      gt0004|Is the patient being treated with steroid?: 1|local::at0018|Yes|
+      gt0006|Birthdate: 1989-09-01T22:33+02:00[Europe/Stockholm]
+      gt0008|Initial Bilirubin: 5.5,mg/dl
+      gt0009|Bilirubin day-7: 3.5,mg/dl
+      gt0010|Albumin: 20,gm/l
+      gt0011|Creatinine: 1,mg/dl
+      gt0012|PT: 18,s
+  expected_output:
+    1:
+      gt0016|Bilirubin day-7: 59.85,umol/l
+      gt0014|Age: 30,a
+      gt0017|Albumin: 20,gm/l
+      gt0018|Renal Insuficiency: 0|local::at0008|Cr ≤1.3 mg/dL or 115 µmol/L)|
+      gt0019|PT: 18,s
+      gt0015|Initial Bilirubin: 94.05,umol/l
+      gt0021|R: 2.8785
+      gt0024|6-month survival rate: 1|local::at0006|6-month survival rate of 85%.|
+      gt0023|Prognosis: 1|local::at0009|Good prognosis.|
+      gt0025|Recommendation: 1|local::at0012|The patient might respond to steroid therapy. Consider to continue the treatment.|
+      gt0022|Lille model score: 0.053
+

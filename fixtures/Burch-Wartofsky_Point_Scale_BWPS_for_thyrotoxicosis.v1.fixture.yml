@@ -1,0 +1,254 @@
+guidelines:
+  1: Burch-Wartofsky_Point_Scale_BWPS_for_thyrotoxicosis.v1
+test_cases:
+  - id: temp 98°F, heart rate 89 bpm, BWPS 0
+    input:
+      1:
+        gt0003|Body temperature: 98,[degF]
+        gt0005|Heart rate: 89,/min
+        gt0007|Central nervous system effects: 0|local::at0013|Absent|
+        gt0008|Gastrointestinal-hepatic dysfunction: 0|local::at0018|Absent|
+        gt0009|Congestive heart failure: 0|local::at0028|Absent|
+        gt0010|Atrial fibrillation: 0|local::at0033|Absent|
+        gt0011|Precipitating event: 0|local::at0036|Absent|
+    expected_output:
+      1:
+        gt0015|Burch-Wartofsky Point Scale: 0
+        gt0014|Heart rate (beats/minute): 0|local::at0039|<90|
+        gt0013|Temperature: 0|local::at0005|<99 °F (<37.2 °C)|
+        gt0017|Interpretation: 0|local::at0003|Unlikely of thyroid storm|
+        gt0018|Recommendation: 0|local::at0007|Investigate the diagnosis of thyrotoxicosis and obtain additional thyroid imaging|
+
+  - id: temp 99°F, heart rate 90 bpm, BWPS 10
+    input:
+      1:
+        gt0003|Body temperature: 99,[degF]
+        gt0005|Heart rate: 90,/min
+        gt0007|Central nervous system effects: 0|local::at0013|Absent|
+        gt0008|Gastrointestinal-hepatic dysfunction: 0|local::at0018|Absent|
+        gt0009|Congestive heart failure: 0|local::at0028|Absent|
+        gt0010|Atrial fibrillation: 0|local::at0033|Absent|
+        gt0011|Precipitating event: 0|local::at0036|Absent|
+    expected_output:
+      1:
+        gt0015|Burch-Wartofsky Point Scale: 10
+        gt0014|Heart rate (beats/minute): 5|local::at0023|90-109|
+        gt0013|Temperature: 5|local::at0006|99–99.9 °F (37.2-37.7 °C)|
+        gt0017|Interpretation: 0|local::at0003|Unlikely of thyroid storm|
+        gt0018|Recommendation: 0|local::at0007|Investigate the diagnosis of thyrotoxicosis and obtain additional thyroid imaging|
+
+  - id: temp 37.2°C, heart rate 109 bpm, BWPS 10
+    input:
+      1:
+        gt0003|Body temperature: 37.2,Cel
+        gt0005|Heart rate: 109,/min
+        gt0007|Central nervous system effects: 0|local::at0013|Absent|
+        gt0008|Gastrointestinal-hepatic dysfunction: 0|local::at0018|Absent|
+        gt0009|Congestive heart failure: 0|local::at0028|Absent|
+        gt0010|Atrial fibrillation: 0|local::at0033|Absent|
+        gt0011|Precipitating event: 0|local::at0036|Absent|
+    expected_output:
+      1:
+        gt0015|Burch-Wartofsky Point Scale: 10
+        gt0014|Heart rate (beats/minute): 5|local::at0023|90-109|
+        gt0013|Temperature: 5|local::at0006|99–99.9 °F (37.2-37.7 °C)|
+        gt0017|Interpretation: 0|local::at0003|Unlikely of thyroid storm|
+        gt0018|Recommendation: 0|local::at0007|Investigate the diagnosis of thyrotoxicosis and obtain additional thyroid imaging|
+
+  - id: temp 37.7°C, heart rate 110 bpm, BWPS 15
+    input:
+      1:
+        gt0003|Body temperature: 37.7,Cel
+        gt0005|Heart rate: 110,/min
+        gt0007|Central nervous system effects: 0|local::at0013|Absent|
+        gt0008|Gastrointestinal-hepatic dysfunction: 0|local::at0018|Absent|
+        gt0009|Congestive heart failure: 0|local::at0028|Absent|
+        gt0010|Atrial fibrillation: 0|local::at0033|Absent|
+        gt0011|Precipitating event: 0|local::at0036|Absent|
+    expected_output:
+      1:
+        gt0015|Burch-Wartofsky Point Scale: 15
+        gt0014|Heart rate (beats/minute): 10|local::at0024|110-119|
+        gt0013|Temperature: 5|local::at0006|99–99.9 °F (37.2-37.7 °C)|
+        gt0017|Interpretation: 0|local::at0003|Unlikely of thyroid storm|
+        gt0018|Recommendation: 0|local::at0007|Investigate the diagnosis of thyrotoxicosis and obtain additional thyroid imaging|
+
+  - id: temp 100°F, heart rate 119 bpm, BWPS 20
+    input:
+      1:
+        gt0003|Body temperature: 100,[degF]
+        gt0005|Heart rate: 119,/min
+        gt0007|Central nervous system effects: 0|local::at0013|Absent|
+        gt0008|Gastrointestinal-hepatic dysfunction: 0|local::at0018|Absent|
+        gt0009|Congestive heart failure: 0|local::at0028|Absent|
+        gt0010|Atrial fibrillation: 0|local::at0033|Absent|
+        gt0011|Precipitating event: 0|local::at0036|Absent|
+    expected_output:
+      1:
+        gt0015|Burch-Wartofsky Point Scale: 20
+        gt0014|Heart rate (beats/minute): 10|local::at0024|110-119|
+        gt0013|Temperature: 10|local::at0007|100–100.9 °F (37.8-38.2 °C)|
+        gt0017|Interpretation: 0|local::at0003|Unlikely of thyroid storm|
+        gt0018|Recommendation: 0|local::at0007|Investigate the diagnosis of thyrotoxicosis and obtain additional thyroid imaging|
+
+  - id: temp 100.9°F, heart rate 120 bpm, BWPS 25
+    input:
+      1:
+        gt0003|Body temperature: 100.9,[degF]
+        gt0005|Heart rate: 120,/min
+        gt0007|Central nervous system effects: 0|local::at0013|Absent|
+        gt0008|Gastrointestinal-hepatic dysfunction: 0|local::at0018|Absent|
+        gt0009|Congestive heart failure: 0|local::at0028|Absent|
+        gt0010|Atrial fibrillation: 0|local::at0033|Absent|
+        gt0011|Precipitating event: 0|local::at0036|Absent|
+    expected_output:
+      1:
+        gt0015|Burch-Wartofsky Point Scale: 25
+        gt0014|Heart rate (beats/minute): 15|local::at0025|120-129|
+        gt0013|Temperature: 10|local::at0007|100–100.9 °F (37.8-38.2 °C)|
+        gt0017|Interpretation: 1|local::at0004|Suggestive of impending thyroid storm|
+        gt0018|Recommendation: 1|local::at0008|Consider thionamides and symptom management. Consider ICU monitoring|
+
+  - id: temp 38.3°C, heart rate 129 bpm, BWPS 30
+    input:
+      1:
+        gt0003|Body temperature: 38.3,Cel
+        gt0005|Heart rate: 129,/min
+        gt0007|Central nervous system effects: 0|local::at0013|Absent|
+        gt0008|Gastrointestinal-hepatic dysfunction: 0|local::at0018|Absent|
+        gt0009|Congestive heart failure: 0|local::at0028|Absent|
+        gt0010|Atrial fibrillation: 0|local::at0033|Absent|
+        gt0011|Precipitating event: 0|local::at0036|Absent|
+    expected_output:
+      1:
+        gt0015|Burch-Wartofsky Point Scale: 30
+        gt0014|Heart rate (beats/minute): 15|local::at0025|120-129|
+        gt0013|Temperature: 15|local::at0008|101–101.9 °F (38.3-38.8 °C)|
+        gt0017|Interpretation: 1|local::at0004|Suggestive of impending thyroid storm|
+        gt0018|Recommendation: 1|local::at0008|Consider thionamides and symptom management. Consider ICU monitoring|
+
+  - id: temp 38.8°C, heart rate 130 bpm, BWPS 35
+    input:
+      1:
+        gt0003|Body temperature: 38.8,Cel
+        gt0005|Heart rate: 130,/min
+        gt0007|Central nervous system effects: 0|local::at0013|Absent|
+        gt0008|Gastrointestinal-hepatic dysfunction: 0|local::at0018|Absent|
+        gt0009|Congestive heart failure: 0|local::at0028|Absent|
+        gt0010|Atrial fibrillation: 0|local::at0033|Absent|
+        gt0011|Precipitating event: 0|local::at0036|Absent|
+    expected_output:
+      1:
+        gt0015|Burch-Wartofsky Point Scale: 35
+        gt0014|Heart rate (beats/minute): 20|local::at0040|130-139|
+        gt0013|Temperature: 15|local::at0008|101–101.9 °F (38.3-38.8 °C)|
+        gt0017|Interpretation: 1|local::at0004|Suggestive of impending thyroid storm|
+        gt0018|Recommendation: 1|local::at0008|Consider thionamides and symptom management. Consider ICU monitoring|
+
+  - id: temp 102°F, heart rate 139 bpm, BWPS 40
+    input:
+      1:
+        gt0003|Body temperature: 102,[degF]
+        gt0005|Heart rate: 139,/min
+        gt0007|Central nervous system effects: 0|local::at0013|Absent|
+        gt0008|Gastrointestinal-hepatic dysfunction: 0|local::at0018|Absent|
+        gt0009|Congestive heart failure: 0|local::at0028|Absent|
+        gt0010|Atrial fibrillation: 0|local::at0033|Absent|
+        gt0011|Precipitating event: 0|local::at0036|Absent|
+    expected_output:
+      1:
+        gt0015|Burch-Wartofsky Point Scale: 40
+        gt0014|Heart rate (beats/minute): 20|local::at0040|130-139|
+        gt0013|Temperature: 20|local::at0009|102–102.9 °F (38.9-39.2 °C)|
+        gt0017|Interpretation: 1|local::at0004|Suggestive of impending thyroid storm|
+        gt0018|Recommendation: 1|local::at0008|Consider thionamides and symptom management. Consider ICU monitoring|
+
+  - id: temp 102.9°F, heart rate 140 bpm, BWPS 40
+    input:
+      1:
+        gt0003|Body temperature: 102.9,[degF]
+        gt0005|Heart rate: 140,/min
+        gt0007|Central nervous system effects: 0|local::at0013|Absent|
+        gt0008|Gastrointestinal-hepatic dysfunction: 0|local::at0018|Absent|
+        gt0009|Congestive heart failure: 0|local::at0028|Absent|
+        gt0010|Atrial fibrillation: 0|local::at0033|Absent|
+        gt0011|Precipitating event: 0|local::at0036|Absent|
+    expected_output:
+      1:
+        gt0015|Burch-Wartofsky Point Scale: 45
+        gt0014|Heart rate (beats/minute): 25|local::at0026|≥140|
+        gt0013|Temperature: 20|local::at0009|102–102.9 °F (38.9-39.2 °C)|
+        gt0017|Interpretation: 2|local::at0005|Highly suggestive of thyroid storm|
+        gt0018|Recommendation: 2|local::at0009|Consider rapid and aggressive multimodal management in ICU|
+
+  - id: temp 39.3°C, heart rate 140 bpm, BWPS 40
+    input:
+      1:
+        gt0003|Body temperature: 39.3,Cel
+        gt0005|Heart rate: 140,/min
+        gt0007|Central nervous system effects: 0|local::at0013|Absent|
+        gt0008|Gastrointestinal-hepatic dysfunction: 0|local::at0018|Absent|
+        gt0009|Congestive heart failure: 0|local::at0028|Absent|
+        gt0010|Atrial fibrillation: 0|local::at0033|Absent|
+        gt0011|Precipitating event: 0|local::at0036|Absent|
+    expected_output:
+      1:
+        gt0015|Burch-Wartofsky Point Scale: 50
+        gt0014|Heart rate (beats/minute): 25|local::at0026|≥140|
+        gt0013|Temperature: 25|local::at0010|103–103.9 °F (39.3-39.9 °C)|
+        gt0017|Interpretation: 2|local::at0005|Highly suggestive of thyroid storm|
+        gt0018|Recommendation: 2|local::at0009|Consider rapid and aggressive multimodal management in ICU|
+
+  - id: temp 39.9°C, heart rate 140 bpm, BWPS 40
+    input:
+      1:
+        gt0003|Body temperature: 39.9,Cel
+        gt0005|Heart rate: 140,/min
+        gt0007|Central nervous system effects: 0|local::at0013|Absent|
+        gt0008|Gastrointestinal-hepatic dysfunction: 0|local::at0018|Absent|
+        gt0009|Congestive heart failure: 0|local::at0028|Absent|
+        gt0010|Atrial fibrillation: 0|local::at0033|Absent|
+        gt0011|Precipitating event: 0|local::at0036|Absent|
+    expected_output:
+      1:
+        gt0015|Burch-Wartofsky Point Scale: 50
+        gt0014|Heart rate (beats/minute): 25|local::at0026|≥140|
+        gt0013|Temperature: 25|local::at0010|103–103.9 °F (39.3-39.9 °C)|
+        gt0017|Interpretation: 2|local::at0005|Highly suggestive of thyroid storm|
+        gt0018|Recommendation: 2|local::at0009|Consider rapid and aggressive multimodal management in ICU|
+
+  - id: temp 40°C, heart rate 140 bpm, others maxed out
+    input:
+      1:
+        gt0003|Body temperature: 40,Cel
+        gt0005|Heart rate: 140,/min
+        gt0007|Central nervous system effects: 30|local::at0016|Severe (seizures, coma)|
+        gt0008|Gastrointestinal-hepatic dysfunction: 20|local::at0020|Severe (unexplained jaundice)|
+        gt0009|Congestive heart failure: 15|local::at0031|Severe (pulmonary edema)|
+        gt0010|Atrial fibrillation: 10|local::at0034|Present|
+        gt0011|Precipitating event: 10|local::at0037|Present|
+    expected_output:
+      1:
+        gt0015|Burch-Wartofsky Point Scale: 140
+        gt0014|Heart rate (beats/minute): 25|local::at0026|≥140|
+        gt0013|Temperature: 30|local::at0011|≥104.0 °F (≥ 40.0 °C)|
+        gt0017|Interpretation: 2|local::at0005|Highly suggestive of thyroid storm|
+        gt0018|Recommendation: 2|local::at0009|Consider rapid and aggressive multimodal management in ICU|
+
+  - id: temp 104°F, heart rate 140 bpm, others maxed out
+    input:
+      1:
+        gt0003|Body temperature: 104,[degF]
+        gt0005|Heart rate: 140,/min
+        gt0007|Central nervous system effects: 30|local::at0016|Severe (seizures, coma)|
+        gt0008|Gastrointestinal-hepatic dysfunction: 20|local::at0020|Severe (unexplained jaundice)|
+        gt0009|Congestive heart failure: 15|local::at0031|Severe (pulmonary edema)|
+        gt0010|Atrial fibrillation: 10|local::at0034|Present|
+        gt0011|Precipitating event: 10|local::at0037|Present|
+    expected_output:
+      1:
+        gt0015|Burch-Wartofsky Point Scale: 140
+        gt0014|Heart rate (beats/minute): 25|local::at0026|≥140|
+        gt0013|Temperature: 30|local::at0011|≥104.0 °F (≥ 40.0 °C)|
+        gt0017|Interpretation: 2|local::at0005|Highly suggestive of thyroid storm|
+        gt0018|Recommendation: 2|local::at0009|Consider rapid and aggressive multimodal management in ICU|

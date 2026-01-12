@@ -1,0 +1,32 @@
+guidelines:
+  1: SMS.v1
+test_cases:
+- id: withdrawal
+  input:
+    1:
+      gt0003|Patient response: 0|local::at0007|Withdrawals to pain or worse|
+  expected_output:
+    1:
+      gt0005|Patient response: 0|local::at0007|Withdrawals to pain or worse|
+      gt0009|Management: 1|local::at0007|Prompt evaluation and head CT imaging is indicated|
+      gt0008|Score interpretation: 1|local::at0004|Score < 2 Significant risk|
+
+- id: localizes
+  input:
+    1:
+      gt0003|Patient response: 1|local::at0008|Localizes pain|
+  expected_output:
+    1:
+      gt0005|Patient response: 1|local::at0008|Localizes pain|
+      gt0009|Management: 1|local::at0007|Prompt evaluation and head CT imaging is indicated|
+      gt0008|Score interpretation: 1|local::at0004|Score < 2 Significant risk|
+
+- id: obeys
+  input:
+    1:
+      gt0003|Patient response: 2|local::at0009|Obeys commands|
+  expected_output:
+    1:
+      gt0005|Patient response: 2|local::at0009|Obeys commands|
+      gt0009|Management: 0|local::at0006|No intervention necessary|
+      gt0008|Score interpretation: 0|local::at0003|Score = 2 Low risk|

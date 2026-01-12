@@ -1,0 +1,168 @@
+guidelines:
+  1: Australian_type_2_diabetes_risk_ausdrisk_assessment_tool.v1
+test_cases:
+- id: Minimum with score Waist circumference
+  input:
+    1:
+      gt0003|Age: 25,a
+      gt0006|Gender: 0|local::at0023|Female|
+      gt0007|Ethnicity: 0|local::at0026|Other|
+      gt0008|Parental history of diabetes: 0|local::at0030|No|
+      gt0009|History of high blood glucose: 0|local::at0032|No|
+      gt0010|Use of antihypertensive medications: 0|local::at0034|No|
+      gt0011|Current smoker: 0|local::at0036|No|
+      gt0012|Physical inactivity: 0|local::at0038|No|
+      gt0013|Obesity parameter: local::at0054|Waist circumference (recommended)|
+      gt0014|Waist circumference: "0|local::at0041|Category 1: <102 cm (men), <88 cm (women) for Southern European, Pacific Islander, or other|"
+  expected_output:
+    1:
+      gt0019|Age (years): 0|local::at0057|25-34|
+      gt0023|AUSDRISK Score: local::at0004|<5 - 5-year Risk of Type 2 DM 1 in 100|
+      gt0025|Total score: 0
+
+- id: Minimum score with BMI
+  input:
+    1:
+      gt0003|Age: 25,a
+      gt0006|Gender: 0|local::at0023|Female|
+      gt0007|Ethnicity: 0|local::at0026|Other|
+      gt0008|Parental history of diabetes: 0|local::at0030|No|
+      gt0009|History of high blood glucose: 0|local::at0032|No|
+      gt0010|Use of antihypertensive medications: 0|local::at0034|No|
+      gt0011|Current smoker: 0|local::at0036|No|
+      gt0012|Physical inactivity: 0|local::at0038|No|
+      gt0013|Obesity parameter: local::at0055|BMI|
+      gt0016|Body Mass Index: 24,kg/m2
+  expected_output:
+    1:
+      gt0019|Age (years): 0|local::at0057|25-34|
+      gt0020|BMI: 0|local::at0043|Normal (<25)|
+      gt0023|AUSDRISK Score: local::at0004|<5 - 5-year Risk of Type 2 DM 1 in 100|
+      gt0025|Total score: 0
+
+- id: Minimum score with both
+  input:
+    1:
+      gt0003|Age: 25,a
+      gt0006|Gender: 0|local::at0023|Female|
+      gt0007|Ethnicity: 0|local::at0026|Other|
+      gt0008|Parental history of diabetes: 0|local::at0030|No|
+      gt0009|History of high blood glucose: 0|local::at0032|No|
+      gt0010|Use of antihypertensive medications: 0|local::at0034|No|
+      gt0011|Current smoker: 0|local::at0036|No|
+      gt0012|Physical inactivity: 0|local::at0038|No|
+      gt0013|Obesity parameter: local::at0056|Both|
+      gt0014|Waist circumference: "0|local::at0041|Category 1: <102 cm (men), <88 cm (women) for Southern European, Pacific Islander, or other|"
+      gt0016|Body Mass Index: 24,kg/m2
+  expected_output:
+    1:
+      gt0019|Age (years): 0|local::at0057|25-34|
+      gt0020|BMI: 0|local::at0043|Normal (<25)|
+      gt0023|AUSDRISK Score: local::at0004|<5 - 5-year Risk of Type 2 DM 1 in 100|
+
+- id: Maximum score with waist circumference
+  input:
+    1:
+      gt0003|Age: 70,a
+      gt0006|Gender: 3|local::at0024|Male|
+      gt0007|Ethnicity: 2|local::at0025|Southern European|
+      gt0008|Parental history of diabetes: 3|local::at0031|Yes|
+      gt0009|History of high blood glucose: 6|local::at0033|Yes|
+      gt0010|Use of antihypertensive medications: 2|local::at0035|Yes|
+      gt0011|Current smoker: 2|local::at0037|Yes|
+      gt0012|Physical inactivity: 2|local::at0039|Yes|
+      gt0013|Obesity parameter: local::at0054|Waist circumference (recommended)|
+      gt0014|Waist circumference: "7|local::at0069|Category 3: >=110 cm (men), >=100 cm (women) for Southern European, Pacific Islander, or other|"
+  expected_output:
+    1:
+      gt0019|Age (years): 8|local::at0022|>=65|
+      gt0023|AUSDRISK Score: local::at0009|>20 - 5-year Risk of Type 2 DM 1 in 3|
+      gt0025|Total score: 35
+      'gt0024|Interpretation ': local::at0012|High risk. Investigate for possible diabetes|
+
+- id: Maximum score with BMI
+  input:
+    1:
+      gt0003|Age: 70,a
+      gt0006|Gender: 3|local::at0024|Male|
+      gt0007|Ethnicity: 2|local::at0025|Southern European|
+      gt0008|Parental history of diabetes: 3|local::at0031|Yes|
+      gt0009|History of high blood glucose: 6|local::at0033|Yes|
+      gt0010|Use of antihypertensive medications: 2|local::at0035|Yes|
+      gt0011|Current smoker: 2|local::at0037|Yes|
+      gt0012|Physical inactivity: 2|local::at0039|Yes|
+      gt0013|Obesity parameter: local::at0055|BMI|
+      gt0016|Body Mass Index: 50,kg/m2
+  expected_output:
+    1:
+      gt0019|Age (years): 8|local::at0022|>=65|
+      gt0020|BMI: 8|local::at0046|Morbidly obese (≥35)|
+      gt0023|AUSDRISK Score: local::at0009|>20 - 5-year Risk of Type 2 DM 1 in 3|
+      gt0025|Total score: 36
+      'gt0024|Interpretation ': local::at0012|High risk. Investigate for possible diabetes|
+
+- id: Maximum score with both
+  input:
+    1:
+      gt0003|Age: 70,a
+      gt0006|Gender: 3|local::at0024|Male|
+      gt0007|Ethnicity: 2|local::at0025|Southern European|
+      gt0008|Parental history of diabetes: 3|local::at0031|Yes|
+      gt0009|History of high blood glucose: 6|local::at0033|Yes|
+      gt0010|Use of antihypertensive medications: 2|local::at0035|Yes|
+      gt0011|Current smoker: 2|local::at0037|Yes|
+      gt0012|Physical inactivity: 2|local::at0039|Yes|
+      gt0013|Obesity parameter: local::at0056|Both|
+      gt0014|Waist circumference: "7|local::at0069|Category 3: >=110 cm (men), >=100 cm (women) for Southern European, Pacific Islander, or other|"
+      gt0016|Body Mass Index: 50,kg/m2
+  expected_output:
+    1:
+      gt0019|Age (years): 8|local::at0022|>=65|
+      gt0020|BMI: 8|local::at0046|Morbidly obese (≥35)|
+      gt0023|AUSDRISK Score: local::at0009|>20 - 5-year Risk of Type 2 DM 1 in 3|
+      gt0025|Total score: 43
+      'gt0024|Interpretation ': local::at0012|High risk. Investigate for possible diabetes|
+
+- id: Testing edge values 1
+  input:
+    1:
+      gt0003|Age: 55,a
+      gt0006|Gender: 3|local::at0024|Male|
+      gt0007|Ethnicity: 2|local::at0025|Southern European|
+      gt0008|Parental history of diabetes: 3|local::at0031|Yes|
+      gt0009|History of high blood glucose: 6|local::at0033|Yes|
+      gt0010|Use of antihypertensive medications: 2|local::at0035|Yes|
+      gt0011|Current smoker: 2|local::at0037|Yes|
+      gt0012|Physical inactivity: 2|local::at0039|Yes|
+      gt0013|Obesity parameter: local::at0056|Both|
+      gt0014|Waist circumference: "7|local::at0069|Category 3: >=110 cm (men), >=100 cm (women) for Southern European, Pacific Islander, or other|"
+      gt0016|Body Mass Index: 25,kg/m2
+  expected_output:
+    1:
+      gt0019|Age (years): 6|local::at0021|55-64|
+      gt0020|BMI: 3|local::at0044|Overweight (25 to less than 30)|
+      gt0023|AUSDRISK Score: local::at0009|>20 - 5-year Risk of Type 2 DM 1 in 3|
+      gt0025|Total score: 36
+      'gt0024|Interpretation ': local::at0012|High risk. Investigate for possible diabetes|
+
+- id: Testing edge values 2
+  input:
+  input:
+    1:
+      gt0003|Age: 34,a
+      gt0006|Gender: 3|local::at0024|Male|
+      gt0007|Ethnicity: 2|local::at0025|Southern European|
+      gt0008|Parental history of diabetes: 3|local::at0031|Yes|
+      gt0009|History of high blood glucose: 6|local::at0033|Yes|
+      gt0010|Use of antihypertensive medications: 2|local::at0035|Yes|
+      gt0011|Current smoker: 2|local::at0037|Yes|
+      gt0012|Physical inactivity: 2|local::at0039|Yes|
+      gt0013|Obesity parameter: local::at0055|BMI|
+      gt0016|Body Mass Index: 30,kg/m2
+  expected_output:
+    1:
+      gt0019|Age (years): 0|local::at0057|25-34|
+      gt0020|BMI: 6|local::at0045|Obese (30 to less than 35)|
+      gt0023|AUSDRISK Score: local::at0009|>20 - 5-year Risk of Type 2 DM 1 in 3|
+      gt0025|Total score: 26
+      'gt0024|Interpretation ': local::at0012|High risk. Investigate for possible diabetes|

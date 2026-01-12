@@ -1,0 +1,62 @@
+guidelines:
+  1: EDACS-ADP.v1
+test_cases:
+- id: low_risk
+  input:
+    1:
+      gt0008|Was there new ischemia on ECG?: 0|local::at0044|No|
+      gt0009|Was both 0hr and 2hr troponin negative?: 0|local::at0040|Both 0hr and 2hr Troponin was negative|
+      gt0010|Total score: 0
+  expected_output:
+    1:
+      gt0011|Cohort Risk Level: 0|local::at0003|Low Risk|
+      gt0013|Management: 0|local::at0009|For low-risk patients - consider other causes of chest pain due to aortic, esophageal, pulmonary, cardiac, and abdominal, and muskuloskeletal sources prior to discharge.|
+      gt0012|Recommendation: 0|local::at0006|Recommendation - safe for discharge to early outpatient follow-up investigation (or proceed to earlier inpatient testing).|
+
+- id: not_low_risk(ischemia)
+  input:
+    1:
+      gt0008|Was there new ischemia on ECG?: 1|local::at0045|Yes|
+      gt0009|Was both 0hr and 2hr troponin negative?: 0|local::at0040|Both 0hr and 2hr Troponin was negative|
+      gt0010|Total score: 0
+  expected_output:
+    1:
+      gt0011|Cohort Risk Level: 1|local::at0004|Not Low Risk|
+      gt0013|Management: 1|local::at0010|For non-low-risk patients - Treat as per usual chest pain protocols, including but not limited to consideration of aspirin, nitroglycerin, and serial EKGs and biomarkers at minimum.|
+      gt0012|Recommendation: 1|local::at0007|Recommendation - Proceed with usual care with further observation and delayed troponin.|
+
+- id: not_low_risk(troponin)
+  input:
+    1:
+      gt0008|Was there new ischemia on ECG?: 0|local::at0044|No|
+      gt0009|Was both 0hr and 2hr troponin negative?: 1|local::at0041|Either 0hr or 2hr Troponin was positive|
+      gt0010|Total score: 0
+  expected_output:
+    1:
+      gt0011|Cohort Risk Level: 1|local::at0004|Not Low Risk|
+      gt0013|Management: 1|local::at0010|For non-low-risk patients - Treat as per usual chest pain protocols, including but not limited to consideration of aspirin, nitroglycerin, and serial EKGs and biomarkers at minimum.|
+      gt0012|Recommendation: 1|local::at0007|Recommendation - Proceed with usual care with further observation and delayed troponin.|
+
+- id: not_low_risk(total_score>=16)
+  input:
+    1:
+      gt0008|Was there new ischemia on ECG?: 0|local::at0044|No|
+      gt0009|Was both 0hr and 2hr troponin negative?: 0|local::at0040|Both 0hr and 2hr Troponin was negative|
+      gt0010|Total score: 16
+  expected_output:
+    1:
+      gt0011|Cohort Risk Level: 1|local::at0004|Not Low Risk|
+      gt0013|Management: 1|local::at0010|For non-low-risk patients - Treat as per usual chest pain protocols, including but not limited to consideration of aspirin, nitroglycerin, and serial EKGs and biomarkers at minimum.|
+      gt0012|Recommendation: 1|local::at0007|Recommendation - Proceed with usual care with further observation and delayed troponin.|
+
+- id: not_low_risk(all_indicators)
+  input:
+    1:
+      gt0008|Was there new ischemia on ECG?: 1|local::at0045|Yes|
+      gt0009|Was both 0hr and 2hr troponin negative?: 1|local::at0041|Either 0hr or 2hr Troponin was positive|
+      gt0010|Total score: 16
+  expected_output:
+    1:
+      gt0011|Cohort Risk Level: 1|local::at0004|Not Low Risk|
+      gt0013|Management: 1|local::at0010|For non-low-risk patients - Treat as per usual chest pain protocols, including but not limited to consideration of aspirin, nitroglycerin, and serial EKGs and biomarkers at minimum.|
+      gt0012|Recommendation: 1|local::at0007|Recommendation - Proceed with usual care with further observation and delayed troponin.|

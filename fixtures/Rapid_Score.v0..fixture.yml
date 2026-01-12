@@ -1,0 +1,47 @@
+guidelines:
+  1: Rapid_Score.v0
+test_cases:
+- id: case_1 High Risk Rule
+  input:
+    1:
+      gt0003|Serum Urea: 1|local::at0024|5 - 8 mmol/l  or  14 - 23 mg/dl|
+      gt0004|Age: 1|local::at0012|50 - 70 years|
+      gt0005|Purulent pleural fluid: 1|local::at0015|Yes|
+      gt0006|Infection source: 1|local::at0017|Hospital acquired|
+      gt0007|Serum Albumin: 1|local::at0027|< 27 g/l|
+  expected_output:
+    1:
+      gt0009|Total Score: 5
+      gt0011|Risk Assessment: 2|local::at0007|High risk|
+      gt0012|3 month mortality: 2|local::at0010|47.8%|
+
+
+- id: case_2 Medium Risk Rule
+  input:
+    1:
+      gt0003|Serum Urea: 0|local::at0023|< 5 mmol/l   or  < 14 mg/dl|
+      gt0004|Age: 1|local::at0012|50 - 70 years|
+      gt0005|Purulent pleural fluid: 1|local::at0015|Yes|
+      gt0006|Infection source: 1|local::at0017|Hospital acquired|
+      gt0007|Serum Albumin: 0|local::at0026|> 27 g/l|
+  expected_output:
+    1:
+      gt0009|Total Score: 3
+      gt0011|Risk Assessment: 1|local::at0005|Medium risk|
+      gt0012|3 month mortality: 1|local::at0009|17.8%|
+
+
+- id: case_3 Low Risk Rule
+  input:
+    1:
+      gt0003|Serum Urea: 0|local::at0023|< 5 mmol/l   or  < 14 mg/dl|
+      gt0004|Age: 0|local::at0011|< 50 years|
+      gt0005|Purulent pleural fluid: 1|local::at0015|Yes|
+      gt0006|Infection source: 1|local::at0017|Hospital acquired|
+      gt0007|Serum Albumin: 0|local::at0026|> 27 g/l|
+  expected_output:
+    1:
+      gt0009|Total Score: 2
+      gt0011|Risk Assessment: 0|local::at0004|Low risk|
+      gt0012|3 month mortality: 0|local::at0008|1.5%|
+

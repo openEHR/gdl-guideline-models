@@ -1,0 +1,62 @@
+guidelines:
+  1: HOSPITAL_score_readmission_risk.v1
+test_cases:
+- id: case_low risk, score 4
+  input:
+    1:
+      gt0003|Hemoglobin level at discharge < 12g/dL: 1|local::at0003|Yes|
+      gt0004|Discharge from an Oncology service: 1|local::at0006|Yes|
+      gt0005|Sodium level at discharge < 135 mmol/L: 1|local::at0009|Yes|
+      gt0006|Procedure during hospital stay (any ICD-9 coded procedure): 0|local::at0013|No|
+      gt0007|Index of admission type: 1|local::at0015|Urgent or emergent|
+      gt0008|Number of hospital admission(s) during the previous year: 0|local::at0018|0-1|
+      gt0009| Length of stay ≥ 5 days: 0|local::at0022|No|
+  expected_output:
+    1:
+      gt0013|Risk of 30-day Potentially Avoidable Readmissions: local::at0025|Low|
+      gt0011|Total score: 4
+
+- id: case_intermediate risk, score 5
+  input:
+    1:
+      gt0003|Hemoglobin level at discharge < 12g/dL: 1|local::at0003|Yes|
+      gt0004|Discharge from an Oncology service: 1|local::at0006|Yes|
+      gt0005|Sodium level at discharge < 135 mmol/L: 1|local::at0009|Yes|
+      gt0006|Procedure during hospital stay (any ICD-9 coded procedure): 0|local::at0013|No|
+      gt0007|Index of admission type: 0|local::at0016|Elective|
+      gt0008|Number of hospital admission(s) during the previous year: 2|local::at0019|2-5|
+      gt0009| Length of stay ≥ 5 days: 0|local::at0022|No|
+  expected_output:
+    1:
+      gt0013|Risk of 30-day Potentially Avoidable Readmissions: local::at0026|Intermediate|
+      gt0011|Total score: 5
+
+- id: case_high risk, score 7
+  input:
+    1:
+      gt0003|Hemoglobin level at discharge < 12g/dL: 1|local::at0003|Yes|
+      gt0004|Discharge from an Oncology service: 1|local::at0006|Yes|
+      gt0005|Sodium level at discharge < 135 mmol/L: 1|local::at0009|Yes|
+      gt0006|Procedure during hospital stay (any ICD-9 coded procedure): 0|local::at0013|No|
+      gt0007|Index of admission type: 0|local::at0016|Elective|
+      gt0008|Number of hospital admission(s) during the previous year: 2|local::at0019|2-5|
+      gt0009| Length of stay ≥ 5 days: 2|local::at0023|Yes|
+  expected_output:
+    1:
+      gt0013|Risk of 30-day Potentially Avoidable Readmissions: local::at0027|High|
+      gt0011|Total score: 7
+
+- id: case_maximum score, 13 points
+  input:
+    1:
+      gt0003|Hemoglobin level at discharge < 12g/dL: 1|local::at0003|Yes|
+      gt0004|Discharge from an Oncology service: 2|local::at0006|Yes|
+      gt0005|Sodium level at discharge < 135 mmol/L: 1|local::at0009|Yes|
+      gt0006|Procedure during hospital stay (any ICD-9 coded procedure): 1|local::at0012|Yes|
+      gt0007|Index of admission type: 1|local::at0015|Urgent or emergent|
+      gt0008|Number of hospital admission(s) during the previous year: 5|local::at0020|>5|
+      gt0009| Length of stay ≥ 5 days: 2|local::at0023|Yes|
+  expected_output:
+    1:
+      gt0013|Risk of 30-day Potentially Avoidable Readmissions: local::at0027|High|
+      gt0011|Total score: 13

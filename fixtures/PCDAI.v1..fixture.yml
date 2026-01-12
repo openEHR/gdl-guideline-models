@@ -1,0 +1,108 @@
+current_datetime: '2019-11-28T00:00:00+01:00'
+guidelines:
+  1: PCDAI.v1
+test_cases:
+- id: case_1:Total score 7.5
+  input:
+    1:
+      gt0016|Abdominal pain: 0|local::at0022|None|
+      gt0017|Stools per day: 0|local::at0025|0–1 liquid stools, no blood|
+      gt0018|General well-being: 0|local::at0028|Well (no limitation of activities)|
+      gt0020|Height at diagnosis (or follow up) score: 0|local::at0034|At diagnosis <1 channel decrease OR at follow-up Height velocity ≥-1SD|
+      gt0021|Abdomen: 0|local::at0037|No tenderness, no mass|
+      gt0022|Peri-rectal disease: 0|local::at0040|None or asymptomatic tags|
+      gt0023|Extra-intestinal manifestations: 0|local::at0043|None|
+      gt0040|Weight score: 0|local::at0031|Weight gain, weight voluntarily stable, or voluntary weight loss|
+      gt0025|Serum albumin: 4,gm/dl
+      gt0028|Packed cell volume (PCV): 33,%
+      gt0029|Erythrocyte sedimentation rate (ESR): 20,mm/h
+      gt0056|Gender: local::at0006|Female|
+      gt0057|Birthdate: 2000-08-01T11:30+02:00[Europe/Stockholm]
+  expected_output:
+    1:
+      gt0015|Total Score: 7.50
+      gt0012|2x HCT score: 5|local::at0048|28-36% depending on age and sex|
+      gt0014|Albumin score: 0|local::at0053|≥3.5 (35)|
+      gt0013|ESR score: 5|local::at0051|20-50|
+      gt0058|Age: 19,a
+      gt0055|Gender: local::at0006|Female|
+      gt0060|Score interpretation: 0|local::at0003|Remission|
+
+- id: case_2:Total score 17.5
+  input:
+    1:
+      gt0016|Abdominal pain: 0|local::at0022|None|
+      gt0017|Stools per day: 0|local::at0025|0–1 liquid stools, no blood|
+      gt0018|General well-being: 0|local::at0028|Well (no limitation of activities)|
+      gt0020|Height at diagnosis (or follow up) score: 0|local::at0034|At diagnosis <1 channel decrease OR at follow-up Height velocity ≥-1SD|
+      gt0021|Abdomen: 0|local::at0037|No tenderness, no mass|
+      gt0022|Peri-rectal disease: 0|local::at0040|None or asymptomatic tags|
+      gt0023|Extra-intestinal manifestations: 0|local::at0043|None|
+      gt0040|Weight score: 0|local::at0031|Weight gain, weight voluntarily stable, or voluntary weight loss|
+      gt0025|Serum albumin: 3,gm/dl
+      gt0028|Packed cell volume (PCV): 32,%
+      gt0029|Erythrocyte sedimentation rate (ESR): 30,mm/h
+      gt0056|Gender: local::at0006|Female|
+      gt0057|Birthdate: 2000-08-01T11:30+02:00[Europe/Stockholm]
+  expected_output:
+    1:
+      gt0015|Total Score: 17.50
+      gt0012|2x HCT score: 5|local::at0048|28-36% depending on age and sex|
+      gt0014|Albumin score: 10|local::at0055|≤3.0 (30)|
+      gt0013|ESR score: 5|local::at0051|20-50|
+      gt0058|Age: 19,a
+      gt0055|Gender: local::at0006|Female|
+      gt0060|Score interpretation: 1|local::at0004|Mild Crohn’s Disease|
+
+
+- id: case_3:Total score 25
+  input:
+    1:
+      gt0016|Abdominal pain: 0|local::at0022|None|
+      gt0017|Stools per day: 0|local::at0025|0–1 liquid stools, no blood|
+      gt0018|General well-being: 0|local::at0028|Well (no limitation of activities)|
+      gt0020|Height at diagnosis (or follow up) score: 0|local::at0034|At diagnosis <1 channel decrease OR at follow-up Height velocity ≥-1SD|
+      gt0021|Abdomen: 0|local::at0037|No tenderness, no mass|
+      gt0022|Peri-rectal disease: 0|local::at0040|None or asymptomatic tags|
+      gt0023|Extra-intestinal manifestations: 0|local::at0043|None|
+      gt0040|Weight score: 0|local::at0031|Weight gain, weight voluntarily stable, or voluntary weight loss|
+      gt0025|Serum albumin: 3,gm/dl
+      gt0028|Packed cell volume (PCV): 28,%
+      gt0029|Erythrocyte sedimentation rate (ESR): 51,mm/h
+      gt0056|Gender: local::at0006|Female|
+      gt0057|Birthdate: 2000-08-01T11:30+02:00[Europe/Stockholm]
+  expected_output:
+    1:
+      gt0015|Total Score: 25.00
+      gt0012|2x HCT score: 10|local::at0049|<32% depending on age and sex|
+      gt0014|Albumin score: 10|local::at0055|≤3.0 (30)|
+      gt0013|ESR score: 10|local::at0052|> 50|
+      gt0058|Age: 19,a
+      gt0055|Gender: local::at0006|Female|
+      gt0060|Score interpretation: 1|local::at0004|Mild Crohn’s Disease|
+
+- id: case_4:Total score 97.5
+  input:
+    1:
+      gt0016|Abdominal pain: 10|local::at0024|Moderate to severe (daily, longer lasting, affects activities, or nocturnal pain)|
+      gt0017|Stools per day: 10|local::at0027|Gross bleeding or ≥6 liquid stools, or nocturnal diarrhea|
+      gt0018|General well-being: 10|local::at0030|Very poor (frequent limitation of activity)|
+      gt0020|Height at diagnosis (or follow up) score: 10|local::at0036|At diagnosis ≥2 channel decrease OR at follow-up Height velocity ≤-2SD|
+      gt0021|Abdomen: 10|local::at0039|Tenderness, involuntary guarding, or definite mass|
+      gt0022|Peri-rectal disease: 10|local::at0042|Active fistula, drainage, tenderness, or abscess|
+      gt0023|Extra-intestinal manifestations: 10|local::at0045|≥2|
+      gt0040|Weight score: 10|local::at0033|Weight loss ≥10%|
+      gt0025|Serum albumin: 3,gm/dl
+      gt0028|Packed cell volume (PCV): 32,%
+      gt0029|Erythrocyte sedimentation rate (ESR): 30,mm/h
+      gt0056|Gender: local::at0006|Female|
+      gt0057|Birthdate: 2000-08-01T11:30+02:00[Europe/Stockholm]
+  expected_output:
+    1:
+      gt0015|Total Score: 97.50
+      gt0012|2x HCT score: 5|local::at0048|28-36% depending on age and sex|
+      gt0014|Albumin score: 10|local::at0055|≤3.0 (30)|
+      gt0013|ESR score: 5|local::at0051|20-50|
+      gt0058|Age: 19,a
+      gt0055|Gender: local::at0006|Female|
+      gt0060|Score interpretation: 3|local::at0006|Severe Crohn’s Disease |

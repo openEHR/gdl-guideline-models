@@ -1,0 +1,150 @@
+guidelines:
+  1: CDAI.v1
+test_cases:
+- id: TJC(0)-SJC(0)-PtGDA(0)-PrGDA(0)
+  input:
+    1:
+      gt0003|Tender joint count (TJC): 0
+      gt0004|Swollen joint count (SJC): 0
+      gt0006|PtGDA score: 0,cm
+      'gt0008|PrGDA score ': 0,cm
+  expected_output:
+    1:
+      gt0017|Clinical disease activity index (CDAI) score: 0.00
+      gt0019|Disease activity: local::at0004|Remission|
+
+- id: TJC(2.0)-SJC(0)-PtGDA(0)-PrGDA(0)
+  input:
+    1:
+      gt0003|Tender joint count (TJC): 2.0
+      gt0004|Swollen joint count (SJC): 0
+      gt0006|PtGDA score: 0,cm
+      'gt0008|PrGDA score ': 0,cm
+  expected_output:
+    1:
+      gt0017|Clinical disease activity index (CDAI) score: 2.00
+      gt0019|Disease activity: local::at0004|Remission|
+
+- id: TJC(2.0)-SJC(2)-PtGDA(0)-PrGDA(0)
+  input:
+    1:
+      gt0003|Tender joint count (TJC): 2.0
+      gt0004|Swollen joint count (SJC): 2
+      gt0006|PtGDA score: 0,cm
+      'gt0008|PrGDA score ': 0,cm
+  expected_output:
+    1:
+      gt0017|Clinical disease activity index (CDAI) score: 4.00
+      gt0019|Disease activity: local::at0005|Low activity|
+
+- id: TJC(2.0)-SJC(2)-PtGDA(2)-PrGDA(0)
+  input:
+    1:
+      gt0003|Tender joint count (TJC): 2.0
+      gt0004|Swollen joint count (SJC): 2
+      gt0006|PtGDA score: 2,cm
+      'gt0008|PrGDA score ': 0,cm
+  expected_output:
+    1:
+      gt0017|Clinical disease activity index (CDAI) score: 6.00
+      gt0019|Disease activity: local::at0005|Low activity|
+
+- id: TJC(2.0)-SJC(2)-PtGDA(2)-PrGDA(2)
+  input:
+    1:
+      gt0003|Tender joint count (TJC): 2.0
+      gt0004|Swollen joint count (SJC): 2
+      gt0006|PtGDA score: 2,cm
+      'gt0008|PrGDA score ': 2,cm
+  expected_output:
+    1:
+      gt0017|Clinical disease activity index (CDAI) score: 8.00
+      gt0019|Disease activity: local::at0005|Low activity|
+
+
+- id: TJC(0)-SJC(2)-PtGDA(2)-PrGDA(2)
+  input:
+    1:
+      gt0003|Tender joint count (TJC): 0
+      gt0004|Swollen joint count (SJC): 2
+      gt0006|PtGDA score: 2,cm
+      'gt0008|PrGDA score ': 2,cm
+  expected_output:
+    1:
+      gt0017|Clinical disease activity index (CDAI) score: 6.00
+      gt0019|Disease activity: local::at0005|Low activity|
+
+- id: TJC(0)-SJC(0)-PtGDA(2)-PrGDA(2)
+  input:
+    1:
+      gt0003|Tender joint count (TJC): 0
+      gt0004|Swollen joint count (SJC): 0
+      gt0006|PtGDA score: 2,cm
+      'gt0008|PrGDA score ': 2,cm
+  expected_output:
+    1:
+      gt0017|Clinical disease activity index (CDAI) score: 4.00
+      gt0019|Disease activity: local::at0005|Low activity|
+
+- id: TJC(0)-SJC(0)-PtGDA(0)-PrGDA(2)
+  input:
+    1:
+      gt0003|Tender joint count (TJC): 0
+      gt0004|Swollen joint count (SJC): 0
+      gt0006|PtGDA score: 0,cm
+      'gt0008|PrGDA score ': 2,cm
+  expected_output:
+    1:
+      gt0017|Clinical disease activity index (CDAI) score: 2.00
+      gt0019|Disease activity: local::at0004|Remission|
+
+- id: TJC(0)-SJC(0)-PtGDA(1)-PrGDA(1)
+  input:
+    1:
+      gt0003|Tender joint count (TJC): 0
+      gt0004|Swollen joint count (SJC): 0
+      gt0006|PtGDA score: 1,cm
+      'gt0008|PrGDA score ': 1,cm
+  expected_output:
+    1:
+      gt0017|Clinical disease activity index (CDAI) score: 2.00
+      gt0019|Disease activity: local::at0004|Remission|
+
+
+- id: TJC(1.0)-SJC(1)-PtGDA(0)-PrGDA(0)
+  input:
+    1:
+      gt0003|Tender joint count (TJC): 1.0
+      gt0004|Swollen joint count (SJC): 1
+      gt0006|PtGDA score: 0,cm
+      'gt0008|PrGDA score ': 0,cm
+  expected_output:
+    1:
+      gt0017|Clinical disease activity index (CDAI) score: 2.00
+      gt0019|Disease activity: local::at0004|Remission|
+
+
+- id: TJC(1.0)-SJC(0)-PtGDA(1)-PrGDA(0)
+  input:
+    1:
+      gt0003|Tender joint count (TJC): 1.0
+      gt0004|Swollen joint count (SJC): 0
+      gt0006|PtGDA score: 1,cm
+      'gt0008|PrGDA score ': 0,cm
+  expected_output:
+    1:
+      gt0017|Clinical disease activity index (CDAI) score: 2.00
+      gt0019|Disease activity: local::at0004|Remission|
+
+
+- id: TJC(0)-SJC(1)-PtGDA(0)-PrGDA(1)
+  input:
+    1:
+      gt0003|Tender joint count (TJC): 0
+      gt0004|Swollen joint count (SJC): 1
+      gt0006|PtGDA score: 0,cm
+      'gt0008|PrGDA score ': 1,cm
+  expected_output:
+    1:
+      gt0017|Clinical disease activity index (CDAI) score: 2.00
+      gt0019|Disease activity: local::at0004|Remission|

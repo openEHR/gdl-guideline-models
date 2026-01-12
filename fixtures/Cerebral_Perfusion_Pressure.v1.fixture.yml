@@ -1,0 +1,105 @@
+guidelines:
+  1: Cerebral_Perfusion_Pressure.v1
+test_cases:
+- id: Default
+  input: {}
+  expected_output: {}
+
+- id: Set CPP to Low CPP (<60 mmHg)
+  input:
+    1:
+      gt0004|Mean arterial pressure: 40,mm[Hg]
+      gt0009|ICP: 4,mm[Hg]
+  expected_output:
+    1:
+      gt0018|Comment: Low CPP. Consider interventions to increase MAP or decrease ICP.
+      gt0006|CPP: 36,mm[Hg]  
+
+- id: Set CPP to Normal CPP (60–70 mmHg)
+  input:
+    1:
+      gt0004|Mean arterial pressure: 65,mm[Hg]
+      gt0009|ICP: 5,mm[Hg]
+  expected_output:
+    1:
+      gt0018|Comment: Within normal limits. Likely adequate perfusion.
+      gt0006|CPP: 60,mm[Hg]
+
+- id: Set CPP to High CPP (>70)
+  input:
+    1:
+      gt0004|Mean arterial pressure: 85,mm[Hg]
+      gt0009|ICP: 5,mm[Hg]
+  expected_output:
+    1:
+      gt0018|Comment: High CPP. Consider weaning pressors if MAP is adequate.
+      gt0006|CPP: 80,mm[Hg]
+
+- id: Warning- Too high MAP
+  input:
+    1:
+      gt0004|Mean arterial pressure: 211,mm[Hg]
+      gt0009|ICP: 5,mm[Hg]
+  expected_output:
+    1:
+      gt0022|MAP Warning: Too high MAP; please change to proceed.
+
+- id: Warning- Very high MAP
+  input:
+    1:
+      gt0004|Mean arterial pressure: 181,mm[Hg]
+      gt0009|ICP: 4,mm[Hg]
+  expected_output:
+    1:
+      gt0018|Comment: High CPP. Consider weaning pressors if MAP is adequate.
+      gt0006|CPP: 177,mm[Hg]
+      gt0022|MAP Warning: Very high MAP; double-check.
+
+- id: Warning- Very low MAP
+  input:
+    1:
+      gt0004|Mean arterial pressure: 39,mm[Hg]
+      gt0009|ICP: 5,mm[Hg]
+  expected_output:
+    1:
+      gt0018|Comment: Low CPP. Consider interventions to increase MAP or decrease ICP.
+      gt0006|CPP: 34,mm[Hg]
+      gt0022|MAP Warning: Very low MAP; double-check.
+
+- id: Warning- Too low MAP
+  input:
+    1:
+      gt0004|Mean arterial pressure: -1,mm[Hg]
+      gt0009|ICP: 5,mm[Hg]
+  expected_output:
+    1:
+      gt0022|MAP Warning: Too low MAP; please change to proceed.
+
+- id: Warning- Too high ICP
+  input:
+    1:
+      gt0004|Mean arterial pressure: 75,mm[Hg]
+      gt0009|ICP: 51,mm[Hg]
+  expected_output:
+    1:
+      gt0011|ICP Warning: Too high ICP; please change to proceed.
+
+- id: Warning- Very high ICP
+  input:
+    1:
+      gt0004|Mean arterial pressure: 75,mm[Hg]
+      gt0009|ICP: 49,mm[Hg]
+  expected_output:
+    1:
+      gt0018|Comment: Low CPP. Consider interventions to increase MAP or decrease ICP.
+      gt0006|CPP: 26,mm[Hg]
+      gt0011|ICP Warning: Very high ICP; double-check.
+
+- id: Warning- Too low ICP
+  input:
+    1:
+      gt0004|Mean arterial pressure: 75,mm[Hg]
+      gt0009|ICP: -1,mm[Hg]
+  expected_output:
+    1:
+      gt0011|ICP Warning: Too low ICP; please change to proceed.

@@ -1,0 +1,113 @@
+guidelines:
+  1: American_diabetes_association_ADA_risk_calculator.v0
+test_cases:
+- id: Minimum points
+  input:
+     1:
+      gt0003|Age: 24,a
+      gt0039|Gender: local::at0006|Female|
+      gt0006|Previous gestational diabetes(if female): 0|local::at0021|No|
+      gt0007|1st degree relative with diabetes: 0|local::at0015|No|
+      gt0008|Hypertension: 0|local::at0027|No|
+      gt0009|Physically active: 0|local::at0017|Yes|
+      gt0011|Body Mass Index: 24,kg/m2
+  expected_output:
+    1:
+      gt0040|Gender value: 0|local::at0019|Female|
+      gt0015|Total score: 0
+      gt0014|BMI: 0|local::at0023|<25|
+      gt0013|Age,years: 0|local::at0036|<=40|
+      gt0016|Score assessment: local::at0014|Score <5 - No need for formal diabetes screening|
+
+- id: Age and BMI edge values 1
+  input:
+     1:
+      gt0003|Age: 40,a
+      gt0039|Gender: local::at0006|Female|
+      gt0006|Previous gestational diabetes(if female): 0|local::at0021|No|
+      gt0007|1st degree relative with diabetes: 0|local::at0015|No|
+      gt0008|Hypertension: 0|local::at0027|No|
+      gt0009|Physically active: 0|local::at0017|Yes|
+      gt0011|Body Mass Index: 25,kg/m2
+  expected_output:
+    1:
+      gt0040|Gender value: 0|local::at0019|Female|
+      gt0015|Total score: 2
+      gt0014|BMI: 1|local::at0024|25-30|
+      gt0013|Age,years: 1|local::at0037|40-49|
+      gt0016|Score assessment: local::at0014|Score <5 - No need for formal diabetes screening|
+
+- id: Age and BMI edge values 2
+  input:
+    1:
+      gt0003|Age: 50,a
+      gt0039|Gender: local::at0006|Female|
+      gt0006|Previous gestational diabetes(if female): 0|local::at0021|No|
+      gt0007|1st degree relative with diabetes: 0|local::at0015|No|
+      gt0008|Hypertension: 0|local::at0027|No|
+      gt0009|Physically active: 0|local::at0017|Yes|
+      gt0011|Body Mass Index: 30,kg/m2
+  expected_output:
+    1:
+      gt0040|Gender value: 0|local::at0019|Female|
+      gt0015|Total score: 4
+      gt0014|BMI: 2|local::at0025|30-40|
+      gt0013|Age,years: 2|local::at0038|50-59|
+      gt0016|Score assessment: local::at0014|Score <5 - No need for formal diabetes screening|
+
+- id: Age and BMI edge values 3
+  input:
+    1:
+      gt0003|Age: 60,a
+      gt0039|Gender: local::at0006|Female|
+      gt0006|Previous gestational diabetes(if female): 0|local::at0021|No|
+      gt0007|1st degree relative with diabetes: 0|local::at0015|No|
+      gt0008|Hypertension: 0|local::at0027|No|
+      gt0009|Physically active: 0|local::at0017|Yes|
+      gt0011|Body Mass Index: 40,kg/m2
+  expected_output:
+    1:
+      gt0040|Gender value: 0|local::at0019|Female|
+      gt0015|Total score: 6
+      gt0014|BMI: 3|local::at0026|>=40|
+      gt0013|Age,years: 3|local::at0039|>=60|
+      gt0016|Score assessment: local::at0013|Score ≥5 - Formal screening for diabetes recommended|
+
+- id: Male and gestational diabetes doesn't affect it and maximum points
+  input:
+    1:
+      gt0003|Age: 60,a
+      gt0039|Gender: local::at0005|Male|
+      gt0006|Previous gestational diabetes(if female): 1|local::at0022|Yes|
+      gt0007|1st degree relative with diabetes: 1|local::at0016|Yes|
+      gt0008|Hypertension: 1|local::at0028|Yes|
+      gt0009|Physically active: 1|local::at0018|No|
+      gt0011|Body Mass Index: 40,kg/m2
+  expected_output:
+    1:
+      gt0040|Gender value: 1|local::at0020|Male|
+      gt0015|Total score: 10
+      gt0014|BMI: 3|local::at0026|>=40|
+      gt0013|Age,years: 3|local::at0039|>=60|
+      gt0016|Score assessment: local::at0013|Score ≥5 - Formal screening for diabetes recommended|
+
+- id: female and gestational diabetes
+  input:
+    1:
+      gt0003|Age: 60,a
+      gt0039|Gender: local::at0006|Female|
+      gt0006|Previous gestational diabetes(if female): 1|local::at0022|Yes|
+      gt0007|1st degree relative with diabetes: 1|local::at0016|Yes|
+      gt0008|Hypertension: 1|local::at0028|Yes|
+      gt0009|Physically active: 1|local::at0018|No|
+      gt0011|Body Mass Index: 40,kg/m2
+  expected_output:
+    1:
+      gt0040|Gender value: 0|local::at0019|Female|
+      gt0015|Total score: 10
+      gt0014|BMI: 3|local::at0026|>=40|
+      gt0013|Age,years: 3|local::at0039|>=60|
+      gt0016|Score assessment: local::at0013|Score ≥5 - Formal screening for diabetes recommended|
+
+
+    

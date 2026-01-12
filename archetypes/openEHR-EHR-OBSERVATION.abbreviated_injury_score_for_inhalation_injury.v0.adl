@@ -1,0 +1,138 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.abbreviated_injury_score_for_inhalation_injury.v0
+
+concept
+	[at0000]	-- Abbreviated injury score for inhalation injury
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Jack Msonkho">
+		["email"] = <" models@cambiocds.com">
+		["organisation"] = <"Cambio CDS">
+		["date"] = <"2020-04-27">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Used to store the evaluation of Abbreviated injury score (AIS) for inhalation injury the observation. The abbreviated Injury Score (AIS) for Inhalation Injury classifies inhalation injury severity based on bronchoscopic findings and evaluate the in-Hospital survival percentage based on bronchoscopic findings.">
+			use = <"Use in adult patients with suspected inhalation injury undergoing flexible bronchoscopy.
+
+Of note, a multicenter prospective cohort study by the American Burn Association is currently underway to develop and validate a scoring system for inhalation injury based on clinical, radiographic, bronchoscopic, and biochemical parameters.
+
+Formula
+
+Features	                                                                                                                                                                                             Grade	Description
+No carbonaceous deposits, erythema, edema, bronchorrhea, or obstruction	                                                                0	        No injury
+Minor or patchy areas of erythema, carbonaceous deposits, bronchorrhea, or bronchial obstruction present	        1	        Mild injury
+Moderate erythema, carbonaceous deposits, bronchorrhea, or bronchial obstruction present	                                              2	        Moderate injury
+Severe inflammation with friability, copious carbonaceous deposits, bronchorrhea, or obstruction present	                           3	        Severe injury
+Mucosal sloughing, necrosis, or endoluminal obstruction present	                                                                                   4	        Massive injury
+">
+			keywords = <"Inhalation", "Injury">
+			misuse = <"Note:
+
+Some studies have found a non-statistically significant trend towards worse outcomes with higher AIS.
+AIS severity has not been consistently associated with mortality (Sheridan 2016).
+Cannot reliably predict need for high fluid resuscitation requirements.
+A typical flexible bronchoscope is on average 5 mm in diameter. Hence, bronchoscopy can only identify proximal airway changes and not the narrower distal and peripheral airway changes. Thus, bronchoscopic findings cannot be fully relied upon to accurately reflect the overall severity of airway inhalation injury.">
+			copyright = <"@Cambio CDS">
+		>
+	>
+	lifecycle_state = <"Initial">
+	other_contributors = <"Daniel Keszthelyi", ...>
+	other_details = <
+		["references"] = <"Endorf FW, Gamelli RL. Inhalation injury, pulmonary perturbations, and fluid resuscitation. J Burn Care Res. 2007;28(1):80-3.  
+
+Validation:
+
+Albright JM, Davis CS, Bird MD, et al. The acute pulmonary inflammatory response to the graded severity of smoke inhalation injury. Crit Care Med. 2012;40(4):1113-21.
+
+Mosier MJ, Pham TN, Park DR, Simmons J, Klein MB, Gibran NS. Predictive value of bronchoscopy in assessing the severity of inhalation injury. J Burn Care Res. 2012;33(1):65-73.">
+		["MD5-CAM-1.0.1"] = <"22F8949844879943F2B89D1C41969FE8">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Abbreviated injury score for inhalation injury
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Bronchoscopic findings
+										value matches {
+											0|[local::at0005], 	-- No carbonaceous deposits, erythema, edema, bronchorrhea
+											1|[local::at0006], 	-- Minor or patchy areas of erythema, carbonaceous deposits, bronchorrhea
+											2|[local::at0007], 	-- Moderate erythema, carbonaceous deposits, bronchorrhea, or bronchial obstruction
+											3|[local::at0008], 	-- Severe inflammation with friability, copious carbonaceous deposits, bronchorrhea,
+											4|[local::at0009]  	-- Mucosal sloughing, necrosis, or endoluminal obstruction present
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {	-- Grade
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Abbreviated injury score for inhalation injury">
+					description = <"Abbreviated Injury Score (AIS) for Inhalation Injury
+Classifies inhalation injury severity based on bronchoscopic findings.">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Bronchoscopic findings">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"No carbonaceous deposits, erythema, edema, bronchorrhea">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Minor or patchy areas of erythema, carbonaceous deposits, bronchorrhea">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Moderate erythema, carbonaceous deposits, bronchorrhea, or bronchial obstruction">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Severe inflammation with friability, copious carbonaceous deposits, bronchorrhea,">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Mucosal sloughing, necrosis, or endoluminal obstruction present">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Grade">
+					description = <"*">
+				>
+			>
+		>
+	>

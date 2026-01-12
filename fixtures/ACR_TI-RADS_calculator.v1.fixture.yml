@@ -1,0 +1,83 @@
+guidelines:
+  1: ACR_TI-RADS_calculator.v1
+test_cases:
+- id: ACR TI-RADS points 0
+  input:
+    1:
+      gt0003|Composition: 0|local::at0005|Cystic or almost completely cystic|
+      gt0004|Echogenicity: 0|local::at0011|Anechoic|
+      gt0005|Shape: 0|local::at0017|Wider than tall|
+      gt0006|Margin: 0|local::at0020|Smooth|
+      gt0019|None or large comet-tail artifacts: 0|local::at0035|Yes|
+      gt0020|Macrocalcifications: 0|local::at0041|No|
+      gt0021|Peripheral (rim) calcifications: 0|local::at0043|No|
+      gt0022|Punctate echogenic foci: 0|local::at0045|No|
+  expected_output:
+    1:
+      gt0009|ACR TI-RADS points: 0
+      gt0011|TR grade: TR1 – Benign
+      gt0012|Further actions: No Fine Needle Aspiration
+- id: ACR TI-RADS points 1
+  input:
+    1:
+      gt0003|Composition: 0|local::at0005|Cystic or almost completely cystic|
+      gt0004|Echogenicity: 1|local::at0012|Hyperechoic or isoechoic|
+      gt0005|Shape: 0|local::at0017|Wider than tall|
+      gt0006|Margin: 0|local::at0020|Smooth|
+      gt0019|None or large comet-tail artifacts: 0|local::at0035|Yes|
+      gt0020|Macrocalcifications: 0|local::at0041|No|
+      gt0021|Peripheral (rim) calcifications: 0|local::at0043|No|
+      gt0022|Punctate echogenic foci: 0|local::at0045|No|
+  expected_output:
+    1:
+      gt0009|ACR TI-RADS points: 1
+      gt0011|TR grade: TR2 – Not suspicious
+      gt0012|Further actions: No Fine Needle Aspiration
+- id: ACR TI-RADS points 3
+  input:
+    1:
+      gt0003|Composition: 0|local::at0005|Cystic or almost completely cystic|
+      gt0004|Echogenicity: 1|local::at0012|Hyperechoic or isoechoic|
+      gt0005|Shape: 0|local::at0017|Wider than tall|
+      gt0006|Margin: 2|local::at0022|Lobulated or irregular|
+      gt0019|None or large comet-tail artifacts: 0|local::at0035|Yes|
+      gt0020|Macrocalcifications: 0|local::at0041|No|
+      gt0021|Peripheral (rim) calcifications: 0|local::at0043|No|
+      gt0022|Punctate echogenic foci: 0|local::at0045|No|
+  expected_output:
+    1:
+      gt0009|ACR TI-RADS points: 3
+      gt0011|TR grade: TR3 – Mildly Suspicious
+      gt0012|Further actions: FNA if ≥ 2.5 cm. Follow if ≥ 1.5 cm
+- id: ACR TI-RADS points 6
+  input:
+    1:
+      gt0003|Composition: 0|local::at0005|Cystic or almost completely cystic|
+      gt0004|Echogenicity: 1|local::at0012|Hyperechoic or isoechoic|
+      gt0005|Shape: 0|local::at0017|Wider than tall|
+      gt0006|Margin: 2|local::at0022|Lobulated or irregular|
+      gt0019|None or large comet-tail artifacts: 0|local::at0035|Yes|
+      gt0020|Macrocalcifications: 1|local::at0040|Yes|
+      gt0021|Peripheral (rim) calcifications: 2|local::at0042|Yes|
+      gt0022|Punctate echogenic foci: 0|local::at0045|No|
+  expected_output:
+    1:
+      gt0009|ACR TI-RADS points: 6
+      gt0011|TR grade: TR4 – Moderately Suspicious
+      gt0012|Further actions: FNA if ≥ 1.5 cm. Follow if ≥ 1 cm
+- id: ACR TI-RADS points >=7
+  input:
+    1:
+      gt0003|Composition: 0|local::at0005|Cystic or almost completely cystic|
+      gt0004|Echogenicity: 1|local::at0012|Hyperechoic or isoechoic|
+      gt0005|Shape: 3|local::at0018|Taller than wide|
+      gt0006|Margin: 2|local::at0022|Lobulated or irregular|
+      gt0019|None or large comet-tail artifacts: 0|local::at0035|Yes|
+      gt0020|Macrocalcifications: 1|local::at0040|Yes|
+      gt0021|Peripheral (rim) calcifications: 2|local::at0042|Yes|
+      gt0022|Punctate echogenic foci: 0|local::at0045|No|
+  expected_output:
+    1:
+      gt0009|ACR TI-RADS points: 9
+      gt0011|TR grade: TR5 – Highly Suspicious
+      gt0012|Further actions: FNA if ≥ 1 cm. Follow if ≥ 0.5 cm

@@ -1,0 +1,80 @@
+guidelines:
+  1: Serum_Osmolality.v1
+test_cases:
+- id: Test no input
+  input:
+    1: {}
+  expected_output:
+    1: {}
+- id: Sodium missing (negative test)
+  input:
+    1:
+      'gt0007|Glucose (Norm: 3.9-5.8 mmol/L)': 4,mmol/l
+      'gt0009|Serum alcohol concentration (Norm: 0-17.36 mmol/L)': 3,mmol/L
+      'gt0032|BUN (Norm: 2.9-7.1 mmol/L)': 4,mmol/l
+      'gt0049|Measured serum osm (Norm: 275-295 mmol/kg)': 280,mmol/kg
+  expected_output:
+    1: {}
+- id: Glucose missing (negative test)
+  input:
+    1:
+      'gt0003|Sodium (Norm: 136-145 mmol/L)': 140,mmol/l
+      'gt0009|Serum alcohol concentration (Norm: 0-17.36 mmol/L)': 3,mmol/L
+      'gt0032|BUN (Norm: 2.9-7.1 mmol/L)': 4,mmol/l
+      'gt0049|Measured serum osm (Norm: 275-295 mmol/kg)': 280,mmol/kg
+  expected_output:
+    1: {}
+- id: Serum alcohol concentration missing (negative test)
+  input:
+    1:
+      'gt0003|Sodium (Norm: 136-145 mmol/L)': 140,mmol/l
+      'gt0007|Glucose (Norm: 3.9-5.8 mmol/L)': 4,mmol/l
+      'gt0032|BUN (Norm: 2.9-7.1 mmol/L)': 4,mmol/l
+      'gt0049|Measured serum osm (Norm: 275-295 mmol/kg)': 280,mmol/kg
+  expected_output:
+    1: {}
+- id: BUN missing (negative test)
+  input:
+    1:
+      'gt0003|Sodium (Norm: 136-145 mmol/L)': 140,mmol/l
+      'gt0007|Glucose (Norm: 3.9-5.8 mmol/L)': 4,mmol/l
+      'gt0009|Serum alcohol concentration (Norm: 0-17.36 mmol/L)': 4,mmol/L
+      'gt0049|Measured serum osm (Norm: 275-295 mmol/kg)': 280,mmol/kg
+  expected_output:
+    1: {}
+- id: Test calculated serum osm and osm gap SI units
+  input:
+    1:
+      'gt0003|Sodium (Norm: 136-145 mmol/L)': 140,mmol/l
+      'gt0007|Glucose (Norm: 3.9-5.8 mmol/L)': 4,mmol/l
+      'gt0009|Serum alcohol concentration (Norm: 0-17.36 mmol/L)': 4,mmol/L
+      'gt0032|BUN (Norm: 2.9-7.1 mmol/L)': 5,mmol/l
+      'gt0049|Measured serum osm (Norm: 275-295 mmol/kg)': 280,mmol/kg
+  expected_output:
+    1:
+      gt0047|Osm gap: -13.0,mOsm/kg
+      gt0046|Calculated serum osm: 293,mOsm/kg
+- id: Test calculated serum osm and osm gap US units
+  input:
+    1:
+      'gt0003|Sodium (Norm: 136-145 mmol/L)': 140,mEq/l
+      'gt0007|Glucose (Norm: 3.9-5.8 mmol/L)': 4,mg/dl
+      'gt0009|Serum alcohol concentration (Norm: 0-17.36 mmol/L)': 4,mg/dL
+      'gt0032|BUN (Norm: 2.9-7.1 mmol/L)': 5,mg/dl
+      'gt0049|Measured serum osm (Norm: 275-295 mmol/kg)': 280,mOsm/kg
+  expected_output:
+    1:
+      gt0047|Osm gap: -3.0,mOsm/kg
+      gt0046|Calculated serum osm: 283,mOsm/kg
+- id: Test calculated serum osm and osm gap mixed units
+  input:
+    1:
+      'gt0003|Sodium (Norm: 136-145 mmol/L)': 140,mEq/l
+      'gt0007|Glucose (Norm: 3.9-5.8 mmol/L)': 4,mmol/l
+      'gt0009|Serum alcohol concentration (Norm: 0-17.36 mmol/L)': 4,mg/dL
+      'gt0032|BUN (Norm: 2.9-7.1 mmol/L)': 5,mmol/l
+      'gt0049|Measured serum osm (Norm: 275-295 mmol/kg)': 280,mmol/kg
+  expected_output:
+    1:
+      gt0047|Osm gap: -10.0,mOsm/kg
+      gt0046|Calculated serum osm: 290,mOsm/kg

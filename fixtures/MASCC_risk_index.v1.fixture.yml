@@ -1,0 +1,108 @@
+guidelines:
+  1: MASCC_risk_index.v1
+test_cases:
+- id: BP missing (negative test)
+  input:
+    1:
+      gt0021|Age (years): 0|local::at0006|≥60|
+      gt0028|Status at onset of fever: 0|local::at0009|Inpatient|
+      gt0029|Burden of illness (symptom severity): 0|local::at0030|Severe|
+      gt0031|Active COPD: 0|local::at0019|Yes|
+      gt0032|Type of cancer: 0|local::at0031|Hematologic, prior fungal infection|
+      gt0033|Dehydration requiring IV fluids: 0|local::at0028|Yes|
+  expected_output: {}
+- id: Age missing (negative test)
+  input:
+    1:
+      gt0022|Hypotension: 0|local::at0016|Yes|
+      gt0028|Status at onset of fever: 0|local::at0009|Inpatient|
+      gt0029|Burden of illness (symptom severity): 0|local::at0030|Severe|
+      gt0031|Active COPD: 0|local::at0019|Yes|
+      gt0032|Type of cancer: 0|local::at0031|Hematologic, prior fungal infection|
+      gt0033|Dehydration requiring IV fluids: 0|local::at0028|Yes|
+  expected_output: {}
+- id: Fever missing (negative test)
+  input:
+    1:
+      gt0022|Hypotension: 0|local::at0016|Yes|
+      gt0021|Age (years): 2|local::at0005|<60|
+      gt0029|Burden of illness (symptom severity): 0|local::at0030|Severe|
+      gt0031|Active COPD: 0|local::at0019|Yes|
+      gt0032|Type of cancer: 0|local::at0031|Hematologic, prior fungal infection|
+      gt0033|Dehydration requiring IV fluids: 0|local::at0028|Yes|
+  expected_output: {}
+- id: Symptom missing (negative test)
+  input:
+    1:
+      gt0022|Hypotension: 0|local::at0016|Yes|
+      gt0021|Age (years): 2|local::at0005|<60|
+      gt0028|Status at onset of fever: 0|local::at0009|Inpatient|
+      gt0031|Active COPD: 0|local::at0019|Yes|
+      gt0032|Type of cancer: 0|local::at0031|Hematologic, prior fungal infection|
+      gt0033|Dehydration requiring IV fluids: 0|local::at0028|Yes|
+  expected_output: {}
+- id: COPD missing (negative test)
+  input:
+    1:
+      gt0022|Hypotension: 0|local::at0016|Yes|
+      gt0021|Age (years): 2|local::at0005|<60|
+      gt0028|Status at onset of fever: 0|local::at0009|Inpatient|
+      gt0029|Burden of illness (symptom severity): 3|local::at0012|Moderate|
+      gt0032|Type of cancer: 0|local::at0031|Hematologic, prior fungal infection|
+      gt0033|Dehydration requiring IV fluids: 0|local::at0028|Yes|
+  expected_output: {}
+- id: Type of cancer missing (negative test)
+  input:
+    1:
+      gt0022|Hypotension: 0|local::at0016|Yes|
+      gt0021|Age (years): 2|local::at0005|<60|
+      gt0028|Status at onset of fever: 0|local::at0009|Inpatient|
+      gt0029|Burden of illness (symptom severity): 3|local::at0012|Moderate|
+      gt0031|Active COPD: 4|local::at0018|No|
+      gt0033|Dehydration requiring IV fluids: 0|local::at0028|Yes|
+  expected_output: {}
+- id: Dehydration missing (negative test)
+  input:
+    1:
+      gt0022|Hypotension: 0|local::at0016|Yes|
+      gt0021|Age (years): 2|local::at0005|<60|
+      gt0028|Status at onset of fever: 0|local::at0009|Inpatient|
+      gt0029|Burden of illness (symptom severity): 3|local::at0012|Moderate|
+      gt0031|Active COPD: 4|local::at0018|No|
+      gt0032|Type of cancer: 4|local::at0021|Solid tumor|
+  expected_output: {}
+- id: Test no input
+  input:
+    1: {}
+  expected_output:
+    1: {}
+- id: MASCC >21 returns low risk
+  input:
+    1:
+      gt0022|Hypotension: 5|local::at0015|No|
+      gt0021|Age (years): 2|local::at0005|<60|
+      gt0028|Status at onset of fever: 3|local::at0008|Outpatient|
+      gt0029|Burden of illness (symptom severity): 3|local::at0012|Moderate|
+      gt0031|Active COPD: 4|local::at0018|No|
+      gt0032|Type of cancer: 4|local::at0021|Solid tumor|
+      gt0033|Dehydration requiring IV fluids: 3|local::at0027|No|
+  expected_output:
+    1:
+      gt0037|MASCC Risk Index: 24
+      gt0039|Risk for febrile neutropenia: Low risk
+      gt0040|Recommendation: Consider oral and/or outpatient empirical antibiotic therapy.
+- id: MASCC <21 returns high risk
+  input:
+    1:
+      gt0022|Hypotension: 5|local::at0015|No|
+      gt0021|Age (years): 2|local::at0005|<60|
+      gt0028|Status at onset of fever: 0|local::at0009|Inpatient|
+      gt0029|Burden of illness (symptom severity): 0|local::at0030|Severe|
+      gt0031|Active COPD: 4|local::at0018|No|
+      gt0032|Type of cancer: 4|local::at0021|Solid tumor|
+      gt0033|Dehydration requiring IV fluids: 3|local::at0027|No|
+  expected_output:
+    1:
+      gt0037|MASCC Risk Index: 18
+      gt0039|Risk for febrile neutropenia: High risk
+      gt0040|Recommendation: Admit for empiric antibiotics if not already inpatient.

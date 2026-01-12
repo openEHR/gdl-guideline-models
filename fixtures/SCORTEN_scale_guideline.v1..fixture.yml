@@ -1,0 +1,120 @@
+guidelines:
+  1: SCORTEN_scale_guideline.v1
+test_cases:
+- id: case_1
+  input:
+    1: {}
+  expected_output:
+    1: {}
+- id: case_2
+  input:
+    1:
+      gt0003|Age: 0|local::at0005|Age<40 years|
+      gt0004|Heart rate: 0|local::at0029|Heart rate<120 beats/min|
+      gt0005|Cancer or hematologic malignancy: 0|local::at0031|No|
+      gt0006|BSA detached: 0|local::at0033|BSA detached <10%|
+      gt0007|Serum BUN: 0|local::at0035|BSA detached <10%|
+      gt0008|Serum bicarbonate: 0|local::at0037|Serum bicarbonate >20 mmol/L|
+      gt0009|Serum glucose: 0|local::at0039|Serum glucose <14 mmol/L|
+  expected_output:
+    1:
+      gt0011|Total score: 0
+      gt0020|Mortality Rate: 3.2%
+- id: case_3
+  input:
+    1:
+      gt0003|Age: 1|local::at0006|Age>=40 years|
+      gt0004|Heart rate: 0|local::at0029|Heart rate<120 beats/min|
+      gt0005|Cancer or hematologic malignancy: 0|local::at0031|No|
+      gt0006|BSA detached: 0|local::at0033|BSA detached <10%|
+      gt0007|Serum BUN: 0|local::at0035|BSA detached <10%|
+      gt0008|Serum bicarbonate: 0|local::at0037|Serum bicarbonate >20 mmol/L|
+      gt0009|Serum glucose: 0|local::at0039|Serum glucose <14 mmol/L|
+  expected_output:
+    1:
+      gt0011|Total score: 1
+      gt0020|Mortality Rate: 3.2%
+- id: case_4
+  input:
+    1:
+      gt0003|Age: 1|local::at0006|Age>=40 years|
+      gt0004|Heart rate: 1|local::at0030|Heart rate>=120 beats/min|
+      gt0005|Cancer or hematologic malignancy: 0|local::at0031|No|
+      gt0006|BSA detached: 0|local::at0033|BSA detached <10%|
+      gt0007|Serum BUN: 0|local::at0035|BSA detached <10%|
+      gt0008|Serum bicarbonate: 0|local::at0037|Serum bicarbonate >20 mmol/L|
+      gt0009|Serum glucose: 0|local::at0039|Serum glucose <14 mmol/L|
+  expected_output:
+    1:
+      gt0011|Total score: 2
+      gt0020|Mortality Rate: 12.1%
+- id: case_5
+  input:
+    1:
+      gt0003|Age: 1|local::at0006|Age>=40 years|
+      gt0004|Heart rate: 1|local::at0030|Heart rate>=120 beats/min|
+      gt0005|Cancer or hematologic malignancy: 1|local::at0032|Yes|
+      gt0006|BSA detached: 0|local::at0033|BSA detached <10%|
+      gt0007|Serum BUN: 0|local::at0035|BSA detached <10%|
+      gt0008|Serum bicarbonate: 0|local::at0037|Serum bicarbonate >20 mmol/L|
+      gt0009|Serum glucose: 0|local::at0039|Serum glucose <14 mmol/L|
+  expected_output:
+    1:
+      gt0011|Total score: 3
+      gt0020|Mortality Rate: 35.3%
+- id: case_6
+  input:
+    1:
+      gt0003|Age: 1|local::at0006|Age>=40 years|
+      gt0004|Heart rate: 1|local::at0030|Heart rate>=120 beats/min|
+      gt0005|Cancer or hematologic malignancy: 1|local::at0032|Yes|
+      gt0006|BSA detached: 1|local::at0034|BSA detached ≥10%|
+      gt0007|Serum BUN: 0|local::at0035|BSA detached <10%|
+      gt0008|Serum bicarbonate: 0|local::at0037|Serum bicarbonate >20 mmol/L|
+      gt0009|Serum glucose: 0|local::at0039|Serum glucose <14 mmol/L|
+  expected_output:
+    1:
+      gt0011|Total score: 4
+      gt0020|Mortality Rate: 58.3%
+- id: case_7
+  input:
+    1:
+      gt0003|Age: 1|local::at0006|Age>=40 years|
+      gt0004|Heart rate: 1|local::at0030|Heart rate>=120 beats/min|
+      gt0005|Cancer or hematologic malignancy: 1|local::at0032|Yes|
+      gt0006|BSA detached: 1|local::at0034|BSA detached ≥10%|
+      gt0007|Serum BUN: 1|local::at0036|BSA detached ≥10%|
+      gt0008|Serum bicarbonate: 0|local::at0037|Serum bicarbonate >20 mmol/L|
+      gt0009|Serum glucose: 0|local::at0039|Serum glucose <14 mmol/L|
+  expected_output:
+    1:
+      gt0011|Total score: 5
+      gt0020|Mortality Rate: more than 90%
+- id: case_8
+  input:
+    1:
+      gt0003|Age: 1|local::at0006|Age>=40 years|
+      gt0004|Heart rate: 1|local::at0030|Heart rate>=120 beats/min|
+      gt0005|Cancer or hematologic malignancy: 1|local::at0032|Yes|
+      gt0006|BSA detached: 1|local::at0034|BSA detached ≥10%|
+      gt0007|Serum BUN: 1|local::at0036|BSA detached ≥10%|
+      gt0008|Serum bicarbonate: 1|local::at0038|Serum bicarbonate <20 mmol/L|
+      gt0009|Serum glucose: 0|local::at0039|Serum glucose <14 mmol/L|
+  expected_output:
+    1:
+      gt0011|Total score: 6
+      gt0020|Mortality Rate: more than 90%
+- id: case_9
+  input:
+    1:
+      gt0003|Age: 1|local::at0006|Age>=40 years|
+      gt0004|Heart rate: 1|local::at0030|Heart rate>=120 beats/min|
+      gt0005|Cancer or hematologic malignancy: 1|local::at0032|Yes|
+      gt0006|BSA detached: 1|local::at0034|BSA detached ≥10%|
+      gt0007|Serum BUN: 1|local::at0036|BSA detached ≥10%|
+      gt0008|Serum bicarbonate: 1|local::at0038|Serum bicarbonate <20 mmol/L|
+      gt0009|Serum glucose: 1|local::at0040|Serum glucose >14 mmol/L|
+  expected_output:
+    1:
+      gt0011|Total score: 7
+      gt0020|Mortality Rate: more than 90%

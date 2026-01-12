@@ -1,0 +1,581 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.simplified_acute_physiology_ii_score.v1
+
+concept
+	[at0000]	-- Simplified acute physiology score
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Rashmi Damodaran">
+		["email"] = <"rashmidamu@gmail.com">
+		["organisation"] = <"Cambio CDS">
+		["date"] = <"2020-04-17">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"It holds the values for the variables required to calculate the SAPS II Score, used to estimate the mortality in ICU patients.">
+			use = <"It is used within first 24 hours of admission to the ICU and does not require a primary diagnosis. It can be used to measure the quality of care in the ICU. It uses 15 variables. 
+
+SAPS II Score is calculated by addition of the selected points.
+In-hospital mortality, % = ex / 1+ex
+where x = −7.7631 + 0.0737 x (SAPS II Score) + 0.9971 x [ ln(SAPS II Score + 1) ]
+
+
+Variable                                                                          Points
+Age                                         <40                                     0
+                                              40-59                                   7
+                                              60-69                                   12 
+                                              70-74                                   15 
+                                              75-79                                   16 
+                                                >=80                                  18
+Heart Rate                             <40                                      11
+                                               40-69                                    2
+                                               70-119                                  0
+                                             120-159                               4
+                                             >=160                                  7
+Systolic BP                          <70                                     13
+                                              70-99                                  5
+                                             100-199                               0
+                                             >=200                                   2
+Temperature ≥39ºC (102.2ºF)    No                                  0
+                                                  Yes                                  3
+GCS                                        14-15                                 0
+                                               11-13                                  5
+                                                9-10                                  7
+                                                 6-8                                    13
+                                                 <6                                     26
+PaO₂/FiO₂, if on mechanical  <100 mm Hg/%                 11
+ventilation or CPAP
+                                             100-199 mm Hg/%               9
+                                             ≥200 mm Hg/%                    6
+                                             Not on mechanical                 0
+                 ventilation or CPAP within the last 24 hours
+BUN, mg/dL                       BUN <28 or urea <10            0
+(serum urea, mmol/L)         BUN 28-83 or urea 10-29.6   6
+                                             BUN ≥84 or urea ≥30            10
+Urine output, mL/day          <500                                       11
+                                               500-999                                         4
+                                                >=1000                                         0
+Sodium, mEq/L or mmol/L    <125                                             5
+                                                125-144                                        0
+                                                  ≥145                                           1
+Potassium, mEq/L                  <3.0                                               3
+                                               3.0-4.9                                           0
+                                                 >=5.0                                           3
+Bicarbonate, mEq/L                <15                                             6
+                                                 15-19                                            3
+                                                  >=20                                           0
+Bilirubin                                 <4.0 mg/dL (<68.4 µmol/L)         0
+                                         4.0-5.9 mg/dL (68.4-102.5 µmol/L)    4
+                                            ≥6.0 mg/dL (≥102.6 µmol/L)            9
+WBC, x 10³/mm³               <1.0                                                    12
+                                           1.0-19.9                                               0
+                                            ≥20.0                                                  3
+Chronic disease                    None                                                 0
+                                           Metastatic cancer                                9
+                                           Hematologic malignancy                    10
+                                           AIDS                                                   17
+Type of admission           Scheduled surgical                                 0
+                                          Medical                                                    6
+                                         Unscheduled surgical                             8
+Worst values of variables, Heart Rate, Systolic BP, GCS, PaO₂/FiO₂, sodium, potassium and bicarbonate while highest values are taken for the variables, BUN, Temperature and Bilirubin, in 24 hrs are taken for assessment. 
+Heart Rate - If patient has had both cardiac arrest (11 points) and extreme tachycardia (7 points), assign 11 points
+GCS - If patient is sedated, use estimated GCS before sedation.
+PaO₂/FiO₂, if on mechanical ventilation or CPAP - if patient was extubated <24 hours ago, use lowest value while on mechanical ventilation.
+Urine output - If patient in ICU <24 hours, calculate for 24 hours (e.g. if 1 L in 8 hours, then mark 3 L in 24 hours)
+Type of admission - Scheduled surgical = surgery scheduled ≥24 hours in advance
+                                  Medical = no surgery within one week of admission
+                                  Unscheduled surgical = surgery scheduled ≤24 hours in advance
+">
+			keywords = <"SAPS II Score", "Simplified Acute Physiology II Score ", "ICU mortality">
+			misuse = <"It should not be used to predict survival of an individual. Also, application of this prediction in burns and cardiac patients require further study. 
+
+">
+			copyright = <"@CambioCDS">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["licence"] = <"@CambioCDS">
+		["references"] = <"4. Gall J-RL, Lemeshow S, Saulnier F. A New Simplified Acute Physiology Score (SAPS II) Based on a European/North American Multicenter Study. JAMA. 1993 Dec 22;270(24):2957–63. 
+
+5. Capuzzo M, Valpondi V, Sgarbi A, Bortolazzi S, Pavoni V, Gilli G, et al. Validation of severity scoring systems SAPS II and APACHE II in a single-center population. Intensive Care Med. 2000 Dec;26(12):1779–85. 
+
+6. Beck DH, Smith GB, Pappachan JV, Millar B. External validation of the SAPS II, APACHE II and APACHE III prognostic models in South England: a multicentre study. Intensive Care Med. 2003 Feb;29(2):249–56. 
+
+">
+		["MD5-CAM-1.0.1"] = <"189F650C4874B75236983023E231FA94">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Simplified acute physiology score
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0005] occurrences matches {0..1} matches {	-- Age, years
+										value matches {
+											0|[local::at0006], 	-- <40
+											7|[local::at0007], 	-- 40-59
+											12|[local::at0008], 	-- 60-69
+											15|[local::at0009], 	-- 70-74
+											16|[local::at0010], 	-- 75-79
+											18|[local::at0011]  	-- >=80
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {	-- Heart Rate (If it varied from cardiac arrest (11 points) to extreme tachycardia (7 points), assign 11 points)
+										value matches {
+											0|[local::at0015], 	-- 70-119
+											2|[local::at0014], 	-- 40-69
+											4|[local::at0016], 	-- 120-159
+											7|[local::at0017], 	-- >=160
+											11|[local::at0013]  	-- <40
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {	-- Systolic BP, mmHg
+										value matches {
+											0|[local::at0021], 	-- 100-199
+											2|[local::at0022], 	-- >=200
+											5|[local::at0020], 	-- 70-99
+											13|[local::at0019]  	-- <70
+										}
+									}
+									ELEMENT[at0023] occurrences matches {0..1} matches {	-- Temperature ≥39ºC (102.2ºF)
+										value matches {
+											0|[local::at0024], 	-- No
+											3|[local::at0025]  	-- Yes
+										}
+									}
+									ELEMENT[at0026] occurrences matches {0..1} matches {	-- GCS
+										value matches {
+											0|[local::at0027], 	-- 14-15
+											5|[local::at0028], 	-- 11-13
+											7|[local::at0029], 	-- 9-10
+											13|[local::at0030], 	-- 6-8
+											26|[local::at0031]  	-- <6
+										}
+									}
+									ELEMENT[at0032] occurrences matches {0..1} matches {	-- PaO₂/FiO₂, if on mechanical ventilation or CPAP
+										value matches {
+											0|[local::at0033], 	-- Not on mechanical ventilation or CPAP within the last 24 hours. 
+											6|[local::at0034], 	-- ≥200 mm Hg/% (26.6 kPa/%)
+											9|[local::at0035], 	-- 100-199 mm Hg/% (13.3-26.5 kPa/%)
+											11|[local::at0036]  	-- <100 mm Hg/% (13.3 kPa/%)
+										}
+									}
+									ELEMENT[at0037] occurrences matches {0..1} matches {	-- BUN, mg/dL or serum urea, mmol/L
+										value matches {
+											0|[local::at0038], 	-- BUN <28 or urea <10
+											6|[local::at0039], 	-- BUN 28-83 or urea 10-29.6
+											10|[local::at0040]  	-- BUN ≥84 or urea ≥30
+										}
+									}
+									ELEMENT[at0041] occurrences matches {0..1} matches {	-- Urine output, mL/day
+										value matches {
+											0|[local::at0042], 	-- ≥1000 ml/day
+											4|[local::at0043], 	-- 500-999 ml/day
+											11|[local::at0044]  	-- <500
+										}
+									}
+									ELEMENT[at0051] occurrences matches {0..1} matches {	-- Sodium, mEq/L or mmol/L
+										value matches {
+											0|[local::at0052], 	-- 125-144
+											1|[local::at0053], 	-- ≥145
+											5|[local::at0054]  	-- <125
+										}
+									}
+									ELEMENT[at0055] occurrences matches {0..1} matches {	-- Potassium, mEq/L
+										value matches {
+											0|[local::at0056], 	-- 3.0-4.9 mEq/L
+											3|[local::at0057], 	-- <3.0 mEq/L
+											3|[local::at0058]  	-- ≥5.0
+										}
+									}
+									ELEMENT[at0059] occurrences matches {0..1} matches {	-- Bicarbonate, mEq/L
+										value matches {
+											0|[local::at0060], 	-- ≥20 
+											3|[local::at0061], 	-- 15-19 
+											6|[local::at0062]  	-- <15 
+										}
+									}
+									ELEMENT[at0063] occurrences matches {0..1} matches {	-- WBC, x 10³/mm³
+										value matches {
+											0|[local::at0064], 	-- 1.0-19.9 x 10³/mm³
+											3|[local::at0065], 	-- ≥20.0 x 10³/mm³
+											12|[local::at0066]  	-- <1.0 x 10³/mm³
+										}
+									}
+									ELEMENT[at0077] occurrences matches {0..1} matches {	-- Bilirubin
+										value matches {
+											0|[local::at0079], 	-- <4.0 mg/dL (<68.4 µmol/L)
+											4|[local::at0080], 	-- 4.0-5.9 mg/dL (68.4-102.5 µmol/L)
+											9|[local::at0081]  	-- ≥6.0 mg/dL (≥102.6 µmol/L)
+										}
+									}
+									ELEMENT[at0067] occurrences matches {0..1} matches {	-- Chronic disease
+										value matches {
+											0|[local::at0068], 	-- None
+											9|[local::at0069], 	-- Metastatic cancer
+											10|[local::at0070], 	-- Hematologic malignancy
+											17|[local::at0071]  	-- AIDS
+										}
+									}
+									ELEMENT[at0072] occurrences matches {0..1} matches {	-- Type of admission
+										value matches {
+											0|[local::at0073], 	-- Scheduled surgical
+											6|[local::at0074], 	-- Medical
+											8|[local::at0075]  	-- Unscheduled surgical
+										}
+									}
+									ELEMENT[at0082] occurrences matches {0..1} matches {	-- In-hospital Mortality
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"%">
+														precision = <|1|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0076] occurrences matches {0..1} matches {	-- Total Score
+										value matches {
+											DV_COUNT matches {
+												magnitude matches {|0..152|}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {*}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Simplified acute physiology score">
+					description = <"*">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Age, years">
+					description = <"Holds points for the age variable">
+				>
+				["at0006"] = <
+					text = <"<40">
+					description = <"Age <40 yrs">
+				>
+				["at0007"] = <
+					text = <"40-59">
+					description = <"Age lies between 40-59">
+				>
+				["at0008"] = <
+					text = <"60-69">
+					description = <"Age lies between 60-69">
+				>
+				["at0009"] = <
+					text = <"70-74">
+					description = <"Age lies between 70-74">
+				>
+				["at0010"] = <
+					text = <"75-79">
+					description = <"Age lies between 75-79">
+				>
+				["at0011"] = <
+					text = <">=80">
+					description = <"Age >=80">
+				>
+				["at0012"] = <
+					text = <"Heart Rate (If it varied from cardiac arrest (11 points) to extreme tachycardia (7 points), assign 11 points)">
+					description = <"Holds points for the Heart Rate variable. Also, if patient had both cardiac arrest (11 points) and extreme tachycardia (7 points), assign 11 points">
+				>
+				["at0013"] = <
+					text = <"<40">
+					description = <"HR is <40">
+				>
+				["at0014"] = <
+					text = <"40-69">
+					description = <"HR is between 40-69">
+				>
+				["at0015"] = <
+					text = <"70-119">
+					description = <"HR is bewteen 70-119">
+				>
+				["at0016"] = <
+					text = <"120-159">
+					description = <"HR is between 120-159">
+				>
+				["at0017"] = <
+					text = <">=160">
+					description = <"HR is >=160">
+				>
+				["at0018"] = <
+					text = <"Systolic BP, mmHg">
+					description = <"Holds points for the systolic BP variable. Worst value in 24 hours is taken for assessment.">
+				>
+				["at0019"] = <
+					text = <"<70">
+					description = <"sBP < 70mmHg">
+				>
+				["at0020"] = <
+					text = <"70-99">
+					description = <"sBP is between 70-99mmHg">
+				>
+				["at0021"] = <
+					text = <"100-199">
+					description = <"sBP lies between 100-199mmHg">
+				>
+				["at0022"] = <
+					text = <">=200">
+					description = <"sBP >=200mmHg">
+				>
+				["at0023"] = <
+					text = <"Temperature ≥39ºC (102.2ºF)">
+					description = <"Holds the points for temperature variable. Highest temperature in 24 hours is taken for assessment.
+">
+				>
+				["at0024"] = <
+					text = <"No">
+					description = <"Temperature is <39ºC (102.2ºF)">
+				>
+				["at0025"] = <
+					text = <"Yes">
+					description = <"Temperature ≥39ºC (102.2ºF)">
+				>
+				["at0026"] = <
+					text = <"GCS">
+					description = <"Holds the points for different levels of GCS. Lowest value in 24 hours; if patient is sedated, estimated GCS before sedation is taken for assessment.">
+				>
+				["at0027"] = <
+					text = <"14-15">
+					description = <"GCS is 14-15">
+				>
+				["at0028"] = <
+					text = <"11-13">
+					description = <"GCS is 11-13">
+				>
+				["at0029"] = <
+					text = <"9-10">
+					description = <"GCS is 9-10">
+				>
+				["at0030"] = <
+					text = <"6-8">
+					description = <"GCS is 6-8">
+				>
+				["at0031"] = <
+					text = <"<6">
+					description = <"GCS is <6">
+				>
+				["at0032"] = <
+					text = <"PaO₂/FiO₂, if on mechanical ventilation or CPAP">
+					description = <"Holds the points for the PaO₂/FiO₂, if on mechanical ventilation or CPAP variable. lowest value in 24 hours; if patient was extubated <24 hours ago, lowest value while on mechanical ventilation are used. ">
+				>
+				["at0033"] = <
+					text = <"Not on mechanical ventilation or CPAP within the last 24 hours. ">
+					description = <"Patient is not on mechanical ventilation or CPAP within the last 24 hours">
+				>
+				["at0034"] = <
+					text = <"≥200 mm Hg/% (26.6 kPa/%)">
+					description = <"PaO₂/FiO₂, if on mechanical ventilation or CPAP is ≥200 mm Hg/% (26.6 kPa/%)">
+				>
+				["at0035"] = <
+					text = <"100-199 mm Hg/% (13.3-26.5 kPa/%)">
+					description = <"PaO₂/FiO₂, if on mechanical ventilation or CPAP is 100-199 mm Hg/% (13.3-26.5 kPa/%)">
+				>
+				["at0036"] = <
+					text = <"<100 mm Hg/% (13.3 kPa/%)">
+					description = <"PaO₂/FiO₂, if on mechanical ventilation or CPAP is <100 mm Hg/% (13.3 kPa/%)">
+				>
+				["at0037"] = <
+					text = <"BUN, mg/dL or serum urea, mmol/L">
+					description = <"Holds the points for the BUN or serum urea variable.">
+				>
+				["at0038"] = <
+					text = <"BUN <28 or urea <10">
+					description = <"BUN <28 or urea <10 is recorded">
+				>
+				["at0039"] = <
+					text = <"BUN 28-83 or urea 10-29.6">
+					description = <"BUN 28-83 or urea 10-29.6 is recorded">
+				>
+				["at0040"] = <
+					text = <"BUN ≥84 or urea ≥30">
+					description = <"BUN ≥84 or urea ≥30 is recorded">
+				>
+				["at0041"] = <
+					text = <"Urine output, mL/day">
+					description = <"Holds the points for the Urine output variable. If in ICU <24 hours, calculate for 24 hours (e.g. if 1 L in 8 hours, then mark 3 L in 24 hours).">
+				>
+				["at0042"] = <
+					text = <"≥1000 ml/day">
+					description = <"Urine output is ≥1000 ml/day">
+				>
+				["at0043"] = <
+					text = <"500-999 ml/day">
+					description = <"Urine output is 500-999 ml/day">
+				>
+				["at0044"] = <
+					text = <"<500">
+					description = <"Urine output is <500 ml/day">
+				>
+				["at0051"] = <
+					text = <"Sodium, mEq/L or mmol/L">
+					description = <"Holds the points for the Sodium variable. Worst value in 24 hours is taken for assessment.">
+				>
+				["at0052"] = <
+					text = <"125-144">
+					description = <"Sodium is 125-144">
+				>
+				["at0053"] = <
+					text = <"≥145">
+					description = <"Sodium is ≥145">
+				>
+				["at0054"] = <
+					text = <"<125">
+					description = <"Sodium is <125">
+				>
+				["at0055"] = <
+					text = <"Potassium, mEq/L">
+					description = <"Holds the points for the potassium variable. Worst value in 24 hours is taken for assessment.">
+				>
+				["at0056"] = <
+					text = <"3.0-4.9 mEq/L">
+					description = <"Potassium is 3.0-4.9mEq/L">
+				>
+				["at0057"] = <
+					text = <"<3.0 mEq/L">
+					description = <"Potassium is <3.0mEq/L">
+				>
+				["at0058"] = <
+					text = <"≥5.0">
+					description = <"Potassium is ≥5.0mEq/L">
+				>
+				["at0059"] = <
+					text = <"Bicarbonate, mEq/L">
+					description = <"Holds the points for the Bicarbonate variable. Lowest value in 24 hours is taken for assessment.">
+				>
+				["at0060"] = <
+					text = <"≥20 ">
+					description = <"Bicarbonate is ≥20mEq/L">
+				>
+				["at0061"] = <
+					text = <"15-19 ">
+					description = <"Bicarbonate is 15-19 mEq/L">
+				>
+				["at0062"] = <
+					text = <"<15 ">
+					description = <"Bicarbonate is <15mEq/L">
+				>
+				["at0063"] = <
+					text = <"WBC, x 10³/mm³">
+					description = <"Holds the points for the WBC variable. Worst value in 24 hours is taken for assessment.">
+				>
+				["at0064"] = <
+					text = <"1.0-19.9 x 10³/mm³">
+					description = <"WBC is 1.0-19.9 x 10³/mm³">
+				>
+				["at0065"] = <
+					text = <"≥20.0 x 10³/mm³">
+					description = <"WBC is ≥20.0x 10³/mm³">
+				>
+				["at0066"] = <
+					text = <"<1.0 x 10³/mm³">
+					description = <"WBC is <1.0 x 10³/mm³">
+				>
+				["at0067"] = <
+					text = <"Chronic disease">
+					description = <"Holds the points for the variable chronic disease.">
+				>
+				["at0068"] = <
+					text = <"None">
+					description = <"No known chronic disease">
+				>
+				["at0069"] = <
+					text = <"Metastatic cancer">
+					description = <"Patient is diagnosed with metastatic cancer">
+				>
+				["at0070"] = <
+					text = <"Hematologic malignancy">
+					description = <"Patient is diagnosed with hematologic malignancy">
+				>
+				["at0071"] = <
+					text = <"AIDS">
+					description = <"Patient is diagnosed with AIDS ">
+				>
+				["at0072"] = <
+					text = <"Type of admission">
+					description = <"Holds the points for the variable, Type of admission. Scheduled surgical = surgery scheduled ≥24 hours prior; medical = no surgery within 1 week of admission; unscheduled surgical = surgery scheduled ≤24 hours prior">
+				>
+				["at0073"] = <
+					text = <"Scheduled surgical">
+					description = <"urgery scheduled ≥24 hours prior">
+				>
+				["at0074"] = <
+					text = <"Medical">
+					description = <"medical = no surgery within 1 week of admission">
+				>
+				["at0075"] = <
+					text = <"Unscheduled surgical">
+					description = <"surgery scheduled ≤24 hours prior">
+				>
+				["at0076"] = <
+					text = <"Total Score">
+					description = <"Total Score is obtained by adding the selected points of all the variables.">
+				>
+				["at0077"] = <
+					text = <"Bilirubin">
+					description = <"Holds the points for the variable, Bilirubin. Highest value in 24 hours.">
+				>
+				["at0079"] = <
+					text = <"<4.0 mg/dL (<68.4 µmol/L)">
+					description = <"Bilirubin is <4.0 mg/dL (<68.4 µmol/L)">
+				>
+				["at0080"] = <
+					text = <"4.0-5.9 mg/dL (68.4-102.5 µmol/L)">
+					description = <"Bilirubin is 4.0-5.9 mg/dL (68.4-102.5 µmol/L)">
+				>
+				["at0081"] = <
+					text = <"≥6.0 mg/dL (≥102.6 µmol/L)">
+					description = <"Bilirubin is ≥6.0 mg/dL (≥102.6 µmol/L)">
+				>
+				["at0082"] = <
+					text = <"In-hospital Mortality">
+					description = <"In-hospital mortality, % = e^x / 1+e^x
+where x = −7.7631 + 0.0737 x (SAPS II Score) + 0.9971 x [ ln(SAPS II Score + 1) ]
+">
+				>
+			>
+		>
+	>

@@ -1,0 +1,54 @@
+current_datetime: '2019-11-28T00:00:00+01:00'
+guidelines:
+  1: CKD-EPI.v1
+test_cases:
+- id: male-low_creatinine(<=80)
+  input:
+    1:
+      gt0002|Gender: local::at0005|Male|
+      gt0008|Birthdate: 1991-03-06T22:06Z
+      gt0003|Creatinine: 50,umol/l
+  expected_output:
+    1:
+      gt0007|Estimated GFR: 140.19,ml/min
+      gt0012|Formula: local::at0015|CKD-EPI formula|
+      gt0014|Stage: local::at0003|1 - Normal kidney function|
+
+
+- id: male-high_creatinine(>80)
+  input:
+    1:
+      gt0002|Gender: local::at0005|Male|
+      gt0008|Birthdate: 1991-03-06T22:06Z
+      gt0003|Creatinine: 100,umol/l
+  expected_output:
+    1:
+      gt0007|Estimated GFR: 87.85,ml/min
+      gt0012|Formula: local::at0015|CKD-EPI formula|
+      gt0014|Stage: local::at0004|2 - Mildly reduced kidney function|
+
+
+- id: female-low_creatinine(<=62)
+  input:
+    1:
+      gt0002|Gender: local::at0006|Female|
+      gt0008|Birthdate: 1991-03-06T22:06Z
+      gt0003|Creatinine: 50,umol/l
+  expected_output:
+    1:
+      gt0007|Estimated GFR: 126.88,ml/min
+      gt0012|Formula: local::at0015|CKD-EPI formula|
+      gt0014|Stage: local::at0003|1 - Normal kidney function|
+
+
+- id: female-high_creatinine(>62)
+  input:
+    1:
+      gt0002|Gender: local::at0006|Female|
+      gt0008|Birthdate: 1991-03-06T22:06Z
+      gt0003|Creatinine: 100,umol/l
+  expected_output:
+    1:
+      gt0007|Estimated GFR: 66.21,ml/min
+      gt0012|Formula: local::at0015|CKD-EPI formula|
+      gt0014|Stage: local::at0004|2 - Mildly reduced kidney function|

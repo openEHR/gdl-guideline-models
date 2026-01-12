@@ -1,0 +1,68 @@
+guidelines:
+  1: Pediatric_emergency_department_overcrowding_scale_PEDOCS.v1
+test_cases:
+- id: PEDOCS - Level 1 
+  input:
+    1:
+      gt0019|Number of patients in waiting room: 1,patients
+      gt0018|Total patients registered: 10,patients
+  expected_output:
+    1:
+      gt0023|Level: local::at0004|Level 1|
+      gt0024|Interpretation: local::at0011|Not busy|
+      gt0021|PEDOCS: 19,1
+
+- id: PEDOCS - Level 2
+  input:
+    1:
+      gt0019|Number of patients in waiting room: 3,patients
+      gt0018|Total patients registered: 15,patients
+  expected_output:
+    1:
+      gt0023|Level: local::at0005|Level 2|
+      gt0024|Interpretation: local::at0012|Busy|
+      gt0021|PEDOCS: 31,1
+
+- id: PEDOCS -Level 3
+  input:
+    1:
+      gt0019|Number of patients in waiting room: 8,patients
+      gt0018|Total patients registered: 29,patients
+  expected_output:
+    1:
+      gt0023|Level: local::at0006|Level 3|
+      gt0024|Interpretation: local::at0013|Extremely busy but not overcrowded|
+      gt0021|PEDOCS: 61,1
+
+- id: PEDOCS - Level 4
+  input:
+    1:
+      gt0019|Number of patients in waiting room: 8,patients
+      gt0018|Total patients registered: 66,patients
+  expected_output:
+    1:
+      gt0023|Level: local::at0007|Level 4|
+      gt0024|Interpretation: local::at0014|Overcrowded|
+      gt0021|PEDOCS: 110,1
+
+- id: PEDOCS - Level 5
+  input:
+    1:
+      gt0019|Number of patients in waiting room: 30,patients
+      gt0018|Total patients registered: 80,patients
+  expected_output:
+    1:
+      gt0023|Level: local::at0008|Level 5|
+      gt0024|Interpretation: local::at0015|Severely overcrowded|
+      gt0021|PEDOCS: 180,1
+
+- id: PEDOCS - Level 6
+  input:
+    1:
+      gt0019|Number of patients in waiting room: 30,patients
+      gt0018|Total patients registered: 88,patients
+  expected_output:
+    1:
+      gt0023|Level: local::at0009|Level 6|
+      gt0024|Interpretation: local::at0016|Dangerously overcrowded|
+      gt0021|PEDOCS: 191,1

@@ -1,0 +1,28 @@
+guidelines:
+  1: TRISS.v1
+test_cases:
+- id: Test no input
+  input:
+    1: {}
+  expected_output:
+    1: {}
+- id: Test AgeIndex>=55
+  input:
+    1:
+      gt0003|Age: 55,a
+      gt0005|Revised Trauma Score (RTS): 3.8028,1
+      gt0007|Injury Severity Score (ISS): 0
+  expected_output:
+    1:
+      gt0009|Probability of Survival - Blunt: 70.7,%
+      gt0010|Probability of Survival - Penetrating: 52.7,%
+- id: Test AgeIndex<55
+  input:
+    1:
+      gt0003|Age: 40,a
+      gt0005|Revised Trauma Score (RTS): 4.0936,1
+      gt0007|Injury Severity Score (ISS): 75
+  expected_output:
+    1:
+      gt0009|Probability of Survival - Blunt: 3.2,%
+      gt0010|Probability of Survival - Penetrating: 3.4,%

@@ -1,0 +1,210 @@
+guidelines:
+  1: SPADI.v1
+test_cases:
+- id: 1. No selection (negative test)
+  input:
+    1: {}
+  expected_output:
+    1: {}
+- id: 2. All 0 except one empty in Pain subscale (negative test)
+  input:
+    1:
+      gt0003|1. At its worst?: 0,1
+      gt0004|2. When lying on the involved side?: 0,1
+      gt0005|3. Reaching for something on a high shelf?: 0,1
+      gt0006|4. Touching the back of your neck?: 0,1
+      gt0009|1. Washing your hair?: 0,1
+      gt0010|2. Washing your back?: 0,1
+      gt0011|3. Putting on an undershirt or pullover sweater?: 0,1
+      gt0012|4. Putting on a shirt that buttons down the front?: 0,1
+      gt0013|5. Putting on your pants?: 0,1
+      gt0014|6. Placing an object on a high shelf?: 0,1
+      gt0015|7. Carrying a heavy object of 10 pounds?: 0,1
+      gt0016|8. Removing something from your back pocket?: 0,1
+  expected_output:
+    1: {}
+- id: 3. All 0 except one empty in Disability subscale (negative test)
+  input:
+    1:
+      gt0003|1. At its worst?: 0,1
+      gt0004|2. When lying on the involved side?: 0,1
+      gt0005|3. Reaching for something on a high shelf?: 0,1
+      gt0006|4. Touching the back of your neck?: 0,1
+      gt0007|5. Pushing with the involved arm?: 0,1
+      gt0009|1. Washing your hair?: 0,1
+      gt0010|2. Washing your back?: 0,1
+      gt0011|3. Putting on an undershirt or pullover sweater?: 0,1
+      gt0012|4. Putting on a shirt that buttons down the front?: 0,1
+      gt0013|5. Putting on your pants?: 0,1
+      gt0014|6. Placing an object on a high shelf?: 0,1
+      gt0015|7. Carrying a heavy object of 10 pounds?: 0,1
+  expected_output:
+    1: {}
+- id: 4. All 0 except one 11 in Pain subscale (negative test)
+  input:
+    1:
+      gt0003|1. At its worst?: 0,1
+      gt0004|2. When lying on the involved side?: 11,1
+      gt0005|3. Reaching for something on a high shelf?: 0,1
+      gt0006|4. Touching the back of your neck?: 0,1
+      gt0007|5. Pushing with the involved arm?: 0,1
+      gt0009|1. Washing your hair?: 0,1
+      gt0010|2. Washing your back?: 0,1
+      gt0011|3. Putting on an undershirt or pullover sweater?: 0,1
+      gt0012|4. Putting on a shirt that buttons down the front?: 0,1
+      gt0013|5. Putting on your pants?: 0,1
+      gt0014|6. Placing an object on a high shelf?: 0,1
+      gt0015|7. Carrying a heavy object of 10 pounds?: 0,1
+      gt0016|8. Removing something from your back pocket?: 0,1
+  expected_output:
+    1: {}
+- id: 5. All 0 except one 11 in Disability subscale (negative test)
+  input:
+    1:
+      gt0003|1. At its worst?: 0,1
+      gt0004|2. When lying on the involved side?: 0,1
+      gt0005|3. Reaching for something on a high shelf?: 0,1
+      gt0006|4. Touching the back of your neck?: 0,1
+      gt0007|5. Pushing with the involved arm?: 0,1
+      gt0009|1. Washing your hair?: 0,1
+      gt0010|2. Washing your back?: 0,1
+      gt0011|3. Putting on an undershirt or pullover sweater?: 0,1
+      gt0012|4. Putting on a shirt that buttons down the front?: 11,1
+      gt0013|5. Putting on your pants?: 0,1
+      gt0014|6. Placing an object on a high shelf?: 0,1
+      gt0015|7. Carrying a heavy object of 10 pounds?: 0,1
+      gt0016|8. Removing something from your back pocket?: 0,1
+  expected_output:
+    1: {}
+- id: 6. All 0 both subscales
+  input:
+    1:
+      gt0003|1. At its worst?: 0,1
+      gt0004|2. When lying on the involved side?: 0,1
+      gt0005|3. Reaching for something on a high shelf?: 0,1
+      gt0006|4. Touching the back of your neck?: 0,1
+      gt0007|5. Pushing with the involved arm?: 0,1
+      gt0009|1. Washing your hair?: 0,1
+      gt0010|2. Washing your back?: 0,1
+      gt0011|3. Putting on an undershirt or pullover sweater?: 0,1
+      gt0012|4. Putting on a shirt that buttons down the front?: 0,1
+      gt0013|5. Putting on your pants?: 0,1
+      gt0014|6. Placing an object on a high shelf?: 0,1
+      gt0015|7. Carrying a heavy object of 10 pounds?: 0,1
+      gt0016|8. Removing something from your back pocket?: 0,1
+  expected_output:
+    1:
+      gt0020|Total SPADI score: 0.00,1
+      gt0019|Disability score: 0.00,1
+      gt0018|Pain score: 0.00,1
+      gt0022|Interpretation: The original SPADI research and the subsequent validations do not provide specific cut off points. However, it is considered that the higher the score in each scale, the higher the impairment to the shoulder function.
+- id: 7. All 0 Pain subscale All 10 Disability subscale
+  input:
+    1:
+      gt0003|1. At its worst?: 0,1
+      gt0004|2. When lying on the involved side?: 0,1
+      gt0005|3. Reaching for something on a high shelf?: 0,1
+      gt0006|4. Touching the back of your neck?: 0,1
+      gt0007|5. Pushing with the involved arm?: 0,1
+      gt0009|1. Washing your hair?: 10,1
+      gt0010|2. Washing your back?: 10,1
+      gt0011|3. Putting on an undershirt or pullover sweater?: 10,1
+      gt0012|4. Putting on a shirt that buttons down the front?: 10,1
+      gt0013|5. Putting on your pants?: 10,1
+      gt0014|6. Placing an object on a high shelf?: 10,1
+      gt0015|7. Carrying a heavy object of 10 pounds?: 10,1
+      gt0016|8. Removing something from your back pocket?: 10,1
+  expected_output:
+    1:
+      gt0020|Total SPADI score: 61.50,1
+      gt0019|Disability score: 100.00,1
+      gt0018|Pain score: 0.00,1
+      gt0022|Interpretation: The original SPADI research and the subsequent validations do not provide specific cut off points. However, it is considered that the higher the score in each scale, the higher the impairment to the shoulder function.
+- id: 8. All 10 Pain subscale All 0 Disability subscale
+  input:
+    1:
+      gt0003|1. At its worst?: 10,1
+      gt0004|2. When lying on the involved side?: 10,1
+      gt0005|3. Reaching for something on a high shelf?: 10,1
+      gt0006|4. Touching the back of your neck?: 10,1
+      gt0007|5. Pushing with the involved arm?: 10,1
+      gt0009|1. Washing your hair?: 0,1
+      gt0010|2. Washing your back?: 0,1
+      gt0011|3. Putting on an undershirt or pullover sweater?: 0,1
+      gt0012|4. Putting on a shirt that buttons down the front?: 0,1
+      gt0013|5. Putting on your pants?: 0,1
+      gt0014|6. Placing an object on a high shelf?: 0,1
+      gt0015|7. Carrying a heavy object of 10 pounds?: 0,1
+      gt0016|8. Removing something from your back pocket?: 0,1
+  expected_output:
+    1:
+      gt0020|Total SPADI score: 38.50,1
+      gt0019|Disability score: 0.00,1
+      gt0018|Pain score: 100.00,1
+      gt0022|Interpretation: The original SPADI research and the subsequent validations do not provide specific cut off points. However, it is considered that the higher the score in each scale, the higher the impairment to the shoulder function.
+- id: 9. All 10 both subscales
+  input:
+    1:
+      gt0003|1. At its worst?: 10,1
+      gt0004|2. When lying on the involved side?: 10,1
+      gt0005|3. Reaching for something on a high shelf?: 10,1
+      gt0006|4. Touching the back of your neck?: 10,1
+      gt0007|5. Pushing with the involved arm?: 10,1
+      gt0009|1. Washing your hair?: 10,1
+      gt0010|2. Washing your back?: 10,1
+      gt0011|3. Putting on an undershirt or pullover sweater?: 10,1
+      gt0012|4. Putting on a shirt that buttons down the front?: 10,1
+      gt0013|5. Putting on your pants?: 10,1
+      gt0014|6. Placing an object on a high shelf?: 10,1
+      gt0015|7. Carrying a heavy object of 10 pounds?: 10,1
+      gt0016|8. Removing something from your back pocket?: 10,1
+  expected_output:
+    1:
+      gt0020|Total SPADI score: 100.00,1
+      gt0019|Disability score: 100.00,1
+      gt0018|Pain score: 100.00,1
+      gt0022|Interpretation: The original SPADI research and the subsequent validations do not provide specific cut off points. However, it is considered that the higher the score in each scale, the higher the impairment to the shoulder function.
+- id: 10. All 5 Pain subscale Random values Disability subscale
+  input:
+    1:
+      gt0003|1. At its worst?: 5,1
+      gt0004|2. When lying on the involved side?: 5,1
+      gt0005|3. Reaching for something on a high shelf?: 5,1
+      gt0006|4. Touching the back of your neck?: 5,1
+      gt0007|5. Pushing with the involved arm?: 5,1
+      gt0009|1. Washing your hair?: 3,1
+      gt0010|2. Washing your back?: 4,1
+      gt0011|3. Putting on an undershirt or pullover sweater?: 3,1
+      gt0012|4. Putting on a shirt that buttons down the front?: 2,1
+      gt0013|5. Putting on your pants?: 2,1
+      gt0014|6. Placing an object on a high shelf?: 0,1
+      gt0015|7. Carrying a heavy object of 10 pounds?: 1,1
+      gt0016|8. Removing something from your back pocket?: 6,1
+  expected_output:
+    1:
+      gt0020|Total SPADI score: 35.40,1
+      gt0019|Disability score: 26.25,1
+      gt0018|Pain score: 50.00,1
+      gt0022|Interpretation: The original SPADI research and the subsequent validations do not provide specific cut off points. However, it is considered that the higher the score in each scale, the higher the impairment to the shoulder function.
+- id: 11. All 5 Disability subscale Random values Pain subscale
+  input:
+    1:
+      gt0003|1. At its worst?: 7,1
+      gt0004|2. When lying on the involved side?: 4,1
+      gt0005|3. Reaching for something on a high shelf?: 6,1
+      gt0006|4. Touching the back of your neck?: 3,1
+      gt0007|5. Pushing with the involved arm?: 1,1
+      gt0009|1. Washing your hair?: 5,1
+      gt0010|2. Washing your back?: 5,1
+      gt0011|3. Putting on an undershirt or pullover sweater?: 5,1
+      gt0012|4. Putting on a shirt that buttons down the front?: 5,1
+      gt0013|5. Putting on your pants?: 5,1
+      gt0014|6. Placing an object on a high shelf?: 5,1
+      gt0015|7. Carrying a heavy object of 10 pounds?: 5,1
+      gt0016|8. Removing something from your back pocket?: 5,1
+  expected_output:
+    1:
+      gt0020|Total SPADI score: 46.90,1
+      gt0019|Disability score: 50.00,1
+      gt0018|Pain score: 42.00,1
+      gt0022|Interpretation: The original SPADI research and the subsequent validations do not provide specific cut off points. However, it is considered that the higher the score in each scale, the higher the impairment to the shoulder function.

@@ -1,0 +1,73 @@
+guidelines:
+  1: Nutrition_Risk_Screening_2002_NRS.v1
+test_cases:
+- id: Initial screening Low risk
+  input:
+    1:
+      gt0004|Weight loss within 3 months: local::at0008|No|
+      gt0005|Reduced dietary intake in the last week: local::at0010|No|
+      gt0006|ICU patient: local::at0012|No|
+      gt0016|Nutritional impairment: 3|local::at0020|Severe- weight loss >5% in 1 month (>15% in 3 months) or BMI <18.5 plus impaired general condition or food intake 0–25% of normal in past week|
+      gt0017|Severity of disease: 3|local::at0024|Head injury, bone marrow transplant, ICU patient with APACHE >10|
+      gt0008|Age: 69,a
+      gt0021|Body Mass Index: 29,kg/m2
+  expected_output:
+    1:
+      gt0022|BMI <20.5 kg/m²: local::at0003|No|
+      gt0015|Recommendation: local::at0033|Re-screen weekly|
+      gt0012|Age: 0|local::at0025|<70 years|
+      gt0014|Risk group: local::at0029|Low Risk|
+
+- id: Risk group Low risk 
+  input:
+    1:
+      gt0004|Weight loss within 3 months: local::at0008|No|
+      gt0005|Reduced dietary intake in the last week: local::at0010|No|
+      gt0006|ICU patient: local::at0013|Yes|
+      gt0016|Nutritional impairment: 0|local::at0017|None|
+      gt0017|Severity of disease: 0|local::at0021|Normal nutritional requirement|
+      gt0008|Age: 69,a
+      gt0021|Body Mass Index: 19,kg/m2
+  expected_output:
+    1:
+      gt0022|BMI <20.5 kg/m²: local::at0004|Yes|
+      gt0015|Recommendation: local::at0033|Re-screen weekly|
+      gt0012|Age: 0|local::at0025|<70 years|
+      gt0013|NRS-2002: 0
+      gt0014|Risk group: local::at0029|Low Risk|
+
+- id: Risk group At risk
+  input:
+    1:
+      gt0004|Weight loss within 3 months: local::at0008|No|
+      gt0005|Reduced dietary intake in the last week: local::at0010|No|
+      gt0006|ICU patient: local::at0012|No|
+      gt0016|Nutritional impairment: 2|local::at0019|Moderate- weight loss >5% in 2 months or BMI 18.5–20.5 plus impaired general condition or food intake 25–60% of normal in past week|
+      gt0017|Severity of disease: 1|local::at0022|Hip fracture, chronic illness (may have acute complications, e.g. cirrhosis or COPD), chronic dialysis, diabetes, cancer|
+      gt0008|Age: 77,a
+      gt0021|Body Mass Index: 20,kg/m2
+  expected_output:
+    1:
+      gt0022|BMI <20.5 kg/m²: local::at0004|Yes|
+      gt0015|Recommendation: local::at0034|Initiate nutritional care plan (food, oral supplements, tube feeding, and/or parenteral nutrition as appropriate)|
+      gt0012|Age: 1|local::at0026|≥70 years|
+      gt0013|NRS-2002: 4
+      gt0014|Risk group: local::at0030|At risk|
+
+- id: Risk group High risk
+  input:
+    1:
+      gt0004|Weight loss within 3 months: local::at0008|No|
+      gt0005|Reduced dietary intake in the last week: local::at0010|No|
+      gt0006|ICU patient: local::at0012|No|
+      gt0016|Nutritional impairment: 2|local::at0019|Moderate- weight loss >5% in 2 months or BMI 18.5–20.5 plus impaired general condition or food intake 25–60% of normal in past week|
+      gt0017|Severity of disease: 2|local::at0023|Major abdominal surgery, stroke, severe pneumonia, hematologic malignancy|
+      gt0008|Age: 77,a
+      gt0021|Body Mass Index: 20,kg/m2
+  expected_output:
+    1:
+      gt0022|BMI <20.5 kg/m²: local::at0004|Yes|
+      gt0015|Recommendation: local::at0035|Initiate early intervention nutritional care plan|
+      gt0012|Age: 1|local::at0026|≥70 years|
+      gt0013|NRS-2002: 5
+      gt0014|Risk group: local::at0031|High risk|

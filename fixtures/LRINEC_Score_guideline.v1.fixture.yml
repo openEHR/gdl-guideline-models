@@ -1,0 +1,123 @@
+guidelines:
+  1: LRINEC_Score_guideline.v1
+test_cases:
+- id: score 0
+  input:
+    1:
+      gt0003|CRP (mg/L): 149,mg/l
+      gt0005|WBC (per mm³): 14,10*3/mm3
+      gt0007|Haemoglobin (g/dL): 13.8,gm/dl
+      gt0010|Serum Sodium (mEq/L): 136,mEq/l
+      gt0014|Creatinine: 140,µmol/l
+      gt0016|Glucose: 180,mg/dl
+  expected_output:
+    1:
+      gt0018|C-reactive protein: 0|local::at0005|<15 mg/dL (150 mg/L)|
+      gt0025|Advice: If high suspicion for necrotizing fasciitis through clinical history and physical exam, do not calculate a LRINEC score and go straight to operative debridement.
+      gt0026|Management: Consider IV antibiotics and serial labs to monitor response to treatment. Scores <6 were low risk — but not no risk — for necrotizing soft tissue infections.
+      gt0024|LRINEC Score: 0
+      gt0022|Creatinine: 0|local::at0019|≤1.6 mg/dL (141 µmol/L)|
+      gt0023|Glucose: 0|local::at0022|≤180 mg/dL (10 mmol/L)|
+      gt0019|White blood cell count (x10,000/µL): 0|local::at0008|<15|
+      gt0021|Sodium (mEq/L): 0|local::at0016|≥135|
+      gt0020|Hemoglobin (g/dL): 0|local::at0012|>13.5|
+- id: score <6
+  input:
+    1:
+      gt0003|CRP (mg/L): 149,mg/l
+      gt0005|WBC (per mm³): 15,10*3/mm3
+      gt0007|Haemoglobin (g/dL): 13.8,gm/dl
+      gt0010|Serum Sodium (mEq/L): 136,mEq/l
+      gt0014|Creatinine: 140,µmol/l
+      gt0016|Glucose: 180,mg/dl
+  expected_output:
+    1:
+      gt0018|C-reactive protein: 0|local::at0005|<15 mg/dL (150 mg/L)|
+      gt0025|Advice: If high suspicion for necrotizing fasciitis through clinical history and physical exam, do not calculate a LRINEC score and go straight to operative debridement.
+      gt0026|Management: Consider IV antibiotics and serial labs to monitor response to treatment. Scores <6 were low risk — but not no risk — for necrotizing soft tissue infections.
+      gt0024|LRINEC Score: 1
+      gt0022|Creatinine: 0|local::at0019|≤1.6 mg/dL (141 µmol/L)|
+      gt0023|Glucose: 0|local::at0022|≤180 mg/dL (10 mmol/L)|
+      gt0019|White blood cell count (x10,000/µL): 1|local::at0009|15-25|
+      gt0021|Sodium (mEq/L): 0|local::at0016|≥135|
+      gt0020|Hemoglobin (g/dL): 0|local::at0012|>13.5|
+- id: score 6
+  input:
+    1:
+      gt0003|CRP (mg/L): 150,mg/l
+      gt0005|WBC (per mm³): 26,10*3/mm3
+      gt0007|Haemoglobin (g/dL): 13.8,gm/dl
+      gt0010|Serum Sodium (mEq/L): 136,mEq/l
+      gt0014|Creatinine: 140,µmol/l
+      gt0016|Glucose: 180,mg/dl
+  expected_output:
+    1:
+      gt0018|C-reactive protein: 4|local::at0006|≥15 mg/dL (150 mg/L)|
+      gt0025|Advice: If high suspicion for necrotizing fasciitis through clinical history and physical exam, do not calculate a LRINEC score and go straight to operative debridement.
+      gt0026|Management: Scores of 6 had a PPV of 92% and NPV of 96% for NSTIs. Intermediate Risk for Necrotizing Soft Tissue Infection. Consider urgent MRI, frozen section biopsy or finger test (manual probing of area in question under local anesthesia). If positive, emergent operative debridement. If negative, IV antibiotics, close observation, serial labs.
+      gt0024|LRINEC Score: 6
+      gt0022|Creatinine: 0|local::at0019|≤1.6 mg/dL (141 µmol/L)|
+      gt0023|Glucose: 0|local::at0022|≤180 mg/dL (10 mmol/L)|
+      gt0019|White blood cell count (x10,000/µL): 2|local::at0010|>25|
+      gt0021|Sodium (mEq/L): 0|local::at0016|≥135|
+      gt0020|Hemoglobin (g/dL): 0|local::at0012|>13.5|
+- id: score <8
+  input:
+    1:
+      gt0003|CRP (mg/L): 150,mg/l
+      gt0005|WBC (per mm³): 26,10*3/mm3
+      gt0007|Haemoglobin (g/dL): 13.8,gm/dl
+      gt0010|Serum Sodium (mEq/L): 136,mEq/l
+      gt0014|Creatinine: 140,µmol/l
+      gt0016|Glucose: 181,mg/dl
+  expected_output:
+    1:
+      gt0018|C-reactive protein: 4|local::at0006|≥15 mg/dL (150 mg/L)|
+      gt0025|Advice: If high suspicion for necrotizing fasciitis through clinical history and physical exam, do not calculate a LRINEC score and go straight to operative debridement.
+      gt0026|Management: Scores of 6 had a PPV of 92% and NPV of 96% for NSTIs. Intermediate Risk for Necrotizing Soft Tissue Infection. Consider urgent MRI, frozen section biopsy or finger test (manual probing of area in question under local anesthesia). If positive, emergent operative debridement. If negative, IV antibiotics, close observation, serial labs.
+      gt0024|LRINEC Score: 7
+      gt0022|Creatinine: 0|local::at0019|≤1.6 mg/dL (141 µmol/L)|
+      gt0023|Glucose: 1|local::at0023|>180 mg/dL (10 mmol/L)|
+      gt0019|White blood cell count (x10,000/µL): 2|local::at0010|>25|
+      gt0021|Sodium (mEq/L): 0|local::at0016|≥135|
+      gt0020|Hemoglobin (g/dL): 0|local::at0012|>13.5|
+- id: score 8
+  input:
+    1:
+      gt0003|CRP (mg/L): 150,mg/l
+      gt0005|WBC (per mm³): 26,10*3/mm3
+      gt0007|Haemoglobin (g/dL): 13.5,gm/dl
+      gt0010|Serum Sodium (mEq/L): 136,mEq/l
+      gt0014|Creatinine: 140,µmol/l
+      gt0016|Glucose: 181,mg/dl
+  expected_output:
+    1:
+      gt0018|C-reactive protein: 4|local::at0006|≥15 mg/dL (150 mg/L)|
+      gt0025|Advice: If high suspicion for necrotizing fasciitis through clinical history and physical exam, do not calculate a LRINEC score and go straight to operative debridement.
+      gt0026|Management: High Risk for Necrotizing Soft Tissue Infection. Scores of 8 had a PPV of 93.4% for NSTIs.Work-up as suggested or emergent operative debridement.
+      gt0024|LRINEC Score: 8
+      gt0022|Creatinine: 0|local::at0019|≤1.6 mg/dL (141 µmol/L)|
+      gt0023|Glucose: 1|local::at0023|>180 mg/dL (10 mmol/L)|
+      gt0019|White blood cell count (x10,000/µL): 2|local::at0010|>25|
+      gt0021|Sodium (mEq/L): 0|local::at0016|≥135|
+      gt0020|Hemoglobin (g/dL): 1|local::at0013|11-13.5|
+- id: score 13
+  input:
+    1:
+      gt0003|CRP (mg/L): 151,mg/l
+      gt0005|WBC (per mm³): 26,10*3/mm3
+      gt0007|Haemoglobin (g/dL): 10,gm/dl
+      gt0010|Serum Sodium (mEq/L): 134,mEq/l
+      gt0014|Creatinine: 142,µmol/l
+      gt0016|Glucose: 181,mg/dl
+  expected_output:
+    1:
+      gt0018|C-reactive protein: 4|local::at0006|≥15 mg/dL (150 mg/L)|
+      gt0025|Advice: If high suspicion for necrotizing fasciitis through clinical history and physical exam, do not calculate a LRINEC score and go straight to operative debridement.
+      gt0026|Management: High Risk for Necrotizing Soft Tissue Infection. Scores of 8 had a PPV of 93.4% for NSTIs.Work-up as suggested or emergent operative debridement.
+      gt0024|LRINEC Score: 13
+      gt0022|Creatinine: 2|local::at0020|>1.6 mg/dL (141 µmol/L)|
+      gt0023|Glucose: 1|local::at0023|>180 mg/dL (10 mmol/L)|
+      gt0019|White blood cell count (x10,000/µL): 2|local::at0010|>25|
+      gt0021|Sodium (mEq/L): 2|local::at0017|<135|
+      gt0020|Hemoglobin (g/dL): 2|local::at0014|<11|

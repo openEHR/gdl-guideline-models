@@ -1,0 +1,68 @@
+guidelines:
+  1: APRI_AST_to_platelet_ratio_index.v1
+test_cases:
+- id: APRI < 0.7
+  input:
+    1:
+      gt0003|Aspartate aminotransferase (AST): 55,U/l
+      gt0005|AST upper limit of normal: 40,IU/l
+      gt0007|Platelet count: 200,10*9/l
+  expected_output:
+    1:
+      gt0015|APRI Score: 0.69
+      gt0011|APRI interpretation: 0|local::at0003|Scores < 0.7 were not sensitive or specific enough to determine level of fibrosis or cirrhosis|
+
+- id: APRI >= 0.7
+  input:
+    1:
+      gt0003|Aspartate aminotransferase (AST): 55,U/l
+      gt0005|AST upper limit of normal: 40,IU/l
+      gt0007|Platelet count: 196,10*9/l
+  expected_output:
+    1:
+      gt0015|APRI Score: 0.70
+      gt0011|APRI interpretation: 1|local::at0004|Scores ≥ 0.7 were 77% sensitive and 72% specific for significant fibrosis|
+
+- id: APRI >= 0.7 and <1
+  input:
+    1:
+      gt0003|Aspartate aminotransferase (AST): 60,U/l
+      gt0005|AST upper limit of normal: 40,IU/l
+      gt0007|Platelet count: 152,10*9/l
+  expected_output:
+    1:
+      gt0015|APRI Score: 0.99
+      gt0011|APRI interpretation: 1|local::at0004|Scores ≥ 0.7 were 77% sensitive and 72% specific for significant fibrosis|
+
+- id: APRI 1.00 (>= 1 and < 2)
+  input:
+    1:
+      gt0003|Aspartate aminotransferase (AST): 61,U/l
+      gt0005|AST upper limit of normal: 40,IU/l
+      gt0007|Platelet count: 152,10*9/l
+  expected_output:
+    1:
+      gt0015|APRI Score: 1.00
+      gt0011|APRI interpretation: 2|local::at0005|Scores ≥1 were 61% sensitive and 64% specific for severe fibrosis and 76% sensitive and 72% specific for cirrhosis|
+
+- id: APRI 1.99 (>= 1 and < 2)
+  input:
+    1:
+      gt0003|Aspartate aminotransferase (AST): 75,U/l
+      gt0005|AST upper limit of normal: 40,IU/l
+      gt0007|Platelet count: 94,10*9/l
+  expected_output:
+    1:
+      gt0015|APRI Score: 1.99
+      gt0011|APRI interpretation: 2|local::at0005|Scores ≥1 were 61% sensitive and 64% specific for severe fibrosis and 76% sensitive and 72% specific for cirrhosis|
+
+- id: APRI 2.00
+  input:
+    1:
+      gt0003|Aspartate aminotransferase (AST): 100,U/l
+      gt0005|AST upper limit of normal: 40,IU/l
+      gt0007|Platelet count: 125,10*9/l
+  expected_output:
+    1:
+      gt0015|APRI Score: 2.00
+      gt0011|APRI interpretation: 3|local::at0006|Scores ≥2 were 36% sensitive and 93% specific for severe fibrosis and 46% sensitive and 91% specific for cirrhosis|

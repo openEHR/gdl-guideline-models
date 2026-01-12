@@ -1,0 +1,23 @@
+guidelines:
+  1: Pediatric_trauma_BIG_score.v1
+test_cases:
+- id: 1. Pre-condition not satisfied
+  input:
+    1:
+      gt0003|Base deficit|: 10,mmol/l
+      gt0004|GCS|: 10
+      gt0006|INR|: 1,1
+      gt0011|Age|: 19,a
+  expected_output: {}
+- id: 2. Pre-condition satisfied
+  input:
+    1:
+      gt0003|Base deficit|: 10,mmol/l
+      gt0004|GCS|: 10
+      gt0006|INR|: 1,1
+      gt0011|Age|: 10,a
+  expected_output:
+    1:
+      gt0008|BIG score|: 17.50,1
+      gt0009|Predicted in-hospital mortality|: 15.3,%
+

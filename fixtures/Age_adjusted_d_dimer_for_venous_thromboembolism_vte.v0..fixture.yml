@@ -1,0 +1,63 @@
+guidelines:
+  1: Age_adjusted_d_dimer_for_venous_thromboembolism_vte.v0
+test_cases:
+- id: Age above 50 and calculate FEU score
+  input:
+    1:
+      gt0003|Age: 52,a
+      gt0021|D-dimer unit type: local::at0004|FEU (unadjusted cutoff typically around 500)|
+  expected_output:
+    1:
+      gt0007|Cutoff value FEU: 520
+
+- id: Age above 50 and calculate DDU score
+  input:
+    1:
+      gt0003|Age: 52,a
+      gt0021|D-dimer unit type: local::at0005|DDU (unadjusted cutoff typically 230-250)|
+  expected_output:
+    1:
+      gt0008|Cutoff value DDU: 260
+
+- id: If FEU selected D-dimer optional value doesnt calculate
+  input:
+    1:
+      gt0003|Age: 52,a
+      gt0021|D-dimer unit type: local::at0004|FEU (unadjusted cutoff typically around 500)|
+      gt0020|D-dimer value (optional): 333,ug/l
+  expected_output:
+    1:
+      gt0007|Cutoff value FEU: 520
+
+- id: If DDU value is given and is lower than cutoff value
+  input:
+    1:
+      gt0003|Age: 52,a
+      gt0021|D-dimer unit type: local::at0005|DDU (unadjusted cutoff typically 230-250)|
+      gt0020|D-dimer value (optional): 100,ug/l
+  expected_output:
+    1:
+      gt0008|Cutoff value DDU: 260
+      gt0009|Assessment: local::at0008|Age-adjusted D-dimer is at or below cutoff.VTE diagnosis is unlikely. Consider alternative diagnosis|
+
+- id: If DDU value is given and is higher than cutoff value
+  input:
+    1:
+      gt0003|Age: 52,a
+      gt0021|D-dimer unit type: local::at0005|DDU (unadjusted cutoff typically 230-250)|
+      gt0020|D-dimer value (optional): 340,ug/l
+  expected_output:
+    1:
+      gt0008|Cutoff value DDU: 260
+      gt0009|Assessment: local::at0007|Age-adjusted D-dimer is above cutoff. VTE diagnosis is likely. Consider confirmatory testing with CTA or V/Q scan|
+
+- id: If DDU value is given and equals cutoff value
+  input:
+    1:
+      gt0003|Age: 50,a
+      gt0021|D-dimer unit type: local::at0005|DDU (unadjusted cutoff typically 230-250)|
+      gt0020|D-dimer value (optional): 250,ug/l
+  expected_output:
+    1:
+      gt0008|Cutoff value DDU: 250
+      gt0009|Assessment: local::at0008|Age-adjusted D-dimer is at or below cutoff.VTE diagnosis is unlikely. Consider alternative diagnosis|

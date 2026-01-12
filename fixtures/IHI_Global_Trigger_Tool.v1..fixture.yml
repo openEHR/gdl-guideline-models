@@ -1,0 +1,690 @@
+guidelines:
+  1: IHI_Global_Trigger_Tool.v1
+test_cases:
+- id: 0. Precondition noncompliance + All-Yes
+  input:
+    1:
+      gt0196|0. Patient >= 18 years old (Pre-Condition): local::at0248|No|
+      gt0197|0. Length of stay > 24 hours (Pre-Condition): local::at0250|Yes|
+      gt0198|0. Patient record closed and coded (Pre-Condition): local::at0253|Yes|
+      gt0199|0. Inpatient psychiatric or rehabilitation patient (Pre-Condition): local::at0257|No|
+      gt0231|01. C1 - Transfusion of Blood or Use of Blood Products: 1|local::at0005|Yes|
+      gt0232|02. C2 - Code, Cardiac or Pulmonary Arrest, or Rapid Response Team Activation: 1|local::at0008|Yes|
+      gt0233|03. C3 - Acute Dialysis: 1|local::at0011|Yes|
+      gt0234|04. C4 - Positive Blood Culture: 1|local::at0014|Yes|
+      gt0235|05. C5 - X-Ray or Doppler Studies for Emboli or Deep Vein Thrombosis: 1|local::at0017|Yes|
+      gt0236|06. C6 - Decrease in Hemoglobin or Hematocrit of 25% or Greater: 1|local::at0020|Yes|
+      gt0237|07. C7 - Patient Fall: 1|local::at0024|Yes|
+      gt0238|08. C8 - Pressure Ulcers: 1|local::at0027|Yes|
+      gt0239|09. C9 - Readmission within 30 Days: 1|local::at0030|Yes|
+      gt0240|10. C10 - Restraint Use: 1|local::at0033|Yes|
+      gt0241|11. C11 - Healthcare-Associated Infections: 1|local::at0036|Yes|
+      gt0242|12. C12 - In-Hospital Stroke: 1|local::at0039|Yes|
+      gt0243|13. C13 - Transfer to Higher Level of Care: 1|local::at0042|Yes|
+      gt0244|14. C14 - Any Procedure Complication: 1|local::at0045|Yes|
+      gt0245|15. C15 - Other triggers or adverse events related to Care: 1|local::at0048|Yes|
+      gt0256|16. M1 - Clostridium difficile Positive Stool: 1|local::at0056|Yes|
+      gt0257|17. M2 - Partial Thromboplastin Time (PTT) Greater than 100 Seconds: 1|local::at0059|Yes|
+      gt0258|18. M3 - International Normalized Ratio (INR) Greater than 6: 1|local::at0062|Yes|
+      'gt0259|19. M4 - Glucose Less than 50 mg/dl ': 1|local::at0065|Yes|
+      'gt0260|20. M5 - Rising BUN or Serum Creatinine Two Times (2x) over Baseline ': 1|local::at0068|Yes|
+      gt0261|21. M6 - Vitamin K Administration: 1|local::at0071|Yes|
+      gt0262|22. M7 - Diphenhydramine (Benadryl) Administration: 1|local::at0075|Yes|
+      gt0263|23. M8 - Romazicon (Flumazenil) Administration: 1|local::at0077|Yes|
+      gt0264|24. M9 - Naloxone (Narcan) Administration: 1|local::at0081|Yes|
+      gt0265|25. M10 - Anti-Emetic Administration: 1|local::at0084|Yes|
+      gt0266|26. M11 - Over-Sedation/Hypotension: 1|local::at0086|Yes|
+      gt0267|27. M12 - Abrupt Medication Stop: 1|local::at0090|Yes|
+      gt0268|28. M13 - Other triggers or adverse events related to Medication: 1|local::at0092|Yes|
+      gt0271|29. S1 - Return to surgery: 100|local::at0214|Yes|
+      gt0272|30. S2 - Change in procedure: 100|local::at0216|Yes|
+      gt0273|31. S3 - Admission to intensive care post-op: 100|local::at0217|Yes|
+      gt0274|32. S4 - Intubation, Reintubation, or BiPap use in Post Anesthesia Care Unit (PACU): 100|local::at0218|Yes|
+      gt0275|33. S5 - X-ray intra-op or in PACU: 100|local::at0219|Yes|
+      gt0276|34. S6 - Intra-op or post-op death: 100|local::at0220|Yes|
+      gt0277|35. S7 - Mechanical ventilation greater than 24 hours post-op: 100|local::at0221|Yes|
+      gt0278|36. S8 - Intra-op epinephrine, norepinephrine, naloxone, or romazicon: 100|local::at0222|Yes|
+      gt0279|37. S9 - Post-op troponin level greater than 1.5 ng/ml: 100|local::at0223|Yes|
+      gt0280|38. S10 - Injury, repair, or removal of organ: 100|local::at0224|Yes|
+      gt0281|39. S11 - Any operative complication: 100|local::at0225|Yes|
+      gt0284|40. I1 - Pneumonia onset: 100|local::at0226|Yes|
+      gt0285|41. I2 - Readmission to intensive care: 100|local::at0227|Yes|
+      gt0286|42. I3 - In-unit procedure: 100|local::at0228|Yes|
+      gt0287|43. I4 - Intubation or Reintubation: 100|local::at0229|Yes|
+      gt0290|44. P1 - Terbutaline use: 100|local::at0230|Yes|
+      gt0291|45. P2 - 3rd- or 4th-degree lacerations: 100|local::at0231|Yes|
+      gt0292|46. P3 - Platelet count less than 50,000: 100|local::at0232|Yes|
+      gt0293|47. P4 - Estimated blood loss > 500 ml (vaginal) or > 1,000 ml (C-section: 100|local::at0233|Yes|
+      gt0294|48. P5 - Specialty consult: 100|local::at0234|Yes|
+      gt0295|49. P6 - Oxytocic agents: 100|local::at0235|Yes|
+      gt0296|50. P7 - Instrumented delivery: 100|local::at0236|Yes|
+      gt0297|51. P8 - General anesthesia: 100|local::at0237|Yes|
+      gt0300|52. E1 - Readmission to ED within 48 hours: 100|local::at0238|Yes|
+      gt0301|53. E2 - Time in ED greater than 6 hours: 100|local::at0239|Yes|
+      gt0304|8. Additional comments (other triggers or AE identified): Additional Comments
+  expected_output:
+    1:
+      gt0208|0. Complies with Pre-Conditions?: local::at0265|No|
+- id: 1. Precondition compliance + All-Yes + Comments
+  input:
+    1:
+      gt0196|0. Patient >= 18 years old (Pre-Condition): local::at0247|Yes|
+      gt0197|0. Length of stay > 24 hours (Pre-Condition): local::at0250|Yes|
+      gt0198|0. Patient record closed and coded (Pre-Condition): local::at0253|Yes|
+      gt0199|0. Inpatient psychiatric or rehabilitation patient (Pre-Condition): local::at0257|No|
+      gt0231|01. C1 - Transfusion of Blood or Use of Blood Products: 1|local::at0005|Yes|
+      gt0232|02. C2 - Code, Cardiac or Pulmonary Arrest, or Rapid Response Team Activation: 1|local::at0008|Yes|
+      gt0233|03. C3 - Acute Dialysis: 1|local::at0011|Yes|
+      gt0234|04. C4 - Positive Blood Culture: 1|local::at0014|Yes|
+      gt0235|05. C5 - X-Ray or Doppler Studies for Emboli or Deep Vein Thrombosis: 1|local::at0017|Yes|
+      gt0236|06. C6 - Decrease in Hemoglobin or Hematocrit of 25% or Greater: 1|local::at0020|Yes|
+      gt0237|07. C7 - Patient Fall: 1|local::at0024|Yes|
+      gt0238|08. C8 - Pressure Ulcers: 1|local::at0027|Yes|
+      gt0239|09. C9 - Readmission within 30 Days: 1|local::at0030|Yes|
+      gt0240|10. C10 - Restraint Use: 1|local::at0033|Yes|
+      gt0241|11. C11 - Healthcare-Associated Infections: 1|local::at0036|Yes|
+      gt0242|12. C12 - In-Hospital Stroke: 1|local::at0039|Yes|
+      gt0243|13. C13 - Transfer to Higher Level of Care: 1|local::at0042|Yes|
+      gt0244|14. C14 - Any Procedure Complication: 1|local::at0045|Yes|
+      gt0245|15. C15 - Other triggers or adverse events related to Care: 1|local::at0048|Yes|
+      gt0256|16. M1 - Clostridium difficile Positive Stool: 1|local::at0056|Yes|
+      gt0257|17. M2 - Partial Thromboplastin Time (PTT) Greater than 100 Seconds: 1|local::at0059|Yes|
+      gt0258|18. M3 - International Normalized Ratio (INR) Greater than 6: 1|local::at0062|Yes|
+      'gt0259|19. M4 - Glucose Less than 50 mg/dl ': 1|local::at0065|Yes|
+      'gt0260|20. M5 - Rising BUN or Serum Creatinine Two Times (2x) over Baseline ': 1|local::at0068|Yes|
+      gt0261|21. M6 - Vitamin K Administration: 1|local::at0071|Yes|
+      gt0262|22. M7 - Diphenhydramine (Benadryl) Administration: 1|local::at0075|Yes|
+      gt0263|23. M8 - Romazicon (Flumazenil) Administration: 1|local::at0077|Yes|
+      gt0264|24. M9 - Naloxone (Narcan) Administration: 1|local::at0081|Yes|
+      gt0265|25. M10 - Anti-Emetic Administration: 1|local::at0084|Yes|
+      gt0266|26. M11 - Over-Sedation/Hypotension: 1|local::at0086|Yes|
+      gt0267|27. M12 - Abrupt Medication Stop: 1|local::at0090|Yes|
+      gt0268|28. M13 - Other triggers or adverse events related to Medication: 1|local::at0092|Yes|
+      gt0271|29. S1 - Return to surgery: 100|local::at0214|Yes|
+      gt0272|30. S2 - Change in procedure: 100|local::at0216|Yes|
+      gt0273|31. S3 - Admission to intensive care post-op: 100|local::at0217|Yes|
+      gt0274|32. S4 - Intubation, Reintubation, or BiPap use in Post Anesthesia Care Unit (PACU): 100|local::at0218|Yes|
+      gt0275|33. S5 - X-ray intra-op or in PACU: 100|local::at0219|Yes|
+      gt0276|34. S6 - Intra-op or post-op death: 100|local::at0220|Yes|
+      gt0277|35. S7 - Mechanical ventilation greater than 24 hours post-op: 100|local::at0221|Yes|
+      gt0278|36. S8 - Intra-op epinephrine, norepinephrine, naloxone, or romazicon: 100|local::at0222|Yes|
+      gt0279|37. S9 - Post-op troponin level greater than 1.5 ng/ml: 100|local::at0223|Yes|
+      gt0280|38. S10 - Injury, repair, or removal of organ: 100|local::at0224|Yes|
+      gt0281|39. S11 - Any operative complication: 100|local::at0225|Yes|
+      gt0284|40. I1 - Pneumonia onset: 100|local::at0226|Yes|
+      gt0285|41. I2 - Readmission to intensive care: 100|local::at0227|Yes|
+      gt0286|42. I3 - In-unit procedure: 100|local::at0228|Yes|
+      gt0287|43. I4 - Intubation or Reintubation: 100|local::at0229|Yes|
+      gt0290|44. P1 - Terbutaline use: 100|local::at0230|Yes|
+      gt0291|45. P2 - 3rd- or 4th-degree lacerations: 100|local::at0231|Yes|
+      gt0292|46. P3 - Platelet count less than 50,000: 100|local::at0232|Yes|
+      gt0293|47. P4 - Estimated blood loss > 500 ml (vaginal) or > 1,000 ml (C-section: 100|local::at0233|Yes|
+      gt0294|48. P5 - Specialty consult: 100|local::at0234|Yes|
+      gt0295|49. P6 - Oxytocic agents: 100|local::at0235|Yes|
+      gt0296|50. P7 - Instrumented delivery: 100|local::at0236|Yes|
+      gt0297|51. P8 - General anesthesia: 100|local::at0237|Yes|
+      gt0300|52. E1 - Readmission to ED within 48 hours: 100|local::at0238|Yes|
+      gt0301|53. E2 - Time in ED greater than 6 hours: 100|local::at0239|Yes|
+      gt0304|8. Additional comments (other triggers or AE identified): Additional Comments
+  expected_output:
+    1:
+      gt0247|2. Total Medication Module Triggers: 13
+      gt0250|5. Total Perinatal Module Triggers: 8
+      gt0246|1. Total Care Module Triggers: 15
+      gt0252|7. Total Sum of Triggers: 53
+      gt0249|4. Total Intensive Care Module Triggers: 4
+      gt0253|8. Additional comments (other triggers or AE identified): Additional Comments
+      gt0248|3. Total Surgery Module Triggers: 11
+      gt0251|6. Total Emergency Department Module Triggers: 2
+- id: 2. Precondition compliance + All-Yes + NoComments
+  input:
+    1:
+      gt0196|0. Patient >= 18 years old (Pre-Condition): local::at0247|Yes|
+      gt0197|0. Length of stay > 24 hours (Pre-Condition): local::at0250|Yes|
+      gt0198|0. Patient record closed and coded (Pre-Condition): local::at0253|Yes|
+      gt0199|0. Inpatient psychiatric or rehabilitation patient (Pre-Condition): local::at0257|No|
+      gt0231|01. C1 - Transfusion of Blood or Use of Blood Products: 1|local::at0005|Yes|
+      gt0232|02. C2 - Code, Cardiac or Pulmonary Arrest, or Rapid Response Team Activation: 1|local::at0008|Yes|
+      gt0233|03. C3 - Acute Dialysis: 1|local::at0011|Yes|
+      gt0234|04. C4 - Positive Blood Culture: 1|local::at0014|Yes|
+      gt0235|05. C5 - X-Ray or Doppler Studies for Emboli or Deep Vein Thrombosis: 1|local::at0017|Yes|
+      gt0236|06. C6 - Decrease in Hemoglobin or Hematocrit of 25% or Greater: 1|local::at0020|Yes|
+      gt0237|07. C7 - Patient Fall: 1|local::at0024|Yes|
+      gt0238|08. C8 - Pressure Ulcers: 1|local::at0027|Yes|
+      gt0239|09. C9 - Readmission within 30 Days: 1|local::at0030|Yes|
+      gt0240|10. C10 - Restraint Use: 1|local::at0033|Yes|
+      gt0241|11. C11 - Healthcare-Associated Infections: 1|local::at0036|Yes|
+      gt0242|12. C12 - In-Hospital Stroke: 1|local::at0039|Yes|
+      gt0243|13. C13 - Transfer to Higher Level of Care: 1|local::at0042|Yes|
+      gt0244|14. C14 - Any Procedure Complication: 1|local::at0045|Yes|
+      gt0245|15. C15 - Other triggers or adverse events related to Care: 1|local::at0048|Yes|
+      gt0256|16. M1 - Clostridium difficile Positive Stool: 1|local::at0056|Yes|
+      gt0257|17. M2 - Partial Thromboplastin Time (PTT) Greater than 100 Seconds: 1|local::at0059|Yes|
+      gt0258|18. M3 - International Normalized Ratio (INR) Greater than 6: 1|local::at0062|Yes|
+      'gt0259|19. M4 - Glucose Less than 50 mg/dl ': 1|local::at0065|Yes|
+      'gt0260|20. M5 - Rising BUN or Serum Creatinine Two Times (2x) over Baseline ': 1|local::at0068|Yes|
+      gt0261|21. M6 - Vitamin K Administration: 1|local::at0071|Yes|
+      gt0262|22. M7 - Diphenhydramine (Benadryl) Administration: 1|local::at0075|Yes|
+      gt0263|23. M8 - Romazicon (Flumazenil) Administration: 1|local::at0077|Yes|
+      gt0264|24. M9 - Naloxone (Narcan) Administration: 1|local::at0081|Yes|
+      gt0265|25. M10 - Anti-Emetic Administration: 1|local::at0084|Yes|
+      gt0266|26. M11 - Over-Sedation/Hypotension: 1|local::at0086|Yes|
+      gt0267|27. M12 - Abrupt Medication Stop: 1|local::at0090|Yes|
+      gt0268|28. M13 - Other triggers or adverse events related to Medication: 1|local::at0092|Yes|
+      gt0271|29. S1 - Return to surgery: 100|local::at0214|Yes|
+      gt0272|30. S2 - Change in procedure: 100|local::at0216|Yes|
+      gt0273|31. S3 - Admission to intensive care post-op: 100|local::at0217|Yes|
+      gt0274|32. S4 - Intubation, Reintubation, or BiPap use in Post Anesthesia Care Unit (PACU): 100|local::at0218|Yes|
+      gt0275|33. S5 - X-ray intra-op or in PACU: 100|local::at0219|Yes|
+      gt0276|34. S6 - Intra-op or post-op death: 100|local::at0220|Yes|
+      gt0277|35. S7 - Mechanical ventilation greater than 24 hours post-op: 100|local::at0221|Yes|
+      gt0278|36. S8 - Intra-op epinephrine, norepinephrine, naloxone, or romazicon: 100|local::at0222|Yes|
+      gt0279|37. S9 - Post-op troponin level greater than 1.5 ng/ml: 100|local::at0223|Yes|
+      gt0280|38. S10 - Injury, repair, or removal of organ: 100|local::at0224|Yes|
+      gt0281|39. S11 - Any operative complication: 100|local::at0225|Yes|
+      gt0284|40. I1 - Pneumonia onset: 100|local::at0226|Yes|
+      gt0285|41. I2 - Readmission to intensive care: 100|local::at0227|Yes|
+      gt0286|42. I3 - In-unit procedure: 100|local::at0228|Yes|
+      gt0287|43. I4 - Intubation or Reintubation: 100|local::at0229|Yes|
+      gt0290|44. P1 - Terbutaline use: 100|local::at0230|Yes|
+      gt0291|45. P2 - 3rd- or 4th-degree lacerations: 100|local::at0231|Yes|
+      gt0292|46. P3 - Platelet count less than 50,000: 100|local::at0232|Yes|
+      gt0293|47. P4 - Estimated blood loss > 500 ml (vaginal) or > 1,000 ml (C-section: 100|local::at0233|Yes|
+      gt0294|48. P5 - Specialty consult: 100|local::at0234|Yes|
+      gt0295|49. P6 - Oxytocic agents: 100|local::at0235|Yes|
+      gt0296|50. P7 - Instrumented delivery: 100|local::at0236|Yes|
+      gt0297|51. P8 - General anesthesia: 100|local::at0237|Yes|
+      gt0300|52. E1 - Readmission to ED within 48 hours: 100|local::at0238|Yes|
+      gt0301|53. E2 - Time in ED greater than 6 hours: 100|local::at0239|Yes|
+  expected_output:
+    1:
+      gt0247|2. Total Medication Module Triggers: 13
+      gt0250|5. Total Perinatal Module Triggers: 8
+      gt0246|1. Total Care Module Triggers: 15
+      gt0252|7. Total Sum of Triggers: 53
+      gt0249|4. Total Intensive Care Module Triggers: 4
+      gt0248|3. Total Surgery Module Triggers: 11
+      gt0251|6. Total Emergency Department Module Triggers: 2
+- id: 3. Precondition compliance + All-No
+  input:
+    1:
+      gt0196|0. Patient >= 18 years old (Pre-Condition): local::at0247|Yes|
+      gt0197|0. Length of stay > 24 hours (Pre-Condition): local::at0250|Yes|
+      gt0198|0. Patient record closed and coded (Pre-Condition): local::at0253|Yes|
+      gt0199|0. Inpatient psychiatric or rehabilitation patient (Pre-Condition): local::at0257|No|
+      gt0231|01. C1 - Transfusion of Blood or Use of Blood Products: 0|local::at0004|No|
+      gt0232|02. C2 - Code, Cardiac or Pulmonary Arrest, or Rapid Response Team Activation: 0|local::at0007|No|
+      gt0233|03. C3 - Acute Dialysis: 0|local::at0010|No|
+      gt0234|04. C4 - Positive Blood Culture: 0|local::at0013|No|
+      gt0235|05. C5 - X-Ray or Doppler Studies for Emboli or Deep Vein Thrombosis: 0|local::at0016|No|
+      gt0236|06. C6 - Decrease in Hemoglobin or Hematocrit of 25% or Greater: 0|local::at0019|No|
+      gt0237|07. C7 - Patient Fall: 0|local::at0023|No|
+      gt0238|08. C8 - Pressure Ulcers: 0|local::at0026|No|
+      gt0239|09. C9 - Readmission within 30 Days: 0|local::at0029|No|
+      gt0240|10. C10 - Restraint Use: 0|local::at0032|No|
+      gt0241|11. C11 - Healthcare-Associated Infections: 0|local::at0035|No|
+      gt0242|12. C12 - In-Hospital Stroke: 0|local::at0038|No|
+      gt0243|13. C13 - Transfer to Higher Level of Care: 0|local::at0041|No|
+      gt0244|14. C14 - Any Procedure Complication: 0|local::at0044|No|
+      gt0245|15. C15 - Other triggers or adverse events related to Care: 0|local::at0047|No|
+      gt0256|16. M1 - Clostridium difficile Positive Stool: 0|local::at0055|No|
+      gt0257|17. M2 - Partial Thromboplastin Time (PTT) Greater than 100 Seconds: 0|local::at0058|No|
+      gt0258|18. M3 - International Normalized Ratio (INR) Greater than 6: 0|local::at0061|No|
+      'gt0259|19. M4 - Glucose Less than 50 mg/dl ': 0|local::at0064|No|
+      'gt0260|20. M5 - Rising BUN or Serum Creatinine Two Times (2x) over Baseline ': 0|local::at0067|No|
+      gt0261|21. M6 - Vitamin K Administration: 0|local::at0070|No|
+      gt0262|22. M7 - Diphenhydramine (Benadryl) Administration: 0|local::at0073|No|
+      gt0263|23. M8 - Romazicon (Flumazenil) Administration: 0|local::at0076|No|
+      gt0264|24. M9 - Naloxone (Narcan) Administration: 0|local::at0079|No|
+      gt0265|25. M10 - Anti-Emetic Administration: 0|local::at0082|No|
+      gt0266|26. M11 - Over-Sedation/Hypotension: 0|local::at0085|No|
+      gt0267|27. M12 - Abrupt Medication Stop: 0|local::at0088|No|
+      gt0268|28. M13 - Other triggers or adverse events related to Medication: 0|local::at0091|No|
+      gt0271|29. S1 - Return to surgery: 1|local::at0098|No|
+      gt0272|30. S2 - Change in procedure: 1|local::at0102|No|
+      gt0273|31. S3 - Admission to intensive care post-op: 1|local::at0105|No|
+      gt0274|32. S4 - Intubation, Reintubation, or BiPap use in Post Anesthesia Care Unit (PACU): 1|local::at0107|No|
+      gt0275|33. S5 - X-ray intra-op or in PACU: 1|local::at0110|No|
+      gt0276|34. S6 - Intra-op or post-op death: 1|local::at0113|No|
+      gt0277|35. S7 - Mechanical ventilation greater than 24 hours post-op: 1|local::at0116|No|
+      gt0278|36. S8 - Intra-op epinephrine, norepinephrine, naloxone, or romazicon: 1|local::at0119|No|
+      gt0279|37. S9 - Post-op troponin level greater than 1.5 ng/ml: 1|local::at0122|No|
+      gt0280|38. S10 - Injury, repair, or removal of organ: 1|local::at0125|No|
+      gt0281|39. S11 - Any operative complication: 1|local::at0128|No|
+      gt0284|40. I1 - Pneumonia onset: 1|local::at0133|No|
+      gt0285|41. I2 - Readmission to intensive care: 1|local::at0136|No|
+      gt0286|42. I3 - In-unit procedure: 1|local::at0139|No|
+      gt0287|43. I4 - Intubation or Reintubation: 1|local::at0142|No|
+      gt0290|44. P1 - Terbutaline use: 1|local::at0147|No|
+      gt0291|45. P2 - 3rd- or 4th-degree lacerations: 1|local::at0150|No|
+      gt0292|46. P3 - Platelet count less than 50,000: 1|local::at0153|No|
+      gt0293|47. P4 - Estimated blood loss > 500 ml (vaginal) or > 1,000 ml (C-section: 1|local::at0156|No|
+      gt0294|48. P5 - Specialty consult: 1|local::at0159|No|
+      gt0295|49. P6 - Oxytocic agents: 1|local::at0162|No|
+      gt0296|50. P7 - Instrumented delivery: 1|local::at0165|No|
+      gt0297|51. P8 - General anesthesia: 1|local::at0168|No|
+      gt0300|52. E1 - Readmission to ED within 48 hours: 1|local::at0173|No|
+      gt0301|53. E2 - Time in ED greater than 6 hours: 1|local::at0176|No|
+  expected_output:
+    1:
+      gt0247|2. Total Medication Module Triggers: 0
+      gt0250|5. Total Perinatal Module Triggers: 0
+      gt0246|1. Total Care Module Triggers: 0
+      gt0252|7. Total Sum of Triggers: 0
+      gt0249|4. Total Intensive Care Module Triggers: 0
+      gt0248|3. Total Surgery Module Triggers: 0
+      gt0251|6. Total Emergency Department Module Triggers: 0
+- id: 4. Precondition compliance + Care-Med All-No + All-NA
+  input:
+    1:
+      gt0196|0. Patient >= 18 years old (Pre-Condition): local::at0247|Yes|
+      gt0197|0. Length of stay > 24 hours (Pre-Condition): local::at0250|Yes|
+      gt0198|0. Patient record closed and coded (Pre-Condition): local::at0253|Yes|
+      gt0199|0. Inpatient psychiatric or rehabilitation patient (Pre-Condition): local::at0257|No|
+      gt0231|01. C1 - Transfusion of Blood or Use of Blood Products: 0|local::at0004|No|
+      gt0232|02. C2 - Code, Cardiac or Pulmonary Arrest, or Rapid Response Team Activation: 0|local::at0007|No|
+      gt0233|03. C3 - Acute Dialysis: 0|local::at0010|No|
+      gt0234|04. C4 - Positive Blood Culture: 0|local::at0013|No|
+      gt0235|05. C5 - X-Ray or Doppler Studies for Emboli or Deep Vein Thrombosis: 0|local::at0016|No|
+      gt0236|06. C6 - Decrease in Hemoglobin or Hematocrit of 25% or Greater: 0|local::at0019|No|
+      gt0237|07. C7 - Patient Fall: 0|local::at0023|No|
+      gt0238|08. C8 - Pressure Ulcers: 0|local::at0026|No|
+      gt0239|09. C9 - Readmission within 30 Days: 0|local::at0029|No|
+      gt0240|10. C10 - Restraint Use: 0|local::at0032|No|
+      gt0241|11. C11 - Healthcare-Associated Infections: 0|local::at0035|No|
+      gt0242|12. C12 - In-Hospital Stroke: 0|local::at0038|No|
+      gt0243|13. C13 - Transfer to Higher Level of Care: 0|local::at0041|No|
+      gt0244|14. C14 - Any Procedure Complication: 0|local::at0044|No|
+      gt0245|15. C15 - Other triggers or adverse events related to Care: 0|local::at0047|No|
+      gt0256|16. M1 - Clostridium difficile Positive Stool: 0|local::at0055|No|
+      gt0257|17. M2 - Partial Thromboplastin Time (PTT) Greater than 100 Seconds: 0|local::at0058|No|
+      gt0258|18. M3 - International Normalized Ratio (INR) Greater than 6: 0|local::at0061|No|
+      'gt0259|19. M4 - Glucose Less than 50 mg/dl ': 0|local::at0064|No|
+      'gt0260|20. M5 - Rising BUN or Serum Creatinine Two Times (2x) over Baseline ': 0|local::at0067|No|
+      gt0261|21. M6 - Vitamin K Administration: 0|local::at0070|No|
+      gt0262|22. M7 - Diphenhydramine (Benadryl) Administration: 0|local::at0073|No|
+      gt0263|23. M8 - Romazicon (Flumazenil) Administration: 0|local::at0076|No|
+      gt0264|24. M9 - Naloxone (Narcan) Administration: 0|local::at0079|No|
+      gt0265|25. M10 - Anti-Emetic Administration: 0|local::at0082|No|
+      gt0266|26. M11 - Over-Sedation/Hypotension: 0|local::at0085|No|
+      gt0267|27. M12 - Abrupt Medication Stop: 0|local::at0088|No|
+      gt0268|28. M13 - Other triggers or adverse events related to Medication: 0|local::at0091|No|
+      gt0271|29. S1 - Return to surgery: 0|local::at0097|Not applicable|
+      gt0272|30. S2 - Change in procedure: 0|local::at0100|Not applicable|
+      gt0273|31. S3 - Admission to intensive care post-op: 0|local::at0103|Not applicable|
+      gt0274|32. S4 - Intubation, Reintubation, or BiPap use in Post Anesthesia Care Unit (PACU): 0|local::at0106|Not applicable|
+      gt0275|33. S5 - X-ray intra-op or in PACU: 0|local::at0109|Not applicable|
+      gt0276|34. S6 - Intra-op or post-op death: 0|local::at0112|Not applicable|
+      gt0277|35. S7 - Mechanical ventilation greater than 24 hours post-op: 0|local::at0115|Not applicable|
+      gt0278|36. S8 - Intra-op epinephrine, norepinephrine, naloxone, or romazicon: 0|local::at0118|Not applicable|
+      gt0279|37. S9 - Post-op troponin level greater than 1.5 ng/ml: 0|local::at0121|Not applicable|
+      gt0280|38. S10 - Injury, repair, or removal of organ: 0|local::at0124|Not applicable|
+      gt0281|39. S11 - Any operative complication: 0|local::at0127|Not applicable|
+      gt0284|40. I1 - Pneumonia onset: 0|local::at0132|Not applicable|
+      gt0285|41. I2 - Readmission to intensive care: 0|local::at0135|Not applicable|
+      gt0286|42. I3 - In-unit procedure: 0|local::at0138|Not applicable|
+      gt0287|43. I4 - Intubation or Reintubation: 0|local::at0141|Not applicable|
+      gt0290|44. P1 - Terbutaline use: 0|local::at0146|Not applicable|
+      gt0291|45. P2 - 3rd- or 4th-degree lacerations: 0|local::at0149|Not applicable|
+      gt0292|46. P3 - Platelet count less than 50,000: 0|local::at0152|Not applicable|
+      gt0293|47. P4 - Estimated blood loss > 500 ml (vaginal) or > 1,000 ml (C-section: 0|local::at0155|Not applicable|
+      gt0294|48. P5 - Specialty consult: 0|local::at0158|Not applicable|
+      gt0295|49. P6 - Oxytocic agents: 0|local::at0161|Not applicable|
+      gt0296|50. P7 - Instrumented delivery: 0|local::at0164|Not applicable|
+      gt0297|51. P8 - General anesthesia: 0|local::at0167|Not applicable|
+      gt0300|52. E1 - Readmission to ED within 48 hours: 0|local::at0172|Not applicable|
+      gt0301|53. E2 - Time in ED greater than 6 hours: 0|local::at0175|Not applicable|
+  expected_output:
+    1:
+      gt0247|2. Total Medication Module Triggers: 0
+      gt0250|5. Total Perinatal Module Triggers: 0
+      gt0246|1. Total Care Module Triggers: 0
+      gt0252|7. Total Sum of Triggers: 0
+      gt0249|4. Total Intensive Care Module Triggers: 0
+      gt0248|3. Total Surgery Module Triggers: 0
+      gt0251|6. Total Emergency Department Module Triggers: 0
+- id: 5. Precondition compliance + Care(2)-Med(3) Yes-Answers + rest NA
+  input:
+    1:
+      gt0196|0. Patient >= 18 years old (Pre-Condition): local::at0247|Yes|
+      gt0197|0. Length of stay > 24 hours (Pre-Condition): local::at0250|Yes|
+      gt0198|0. Patient record closed and coded (Pre-Condition): local::at0253|Yes|
+      gt0199|0. Inpatient psychiatric or rehabilitation patient (Pre-Condition): local::at0257|No|
+      gt0231|01. C1 - Transfusion of Blood or Use of Blood Products: 1|local::at0005|Yes|
+      gt0232|02. C2 - Code, Cardiac or Pulmonary Arrest, or Rapid Response Team Activation: 1|local::at0008|Yes|
+      gt0233|03. C3 - Acute Dialysis: 0|local::at0010|No|
+      gt0234|04. C4 - Positive Blood Culture: 0|local::at0013|No|
+      gt0235|05. C5 - X-Ray or Doppler Studies for Emboli or Deep Vein Thrombosis: 0|local::at0016|No|
+      gt0236|06. C6 - Decrease in Hemoglobin or Hematocrit of 25% or Greater: 0|local::at0019|No|
+      gt0237|07. C7 - Patient Fall: 0|local::at0023|No|
+      gt0238|08. C8 - Pressure Ulcers: 0|local::at0026|No|
+      gt0239|09. C9 - Readmission within 30 Days: 0|local::at0029|No|
+      gt0240|10. C10 - Restraint Use: 0|local::at0032|No|
+      gt0241|11. C11 - Healthcare-Associated Infections: 0|local::at0035|No|
+      gt0242|12. C12 - In-Hospital Stroke: 0|local::at0038|No|
+      gt0243|13. C13 - Transfer to Higher Level of Care: 0|local::at0041|No|
+      gt0244|14. C14 - Any Procedure Complication: 0|local::at0044|No|
+      gt0245|15. C15 - Other triggers or adverse events related to Care: 0|local::at0047|No|
+      gt0256|16. M1 - Clostridium difficile Positive Stool: 1|local::at0056|Yes|
+      gt0257|17. M2 - Partial Thromboplastin Time (PTT) Greater than 100 Seconds: 1|local::at0059|Yes|
+      gt0258|18. M3 - International Normalized Ratio (INR) Greater than 6: 1|local::at0062|Yes|
+      'gt0259|19. M4 - Glucose Less than 50 mg/dl ': 0|local::at0064|No|
+      'gt0260|20. M5 - Rising BUN or Serum Creatinine Two Times (2x) over Baseline ': 0|local::at0067|No|
+      gt0261|21. M6 - Vitamin K Administration: 0|local::at0070|No|
+      gt0262|22. M7 - Diphenhydramine (Benadryl) Administration: 0|local::at0073|No|
+      gt0263|23. M8 - Romazicon (Flumazenil) Administration: 0|local::at0076|No|
+      gt0264|24. M9 - Naloxone (Narcan) Administration: 0|local::at0079|No|
+      gt0265|25. M10 - Anti-Emetic Administration: 0|local::at0082|No|
+      gt0266|26. M11 - Over-Sedation/Hypotension: 0|local::at0085|No|
+      gt0267|27. M12 - Abrupt Medication Stop: 0|local::at0088|No|
+      gt0268|28. M13 - Other triggers or adverse events related to Medication: 0|local::at0091|No|
+      gt0271|29. S1 - Return to surgery: 0|local::at0097|Not applicable|
+      gt0272|30. S2 - Change in procedure: 0|local::at0100|Not applicable|
+      gt0273|31. S3 - Admission to intensive care post-op: 0|local::at0103|Not applicable|
+      gt0274|32. S4 - Intubation, Reintubation, or BiPap use in Post Anesthesia Care Unit (PACU): 0|local::at0106|Not applicable|
+      gt0275|33. S5 - X-ray intra-op or in PACU: 0|local::at0109|Not applicable|
+      gt0276|34. S6 - Intra-op or post-op death: 0|local::at0112|Not applicable|
+      gt0277|35. S7 - Mechanical ventilation greater than 24 hours post-op: 0|local::at0115|Not applicable|
+      gt0278|36. S8 - Intra-op epinephrine, norepinephrine, naloxone, or romazicon: 0|local::at0118|Not applicable|
+      gt0279|37. S9 - Post-op troponin level greater than 1.5 ng/ml: 0|local::at0121|Not applicable|
+      gt0280|38. S10 - Injury, repair, or removal of organ: 0|local::at0124|Not applicable|
+      gt0281|39. S11 - Any operative complication: 0|local::at0127|Not applicable|
+      gt0284|40. I1 - Pneumonia onset: 0|local::at0132|Not applicable|
+      gt0285|41. I2 - Readmission to intensive care: 0|local::at0135|Not applicable|
+      gt0286|42. I3 - In-unit procedure: 0|local::at0138|Not applicable|
+      gt0287|43. I4 - Intubation or Reintubation: 0|local::at0141|Not applicable|
+      gt0290|44. P1 - Terbutaline use: 0|local::at0146|Not applicable|
+      gt0291|45. P2 - 3rd- or 4th-degree lacerations: 0|local::at0149|Not applicable|
+      gt0292|46. P3 - Platelet count less than 50,000: 0|local::at0152|Not applicable|
+      gt0293|47. P4 - Estimated blood loss > 500 ml (vaginal) or > 1,000 ml (C-section: 0|local::at0155|Not applicable|
+      gt0294|48. P5 - Specialty consult: 0|local::at0158|Not applicable|
+      gt0295|49. P6 - Oxytocic agents: 0|local::at0161|Not applicable|
+      gt0296|50. P7 - Instrumented delivery: 0|local::at0164|Not applicable|
+      gt0297|51. P8 - General anesthesia: 0|local::at0167|Not applicable|
+      gt0300|52. E1 - Readmission to ED within 48 hours: 0|local::at0172|Not applicable|
+      gt0301|53. E2 - Time in ED greater than 6 hours: 0|local::at0175|Not applicable|
+  expected_output:
+    1:
+      gt0247|2. Total Medication Module Triggers: 3
+      gt0250|5. Total Perinatal Module Triggers: 0
+      gt0246|1. Total Care Module Triggers: 2
+      gt0252|7. Total Sum of Triggers: 5
+      gt0249|4. Total Intensive Care Module Triggers: 0
+      gt0248|3. Total Surgery Module Triggers: 0
+      gt0251|6. Total Emergency Department Module Triggers: 0
+- id: 6. Precondition compliance + Care(0)-Med(1)-Surg(1) Yes + rest No/NA
+  input:
+    1:
+      gt0196|0. Patient >= 18 years old (Pre-Condition): local::at0247|Yes|
+      gt0197|0. Length of stay > 24 hours (Pre-Condition): local::at0250|Yes|
+      gt0198|0. Patient record closed and coded (Pre-Condition): local::at0253|Yes|
+      gt0199|0. Inpatient psychiatric or rehabilitation patient (Pre-Condition): local::at0257|No|
+      gt0231|01. C1 - Transfusion of Blood or Use of Blood Products: 0|local::at0004|No|
+      gt0232|02. C2 - Code, Cardiac or Pulmonary Arrest, or Rapid Response Team Activation: 0|local::at0007|No|
+      gt0233|03. C3 - Acute Dialysis: 0|local::at0010|No|
+      gt0234|04. C4 - Positive Blood Culture: 0|local::at0013|No|
+      gt0235|05. C5 - X-Ray or Doppler Studies for Emboli or Deep Vein Thrombosis: 0|local::at0016|No|
+      gt0236|06. C6 - Decrease in Hemoglobin or Hematocrit of 25% or Greater: 0|local::at0019|No|
+      gt0237|07. C7 - Patient Fall: 0|local::at0023|No|
+      gt0238|08. C8 - Pressure Ulcers: 0|local::at0026|No|
+      gt0239|09. C9 - Readmission within 30 Days: 0|local::at0029|No|
+      gt0240|10. C10 - Restraint Use: 0|local::at0032|No|
+      gt0241|11. C11 - Healthcare-Associated Infections: 0|local::at0035|No|
+      gt0242|12. C12 - In-Hospital Stroke: 0|local::at0038|No|
+      gt0243|13. C13 - Transfer to Higher Level of Care: 0|local::at0041|No|
+      gt0244|14. C14 - Any Procedure Complication: 0|local::at0044|No|
+      gt0245|15. C15 - Other triggers or adverse events related to Care: 0|local::at0047|No|
+      gt0256|16. M1 - Clostridium difficile Positive Stool: 0|local::at0055|No|
+      gt0257|17. M2 - Partial Thromboplastin Time (PTT) Greater than 100 Seconds: 0|local::at0058|No|
+      gt0258|18. M3 - International Normalized Ratio (INR) Greater than 6: 0|local::at0061|No|
+      'gt0259|19. M4 - Glucose Less than 50 mg/dl ': 1|local::at0065|Yes|
+      'gt0260|20. M5 - Rising BUN or Serum Creatinine Two Times (2x) over Baseline ': 0|local::at0067|No|
+      gt0261|21. M6 - Vitamin K Administration: 0|local::at0070|No|
+      gt0262|22. M7 - Diphenhydramine (Benadryl) Administration: 0|local::at0073|No|
+      gt0263|23. M8 - Romazicon (Flumazenil) Administration: 0|local::at0076|No|
+      gt0264|24. M9 - Naloxone (Narcan) Administration: 0|local::at0079|No|
+      gt0265|25. M10 - Anti-Emetic Administration: 0|local::at0082|No|
+      gt0266|26. M11 - Over-Sedation/Hypotension: 0|local::at0085|No|
+      gt0267|27. M12 - Abrupt Medication Stop: 0|local::at0088|No|
+      gt0268|28. M13 - Other triggers or adverse events related to Medication: 0|local::at0091|No|
+      gt0271|29. S1 - Return to surgery: 100|local::at0214|Yes|
+      gt0272|30. S2 - Change in procedure: 1|local::at0102|No|
+      gt0273|31. S3 - Admission to intensive care post-op: 1|local::at0105|No|
+      gt0274|32. S4 - Intubation, Reintubation, or BiPap use in Post Anesthesia Care Unit (PACU): 1|local::at0107|No|
+      gt0275|33. S5 - X-ray intra-op or in PACU: 1|local::at0110|No|
+      gt0276|34. S6 - Intra-op or post-op death: 1|local::at0113|No|
+      gt0277|35. S7 - Mechanical ventilation greater than 24 hours post-op: 1|local::at0116|No|
+      gt0278|36. S8 - Intra-op epinephrine, norepinephrine, naloxone, or romazicon: 1|local::at0119|No|
+      gt0279|37. S9 - Post-op troponin level greater than 1.5 ng/ml: 1|local::at0122|No|
+      gt0280|38. S10 - Injury, repair, or removal of organ: 1|local::at0125|No|
+      gt0281|39. S11 - Any operative complication: 1|local::at0128|No|
+      gt0284|40. I1 - Pneumonia onset: 0|local::at0132|Not applicable|
+      gt0285|41. I2 - Readmission to intensive care: 0|local::at0135|Not applicable|
+      gt0286|42. I3 - In-unit procedure: 0|local::at0138|Not applicable|
+      gt0287|43. I4 - Intubation or Reintubation: 0|local::at0141|Not applicable|
+      gt0290|44. P1 - Terbutaline use: 0|local::at0146|Not applicable|
+      gt0291|45. P2 - 3rd- or 4th-degree lacerations: 0|local::at0149|Not applicable|
+      gt0292|46. P3 - Platelet count less than 50,000: 0|local::at0152|Not applicable|
+      gt0293|47. P4 - Estimated blood loss > 500 ml (vaginal) or > 1,000 ml (C-section: 0|local::at0155|Not applicable|
+      gt0294|48. P5 - Specialty consult: 0|local::at0158|Not applicable|
+      gt0295|49. P6 - Oxytocic agents: 0|local::at0161|Not applicable|
+      gt0296|50. P7 - Instrumented delivery: 0|local::at0164|Not applicable|
+      gt0297|51. P8 - General anesthesia: 0|local::at0167|Not applicable|
+      gt0300|52. E1 - Readmission to ED within 48 hours: 0|local::at0172|Not applicable|
+      gt0301|53. E2 - Time in ED greater than 6 hours: 0|local::at0175|Not applicable|
+  expected_output:
+    1:
+      gt0247|2. Total Medication Module Triggers: 1
+      gt0250|5. Total Perinatal Module Triggers: 0
+      gt0246|1. Total Care Module Triggers: 0
+      gt0252|7. Total Sum of Triggers: 2
+      gt0249|4. Total Intensive Care Module Triggers: 0
+      gt0248|3. Total Surgery Module Triggers: 1
+      gt0251|6. Total Emergency Department Module Triggers: 0
+- id: 7. Precondition compliance + Care(1)-Med(4)-IC(3) Yes + rest No/NA
+  input:
+    1:
+      gt0196|0. Patient >= 18 years old (Pre-Condition): local::at0247|Yes|
+      gt0197|0. Length of stay > 24 hours (Pre-Condition): local::at0250|Yes|
+      gt0198|0. Patient record closed and coded (Pre-Condition): local::at0253|Yes|
+      gt0199|0. Inpatient psychiatric or rehabilitation patient (Pre-Condition): local::at0257|No|
+      gt0231|01. C1 - Transfusion of Blood or Use of Blood Products: 0|local::at0004|No|
+      gt0232|02. C2 - Code, Cardiac or Pulmonary Arrest, or Rapid Response Team Activation: 0|local::at0007|No|
+      gt0233|03. C3 - Acute Dialysis: 0|local::at0010|No|
+      gt0234|04. C4 - Positive Blood Culture: 1|local::at0014|Yes|
+      gt0235|05. C5 - X-Ray or Doppler Studies for Emboli or Deep Vein Thrombosis: 0|local::at0016|No|
+      gt0236|06. C6 - Decrease in Hemoglobin or Hematocrit of 25% or Greater: 0|local::at0019|No|
+      gt0237|07. C7 - Patient Fall: 0|local::at0023|No|
+      gt0238|08. C8 - Pressure Ulcers: 0|local::at0026|No|
+      gt0239|09. C9 - Readmission within 30 Days: 0|local::at0029|No|
+      gt0240|10. C10 - Restraint Use: 0|local::at0032|No|
+      gt0241|11. C11 - Healthcare-Associated Infections: 0|local::at0035|No|
+      gt0242|12. C12 - In-Hospital Stroke: 0|local::at0038|No|
+      gt0243|13. C13 - Transfer to Higher Level of Care: 0|local::at0041|No|
+      gt0244|14. C14 - Any Procedure Complication: 0|local::at0044|No|
+      gt0245|15. C15 - Other triggers or adverse events related to Care: 0|local::at0047|No|
+      gt0256|16. M1 - Clostridium difficile Positive Stool: 0|local::at0055|No|
+      gt0257|17. M2 - Partial Thromboplastin Time (PTT) Greater than 100 Seconds: 0|local::at0058|No|
+      gt0258|18. M3 - International Normalized Ratio (INR) Greater than 6: 0|local::at0061|No|
+      'gt0259|19. M4 - Glucose Less than 50 mg/dl ': 0|local::at0064|No|
+      'gt0260|20. M5 - Rising BUN or Serum Creatinine Two Times (2x) over Baseline ': 1|local::at0068|Yes|
+      gt0261|21. M6 - Vitamin K Administration: 1|local::at0071|Yes|
+      gt0262|22. M7 - Diphenhydramine (Benadryl) Administration: 1|local::at0075|Yes|
+      gt0263|23. M8 - Romazicon (Flumazenil) Administration: 1|local::at0077|Yes|
+      gt0264|24. M9 - Naloxone (Narcan) Administration: 0|local::at0079|No|
+      gt0265|25. M10 - Anti-Emetic Administration: 0|local::at0082|No|
+      gt0266|26. M11 - Over-Sedation/Hypotension: 0|local::at0085|No|
+      gt0267|27. M12 - Abrupt Medication Stop: 0|local::at0088|No|
+      gt0268|28. M13 - Other triggers or adverse events related to Medication: 0|local::at0091|No|
+      gt0271|29. S1 - Return to surgery: 0|local::at0097|Not applicable|
+      gt0272|30. S2 - Change in procedure: 0|local::at0100|Not applicable|
+      gt0273|31. S3 - Admission to intensive care post-op: 0|local::at0103|Not applicable|
+      gt0274|32. S4 - Intubation, Reintubation, or BiPap use in Post Anesthesia Care Unit (PACU): 0|local::at0106|Not applicable|
+      gt0275|33. S5 - X-ray intra-op or in PACU: 0|local::at0109|Not applicable|
+      gt0276|34. S6 - Intra-op or post-op death: 0|local::at0112|Not applicable|
+      gt0277|35. S7 - Mechanical ventilation greater than 24 hours post-op: 0|local::at0115|Not applicable|
+      gt0278|36. S8 - Intra-op epinephrine, norepinephrine, naloxone, or romazicon: 0|local::at0118|Not applicable|
+      gt0279|37. S9 - Post-op troponin level greater than 1.5 ng/ml: 0|local::at0121|Not applicable|
+      gt0280|38. S10 - Injury, repair, or removal of organ: 0|local::at0124|Not applicable|
+      gt0281|39. S11 - Any operative complication: 0|local::at0127|Not applicable|
+      gt0284|40. I1 - Pneumonia onset: 100|local::at0226|Yes|
+      gt0285|41. I2 - Readmission to intensive care: 100|local::at0227|Yes|
+      gt0286|42. I3 - In-unit procedure: 100|local::at0228|Yes|
+      gt0287|43. I4 - Intubation or Reintubation: 1|local::at0142|No|
+      gt0290|44. P1 - Terbutaline use: 0|local::at0146|Not applicable|
+      gt0291|45. P2 - 3rd- or 4th-degree lacerations: 0|local::at0149|Not applicable|
+      gt0292|46. P3 - Platelet count less than 50,000: 0|local::at0152|Not applicable|
+      gt0293|47. P4 - Estimated blood loss > 500 ml (vaginal) or > 1,000 ml (C-section: 0|local::at0155|Not applicable|
+      gt0294|48. P5 - Specialty consult: 0|local::at0158|Not applicable|
+      gt0295|49. P6 - Oxytocic agents: 0|local::at0161|Not applicable|
+      gt0296|50. P7 - Instrumented delivery: 0|local::at0164|Not applicable|
+      gt0297|51. P8 - General anesthesia: 0|local::at0167|Not applicable|
+      gt0300|52. E1 - Readmission to ED within 48 hours: 0|local::at0172|Not applicable|
+      gt0301|53. E2 - Time in ED greater than 6 hours: 0|local::at0175|Not applicable|
+  expected_output:
+    1:
+      gt0247|2. Total Medication Module Triggers: 4
+      gt0250|5. Total Perinatal Module Triggers: 0
+      gt0246|1. Total Care Module Triggers: 1
+      gt0252|7. Total Sum of Triggers: 8
+      gt0249|4. Total Intensive Care Module Triggers: 3
+      gt0248|3. Total Surgery Module Triggers: 0
+      gt0251|6. Total Emergency Department Module Triggers: 0
+- id: 8. Precondition compliance + Care(0)-Med(1)-Peri(2) Yes + rest No/NA
+  input:
+    1:
+      gt0196|0. Patient >= 18 years old (Pre-Condition): local::at0247|Yes|
+      gt0197|0. Length of stay > 24 hours (Pre-Condition): local::at0250|Yes|
+      gt0198|0. Patient record closed and coded (Pre-Condition): local::at0253|Yes|
+      gt0199|0. Inpatient psychiatric or rehabilitation patient (Pre-Condition): local::at0257|No|
+      gt0231|01. C1 - Transfusion of Blood or Use of Blood Products: 0|local::at0004|No|
+      gt0232|02. C2 - Code, Cardiac or Pulmonary Arrest, or Rapid Response Team Activation: 0|local::at0007|No|
+      gt0233|03. C3 - Acute Dialysis: 0|local::at0010|No|
+      gt0234|04. C4 - Positive Blood Culture: 0|local::at0013|No|
+      gt0235|05. C5 - X-Ray or Doppler Studies for Emboli or Deep Vein Thrombosis: 0|local::at0016|No|
+      gt0236|06. C6 - Decrease in Hemoglobin or Hematocrit of 25% or Greater: 0|local::at0019|No|
+      gt0237|07. C7 - Patient Fall: 0|local::at0023|No|
+      gt0238|08. C8 - Pressure Ulcers: 0|local::at0026|No|
+      gt0239|09. C9 - Readmission within 30 Days: 0|local::at0029|No|
+      gt0240|10. C10 - Restraint Use: 0|local::at0032|No|
+      gt0241|11. C11 - Healthcare-Associated Infections: 0|local::at0035|No|
+      gt0242|12. C12 - In-Hospital Stroke: 0|local::at0038|No|
+      gt0243|13. C13 - Transfer to Higher Level of Care: 0|local::at0041|No|
+      gt0244|14. C14 - Any Procedure Complication: 0|local::at0044|No|
+      gt0245|15. C15 - Other triggers or adverse events related to Care: 0|local::at0047|No|
+      gt0256|16. M1 - Clostridium difficile Positive Stool: 0|local::at0055|No|
+      gt0257|17. M2 - Partial Thromboplastin Time (PTT) Greater than 100 Seconds: 0|local::at0058|No|
+      gt0258|18. M3 - International Normalized Ratio (INR) Greater than 6: 0|local::at0061|No|
+      'gt0259|19. M4 - Glucose Less than 50 mg/dl ': 0|local::at0064|No|
+      'gt0260|20. M5 - Rising BUN or Serum Creatinine Two Times (2x) over Baseline ': 0|local::at0067|No|
+      gt0261|21. M6 - Vitamin K Administration: 0|local::at0070|No|
+      gt0262|22. M7 - Diphenhydramine (Benadryl) Administration: 0|local::at0073|No|
+      gt0263|23. M8 - Romazicon (Flumazenil) Administration: 0|local::at0076|No|
+      gt0264|24. M9 - Naloxone (Narcan) Administration: 0|local::at0079|No|
+      gt0265|25. M10 - Anti-Emetic Administration: 0|local::at0082|No|
+      gt0266|26. M11 - Over-Sedation/Hypotension: 0|local::at0085|No|
+      gt0267|27. M12 - Abrupt Medication Stop: 0|local::at0088|No|
+      gt0268|28. M13 - Other triggers or adverse events related to Medication: 1|local::at0092|Yes|
+      gt0271|29. S1 - Return to surgery: 0|local::at0097|Not applicable|
+      gt0272|30. S2 - Change in procedure: 0|local::at0100|Not applicable|
+      gt0273|31. S3 - Admission to intensive care post-op: 0|local::at0103|Not applicable|
+      gt0274|32. S4 - Intubation, Reintubation, or BiPap use in Post Anesthesia Care Unit (PACU): 0|local::at0106|Not applicable|
+      gt0275|33. S5 - X-ray intra-op or in PACU: 0|local::at0109|Not applicable|
+      gt0276|34. S6 - Intra-op or post-op death: 0|local::at0112|Not applicable|
+      gt0277|35. S7 - Mechanical ventilation greater than 24 hours post-op: 0|local::at0115|Not applicable|
+      gt0278|36. S8 - Intra-op epinephrine, norepinephrine, naloxone, or romazicon: 0|local::at0118|Not applicable|
+      gt0279|37. S9 - Post-op troponin level greater than 1.5 ng/ml: 0|local::at0121|Not applicable|
+      gt0280|38. S10 - Injury, repair, or removal of organ: 0|local::at0124|Not applicable|
+      gt0281|39. S11 - Any operative complication: 0|local::at0127|Not applicable|
+      gt0284|40. I1 - Pneumonia onset: 0|local::at0132|Not applicable|
+      gt0285|41. I2 - Readmission to intensive care: 0|local::at0135|Not applicable|
+      gt0286|42. I3 - In-unit procedure: 0|local::at0138|Not applicable|
+      gt0287|43. I4 - Intubation or Reintubation: 0|local::at0141|Not applicable|
+      gt0290|44. P1 - Terbutaline use: 100|local::at0230|Yes|
+      gt0291|45. P2 - 3rd- or 4th-degree lacerations: 100|local::at0231|Yes|
+      gt0292|46. P3 - Platelet count less than 50,000: 1|local::at0153|No|
+      gt0293|47. P4 - Estimated blood loss > 500 ml (vaginal) or > 1,000 ml (C-section: 1|local::at0156|No|
+      gt0294|48. P5 - Specialty consult: 1|local::at0159|No|
+      gt0295|49. P6 - Oxytocic agents: 1|local::at0162|No|
+      gt0296|50. P7 - Instrumented delivery: 1|local::at0165|No|
+      gt0297|51. P8 - General anesthesia: 1|local::at0168|No|
+      gt0300|52. E1 - Readmission to ED within 48 hours: 0|local::at0172|Not applicable|
+      gt0301|53. E2 - Time in ED greater than 6 hours: 0|local::at0175|Not applicable|
+  expected_output:
+    1:
+      gt0247|2. Total Medication Module Triggers: 1
+      gt0250|5. Total Perinatal Module Triggers: 2
+      gt0246|1. Total Care Module Triggers: 0
+      gt0252|7. Total Sum of Triggers: 3
+      gt0249|4. Total Intensive Care Module Triggers: 0
+      gt0248|3. Total Surgery Module Triggers: 0
+      gt0251|6. Total Emergency Department Module Triggers: 0
+- id: 9. Precondition compliance plus Care(3)-Med(2)-EDpt(1) Yes + rest No/NA
+  input:
+    1:
+      gt0196|0. Patient >= 18 years old (Pre-Condition): local::at0247|Yes|
+      gt0197|0. Length of stay > 24 hours (Pre-Condition): local::at0250|Yes|
+      gt0198|0. Patient record closed and coded (Pre-Condition): local::at0253|Yes|
+      gt0199|0. Inpatient psychiatric or rehabilitation patient (Pre-Condition): local::at0257|No|
+      gt0231|01. C1 - Transfusion of Blood or Use of Blood Products: 0|local::at0004|No|
+      gt0232|02. C2 - Code, Cardiac or Pulmonary Arrest, or Rapid Response Team Activation: 0|local::at0007|No|
+      gt0233|03. C3 - Acute Dialysis: 0|local::at0010|No|
+      gt0234|04. C4 - Positive Blood Culture: 0|local::at0013|No|
+      gt0235|05. C5 - X-Ray or Doppler Studies for Emboli or Deep Vein Thrombosis: 0|local::at0016|No|
+      gt0236|06. C6 - Decrease in Hemoglobin or Hematocrit of 25% or Greater: 0|local::at0019|No|
+      gt0237|07. C7 - Patient Fall: 0|local::at0023|No|
+      gt0238|08. C8 - Pressure Ulcers: 0|local::at0026|No|
+      gt0239|09. C9 - Readmission within 30 Days: 1|local::at0030|Yes|
+      gt0240|10. C10 - Restraint Use: 1|local::at0033|Yes|
+      gt0241|11. C11 - Healthcare-Associated Infections: 1|local::at0036|Yes|
+      gt0242|12. C12 - In-Hospital Stroke: 0|local::at0038|No|
+      gt0243|13. C13 - Transfer to Higher Level of Care: 0|local::at0041|No|
+      gt0244|14. C14 - Any Procedure Complication: 0|local::at0044|No|
+      gt0245|15. C15 - Other triggers or adverse events related to Care: 0|local::at0047|No|
+      gt0256|16. M1 - Clostridium difficile Positive Stool: 0|local::at0055|No|
+      gt0257|17. M2 - Partial Thromboplastin Time (PTT) Greater than 100 Seconds: 0|local::at0058|No|
+      gt0258|18. M3 - International Normalized Ratio (INR) Greater than 6: 0|local::at0061|No|
+      'gt0259|19. M4 - Glucose Less than 50 mg/dl ': 0|local::at0064|No|
+      'gt0260|20. M5 - Rising BUN or Serum Creatinine Two Times (2x) over Baseline ': 0|local::at0067|No|
+      gt0261|21. M6 - Vitamin K Administration: 0|local::at0070|No|
+      gt0262|22. M7 - Diphenhydramine (Benadryl) Administration: 0|local::at0073|No|
+      gt0263|23. M8 - Romazicon (Flumazenil) Administration: 1|local::at0077|Yes|
+      gt0264|24. M9 - Naloxone (Narcan) Administration: 1|local::at0081|Yes|
+      gt0265|25. M10 - Anti-Emetic Administration: 0|local::at0082|No|
+      gt0266|26. M11 - Over-Sedation/Hypotension: 0|local::at0085|No|
+      gt0267|27. M12 - Abrupt Medication Stop: 0|local::at0088|No|
+      gt0268|28. M13 - Other triggers or adverse events related to Medication: 0|local::at0091|No|
+      gt0271|29. S1 - Return to surgery: 0|local::at0097|Not applicable|
+      gt0272|30. S2 - Change in procedure: 0|local::at0100|Not applicable|
+      gt0273|31. S3 - Admission to intensive care post-op: 0|local::at0103|Not applicable|
+      gt0274|32. S4 - Intubation, Reintubation, or BiPap use in Post Anesthesia Care Unit (PACU): 0|local::at0106|Not applicable|
+      gt0275|33. S5 - X-ray intra-op or in PACU: 0|local::at0109|Not applicable|
+      gt0276|34. S6 - Intra-op or post-op death: 0|local::at0112|Not applicable|
+      gt0277|35. S7 - Mechanical ventilation greater than 24 hours post-op: 0|local::at0115|Not applicable|
+      gt0278|36. S8 - Intra-op epinephrine, norepinephrine, naloxone, or romazicon: 0|local::at0118|Not applicable|
+      gt0279|37. S9 - Post-op troponin level greater than 1.5 ng/ml: 0|local::at0121|Not applicable|
+      gt0280|38. S10 - Injury, repair, or removal of organ: 0|local::at0124|Not applicable|
+      gt0281|39. S11 - Any operative complication: 0|local::at0127|Not applicable|
+      gt0284|40. I1 - Pneumonia onset: 0|local::at0132|Not applicable|
+      gt0285|41. I2 - Readmission to intensive care: 0|local::at0135|Not applicable|
+      gt0286|42. I3 - In-unit procedure: 0|local::at0138|Not applicable|
+      gt0287|43. I4 - Intubation or Reintubation: 0|local::at0141|Not applicable|
+      gt0290|44. P1 - Terbutaline use: 0|local::at0146|Not applicable|
+      gt0291|45. P2 - 3rd- or 4th-degree lacerations: 0|local::at0149|Not applicable|
+      gt0292|46. P3 - Platelet count less than 50,000: 0|local::at0152|Not applicable|
+      gt0293|47. P4 - Estimated blood loss > 500 ml (vaginal) or > 1,000 ml (C-section: 0|local::at0155|Not applicable|
+      gt0294|48. P5 - Specialty consult: 0|local::at0158|Not applicable|
+      gt0295|49. P6 - Oxytocic agents: 0|local::at0161|Not applicable|
+      gt0296|50. P7 - Instrumented delivery: 0|local::at0164|Not applicable|
+      gt0297|51. P8 - General anesthesia: 0|local::at0167|Not applicable|
+      gt0300|52. E1 - Readmission to ED within 48 hours: 1|local::at0173|No|
+      gt0301|53. E2 - Time in ED greater than 6 hours: 100|local::at0239|Yes|
+  expected_output:
+    1:
+      gt0247|2. Total Medication Module Triggers: 2
+      gt0250|5. Total Perinatal Module Triggers: 0
+      gt0246|1. Total Care Module Triggers: 3
+      gt0252|7. Total Sum of Triggers: 6
+      gt0249|4. Total Intensive Care Module Triggers: 0
+      gt0248|3. Total Surgery Module Triggers: 0
+      gt0251|6. Total Emergency Department Module Triggers: 1

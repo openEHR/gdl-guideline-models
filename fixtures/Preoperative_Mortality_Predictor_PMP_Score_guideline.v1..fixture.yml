@@ -1,0 +1,311 @@
+guidelines:
+  1: Preoperative_Mortality_Predictor_PMP_Score_guideline.v1
+test_cases:
+- id: PMP score5.5
+  input:
+    1:
+      gt0005|Inpatient: 6|local::at0045|Yes|
+      gt0006|Sepsis: 0|local::at0042|No|
+      gt0007|Poor functional status(total assistance required for all daily activities): 0|local::at0040|No|
+      gt0008|Disseminated cancer: 0|local::at0038|No|
+      gt0009|Age, years: 1|local::at0035|65-69|
+      ? gt0010|Cardiac comorbidity(Dyspnea and CHF history, past MI or angina, peripheral
+        artery disease, hypertension requiring medication)
+      : 0|local::at0032|No|
+      gt0011|Pulmonary comorbidity(on ventilator, COPD history, current pneumonia): 0|local::at0030|No|
+      gt0012|Renal comorbidity(Dialysis, renal failure): 0|local::at0028|No|
+      gt0013|Liver comorbidity(Ascites, esophageal varices): 0|local::at0026|No|
+      gt0014|Steroids for chronic condition: 0|local::at0047|No|
+      gt0016|Weight loss (>10% body weight in last 6 months): 0|local::at0024|No|
+      gt0017|Bleeding disorder: 0|local::at0022|No|
+      gt0018|Do Not Resuscitate (DNR) status: 0|local::at0020|No|
+      gt0019|Obesity: -1|local::at0019|Yes|
+  expected_output:
+    1:
+      gt0041|Score: 5.5
+      gt0057|score interpretation: local::at0016|0.1- 0.6% Risk of perioperative mortality |
+
+
+- id: PMP score_1
+  input:
+    1:
+      gt0005|Inpatient: 0|local::at0044|No|
+      gt0006|Sepsis: 0|local::at0042|No|
+      gt0007|Poor functional status(total assistance required for all daily activities): 0|local::at0040|No|
+      gt0008|Disseminated cancer: 0|local::at0038|No|
+      gt0009|Age, years: 0|local::at0034|<65|
+      ? gt0010|Cardiac comorbidity(Dyspnea and CHF history, past MI or angina, peripheral
+        artery disease, hypertension requiring medication)
+      : 0|local::at0032|No|
+      gt0011|Pulmonary comorbidity(on ventilator, COPD history, current pneumonia): 0|local::at0030|No|
+      gt0012|Renal comorbidity(Dialysis, renal failure): 0|local::at0028|No|
+      gt0013|Liver comorbidity(Ascites, esophageal varices): 0|local::at0026|No|
+      gt0014|Steroids for chronic condition: 0|local::at0047|No|
+      gt0016|Weight loss (>10% body weight in last 6 months): 0|local::at0024|No|
+      gt0017|Bleeding disorder: 0|local::at0022|No|
+      gt0018|Do Not Resuscitate (DNR) status: 0|local::at0020|No|
+      gt0019|Obesity: -1|local::at0019|Yes|
+  expected_output:
+    1:
+      gt0041|Score: -1.0
+      gt0057|score interpretation: local::at0015|0.1% Risk of perioperative mortality |
+
+
+- id: PMP score 5
+  input:
+    1:
+      gt0005|Inpatient: 6|local::at0045|Yes|
+      gt0006|Sepsis: 0|local::at0042|No|
+      gt0007|Poor functional status(total assistance required for all daily activities): 0|local::at0040|No|
+      gt0008|Disseminated cancer: 0|local::at0038|No|
+      gt0009|Age, years: 0|local::at0034|<65|
+      ? gt0010|Cardiac comorbidity(Dyspnea and CHF history, past MI or angina, peripheral
+        artery disease, hypertension requiring medication)
+      : 0|local::at0032|No|
+      gt0011|Pulmonary comorbidity(on ventilator, COPD history, current pneumonia): 0|local::at0030|No|
+      gt0012|Renal comorbidity(Dialysis, renal failure): 0|local::at0028|No|
+      gt0013|Liver comorbidity(Ascites, esophageal varices): 0|local::at0026|No|
+      gt0014|Steroids for chronic condition: 0|local::at0047|No|
+      gt0016|Weight loss (>10% body weight in last 6 months): 0|local::at0024|No|
+      gt0017|Bleeding disorder: 0|local::at0022|No|
+      gt0018|Do Not Resuscitate (DNR) status: 0|local::at0020|No|
+      gt0019|Obesity: -1|local::at0019|Yes|
+  expected_output:
+    1:
+      gt0041|Score: 5.0
+      gt0057|score interpretation: local::at0015|0.1% Risk of perioperative mortality |
+
+- id: PMP score 6
+  input:
+    1:
+      gt0005|Inpatient: 6|local::at0045|Yes|
+      gt0006|Sepsis: 0|local::at0042|No|
+      gt0007|Poor functional status(total assistance required for all daily activities): 0|local::at0040|No|
+      gt0008|Disseminated cancer: 0|local::at0038|No|
+      gt0009|Age, years: 0|local::at0034|<65|
+      ? gt0010|Cardiac comorbidity(Dyspnea and CHF history, past MI or angina, peripheral
+        artery disease, hypertension requiring medication)
+      : 0|local::at0032|No|
+      gt0011|Pulmonary comorbidity(on ventilator, COPD history, current pneumonia): 0|local::at0030|No|
+      gt0012|Renal comorbidity(Dialysis, renal failure): 0|local::at0028|No|
+      gt0013|Liver comorbidity(Ascites, esophageal varices): 0|local::at0026|No|
+      gt0014|Steroids for chronic condition: 0|local::at0047|No|
+      gt0016|Weight loss (>10% body weight in last 6 months): 0|local::at0024|No|
+      gt0017|Bleeding disorder: 0|local::at0022|No|
+      gt0018|Do Not Resuscitate (DNR) status: 0|local::at0020|No|
+      gt0019|Obesity: 0|local::at0018|No|
+  expected_output:
+    1:
+      gt0041|Score: 6.0
+      gt0057|score interpretation: local::at0009|0.6% Risk of perioperative mortality|
+
+
+- id: PMP score 10
+  input:
+    1:
+      gt0005|Inpatient: 6|local::at0045|Yes|
+      gt0006|Sepsis: 4|local::at0043|Yes|
+      gt0007|Poor functional status(total assistance required for all daily activities): 0|local::at0040|No|
+      gt0008|Disseminated cancer: 0|local::at0038|No|
+      gt0009|Age, years: 0|local::at0034|<65|
+      ? gt0010|Cardiac comorbidity(Dyspnea and CHF history, past MI or angina, peripheral
+        artery disease, hypertension requiring medication)
+      : 0|local::at0032|No|
+      gt0011|Pulmonary comorbidity(on ventilator, COPD history, current pneumonia): 0|local::at0030|No|
+      gt0012|Renal comorbidity(Dialysis, renal failure): 0|local::at0028|No|
+      gt0013|Liver comorbidity(Ascites, esophageal varices): 0|local::at0026|No|
+      gt0014|Steroids for chronic condition: 0|local::at0047|No|
+      gt0016|Weight loss (>10% body weight in last 6 months): 0|local::at0024|No|
+      gt0017|Bleeding disorder: 0|local::at0022|No|
+      gt0018|Do Not Resuscitate (DNR) status: 0|local::at0020|No|
+      gt0019|Obesity: 0|local::at0018|No|
+  expected_output:
+    1:
+      gt0041|Score: 10.0
+      gt0057|score interpretation: local::at0009|0.6% Risk of perioperative mortality|
+
+- id: PMP score 10.5
+  input:
+    1:
+      gt0005|Inpatient: 6|local::at0045|Yes|
+      gt0006|Sepsis: 4|local::at0043|Yes|
+      gt0007|Poor functional status(total assistance required for all daily activities): 0|local::at0040|No|
+      gt0008|Disseminated cancer: 0|local::at0038|No|
+      gt0009|Age, years: 1|local::at0035|65-69|
+      ? gt0010|Cardiac comorbidity(Dyspnea and CHF history, past MI or angina, peripheral
+        artery disease, hypertension requiring medication)
+      : 0|local::at0032|No|
+      gt0011|Pulmonary comorbidity(on ventilator, COPD history, current pneumonia): 0|local::at0030|No|
+      gt0012|Renal comorbidity(Dialysis, renal failure): 0|local::at0028|No|
+      gt0013|Liver comorbidity(Ascites, esophageal varices): 0|local::at0026|No|
+      gt0014|Steroids for chronic condition: 0|local::at0047|No|
+      gt0016|Weight loss (>10% body weight in last 6 months): 0|local::at0024|No|
+      gt0017|Bleeding disorder: 0|local::at0022|No|
+      gt0018|Do Not Resuscitate (DNR) status: 0|local::at0020|No|
+      gt0019|Obesity: 0|local::at0018|No|
+  expected_output:
+    1:
+      gt0041|Score: 10.5
+      gt0057|score interpretation: local::at0017|0.6-2.4% Risk of perioperative mortality |
+
+- id: PMP score 15.5
+  input:
+    1:
+      gt0005|Inpatient: 6|local::at0045|Yes|
+      gt0006|Sepsis: 4|local::at0043|Yes|
+      gt0007|Poor functional status(total assistance required for all daily activities): 3|local::at0041|Yes|
+      gt0008|Disseminated cancer: 1|local::at0039|Yes|
+      gt0009|Age, years: 1|local::at0035|65-69|
+      ? gt0010|Cardiac comorbidity(Dyspnea and CHF history, past MI or angina, peripheral
+        artery disease, hypertension requiring medication)
+      : 0|local::at0032|No|
+      gt0011|Pulmonary comorbidity(on ventilator, COPD history, current pneumonia): 0|local::at0030|No|
+      gt0012|Renal comorbidity(Dialysis, renal failure): 1|local::at0029|Yes|
+      gt0013|Liver comorbidity(Ascites, esophageal varices): 0|local::at0026|No|
+      gt0014|Steroids for chronic condition: 0|local::at0047|No|
+      gt0016|Weight loss (>10% body weight in last 6 months): 0|local::at0024|No|
+      gt0017|Bleeding disorder: 0|local::at0022|No|
+      gt0018|Do Not Resuscitate (DNR) status: 0|local::at0020|No|
+      gt0019|Obesity: 0|local::at0018|No|
+  expected_output:
+    1:
+      gt0041|Score: 15.5
+      gt0057|score interpretation: local::at0018| 2.4- 12.6% Risk of perioperative mortality |
+
+- id: PMP score 20.5
+  input:
+    1:
+      gt0005|Inpatient: 6|local::at0045|Yes|
+      gt0006|Sepsis: 4|local::at0043|Yes|
+      gt0007|Poor functional status(total assistance required for all daily activities): 3|local::at0041|Yes|
+      gt0008|Disseminated cancer: 1|local::at0039|Yes|
+      gt0009|Age, years: 1|local::at0035|65-69|
+      ? gt0010|Cardiac comorbidity(Dyspnea and CHF history, past MI or angina, peripheral
+        artery disease, hypertension requiring medication)
+      : 5|local::at0033|Yes|
+      gt0011|Pulmonary comorbidity(on ventilator, COPD history, current pneumonia): 0|local::at0030|No|
+      gt0012|Renal comorbidity(Dialysis, renal failure): 1|local::at0029|Yes|
+      gt0013|Liver comorbidity(Ascites, esophageal varices): 0|local::at0026|No|
+      gt0014|Steroids for chronic condition: 0|local::at0047|No|
+      gt0016|Weight loss (>10% body weight in last 6 months): 0|local::at0024|No|
+      gt0017|Bleeding disorder: 0|local::at0022|No|
+      gt0018|Do Not Resuscitate (DNR) status: 0|local::at0020|No|
+      gt0019|Obesity: 0|local::at0018|No|
+  expected_output:
+    1:
+      gt0041|Score: 20.5
+      gt0057|score interpretation: local::at0019|12.6-37.5% Risk of perioperative mortality |
+
+- id: PMP Score 25.5
+  input:
+    1:
+      gt0005|Inpatient: 6|local::at0045|Yes|
+      gt0006|Sepsis: 4|local::at0043|Yes|
+      gt0007|Poor functional status(total assistance required for all daily activities): 3|local::at0041|Yes|
+      gt0008|Disseminated cancer: 1|local::at0039|Yes|
+      gt0009|Age, years: 1|local::at0035|65-69|
+      ? gt0010|Cardiac comorbidity(Dyspnea and CHF history, past MI or angina, peripheral
+        artery disease, hypertension requiring medication)
+      : 5|local::at0033|Yes|
+      gt0011|Pulmonary comorbidity(on ventilator, COPD history, current pneumonia): 3|local::at0031|Yes|
+      gt0012|Renal comorbidity(Dialysis, renal failure): 1|local::at0029|Yes|
+      gt0013|Liver comorbidity(Ascites, esophageal varices): 1|local::at0027|Yes|
+      gt0014|Steroids for chronic condition: 1|local::at0048|Yes|
+      gt0016|Weight loss (>10% body weight in last 6 months): 0|local::at0024|No|
+      gt0017|Bleeding disorder: 0|local::at0022|No|
+      gt0018|Do Not Resuscitate (DNR) status: 0|local::at0020|No|
+      gt0019|Obesity: 0|local::at0018|No|
+  expected_output:
+    1:
+      gt0041|Score: 25.5
+      gt0057|score interpretation: local::at0020|37.5- 40.0% Risk of perioperative mortality |
+
+- id: PMP score 26.5
+  input:
+    1:
+      gt0005|Inpatient: 6|local::at0045|Yes|
+      gt0006|Sepsis: 4|local::at0043|Yes|
+      gt0007|Poor functional status(total assistance required for all daily activities): 3|local::at0041|Yes|
+      gt0008|Disseminated cancer: 1|local::at0039|Yes|
+      gt0009|Age, years: 1|local::at0035|65-69|
+      ? gt0010|Cardiac comorbidity(Dyspnea and CHF history, past MI or angina, peripheral
+        artery disease, hypertension requiring medication)
+      : 5|local::at0033|Yes|
+      gt0011|Pulmonary comorbidity(on ventilator, COPD history, current pneumonia): 3|local::at0031|Yes|
+      gt0012|Renal comorbidity(Dialysis, renal failure): 1|local::at0029|Yes|
+      gt0013|Liver comorbidity(Ascites, esophageal varices): 1|local::at0027|Yes|
+      gt0014|Steroids for chronic condition: 1|local::at0048|Yes|
+      gt0016|Weight loss (>10% body weight in last 6 months): 0|local::at0024|No|
+      gt0017|Bleeding disorder: 1|local::at0023|Yes|
+      gt0018|Do Not Resuscitate (DNR) status: 1|local::at0021|Yes|
+      gt0019|Obesity: -1|local::at0019|Yes|
+  expected_output:
+    1:
+      gt0041|Score: 26.5
+      gt0057|score interpretation: local::at0014|40.0% Risk of perioperative mortality|
+
+
+- id: PMP score 26
+  input:
+    1:
+      gt0005|Inpatient: 6|local::at0045|Yes|
+      gt0006|Sepsis: 4|local::at0043|Yes|
+      gt0007|Poor functional status(total assistance required for all daily activities): 3|local::at0041|Yes|
+      gt0008|Disseminated cancer: 1|local::at0039|Yes|
+      gt0009|Age, years: 0|local::at0034|<65|
+      ? gt0010|Cardiac comorbidity(Dyspnea and CHF history, past MI or angina, peripheral
+        artery disease, hypertension requiring medication)
+      : 5|local::at0033|Yes|
+      gt0011|Pulmonary comorbidity(on ventilator, COPD history, current pneumonia): 3|local::at0031|Yes|
+      gt0012|Renal comorbidity(Dialysis, renal failure): 1|local::at0029|Yes|
+      gt0013|Liver comorbidity(Ascites, esophageal varices): 1|local::at0027|Yes|
+      gt0014|Steroids for chronic condition: 1|local::at0048|Yes|
+      gt0016|Weight loss (>10% body weight in last 6 months): 0|local::at0024|No|
+      gt0017|Bleeding disorder: 1|local::at0023|Yes|
+      gt0018|Do Not Resuscitate (DNR) status: 1|local::at0021|Yes|
+      gt0019|Obesity: -1|local::at0019|Yes|
+  expected_output:
+    1:
+      gt0041|Score: 26.0
+      gt0057|score interpretation: local::at0014|40.0% Risk of perioperative mortality|
+
+- id: PMP score 0
+  input:
+    1:
+      gt0005|Inpatient: 0|local::at0044|No|
+      gt0006|Sepsis: 0|local::at0042|No|
+      gt0007|Poor functional status(total assistance required for all daily activities): 0|local::at0040|No|
+      gt0008|Disseminated cancer: 0|local::at0038|No|
+      gt0009|Age, years: 0|local::at0034|<65|
+      ? gt0010|Cardiac comorbidity(Dyspnea and CHF history, past MI or angina, peripheral
+        artery disease, hypertension requiring medication)
+      : 0|local::at0032|No|
+      gt0011|Pulmonary comorbidity(on ventilator, COPD history, current pneumonia): 0|local::at0030|No|
+      gt0012|Renal comorbidity(Dialysis, renal failure): 0|local::at0028|No|
+      gt0013|Liver comorbidity(Ascites, esophageal varices): 0|local::at0026|No|
+      gt0014|Steroids for chronic condition: 0|local::at0047|No|
+      gt0016|Weight loss (>10% body weight in last 6 months): 0|local::at0024|No|
+      gt0017|Bleeding disorder: 0|local::at0022|No|
+      gt0018|Do Not Resuscitate (DNR) status: 0|local::at0020|No|
+      gt0019|Obesity: 0|local::at0018|No|
+  expected_output:
+    1:
+      gt0041|Score: 0.0
+      gt0057|score interpretation: local::at0015|0.1% Risk of perioperative mortality |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

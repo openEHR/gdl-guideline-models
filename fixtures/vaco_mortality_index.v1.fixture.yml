@@ -1,0 +1,650 @@
+guidelines:
+  1: VACO_mortality_index.v1
+current_datetime:
+language:
+test_cases:
+- id: 1. Female 20y CCI-0 MI_PVD-0 Lower risk
+  input:
+    1:
+      gt0003|Age|: 20,a
+      gt0004|Gender|: local::at0006|Female|
+      gt0006|AIDS|: 0|local::at0011|No|
+      gt0007|History of Cancer|: 0|local::at0026|None|
+      gt0008|Cerebrovascular disease|: 0|local::at0011|No|
+      gt0009|Chronic pulmonary disease|: 0|local::at0011|No|
+      gt0010|Congestive Heart Failure|: 0|local::at0011|No|
+      gt0011|Dementia|: 0|local::at0011|No|
+      gt0012|History of Diabetes|: 0|local::at0026|None|
+      gt0013|History of Liver disease|: 0|local::at0026|None|
+      gt0014|Myocardial Infarction|: 0|local::at0011|No|
+      gt0015|Peptic Ulcer Disease|: 0|local::at0011|No|
+      gt0016|Peripheral Vascular Disease|: 0|local::at0011|No|
+      gt0017|Plegia|: 0|local::at0011|No|
+      gt0018|Renal disease|: 0|local::at0011|No|
+      gt0019|Rheumatic disease|: 0|local::at0011|No|
+  expected_output:
+    1:
+      gt0021|Total score|: 0
+      gt0022|Age coefficient|: -2.228678713,1
+      gt0023|Sex coefficient|: 0,1
+      gt0024|CCI_Age coefficient|: 0,1
+      gt0025|MI_PVD coefficient|: 0,1
+      gt0027|Coefficient sum|: -6.444736775,1
+      gt0028|ORcalc|: 0.001588863,1
+      gt0031|Interpretation|: 0.2,% risk of mortality (30d). Lower risk (lower 50% of scores).
+      gt0073|RISKpred|: 0.2,%
+    fhir:
+    - named_object:
+      expected_values:
+
+- id: 2. Male 20y CCI-0 MI_PVD-0 Lower risk
+  input:
+    1:
+      gt0003|Age|: 20,a
+      gt0004|Gender|: local::at0005|Male|
+      gt0006|AIDS|: 0|local::at0011|No|
+      gt0007|History of Cancer|: 0|local::at0026|None|
+      gt0008|Cerebrovascular disease|: 0|local::at0011|No|
+      gt0009|Chronic pulmonary disease|: 0|local::at0011|No|
+      gt0010|Congestive Heart Failure|: 0|local::at0011|No|
+      gt0011|Dementia|: 0|local::at0011|No|
+      gt0012|History of Diabetes|: 0|local::at0026|None|
+      gt0013|History of Liver disease|: 0|local::at0026|None|
+      gt0014|Myocardial Infarction|: 0|local::at0011|No|
+      gt0015|Peptic Ulcer Disease|: 0|local::at0011|No|
+      gt0016|Peripheral Vascular Disease|: 0|local::at0011|No|
+      gt0017|Plegia|: 0|local::at0011|No|
+      gt0018|Renal disease|: 0|local::at0011|No|
+      gt0019|Rheumatic disease|: 0|local::at0011|No|
+  expected_output:
+    1:
+      gt0021|Total score|: 0
+      gt0022|Age coefficient|: -2.228678713,1
+      gt0023|Sex coefficient|: 0.322291449,1
+      gt0024|CCI_Age coefficient|: 0,1
+      gt0025|MI_PVD coefficient|: 0,1
+      gt0027|Coefficient sum|: -6.122445326,1
+      gt0028|ORcalc|: 0.002193087,1
+      gt0031|Interpretation|: 0.2,% risk of mortality (30d). Lower risk (lower 50% of scores).
+      gt0073|RISKpred|: 0.2,%
+    fhir:
+    - named_object:
+      expected_values:
+
+- id: 3. Female 49y CCI-1 MI_PVD-0 Lower risk
+  input:
+    1:
+      gt0003|Age|: 49,a
+      gt0004|Gender|: local::at0006|Female|
+      gt0006|AIDS|: 0|local::at0011|No|
+      gt0007|History of Cancer|: 0|local::at0026|None|
+      gt0008|Cerebrovascular disease|: 1|local::at0012|Yes|
+      gt0009|Chronic pulmonary disease|: 0|local::at0011|No|
+      gt0010|Congestive Heart Failure|: 0|local::at0011|No|
+      gt0011|Dementia|: 0|local::at0011|No|
+      gt0012|History of Diabetes|: 0|local::at0026|None|
+      gt0013|History of Liver disease|: 0|local::at0026|None|
+      gt0014|Myocardial Infarction|: 0|local::at0011|No|
+      gt0015|Peptic Ulcer Disease|: 0|local::at0011|No|
+      gt0016|Peripheral Vascular Disease|: 0|local::at0011|No|
+      gt0017|Plegia|: 0|local::at0011|No|
+      gt0018|Renal disease|: 0|local::at0011|No|
+      gt0019|Rheumatic disease|: 0|local::at0011|No|
+  expected_output:
+    1:
+      gt0021|Total score|: 1
+      gt0022|Age coefficient|: -2.228678713,1
+      gt0023|Sex coefficient|: 0,1
+      gt0024|CCI_Age coefficient|: 0.612122574,1
+      gt0025|MI_PVD coefficient|: 0,1
+      gt0027|Coefficient sum|: -5.832614201,1
+      gt0028|ORcalc|: 0.002930406,1
+      gt0031|Interpretation|: 0.3,% risk of mortality (30d). Lower risk (lower 50% of scores).
+      gt0073|RISKpred|: 0.3,%
+    fhir:
+    - named_object:
+      expected_values:
+
+- id: 4. Male 49y CCI-3 MI_PVD-0 Lower risk
+  input:
+    1:
+      gt0003|Age|: 49,a
+      gt0004|Gender|: local::at0005|Male|
+      gt0006|AIDS|: 0|local::at0011|No|
+      gt0007|History of Cancer|: 0|local::at0026|None|
+      gt0008|Cerebrovascular disease|: 1|local::at0012|Yes|
+      gt0009|Chronic pulmonary disease|: 0|local::at0011|No|
+      gt0010|Congestive Heart Failure|: 0|local::at0011|No|
+      gt0011|Dementia|: 0|local::at0011|No|
+      gt0012|History of Diabetes|: 2|local::at0009|Diabetes, with complications (e.g., eyes, kidneys, ketoacidosis)|
+      gt0013|History of Liver disease|: 0|local::at0026|None|
+      gt0014|Myocardial Infarction|: 0|local::at0011|No|
+      gt0015|Peptic Ulcer Disease|: 0|local::at0011|No|
+      gt0016|Peripheral Vascular Disease|: 0|local::at0011|No|
+      gt0017|Plegia|: 0|local::at0011|No|
+      gt0018|Renal disease|: 0|local::at0011|No|
+      gt0019|Rheumatic disease|: 0|local::at0011|No|
+  expected_output:
+    1:
+      gt0021|Total score|: 3
+      gt0022|Age coefficient|: -2.228678713,1
+      gt0023|Sex coefficient|: 0.322291449,1
+      gt0024|CCI_Age coefficient|: 0.612122574,1
+      gt0025|MI_PVD coefficient|: 0,1
+      gt0027|Coefficient sum|: -5.510322752,1
+      gt0028|ORcalc|: 0.004044802,1
+      gt0031|Interpretation|: 0.4,% risk of mortality (30d). Lower risk (lower 50% of scores).
+      gt0073|RISKpred|: 0.4,%
+    fhir:
+    - named_object:
+      expected_values:
+
+- id: 5. Female 50y CCI-4 MI_PVD-1 Lower risk
+  input:
+    1:
+      gt0003|Age|: 50,a
+      gt0004|Gender|: local::at0006|Female|
+      gt0006|AIDS|: 0|local::at0011|No|
+      gt0007|History of Cancer|: 0|local::at0026|None|
+      gt0008|Cerebrovascular disease|: 1|local::at0012|Yes|
+      gt0009|Chronic pulmonary disease|: 0|local::at0011|No|
+      gt0010|Congestive Heart Failure|: 0|local::at0011|No|
+      gt0011|Dementia|: 0|local::at0011|No|
+      gt0012|History of Diabetes|: 2|local::at0009|Diabetes, with complications (e.g., eyes, kidneys, ketoacidosis)|
+      gt0013|History of Liver disease|: 0|local::at0026|None|
+      gt0014|Myocardial Infarction|: 1|local::at0012|Yes|
+      gt0015|Peptic Ulcer Disease|: 0|local::at0011|No|
+      gt0016|Peripheral Vascular Disease|: 0|local::at0011|No|
+      gt0017|Plegia|: 0|local::at0011|No|
+      gt0018|Renal disease|: 0|local::at0011|No|
+      gt0019|Rheumatic disease|: 0|local::at0011|No|
+  expected_output:
+    1:
+      gt0021|Total score|: 4
+      gt0022|Age coefficient|: 0,1
+      gt0023|Sex coefficient|: 0,1
+      gt0024|CCI_Age coefficient|: 0.825072847,1
+      gt0025|MI_PVD coefficient|: 0.267265312,1
+      gt0027|Coefficient sum|: -3.123719903,1
+      gt0028|ORcalc|: 0.043993213,1
+      gt0031|Interpretation|: 4.2,% risk of mortality (30d). Lower risk (lower 50% of scores).
+      gt0073|RISKpred|: 4.2,%
+    fhir:
+    - named_object:
+      expected_values:
+
+- id: 6. Male 54y CCI-5 MI_PVD-1 Lower risk
+  input:
+    1:
+      gt0003|Age|: 54,a
+      gt0004|Gender|: local::at0005|Male|
+      gt0006|AIDS|: 0|local::at0011|No|
+      gt0007|History of Cancer|: 0|local::at0026|None|
+      gt0008|Cerebrovascular disease|: 1|local::at0012|Yes|
+      gt0009|Chronic pulmonary disease|: 0|local::at0011|No|
+      gt0010|Congestive Heart Failure|: 0|local::at0011|No|
+      gt0011|Dementia|: 0|local::at0011|No|
+      gt0012|History of Diabetes|: 2|local::at0009|Diabetes, with complications (e.g., eyes, kidneys, ketoacidosis)|
+      gt0013|History of Liver disease|: 0|local::at0026|None|
+      gt0014|Myocardial Infarction|: 1|local::at0012|Yes|
+      gt0015|Peptic Ulcer Disease|: 0|local::at0011|No|
+      gt0016|Peripheral Vascular Disease|: 0|local::at0011|No|
+      gt0017|Plegia|: 0|local::at0011|No|
+      gt0018|Renal disease|: 0|local::at0011|No|
+      gt0019|Rheumatic disease|: 1|local::at0012|Yes|
+  expected_output:
+    1:
+      gt0021|Total score|: 5
+      gt0022|Age coefficient|: 0,1
+      gt0023|Sex coefficient|: 0.322291449,1
+      gt0024|CCI_Age coefficient|: 0.825072847,1
+      gt0025|MI_PVD coefficient|: 0.267265312,1
+      gt0027|Coefficient sum|: -2.801428454,1
+      gt0028|ORcalc|: 0.060723260,1
+      gt0031|Interpretation|: 5.7,% risk of mortality (30d). Lower risk (lower 50% of scores).
+      gt0073|RISKpred|: 5.7,%
+    fhir:
+    - named_object:
+      expected_values:
+
+- id: 7. Female 55y CCI-6 MI_PVD-1 Lower risk
+  input:
+    1:
+      gt0003|Age|: 55,a
+      gt0004|Gender|: local::at0006|Female|
+      gt0006|AIDS|: 0|local::at0011|No|
+      gt0007|History of Cancer|: 0|local::at0026|None|
+      gt0008|Cerebrovascular disease|: 1|local::at0012|Yes|
+      gt0009|Chronic pulmonary disease|: 0|local::at0011|No|
+      gt0010|Congestive Heart Failure|: 0|local::at0011|No|
+      gt0011|Dementia|: 0|local::at0011|No|
+      gt0012|History of Diabetes|: 2|local::at0009|Diabetes, with complications (e.g., eyes, kidneys, ketoacidosis)|
+      gt0013|History of Liver disease|: 0|local::at0026|None|
+      gt0014|Myocardial Infarction|: 1|local::at0012|Yes|
+      gt0015|Peptic Ulcer Disease|: 0|local::at0011|No|
+      gt0016|Peripheral Vascular Disease|: 0|local::at0011|No|
+      gt0017|Plegia|: 1|local::at0012|Yes|
+      gt0018|Renal disease|: 0|local::at0011|No|
+      gt0019|Rheumatic disease|: 1|local::at0012|Yes|
+  expected_output:
+    1:
+      gt0021|Total score|: 6
+      gt0022|Age coefficient|: 0.400599289,1
+      gt0023|Sex coefficient|: 0,1
+      gt0024|CCI_Age coefficient|: 0.956099733,1
+      gt0025|MI_PVD coefficient|: 0.267265312,1
+      gt0027|Coefficient sum|: -2.592093728,1
+      gt0028|ORcalc|: 0.074863133,1
+      gt0031|Interpretation|: 7.0,% risk of mortality (30d). Lower risk (lower 50% of scores).
+      gt0073|RISKpred|: 7.0,%
+    fhir:
+    - named_object:
+      expected_values:
+
+- id: 8. Male 59y CCI-9 MI_PVD-1 Moderate risk
+  input:
+    1:
+      gt0003|Age|: 59,a
+      gt0004|Gender|: local::at0005|Male|
+      gt0006|AIDS|: 0|local::at0011|No|
+      gt0007|History of Cancer|: 0|local::at0026|None|
+      gt0008|Cerebrovascular disease|: 1|local::at0012|Yes|
+      gt0009|Chronic pulmonary disease|: 0|local::at0011|No|
+      gt0010|Congestive Heart Failure|: 0|local::at0011|No|
+      gt0011|Dementia|: 0|local::at0011|No|
+      gt0012|History of Diabetes|: 2|local::at0009|Diabetes, with complications (e.g., eyes, kidneys, ketoacidosis)|
+      gt0013|History of Liver disease|: 3|local::at0035|Liver disease, moderate or severe (e.g., esophageal varices, fatty liver, liver failure)|
+      gt0014|Myocardial Infarction|: 1|local::at0012|Yes|
+      gt0015|Peptic Ulcer Disease|: 0|local::at0011|No|
+      gt0016|Peripheral Vascular Disease|: 0|local::at0011|No|
+      gt0017|Plegia|: 1|local::at0012|Yes|
+      gt0018|Renal disease|: 0|local::at0011|No|
+      gt0019|Rheumatic disease|: 1|local::at0012|Yes|
+  expected_output:
+    1:
+      gt0021|Total score|: 9
+      gt0022|Age coefficient|: 0.400599289,1
+      gt0023|Sex coefficient|: 0.322291449,1
+      gt0024|CCI_Age coefficient|: 0.956099733,1
+      gt0025|MI_PVD coefficient|: 0.267265312,1
+      gt0027|Coefficient sum|: -2.269802279,1
+      gt0028|ORcalc|: 0.103332609,1
+      gt0031|Interpretation|: 9.4,% risk of mortality (30d). Moderate risk (4th sextile of scores).
+      gt0073|RISKpred|: 9.4,%
+    fhir:
+    - named_object:
+      expected_values:
+
+- id: 9. Female 60y CCI-10 MI_PVD-1 High risk
+  input:
+    1:
+      gt0003|Age|: 60,a
+      gt0004|Gender|: local::at0006|Female|
+      gt0006|AIDS|: 0|local::at0011|No|
+      gt0007|History of Cancer|: 0|local::at0026|None|
+      gt0008|Cerebrovascular disease|: 1|local::at0012|Yes|
+      gt0009|Chronic pulmonary disease|: 1|local::at0012|Yes|
+      gt0010|Congestive Heart Failure|: 0|local::at0011|No|
+      gt0011|Dementia|: 0|local::at0011|No|
+      gt0012|History of Diabetes|: 2|local::at0009|Diabetes, with complications (e.g., eyes, kidneys, ketoacidosis)|
+      gt0013|History of Liver disease|: 3|local::at0035|Liver disease, moderate or severe (e.g., esophageal varices, fatty liver, liver failure)|
+      gt0014|Myocardial Infarction|: 1|local::at0012|Yes|
+      gt0015|Peptic Ulcer Disease|: 0|local::at0011|No|
+      gt0016|Peripheral Vascular Disease|: 0|local::at0011|No|
+      gt0017|Plegia|: 1|local::at0012|Yes|
+      gt0018|Renal disease|: 0|local::at0011|No|
+      gt0019|Rheumatic disease|: 1|local::at0012|Yes|
+  expected_output:
+    1:
+      gt0021|Total score|: 10
+      gt0022|Age coefficient|: 0.941322019,1
+      gt0023|Sex coefficient|: 0,1
+      gt0024|CCI_Age coefficient|: 1.395164653,1
+      gt0025|MI_PVD coefficient|: 0.267265312,1
+      gt0027|Coefficient sum|: -1.612306078,1
+      gt0028|ORcalc|: 0.199427189,1
+      gt0031|Interpretation|: 16.6,% risk of mortality (30d). High risk (5th sextile of scores).
+      gt0073|RISKpred|: 16.6,%
+    fhir:
+    - named_object:
+      expected_values:
+
+- id: 10. Male 64y CCI-10 MI_PVD-1 Extreme risk
+  input:
+    1:
+      gt0003|Age|: 64,a
+      gt0004|Gender|: local::at0005|Male|
+      gt0006|AIDS|: 0|local::at0011|No|
+      gt0007|History of Cancer|: 0|local::at0026|None|
+      gt0008|Cerebrovascular disease|: 1|local::at0012|Yes|
+      gt0009|Chronic pulmonary disease|: 1|local::at0012|Yes|
+      gt0010|Congestive Heart Failure|: 0|local::at0011|No|
+      gt0011|Dementia|: 0|local::at0011|No|
+      gt0012|History of Diabetes|: 2|local::at0009|Diabetes, with complications (e.g., eyes, kidneys, ketoacidosis)|
+      gt0013|History of Liver disease|: 3|local::at0035|Liver disease, moderate or severe (e.g., esophageal varices, fatty liver, liver failure)|
+      gt0014|Myocardial Infarction|: 1|local::at0012|Yes|
+      gt0015|Peptic Ulcer Disease|: 0|local::at0011|No|
+      gt0016|Peripheral Vascular Disease|: 0|local::at0011|No|
+      gt0017|Plegia|: 1|local::at0012|Yes|
+      gt0018|Renal disease|: 0|local::at0011|No|
+      gt0019|Rheumatic disease|: 1|local::at0012|Yes|
+  expected_output:
+    1:
+      gt0021|Total score|: 10
+      gt0022|Age coefficient|: 0.941322019,1
+      gt0023|Sex coefficient|: 0.322291449,1
+      gt0024|CCI_Age coefficient|: 1.395164653,1
+      gt0025|MI_PVD coefficient|: 0.267265312,1
+      gt0027|Coefficient sum|: -1.290014629,1
+      gt0028|ORcalc|: 0.275266756,1
+      gt0031|Interpretation|: 21.6,% risk of mortality (30d). Extreme risk (upper sextile of scores).
+      gt0073|RISKpred|: 21.6,%
+    fhir:
+    - named_object:
+      expected_values:
+
+- id: 11. Female 65y CCI-10 MI_PVD-2 Extreme risk
+  input:
+    1:
+      gt0003|Age|: 65,a
+      gt0004|Gender|: local::at0006|Female|
+      gt0006|AIDS|: 0|local::at0011|No|
+      gt0007|History of Cancer|: 0|local::at0026|None|
+      gt0008|Cerebrovascular disease|: 1|local::at0012|Yes|
+      gt0009|Chronic pulmonary disease|: 0|local::at0011|No|
+      gt0010|Congestive Heart Failure|: 0|local::at0011|No|
+      gt0011|Dementia|: 0|local::at0011|No|
+      gt0012|History of Diabetes|: 2|local::at0009|Diabetes, with complications (e.g., eyes, kidneys, ketoacidosis)|
+      gt0013|History of Liver disease|: 3|local::at0035|Liver disease, moderate or severe (e.g., esophageal varices, fatty liver, liver failure)|
+      gt0014|Myocardial Infarction|: 1|local::at0012|Yes|
+      gt0015|Peptic Ulcer Disease|: 0|local::at0011|No|
+      gt0016|Peripheral Vascular Disease|: 1|local::at0012|Yes|
+      gt0017|Plegia|: 1|local::at0012|Yes|
+      gt0018|Renal disease|: 0|local::at0011|No|
+      gt0019|Rheumatic disease|: 1|local::at0012|Yes|
+  expected_output:
+    1:
+      gt0021|Total score|: 10
+      gt0022|Age coefficient|: 1.295007128,1
+      gt0023|Sex coefficient|: 0,1
+      gt0024|CCI_Age coefficient|: 1.395164653,1
+      gt0025|MI_PVD coefficient|: 0.267265312,1
+      gt0027|Coefficient sum|: -1.258620969,1
+      gt0028|ORcalc|: 0.284045464,1
+      gt0031|Interpretation|: 22.1,% risk of mortality (30d). Extreme risk (upper sextile of scores).
+      gt0073|RISKpred|: 22.1,%
+    fhir:
+    - named_object:
+      expected_values:
+
+- id: 12. Male 69y CCI-10 MI_PVD-2 Extreme risk
+  input:
+    1:
+      gt0003|Age|: 69,a
+      gt0004|Gender|: local::at0005|Male|
+      gt0006|AIDS|: 0|local::at0011|No|
+      gt0007|History of Cancer|: 0|local::at0026|None|
+      gt0008|Cerebrovascular disease|: 1|local::at0012|Yes|
+      gt0009|Chronic pulmonary disease|: 0|local::at0011|No|
+      gt0010|Congestive Heart Failure|: 0|local::at0011|No|
+      gt0011|Dementia|: 0|local::at0011|No|
+      gt0012|History of Diabetes|: 2|local::at0009|Diabetes, with complications (e.g., eyes, kidneys, ketoacidosis)|
+      gt0013|History of Liver disease|: 3|local::at0035|Liver disease, moderate or severe (e.g., esophageal varices, fatty liver, liver failure)|
+      gt0014|Myocardial Infarction|: 1|local::at0012|Yes|
+      gt0015|Peptic Ulcer Disease|: 0|local::at0011|No|
+      gt0016|Peripheral Vascular Disease|: 1|local::at0012|Yes|
+      gt0017|Plegia|: 1|local::at0012|Yes|
+      gt0018|Renal disease|: 0|local::at0011|No|
+      gt0019|Rheumatic disease|: 1|local::at0012|Yes|
+  expected_output:
+    1:
+      gt0021|Total score|: 10
+      gt0022|Age coefficient|: 1.295007128,1
+      gt0023|Sex coefficient|: 0.322291449,1
+      gt0024|CCI_Age coefficient|: 1.395164653,1
+      gt0025|MI_PVD coefficient|: 0.267265312,1
+      gt0027|Coefficient sum|: -0.936329520,1
+      gt0028|ORcalc|: 0.392064262,1
+      gt0031|Interpretation|: 28.2,% risk of mortality (30d). Extreme risk (upper sextile of scores).
+      gt0073|RISKpred|: 28.2,%
+    fhir:
+    - named_object:
+      expected_values:
+
+- id: 13. Female 70y CCI-10 MI_PVD-2 Extreme risk
+  input:
+    1:
+      gt0003|Age|: 70,a
+      gt0004|Gender|: local::at0006|Female|
+      gt0006|AIDS|: 0|local::at0011|No|
+      gt0007|History of Cancer|: 0|local::at0026|None|
+      gt0008|Cerebrovascular disease|: 1|local::at0012|Yes|
+      gt0009|Chronic pulmonary disease|: 0|local::at0011|No|
+      gt0010|Congestive Heart Failure|: 0|local::at0011|No|
+      gt0011|Dementia|: 0|local::at0011|No|
+      gt0012|History of Diabetes|: 2|local::at0009|Diabetes, with complications (e.g., eyes, kidneys, ketoacidosis)|
+      gt0013|History of Liver disease|: 3|local::at0035|Liver disease, moderate or severe (e.g., esophageal varices, fatty liver, liver failure)|
+      gt0014|Myocardial Infarction|: 1|local::at0012|Yes|
+      gt0015|Peptic Ulcer Disease|: 0|local::at0011|No|
+      gt0016|Peripheral Vascular Disease|: 1|local::at0012|Yes|
+      gt0017|Plegia|: 1|local::at0012|Yes|
+      gt0018|Renal disease|: 0|local::at0011|No|
+      gt0019|Rheumatic disease|: 1|local::at0012|Yes|
+  expected_output:
+    1:
+      gt0021|Total score|: 10
+      gt0022|Age coefficient|: 1.629533438,1
+      gt0023|Sex coefficient|: 0,1
+      gt0024|CCI_Age coefficient|: 1.395164653,1
+      gt0025|MI_PVD coefficient|: 0.267265312,1
+      gt0027|Coefficient sum|: -0.924094659,1
+      gt0028|ORcalc|: 0.396890578,1
+      gt0031|Interpretation|: 28.4,% risk of mortality (30d). Extreme risk (upper sextile of scores).
+      gt0073|RISKpred|: 28.4,%
+    fhir:
+    - named_object:
+      expected_values:
+
+- id: 14. Male 74y CCI-10 MI_PVD-2 Extreme risk
+  input:
+    1:
+      gt0003|Age|: 74,a
+      gt0004|Gender|: local::at0005|Male|
+      gt0006|AIDS|: 0|local::at0011|No|
+      gt0007|History of Cancer|: 0|local::at0026|None|
+      gt0008|Cerebrovascular disease|: 1|local::at0012|Yes|
+      gt0009|Chronic pulmonary disease|: 0|local::at0011|No|
+      gt0010|Congestive Heart Failure|: 0|local::at0011|No|
+      gt0011|Dementia|: 0|local::at0011|No|
+      gt0012|History of Diabetes|: 2|local::at0009|Diabetes, with complications (e.g., eyes, kidneys, ketoacidosis)|
+      gt0013|History of Liver disease|: 3|local::at0035|Liver disease, moderate or severe (e.g., esophageal varices, fatty liver, liver failure)|
+      gt0014|Myocardial Infarction|: 1|local::at0012|Yes|
+      gt0015|Peptic Ulcer Disease|: 0|local::at0011|No|
+      gt0016|Peripheral Vascular Disease|: 1|local::at0012|Yes|
+      gt0017|Plegia|: 1|local::at0012|Yes|
+      gt0018|Renal disease|: 0|local::at0011|No|
+      gt0019|Rheumatic disease|: 1|local::at0012|Yes|
+  expected_output:
+    1:
+      gt0021|Total score|: 10
+      gt0022|Age coefficient|: 1.629533438,1
+      gt0023|Sex coefficient|: 0.322291449,1
+      gt0024|CCI_Age coefficient|: 1.395164653,1
+      gt0025|MI_PVD coefficient|: 0.267265312,1
+      gt0027|Coefficient sum|: -0.601803210,1
+      gt0028|ORcalc|: 0.547822905,1
+      gt0031|Interpretation|: 35.4,% risk of mortality (30d). Extreme risk (upper sextile of scores).
+      gt0073|RISKpred|: 35.4,%
+    fhir:
+    - named_object:
+      expected_values:
+
+- id: 15. Female 75y CCI-17 MI_PVD-0 Extreme risk
+  input:
+    1:
+      gt0003|Age|: 75,a
+      gt0004|Gender|: local::at0006|Female|
+      gt0006|AIDS|: 6|local::at0047|Yes|
+      gt0007|History of Cancer|: 0|local::at0026|None|
+      gt0008|Cerebrovascular disease|: 1|local::at0012|Yes|
+      gt0009|Chronic pulmonary disease|: 0|local::at0011|No|
+      gt0010|Congestive Heart Failure|: 0|local::at0011|No|
+      gt0011|Dementia|: 0|local::at0011|No|
+      gt0012|History of Diabetes|: 2|local::at0009|Diabetes, with complications (e.g., eyes, kidneys, ketoacidosis)|
+      gt0013|History of Liver disease|: 3|local::at0035|Liver disease, moderate or severe (e.g., esophageal varices, fatty liver, liver failure)|
+      gt0014|Myocardial Infarction|: 0|local::at0011|No|
+      gt0015|Peptic Ulcer Disease|: 1|local::at0012|Yes|
+      gt0016|Peripheral Vascular Disease|: 0|local::at0011|No|
+      gt0017|Plegia|: 1|local::at0012|Yes|
+      gt0018|Renal disease|: 2|local::at0015|Yes|
+      gt0019|Rheumatic disease|: 1|local::at0012|Yes|
+  expected_output:
+    1:
+      gt0021|Total score|: 17
+      gt0022|Age coefficient|: 1.763345763,1
+      gt0023|Sex coefficient|: 0,1
+      gt0024|CCI_Age coefficient|: 1.395164653,1
+      gt0025|MI_PVD coefficient|: 0,1
+      gt0027|Coefficient sum|: -1.057547646,1
+      gt0028|ORcalc|: 0.347306485,1
+      gt0031|Interpretation|: 25.8,% risk of mortality (30d). Extreme risk (upper sextile of scores).
+      gt0073|RISKpred|: 25.8,%
+    fhir:
+    - named_object:
+      expected_values:
+
+- id: 16. Male 79y CCI-29 MI_PVD-2 Extreme risk
+  input:
+    1:
+      gt0003|Age|: 79,a
+      gt0004|Gender|: local::at0005|Male|
+      gt0006|AIDS|: 6|local::at0047|Yes|
+      gt0007|History of Cancer|: 6|local::at0028|Cancer, metastatic (cancer spreading to another part of the body)|
+      gt0008|Cerebrovascular disease|: 1|local::at0012|Yes|
+      gt0009|Chronic pulmonary disease|: 1|local::at0012|Yes|
+      gt0010|Congestive Heart Failure|: 1|local::at0012|Yes|
+      gt0011|Dementia|: 1|local::at0012|Yes|
+      gt0012|History of Diabetes|: 2|local::at0009|Diabetes, with complications (e.g., eyes, kidneys, ketoacidosis)|
+      gt0013|History of Liver disease|: 3|local::at0035|Liver disease, moderate or severe (e.g., esophageal varices, fatty liver, liver failure)|
+      gt0014|Myocardial Infarction|: 1|local::at0012|Yes|
+      gt0015|Peptic Ulcer Disease|: 1|local::at0012|Yes|
+      gt0016|Peripheral Vascular Disease|: 1|local::at0012|Yes|
+      gt0017|Plegia|: 2|local::at0015|Yes|
+      gt0018|Renal disease|: 2|local::at0015|Yes|
+      gt0019|Rheumatic disease|: 1|local::at0012|Yes|
+  expected_output:
+    1:
+      gt0021|Total score|: 29
+      gt0022|Age coefficient|: 1.763345763,1
+      gt0023|Sex coefficient|: 0.322291449,1
+      gt0024|CCI_Age coefficient|: 1.395164653,1
+      gt0025|MI_PVD coefficient|: 0.267265312,1
+      gt0027|Coefficient sum|: -0.467990885,1
+      gt0028|ORcalc|: 0.626259232,1
+      gt0031|Interpretation|: 38.5,% risk of mortality (30d). Extreme risk (upper sextile of scores).
+      gt0073|RISKpred|: 38.5,%
+    fhir:
+    - named_object:
+      expected_values:
+
+- id: 17. Female 80y CCI-29 MI_PVD-2 Extreme risk
+  input:
+    1:
+      gt0003|Age|: 80,a
+      gt0004|Gender|: local::at0006|Female|
+      gt0006|AIDS|: 6|local::at0047|Yes|
+      gt0007|History of Cancer|: 6|local::at0028|Cancer, metastatic (cancer spreading to another part of the body)|
+      gt0008|Cerebrovascular disease|: 1|local::at0012|Yes|
+      gt0009|Chronic pulmonary disease|: 1|local::at0012|Yes|
+      gt0010|Congestive Heart Failure|: 1|local::at0012|Yes|
+      gt0011|Dementia|: 1|local::at0012|Yes|
+      gt0012|History of Diabetes|: 2|local::at0009|Diabetes, with complications (e.g., eyes, kidneys, ketoacidosis)|
+      gt0013|History of Liver disease|: 3|local::at0035|Liver disease, moderate or severe (e.g., esophageal varices, fatty liver, liver failure)|
+      gt0014|Myocardial Infarction|: 1|local::at0012|Yes|
+      gt0015|Peptic Ulcer Disease|: 1|local::at0012|Yes|
+      gt0016|Peripheral Vascular Disease|: 1|local::at0012|Yes|
+      gt0017|Plegia|: 2|local::at0015|Yes|
+      gt0018|Renal disease|: 2|local::at0015|Yes|
+      gt0019|Rheumatic disease|: 1|local::at0012|Yes|
+  expected_output:
+    1:
+      gt0021|Total score|: 29
+      gt0022|Age coefficient|: 1.927443543,1
+      gt0023|Sex coefficient|: 0,1
+      gt0024|CCI_Age coefficient|: 1.395164653,1
+      gt0025|MI_PVD coefficient|: 0.267265312,1
+      gt0027|Coefficient sum|: -0.626184554,1
+      gt0028|ORcalc|: 0.534627758,1
+      gt0031|Interpretation|: 34.8,% risk of mortality (30d). Extreme risk (upper sextile of scores).
+      gt0073|RISKpred|: 34.8,%
+    fhir:
+    - named_object:
+      expected_values:
+
+- id: 18. Male 89y CCI-20 MI_PVD-0 Extreme risk
+  input:
+    1:
+      gt0003|Age|: 89,a
+      gt0004|Gender|: local::at0005|Male|
+      gt0006|AIDS|: 6|local::at0047|Yes|
+      gt0007|History of Cancer|: 6|local::at0028|Cancer, metastatic (cancer spreading to another part of the body)|
+      gt0008|Cerebrovascular disease|: 1|local::at0012|Yes|
+      gt0009|Chronic pulmonary disease|: 1|local::at0012|Yes|
+      gt0010|Congestive Heart Failure|: 1|local::at0012|Yes|
+      gt0011|Dementia|: 0|local::at0011|No|
+      gt0012|History of Diabetes|: 2|local::at0009|Diabetes, with complications (e.g., eyes, kidneys, ketoacidosis)|
+      gt0013|History of Liver disease|: 3|local::at0035|Liver disease, moderate or severe (e.g., esophageal varices, fatty liver, liver failure)|
+      gt0014|Myocardial Infarction|: 0|local::at0011|No|
+      gt0015|Peptic Ulcer Disease|: 0|local::at0011|No|
+      gt0016|Peripheral Vascular Disease|: 0|local::at0011|No|
+      gt0017|Plegia|: 0|local::at0011|No|
+      gt0018|Renal disease|: 0|local::at0011|No|
+      gt0019|Rheumatic disease|: 0|local::at0011|No|
+  expected_output:
+    1:
+      gt0021|Total score|: 20
+      gt0022|Age coefficient|: 1.927443543,1
+      gt0023|Sex coefficient|: 0.322291449,1
+      gt0024|CCI_Age coefficient|: 1.529325519,1
+      gt0025|MI_PVD coefficient|: 0,1
+      gt0027|Coefficient sum|: -0.436997551,1
+      gt0028|ORcalc|: 0.645973013,1
+      gt0031|Interpretation|: 39.2,% risk of mortality (30d). Extreme risk (upper sextile of scores).
+      gt0073|RISKpred|: 39.2,%
+    fhir:
+    - named_object:
+      expected_values:
+
+- id: 19. Female 90y CCI-0 MI_PVD-0 Extreme risk
+  input:
+    1:
+      gt0003|Age|: 90,a
+      gt0004|Gender|: local::at0006|Female|
+      gt0006|AIDS|: 0|local::at0011|No|
+      gt0007|History of Cancer|: 0|local::at0026|None|
+      gt0008|Cerebrovascular disease|: 0|local::at0011|No|
+      gt0009|Chronic pulmonary disease|: 0|local::at0011|No|
+      gt0010|Congestive Heart Failure|: 0|local::at0011|No|
+      gt0011|Dementia|: 0|local::at0011|No|
+      gt0012|History of Diabetes|: 0|local::at0026|None|
+      gt0013|History of Liver disease|: 0|local::at0026|None|
+      gt0014|Myocardial Infarction|: 0|local::at0011|No|
+      gt0015|Peptic Ulcer Disease|: 0|local::at0011|No|
+      gt0016|Peripheral Vascular Disease|: 0|local::at0011|No|
+      gt0017|Plegia|: 0|local::at0011|No|
+      gt0018|Renal disease|: 0|local::at0011|No|
+      gt0019|Rheumatic disease|: 0|local::at0011|No|
+  expected_output:
+    1:
+      gt0021|Total score|: 0
+      gt0022|Age coefficient|: 2.018752269,1
+      gt0023|Sex coefficient|: 0,1
+      gt0024|CCI_Age coefficient|: 1.529325519,1
+      gt0025|MI_PVD coefficient|: 0,1
+      gt0027|Coefficient sum|: -0.667980274,1
+      gt0028|ORcalc|: 0.512743133,1
+      gt0031|Interpretation|: 33.9,% risk of mortality (30d). Extreme risk (upper sextile of scores).
+      gt0073|RISKpred|: 33.9,%
+    fhir:
+    - named_object:
+      expected_values:

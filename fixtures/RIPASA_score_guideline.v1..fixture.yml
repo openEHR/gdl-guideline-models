@@ -1,0 +1,68 @@
+guidelines:
+  1: RIPASA_score_guideline.v1
+test_cases:
+- id: score 16
+  input:
+    1:
+      gt0003|Sex: 1|local::at0006|Female|
+      gt0004|Age: 1|local::at0010|>40|
+      gt0005|Foreign national (in Singapore): 1|local::at0013|Yes|
+      gt0006|Right iliac fossa (RIF) pain: 1|local::at0017|Yes|
+      gt0007|Pain migration to RIF: 1|local::at0020|Yes|
+      gt0008|Anorexia: 1|local::at0023|Yes|
+      gt0009|Nausea & vomiting: 1|local::at0026|Yes|
+      gt0010|Duration of symptoms: 2|local::at0028|≤48 hrs|
+      gt0011|RIF tenderness: 1|local::at0033|Yes|
+      gt0012|Guarding: 2|local::at0036|Yes|
+      gt0013|Rebound tenderness: 1|local::at0039|Yes|
+      gt0014|Rovsing sign: 2|local::at0042|Yes|
+      gt0015|Temperature between 37°C and 39°C: 2|local::at0045|Yes|
+      gt0016|Elevated white blood cell count: 1|local::at0049|Yes|
+      gt0017|Negative urine analysis (abscence of blood, WBCs, bacteria): 1|local::at0052|Yes|
+  expected_output:
+    1:
+      gt0022|RIPASA Score: 16.0,1
+- id: score 7.5 cutoff
+  input:
+    1:
+      gt0003|Sex: 1|local::at0006|Female|
+      gt0004|Age: 1|local::at0010|>40|
+      gt0005|Foreign national (in Singapore): 1|local::at0013|Yes|
+      gt0006|Right iliac fossa (RIF) pain: 1|local::at0017|Yes|
+      gt0007|Pain migration to RIF: 1|local::at0020|Yes|
+      gt0008|Anorexia: 1|local::at0023|Yes|
+      gt0009|Nausea & vomiting: 1|local::at0026|Yes|
+      gt0010|Duration of symptoms: 1|local::at0029|>48 hrs|
+      gt0011|RIF tenderness: 0|local::at0032|No|
+      gt0012|Guarding: 0|local::at0035|No|
+      gt0013|Rebound tenderness: 0|local::at0038|No|
+      gt0014|Rovsing sign: 0|local::at0041|No|
+      gt0015|Temperature between 37°C and 39°C: 2|local::at0045|Yes|
+      gt0016|Elevated white blood cell count: 0|local::at0048|No|
+      gt0017|Negative urine analysis (abscence of blood, WBCs, bacteria): 0|local::at0051|No|
+  expected_output:
+    1:
+      gt0023|Diagnosis: Likely appendicitis. The cutoff value of 7.5 points was 98% sensitive and 81% specific for diagnosis of appendicitis.
+      gt0022|RIPASA Score: 7.5,1
+- id: score <7.5 Unlikely appendicitis.
+  input:
+    1:
+      gt0003|Sex: 1|local::at0006|Female|
+      gt0004|Age: 1|local::at0010|>40|
+      gt0005|Foreign national (in Singapore): 1|local::at0013|Yes|
+      gt0006|Right iliac fossa (RIF) pain: 1|local::at0017|Yes|
+      gt0007|Pain migration to RIF: 1|local::at0020|Yes|
+      gt0008|Anorexia: 1|local::at0023|Yes|
+      gt0009|Nausea & vomiting: 0|local::at0025|No|
+      gt0010|Duration of symptoms: 1|local::at0029|>48 hrs|
+      gt0011|RIF tenderness: 0|local::at0032|No|
+      gt0012|Guarding: 0|local::at0035|No|
+      gt0013|Rebound tenderness: 0|local::at0038|No|
+      gt0014|Rovsing sign: 0|local::at0041|No|
+      gt0015|Temperature between 37°C and 39°C: 2|local::at0045|Yes|
+      gt0016|Elevated white blood cell count: 0|local::at0048|No|
+      gt0017|Negative urine analysis (abscence of blood, WBCs, bacteria): 0|local::at0051|No|
+  expected_output:
+    1:
+      gt0023|Diagnosis: Unlikely appendicitis. The cutoff value of 7.5 points was 98% sensitive and 81% specific for diagnosis of appendicitis.
+      gt0022|RIPASA Score: 6.5,1

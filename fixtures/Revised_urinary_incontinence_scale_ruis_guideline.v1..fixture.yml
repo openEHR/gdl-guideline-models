@@ -1,0 +1,68 @@
+guidelines:
+  1: Revised_urinary_incontinence_scale_ruis_guideline.v1
+test_cases:
+- id: no urinary incontinence
+  input:
+    1:
+      gt0004|Urine leakage relate to the feeling of urgency: 0|local::at0005|Not at all|
+      gt0005|Urine leakage related to physical activity, coughing or sneezing: 0|local::at0010|Not at all|
+      gt0006|Small amounts of urine leakage (drops): 0|local::at0015|Not at all|
+      gt0007|How often do you experience urine leakage?: 0|local::at0017|Never|
+      gt0008|How much urine do you lose each time?: 0|local::at0027|None|
+  expected_output:
+    1:
+      gt0009|Points: 0
+      gt0012|Score interpretation: 1|local::at0004|No urinary incontinence or extremely mild (‘slight’) or occasional (‘rare’) incontinence|
+- id: mild urinary incontinence
+  input:
+    1:
+      gt0004|Urine leakage relate to the feeling of urgency: 1|local::at0006|Slightly|
+      gt0005|Urine leakage related to physical activity, coughing or sneezing: 1|local::at0011|Slightly|
+      gt0006|Small amounts of urine leakage (drops): 1|local::at0022|Slightly|
+      gt0007|How often do you experience urine leakage?: 1|local::at0018|Less than once a month|
+      gt0008|How much urine do you lose each time?: 1|local::at0028|Drops|
+  expected_output:
+    1:
+      gt0009|Points: 5
+      gt0012|Score interpretation: 2|local::at0005|Mild urinary incontinence|
+
+- id: moderate urinary incontinence 
+  input:
+    1:
+      gt0004|Urine leakage relate to the feeling of urgency: 2|local::at0007|Moderately|
+      gt0005|Urine leakage related to physical activity, coughing or sneezing: 2|local::at0012|Moderately|
+      gt0006|Small amounts of urine leakage (drops): 2|local::at0023|Moderately|
+      gt0007|How often do you experience urine leakage?: 2|local::at0019|A few times a month|
+      gt0008|How much urine do you lose each time?: 2|local::at0029|Small splashes|
+  expected_output:
+    1:
+      gt0009|Points: 10
+      gt0012|Score interpretation: 3|local::at0006|Moderate urinary incontinence|
+
+- id: severe urinary incontinence 1
+  input:
+    1:
+      gt0004|Urine leakage relate to the feeling of urgency: 3|local::at0008|Greatly|
+      gt0005|Urine leakage related to physical activity, coughing or sneezing: 3|local::at0013|Greatly|
+      gt0006|Small amounts of urine leakage (drops): 3|local::at0024|Greatly|
+      gt0007|How often do you experience urine leakage?: 3|local::at0020|A few times a week|
+      gt0008|How much urine do you lose each time?: 3|local::at0030|More|
+  expected_output:
+    1:
+      gt0009|Points: 15
+      gt0012|Score interpretation: 4|local::at0007|Severe urinary incontinence (scores of 15 – 16 could be considered very severe).|
+
+
+
+- id: severe urinary incontinence 2
+  input:
+    1:
+      gt0004|Urine leakage relate to the feeling of urgency: 3|local::at0008|Greatly|
+      gt0005|Urine leakage related to physical activity, coughing or sneezing: 3|local::at0013|Greatly|
+      gt0006|Small amounts of urine leakage (drops): 3|local::at0024|Greatly|
+      gt0007|How often do you experience urine leakage?: 4|local::at0025|Every day and/or night|
+      gt0008|How much urine do you lose each time?: 3|local::at0030|More|
+  expected_output:
+    1:
+      gt0009|Points: 16
+      gt0012|Score interpretation: 4|local::at0007|Severe urinary incontinence (scores of 15 – 16 could be considered very severe).|

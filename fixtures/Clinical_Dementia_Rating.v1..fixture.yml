@@ -1,0 +1,120 @@
+guidelines:
+  1: Clinical_Dementia_Rating.v1
+test_cases:
+- id: M=0, Only one secondary
+  input:
+    1:
+      gt0003|Memory: 0|local::at0005|No memory loss or slight inconsistent forgetfulness|
+      gt0004|Orientation: 0|local::at0011|Fully oriented|
+      gt0005|Judgment and problem solving: 0|local::at0017|Solves everyday problems well; judgment good in relation to past performance|
+      gt0006|Community affairs: 0|local::at0023|Independent function at usual level in job, shopping, business, and financial affairs, volunteer and social groups|
+      gt0007|Home and hobbies: 0|local::at0029|Life at home, hobbies, and intellectual interests well maintained|
+      gt0008|Personal care: 2|local::at0036|Needs prompting|
+  expected_output:
+    1:
+      gt0010|CDR score: 0.0,1
+      gt0041|Stage of dementia: local::at0003|Normal (not dementia)|
+- id: M=0, More secondary
+  input:
+    1:
+      gt0003|Memory: 0|local::at0005|No memory loss or slight inconsistent forgetfulness|
+      gt0004|Orientation: 0|local::at0011|Fully oriented|
+      gt0005|Judgment and problem solving: 0|local::at0017|Solves everyday problems well; judgment good in relation to past performance|
+      gt0006|Community affairs: 0|local::at0023|Independent function at usual level in job, shopping, business, and financial affairs, volunteer and social groups|
+      gt0007|Home and hobbies: 1|local::at0030|Life at home, hobbies, and intellectual interests slightly impaired|
+      gt0008|Personal care: 2|local::at0036|Needs prompting|
+  expected_output:
+    1:
+      gt0010|CDR score: 0.5,1
+      gt0041|Stage of dementia: local::at0004|Very mild|
+- id: M=1, Few secondary
+  input:
+    1:
+      gt0003|Memory: 1|local::at0006|Mild consistent forgetfulness; partial recollection of events; benign forgetfulness|
+      gt0004|Orientation: 0|local::at0011|Fully oriented|
+      gt0005|Judgment and problem solving: 0|local::at0017|Solves everyday problems well; judgment good in relation to past performance|
+      gt0006|Community affairs: 0|local::at0023|Independent function at usual level in job, shopping, business, and financial affairs, volunteer and social groups|
+      gt0007|Home and hobbies: 2|local::at0031|Mild but definite impairment of function at home; more difficult chores abandoned; more complicated hobbies and interests abandoned|
+      gt0008|Personal care: 2|local::at0036|Needs prompting|
+  expected_output:
+    1:
+      gt0010|CDR score: 0.5,1
+      gt0041|Stage of dementia: local::at0004|Very mild|
+- id: M=1, More secondary
+  input:
+    1:
+      gt0003|Memory: 1|local::at0006|Mild consistent forgetfulness; partial recollection of events; benign forgetfulness|
+      gt0004|Orientation: 0|local::at0011|Fully oriented|
+      gt0005|Judgment and problem solving: 0|local::at0017|Solves everyday problems well; judgment good in relation to past performance|
+      gt0006|Community affairs: 2|local::at0025|Unable to function independently at these activities although may still be engaged in some; appears normal to casual inspection|
+      gt0007|Home and hobbies: 2|local::at0031|Mild but definite impairment of function at home; more difficult chores abandoned; more complicated hobbies and interests abandoned|
+      gt0008|Personal care: 2|local::at0036|Needs prompting|
+  expected_output:
+    1:
+      gt0010|CDR score: 1,1
+      gt0041|Stage of dementia: local::at0005|Mild|
+- id: M above 1, 3 secondary with same value
+  input:
+    1:
+      gt0003|Memory: 2|local::at0007|Moderate memory loss; more marked for recent events; interferes with everyday activities|
+      gt0004|Orientation: 0|local::at0011|Fully oriented|
+      gt0005|Judgment and problem solving: 0|local::at0017|Solves everyday problems well; judgment good in relation to past performance|
+      gt0006|Community affairs: 2|local::at0025|Unable to function independently at these activities although may still be engaged in some; appears normal to casual inspection|
+      gt0007|Home and hobbies: 2|local::at0031|Mild but definite impairment of function at home; more difficult chores abandoned; more complicated hobbies and interests abandoned|
+      gt0008|Personal care: 2|local::at0036|Needs prompting|
+  expected_output:
+    1:
+      gt0010|CDR score: 1.0,1
+      gt0041|Stage of dementia: local::at0005|Mild|
+- id: M =3, 3 secondary with same value
+  input:
+    1:
+      gt0003|Memory: 3|local::at0008|Severe memory loss; only highly learned material retained; new material rapidly lost|
+      gt0004|Orientation: 0|local::at0011|Fully oriented|
+      gt0005|Judgment and problem solving: 0|local::at0017|Solves everyday problems well; judgment good in relation to past performance|
+      gt0006|Community affairs: 3|local::at0026|No pretense of independent function outside home; appears well enough to be taken to functions outside a family home|
+      gt0007|Home and hobbies: 3|local::at0032|Only simple chores preserved; very restricted interests, poorly maintained|
+      gt0008|Personal care: 3|local::at0037|Requires assistance in dressing, hygiene, keeping of personal effects|
+  expected_output:
+    1:
+      gt0010|CDR score: 2.0,1
+      gt0041|Stage of dementia: local::at0006|Moderate|
+- id: M=3, most secondary values with 0
+  input:
+    1:
+      gt0003|Memory: 3|local::at0008|Severe memory loss; only highly learned material retained; new material rapidly lost|
+      gt0004|Orientation: 0|local::at0011|Fully oriented|
+      gt0005|Judgment and problem solving: 0|local::at0017|Solves everyday problems well; judgment good in relation to past performance|
+      gt0006|Community affairs: 0|local::at0023|Independent function at usual level in job, shopping, business, and financial affairs, volunteer and social groups|
+      gt0007|Home and hobbies: 1|local::at0030|Life at home, hobbies, and intellectual interests slightly impaired|
+      gt0008|Personal care: 2|local::at0036|Needs prompting|
+  expected_output:
+    1:
+      gt0010|CDR score: 0.5,1
+      gt0041|Stage of dementia: local::at0004|Very mild|
+- id: M=3, tie with secondary values
+  input:
+    1:
+      gt0003|Memory: 3|local::at0008|Severe memory loss; only highly learned material retained; new material rapidly lost|
+      gt0004|Orientation: 0|local::at0011|Fully oriented|
+      gt0005|Judgment and problem solving: 0|local::at0017|Solves everyday problems well; judgment good in relation to past performance|
+      gt0006|Community affairs: 2|local::at0025|Unable to function independently at these activities although may still be engaged in some; appears normal to casual inspection|
+      gt0007|Home and hobbies: 1|local::at0030|Life at home, hobbies, and intellectual interests slightly impaired|
+      gt0008|Personal care: 2|local::at0036|Needs prompting|
+  expected_output:
+    1:
+      gt0010|CDR score: 1,1
+      gt0041|Stage of dementia: local::at0005|Mild|
+- id: M=3, both sides has at least two
+  input:
+    1:
+      gt0003|Memory: 3|local::at0008|Severe memory loss; only highly learned material retained; new material rapidly lost|
+      gt0004|Orientation: 0|local::at0011|Fully oriented|
+      gt0005|Judgment and problem solving: 0|local::at0017|Solves everyday problems well; judgment good in relation to past performance|
+      gt0006|Community affairs: 4|local::at0027|No pretense of independent function outside home; appears too ill to be taken to functions outside a family home|
+      gt0007|Home and hobbies: 1|local::at0030|Life at home, hobbies, and intellectual interests slightly impaired|
+      gt0008|Personal care: 4|local::at0038|Requires much help with personal care; frequent incontinence|
+  expected_output:
+    1:
+      gt0010|CDR score: 2.0,1
+      gt0041|Stage of dementia: local::at0006|Moderate|

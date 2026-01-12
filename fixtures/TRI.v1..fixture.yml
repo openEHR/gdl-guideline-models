@@ -1,0 +1,58 @@
+guidelines:
+  1: TRI.v1
+current_datetime: '2019-06-06T00:00:00+01:00'
+test_cases:
+- id: case_1:Group 1
+  input:
+    1:
+      gt0005|Systolic Blood Pressure: 140,mm[Hg]
+      gt0007|Heart Rate: 80,/min
+      gt0015|Birthdate: 1998-06-01T07:52Z
+  expected_output:
+    1:
+      gt0003|TIMI Risk Index: 3,1
+      gt0017|30-day mortality estimate: 0|local::at0003|0.8% 30-day mortality estimate|
+
+- id: case_2:Group 2
+  input:
+    1:
+      gt0005|Systolic Blood Pressure: 140,mm[Hg]
+      gt0007|Heart Rate: 70,/min
+      gt0015|Birthdate: 1968-06-03T07:52Z
+  expected_output:
+    1:
+      gt0003|TIMI Risk Index: 13,1
+      gt0017|30-day mortality estimate: 1|local::at0004|1.9% 30-day mortality estimate|
+
+- id: case_3:Group 3
+  input:
+    1:
+      gt0005|Systolic Blood Pressure: 120,mm[Hg]
+      gt0007|Heart Rate: 100,/min
+      gt0015|Birthdate: 1968-06-03T07:52Z
+  expected_output:
+    1:
+      gt0003|TIMI Risk Index: 22,1
+      gt0017|30-day mortality estimate: 2|local::at0005|3.3% 30-day mortality estimate|
+
+- id: case_4:Group 4
+  input:
+    1:
+      gt0005|Systolic Blood Pressure: 140,mm[Hg]
+      gt0007|Heart Rate: 70,/min
+      gt0015|Birthdate: 1949-06-04T07:52Z
+  expected_output:
+    1:
+      gt0003|TIMI Risk Index: 24,1
+      gt0017|30-day mortality estimate: 3|local::at0006|7.3% 30-day mortality estimate|
+
+- id: case_5:Group 5
+  input:
+    1:
+      gt0005|Systolic Blood Pressure: 160,mm[Hg]
+      gt0007|Heart Rate: 90,/min
+      gt0015|Birthdate: 1943-06-07T07:52Z
+  expected_output:
+    1:
+      gt0003|TIMI Risk Index: 32,1
+      gt0017|30-day mortality estimate: 4|local::at0007|17.4% 30-day mortality estimate|

@@ -1,0 +1,194 @@
+guidelines:
+  1: Anion_gap.v1
+test_cases:
+- id: normal_input_values
+  input:
+    1:
+      gt0005|Sodium: 140,mmol/l
+      gt0006|Chloride: 100,mmol/l
+      gt0007|Bicarbonate: 25,mmol/l
+      gt0004|Serum albumin: 4,gm/dl
+  expected_output:
+    1:
+      gt0020|Anion gap: 15.0,mmol/l
+      gt0021|Corrected AG: 15.00,mmol/l
+      gt0022|Delta gap: 3.0,mmol/l
+      gt0023|Delta ratio: -3.00,1
+      gt0030|Delta ratio evaluation: 0|local::at0006|Hyperchloremic normal anion gap acidosis|
+      gt0029|Anion Gap evaluation: 0|local::at0003|Non anion gap acidosis|
+
+- id: sodium(high)-chloride(normal)-bicarbonate(normal)-albumin(normal)
+  input:
+    1:
+      gt0005|Sodium: 170,mmol/l
+      gt0006|Chloride: 100,mmol/l
+      gt0007|Bicarbonate: 25,mmol/l
+      gt0004|Serum albumin: 4,gm/dl
+  expected_output:
+    1:
+      gt0020|Anion gap: 45.0,mmol/l
+      gt0021|Corrected AG: 45.00,mmol/l
+      gt0022|Delta gap: 33.0,mmol/l
+      gt0023|Delta ratio: -33.00,1
+      gt0030|Delta ratio evaluation: 0|local::at0006|Hyperchloremic normal anion gap acidosis|
+      gt0029|Anion Gap evaluation: 0|local::at0003|Non anion gap acidosis|
+
+- id: sodium(high)-chloride(high)-bicarbonate(normal)-albumin(normal)
+  input:
+    1:
+      gt0005|Sodium: 170,mmol/l
+      gt0006|Chloride: 135,mmol/l
+      gt0007|Bicarbonate: 25,mmol/l
+      gt0004|Serum albumin: 4,gm/dl
+  expected_output:
+    1:
+      gt0020|Anion gap: 10.0,mmol/l
+      gt0021|Corrected AG: 10.00,mmol/l
+      gt0022|Delta gap: -2.0,mmol/l
+      gt0023|Delta ratio: 2.00,1
+      gt0030|Delta ratio evaluation: 2|local::at0008|Pure anion gap acidosis/Lactic acidosis (see text for more info)|
+      gt0029|Anion Gap evaluation: 0|local::at0003|Non anion gap acidosis|
+
+- id: sodium(high)-chloride(high)-bicarbonate(high)-albumin(normal)
+  input:
+    1:
+      gt0005|Sodium: 170,mmol/l
+      gt0006|Chloride: 135,mmol/l
+      gt0007|Bicarbonate: 35,mmol/l
+      gt0004|Serum albumin: 4,gm/dl
+  expected_output:
+    1:
+      gt0020|Anion gap: 0.0,mmol/l
+      gt0021|Corrected AG: 0.00,mmol/l
+      gt0022|Delta gap: -12.0,mmol/l
+      gt0023|Delta ratio: 1.09,1
+      gt0030|Delta ratio evaluation: 2|local::at0008|Pure anion gap acidosis/Lactic acidosis (see text for more info)|
+      gt0029|Anion Gap evaluation: 0|local::at0003|Non anion gap acidosis|
+
+- id: sodium(high)-chloride(high)-bicarbonate(high)-albumin(high)
+  input:
+    1:
+      gt0005|Sodium: 170,mmol/l
+      gt0006|Chloride: 135,mmol/l
+      gt0007|Bicarbonate: 35,mmol/l
+      gt0004|Serum albumin: 7,gm/dl
+  expected_output:
+    1:
+      gt0020|Anion gap: 0.0,mmol/l
+      gt0021|Corrected AG: -7.50,mmol/l
+      gt0022|Delta gap: -12.0,mmol/l
+      gt0023|Delta ratio: 1.09,1
+      gt0030|Delta ratio evaluation: 2|local::at0008|Pure anion gap acidosis/Lactic acidosis (see text for more info)|
+      gt0029|Anion Gap evaluation: 0|local::at0003|Non anion gap acidosis|
+
+- id: sodium(low)-chloride(normal)-bicarbonate(normal)-albumin(normal)
+  input:
+    1:
+      gt0005|Sodium: 100,mmol/l
+      gt0006|Chloride: 100,mmol/l
+      gt0007|Bicarbonate: 25,mmol/l
+      gt0004|Serum albumin: 4,gm/dl
+  expected_output:
+    1:
+      gt0020|Anion gap: -25.0,mmol/l
+      gt0021|Corrected AG: -25.00,mmol/l
+      gt0022|Delta gap: -37.0,mmol/l
+      gt0023|Delta ratio: 37.00,1
+      gt0030|Delta ratio evaluation: 3|local::at0009|High AG acidosis and metabolic alkalosis (see text for more info)|
+      gt0029|Anion Gap evaluation: 0|local::at0003|Non anion gap acidosis|
+
+- id: sodium(low)-chloride(low)-bicarbonate(normal)-albumin(normal)
+  input:
+    1:
+      gt0005|Sodium: 100,mmol/l
+      gt0006|Chloride: 75,mmol/l
+      gt0007|Bicarbonate: 25,mmol/l
+      gt0004|Serum albumin: 4,gm/dl
+  expected_output:
+    1:
+      gt0020|Anion gap: 0.0,mmol/l
+      gt0021|Corrected AG: 0.00,mmol/l
+      gt0022|Delta gap: -12.0,mmol/l
+      gt0023|Delta ratio: 12.00,1
+      gt0030|Delta ratio evaluation: 3|local::at0009|High AG acidosis and metabolic alkalosis (see text for more info)|
+      gt0029|Anion Gap evaluation: 0|local::at0003|Non anion gap acidosis|
+
+- id: sodium(low)-chloride(low)-bicarbonate(low)-albumin(normal)
+  input:
+    1:
+      gt0005|Sodium: 100,mmol/l
+      gt0006|Chloride: 75,mmol/l
+      gt0007|Bicarbonate: 10,mmol/l
+      gt0004|Serum albumin: 4,gm/dl
+  expected_output:
+    1:
+      gt0020|Anion gap: 15.0,mmol/l
+      gt0021|Corrected AG: 15.00,mmol/l
+      gt0022|Delta gap: 3.0,mmol/l
+      gt0023|Delta ratio: 0.21,1
+      gt0030|Delta ratio evaluation: 0|local::at0006|Hyperchloremic normal anion gap acidosis|
+      gt0029|Anion Gap evaluation: 0|local::at0003|Non anion gap acidosis|
+
+- id: sodium(low)-chloride(low)-bicarbonate(low)-albumin(low)
+  input:
+    1:
+      gt0005|Sodium: 100,mmol/l
+      gt0006|Chloride: 75,mmol/l
+      gt0007|Bicarbonate: 10,mmol/l
+      gt0004|Serum albumin: 2,gm/dl
+  expected_output:
+    1:
+      gt0020|Anion gap: 15.0,mmol/l
+      gt0021|Corrected AG: 20.00,mmol/l
+      gt0022|Delta gap: 3.0,mmol/l
+      gt0023|Delta ratio: 0.21,1
+      gt0030|Delta ratio evaluation: 0|local::at0006|Hyperchloremic normal anion gap acidosis|
+      gt0029|Anion Gap evaluation: 1|local::at0004|High anion gap acidosis|
+
+- id: sodium(high)-chloride(high)-bicarbonate(low)-albumin(low)
+  input:
+    1:
+      gt0005|Sodium: 170,mmol/l
+      gt0006|Chloride: 135,mmol/l
+      gt0007|Bicarbonate: 10,mmol/l
+      gt0004|Serum albumin: 2,gm/dl
+  expected_output:
+    1:
+      gt0020|Anion gap: 25.0,mmol/l
+      gt0021|Corrected AG: 30.00,mmol/l
+      gt0022|Delta gap: 13.0,mmol/l
+      gt0023|Delta ratio: 0.93,1
+      gt0030|Delta ratio evaluation: 1|local::at0007|High AG & normal AG acidosis|
+      gt0029|Anion Gap evaluation: 1|local::at0004|High anion gap acidosis|
+
+- id: sodium(high)-chloride(normal)-bicarbonate(normal)-albumin(low)
+  input:
+    1:
+      gt0005|Sodium: 170,mmol/l
+      gt0006|Chloride: 100,mmol/l
+      gt0007|Bicarbonate: 25,mmol/l
+      gt0004|Serum albumin: 2,gm/dl
+  expected_output:
+    1:
+      gt0020|Anion gap: 45.0,mmol/l
+      gt0021|Corrected AG: 50.00,mmol/l
+      gt0022|Delta gap: 33.0,mmol/l
+      gt0023|Delta ratio: -33.00,1
+      gt0030|Delta ratio evaluation: 0|local::at0006|Hyperchloremic normal anion gap acidosis|
+      gt0029|Anion Gap evaluation: 1|local::at0004|High anion gap acidosis|
+
+- id: sodium(normal)-chloride(high)-bicarbonate(low)-albumin(normal)
+  input:
+    1:
+      gt0005|Sodium: 140,mmol/l
+      gt0006|Chloride: 135,mmol/l
+      gt0007|Bicarbonate: 10,mmol/l
+      gt0004|Serum albumin: 4,gm/dl
+  expected_output:
+    1:
+      gt0020|Anion gap: -5.0,mmol/l
+      gt0021|Corrected AG: -5.00,mmol/l
+      gt0022|Delta gap: -17.0,mmol/l
+      gt0023|Delta ratio: -1.21,1
+      gt0030|Delta ratio evaluation: 0|local::at0006|Hyperchloremic normal anion gap acidosis|
+      gt0029|Anion Gap evaluation: 0|local::at0003|Non anion gap acidosis|

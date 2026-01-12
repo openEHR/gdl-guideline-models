@@ -1,0 +1,22 @@
+guidelines:
+  1: Rome_IV_infant_colic.v1
+test_cases:
+- id: Positive diagnostic result
+  input:
+    1:
+      gt0003|An infant who is <5 months of age when the symptoms start and stop: true
+      gt0004|Recurrent and prolonged periods of infant crying, fussing, or irritability reported by caregivers that occur without obvious cause and cannot be prevented or resolved by caregivers: true
+      gt0005|No evidence of infant failure to thrive, fever, or illness: true
+  expected_output:
+    1:
+      gt0007|Diagnostic result: local::at0006|Positive|
+
+- id: Negative diagnostic result
+  input:
+    1:
+      gt0003|An infant who is <5 months of age when the symptoms start and stop: true
+      gt0004|Recurrent and prolonged periods of infant crying, fussing, or irritability reported by caregivers that occur without obvious cause and cannot be prevented or resolved by caregivers: false
+      gt0005|No evidence of infant failure to thrive, fever, or illness: true
+  expected_output:
+    1:
+      gt0007|Diagnostic result: local::at0005|Negative|

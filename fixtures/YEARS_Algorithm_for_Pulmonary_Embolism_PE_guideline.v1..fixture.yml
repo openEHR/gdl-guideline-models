@@ -1,0 +1,201 @@
+guidelines:
+  1: YEARS_Algorithm_for_Pulmonary_Embolism_PE_guideline.v1
+test_cases:
+- id: PE excluded, Not pregnant, YEARS 0, D dimer <1000
+  input:
+    1:
+      gt0018|Age>=18 yr: local::at0006|Yes|
+      gt0019|Stable hemodynamic: local::at0008|Yes|
+      gt0020|Pregnant patient: local::at0012|No|
+      gt0022|Clinical signs of DVT: 0|local::at0037|No|
+      gt0023|Hemoptysis: 0|local::at0039|No|
+      gt0024|PE most likely diagnosis: 0|local::at0041|No|
+      gt0036|D-dimer, ng/ml: 900,nanogm/ml
+  expected_output:
+    1:
+      gt0009|Recommendation: local::at0032|PE excluded. YEARS algorithm rules out PE (0.43% with symptomatic VTE during 3-month follow-up)|
+      gt0008|YEARS score: 0
+- id: PE not excluded,Not pregnant, YEARS 0, D dimer =1000
+  input:
+    1:
+      gt0018|Age>=18 yr: local::at0006|Yes|
+      gt0019|Stable hemodynamic: local::at0008|Yes|
+      gt0020|Pregnant patient: local::at0012|No|
+      gt0022|Clinical signs of DVT: 0|local::at0037|No|
+      gt0023|Hemoptysis: 0|local::at0039|No|
+      gt0024|PE most likely diagnosis: 0|local::at0041|No|
+      gt0036|D-dimer, ng/ml: 1000,nanogm/ml
+  expected_output:
+    1:
+      gt0009|Recommendation: local::at0031|PE not excluded. YEARS algorithm recommends CTPA|
+      gt0008|YEARS score: 0
+- id: PE not excluded, Not pregnant, YEARS 0, D dimer>1000
+  input:
+    1:
+      gt0018|Age>=18 yr: local::at0006|Yes|
+      gt0019|Stable hemodynamic: local::at0008|Yes|
+      gt0020|Pregnant patient: local::at0012|No|
+      gt0022|Clinical signs of DVT: 0|local::at0037|No|
+      gt0023|Hemoptysis: 0|local::at0039|No|
+      gt0024|PE most likely diagnosis: 0|local::at0041|No|
+      gt0036|D-dimer, ng/ml: 1100,nanogm/ml
+  expected_output:
+    1:
+      gt0009|Recommendation: local::at0031|PE not excluded. YEARS algorithm recommends CTPA|
+      gt0008|YEARS score: 0
+- id: PE excluded, Not pregnant, Years 1, D dimer<500
+  input:
+    1:
+      gt0018|Age>=18 yr: local::at0006|Yes|
+      gt0019|Stable hemodynamic: local::at0008|Yes|
+      gt0020|Pregnant patient: local::at0012|No|
+      gt0022|Clinical signs of DVT: 1|local::at0038|Yes|
+      gt0023|Hemoptysis: 0|local::at0039|No|
+      gt0024|PE most likely diagnosis: 0|local::at0041|No|
+      gt0036|D-dimer, ng/ml: 400,nanogm/ml
+  expected_output:
+    1:
+      gt0009|Recommendation: local::at0032|PE excluded. YEARS algorithm rules out PE (0.43% with symptomatic VTE during 3-month follow-up)|
+      gt0008|YEARS score: 1
+- id: PE not excluded, Not pregnant, Years 1, D dimer=500
+  input:
+    1:
+      gt0018|Age>=18 yr: local::at0006|Yes|
+      gt0019|Stable hemodynamic: local::at0008|Yes|
+      gt0020|Pregnant patient: local::at0012|No|
+      gt0022|Clinical signs of DVT: 1|local::at0038|Yes|
+      gt0023|Hemoptysis: 0|local::at0039|No|
+      gt0024|PE most likely diagnosis: 0|local::at0041|No|
+      gt0036|D-dimer, ng/ml: 500,nanogm/ml
+  expected_output:
+    1:
+      gt0009|Recommendation: local::at0031|PE not excluded. YEARS algorithm recommends CTPA|
+      gt0008|YEARS score: 1
+- id: PE not excluded, Not pregnant, Years 1, D dimer>500
+  input:
+    1:
+      gt0018|Age>=18 yr: local::at0006|Yes|
+      gt0019|Stable hemodynamic: local::at0008|Yes|
+      gt0020|Pregnant patient: local::at0012|No|
+      gt0022|Clinical signs of DVT: 1|local::at0038|Yes|
+      gt0023|Hemoptysis: 0|local::at0039|No|
+      gt0024|PE most likely diagnosis: 0|local::at0041|No|
+      gt0036|D-dimer, ng/ml: 550,nanogm/ml
+  expected_output:
+    1:
+      gt0009|Recommendation: local::at0031|PE not excluded. YEARS algorithm recommends CTPA|
+      gt0008|YEARS score: 1
+- id: PE excluded, pregnant, YEARS 0, D dimer<1000
+  input:
+    1:
+      gt0018|Age>=18 yr: local::at0006|Yes|
+      gt0019|Stable hemodynamic: local::at0008|Yes|
+      gt0020|Pregnant patient: local::at0011|Yes|
+      gt0022|Clinical signs of DVT: 0|local::at0037|No|
+      gt0023|Hemoptysis: 0|local::at0039|No|
+      gt0024|PE most likely diagnosis: 0|local::at0041|No|
+      gt0036|D-dimer, ng/ml: 900,nanogm/ml
+  expected_output:
+    1:
+      gt0009|Recommendation: local::at0032|PE excluded. YEARS algorithm rules out PE (0.43% with symptomatic VTE during 3-month follow-up)|
+      gt0008|YEARS score: 0
+- id: PE not excluded, pregnant, YEARS 0, D dime=1000
+  input:
+    1:
+      gt0018|Age>=18 yr: local::at0006|Yes|
+      gt0019|Stable hemodynamic: local::at0008|Yes|
+      gt0020|Pregnant patient: local::at0011|Yes|
+      gt0022|Clinical signs of DVT: 0|local::at0037|No|
+      gt0023|Hemoptysis: 0|local::at0039|No|
+      gt0024|PE most likely diagnosis: 0|local::at0041|No|
+      gt0036|D-dimer, ng/ml: 1000,nanogm/ml
+  expected_output:
+    1:
+      gt0009|Recommendation: local::at0031|PE not excluded. YEARS algorithm recommends CTPA|
+      gt0008|YEARS score: 0
+- id: PE not excluded, pregnant, YEARS 0, D dime>1000
+  input:
+    1:
+      gt0018|Age>=18 yr: local::at0006|Yes|
+      gt0019|Stable hemodynamic: local::at0008|Yes|
+      gt0020|Pregnant patient: local::at0011|Yes|
+      gt0022|Clinical signs of DVT: 0|local::at0037|No|
+      gt0023|Hemoptysis: 0|local::at0039|No|
+      gt0024|PE most likely diagnosis: 0|local::at0041|No|
+      gt0036|D-dimer, ng/ml: 1100,nanogm/ml
+  expected_output:
+    1:
+      gt0009|Recommendation: local::at0031|PE not excluded. YEARS algorithm recommends CTPA|
+      gt0008|YEARS score: 0
+- id: PE excluded, pregnant, DVT no, D dimer<500
+  input:
+    1:
+      gt0018|Age>=18 yr: local::at0006|Yes|
+      gt0019|Stable hemodynamic: local::at0008|Yes|
+      gt0020|Pregnant patient: local::at0011|Yes|
+      gt0022|Clinical signs of DVT: 0|local::at0037|No|
+      gt0023|Hemoptysis: 1|local::at0040|Yes|
+      gt0024|PE most likely diagnosis: 0|local::at0041|No|
+      gt0036|D-dimer, ng/ml: 400,nanogm/ml
+  expected_output:
+    1:
+      gt0009|Recommendation: local::at0032|PE excluded. YEARS algorithm rules out PE (0.43% with symptomatic VTE during 3-month follow-up)|
+      gt0008|YEARS score: 1
+- id: PE excluded, pregnant, DVT no, D dimer >500
+  input:
+    1:
+      gt0018|Age>=18 yr: local::at0006|Yes|
+      gt0019|Stable hemodynamic: local::at0008|Yes|
+      gt0020|Pregnant patient: local::at0011|Yes|
+      gt0022|Clinical signs of DVT: 0|local::at0037|No|
+      gt0023|Hemoptysis: 1|local::at0040|Yes|
+      gt0024|PE most likely diagnosis: 0|local::at0041|No|
+      gt0036|D-dimer, ng/ml: 550,nanogm/ml
+  expected_output:
+    1:
+      gt0009|Recommendation: local::at0032|PE excluded. YEARS algorithm rules out PE (0.43% with symptomatic VTE during 3-month follow-up)|
+      gt0008|YEARS score: 1
+- id: Initiate anticoagulant., pregnant, DVT yes
+  input:
+    1:
+      gt0018|Age>=18 yr: local::at0006|Yes|
+      gt0019|Stable hemodynamic: local::at0008|Yes|
+      gt0020|Pregnant patient: local::at0011|Yes|
+      gt0021|Compression ultrasonography of symptomatic leg: local::at0035|Abnormal|
+      gt0022|Clinical signs of DVT: 1|local::at0038|Yes|
+      gt0023|Hemoptysis: 0|local::at0039|No|
+      gt0024|PE most likely diagnosis: 0|local::at0041|No|
+  expected_output:
+    1:
+      gt0009|Recommendation: local::at0036|Initiate anticoagulant. Pregnancy-adapted YEARS algorithm recommends initiation of anticoagulant treatment.|
+      gt0008|YEARS score: 1
+- id: PE excluded, DVT yes, D dimer<500
+  input:
+    1:
+      gt0018|Age>=18 yr: local::at0006|Yes|
+      gt0019|Stable hemodynamic: local::at0008|Yes|
+      gt0020|Pregnant patient: local::at0011|Yes|
+      gt0021|Compression ultrasonography of symptomatic leg: local::at0034|Normal|
+      gt0022|Clinical signs of DVT: 1|local::at0038|Yes|
+      gt0023|Hemoptysis: 0|local::at0039|No|
+      gt0024|PE most likely diagnosis: 0|local::at0041|No|
+      gt0036|D-dimer, ng/ml: 400,nanogm/ml
+  expected_output:
+    1:
+      gt0009|Recommendation: local::at0032|PE excluded. YEARS algorithm rules out PE (0.43% with symptomatic VTE during 3-month follow-up)|
+      gt0008|YEARS score: 1
+- id: PE not excluded, pregnant, DVT yes, D dimer>500
+  input:
+    1:
+      gt0018|Age>=18 yr: local::at0006|Yes|
+      gt0019|Stable hemodynamic: local::at0008|Yes|
+      gt0020|Pregnant patient: local::at0011|Yes|
+      gt0021|Compression ultrasonography of symptomatic leg: local::at0034|Normal|
+      gt0022|Clinical signs of DVT: 1|local::at0038|Yes|
+      gt0023|Hemoptysis: 0|local::at0039|No|
+      gt0024|PE most likely diagnosis: 0|local::at0041|No|
+      gt0036|D-dimer, ng/ml: 550,nanogm/ml
+  expected_output:
+    1:
+      gt0009|Recommendation: local::at0031|PE not excluded. YEARS algorithm recommends CTPA|
+      gt0008|YEARS score: 1

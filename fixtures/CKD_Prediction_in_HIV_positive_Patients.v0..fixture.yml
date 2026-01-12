@@ -1,0 +1,206 @@
+guidelines:
+  1: CKD_Prediction_in_HIV_positive_Patients.v0
+test_cases:
+- id: Max points without assessment
+  input:
+    1:
+      gt0003|Age: 90,a
+      gt0005|Glucose result: 141,mg/dl
+      gt0007|Systolic BP: 141,mm[Hg]
+      gt0009|Hypertension: 2|local::at0024|Yes|
+      gt0010|Triglycerides >200 mg/dL (>2.26 mmol/L): 1|local::at0026|Yes|
+      gt0011|Proteinuria: 2|local::at0028|Yes|
+      gt0012|CD4⁺ <200 cells/µL: 1|local::at0030|Yes|
+  expected_output:
+    1:
+      gt0015|Total score: 15
+      gt0025|Glucose >140 mg/dL (7.77 mmol/L): 2|local::at0020|Yes|
+      gt0024|Age: 6|local::at0018|60-90 years|
+      gt0026|Systolic BP >140 mmHg: 1|local::at0022|Yes|
+
+- id: Edge values for age, glucose and sBP 1
+  input:
+    1:
+      gt0003|Age: 59,a
+      gt0005|Glucose result: 140,mg/dl
+      gt0007|Systolic BP: 140,mm[Hg]
+      gt0009|Hypertension: 2|local::at0024|Yes|
+      gt0010|Triglycerides >200 mg/dL (>2.26 mmol/L): 1|local::at0026|Yes|
+      gt0011|Proteinuria: 2|local::at0028|Yes|
+      gt0012|CD4⁺ <200 cells/µL: 1|local::at0030|Yes|
+  expected_output:
+    1:
+      gt0015|Total score: 10
+      gt0025|Glucose >140 mg/dL (7.77 mmol/L): 0|local::at0019|No|
+      gt0024|Age: 4|local::at0017|50-59 years|
+      gt0026|Systolic BP >140 mmHg: 0|local::at0021|No|
+
+- id: Edge values for age, glucose and sBP 2
+  input:
+    1:
+      gt0003|Age: 39,a
+      gt0005|Glucose result: 139,mg/dl
+      gt0007|Systolic BP: 139,mm[Hg]
+      gt0009|Hypertension: 2|local::at0024|Yes|
+      gt0010|Triglycerides >200 mg/dL (>2.26 mmol/L): 1|local::at0026|Yes|
+      gt0011|Proteinuria: 2|local::at0028|Yes|
+      gt0012|CD4⁺ <200 cells/µL: 1|local::at0030|Yes|
+  expected_output:
+    1:
+      gt0015|Total score: 6
+      gt0025|Glucose >140 mg/dL (7.77 mmol/L): 0|local::at0019|No|
+      gt0024|Age: 0|local::at0015|19-39 years|
+      gt0026|Systolic BP >140 mmHg: 0|local::at0021|No|
+
+- id: mimimum points no assessment
+  input:
+    1:
+      gt0003|Age: 25,a
+      gt0005|Glucose result: 139,mg/dl
+      gt0007|Systolic BP: 139,mm[Hg]
+      gt0009|Hypertension: 0|local::at0023|No|
+      gt0010|Triglycerides >200 mg/dL (>2.26 mmol/L): 0|local::at0025|No|
+      gt0011|Proteinuria: 0|local::at0027|No|
+      gt0012|CD4⁺ <200 cells/µL: 0|local::at0029|No|
+  expected_output:
+    1:
+      gt0015|Total score: 0
+      gt0025|Glucose >140 mg/dL (7.77 mmol/L): 0|local::at0019|No|
+      gt0024|Age: 0|local::at0015|19-39 years|
+      gt0026|Systolic BP >140 mmHg: 0|local::at0021|No|
+
+- id: using mmol/l for glucose (it rounds up/down the value to zero decimals, but in the GDL tab the code looks fine)
+  input:
+    1:
+      gt0003|Age: 25,a
+      gt0005|Glucose result: 7,mmol/l
+      gt0007|Systolic BP: 139,mm[Hg]
+      gt0009|Hypertension: 0|local::at0023|No|
+      gt0010|Triglycerides >200 mg/dL (>2.26 mmol/L): 0|local::at0025|No|
+      gt0011|Proteinuria: 0|local::at0027|No|
+      gt0012|CD4⁺ <200 cells/µL: 0|local::at0029|No|
+  expected_output:
+    1:
+      gt0015|Total score: 0
+      gt0025|Glucose >140 mg/dL (7.77 mmol/L): 0|local::at0019|No|
+      gt0024|Age: 0|local::at0015|19-39 years|
+      gt0026|Systolic BP >140 mmHg: 0|local::at0021|No|
+
+- id: 0 points no tenofovir user and assessment 
+  input:
+    1:
+      gt0003|Age: 25,a
+      gt0005|Glucose result: 7,mmol/l
+      gt0007|Systolic BP: 139,mm[Hg]
+      gt0009|Hypertension: 0|local::at0023|No|
+      gt0010|Triglycerides >200 mg/dL (>2.26 mmol/L): 0|local::at0025|No|
+      gt0011|Proteinuria: 0|local::at0027|No|
+      gt0012|CD4⁺ <200 cells/µL: 0|local::at0029|No|
+      gt0013|Tenofovir (TDF) use: local::at0014|No|
+  expected_output:
+    1:
+      gt0015|Total score: 0
+      gt0025|Glucose >140 mg/dL (7.77 mmol/L): 0|local::at0019|No|
+      gt0024|Age: 0|local::at0015|19-39 years|
+      gt0026|Systolic BP >140 mmHg: 0|local::at0021|No|
+      gt0017|Risk: local::at0006|Patients with low scores (0 points) may be good candidates for tenofovir|
+      gt0019|Tenofovir non-users: local::at0007|Score 0 - 0.5% rate of CKD within 5 years|
+
+- id: 9 or more points no tenofovir user and assessment 
+  input:
+    1:
+      gt0003|Age: 89,a
+      gt0005|Glucose result: 142,mg/dl
+      gt0007|Systolic BP: 141,mm[Hg]
+      gt0009|Hypertension: 2|local::at0024|Yes|
+      gt0010|Triglycerides >200 mg/dL (>2.26 mmol/L): 1|local::at0026|Yes|
+      gt0011|Proteinuria: 2|local::at0028|Yes|
+      gt0012|CD4⁺ <200 cells/µL: 1|local::at0030|Yes|
+      gt0013|Tenofovir (TDF) use: local::at0014|No|
+  expected_output:
+    1:
+      gt0015|Total score: 15
+      gt0025|Glucose >140 mg/dL (7.77 mmol/L): 2|local::at0020|Yes|
+      gt0024|Age: 6|local::at0018|60-90 years|
+      gt0026|Systolic BP >140 mmHg: 1|local::at0022|Yes|
+      gt0017|Risk: local::at0005|Patients with high scores (≥9 points) should avoid tenofovir in their treatment regimen|
+      gt0019|Tenofovir non-users: local::at0016|Score >=9 - 16.4% rate of CKD within 5 years|
+
+- id: 9 or more points tenofovir user and assessment 
+  input:
+    1:
+      gt0003|Age: 89,a
+      gt0005|Glucose result: 142,mg/dl
+      gt0007|Systolic BP: 141,mm[Hg]
+      gt0009|Hypertension: 2|local::at0024|Yes|
+      gt0010|Triglycerides >200 mg/dL (>2.26 mmol/L): 1|local::at0026|Yes|
+      gt0011|Proteinuria: 2|local::at0028|Yes|
+      gt0012|CD4⁺ <200 cells/µL: 1|local::at0030|Yes|
+      gt0013|Tenofovir (TDF) use: local::at0013|Yes|
+  expected_output:
+    1:
+      gt0015|Total score: 15
+      gt0025|Glucose >140 mg/dL (7.77 mmol/L): 2|local::at0020|Yes|
+      gt0024|Age: 6|local::at0018|60-90 years|
+      gt0026|Systolic BP >140 mmHg: 1|local::at0022|Yes|
+      gt0017|Risk: local::at0005|Patients with high scores (≥9 points) should avoid tenofovir in their treatment regimen|
+      gt0018|Tenofovir users: local::at0026|Score >=9 - 21.4% rate of CKD within 5 years|
+
+- id: 0 points tenofovir user and assessment 
+  input:
+    1:
+      gt0003|Age: 23,a
+      gt0005|Glucose result: 120,mg/dl
+      gt0007|Systolic BP: 120,mm[Hg]
+      gt0009|Hypertension: 0|local::at0023|No|
+      gt0010|Triglycerides >200 mg/dL (>2.26 mmol/L): 0|local::at0025|No|
+      gt0011|Proteinuria: 0|local::at0027|No|
+      gt0012|CD4⁺ <200 cells/µL: 0|local::at0029|No|
+      gt0013|Tenofovir (TDF) use: local::at0013|Yes|
+  expected_output:
+    1:
+      gt0015|Total score: 0
+      gt0025|Glucose >140 mg/dL (7.77 mmol/L): 0|local::at0019|No|
+      gt0024|Age: 0|local::at0015|19-39 years|
+      gt0026|Systolic BP >140 mmHg: 0|local::at0021|No|
+      gt0017|Risk: local::at0006|Patients with low scores (0 points) may be good candidates for tenofovir|
+      gt0018|Tenofovir users: local::at0017|Score 0 - 1.4% rate of CKD within 5 years|
+
+- id: 4 points tenofovir user and assessment 
+  input:
+    1:
+      gt0003|Age: 23,a
+      gt0005|Glucose result: 120,mg/dl
+      gt0007|Systolic BP: 120,mm[Hg]
+      gt0009|Hypertension: 0|local::at0023|No|
+      gt0010|Triglycerides >200 mg/dL (>2.26 mmol/L): 1|local::at0026|Yes|
+      gt0011|Proteinuria: 2|local::at0028|Yes|
+      gt0012|CD4⁺ <200 cells/µL: 1|local::at0030|Yes|
+      gt0013|Tenofovir (TDF) use: local::at0013|Yes|
+  expected_output:
+    1:
+      gt0015|Total score: 4
+      gt0025|Glucose >140 mg/dL (7.77 mmol/L): 0|local::at0019|No|
+      gt0024|Age: 0|local::at0015|19-39 years|
+      gt0026|Systolic BP >140 mmHg: 0|local::at0021|No|
+      gt0018|Tenofovir users: local::at0021|Score 4 - 7.6% rate of CKD within 5 years|
+
+- id: 6 points tenofovir non-user and assessment 
+  input:
+    1:
+      gt0003|Age: 23,a
+      gt0005|Glucose result: 120,mg/dl
+      gt0007|Systolic BP: 120,mm[Hg]
+      gt0009|Hypertension: 2|local::at0024|Yes|
+      gt0010|Triglycerides >200 mg/dL (>2.26 mmol/L): 1|local::at0026|Yes|
+      gt0011|Proteinuria: 2|local::at0028|Yes|
+      gt0012|CD4⁺ <200 cells/µL: 1|local::at0030|Yes|
+      gt0013|Tenofovir (TDF) use: local::at0014|No|
+  expected_output:
+    1:
+      gt0015|Total score: 6
+      gt0025|Glucose >140 mg/dL (7.77 mmol/L): 0|local::at0019|No|
+      gt0024|Age: 0|local::at0015|19-39 years|
+      gt0026|Systolic BP >140 mmHg: 0|local::at0021|No|
+      gt0019|Tenofovir non-users: local::at0013|Score 6 - 5.1% rate of CKD within 5 years|
+

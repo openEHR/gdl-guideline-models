@@ -1,0 +1,314 @@
+guidelines:
+  1: Acute_gout_diagnosis_rule.v1
+test_cases:
+- id: default
+  input:
+    1: {}
+  expected_output:
+    1:
+      gt0038|1st MTP joint score: 0
+      gt0034|Male sex score: 0
+      gt0035|Previous arthritis score: 0
+      gt0040|Serum uric acid score: 0
+      gt0036|Onset duration score: 0
+      gt0039|Cardiovascular disease score: 0
+      gt0037|Joint redness score: 0
+
+- id: gender(female)-UA(0)-CVD(0)-HT(0)-Arthritis(0)-Joint(0)-MTP(0)-Onset(0)
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0005|Uric acid concentration: 4,mg/dl
+      gt0007|Cardiovascular disease: 0|local::at0024|No|
+      gt0032|Hypertension: 0|local::at0011|No|
+      gt0043|Previous patient-reported arthritis attack: 0|local::at0029|Absent|
+      gt0044|Joint redness: 0|local::at0033|Absent|
+      gt0045|1st MTP joint involvement: 0|local::at0035|Absent|
+      gt0046|Onset within one day: 0|local::at0031|Absent|
+  expected_output:
+    1:
+      gt0038|1st MTP joint score: 0
+      gt0034|Male sex score: 0
+      gt0035|Previous arthritis score: 0
+      gt0047|Total score: 0.00
+      gt0040|Serum uric acid score: 0
+      gt0036|Onset duration score: 0
+      gt0039|Cardiovascular disease score: 0
+      gt0037|Joint redness score: 0
+      gt0049|Gout assessment: local::at0005|Gout unlikely|
+      gt0050|Gout prevalence: 2.2,%
+
+
+- id: gender(female)-UA(0)-CVD(0)-HT(0)-Arthritis(1)-Joint(1)-MTP(1)-Onset(1)
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0005|Uric acid concentration: 5,mg/dl
+      gt0007|Cardiovascular disease: 0|local::at0024|No|
+      gt0032|Hypertension: 0|local::at0011|No|
+      gt0043|Previous patient-reported arthritis attack: 1|local::at0030|Present|
+      gt0044|Joint redness: 1|local::at0034|Present|
+      gt0045|1st MTP joint involvement: 1|local::at0036|Present|
+      gt0046|Onset within one day: 1|local::at0032|Present|
+  expected_output:
+    1:
+      gt0038|1st MTP joint score: 2.5
+      gt0034|Male sex score: 0
+      gt0035|Previous arthritis score: 2
+      gt0047|Total score: 6.00
+      gt0040|Serum uric acid score: 0
+      gt0036|Onset duration score: 0.5
+      gt0039|Cardiovascular disease score: 0
+      gt0037|Joint redness score: 1
+      gt0049|Gout assessment: local::at0006|Gout indeterminate|
+      gt0050|Gout prevalence: 31.2,%
+
+
+- id: gender(female)-UA(1)-CVD(1)-HT(1)-Arthritis(0)-Joint(0)-MTP(0)-Onset(0)
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0005|Uric acid concentration: 9,mg/dl
+      gt0007|Cardiovascular disease: 1|local::at0025|Yes|
+      gt0032|Hypertension: 1|local::at0012|Yes|
+      gt0043|Previous patient-reported arthritis attack: 0|local::at0029|Absent|
+      gt0044|Joint redness: 0|local::at0033|Absent|
+      gt0045|1st MTP joint involvement: 0|local::at0035|Absent|
+      gt0046|Onset within one day: 0|local::at0031|Absent|
+  expected_output:
+    1:
+      gt0038|1st MTP joint score: 0
+      gt0034|Male sex score: 0
+      gt0035|Previous arthritis score: 0
+      gt0047|Total score: 5.00
+      gt0040|Serum uric acid score: 3.5
+      gt0036|Onset duration score: 0
+      gt0039|Cardiovascular disease score: 1.5
+      gt0037|Joint redness score: 0
+      gt0049|Gout assessment: local::at0006|Gout indeterminate|
+      gt0050|Gout prevalence: 31.2,%
+
+
+
+- id: gender(female)-UA(1)-CVD(0)-HT(1)-Arthritis(0)-Joint(1)-MTP(0)-Onset(1)
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0005|Uric acid concentration: 9,mg/dl
+      gt0007|Cardiovascular disease: 0|local::at0024|No|
+      gt0032|Hypertension: 1|local::at0012|Yes|
+      gt0043|Previous patient-reported arthritis attack: 0|local::at0029|Absent|
+      gt0044|Joint redness: 1|local::at0034|Present|
+      gt0045|1st MTP joint involvement: 0|local::at0035|Absent|
+      gt0046|Onset within one day: 1|local::at0032|Present|
+  expected_output:
+    1:
+      gt0038|1st MTP joint score: 0
+      gt0034|Male sex score: 0
+      gt0035|Previous arthritis score: 0
+      gt0047|Total score: 6.50
+      gt0040|Serum uric acid score: 3.5
+      gt0036|Onset duration score: 0.5
+      gt0039|Cardiovascular disease score: 1.5
+      gt0037|Joint redness score: 1
+      gt0049|Gout assessment: local::at0006|Gout indeterminate|
+      gt0050|Gout prevalence: 31.2,%
+
+
+- id: gender(female)-UA(0)-CVD(1)-HT(0)-Arthritis(1)-Joint(0)-MTP(1)-Onset(0)
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0005|Uric acid concentration: 4,mg/dl
+      gt0007|Cardiovascular disease: 1|local::at0025|Yes|
+      gt0032|Hypertension: 0|local::at0011|No|
+      gt0043|Previous patient-reported arthritis attack: 1|local::at0030|Present|
+      gt0044|Joint redness: 0|local::at0033|Absent|
+      gt0045|1st MTP joint involvement: 1|local::at0036|Present|
+      gt0046|Onset within one day: 0|local::at0031|Absent|
+  expected_output:
+    1:
+      gt0038|1st MTP joint score: 2.5
+      gt0034|Male sex score: 0
+      gt0035|Previous arthritis score: 2
+      gt0047|Total score: 6.00
+      gt0040|Serum uric acid score: 0
+      gt0036|Onset duration score: 0
+      gt0039|Cardiovascular disease score: 1.5
+      gt0037|Joint redness score: 0
+      gt0049|Gout assessment: local::at0006|Gout indeterminate|
+      gt0050|Gout prevalence: 31.2,%
+
+
+- id: gender(female)-UA(1)-CVD(1)-HT(1)-Arthritis(1)-Joint(1)-MTP(1)-Onset(1)
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0005|Uric acid concentration: 9,mg/dl
+      gt0007|Cardiovascular disease: 1|local::at0025|Yes|
+      gt0032|Hypertension: 1|local::at0012|Yes|
+      gt0043|Previous patient-reported arthritis attack: 1|local::at0030|Present|
+      gt0044|Joint redness: 1|local::at0034|Present|
+      gt0045|1st MTP joint involvement: 1|local::at0036|Present|
+      gt0046|Onset within one day: 1|local::at0032|Present|
+  expected_output:
+    1:
+      gt0038|1st MTP joint score: 2.5
+      gt0034|Male sex score: 0
+      gt0035|Previous arthritis score: 2
+      gt0047|Total score: 11.00
+      gt0040|Serum uric acid score: 3.5
+      gt0036|Onset duration score: 0.5
+      gt0039|Cardiovascular disease score: 1.5
+      gt0037|Joint redness score: 1
+      gt0049|Gout assessment: local::at0007|Gout very likely|
+      gt0050|Gout prevalence: 80.4,%
+
+
+- id: gender(male)-UA(0)-CVD(0)-HT(0)-Arthritis(0)-Joint(0)-MTP(0)-Onset(0)
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0005|Uric acid concentration: 4,mg/dl
+      gt0007|Cardiovascular disease: 0|local::at0024|No|
+      gt0032|Hypertension: 0|local::at0011|No|
+      gt0043|Previous patient-reported arthritis attack: 0|local::at0029|Absent|
+      gt0044|Joint redness: 0|local::at0033|Absent|
+      gt0045|1st MTP joint involvement: 0|local::at0035|Absent|
+      gt0046|Onset within one day: 0|local::at0031|Absent|
+  expected_output:
+    1:
+      gt0038|1st MTP joint score: 0
+      gt0034|Male sex score: 2
+      gt0035|Previous arthritis score: 0
+      gt0047|Total score: 2.00
+      gt0040|Serum uric acid score: 0
+      gt0036|Onset duration score: 0
+      gt0039|Cardiovascular disease score: 0
+      gt0049|Gout assessment: local::at0005|Gout unlikely|
+      gt0050|Gout prevalence: 2.2,%
+
+
+- id: gender(male)-UA(0)-CVD(0)-HT(0)-Arthritis(1)-Joint(1)-MTP(1)-Onset(1)
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0005|Uric acid concentration: 5,mg/dl
+      gt0007|Cardiovascular disease: 0|local::at0024|No|
+      gt0032|Hypertension: 0|local::at0011|No|
+      gt0043|Previous patient-reported arthritis attack: 1|local::at0030|Present|
+      gt0044|Joint redness: 1|local::at0034|Present|
+      gt0045|1st MTP joint involvement: 1|local::at0036|Present|
+      gt0046|Onset within one day: 1|local::at0032|Present|
+  expected_output:
+    1:
+      gt0038|1st MTP joint score: 2.5
+      gt0034|Male sex score: 2
+      gt0035|Previous arthritis score: 2
+      gt0047|Total score: 8.00
+      gt0040|Serum uric acid score: 0
+      gt0036|Onset duration score: 0.5
+      gt0039|Cardiovascular disease score: 0
+      gt0037|Joint redness score: 1
+      gt0049|Gout assessment: local::at0007|Gout very likely|
+      gt0050|Gout prevalence: 80.4,%
+
+
+- id: gender(male)-UA(1)-CVD(1)-HT(1)-Arthritis(0)-Joint(0)-MTP(0)-Onset(0)
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0005|Uric acid concentration: 9,mg/dl
+      gt0007|Cardiovascular disease: 1|local::at0025|Yes|
+      gt0032|Hypertension: 1|local::at0012|Yes|
+      gt0043|Previous patient-reported arthritis attack: 0|local::at0029|Absent|
+      gt0044|Joint redness: 0|local::at0033|Absent|
+      gt0045|1st MTP joint involvement: 0|local::at0035|Absent|
+      gt0046|Onset within one day: 0|local::at0031|Absent|
+  expected_output:
+    1:
+      gt0038|1st MTP joint score: 0
+      gt0034|Male sex score: 2
+      gt0035|Previous arthritis score: 0
+      gt0047|Total score: 7.00
+      gt0040|Serum uric acid score: 3.5
+      gt0036|Onset duration score: 0
+      gt0039|Cardiovascular disease score: 1.5
+      gt0037|Joint redness score: 0
+      gt0049|Gout assessment: local::at0006|Gout indeterminate|
+      gt0050|Gout prevalence: 31.2,%
+
+
+- id: gender(male)-UA(1)-CVD(0)-HT(1)-Arthritis(0)-Joint(1)-MTP(0)-Onset(1)
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0005|Uric acid concentration: 9,mg/dl
+      gt0007|Cardiovascular disease: 0|local::at0024|No|
+      gt0032|Hypertension: 1|local::at0012|Yes|
+      gt0043|Previous patient-reported arthritis attack: 0|local::at0029|Absent|
+      gt0044|Joint redness: 1|local::at0034|Present|
+      gt0045|1st MTP joint involvement: 0|local::at0035|Absent|
+      gt0046|Onset within one day: 1|local::at0032|Present|
+  expected_output:
+    1:
+      gt0038|1st MTP joint score: 0
+      gt0034|Male sex score: 2
+      gt0035|Previous arthritis score: 0
+      gt0047|Total score: 8.50
+      gt0040|Serum uric acid score: 3.5
+      gt0036|Onset duration score: 0.5
+      gt0039|Cardiovascular disease score: 1.5
+      gt0037|Joint redness score: 1
+      gt0049|Gout assessment: local::at0007|Gout very likely|
+      gt0050|Gout prevalence: 80.4,%
+
+
+- id: gender(male)-UA(0)-CVD(1)-HT(0)-Arthritis(1)-Joint(0)-MTP(1)-Onset(0)
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0005|Uric acid concentration: 4,mg/dl
+      gt0007|Cardiovascular disease: 1|local::at0025|Yes|
+      gt0032|Hypertension: 0|local::at0011|No|
+      gt0043|Previous patient-reported arthritis attack: 1|local::at0030|Present|
+      gt0044|Joint redness: 0|local::at0033|Absent|
+      gt0045|1st MTP joint involvement: 1|local::at0036|Present|
+      gt0046|Onset within one day: 0|local::at0031|Absent|
+  expected_output:
+    1:
+      gt0038|1st MTP joint score: 2.5
+      gt0034|Male sex score: 2
+      gt0035|Previous arthritis score: 2
+      gt0047|Total score: 8.00
+      gt0040|Serum uric acid score: 0
+      gt0036|Onset duration score: 0
+      gt0039|Cardiovascular disease score: 1.5
+      gt0037|Joint redness score: 0
+      gt0049|Gout assessment: local::at0007|Gout very likely|
+      gt0050|Gout prevalence: 80.4,%
+
+
+- id: gender(male)-UA(1)-CVD(1)-HT(1)-Arthritis(1)-Joint(1)-MTP(1)-Onset(1)
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0005|Uric acid concentration: 9,mg/dl
+      gt0007|Cardiovascular disease: 1|local::at0025|Yes|
+      gt0032|Hypertension: 1|local::at0012|Yes|
+      gt0043|Previous patient-reported arthritis attack: 1|local::at0030|Present|
+      gt0044|Joint redness: 1|local::at0034|Present|
+      gt0045|1st MTP joint involvement: 1|local::at0036|Present|
+      gt0046|Onset within one day: 1|local::at0032|Present|
+  expected_output:
+    1:
+      gt0038|1st MTP joint score: 2.5
+      gt0034|Male sex score: 2
+      gt0035|Previous arthritis score: 2
+      gt0047|Total score: 13.00
+      gt0040|Serum uric acid score: 3.5
+      gt0036|Onset duration score: 0.5
+      gt0039|Cardiovascular disease score: 1.5
+      gt0037|Joint redness score: 1
+      gt0049|Gout assessment: local::at0007|Gout very likely|
+      gt0050|Gout prevalence: 80.4,%

@@ -1,0 +1,83 @@
+guidelines:
+  1: Reynolds_Risk_Score_for_CardiovascularRisk_in_Women_guideline.v1
+test_cases:
+- id: Risk <5%
+  input:
+    1:
+      gt0005|Age: 50,a
+      gt0007|Systolic BP: 120,mm[Hg]
+      gt0012|Diabetes mellitus: 1|local::at0006|Yes|
+      gt0013|Current smoker: 1|local::at0009|Yes|
+      gt0014|Parent with MI before age 60 years: 1|local::at0012|Yes|
+      gt0018|Hemoglobin A1c(%): 4,1
+      gt0021|HDL Cholesterol: 100,mg/dl
+      gt0022|Total Cholesterol: 200,mg/dl
+      gt0024|hsCRP: 3,mg/l
+  expected_output:
+    1:
+      gt0011|10-year cardiovascular disease risk (%): 2.5
+      gt0010|B score: 22.93
+      gt0039|Recommendation: 0|local::at0008|Unclear evidence for statin therapy|
+
+- id: Risk 10% to <20%
+  input:
+    1:
+      gt0005|Age: 59,a
+      gt0007|Systolic BP: 120,mm[Hg]
+      gt0012|Diabetes mellitus: 1|local::at0006|Yes|
+      gt0013|Current smoker: 1|local::at0009|Yes|
+      gt0014|Parent with MI before age 60 years: 1|local::at0012|Yes|
+      gt0018|Hemoglobin A1c(%): 3,1
+      gt0021|HDL Cholesterol: 90,mg/dl
+      gt0022|Total Cholesterol: 200,mg/dl
+      gt0024|hsCRP: 3,mg/l
+  expected_output:
+    1:
+      gt0011|10-year cardiovascular disease risk (%): 5.1
+      gt0010|B score: 23.64
+      gt0039|Recommendation: 1|local::at0009|Minimal benefit of statin therapy compared to risk and cost of therapy in preventing a cardiovascular event in the next ten years|
+
+- id: Risk 10% to <20%
+  input:
+    1:
+      gt0005|Age: 59,a
+      gt0007|Systolic BP: 120,mm[Hg]
+      gt0012|Diabetes mellitus: 1|local::at0006|Yes|
+      gt0013|Current smoker: 1|local::at0009|Yes|
+      gt0014|Parent with MI before age 60 years: 1|local::at0012|Yes|
+      gt0018|Hemoglobin A1c(%): 3,1
+      gt0021|HDL Cholesterol: 70,mg/dl
+      gt0022|Total Cholesterol: 300,mg/dl
+      gt0024|hsCRP: 5,mg/l
+  expected_output:
+    1:
+      gt0011|10-year cardiovascular disease risk (%): 13.1
+      gt0010|B score: 24.58
+      gt0039|Recommendation: 2|local::at0010|Discussion of lifestyle modification and initiation of statin therapy U.S. treatment guidelines recommend initiation of treatment with 10-year risk estimates >10%:Understanding patient preference and motivation and frank discussion with patients about the risks and benefits of statin therapy in reducing cardiovascular events such as stroke, MI, and CVA in female patients over the next ten years.|
+
+
+- id: Risk >=20
+  input:
+    1:
+      gt0005|Age: 59,a
+      gt0007|Systolic BP: 170,mm[Hg]
+      gt0012|Diabetes mellitus: 1|local::at0006|Yes|
+      gt0013|Current smoker: 1|local::at0009|Yes|
+      gt0014|Parent with MI before age 60 years: 1|local::at0012|Yes|
+      gt0018|Hemoglobin A1c(%): 3,1
+      gt0021|HDL Cholesterol: 70,mg/dl
+      gt0022|Total Cholesterol: 300,mg/dl
+      gt0024|hsCRP: 5,mg/l
+  expected_output:
+    1:
+      gt0011|10-year cardiovascular disease risk (%): 39.0
+      gt0010|B score: 25.68
+      gt0039|Recommendation: 3|local::at0011|Strongly recommend statin therapy in conjunction with lifestyle modification|
+
+
+
+
+
+
+
+

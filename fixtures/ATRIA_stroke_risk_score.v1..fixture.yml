@@ -1,0 +1,229 @@
+current_datetime: '2019-11-28T00:00:00+01:00'
+guidelines:
+  1: ATRIA_stroke_risk_score.v1
+test_cases:
+- id: over 75yr female, ATRIA 13
+  input:
+    1:
+      gt0010|Birthdate: 1944-04-15T20:14Z
+      gt0011|Gender: local::at0006|Female|
+      gt0012|Estimated Glomerular Filtration Rate: 44,ml/min
+      gt0016|Urine microalbumin: 30,mg/dl
+      gt0017|Urine albumin:creatinine ratio: 31,mg/gm
+      gt0055|Diabetes Mellitus: 1|local::at0008|Yes|
+      gt0056|Congestive Heart Failure: 1|local::at0010|Yes|
+      gt0057|Hypertension: 1|local::at0012|Yes|
+      gt0062|Stroke/cerebrovascular accident: 1|local::at0036|Yes|
+  expected_output:
+    1:
+      gt0053|History of stroke: 1|local::at0033|Yes|
+      gt0022|History of diabetes mellitus: 1|local::at0031|Yes|
+      gt0024|History of hypertension: 1|local::at0027|Yes|
+      gt0026|eGFR: 1|local::at0023|eGFR <45|
+      gt0025|Proteinuria: 1|local::at0025|Yes|
+      gt0021|Sex: 1|local::at0021|Female|
+      gt0027|ATRIA stroke risk score: 13
+      gt0020|Age: 7|local::at0017|Age 65-84 years with a history of stroke.|
+      gt0023|History of congestive heart failure: 1|local::at0029|Yes|
+      gt0064|ATRIA stroke risk: 2|local::at0006|High risk of stroke (≥2%)|
+
+- id: same but GFR and microalbumin fine
+  input:
+    1:
+      gt0010|Birthdate: 1944-04-15T20:14Z
+      gt0011|Gender: local::at0006|Female|
+      gt0012|Estimated Glomerular Filtration Rate: 47,ml/min
+      gt0016|Urine microalbumin: 28,mg/dl
+      gt0017|Urine albumin:creatinine ratio: 31,mg/gm
+      gt0055|Diabetes Mellitus: 1|local::at0008|Yes|
+      gt0056|Congestive Heart Failure: 1|local::at0010|Yes|
+      gt0057|Hypertension: 1|local::at0012|Yes|
+      gt0062|Stroke/cerebrovascular accident: 1|local::at0036|Yes|
+  expected_output:
+    1:
+      gt0053|History of stroke: 1|local::at0033|Yes|
+      gt0022|History of diabetes mellitus: 1|local::at0031|Yes|
+      gt0024|History of hypertension: 1|local::at0027|Yes|
+      gt0026|eGFR: 0|local::at0022|eGFR ≥45|
+      gt0025|Proteinuria: 1|local::at0025|Yes|
+      gt0021|Sex: 1|local::at0021|Female|
+      gt0027|ATRIA stroke risk score: 12
+      gt0020|Age: 7|local::at0017|Age 65-84 years with a history of stroke.|
+      gt0023|History of congestive heart failure: 1|local::at0029|Yes|
+      gt0064|ATRIA stroke risk: 2|local::at0006|High risk of stroke (≥2%)|
+
+- id: no diabetes, normal albumin creatinine ratio
+  input:
+    1:
+      gt0010|Birthdate: 1944-04-15T20:14Z
+      gt0011|Gender: local::at0006|Female|
+      gt0012|Estimated Glomerular Filtration Rate: 47,ml/min
+      gt0016|Urine microalbumin: 28,mg/dl
+      gt0017|Urine albumin:creatinine ratio: 26,mg/gm
+      gt0055|Diabetes Mellitus: 0|local::at0007|No|
+      gt0056|Congestive Heart Failure: 1|local::at0010|Yes|
+      gt0057|Hypertension: 1|local::at0012|Yes|
+      gt0062|Stroke/cerebrovascular accident: 1|local::at0036|Yes|
+  expected_output:
+    1:
+      gt0053|History of stroke: 1|local::at0033|Yes|
+      gt0022|History of diabetes mellitus: 0|local::at0030|No|
+      gt0024|History of hypertension: 1|local::at0027|Yes|
+      gt0026|eGFR: 0|local::at0022|eGFR ≥45|
+      gt0025|Proteinuria: 0|local::at0024|No|
+      gt0021|Sex: 1|local::at0021|Female|
+      gt0027|ATRIA stroke risk score: 10
+      gt0020|Age: 7|local::at0017|Age 65-84 years with a history of stroke.|
+      gt0023|History of congestive heart failure: 1|local::at0029|Yes|
+      gt0064|ATRIA stroke risk: 2|local::at0006|High risk of stroke (≥2%)|
+
+- id: old female with only hypertension
+  input:
+    1:
+      gt0010|Birthdate: 1944-04-15T20:14Z
+      gt0011|Gender: local::at0006|Female|
+      gt0012|Estimated Glomerular Filtration Rate: 47,ml/min
+      gt0016|Urine microalbumin: 28,mg/dl
+      gt0017|Urine albumin:creatinine ratio: 26,mg/gm
+      gt0055|Diabetes Mellitus: 0|local::at0007|No|
+      gt0056|Congestive Heart Failure: 0|local::at0009|No|
+      gt0057|Hypertension: 1|local::at0012|Yes|
+      gt0062|Stroke/cerebrovascular accident: 0|local::at0035|No|
+  expected_output:
+    1:
+      gt0053|History of stroke: 0|local::at0032|No|
+      gt0022|History of diabetes mellitus: 0|local::at0030|No|
+      gt0024|History of hypertension: 1|local::at0027|Yes|
+      gt0026|eGFR: 0|local::at0022|eGFR ≥45|
+      gt0025|Proteinuria: 0|local::at0024|No|
+      gt0021|Sex: 1|local::at0021|Female|
+      gt0027|ATRIA stroke risk score: 7
+      gt0020|Age: 5|local::at0015|Age 75-84 years with no history of stroke.|
+      gt0023|History of congestive heart failure: 0|local::at0028|No|
+      gt0064|ATRIA stroke risk: 2|local::at0006|High risk of stroke (≥2%)|
+
+- id: above 75 male, no prev stroke
+  input:
+    1:
+      gt0010|Birthdate: 1944-04-15T20:14Z
+      gt0011|Gender: local::at0005|Male|
+      gt0012|Estimated Glomerular Filtration Rate: 47,ml/min
+      gt0016|Urine microalbumin: 28,mg/dl
+      gt0017|Urine albumin:creatinine ratio: 26,mg/gm
+      gt0055|Diabetes Mellitus: 0|local::at0007|No|
+      gt0056|Congestive Heart Failure: 1|local::at0010|Yes|
+      gt0057|Hypertension: 0|local::at0011|No|
+      gt0062|Stroke/cerebrovascular accident: 0|local::at0035|No|
+  expected_output:
+    1:
+      gt0053|History of stroke: 0|local::at0032|No|
+      gt0022|History of diabetes mellitus: 0|local::at0030|No|
+      gt0024|History of hypertension: 0|local::at0026|No|
+      gt0026|eGFR: 0|local::at0022|eGFR ≥45|
+      gt0025|Proteinuria: 0|local::at0024|No|
+      gt0021|Sex: 0|local::at0020|Male|
+      gt0027|ATRIA stroke risk score: 6
+      gt0020|Age: 5|local::at0015|Age 75-84 years with no history of stroke.|
+      gt0023|History of congestive heart failure: 1|local::at0029|Yes|
+      gt0064|ATRIA stroke risk: 1|local::at0005|Intermediate risk of stroke (1 - <2%)|
+
+- id: above 75 male with history of stroke
+  input:
+    1:
+      gt0010|Birthdate: 1944-04-15T20:14Z
+      gt0011|Gender: local::at0005|Male|
+      gt0012|Estimated Glomerular Filtration Rate: 47,ml/min
+      gt0016|Urine microalbumin: 28,mg/dl
+      gt0017|Urine albumin:creatinine ratio: 26,mg/gm
+      gt0055|Diabetes Mellitus: 0|local::at0007|No|
+      gt0056|Congestive Heart Failure: 1|local::at0010|Yes|
+      gt0057|Hypertension: 0|local::at0011|No|
+      gt0062|Stroke/cerebrovascular accident: 1|local::at0036|Yes|
+  expected_output:
+    1:
+      gt0053|History of stroke: 1|local::at0033|Yes|
+      gt0022|History of diabetes mellitus: 0|local::at0030|No|
+      gt0024|History of hypertension: 0|local::at0026|No|
+      gt0026|eGFR: 0|local::at0022|eGFR ≥45|
+      gt0025|Proteinuria: 0|local::at0024|No|
+      gt0021|Sex: 0|local::at0020|Male|
+      gt0027|ATRIA stroke risk score: 8
+      gt0020|Age: 7|local::at0017|Age 65-84 years with a history of stroke.|
+      gt0023|History of congestive heart failure: 1|local::at0029|Yes|
+      gt0064|ATRIA stroke risk: 2|local::at0006|High risk of stroke (≥2%)|
+
+- id: 64 year old with stroke history
+  input:
+    1:
+      gt0010|Birthdate: 1955-04-15T20:14Z
+      gt0011|Gender: local::at0005|Male|
+      gt0012|Estimated Glomerular Filtration Rate: 47,ml/min
+      gt0016|Urine microalbumin: 28,mg/dl
+      gt0017|Urine albumin:creatinine ratio: 26,mg/gm
+      gt0055|Diabetes Mellitus: 0|local::at0007|No|
+      gt0056|Congestive Heart Failure: 1|local::at0010|Yes|
+      gt0057|Hypertension: 0|local::at0011|No|
+      gt0062|Stroke/cerebrovascular accident: 1|local::at0036|Yes|
+  expected_output:
+    1:
+      gt0053|History of stroke: 1|local::at0033|Yes|
+      gt0022|History of diabetes mellitus: 0|local::at0030|No|
+      gt0024|History of hypertension: 0|local::at0026|No|
+      gt0026|eGFR: 0|local::at0022|eGFR ≥45|
+      gt0025|Proteinuria: 0|local::at0024|No|
+      gt0021|Sex: 0|local::at0020|Male|
+      gt0027|ATRIA stroke risk score: 8
+      gt0020|Age: 7|local::at0017|Age 65-84 years with a history of stroke.|
+      gt0023|History of congestive heart failure: 1|local::at0029|Yes|
+      gt0064|ATRIA stroke risk: 2|local::at0006|High risk of stroke (≥2%)|
+
+
+- id: Almost 65 yrs old
+  input:
+    1:
+      gt0010|Birthdate: 1954-04-30T20:14Z
+      gt0011|Gender: local::at0005|Male|
+      gt0012|Estimated Glomerular Filtration Rate: 47,ml/min
+      gt0016|Urine microalbumin: 28,mg/dl
+      gt0017|Urine albumin:creatinine ratio: 26,mg/gm
+      gt0055|Diabetes Mellitus: 0|local::at0007|No|
+      gt0056|Congestive Heart Failure: 1|local::at0010|Yes|
+      gt0057|Hypertension: 0|local::at0011|No|
+      gt0062|Stroke/cerebrovascular accident: 1|local::at0036|Yes|
+  expected_output:
+    1:
+      gt0053|History of stroke: 1|local::at0033|Yes|
+      gt0022|History of diabetes mellitus: 0|local::at0030|No|
+      gt0024|History of hypertension: 0|local::at0026|No|
+      gt0026|eGFR: 0|local::at0022|eGFR ≥45|
+      gt0025|Proteinuria: 0|local::at0024|No|
+      gt0021|Sex: 0|local::at0020|Male|
+      gt0027|ATRIA stroke risk score: 8
+      gt0020|Age: 7|local::at0017|Age 65-84 years with a history of stroke.|
+      gt0023|History of congestive heart failure: 1|local::at0029|Yes|
+      gt0064|ATRIA stroke risk: 2|local::at0006|High risk of stroke (≥2%)|
+
+- id: 66 yrs old with CHF and history of stroke
+  input:
+    1:
+      gt0010|Birthdate: 1952-04-30T20:14Z
+      gt0011|Gender: local::at0005|Male|
+      gt0012|Estimated Glomerular Filtration Rate: 47,ml/min
+      gt0016|Urine microalbumin: 28,mg/dl
+      gt0017|Urine albumin:creatinine ratio: 26,mg/gm
+      gt0055|Diabetes Mellitus: 0|local::at0007|No|
+      gt0056|Congestive Heart Failure: 1|local::at0010|Yes|
+      gt0057|Hypertension: 0|local::at0011|No|
+      gt0062|Stroke/cerebrovascular accident: 1|local::at0036|Yes|
+  expected_output:
+    1:
+      gt0053|History of stroke: 1|local::at0033|Yes|
+      gt0022|History of diabetes mellitus: 0|local::at0030|No|
+      gt0024|History of hypertension: 0|local::at0026|No|
+      gt0026|eGFR: 0|local::at0022|eGFR ≥45|
+      gt0025|Proteinuria: 0|local::at0024|No|
+      gt0021|Sex: 0|local::at0020|Male|
+      gt0027|ATRIA stroke risk score: 8
+      gt0020|Age: 7|local::at0017|Age 65-84 years with a history of stroke.|
+      gt0023|History of congestive heart failure: 1|local::at0029|Yes|
+      gt0064|ATRIA stroke risk: 2|local::at0006|High risk of stroke (≥2%)|

@@ -1,0 +1,54 @@
+guidelines:
+  1: Tilburg_frailty_indicator.v1
+test_cases:
+- id: Default
+  input:
+    1: {}
+  expected_output:
+    1: {}
+
+- id: Do not indicate frailty
+  input:
+    1:
+      gt0003|1. Do you feel physically healthy?: 0|local::at0011|No|
+      gt0004|2. Have you recently involuntarily lost a lot of weight? (A lot means 6 kg or more within 6 months or 3 kg or more within 1 month) ': 0|local::at0019|No|
+      gt0005|3. Do you experience problems in your daily life because of difficulty walking?: 0|local::at0021|No|
+      gt0006|4. Do you experience problems in your daily life because of difficulty keeping balance?: 0|local::at0023|No|
+      gt0007|5. Do you experience problems in your daily life because of hearing loss?: 0|local::at0025|No|
+      gt0008|6. Do you experience problems in your daily life because of imparied vision?: 0|local::at0027|No|
+      gt0009|7. Do you experience problems in your daily life because of decreased strength in the hands?: 0|local::at0029|No|
+      gt0010|8. Do you experience problems in your daily life because of physical fatigue?: 0|local::at0031|No|
+      gt0011|9. Do you have memory problems?: 0|local::at0033|No|
+      gt0012|10. Have you felt depressed the last month?: 0|local::at0035|No|
+      gt0013|11. Have you felt nervous or anxious the last month?: 0|local::at0037|No|
+      gt0014|12. Can you handle problems in a good way?: 0|local::at0039|No|
+      gt0015|13. Do you live alone?: 1|local::at0042|Yes|
+      gt0016|14. Do you miss having people around?: 1|local::at0044|Yes|
+      gt0017|15. Do you get enough support from other people?: 1|local::at0046|Yes|
+  expected_output:
+    1:
+      gt0019|Tilburg frailty score: 3
+      gt0020|Tilburg frailty indicator: local::at0050|Do not indicate frailty|
+
+- id: Indicates frailty
+  input:
+    1:
+      gt0003|1. Do you feel physically healthy?: 0|local::at0011|No|
+      gt0004|2. Have you recently involuntarily lost a lot of weight? (A lot means 6 kg or more within 6 months or 3 kg or more within 1 month) ': 1|local::at0020|Yes|
+      gt0005|3. Do you experience problems in your daily life because of difficulty walking?: 0|local::at0021|No|
+      gt0006|4. Do you experience problems in your daily life because of difficulty keeping balance?: 1|local::at0024|Yes|
+      gt0007|5. Do you experience problems in your daily life because of hearing loss?: 0|local::at0025|No|
+      gt0008|6. Do you experience problems in your daily life because of imparied vision?: 1|local::at0028|Yes|
+      gt0009|7. Do you experience problems in your daily life because of decreased strength in the hands?: 1|local::at0030|Yes|
+      gt0010|8. Do you experience problems in your daily life because of physical fatigue?: 0|local::at0031|No|
+      gt0011|9. Do you have memory problems?: 0|local::at0033|No|
+      gt0012|10. Have you felt depressed the last month?: 0|local::at0035|No|
+      gt0013|11. Have you felt nervous or anxious the last month?: 1|local::at0038|Yes|
+      gt0014|12. Can you handle problems in a good way?: 0|local::at0039|No|
+      gt0015|13. Do you live alone?: 0|local::at0041|No|
+      gt0016|14. Do you miss having people around?: 1|local::at0044|Yes|
+      gt0017|15. Do you get enough support from other people?: 0|local::at0045|No|
+  expected_output:
+    1:
+      gt0019|Tilburg frailty score: 6
+      gt0020|Tilburg frailty indicator: local::at0049|Indicates frailty|

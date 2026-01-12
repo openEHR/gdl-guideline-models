@@ -1,0 +1,102 @@
+guidelines:
+  1: Fetal_Biophysical_Profile_BPP_Score.v1
+test_cases:
+- id: 1. Score zero
+  input:
+    1:
+      gt0003|Fetal breathing: 0|local::at0005|<30 sec of breathing within 30 min|
+      gt0004|Fetal movement: 0|local::at0009|<3 discrete movements|
+      gt0005|Fetal tone: 0|local::at0011|0 extension/flexion events|
+      gt0006|Amniotic fluid volume (AFV): 0|local::at0014|Largest single vertical pocket ≤2 cm|
+      gt0007|Nonstress test (NST): 0|local::at0019|NST not done|
+  expected_output:
+    1:
+      gt0019|BPP recommendation: local::at0030|Delivery recommended|
+      gt0009|BPP score interpretation: local::at0022|Score 0–2. Almost certain fetal asphyxia|
+      gt0010|Calculate BPP total score: 0
+
+- id: 2. Score 4
+  input:
+    1:
+      gt0003|Fetal breathing: 0|local::at0005|<30 sec of breathing within 30 min|
+      gt0004|Fetal movement: 0|local::at0009|<3 discrete movements|
+      gt0005|Fetal tone: 2|local::at0012|≥1 episode of extremity extension and subsequent return to flexion|
+      gt0006|Amniotic fluid volume (AFV): 0|local::at0014|Largest single vertical pocket ≤2 cm|
+      gt0007|Nonstress test (NST): 2|local::at0018|≥2 accelerations of ≥15 beats/min for ≥15 sec within 20–40 min|
+  expected_output:
+    1:
+      gt0019|BPP recommendation: local::at0031|Repeat testing same day; if ≤6, deliver|
+      gt0009|BPP score interpretation: local::at0023|Score 4. Probable fetal asphyxia|
+      gt0010|Calculate BPP total score: 4
+
+- id: 3. Score 6
+  input:
+    1:
+      gt0003|Fetal breathing: 0|local::at0005|<30 sec of breathing within 30 min|
+      gt0004|Fetal movement: 2|local::at0010|≥3 discrete body or limb movements within 30 min|
+      gt0005|Fetal tone: 2|local::at0012|≥1 episode of extremity extension and subsequent return to flexion|
+      gt0006|Amniotic fluid volume (AFV): 0|local::at0014|Largest single vertical pocket ≤2 cm|
+      gt0007|Nonstress test (NST): 2|local::at0018|≥2 accelerations of ≥15 beats/min for ≥15 sec within 20–40 min|
+  expected_output:
+    1:
+      gt0019|BPP recommendation: local::at0032|If abnormal AFV, delivery recommended. If normal AFV, delivery recommended if >36 weeks with favorable cervix or repeat test ≤6; if repeat test >6, observe and repeat per protocol|
+      gt0009|BPP score interpretation: local::at0024|Score 6. Possible fetal asphyxia|
+      gt0010|Calculate BPP total score: 6
+
+- id: 4. Score 8/8 NST not done
+  input:
+    1:
+      gt0003|Fetal breathing: 2|local::at0007|≥1 episode of rhythmic breathing lasting ≥30 sec within 30 min|
+      gt0004|Fetal movement: 2|local::at0010|≥3 discrete body or limb movements within 30 min|
+      gt0005|Fetal tone: 2|local::at0012|≥1 episode of extremity extension and subsequent return to flexion|
+      gt0006|Amniotic fluid volume (AFV): 2|local::at0016|A pocket of amniotic fluid ≥2 cm in 2 perpendicular planes (2x2 cm pocket)|
+      gt0007|Nonstress test (NST): 0|local::at0019|NST not done|
+  expected_output:
+    1:
+      gt0019|BPP recommendation: local::at0033|No fetal indication for intervention; repeat testing per protocol|
+      gt0009|BPP score interpretation: local::at0025|Score 8/8, NST not done. Normal, non-asphyxiated fetus|
+      gt0010|Calculate BPP total score: 8
+
+- id: 5. Score 8/10 Decreased AFV
+  input:
+    1:
+      gt0003|Fetal breathing: 2|local::at0007|≥1 episode of rhythmic breathing lasting ≥30 sec within 30 min|
+      gt0004|Fetal movement: 2|local::at0010|≥3 discrete body or limb movements within 30 min|
+      gt0005|Fetal tone: 2|local::at0012|≥1 episode of extremity extension and subsequent return to flexion|
+      gt0006|Amniotic fluid volume (AFV): 0|local::at0014|Largest single vertical pocket ≤2 cm|
+      gt0007|Nonstress test (NST): 2|local::at0018|≥2 accelerations of ≥15 beats/min for ≥15 sec within 20–40 min|
+  expected_output:
+    1:
+      gt0019|BPP recommendation: local::at0030|Delivery recommended|
+      gt0009|BPP score interpretation: local::at0026|Score 8/10, Decreased AFV. Chronic fetal asphyxia suspected|
+      gt0010|Calculate BPP total score: 8
+
+- id: 6. Score 8/10 Normal AFV
+  input:
+    1:
+      gt0003|Fetal breathing: 2|local::at0007|≥1 episode of rhythmic breathing lasting ≥30 sec within 30 min|
+      gt0004|Fetal movement: 2|local::at0010|≥3 discrete body or limb movements within 30 min|
+      gt0005|Fetal tone: 2|local::at0012|≥1 episode of extremity extension and subsequent return to flexion|
+      gt0006|Amniotic fluid volume (AFV): 2|local::at0016|A pocket of amniotic fluid ≥2 cm in 2 perpendicular planes (2x2 cm pocket)|
+      gt0007|Nonstress test (NST): 0|local::at0017|0 or 1 acceleration within 20–40 min|
+  expected_output:
+    1:
+      gt0019|BPP recommendation: local::at0033|No fetal indication for intervention; repeat testing per protocol|
+      gt0009|BPP score interpretation: local::at0027|Score 8/10, Normal AFV. Normal, non-asphyxiated fetus|
+      gt0010|Calculate BPP total score: 8
+
+- id: 7. Score 10 maximum points
+  input:
+    1:
+      gt0003|Fetal breathing: 2|local::at0007|≥1 episode of rhythmic breathing lasting ≥30 sec within 30 min|
+      gt0004|Fetal movement: 2|local::at0010|≥3 discrete body or limb movements within 30 min|
+      gt0005|Fetal tone: 2|local::at0012|≥1 episode of extremity extension and subsequent return to flexion|
+      gt0006|Amniotic fluid volume (AFV): 2|local::at0016|A pocket of amniotic fluid ≥2 cm in 2 perpendicular planes (2x2 cm pocket)|
+      gt0007|Nonstress test (NST): 2|local::at0018|≥2 accelerations of ≥15 beats/min for ≥15 sec within 20–40 min|
+  expected_output:
+    1:
+      gt0019|BPP recommendation: local::at0035|No fetal indication for intervention; repeat test weekly except in diabetic patients and post-term pregnancy (twice weekly)|
+      gt0009|BPP score interpretation: local::at0028|Score 10. Normal, non-asphyxiated fetus|
+      gt0010|Calculate BPP total score: 10
+
+

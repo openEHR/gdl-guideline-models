@@ -1,0 +1,64 @@
+guidelines:
+  1: CISNE.v1
+test_cases:
+- id: Default
+  input:
+    1: {}
+  expected_output:
+    1:
+      gt0015|Monocytes: 0|local::at0014|≥200/µL|
+      gt0016|ECOG PS: 0|local::at0003|<2|
+
+- id: Set Risk category to high
+  input:
+    1:
+      gt0003|Monocytes: 100,cells/uL
+      gt0005|ECOG performance status: 3|local::at0008|Capable of only limited selfcare; confined to bed or chair more than 50% of waking hours|
+      gt0007|COPD: 1|local::at0010|Yes|
+      gt0008|Cardiovascular disease history: 1|local::at0027|Yes|
+      gt0009|Stress-induced hyperglycemia: 2|local::at0007|Yes|
+      gt0010|NCI mucositis grade ≥2: 1|local::at0029|Yes|
+  expected_output:
+    1:
+      gt0017|Risk category: local::at0017|III (High)|
+      gt0014|CISNE score: 8
+      gt0015|Monocytes: 1|local::at0015|<200/µL|
+      gt0012|Risk of complications: local::at0023|36%|
+      gt0016|ECOG PS: 2|local::at0004|≥2|
+      gt0013|Comment: Admit for further investigation, including blood cultures.
+  
+- id: Set Risk category to Intermediate
+  input:
+    1:
+      gt0003|Monocytes: 200,cells/uL
+      gt0005|ECOG performance status: 1|local::at0006|Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work|
+      gt0007|COPD: 1|local::at0010|Yes|
+      gt0008|Cardiovascular disease history: 0|local::at0026|No|
+      gt0009|Stress-induced hyperglycemia: 0|local::at0006|No|
+      gt0010|NCI mucositis grade ≥2: 0|local::at0028|No|
+  expected_output:
+    1:
+      gt0017|Risk category: local::at0018|II (Intermediate)|
+      gt0014|CISNE score: 1
+      gt0015|Monocytes: 0|local::at0014|≥200/µL|
+      gt0012|Risk of complications: local::at0022|6.2%|
+      gt0016|ECOG PS: 0|local::at0003|<2|
+      gt0013|Comment: Use clinical judgment regarding admission. Consider oncology consultation.
+
+- id: Set Risk category to Low
+  input:
+    1:
+      gt0003|Monocytes: 300,cells/uL
+      gt0005|ECOG performance status: 0|local::at0005|Fully active, able to carry on all pre-disease performance without restriction|
+      gt0007|COPD: 0|local::at0009|No|
+      gt0008|Cardiovascular disease history: 0|local::at0026|No|
+      gt0009|Stress-induced hyperglycemia: 0|local::at0006|No|
+      gt0010|NCI mucositis grade ≥2: 0|local::at0028|No|
+  expected_output:
+    1:
+      gt0017|Risk category: local::at0019|I (Low)|
+      gt0014|CISNE score: 0
+      gt0015|Monocytes: 0|local::at0014|≥200/µL|
+      gt0012|Risk of complications: local::at0021|1.1%|
+      gt0016|ECOG PS: 0|local::at0003|<2|
+      gt0013|Comment: Consider discharge with oral antibiotics after discussion with oncology.

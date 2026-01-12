@@ -1,0 +1,78 @@
+guidelines:
+  1: Ocular_Hypertension_Treatment_Study_OHTS_Calculator.v1
+test_cases:
+- id: Low risk
+  input:
+    1:
+      gt0005|Mean intraocular pressure, mmHg (of three measurements per eye): 1|local::at0013|22 to <24|
+      gt0006|Mean central corneal thickness, µm (of three measurements per eye): 1|local::at0018|576-600|
+      gt0007|Mean vertical cup-to-disc ratio by contour: 1|local::at0023|0.3 to <0.4|
+      gt0008|Mean pattern standard deviation, dB (2 measurements per eye): 1|local::at0028|1.8 to <2.0|
+      gt0004|Age: 30,a
+  expected_output:
+    1:
+      gt0012|Risk- Recommendation: local::at0040|Low- Recommend observation every 6 months|
+      gt0011|5 year risk of developing POAG: local::at0034|≤4.0%|
+      gt0014|Age, years: 0|local::at0003|30-44|
+      gt0010|OHTS Score: 4
+
+- id: Intermediate risk I
+  input:
+    1:
+      gt0005|Mean intraocular pressure, mmHg (of three measurements per eye): 2|local::at0014|24  to <26|
+      gt0006|Mean central corneal thickness, µm (of three measurements per eye): 2|local::at0019|551-575|
+      gt0007|Mean vertical cup-to-disc ratio by contour: 2|local::at0024|0.4 to <0.5|
+      gt0008|Mean pattern standard deviation, dB (2 measurements per eye): 1|local::at0028|1.8 to <2.0|
+      gt0004|Age: 45,a
+  expected_output:
+    1:
+      gt0012|Risk- Recommendation: local::at0041|Intermediate - Recommend counseling on risks/benefits of treatment versus close observation|
+      gt0011|5 year risk of developing POAG: local::at0035|10%|
+      gt0014|Age, years: 1|local::at0004|45-54|
+      gt0010|OHTS Score: 8
+
+- id: Intermediate risk II
+  input:
+    1:
+      gt0005|Mean intraocular pressure, mmHg (of three measurements per eye): 1|local::at0013|22 to <24|
+      gt0006|Mean central corneal thickness, µm (of three measurements per eye): 2|local::at0019|551-575|
+      gt0007|Mean vertical cup-to-disc ratio by contour: 2|local::at0024|0.4 to <0.5|
+      gt0008|Mean pattern standard deviation, dB (2 measurements per eye): 3|local::at0030|2.4 to <2.8|
+      gt0004|Age: 55,a
+  expected_output:
+    1:
+      gt0012|Risk- Recommendation: local::at0041|Intermediate - Recommend counseling on risks/benefits of treatment versus close observation|
+      gt0011|5 year risk of developing POAG: local::at0036|15%|
+      gt0014|Age, years: 2|local::at0005|55-64|
+      gt0010|OHTS Score: 10
+
+- id: Intermediate risk III
+  input:
+    1:
+      gt0005|Mean intraocular pressure, mmHg (of three measurements per eye): 1|local::at0013|22 to <24|
+      gt0006|Mean central corneal thickness, µm (of three measurements per eye): 2|local::at0019|551-575|
+      gt0007|Mean vertical cup-to-disc ratio by contour: 2|local::at0024|0.4 to <0.5|
+      gt0008|Mean pattern standard deviation, dB (2 measurements per eye): 3|local::at0030|2.4 to <2.8|
+      gt0004|Age: 65,a
+  expected_output:
+    1:
+      gt0012|Risk- Recommendation: local::at0041|Intermediate - Recommend counseling on risks/benefits of treatment versus close observation|
+      gt0011|5 year risk of developing POAG: local::at0037|20%|
+      gt0014|Age, years: 3|local::at0006|65-74|
+      gt0010|OHTS Score: 11
+
+- id: High risk
+  input:
+    1:
+      gt0005|Mean intraocular pressure, mmHg (of three measurements per eye): 1|local::at0013|22 to <24|
+      gt0006|Mean central corneal thickness, µm (of three measurements per eye): 2|local::at0019|551-575|
+      gt0007|Mean vertical cup-to-disc ratio by contour: 3|local::at0025|0.5 to 0.6|
+      gt0008|Mean pattern standard deviation, dB (2 measurements per eye): 3|local::at0030|2.4 to <2.8|
+      gt0004|Age: 75,a
+  expected_output:
+    1:
+      gt0012|Risk- Recommendation: local::at0042|High - Recommend initiating treatment|
+      gt0011|5 year risk of developing POAG: local::at0038|≥33%|
+      gt0014|Age, years: 4|local::at0007|≥75|
+      gt0010|OHTS Score: 13
+

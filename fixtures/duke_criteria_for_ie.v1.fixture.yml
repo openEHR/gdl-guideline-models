@@ -1,0 +1,195 @@
+guidelines:
+  1: duke_criteria_for_ie.v1
+test_cases:
+  - id: 01. no input
+    input:
+      1: {}
+    expected_output:
+      1:
+        gt0004|Advise: Consider other causes of fever, like other infectious sources, or rheumatologic or oncologic.
+        gt0003|Diagnostic result: local::at0003|Rejected|
+  - id: 02. pathological criteria = 1
+    input:
+      1:
+        gt0006|Microorganisms in a vegetation: true
+    expected_output:
+      1:
+        gt0004|Advise: Start antibiotic treatment based on guidelines and microbiology. Identify candidates who need surgical treatment.
+        gt0003|Diagnostic result: local::at0005|Definite IE|
+  - id: 03. pathological criteria = 2
+    input:
+      1:
+        gt0006|Microorganisms in a vegetation: true
+        gt0007|Pathologic lesions: true
+    expected_output:
+      1:
+        gt0004|Advise: Start antibiotic treatment based on guidelines and microbiology. Identify candidates who need surgical treatment.
+        gt0003|Diagnostic result: local::at0005|Definite IE|
+  - id: 04. major criteria = 1
+    input:
+      1:
+        gt0008|Blood cultures positive for endocarditis: true
+    expected_output:
+      1:
+        gt0004|Advise: Consider other causes of fever, like other infectious sources, or rheumatologic or oncologic.
+        gt0003|Diagnostic result: local::at0003|Rejected|
+  - id: 05. major criteria = 2
+    input:
+      1:
+        gt0008|Blood cultures positive for endocarditis: true
+        gt0009|Evidence of endocardial involvement: true
+    expected_output:
+      1:
+        gt0004|Advise: Start antibiotic treatment based on guidelines and microbiology. Identify candidates who need surgical treatment.
+        gt0003|Diagnostic result: local::at0005|Definite IE|
+  - id: 06. major criteria = 1, pathological criteria = 1
+    input:
+      1:
+        gt0006|Microorganisms in a vegetation: true
+        gt0007|Pathologic lesions: false
+        gt0008|Blood cultures positive for endocarditis: true
+        gt0009|Evidence of endocardial involvement: false
+    expected_output:
+      1:
+        gt0004|Advise: Start antibiotic treatment based on guidelines and microbiology. Identify candidates who need surgical treatment.
+        gt0003|Diagnostic result: local::at0005|Definite IE|
+  - id: 07. minor criteria = 1
+    input:
+      1:
+        gt0010|Predisposing heart condition or injection drug use: true
+    expected_output:
+      1:
+        gt0004|Advise: Consider other causes of fever, like other infectious sources, or rheumatologic or oncologic.
+        gt0003|Diagnostic result: local::at0003|Rejected|
+  - id: 08. minor criteria = 2
+    input:
+      1:
+        gt0010|Predisposing heart condition or injection drug use: true
+        gt0011|Fever: true
+    expected_output:
+      1:
+        gt0004|Advise: Consider other causes of fever, like other infectious sources, or rheumatologic or oncologic.
+        gt0003|Diagnostic result: local::at0003|Rejected|
+  - id: 09. minor criteria = 3
+    input:
+      1:
+        gt0010|Predisposing heart condition or injection drug use: true
+        gt0011|Fever: true
+        gt0012|Vascular phenomena: true
+    expected_output:
+      1:
+        gt0004|Advise: Use clinical judgment to decide if the patient has IE. Consider trans-esophageal echocardiography (TEE), if not done. Identify candidates who need surgical treatment. Examine the patient regularly to watch for major or minor signs of IE. Examine for physical findings suggestive of IE (Roth’s spots, Osler's nodes, Janeway lesions Draw blood cultures regularly if not positive earlier to look for microbiologic evidence.
+        gt0003|Diagnostic result: local::at0004|Possible IE|
+  - id: 10. minor criteria = 4
+    input:
+      1:
+        gt0010|Predisposing heart condition or injection drug use: true
+        gt0011|Fever: true
+        gt0012|Vascular phenomena: true
+        gt0013|Immunologic phenomena: true
+    expected_output:
+      1:
+        gt0004|Advise: Use clinical judgment to decide if the patient has IE. Consider trans-esophageal echocardiography (TEE), if not done. Identify candidates who need surgical treatment. Examine the patient regularly to watch for major or minor signs of IE. Examine for physical findings suggestive of IE (Roth’s spots, Osler's nodes, Janeway lesions Draw blood cultures regularly if not positive earlier to look for microbiologic evidence.
+        gt0003|Diagnostic result: local::at0004|Possible IE|
+  - id: 11. minor criteria = 5
+    input:
+      1:
+        gt0010|Predisposing heart condition or injection drug use: true
+        gt0011|Fever: true
+        gt0012|Vascular phenomena: true
+        gt0013|Immunologic phenomena: true
+        gt0014|Microbiological evidence: true
+    expected_output:
+      1:
+        gt0004|Advise: Start antibiotic treatment based on guidelines and microbiology. Identify candidates who need surgical treatment.
+        gt0003|Diagnostic result: local::at0005|Definite IE|
+  - id: 12. major criteria = 1, minor criteria = 1
+    input:
+      1:
+        gt0008|Blood cultures positive for endocarditis: true
+        gt0010|Predisposing heart condition or injection drug use: true
+    expected_output:
+      1:
+        gt0004|Advise: Use clinical judgment to decide if the patient has IE. Consider trans-esophageal echocardiography (TEE), if not done. Identify candidates who need surgical treatment. Examine the patient regularly to watch for major or minor signs of IE. Examine for physical findings suggestive of IE (Roth’s spots, Osler's nodes, Janeway lesions Draw blood cultures regularly if not positive earlier to look for microbiologic evidence.
+        gt0003|Diagnostic result: local::at0004|Possible IE|
+  - id: 13. major criteria = 1, minor criteria = 2
+    input:
+      1:
+        gt0008|Blood cultures positive for endocarditis: true
+        gt0010|Predisposing heart condition or injection drug use: true
+        gt0011|Fever: true
+    expected_output:
+      1:
+        gt0004|Advise: Use clinical judgment to decide if the patient has IE. Consider trans-esophageal echocardiography (TEE), if not done. Identify candidates who need surgical treatment. Examine the patient regularly to watch for major or minor signs of IE. Examine for physical findings suggestive of IE (Roth’s spots, Osler's nodes, Janeway lesions Draw blood cultures regularly if not positive earlier to look for microbiologic evidence.
+        gt0003|Diagnostic result: local::at0004|Possible IE|
+  - id: 14. major criteria = 1, minor criteria = 3
+    input:
+      1:
+        gt0008|Blood cultures positive for endocarditis: true
+        gt0010|Predisposing heart condition or injection drug use: true
+        gt0011|Fever: true
+        gt0012|Vascular phenomena: true
+    expected_output:
+      1:
+        gt0004|Advise: Start antibiotic treatment based on guidelines and microbiology. Identify candidates who need surgical treatment.
+        gt0003|Diagnostic result: local::at0005|Definite IE|
+  - id: 15. major criteria = 1, minor criteria = 4
+    input:
+      1:
+        gt0008|Blood cultures positive for endocarditis: true
+        gt0010|Predisposing heart condition or injection drug use: true
+        gt0011|Fever: true
+        gt0012|Vascular phenomena: true
+        gt0013|Immunologic phenomena: true
+    expected_output:
+      1:
+        gt0004|Advise: Start antibiotic treatment based on guidelines and microbiology. Identify candidates who need surgical treatment.
+        gt0003|Diagnostic result: local::at0005|Definite IE|
+  - id: 16. pathological criteria = 1, major criteria = 1, minor criteria = 1
+    input:
+      1:
+        gt0006|Microorganisms in a vegetation: false
+        gt0007|Pathologic lesions: true
+        gt0008|Blood cultures positive for endocarditis: false
+        gt0009|Evidence of endocardial involvement: true
+        gt0010|Predisposing heart condition or injection drug use: true
+        gt0011|Fever: false
+        gt0012|Vascular phenomena: false
+        gt0013|Immunologic phenomena: false
+        gt0014|Microbiological evidence: false
+    expected_output:
+      1:
+        gt0004|Advise: Start antibiotic treatment based on guidelines and microbiology. Identify candidates who need surgical treatment.
+        gt0003|Diagnostic result: local::at0005|Definite IE|
+  - id: 17. pathological criteria = 2, major criteria = 2, minor criteria = 5
+    input:
+      1:
+        gt0006|Microorganisms in a vegetation: true
+        gt0007|Pathologic lesions: true
+        gt0008|Blood cultures positive for endocarditis: true
+        gt0009|Evidence of endocardial involvement: true
+        gt0010|Predisposing heart condition or injection drug use: true
+        gt0011|Fever: true
+        gt0012|Vascular phenomena: true
+        gt0013|Immunologic phenomena: true
+        gt0014|Microbiological evidence: true
+    expected_output:
+      1:
+        gt0004|Advise: Start antibiotic treatment based on guidelines and microbiology. Identify candidates who need surgical treatment.
+        gt0003|Diagnostic result: local::at0005|Definite IE|
+  - id: 18. pathological criteria = 0, major criteria = 0, minor criteria = 0
+    input:
+      1:
+        gt0006|Microorganisms in a vegetation: false
+        gt0007|Pathologic lesions: false
+        gt0008|Blood cultures positive for endocarditis: false
+        gt0009|Evidence of endocardial involvement: false
+        gt0010|Predisposing heart condition or injection drug use: false
+        gt0011|Fever: false
+        gt0012|Vascular phenomena: false
+        gt0013|Immunologic phenomena: false
+        gt0014|Microbiological evidence: false
+    expected_output:
+      1:
+        gt0004|Advise: Consider other causes of fever, like other infectious sources, or rheumatologic or oncologic.
+        gt0003|Diagnostic result: local::at0003|Rejected|

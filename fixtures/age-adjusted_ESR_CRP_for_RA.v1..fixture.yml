@@ -1,0 +1,42 @@
+guidelines:
+  1: age-adjusted_ESR_CRP_for_RA.v1
+test_cases:
+- id: male, 21 years
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Age: 21,a
+  expected_output:
+    1:
+      gt0007|ESR upper limit of normal: 10.5,mm/h
+      gt0008|CRP upper limit of normal: 0.4,mg/dl
+
+- id: female, 21 years
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Age: 21,a
+  expected_output:
+    1:
+      gt0007|ESR upper limit of normal: 15.5,mm/h
+      gt0008|CRP upper limit of normal: 1.0,mg/dl
+
+- id: male, 78 years
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Age: 78,a
+  expected_output:
+    1:
+      gt0007|ESR upper limit of normal: 39.0,mm/h
+      gt0008|CRP upper limit of normal: 1.6,mg/dl
+
+- id: female, 78 years
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Age: 78,a
+  expected_output:
+    1:
+      gt0007|ESR upper limit of normal: 44.0,mm/h
+      gt0008|CRP upper limit of normal: 2.2,mg/dl

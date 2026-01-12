@@ -1,0 +1,87 @@
+guidelines:
+  1: Sodium_correction_rate_in_hyponatremia_and_hypernatremia.v1
+test_cases:
+- id: Fluid rate Adult female
+  input:
+    1:
+      gt0003|Age range: local::at0006|Adult|
+      gt0004|Fluid type: 34|local::at0028|0.2 Normal saline (34 mmol/L Na)|
+      gt0005|Rate of sodium correction: 0.5,mmol/L/hr
+      gt0007|Weight: 65,kg
+      gt0009|Serum Sodium (Norm 136-145  mmol/L): 140,mmol/l
+      gt0011|Sex: local::at0006|Female|
+  expected_output:
+    1:
+      gt0015|Body water: 0.5,%
+      gt0026|Change in serum sodium: -3.16,mmol/l
+      gt0027|Fluid rate: 158,ml/h
+      gt0016|Total body water: 32.50,kg
+      gt0013|Comment: NOTE Na is within normal. Confirm correction is needed.
+
+- id: Fluid rate adult male 
+  input:
+    1:
+      gt0003|Age range: local::at0006|Adult|
+      gt0004|Fluid type: 77|local::at0027|1/2 Normal saline (77 mmol/l Na)|
+      gt0005|Rate of sodium correction: 0.7,mmol/L/hr
+      gt0007|Weight: 90,kg
+      gt0009|Serum Sodium (Norm 136-145  mmol/L): 140,mmol/l
+      gt0011|Sex: local::at0005|Male|
+  expected_output:
+    1:
+      gt0015|Body water: 0.6,%
+      gt0026|Change in serum sodium: -1.15,mmol/l
+      gt0027|Fluid rate: 609,ml/h
+      gt0016|Total body water: 54.00,kg
+      gt0013|Comment: NOTE Na is within normal. Confirm correction is needed.
+
+- id: Fluid rate elderly male
+  input:
+    1:
+      gt0003|Age range: local::at0007|Elderly|
+      gt0004|Fluid type: 130|local::at0026|Lactated Ringer's (130 mmol/L Na)|
+      gt0005|Rate of sodium correction: 0.7,mmol/L/hr
+      gt0007|Weight: 80,kg
+      gt0009|Serum Sodium (Norm 136-145  mmol/L): 139,mmol/l
+      gt0011|Sex: local::at0005|Male|
+  expected_output:
+    1:
+      gt0015|Body water: 0.5,%
+      gt0026|Change in serum sodium: -0.22,mmol/l
+      gt0027|Fluid rate: 3182,ml/h
+      gt0016|Total body water: 40.00,kg
+      gt0013|Comment: NOTE Na is within normal. Confirm correction is needed.
+
+- id: Fluid rate elderly female
+  input:
+    1:
+      gt0003|Age range: local::at0007|Elderly|
+      gt0004|Fluid type: 130|local::at0026|Lactated Ringer's (130 mmol/L Na)|
+      gt0005|Rate of sodium correction: 0.7,mmol/L/hr
+      gt0007|Weight: 121,lb
+      gt0009|Serum Sodium (Norm 136-145  mmol/L): 139,mmol/l
+      gt0011|Sex: local::at0006|Female|
+  expected_output:
+    1:
+      gt0015|Body water: 0.45,%
+      gt0026|Change in serum sodium: -0.35,mmol/l
+      gt0027|Fluid rate: 2000,ml/h
+      gt0016|Total body water: 24.70,kg
+      gt0013|Comment: NOTE Na is within normal. Confirm correction is needed.
+
+- id: Fluid rate child
+  input:
+    1:
+      gt0003|Age range: local::at0005|Child|
+      gt0004|Fluid type: 130|local::at0026|Lactated Ringer's (130 mmol/L Na)|
+      gt0005|Rate of sodium correction: 0.7,mmol/L/hr
+      gt0007|Weight: 24,kg
+      gt0009|Serum Sodium (Norm 136-145  mmol/L): 139,mmol/l
+      gt0011|Sex: local::at0006|Female|
+  expected_output:
+    1:
+      gt0015|Body water: 0.6,%
+      gt0026|Change in serum sodium: -0.58,mmol/l
+      gt0027|Fluid rate: 1207,ml/h
+      gt0016|Total body water: 14.40,kg
+      gt0013|Comment: NOTE Na is within normal. Confirm correction is needed.

@@ -1,0 +1,47 @@
+guidelines:
+  1: CDI_calculator.v1
+test_cases:
+- id: CDI score 0
+  input:
+    1:
+      gt0010|Age greater than 65: 0|local::at0010|No|
+      gt0013|Severe or fulminant illness: 0|local::at0013|No|
+      gt0014|Any non-CDI antibiotics used: 0|local::at0016|No|
+  expected_output:
+    1:
+      gt0005|Risk group: local::at0006|Low risk|
+      gt0006|Recurrence rate: local::at0009|0%|
+      gt0015|CDI Score: 0
+- id: CDI score 1
+  input:
+    1:
+      gt0010|Age greater than 65: 0|local::at0010|No|
+      gt0013|Severe or fulminant illness: 0|local::at0013|No|
+      gt0014|Any non-CDI antibiotics used: 1|local::at0015|Yes|
+  expected_output:
+    1:
+      gt0005|Risk group: local::at0006|Low risk|
+      gt0006|Recurrence rate: local::at0010|33.3%|
+      gt0015|CDI Score: 1
+- id: CDI score 2
+  input:
+    1:
+      gt0010|Age greater than 65: 0|local::at0010|No|
+      gt0013|Severe or fulminant illness: 1|local::at0012|Yes|
+      gt0014|Any non-CDI antibiotics used: 1|local::at0015|Yes|
+  expected_output:
+    1:
+      gt0005|Risk group: local::at0007|High risk|
+      gt0006|Recurrence rate: local::at0011|71.4%|
+      gt0015|CDI Score: 2
+- id: CDI score 3
+  input:
+    1:
+      gt0010|Age greater than 65: 1|local::at0009|Yes|
+      gt0013|Severe or fulminant illness: 1|local::at0012|Yes|
+      gt0014|Any non-CDI antibiotics used: 1|local::at0015|Yes|
+  expected_output:
+    1:
+      gt0005|Risk group: local::at0007|High risk|
+      gt0006|Recurrence rate: local::at0012|87.5%|
+      gt0015|CDI Score: 3

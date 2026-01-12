@@ -1,0 +1,96 @@
+guidelines:
+  1: SDAI.v1
+test_cases:
+- id: TJC(0)_SJC(0)_PtGDA(0)_PrGDA(0)_CRP(0)
+  input:
+    1:
+      gt0003|Tender joint count (TJC): 0
+      gt0004|Swollen joint count (SJC): 0
+      gt0006|PtGDA score: 0,cm
+      'gt0008|PrGDA score ': 0,cm
+      gt0014|C-reactive protein concentration: 0,mg/dl
+  expected_output:
+    1:
+      gt0012|Simplified disease activity index (SDAI) score: 0.00
+      gt0016|Disease severity: local::at0007|Disease in remission|
+
+- id: TJC(1)_SJC(1)_PtGDA(1)_PrGDA(1)_CRP(1)
+  input:
+    1:
+      gt0003|Tender joint count (TJC): 1,0
+      gt0004|Swollen joint count (SJC): 1,0
+      gt0006|PtGDA score: 1,cm
+      'gt0008|PrGDA score ': 1,cm
+      gt0014|C-reactive protein concentration: 1,mg/dl
+  expected_output:
+    1:
+      gt0012|Simplified disease activity index (SDAI) score: 5.00
+      gt0016|Disease severity: local::at0006|Low disease activity|
+
+- id: TJC(2)_SJC(2)_PtGDA(2)_PrGDA(2)_CRP(2)
+  input:
+    1:
+      gt0003|Tender joint count (TJC): 2,0
+      gt0004|Swollen joint count (SJC): 2,0
+      gt0006|PtGDA score: 2,cm
+      'gt0008|PrGDA score ': 2,cm
+      gt0014|C-reactive protein concentration: 2,mg/dl
+  expected_output:
+    1:
+      gt0012|Simplified disease activity index (SDAI) score: 10.00
+      gt0016|Disease severity: local::at0006|Low disease activity|
+
+- id: TJC(0)_SJC(1)_PtGDA(2)_PrGDA(3)_CRP(4)
+  input:
+    1:
+      gt0003|Tender joint count (TJC): 0
+      gt0004|Swollen joint count (SJC): 1,0
+      gt0006|PtGDA score: 2,cm
+      'gt0008|PrGDA score ': 3,cm
+      gt0014|C-reactive protein concentration: 4,mg/dl
+  expected_output:
+    1:
+      gt0012|Simplified disease activity index (SDAI) score: 10.00
+      gt0016|Disease severity: local::at0006|Low disease activity|
+
+
+- id: TJC(1)_SJC(2)_PtGDA(3)_PrGDA(4)_CRP(5)
+  input:
+    1:
+      gt0003|Tender joint count (TJC): 1,0
+      gt0004|Swollen joint count (SJC): 2,0
+      gt0006|PtGDA score: 3,cm
+      'gt0008|PrGDA score ': 4,cm
+      gt0014|C-reactive protein concentration: 5,mg/dl
+  expected_output:
+    1:
+      gt0012|Simplified disease activity index (SDAI) score: 15.00
+      gt0016|Disease severity: local::at0005|Moderate disease activity|
+
+
+- id: TJC(5)_SJC(4)_PtGDA(3)_PrGDA(2)_CRP(1)
+  input:
+    1:
+      gt0003|Tender joint count (TJC): 5,0
+      gt0004|Swollen joint count (SJC): 4,0
+      gt0006|PtGDA score: 3,cm
+      'gt0008|PrGDA score ': 2,cm
+      gt0014|C-reactive protein concentration: 1,mg/dl
+  expected_output:
+    1:
+      gt0012|Simplified disease activity index (SDAI) score: 15.00
+      gt0016|Disease severity: local::at0005|Moderate disease activity|
+
+
+- id: TJC(4)_SJC(3)_PtGDA(2)_PrGDA(1)_CRP(0)
+  input:
+    1:
+      gt0003|Tender joint count (TJC): 4,0
+      gt0004|Swollen joint count (SJC): 3,0
+      gt0006|PtGDA score: 2,cm
+      'gt0008|PrGDA score ': 1,cm
+      gt0014|C-reactive protein concentration: 0,mg/dl
+  expected_output:
+    1:
+      gt0012|Simplified disease activity index (SDAI) score: 10.00
+      gt0016|Disease severity: local::at0006|Low disease activity|

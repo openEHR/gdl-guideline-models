@@ -1,0 +1,51 @@
+guidelines:
+  1: Nexus_chest_decision_instrument_for_blunt_chest_trauma.v1
+test_cases:
+- id: 1. Default
+  input:
+    1:
+      gt0009|Tenderness to chest wall palpation: 0|local::at0024|No|
+  expected_output:
+    1: {}
+- id: 2. NEXUS Score = 0
+  input:
+    1:
+      gt0003|Age >60 years: 0|local::at0005|No|
+      gt0004|Rapid deceleration mechanism: 0|local::at0009|No|
+      gt0005|Chest pain: 0|local::at0012|No|
+      gt0006|Intoxication: 0|local::at0015|No|
+      gt0007|Altered mental status: 0|local::at0018|No|
+      gt0008|Distracting painful injury: 0|local::at0021|No|
+      gt0009|Tenderness to chest wall palpation: 0|local::at0024|No|
+  expected_output:
+    1:
+      gt0011|Nexus score: 0
+      gt0013|Interpretation: No thoracic imaging required. NEXUS Score is 99% sensitive for clinically significant thoracic injury.
+- id: 3. NEXUS Score = 1
+  input:
+    1:
+      gt0003|Age >60 years: 1|local::at0006|Yes|
+      gt0004|Rapid deceleration mechanism: 0|local::at0009|No|
+      gt0005|Chest pain: 0|local::at0012|No|
+      gt0006|Intoxication: 0|local::at0015|No|
+      gt0007|Altered mental status: 0|local::at0018|No|
+      gt0008|Distracting painful injury: 0|local::at0021|No|
+      gt0009|Tenderness to chest wall palpation: 0|local::at0024|No|
+  expected_output:
+    1:
+      gt0011|Nexus score: 1
+      gt0013|Interpretation: In well-appearing patient with no evidence of multi-organ injury, consider Chest X-ray (CXR) only without CT. In ill-appearing patients and/or those who will receive workup for other serious injury, consider chest CT as well.
+- id: 4. NEXUS Score >1
+  input:
+    1:
+      gt0003|Age >60 years: 1|local::at0006|Yes|
+      gt0004|Rapid deceleration mechanism: 0|local::at0009|No|
+      gt0005|Chest pain: 1|local::at0013|Yes|
+      gt0006|Intoxication: 0|local::at0015|No|
+      gt0007|Altered mental status: 0|local::at0018|No|
+      gt0008|Distracting painful injury: 0|local::at0021|No|
+      gt0009|Tenderness to chest wall palpation: 0|local::at0024|No|
+  expected_output:
+    1:
+      gt0011|Nexus score: 2
+      gt0013|Interpretation: In well-appearing patient with no evidence of multi-organ injury, consider Chest X-ray (CXR) only without CT. In ill-appearing patients and/or those who will receive workup for other serious injury, consider chest CT as well.

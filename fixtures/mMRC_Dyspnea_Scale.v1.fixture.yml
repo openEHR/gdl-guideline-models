@@ -1,0 +1,47 @@
+guidelines:
+  1: mMRC_Dyspnea_Scale.v1
+test_cases:
+- id: Grade 4
+  input:
+    1:
+      gt0012|Symptom severity: 4|local::at0007|Too dyspneic to leave house or breathless when dressing|
+  expected_output:
+    1:
+      gt0014|Comment: local::at0015|Higher grade indicates higher severity.|
+      gt0013|Grade: local::at0013|4|
+
+- id: Grade 3
+  input:
+    1:
+      gt0012|Symptom severity: 3|local::at0006|Stops for breath after walking 100 yards (91 m) or after a few minutes|
+  expected_output:
+    1:
+      gt0014|Comment: local::at0015|Higher grade indicates higher severity.|
+      gt0013|Grade: local::at0012|3|
+
+- id: Grade 2
+  input:
+    1:
+      gt0012|Symptom severity: 2|local::at0005|Walks slower than people of the same age because of dyspnea or has to stop for breath when walking at own pace|
+  expected_output:
+    1:
+      gt0014|Comment: local::at0015|Higher grade indicates higher severity.|
+      gt0013|Grade: local::at0011|2|
+
+- id: Grade 1
+  input:
+    1:
+      gt0012|Symptom severity: 1|local::at0004|Dyspnea when hurrying or walking up a slight hill|
+  expected_output:
+    1:
+      gt0014|Comment: local::at0015|Higher grade indicates higher severity.|
+      gt0013|Grade: local::at0010|1|
+
+- id: Grade 0
+  input:
+    1:
+      gt0012|Symptom severity: 0|local::at0003|Dyspnea only with strenuous exercise|
+  expected_output:
+    1:
+      gt0014|Comment: local::at0015|Higher grade indicates higher severity.|
+      gt0013|Grade: local::at0009|0|

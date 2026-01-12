@@ -1,0 +1,84 @@
+guidelines:
+  1: Mayo_score_ulcerative_colitis.v1
+test_cases:
+- id: Test no input
+  input:
+    1: {}
+  expected_output:
+    1: {}
+- id: Stool frequency missing (negative test)
+  input:
+    1:
+      gt0004|Rectal bleeding: 1|local::at0011|Visible blood with stool less than half the time|
+      gt0005|Mucosal appearance at endoscopy: 1|local::at0016|Mild disease (erythema, decreased vascular pattern, mild friability)|
+      gt0006|Physician rating of disease activity: 1|local::at0021|Mild|
+  expected_output:
+    1: {}
+- id: Rectal bleeding missing (negative test)
+  input:
+    1:
+      gt0003|Stool frequency: 2|local::at0007|3-4 stools/day more than normal|
+      gt0005|Mucosal appearance at endoscopy: 1|local::at0016|Mild disease (erythema, decreased vascular pattern, mild friability)|
+      gt0006|Physician rating of disease activity: 1|local::at0021|Mild|
+  expected_output:
+    1: {}
+- id: Mucosal appearance at endoscopy missing (negative test)
+  input:
+    1:
+      gt0003|Stool frequency: 2|local::at0007|3-4 stools/day more than normal|
+      gt0004|Rectal bleeding: 1|local::at0011|Visible blood with stool less than half the time|
+      gt0006|Physician rating of disease activity: 1|local::at0021|Mild|
+  expected_output:
+    1: {}
+- id: Physician rating of disease activity missing (negative test)
+  input:
+    1:
+      gt0003|Stool frequency: 2|local::at0007|3-4 stools/day more than normal|
+      gt0004|Rectal bleeding: 1|local::at0011|Visible blood with stool less than half the time|
+      gt0005|Mucosal appearance at endoscopy: 1|local::at0016|Mild disease (erythema, decreased vascular pattern, mild friability)|
+  expected_output:
+    1: {}
+- id: All inputs 0 point
+  input:
+    1:
+      gt0003|Stool frequency: 0|local::at0005|Normal|
+      gt0004|Rectal bleeding: 0|local::at0010|None|
+      gt0005|Mucosal appearance at endoscopy: 0|local::at0015|Normal or inactive disease|
+      gt0006|Physician rating of disease activity: 0|local::at0020|Normal|
+  expected_output:
+    1:
+      gt0011|Interpretation: The higher the score (maximum 12 points), the more severe the ulcerative colitis.
+      gt0008|Mayo score: 0
+- id: All inputs 1 point
+  input:
+    1:
+      gt0003|Stool frequency: 1|local::at0006|1-2 stools/day more than normal|
+      gt0004|Rectal bleeding: 1|local::at0011|Visible blood with stool less than half the time|
+      gt0005|Mucosal appearance at endoscopy: 1|local::at0016|Mild disease (erythema, decreased vascular pattern, mild friability)|
+      gt0006|Physician rating of disease activity: 1|local::at0021|Mild|
+  expected_output:
+    1:
+      gt0011|Interpretation: The higher the score (maximum 12 points), the more severe the ulcerative colitis.
+      gt0008|Mayo score: 4
+- id: All inputs 2 point
+  input:
+    1:
+      gt0003|Stool frequency: 2|local::at0007|3-4 stools/day more than normal|
+      gt0004|Rectal bleeding: 2|local::at0012|Visible blood with stool half of the time or more|
+      gt0005|Mucosal appearance at endoscopy: 2|local::at0017|Moderate disease (marked erythema, absent vascular pattern, friability, erosions)|
+      gt0006|Physician rating of disease activity: 2|local::at0022|Moderate|
+  expected_output:
+    1:
+      gt0011|Interpretation: The higher the score (maximum 12 points), the more severe the ulcerative colitis.
+      gt0008|Mayo score: 8
+- id: All inputs 3 point
+  input:
+    1:
+      gt0003|Stool frequency: 3|local::at0008|>4 stools/day more than normal|
+      gt0004|Rectal bleeding: 3|local::at0013|Passing blood alone|
+      gt0005|Mucosal appearance at endoscopy: 3|local::at0018|Severe disease (spontaneous bleeding, ulceration)|
+      gt0006|Physician rating of disease activity: 3|local::at0023|Severe|
+  expected_output:
+    1:
+      gt0011|Interpretation: The higher the score (maximum 12 points), the more severe the ulcerative colitis.
+      gt0008|Mayo score: 12

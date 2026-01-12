@@ -1,0 +1,48 @@
+guidelines:
+  1: UKELD_score.v1
+test_cases:
+- id: Case 1
+  input:
+    1:
+      gt0003|INR: 4,1
+      gt0004|Bilirubin: 20,umol/l
+      'gt0005|Sodium ': 144,mmol/l
+      gt0006|Creatinine: 400,umol/l
+      'gt0018|End stage liver disease ': 1|local::at0006|Present|
+  expected_output:
+    1:
+      gt0008|Eligibility: local::at0008|Eligible|
+      gt0019|S.Bilirubin: 20,umol/l
+      gt0021|S.Creatinine: 400,umol/l
+      gt0020|S.Sodium: 144,mmol/l
+      gt0009|UKELD score: 55,1
+- id: Case 2
+  input:
+    1:
+      gt0003|INR: 4,1
+      gt0004|Bilirubin: 2,umol/l
+      'gt0005|Sodium ': 135,mmol/l
+      gt0006|Creatinine: 90,umol/l
+      'gt0018|End stage liver disease ': 1|local::at0006|Present|
+  expected_output:
+    1:
+      gt0008|Eligibility: local::at0008|Eligible|
+      gt0019|S.Bilirubin: 2,umol/l
+      gt0021|S.Creatinine: 90,umol/l
+      gt0020|S.Sodium: 135,mmol/l
+      gt0009|UKELD score: 51,1
+- id: Case 3
+  input:
+    1:
+      gt0003|INR: 1,1
+      gt0004|Bilirubin: 2,umol/l
+      'gt0005|Sodium ': 135,mmol/l
+      gt0006|Creatinine: 300,umol/l
+      'gt0018|End stage liver disease ': 1|local::at0006|Present|
+  expected_output:
+    1:
+      gt0008|Eligibility: local::at0009|Not eligible|
+      gt0019|S.Bilirubin: 2,umol/l
+      gt0021|S.Creatinine: 300,umol/l
+      gt0020|S.Sodium: 135,mmol/l
+      gt0009|UKELD score: 46,1

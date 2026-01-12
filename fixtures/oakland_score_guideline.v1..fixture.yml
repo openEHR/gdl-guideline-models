@@ -1,0 +1,60 @@
+guidelines:
+  1: Oakland_Score_guideline.v1
+test_cases:
+- id: case_1
+  input:
+    1:
+      gt0068|Hemoglobin Concentration: 50,mg/dl
+      gt0072|Systolic BP: 121,mm[Hg]
+      gt0071|Heart rate: 90,/min
+      gt0010|Age, years: 0|local::at0030|<40|
+      gt0011|Sex: 0|local::at0007|female|
+      gt0012|Previous lower GI bleeding admission: 0|local::at0034|No|
+      gt0013|DRE findings: 0|local::at0037|No blood|
+  expected_output:
+    1:
+      gt0017|Oakland Score: 27
+      gt0016|Interpretation: 1|local::at0007|Admission with further workup and resuscitation as necessary|
+      gt0020|Heart Rate, bpm: 2|local::at0025|90-109|
+      gt0018|Safe discharge probability max: 16,%
+      gt0019|Safe discaharge probability min: 11,%
+      gt0021|Systolic Blood Pressure, mmHg: 3|local::at0021|120-129|
+      gt0022|Hemoglobin, mg/dL: 22|local::at0013|36-69|
+- id: case_2
+  input:
+    1:
+      gt0068|Hemoglobin Concentration: 120,mg/dl
+      gt0072|Systolic BP: 110,mm[Hg]
+      gt0071|Heart rate: 76,/min
+      gt0010|Age, years: 1|local::at0031|40-69|
+      gt0011|Sex: 1|local::at0008|male|
+      gt0012|Previous lower GI bleeding admission: 1|local::at0035|Yes|
+      gt0013|DRE findings: 1|local::at0038|Blood|
+  expected_output:
+    1:
+      gt0017|Oakland Score: 17
+      gt0016|Interpretation: 1|local::at0007|Admission with further workup and resuscitation as necessary|
+      gt0020|Heart Rate, bpm: 1|local::at0026|70-89|
+      gt0018|Safe discharge probability max: 72,%
+      gt0019|Safe discaharge probability min: 67,%
+      gt0021|Systolic Blood Pressure, mmHg: 4|local::at0020|90-119|
+      gt0022|Hemoglobin, mg/dL: 8|local::at0016|110-129|
+- id: case_3
+  input:
+    1:
+      gt0068|Hemoglobin Concentration: 170,mg/dl
+      gt0072|Systolic BP: 140,mm[Hg]
+      gt0071|Heart Rate: 90,/min
+      gt0010|Age, years: 2|local::at0032|>=70|
+      gt0011|Sex: 0|local::at0007|female|
+      gt0012|Previous lower GI bleeding admission: 0|local::at0034|No|
+      gt0013|DRE findings: 1|local::at0038|Blood|
+  expected_output:
+    1:
+      gt0017|Oakland Score: 7
+      gt0016|Interpretation: 0|local::at0006|Consider discharge, with appropriate precautions|
+      gt0020|Heart rate, bpm: 2|local::at0025|90-109|
+      gt0018|Safe discharge probability max: 96,%
+      gt0019|Safe discaharge probability min: 96,%
+      gt0021|Systolic Blood Pressure, mmHg: 2|local::at0022|130-159|
+      gt0022|Hemoglobin, mg/dL: 0|local::at0018|>=160|

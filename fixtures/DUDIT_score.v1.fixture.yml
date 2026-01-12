@@ -1,0 +1,141 @@
+guidelines:
+  1: DUDIT_score.v1
+test_cases:
+- id: case_1:Total score =0
+  input:
+    1:
+      gt0003|How often do you use drugs other than alcohol?: 0|local::at0005|Never|
+      gt0004|Do you use more than one type of drug on the same occasion?: 0|local::at0011|Never|
+      gt0005|How many times do you take drugs on a typical day when you use drugs?: 0|local::at0017|0|
+      gt0006|How often are you influenced heavily by drugs?: 0|local::at0067|Never|
+      gt0007|Over the past year, have you felt that your longing for drugs was so strong that you couldn't resisit it?: 0|local::at0024|Never|
+      gt0008|Has it happened, over the past year, that you have not been able to stop taking drugs once you started?: 0|local::at0030|Never|
+      gt0009|How often over the past year have you taken drugs and then neglected to do something you should have done: 0|local::at0036|Never|
+      gt0010|How often over the past year have you needed to take a drug the morning after heavy drug use the day before?: 0|local::at0042|Never|
+      gt0011|How often over the past year have you had guilt feelings or a bad conscience because you used drugs?: 0|local::at0048|Never|
+      gt0012| Have you or anyone else been hurt (mentally or physically) because you used drugs?: 0|local::at0054|No|
+      gt0013|Has a relative or a friend, a doctor or a nurse, or anyone else, been worried about your drug use or said to you that you should stop using drugs? : 0|local::at0060|No|
+      gt0041|Gender: local::at0005|Male|
+  expected_output:
+    1:
+      gt0026|DUDIT Total score: 0
+
+- id: case_2:Total score = 13
+  input:
+    1:
+      gt0003|How often do you use drugs other than alcohol?: 1|local::at0006|Once a month or less often|
+      gt0004|Do you use more than one type of drug on the same occasion?: 1|local::at0012|Once a month or less often|
+      gt0005|How many times do you take drugs on a typical day when you use drugs?: 1|local::at0018|1-2 times|
+      gt0006|How often are you influenced heavily by drugs?: 1|local::at0068|Less often than once a month|
+      gt0007|Over the past year, have you felt that your longing for drugs was so strong that you couldn't resisit it?: 1|local::at0025|Less often than once a month|
+      gt0008|Has it happened, over the past year, that you have not been able to stop taking drugs once you started?: 1|local::at0031|Less often than once a month|
+      gt0009|How often over the past year have you taken drugs and then neglected to do something you should have done: 1|local::at0038|Less often than once a month|
+      gt0010|How often over the past year have you needed to take a drug the morning after heavy drug use the day before?: 1|local::at0043|Less often than once a month|
+      gt0011|How often over the past year have you had guilt feelings or a bad conscience because you used drugs?: 1|local::at0049|Less often than once a month|
+      gt0012| Have you or anyone else been hurt (mentally or physically) because you used drugs?: 2|local::at0056|Yes, but not over the past year|
+      gt0013|Has a relative or a friend, a doctor or a nurse, or anyone else, been worried about your drug use or said to you that you should stop using drugs? : 2|local::at0062|Yes, but not over the past year|
+      gt0041|Gender: local::at0005|Male|
+  expected_output:
+    1:
+      gt0026|DUDIT Total score: 13
+      gt0043|DUDIT assessment: local::at0003|Probable substance abuse/harmful use or dependence|
+
+- id: case_3:Total score = 26
+  input:
+    1:
+      gt0003|How often do you use drugs other than alcohol?: 2|local::at0007|2-4 times a month|
+      gt0004|Do you use more than one type of drug on the same occasion?: 2|local::at0013|2-4 times a month|
+      gt0005|How many times do you take drugs on a typical day when you use drugs?: 2|local::at0019|3-4 times|
+      gt0006|How often are you influenced heavily by drugs?: 2|local::at0069|Every month|
+      gt0007|Over the past year, have you felt that your longing for drugs was so strong that you couldn't resisit it?: 2|local::at0026|Every month|
+      gt0008|Has it happened, over the past year, that you have not been able to stop taking drugs once you started?: 2|local::at0032|Every month|
+      gt0009|How often over the past year have you taken drugs and then neglected to do something you should have done: 2|local::at0037|Every month|
+      gt0010|How often over the past year have you needed to take a drug the morning after heavy drug use the day before?: 2|local::at0044|Every month|
+      gt0011|How often over the past year have you had guilt feelings or a bad conscience because you used drugs?: 2|local::at0050|Every month|
+      gt0012| Have you or anyone else been hurt (mentally or physically) because you used drugs?: 4|local::at0059|Yes, over the past year|
+      gt0013|Has a relative or a friend, a doctor or a nurse, or anyone else, been worried about your drug use or said to you that you should stop using drugs? : 4|local::at0064|Yes, over the past year|
+      gt0041|Gender: local::at0005|Male|
+  expected_output:
+    1:
+      gt0026|DUDIT Total score: 26
+      gt0043|DUDIT assessment: local::at0004|Highly probable dependence on one or more drugs|
+
+- id: case_4:Total score = 35
+  input:
+    1:
+      gt0003|How often do you use drugs other than alcohol?: 3|local::at0008|2-3 times a week|
+      gt0004|Do you use more than one type of drug on the same occasion?: 3|local::at0014|2-3 times a week|
+      gt0005|How many times do you take drugs on a typical day when you use drugs?: 3|local::at0020|5-7 times|
+      gt0006|How often are you influenced heavily by drugs?: 3|local::at0070|Every week|
+      gt0007|Over the past year, have you felt that your longing for drugs was so strong that you couldn't resisit it?: 3|local::at0027|Every week|
+      gt0008|Has it happened, over the past year, that you have not been able to stop taking drugs once you started?: 3|local::at0033|Every week|
+      gt0009|How often over the past year have you taken drugs and then neglected to do something you should have done: 3|local::at0039|Every week|
+      gt0010|How often over the past year have you needed to take a drug the morning after heavy drug use the day before?: 3|local::at0045|Every week|
+      gt0011|How often over the past year have you had guilt feelings or a bad conscience because you used drugs?: 3|local::at0051|Every week|
+      gt0012| Have you or anyone else been hurt (mentally or physically) because you used drugs?: 4|local::at0059|Yes, over the past year|
+      gt0013|Has a relative or a friend, a doctor or a nurse, or anyone else, been worried about your drug use or said to you that you should stop using drugs? : 4|local::at0064|Yes, over the past year|
+      gt0041|Gender: local::at0005|Male|
+  expected_output:
+    1:
+      gt0026|DUDIT Total score: 35
+      gt0043|DUDIT assessment: local::at0004|Highly probable dependence on one or more drugs|
+
+- id: case_5:Total score = 44 (max score)
+  input:
+    1:
+      gt0003|How often do you use drugs other than alcohol?: 4|local::at0010|4 times a week or more often|
+      gt0004|Do you use more than one type of drug on the same occasion?: 4|local::at0016|4 times a week or more often|
+      gt0005|How many times do you take drugs on a typical day when you use drugs?: 4|local::at0022|7 or more times|
+      gt0006|How often are you influenced heavily by drugs?: 4|local::at0071|Daily or almost every day|
+      gt0007|Over the past year, have you felt that your longing for drugs was so strong that you couldn't resisit it?: 4|local::at0029|Daily or almost every day|
+      gt0008|Has it happened, over the past year, that you have not been able to stop taking drugs once you started?: 4|local::at0035|Daily or almost every day|
+      gt0009|How often over the past year have you taken drugs and then neglected to do something you should have done: 4|local::at0040|Daily or almost every day|
+      gt0010|How often over the past year have you needed to take a drug the morning after heavy drug use the day before?: 4|local::at0047|Daily or almost every day|
+      gt0011|How often over the past year have you had guilt feelings or a bad conscience because you used drugs?: 4|local::at0052|Daily or almost every day|
+      gt0012| Have you or anyone else been hurt (mentally or physically) because you used drugs?: 4|local::at0059|Yes, over the past year|
+      gt0013|Has a relative or a friend, a doctor or a nurse, or anyone else, been worried about your drug use or said to you that you should stop using drugs? : 4|local::at0064|Yes, over the past year|
+      gt0041|Gender: local::at0005|Male|
+  expected_output:
+    1:
+      gt0026|DUDIT Total score: 44
+      gt0043|DUDIT assessment: local::at0004|Highly probable dependence on one or more drugs|
+
+- id: case_6:Total score = 13, female
+  input:
+    1:
+      gt0003|How often do you use drugs other than alcohol?: 1|local::at0006|Once a month or less often|
+      gt0004|Do you use more than one type of drug on the same occasion?: 1|local::at0012|Once a month or less often|
+      gt0005|How many times do you take drugs on a typical day when you use drugs?: 1|local::at0018|1-2 times|
+      gt0006|How often are you influenced heavily by drugs?: 1|local::at0068|Less often than once a month|
+      gt0007|Over the past year, have you felt that your longing for drugs was so strong that you couldn't resisit it?: 1|local::at0025|Less often than once a month|
+      gt0008|Has it happened, over the past year, that you have not been able to stop taking drugs once you started?: 1|local::at0031|Less often than once a month|
+      gt0009|How often over the past year have you taken drugs and then neglected to do something you should have done: 1|local::at0038|Less often than once a month|
+      gt0010|How often over the past year have you needed to take a drug the morning after heavy drug use the day before?: 1|local::at0043|Less often than once a month|
+      gt0011|How often over the past year have you had guilt feelings or a bad conscience because you used drugs?: 1|local::at0049|Less often than once a month|
+      gt0012| Have you or anyone else been hurt (mentally or physically) because you used drugs?: 2|local::at0056|Yes, but not over the past year|
+      gt0013|Has a relative or a friend, a doctor or a nurse, or anyone else, been worried about your drug use or said to you that you should stop using drugs? : 2|local::at0062|Yes, but not over the past year|
+      gt0041|Gender: local::at0005|Male|
+  expected_output:
+    1:
+      gt0026|DUDIT Total score: 13
+      gt0043|DUDIT assessment: local::at0003|Probable substance abuse/harmful use or dependence|
+
+- id: case_7:Total score = 26, female
+  input:
+    1:
+      gt0003|How often do you use drugs other than alcohol?: 2|local::at0007|2-4 times a month|
+      gt0004|Do you use more than one type of drug on the same occasion?: 2|local::at0013|2-4 times a month|
+      gt0005|How many times do you take drugs on a typical day when you use drugs?: 2|local::at0019|3-4 times|
+      gt0006|How often are you influenced heavily by drugs?: 2|local::at0069|Every month|
+      gt0007|Over the past year, have you felt that your longing for drugs was so strong that you couldn't resisit it?: 2|local::at0026|Every month|
+      gt0008|Has it happened, over the past year, that you have not been able to stop taking drugs once you started?: 2|local::at0032|Every month|
+      gt0009|How often over the past year have you taken drugs and then neglected to do something you should have done: 2|local::at0037|Every month|
+      gt0010|How often over the past year have you needed to take a drug the morning after heavy drug use the day before?: 2|local::at0044|Every month|
+      gt0011|How often over the past year have you had guilt feelings or a bad conscience because you used drugs?: 2|local::at0050|Every month|
+      gt0012| Have you or anyone else been hurt (mentally or physically) because you used drugs?: 4|local::at0059|Yes, over the past year|
+      gt0013|Has a relative or a friend, a doctor or a nurse, or anyone else, been worried about your drug use or said to you that you should stop using drugs? : 4|local::at0064|Yes, over the past year|
+      gt0041|Gender: local::at0006|Female|
+  expected_output:
+    1:
+      gt0026|DUDIT Total score: 26
+      gt0043|DUDIT assessment: local::at0004|Highly probable dependence on one or more drugs|

@@ -1,0 +1,35 @@
+guidelines:
+  1: Aortic_Dissection_Detection_Risk_Score_guideline.v1
+test_cases:
+- id: score 0
+  input:
+    1:
+      gt0003|Any high risk condition: 0|local::at0005|No|
+      gt0004|Any high risk pain feature: 0|local::at0008|No|
+      gt0005|Any high risk exam feature: 0|local::at0011|No|
+  expected_output:
+    1:
+      gt0008|Risk interpretation: local::at0017|Proceed to D-dimer testing.  If dimer <500 ng/mL, consider stopping workup of dissection, if ≥500 ng/ml, consider CTA.|
+      gt0007|ADD Risk Score: 0
+
+- id: score 1
+  input:
+    1:
+      gt0003|Any high risk condition: 1|local::at0006|Yes|
+      gt0004|Any high risk pain feature: 0|local::at0008|No|
+      gt0005|Any high risk exam feature: 0|local::at0011|No|
+  expected_output:
+    1:
+      gt0008|Risk interpretation: local::at0017|Proceed to D-dimer testing.  If dimer <500 ng/mL, consider stopping workup of dissection, if ≥500 ng/ml, consider CTA.|
+      gt0007|ADD Risk Score: 1
+
+- id: score>1
+  input:
+    1:
+      gt0003|Any high risk condition: 1|local::at0006|Yes|
+      gt0004|Any high risk pain feature: 1|local::at0009|Yes|
+      gt0005|Any high risk exam feature: 1|local::at0012|Yes|
+  expected_output:
+    1:
+      gt0008|Risk interpretation: local::at0016|Consider proceeding directly to CTA or other conclusive imaging.|
+      gt0007|ADD Risk Score: 3

@@ -1,0 +1,43 @@
+guidelines:
+  "1": METS_IR.v2-draft
+test_cases:
+  - id: Test1 (Low)
+    input:
+      "1":
+        gt0003|Fasting Glucose: 80,mg/dl
+        gt0005|Triglyceride concentration: 150,mg/dl
+        gt0007|Body mass index: 30,kg/m2
+        gt0011|HDL-c: 31,mg/dl
+    expected_output:
+      "1":
+        gt0034|METS-IR score: "50.1"
+  - id: Test2 (mg/dl)
+    input:
+      "1":
+        gt0003|Fasting Glucose: 90,mg/dl
+        gt0005|Triglyceride concentration: 140,mg/dl
+        gt0007|Body mass index: 25,kg/m2
+        gt0011|HDL-c: 70,mg/dl
+    expected_output:
+      "1":
+        gt0034|METS-IR score: "33.9"
+  - id: Test3 (mmol/l)
+    input:
+      "1":
+        gt0003|Fasting Glucose: 5,mmol/l
+        gt0005|Triglyceride concentration: 1.58,mmol/l
+        gt0007|Body mass index: 25,kg/m2
+        gt0011|HDL-c: 1.81,mmol/l
+    expected_output:
+      "1":
+        gt0034|METS-IR score: "33.9"
+  - id: Test4 (High)
+    input:
+      "1":
+        gt0003|Fasting Glucose: 160,mg/dl
+        gt0005|Triglyceride concentration: 180,mg/dl
+        gt0007|Body mass index: 28,kg/m2
+        gt0011|HDL-c: 30,mg/dl
+    expected_output:
+      "1":
+        gt0034|METS-IR score: "51.2"

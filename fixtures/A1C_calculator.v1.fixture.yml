@@ -1,0 +1,35 @@
+guidelines:
+  1: A1C_calculator.v1
+test_cases:
+- id: Only one input
+  input:
+    1:
+      gt0003|A1C level: 6,%
+      gt0005|Average blood sugar: 120,mg/dl
+  expected_output:
+    1: {}
+- id: Normal A1C value
+  input:
+    1:
+      gt0003|A1C level: 6,%
+  expected_output:
+    1:
+      gt0007|Blood sugar level: 125.5,mg/dl
+      gt0008|A1C value: 6.00,%
+      gt0014|Interpretation: Well done! Your A1C value is at an excellent level which means your blood sugar is maintained at a proper level. However for any doubts you may need to discuss them with your doctor because this is only a rough estimation and lower levels don`t necessarily assume there is no underline condition or that there are no frequent blood sugar lows that are suggesting this result!
+- id: Not normal A1C
+  input:
+    1:
+      gt0005|Average blood sugar: 190,mg/dl
+  expected_output:
+    1:
+      gt0008|A1C value: 8.2,%
+      gt0014|Interpretation: Your A1C level is above 8% which is not normal. Medical science has shown that an A1C level above 8% indicates an increased risk for long-term complications. You should analyze the possibility of starting a self care plan designed to diminish and control your blood sugar. For any doubts you may need to discuss them with your doctor because this is only a rough estimation!
+- id: Intermediate A1C
+  input:
+    1:
+      gt0005|Average blood sugar: 170,mg/dl
+  expected_output:
+    1:
+      gt0008|A1C value: 7.6,%
+      gt0014|Interpretation: You are quite close to a positive result which means you should continue working on your self-care plan designed to control your blood sugar! Your target should be to get below a 7% A1C level, so if you consider you may request help from a specialized medical professional for the steps to make. For any doubts you may need to discuss them with your doctor because this is only a rough estimation!

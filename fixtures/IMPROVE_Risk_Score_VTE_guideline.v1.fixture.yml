@@ -1,0 +1,211 @@
+guidelines:
+  1: IMPROVE_Risk_Score_VTE_guideline.v1
+test_cases:
+- id: 1. Max score 12
+  input:
+    1:
+      gt0004|Previous VTE: 3|local::at0006|Yes|
+      gt0005|Known thrombophilia: 2|local::at0006|Yes|
+      gt0006|Current lower-limb paralysis: 2|local::at0006|Yes|
+      gt0007|Current cancer: 2|local::at0006|Yes|
+      gt0008|Immobilized ≥7 days: 1|local::at0006|Yes|
+      gt0009|ICU/CCU stay: 1|local::at0006|Yes|
+      gt0010|Age >60 years: 1|local::at0006|Yes|
+  expected_output:
+    1:
+      gt0011|IMPROVE Score: 12
+      gt0013|3-month VTE risk: More than 7.2%
+- id: 2. Min score 0
+  input:
+    1:
+      gt0004|Previous VTE: 0|local::at0005|No|
+      gt0005|Known thrombophilia: 0|local::at0005|No|
+      gt0006|Current lower-limb paralysis: 0|local::at0005|No|
+      gt0007|Current cancer: 0|local::at0005|No|
+      gt0008|Immobilized ≥7 days: 0|local::at0005|No|
+      gt0009|ICU/CCU stay: 0|local::at0005|No|
+      gt0010|Age >60 years: 0|local::at0005|No|
+  expected_output:
+    1:
+      gt0011|IMPROVE Score: 0
+      gt0013|3-month VTE risk: 0.4%
+- id: 3. No input (negative test)
+  input:
+    1: {}
+  expected_output:
+    1: {}
+- id: 4. No input for Previous VTE
+  input:
+    1:
+      gt0005|Known thrombophilia: 0|local::at0005|No|
+      gt0006|Current lower-limb paralysis: 0|local::at0005|No|
+      gt0007|Current cancer: 0|local::at0005|No|
+      gt0008|Immobilized ≥7 days: 0|local::at0005|No|
+      gt0009|ICU/CCU stay: 0|local::at0005|No|
+      gt0010|Age >60 years: 0|local::at0005|No|
+  expected_output:
+    1: {}
+- id: 5. No input for Known thrombophilia
+  input:
+    1:
+      gt0004|Previous VTE: 0|local::at0005|No|
+      gt0006|Current lower-limb paralysis: 0|local::at0005|No|
+      gt0007|Current cancer: 0|local::at0005|No|
+      gt0008|Immobilized ≥7 days: 0|local::at0005|No|
+      gt0009|ICU/CCU stay: 0|local::at0005|No|
+      gt0010|Age >60 years: 0|local::at0005|No|
+  expected_output:
+    1: {}
+- id: 6. No input for Current lower-limb paralysis
+  input:
+    1:
+      gt0004|Previous VTE: 0|local::at0005|No|
+      gt0005|Known thrombophilia: 0|local::at0005|No|
+      gt0007|Current cancer: 0|local::at0005|No|
+      gt0008|Immobilized ≥7 days: 0|local::at0005|No|
+      gt0009|ICU/CCU stay: 0|local::at0005|No|
+      gt0010|Age >60 years: 0|local::at0005|No|
+  expected_output:
+    1: {}
+- id: 7. No input for Current cancer
+  input:
+    1:
+      gt0004|Previous VTE: 0|local::at0005|No|
+      gt0005|Known thrombophilia: 0|local::at0005|No|
+      gt0006|Current lower-limb paralysis: 0|local::at0005|No|
+      gt0008|Immobilized ≥7 days: 0|local::at0005|No|
+      gt0009|ICU/CCU stay: 0|local::at0005|No|
+      gt0010|Age >60 years: 0|local::at0005|No|
+  expected_output:
+    1: {}
+- id: 8. No input for Immobilized ≥7 days
+  input:
+    1:
+      gt0004|Previous VTE: 0|local::at0005|No|
+      gt0005|Known thrombophilia: 0|local::at0005|No|
+      gt0006|Current lower-limb paralysis: 0|local::at0005|No|
+      gt0007|Current cancer: 0|local::at0005|No|
+      gt0009|ICU/CCU stay: 0|local::at0005|No|
+      gt0010|Age >60 years: 0|local::at0005|No|
+  expected_output:
+    1: {}
+- id: 9. No input for ICU/CCU stay
+  input:
+    1:
+      gt0004|Previous VTE: 0|local::at0005|No|
+      gt0005|Known thrombophilia: 0|local::at0005|No|
+      gt0006|Current lower-limb paralysis: 0|local::at0005|No|
+      gt0007|Current cancer: 0|local::at0005|No|
+      gt0008|Immobilized ≥7 days: 0|local::at0005|No|
+      gt0010|Age >60 years: 0|local::at0005|No|
+  expected_output:
+    1: {}
+- id: 10. No input for Age >60 years
+  input:
+    1:
+      gt0004|Previous VTE: 0|local::at0005|No|
+      gt0005|Known thrombophilia: 0|local::at0005|No|
+      gt0006|Current lower-limb paralysis: 0|local::at0005|No|
+      gt0007|Current cancer: 0|local::at0005|No|
+      gt0008|Immobilized ≥7 days: 0|local::at0005|No|
+      gt0009|ICU/CCU stay: 0|local::at0005|No|
+  expected_output:
+    1: {}
+- id: 11. Score 1
+  input:
+    1:
+      gt0004|Previous VTE: 0|local::at0005|No|
+      gt0005|Known thrombophilia: 0|local::at0005|No|
+      gt0006|Current lower-limb paralysis: 0|local::at0005|No|
+      gt0007|Current cancer: 0|local::at0005|No|
+      gt0008|Immobilized ≥7 days: 0|local::at0005|No|
+      gt0009|ICU/CCU stay: 0|local::at0005|No|
+      gt0010|Age >60 years: 1|local::at0006|Yes|
+  expected_output:
+    1:
+      gt0011|IMPROVE Score: 1
+      gt0013|3-month VTE risk: 0.6%
+- id: 12. score 2
+  input:
+    1:
+      gt0004|Previous VTE: 0|local::at0005|No|
+      gt0005|Known thrombophilia: 0|local::at0005|No|
+      gt0006|Current lower-limb paralysis: 0|local::at0005|No|
+      gt0007|Current cancer: 0|local::at0005|No|
+      gt0008|Immobilized ≥7 days: 0|local::at0005|No|
+      gt0009|ICU/CCU stay: 1|local::at0006|Yes|
+      gt0010|Age >60 years: 1|local::at0006|Yes|
+  expected_output:
+    1:
+      gt0011|IMPROVE Score: 2
+      gt0013|3-month VTE risk: 1.0%
+- id: 13. score 3
+  input:
+    1:
+      gt0004|Previous VTE: 0|local::at0005|No|
+      gt0005|Known thrombophilia: 0|local::at0005|No|
+      gt0006|Current lower-limb paralysis: 0|local::at0005|No|
+      gt0007|Current cancer: 0|local::at0005|No|
+      gt0008|Immobilized ≥7 days: 1|local::at0006|Yes|
+      gt0009|ICU/CCU stay: 1|local::at0006|Yes|
+      gt0010|Age >60 years: 1|local::at0006|Yes|
+  expected_output:
+    1:
+      gt0011|IMPROVE Score: 3
+      gt0013|3-month VTE risk: 1.7%
+- id: 14. score 4
+  input:
+    1:
+      gt0004|Previous VTE: 0|local::at0005|No|
+      gt0005|Known thrombophilia: 0|local::at0005|No|
+      gt0006|Current lower-limb paralysis: 0|local::at0005|No|
+      gt0007|Current cancer: 2|local::at0006|Yes|
+      gt0008|Immobilized ≥7 days: 0|local::at0005|No|
+      gt0009|ICU/CCU stay: 1|local::at0006|Yes|
+      gt0010|Age >60 years: 1|local::at0006|Yes|
+  expected_output:
+    1:
+      gt0011|IMPROVE Score: 4
+      gt0013|3-month VTE risk: 2.9%
+- id: 15. score 5
+  input:
+    1:
+      gt0004|Previous VTE: 0|local::at0005|No|
+      gt0005|Known thrombophilia: 0|local::at0005|No|
+      gt0006|Current lower-limb paralysis: 2|local::at0006|Yes|
+      gt0007|Current cancer: 2|local::at0006|Yes|
+      gt0008|Immobilized ≥7 days: 0|local::at0005|No|
+      gt0009|ICU/CCU stay: 0|local::at0005|No|
+      gt0010|Age >60 years: 1|local::at0006|Yes|
+  expected_output:
+    1:
+      gt0011|IMPROVE Score: 5
+      gt0013|3-month VTE risk: 7.2%
+- id: 16. score 6
+  input:
+    1:
+      gt0004|Previous VTE: 0|local::at0005|No|
+      gt0005|Known thrombophilia: 2|local::at0006|Yes|
+      gt0006|Current lower-limb paralysis: 2|local::at0006|Yes|
+      gt0007|Current cancer: 2|local::at0006|Yes|
+      gt0008|Immobilized ≥7 days: 0|local::at0005|No|
+      gt0009|ICU/CCU stay: 0|local::at0005|No|
+      gt0010|Age >60 years: 0|local::at0005|No|
+  expected_output:
+    1:
+      gt0011|IMPROVE Score: 6
+      gt0013|3-month VTE risk: 7.2%
+- id: 17. score 7
+  input:
+    1:
+      gt0004|Previous VTE: 3|local::at0006|Yes|
+      gt0005|Known thrombophilia: 2|local::at0006|Yes|
+      gt0006|Current lower-limb paralysis: 2|local::at0006|Yes|
+      gt0007|Current cancer: 0|local::at0005|No|
+      gt0008|Immobilized ≥7 days: 0|local::at0005|No|
+      gt0009|ICU/CCU stay: 0|local::at0005|No|
+      gt0010|Age >60 years: 0|local::at0005|No|
+  expected_output:
+    1:
+      gt0011|IMPROVE Score: 7
+      gt0013|3-month VTE risk: 7.2%

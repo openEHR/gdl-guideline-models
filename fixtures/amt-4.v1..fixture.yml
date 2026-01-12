@@ -1,0 +1,67 @@
+guidelines:
+  1: amt-4.v1
+test_cases:
+- id: Normal cognition
+  input:
+    1:
+      gt0005|Birthday: 1|local::at0020|Correct|
+      gt0006|Age: 1|local::at0052|Correct|
+      gt0007|Year: 1|local::at0048|Correct|
+      gt0008|Place: 1|local::at0044|Correct|
+  expected_output:
+    1:
+      gt0024|Assessment: 0|local::at0006|Normal cognition|
+      gt0022|Total score: 4
+
+- id: Score 3
+  input:
+    1:
+      gt0005|Birthday: 1|local::at0020|Correct|
+      gt0006|Age: 0|local::at0051|Incorrect|
+      gt0007|Year: 1|local::at0048|Correct|
+      gt0008|Place: 1|local::at0044|Correct|
+  expected_output:
+    1:
+      gt0024|Assessment: 1|local::at0007|Abnormal cognition|
+      gt0023|Recommendation: 0|local::at0005|Evaluate for reversible causes of altered mental status in patients deemed to have abnormal cognition.|
+      gt0022|Total score: 3
+
+- id: Score 2
+  input:
+    1:
+      gt0005|Birthday: 1|local::at0020|Correct|
+      gt0006|Age: 0|local::at0051|Incorrect|
+      gt0007|Year: 1|local::at0048|Correct|
+      gt0008|Place: 0|local::at0043|Incorrect|
+  expected_output:
+    1:
+      gt0024|Assessment: 1|local::at0007|Abnormal cognition|
+      gt0023|Recommendation: 0|local::at0005|Evaluate for reversible causes of altered mental status in patients deemed to have abnormal cognition.|
+      gt0022|Total score: 2
+
+- id: Score 1
+  input:
+    1:
+      gt0005|Birthday: 1|local::at0020|Correct|
+      gt0006|Age: 0|local::at0051|Incorrect|
+      gt0007|Year: 0|local::at0047|Incorrect|
+      gt0008|Place: 0|local::at0043|Incorrect|
+  expected_output:
+    1:
+      gt0024|Assessment: 1|local::at0007|Abnormal cognition|
+      gt0023|Recommendation: 0|local::at0005|Evaluate for reversible causes of altered mental status in patients deemed to have abnormal cognition.|
+      gt0022|Total score: 1
+
+- id: Score 0
+  input:
+    1:
+      gt0005|Birthday: 0|local::at0019|Incorrect|
+      gt0006|Age: 0|local::at0051|Incorrect|
+      gt0007|Year: 0|local::at0047|Incorrect|
+      gt0008|Place: 0|local::at0043|Incorrect|
+  expected_output:
+    1:
+      gt0024|Assessment: 1|local::at0007|Abnormal cognition|
+      gt0023|Recommendation: 0|local::at0005|Evaluate for reversible causes of altered mental status in patients deemed to have abnormal cognition.|
+      gt0022|Total score: 0
+

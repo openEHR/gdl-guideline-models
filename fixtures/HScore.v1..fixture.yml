@@ -1,0 +1,325 @@
+guidelines:
+  1: HScore.v1
+test_cases:
+  - id: 01. Highest possible score and probability.
+    input:
+      1:
+        gt0011|Known underlying immunosuppression|: "18|local::at0005|Yes|"
+        gt0012|Organomegaly|: "38|local::at0012|Hepatomegaly and splenomegaly|"
+        gt0013|Number of cytopenias|: "34|local::at0016|3 lineages|"
+        gt0014|Hemophagocytosis features on bone marrow aspirate|: "35|local::at0005|Yes|"
+        gt0016|Temperature|: "40,Cel"
+        gt0018|Ferritin result|: "7000,ng/mL"
+        gt0020|Triglycerides result|: "500,mg/dl"
+        gt0022|Fibrinogen result|: "100,mg/dl"
+        gt0024|Aspartate aminotransferase (AST) result|: "50,U/l"
+    expected_output:
+      1:
+        gt0008|HScore|: 337
+        gt0009|Probability of hemophagocytic syndrome|: ">99%"
+
+  - id: 02. Lowest possible score and probability.
+    input:
+      1:
+        gt0011|Known underlying immunosuppression|: "0|local::at0004|No|"
+        gt0012|Organomegaly|: "0|local::at0004|No|"
+        gt0013|Number of cytopenias|: "0|local::at0014|1 lineage|"
+        gt0014|Hemophagocytosis features on bone marrow aspirate|: "0|local::at0004|No|"
+        gt0016|Temperature|: "36,Cel"
+        gt0018|Ferritin result|: "1000,ng/mL"
+        gt0020|Triglycerides result|: "50,mg/dl"
+        gt0022|Fibrinogen result|: "500,mg/dl"
+        gt0024|Aspartate aminotransferase (AST) result|: "10,U/l"
+    expected_output:
+      1:
+        gt0008|HScore|: 0
+        gt0009|Probability of hemophagocytic syndrome|: "<1%"
+
+  - id: 03. Lowest points for temperature, ferritin, triglyceride, fibrinogen in °F, ug/L, mmol/l, g/L respectively.
+    input:
+      1:
+        gt0011|Known underlying immunosuppression|: "0|local::at0004|No|"
+        gt0012|Organomegaly|: "0|local::at0004|No|"
+        gt0013|Number of cytopenias|: "0|local::at0014|1 lineage|"
+        gt0014|Hemophagocytosis features on bone marrow aspirate|: "0|local::at0004|No|"
+        gt0016|Temperature|: "100,[degF]"
+        gt0018|Ferritin result|: "1000,ug/L"
+        gt0020|Triglycerides result|: "1,mmol/l"
+        gt0022|Fibrinogen result|: "3,g/L"
+        gt0024|Aspartate aminotransferase (AST) result|: "10,U/l"
+    expected_output:
+      1:
+        gt0008|HScore|: 0
+        gt0009|Probability of hemophagocytic syndrome|: "<1%"
+
+  - id: 04. Median points for temperature, ferritin, triglyceride in °F, ug/L, mmol/l respectively and highest for fibrinogen in g/L.
+    input:
+      1:
+        gt0011|Known underlying immunosuppression|: "0|local::at0004|No|"
+        gt0012|Organomegaly|: "0|local::at0004|No|"
+        gt0013|Number of cytopenias|: "0|local::at0014|1 lineage|"
+        gt0014|Hemophagocytosis features on bone marrow aspirate|: "0|local::at0004|No|"
+        gt0016|Temperature|: "102.5,[degF]"
+        gt0018|Ferritin result|: "3000,ug/L"
+        gt0020|Triglycerides result|: "3,mmol/l"
+        gt0022|Fibrinogen result|: "2.5,g/L"
+        gt0024|Aspartate aminotransferase (AST) result|: "10,U/l"
+    expected_output:
+      1:
+        gt0008|HScore|: 142
+        gt0009|Probability of hemophagocytic syndrome|: "16-25%"
+
+  - id: 05. Median points for temperature, ferritin, triglyceride in °C, ng/mL, mg/dl respectively.
+    input:
+      1:
+        gt0011|Known underlying immunosuppression|: "0|local::at0004|No|"
+        gt0012|Organomegaly|: "0|local::at0004|No|"
+        gt0013|Number of cytopenias|: "0|local::at0014|1 lineage|"
+        gt0014|Hemophagocytosis features on bone marrow aspirate|: "0|local::at0004|No|"
+        gt0016|Temperature|: "39,Cel"
+        gt0018|Ferritin result|: "3000,ng/mL"
+        gt0020|Triglycerides result|: "300,mg/dl"
+        gt0022|Fibrinogen result|: "2.5,g/L"
+        gt0024|Aspartate aminotransferase (AST) result|: "10,U/l"
+    expected_output:
+      1:
+        gt0008|HScore|: 142
+        gt0009|Probability of hemophagocytic syndrome|: "16-25%"
+
+  - id: 06. Highest points for temperature, ferritin, triglyceride in °F, ug/L, mmol/l respectively.
+    input:
+      1:
+        gt0011|Known underlying immunosuppression|: "0|local::at0004|No|"
+        gt0012|Organomegaly|: "0|local::at0004|No|"
+        gt0013|Number of cytopenias|: "0|local::at0014|1 lineage|"
+        gt0014|Hemophagocytosis features on bone marrow aspirate|: "0|local::at0004|No|"
+        gt0016|Temperature|: "104,[degF]"
+        gt0018|Ferritin result|: "7000,ug/L"
+        gt0020|Triglycerides result|: "5,mmol/l"
+        gt0022|Fibrinogen result|: "2.5,mg/dl"
+        gt0024|Aspartate aminotransferase (AST) result|: "10,U/l"
+    expected_output:
+      1:
+        gt0008|HScore|: 193
+        gt0009|Probability of hemophagocytic syndrome|: "80-88%"
+
+  - id: 07. HScore = 100, Probability = ~1%
+    input:
+      1:
+        gt0011|Known underlying immunosuppression|: "18|local::at0005|Yes|"
+        gt0012|Organomegaly|: "23|local::at0011|Hepatomegaly or splenomegaly|"
+        gt0013|Number of cytopenias|: "24|local::at0015|2 lineages|"
+        gt0014|Hemophagocytosis features on bone marrow aspirate|: "35|local::at0005|Yes|"
+        gt0016|Temperature|: "36,Cel"
+        gt0018|Ferritin result|: "1000,ng/mL"
+        gt0020|Triglycerides result|: "1,mmol/l"
+        gt0022|Fibrinogen result|: "3,g/L"
+        gt0024|Aspartate aminotransferase (AST) result|: "10,U/l"
+    expected_output:
+      1:
+        gt0008|HScore|: 100
+        gt0009|Probability of hemophagocytic syndrome|: "~1%"
+
+  - id: 08. HScore = 110, Probability = 1-3%
+    input:
+      1:
+        gt0011|Known underlying immunosuppression|: "18|local::at0005|Yes|"
+        gt0012|Organomegaly|: "23|local::at0011|Hepatomegaly or splenomegaly|"
+        gt0013|Number of cytopenias|: "34|local::at0016|3 lineages|"
+        gt0014|Hemophagocytosis features on bone marrow aspirate|: "35|local::at0005|Yes|"
+        gt0016|Temperature|: "36,Cel"
+        gt0018|Ferritin result|: "1000,ng/mL"
+        gt0020|Triglycerides result|: "1,mmol/l"
+        gt0022|Fibrinogen result|: "3,g/L"
+        gt0024|Aspartate aminotransferase (AST) result|: "10,U/l"
+    expected_output:
+      1:
+        gt0008|HScore|: 110
+        gt0009|Probability of hemophagocytic syndrome|: "1-3%"
+
+  - id: 09. HScore = 115, Probability = 3-5%
+    input:
+      1:
+        gt0011|Known underlying immunosuppression|: "18|local::at0005|Yes|"
+        gt0012|Organomegaly|: "38|local::at0012|Hepatomegaly and splenomegaly|"
+        gt0013|Number of cytopenias|: "24|local::at0015|2 lineages|"
+        gt0014|Hemophagocytosis features on bone marrow aspirate|: "35|local::at0005|Yes|"
+        gt0016|Temperature|: "36,Cel"
+        gt0018|Ferritin result|: "1000,ng/mL"
+        gt0020|Triglycerides result|: "1,mmol/l"
+        gt0022|Fibrinogen result|: "3,g/L"
+        gt0024|Aspartate aminotransferase (AST) result|: "10,U/l"
+    expected_output:
+      1:
+        gt0008|HScore|: 115
+        gt0009|Probability of hemophagocytic syndrome|: "3-5%"
+
+  - id: 10. HScore = 125, Probability = 5-9%
+    input:
+      1:
+        gt0011|Known underlying immunosuppression|: "18|local::at0005|Yes|"
+        gt0012|Organomegaly|: "38|local::at0012|Hepatomegaly and splenomegaly|"
+        gt0013|Number of cytopenias|: "34|local::at0016|3 lineages|"
+        gt0014|Hemophagocytosis features on bone marrow aspirate|: "35|local::at0005|Yes|"
+        gt0016|Temperature|: "36,Cel"
+        gt0018|Ferritin result|: "1000,ng/mL"
+        gt0020|Triglycerides result|: "1,mmol/l"
+        gt0022|Fibrinogen result|: "3,g/L"
+        gt0024|Aspartate aminotransferase (AST) result|: "10,U/l"
+    expected_output:
+      1:
+        gt0008|HScore|: 125
+        gt0009|Probability of hemophagocytic syndrome|: "5-9%"
+
+  - id: 11. HScore = 134, Probability = 9-16%
+    input:
+      1:
+        gt0011|Known underlying immunosuppression|: "18|local::at0005|Yes|"
+        gt0012|Organomegaly|: "38|local::at0012|Hepatomegaly and splenomegaly|"
+        gt0013|Number of cytopenias|: "24|local::at0015|2 lineages|"
+        gt0014|Hemophagocytosis features on bone marrow aspirate|: "35|local::at0005|Yes|"
+        gt0016|Temperature|: "36,Cel"
+        gt0018|Ferritin result|: "1000,ng/mL"
+        gt0020|Triglycerides result|: "1,mmol/l"
+        gt0022|Fibrinogen result|: "5,g/L"
+        gt0024|Aspartate aminotransferase (AST) result|: "50,U/l"
+    expected_output:
+      1:
+        gt0008|HScore|: 134
+        gt0009|Probability of hemophagocytic syndrome|: "9-16%"
+
+  - id: 12. HScore = 152, Probability = 25-40%
+    input:
+      1:
+        gt0011|Known underlying immunosuppression|: "18|local::at0005|Yes|"
+        gt0012|Organomegaly|: "23|local::at0011|Hepatomegaly or splenomegaly|"
+        gt0013|Number of cytopenias|: "24|local::at0015|2 lineages|"
+        gt0014|Hemophagocytosis features on bone marrow aspirate|: "35|local::at0005|Yes|"
+        gt0016|Temperature|: "39,Cel"
+        gt0018|Ferritin result|: "1000,ng/mL"
+        gt0020|Triglycerides result|: "1,mmol/l"
+        gt0022|Fibrinogen result|: "5,g/L"
+        gt0024|Aspartate aminotransferase (AST) result|: "50,U/l"
+    expected_output:
+      1:
+        gt0008|HScore|: 152
+        gt0009|Probability of hemophagocytic syndrome|: "25-40%"
+
+  - id: 13. HScore = 167, Probability = 40-54%
+    input:
+      1:
+        gt0011|Known underlying immunosuppression|: "18|local::at0005|Yes|"
+        gt0012|Organomegaly|: "38|local::at0012|Hepatomegaly and splenomegaly|"
+        gt0013|Number of cytopenias|: "24|local::at0015|2 lineages|"
+        gt0014|Hemophagocytosis features on bone marrow aspirate|: "35|local::at0005|Yes|"
+        gt0016|Temperature|: "39,Cel"
+        gt0018|Ferritin result|: "1000,ng/mL"
+        gt0020|Triglycerides result|: "1,mmol/l"
+        gt0022|Fibrinogen result|: "5,g/L"
+        gt0024|Aspartate aminotransferase (AST) result|: "50,U/l"
+    expected_output:
+      1:
+        gt0008|HScore|: 167
+        gt0009|Probability of hemophagocytic syndrome|: "40-54%"
+
+  - id: 14. HScore = 177, Probability = 54-70%
+    input:
+      1:
+        gt0011|Known underlying immunosuppression|: "18|local::at0005|Yes|"
+        gt0012|Organomegaly|: "38|local::at0012|Hepatomegaly and splenomegaly|"
+        gt0013|Number of cytopenias|: "34|local::at0016|3 lineages|"
+        gt0014|Hemophagocytosis features on bone marrow aspirate|: "35|local::at0005|Yes|"
+        gt0016|Temperature|: "39,Cel"
+        gt0018|Ferritin result|: "1000,ng/mL"
+        gt0020|Triglycerides result|: "1,mmol/l"
+        gt0022|Fibrinogen result|: "5,g/L"
+        gt0024|Aspartate aminotransferase (AST) result|: "50,U/l"
+    expected_output:
+      1:
+        gt0008|HScore|: 177
+        gt0009|Probability of hemophagocytic syndrome|: "54-70%"
+
+  - id: 15. HScore = 184, Probability = 70-80%
+    input:
+      1:
+        gt0011|Known underlying immunosuppression|: "0|local::at0004|No|"
+        gt0012|Organomegaly|: "38|local::at0012|Hepatomegaly and splenomegaly|"
+        gt0013|Number of cytopenias|: "24|local::at0015|2 lineages|"
+        gt0014|Hemophagocytosis features on bone marrow aspirate|: "35|local::at0005|Yes|"
+        gt0016|Temperature|: "39,Cel"
+        gt0018|Ferritin result|: "2000,ng/mL"
+        gt0020|Triglycerides result|: "1,mmol/l"
+        gt0022|Fibrinogen result|: "5,g/L"
+        gt0024|Aspartate aminotransferase (AST) result|: "50,U/l"
+    expected_output:
+      1:
+        gt0008|HScore|: 184
+        gt0009|Probability of hemophagocytic syndrome|: "70-80%"
+
+  - id: 16. HScore = 202, Probability = 88-93%
+    input:
+      1:
+        gt0011|Known underlying immunosuppression|: "18|local::at0005|Yes|"
+        gt0012|Organomegaly|: "38|local::at0012|Hepatomegaly and splenomegaly|"
+        gt0013|Number of cytopenias|: "24|local::at0015|2 lineages|"
+        gt0014|Hemophagocytosis features on bone marrow aspirate|: "35|local::at0005|Yes|"
+        gt0016|Temperature|: "39,Cel"
+        gt0018|Ferritin result|: "2000,ng/mL"
+        gt0020|Triglycerides result|: "1,mmol/l"
+        gt0022|Fibrinogen result|: "5,g/L"
+        gt0024|Aspartate aminotransferase (AST) result|: "50,U/l"
+    expected_output:
+      1:
+        gt0008|HScore|: 202
+        gt0009|Probability of hemophagocytic syndrome|: "88-93%"
+
+  - id: 17. HScore = 212, Probability = 93-96%
+    input:
+      1:
+        gt0011|Known underlying immunosuppression|: "18|local::at0005|Yes|"
+        gt0012|Organomegaly|: "38|local::at0012|Hepatomegaly and splenomegaly|"
+        gt0013|Number of cytopenias|: "34|local::at0016|3 lineages|"
+        gt0014|Hemophagocytosis features on bone marrow aspirate|: "35|local::at0005|Yes|"
+        gt0016|Temperature|: "39,Cel"
+        gt0018|Ferritin result|: "2000,ng/mL"
+        gt0020|Triglycerides result|: "1,mmol/l"
+        gt0022|Fibrinogen result|: "5,g/L"
+        gt0024|Aspartate aminotransferase (AST) result|: "50,U/l"
+    expected_output:
+      1:
+        gt0008|HScore|: 212
+        gt0009|Probability of hemophagocytic syndrome|: "93-96%"
+
+  - id: 18. HScore = 223, Probability = 96-98%
+    input:
+      1:
+        gt0011|Known underlying immunosuppression|: "18|local::at0005|Yes|"
+        gt0012|Organomegaly|: "38|local::at0012|Hepatomegaly and splenomegaly|"
+        gt0013|Number of cytopenias|: "34|local::at0016|3 lineages|"
+        gt0014|Hemophagocytosis features on bone marrow aspirate|: "35|local::at0005|Yes|"
+        gt0016|Temperature|: "39,Cel"
+        gt0018|Ferritin result|: "2000,ng/mL"
+        gt0020|Triglycerides result|: "1,mmol/l"
+        gt0022|Fibrinogen result|: "2,g/L"
+        gt0024|Aspartate aminotransferase (AST) result|: "10,U/l"
+    expected_output:
+      1:
+        gt0008|HScore|: 223
+        gt0009|Probability of hemophagocytic syndrome|: "96-98%"
+
+  - id: 19. HScore = 240, Probability = 98-99%
+    input:
+      1:
+        gt0011|Known underlying immunosuppression|: "0|local::at0004|No|"
+        gt0012|Organomegaly|: "38|local::at0012|Hepatomegaly and splenomegaly|"
+        gt0013|Number of cytopenias|: "34|local::at0016|3 lineages|"
+        gt0014|Hemophagocytosis features on bone marrow aspirate|: "35|local::at0005|Yes|"
+        gt0016|Temperature|: "40,Cel"
+        gt0018|Ferritin result|: "3000,ng/mL"
+        gt0020|Triglycerides result|: "1,mmol/l"
+        gt0022|Fibrinogen result|: "2,g/L"
+        gt0024|Aspartate aminotransferase (AST) result|: "50,U/l"
+    expected_output:
+      1:
+        gt0008|HScore|: 240
+        gt0009|Probability of hemophagocytic syndrome|: "98-99%"

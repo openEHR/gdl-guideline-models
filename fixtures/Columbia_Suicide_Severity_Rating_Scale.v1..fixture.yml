@@ -1,0 +1,43 @@
+guidelines:
+  1: Columbia_Suicide_Severity_Rating_Scale.v1
+test_cases:
+- id: HIgh risk
+  input:
+    1:
+      gt0011|Suicidal behavior (select most severe in lifetime): 1|local::at0013|Actual attempt|
+      gt0012|Severity of ideation (select most severe in the past month): 2|local::at0007|Nonspecific active suicidal thoughts|
+      gt0013|Was this behavior within the past three months?: 1|local::at0020|Yes|
+  expected_output:
+    1:
+      gt0026|Management: local::at0010|Behavioral health consult (psychiatric nurse/social worker) and consider patient safety precautions|
+      gt0025|Risk Level: 3|local::at0005|High Risk|
+- id: Moderate risk
+  input:
+    1:
+      gt0011|Suicidal behavior (select most severe in lifetime): 1|local::at0013|Actual attempt|
+      gt0012|Severity of ideation (select most severe in the past month): 2|local::at0007|Nonspecific active suicidal thoughts|
+      gt0013|Was this behavior within the past three months?: 0|local::at0019|No|
+  expected_output:
+    1:
+      gt0026|Management: local::at0011|Immediate notification of physician and/or behavioral health and patient safety precautions|
+      gt0025|Risk Level: 2|local::at0004|Moderate Risk|
+- id: Low risk
+  input:
+    1:
+      gt0011|Suicidal behavior (select most severe in lifetime): 0|local::at0012|No reported suicidal behavior|
+      gt0012|Severity of ideation (select most severe in the past month): 1|local::at0006|Wish to be dead|
+      gt0013|Was this behavior within the past three months?: 0|local::at0019|No|
+  expected_output:
+    1:
+      gt0026|Management: local::at0009|Behavioral health referral at discharge|
+      gt0025|Risk Level: 1|local::at0003|Low Risk|
+- id: No ideation
+  input:
+    1:
+      gt0011|Suicidal behavior (select most severe in lifetime): 0|local::at0012|No reported suicidal behavior|
+      gt0012|Severity of ideation (select most severe in the past month): 0|local::at0005|No reported suicidal ideation|
+      gt0013|Was this behavior within the past three months?: 0|local::at0019|No|
+  expected_output:
+    1:
+      gt0025|Risk Level: 0|local::at0007|No ideation|
+

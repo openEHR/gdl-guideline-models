@@ -1,0 +1,137 @@
+guidelines:
+  1: Khorana_Risk_Score_Venous_Thromboembolism_Cancer_Patients.v0
+test_cases:
+- id: Default
+  input:
+    1: {}
+  expected_output:
+    1:
+      gt0014|Pre-chemotherapy leukocyte count >11x10⁹/L: 0|local::at0020|No +0|
+      gt0012|Pre-chemotherapy platelet count ≥350x10⁹/L: 0|local::at0016|No +0|
+      gt0015|BMI ≥35 kg/m²: 0|local::at0022|No +0|
+      
+- id: Khorana Risk Score = 6
+  input:
+    1:
+      gt0003|Leukocyte count: 12,10*9/l
+      gt0004|Platelet count: 400,10*9/l
+      gt0030|Cancer Type: 2|local::at0044|Stomach|
+      gt0028|Hemoglobin level <10 g/dL or using RBC growth factors: 1|local::at0019|Yes +1|
+      gt0008|Body Mass Index: 36,kg/m2
+  expected_output:
+    1:
+      gt0014|Pre-chemotherapy leukocyte count >11x10⁹/L: 1|local::at0021|Yes +1|
+      gt0018|Risk Group: local::at0028|High|
+      gt0017|Comment: Note; Median follow-up time was 2.5 months.
+      gt0012|Pre-chemotherapy platelet count ≥350x10⁹/L: 1|local::at0017|Yes +1|
+      gt0011|2.5-month rate of VTE: local::at0032|6.7 - 7.1%|
+      gt0015|BMI ≥35 kg/m²: 1|local::at0023|Yes +1|
+      gt0016|Khorana Risk Score: 6
+
+- id: Khorana Risk Score = 5
+  input:
+    1:
+      gt0003|Leukocyte count: 10,10*9/l
+      gt0004|Platelet count: 400,10*9/l
+      gt0030|Cancer Type: 2|local::at0044|Stomach|
+      gt0028|Hemoglobin level <10 g/dL or using RBC growth factors: 1|local::at0019|Yes +1|
+      gt0008|Body Mass Index: 36,kg/m2
+  expected_output:
+    1:
+      gt0014|Pre-chemotherapy leukocyte count >11x10⁹/L: 0|local::at0020|No +0|
+      gt0018|Risk Group: local::at0028|High|
+      gt0017|Comment: Note; Median follow-up time was 2.5 months.
+      gt0012|Pre-chemotherapy platelet count ≥350x10⁹/L: 1|local::at0017|Yes +1|
+      gt0011|2.5-month rate of VTE: local::at0032|6.7 - 7.1%|
+      gt0015|BMI ≥35 kg/m²: 1|local::at0023|Yes +1|
+      gt0016|Khorana Risk Score: 5
+
+- id: Khorana Risk Score = 4
+  input:
+    1:
+      gt0003|Leukocyte count: 10,10*9/l
+      gt0004|Platelet count: 400,10*9/l
+      gt0030|Cancer Type: 1|local::at0039|Bladder|
+      gt0028|Hemoglobin level <10 g/dL or using RBC growth factors: 1|local::at0019|Yes +1|
+      gt0008|Body Mass Index: 36,kg/m2
+  expected_output:
+    1:
+      gt0014|Pre-chemotherapy leukocyte count >11x10⁹/L: 0|local::at0020|No +0|
+      gt0018|Risk Group: local::at0028|High|
+      gt0017|Comment: Note; Median follow-up time was 2.5 months.
+      gt0012|Pre-chemotherapy platelet count ≥350x10⁹/L: 1|local::at0017|Yes +1|
+      gt0011|2.5-month rate of VTE: local::at0032|6.7 - 7.1%|
+      gt0015|BMI ≥35 kg/m²: 1|local::at0023|Yes +1|
+      gt0016|Khorana Risk Score: 4
+
+- id: Khorana Risk Score = 3
+  input:
+    1:
+      gt0003|Leukocyte count: 10,10*9/l
+      gt0004|Platelet count: 400,10*9/l
+      gt0030|Cancer Type: 1|local::at0040|Gynecologic|
+      gt0028|Hemoglobin level <10 g/dL or using RBC growth factors: 0|local::at0018|No +0|
+      gt0008|Body Mass Index: 36,kg/m2
+  expected_output:
+    1:
+      gt0014|Pre-chemotherapy leukocyte count >11x10⁹/L: 0|local::at0020|No +0|
+      gt0018|Risk Group: local::at0028|High|
+      gt0017|Comment: Note; Median follow-up time was 2.5 months.
+      gt0012|Pre-chemotherapy platelet count ≥350x10⁹/L: 1|local::at0017|Yes +1|
+      gt0011|2.5-month rate of VTE: local::at0032|6.7 - 7.1%|
+      gt0015|BMI ≥35 kg/m²: 1|local::at0023|Yes +1|
+      gt0016|Khorana Risk Score: 3
+
+- id: Khorana Risk Score = 2
+  input:
+    1:
+      gt0003|Leukocyte count: 10,10*9/l
+      gt0004|Platelet count: 400,10*9/l
+      gt0030|Cancer Type: 0|local::at0036|Other|
+      gt0028|Hemoglobin level <10 g/dL or using RBC growth factors: 0|local::at0018|No +0|
+      gt0008|Body Mass Index: 36,kg/m2
+  expected_output:
+    1:
+      gt0014|Pre-chemotherapy leukocyte count >11x10⁹/L: 0|local::at0020|No +0|
+      gt0018|Risk Group: local::at0027|Intermediate|
+      gt0017|Comment: Note; Median follow-up time was 2.5 months.
+      gt0012|Pre-chemotherapy platelet count ≥350x10⁹/L: 1|local::at0017|Yes +1|
+      gt0011|2.5-month rate of VTE: local::at0031|1.8 - 2.0%|
+      gt0015|BMI ≥35 kg/m²: 1|local::at0023|Yes +1|
+      gt0016|Khorana Risk Score: 2
+
+- id: Khorana Risk Score = 1
+  input:
+    1:
+      gt0003|Leukocyte count: 10,10*9/l
+      gt0004|Platelet count: 400,10*9/l
+      gt0030|Cancer Type: 0|local::at0036|Other|
+      gt0028|Hemoglobin level <10 g/dL or using RBC growth factors: 0|local::at0018|No +0|
+      gt0008|Body Mass Index: 34,kg/m2
+  expected_output:
+    1:
+      gt0014|Pre-chemotherapy leukocyte count >11x10⁹/L: 0|local::at0020|No +0|
+      gt0018|Risk Group: local::at0027|Intermediate|
+      gt0017|Comment: Note; Median follow-up time was 2.5 months.
+      gt0012|Pre-chemotherapy platelet count ≥350x10⁹/L: 1|local::at0017|Yes +1|
+      gt0011|2.5-month rate of VTE: local::at0031|1.8 - 2.0%|
+      gt0015|BMI ≥35 kg/m²: 0|local::at0022|No +0|
+      gt0016|Khorana Risk Score: 1
+
+- id: Khorana Risk Score = 0
+  input:
+    1:
+      gt0003|Leukocyte count: 10,10*9/l
+      gt0004|Platelet count: 300,10*9/l
+      gt0030|Cancer Type: 0|local::at0036|Other|
+      gt0028|Hemoglobin level <10 g/dL or using RBC growth factors: 0|local::at0018|No +0|
+      gt0008|Body Mass Index: 34,kg/m2
+  expected_output:
+    1:
+      gt0014|Pre-chemotherapy leukocyte count >11x10⁹/L: 0|local::at0020|No +0|
+      gt0018|Risk Group: local::at0026|Low|
+      gt0017|Comment: Note; Median follow-up time was 2.5 months.
+      gt0012|Pre-chemotherapy platelet count ≥350x10⁹/L: 0|local::at0016|No +0|
+      gt0011|2.5-month rate of VTE: local::at0030|0.3 - 0.8%|
+      gt0015|BMI ≥35 kg/m²: 0|local::at0022|No +0|
+      gt0016|Khorana Risk Score: 0

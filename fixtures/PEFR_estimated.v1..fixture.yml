@@ -1,0 +1,47 @@
+guidelines:
+  1: PEFR_estimated.v1
+test_cases:
+- id: case_1:Children male = 250,l/min
+  input:
+    1:
+      gt0003|Birthdate: 2010-11-21T16:31Z
+      gt0004|Gender: local::at0005|Male|
+      gt0006|Height/Length: 130,cm
+  expected_output:
+    1:
+      gt0008|Peak expiratory flow (estimated): 250,l/min
+      gt0010|Height/Length: 130,cm
+
+- id: case_2:Children female = 250,l/min
+  input:
+    1:
+      gt0003|Birthdate: 2010-11-21T16:31Z
+      gt0004|Gender: local::at0006|Female|
+      gt0006|Height/Length: 130,cm
+  expected_output:
+    1:
+      gt0008|Peak expiratory flow (estimated): 250,l/min
+      gt0010|Height/Length: 130,cm
+
+- id: case_3:Adult female = 466,l/min 
+  input:
+    1:
+      gt0003|Birthdate: 1986-11-04T16:31Z
+      gt0004|Gender: local::at0006|Female|
+      gt0006|Height/Length: 175,cm
+  expected_output:
+    1:
+      gt0008|Peak expiratory flow (estimated): 466,l/min
+      gt0010|Height/Length: 175,cm
+
+- id: case_4:Adult male = 589,l/m 
+  input:
+    1:
+      gt0003|Birthdate: 1986-11-04T16:31Z
+      gt0004|Gender: local::at0005|Male|
+      gt0006|Height/Length: 175,cm
+  expected_output:
+    1:
+      gt0008|Peak expiratory flow (estimated): 589,l/min
+      gt0010|Height/Length: 175,cm
+

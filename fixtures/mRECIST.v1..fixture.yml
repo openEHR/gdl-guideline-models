@@ -1,0 +1,127 @@
+guidelines:
+  1: mRECIST.v1
+test_cases:
+- id: Test Complete response
+  input:
+    1:
+      gt0003|Tumor 1 size at baseline: 4,mm
+      gt0004|Tumor 1 current size: 0,mm
+      gt0005|Tumor 2 size at baseline: 3,mm
+      gt0006|Tumor 2 current size: 0,mm
+  expected_output:
+    1:
+      gt0014|Interpretation: Complete response
+      gt0024|Total size at baseline: 7,mm
+      gt0025|Total current size: 0,mm
+- id: Test Partial response
+  input:
+    1:
+      gt0003|Tumor 1 size at baseline: 4,mm
+      gt0004|Tumor 1 current size: 0,mm
+      gt0005|Tumor 2 size at baseline: 3,mm
+      gt0006|Tumor 2 current size: 0,mm
+      gt0007|Tumor 3 size at baseline: 4,mm
+      gt0008|Tumor 3 current size: 2,mm
+  expected_output:
+    1:
+      gt0014|Interpretation: Partial response
+      gt0024|Total size at baseline: 11,mm
+      gt0025|Total current size: 2,mm
+- id: Test Complete response
+  input:
+    1:
+      gt0003|Tumor 1 size at baseline: 10,mm
+      gt0004|Tumor 1 current size: 0,mm
+  expected_output:
+    1:
+      gt0014|Interpretation: Complete response
+      gt0024|Total size at baseline: 10,mm
+      gt0025|Total current size: 0,mm
+- id: Test default action
+  input:
+    1: {}
+  expected_output:
+    1:
+      gt0014|Interpretation: Stable disease
+- id: Test interpretation for Tumor 1
+  input:
+    1:
+      gt0003|Tumor 1 size at baseline: 30,mm
+      gt0004|Tumor 1 current size: 15,mm
+  expected_output:
+    1:
+      gt0014|Interpretation: Partial response
+      gt0024|Total size at baseline: 30,mm
+      gt0025|Total current size: 15,mm
+- id: Test interpretation for Tumor 1, 2
+  input:
+    1:
+      gt0003|Tumor 1 size at baseline: 30,mm
+      gt0004|Tumor 1 current size: 15,mm
+      gt0005|Tumor 2 size at baseline: 20,mm
+      gt0006|Tumor 2 current size: 25,mm
+  expected_output:
+    1:
+      gt0014|Interpretation: Stable disease
+      gt0024|Total size at baseline: 50,mm
+      gt0025|Total current size: 40,mm
+- id: Test interpretation for Tumor 1, 2, 3
+  input:
+    1:
+      gt0003|Tumor 1 size at baseline: 30,mm
+      gt0004|Tumor 1 current size: 15,mm
+      gt0005|Tumor 2 size at baseline: 20,mm
+      gt0006|Tumor 2 current size: 25,mm
+      gt0007|Tumor 3 size at baseline: 15,mm
+      gt0008|Tumor 3 current size: 15,mm
+  expected_output:
+    1:
+      gt0014|Interpretation: Stable disease
+      gt0024|Total size at baseline: 65,mm
+      gt0025|Total current size: 55,mm
+- id: Test interpretation for Tumor 1, 2, 3, 4
+  input:
+    1:
+      gt0003|Tumor 1 size at baseline: 30,mm
+      gt0004|Tumor 1 current size: 15,mm
+      gt0005|Tumor 2 size at baseline: 20,mm
+      gt0006|Tumor 2 current size: 25,mm
+      gt0007|Tumor 3 size at baseline: 15,mm
+      gt0008|Tumor 3 current size: 15,mm
+      gt0009|Tumor 4 size at baseline: 19,mm
+      gt0010|Tumor 4 current size: 2,mm
+  expected_output:
+    1:
+      gt0014|Interpretation: Partial response
+      gt0024|Total size at baseline: 84,mm
+      gt0025|Total current size: 57,mm
+- id: Test Tumor 1, 2, 3, 4, 5
+  input:
+    1:
+      gt0003|Tumor 1 size at baseline: 3,mm
+      gt0004|Tumor 1 current size: 0,mm
+      gt0005|Tumor 2 size at baseline: 5,mm
+      gt0006|Tumor 2 current size: 0,mm
+      gt0007|Tumor 3 size at baseline: 45,mm
+      gt0008|Tumor 3 current size: 80,mm
+      gt0009|Tumor 4 size at baseline: 20,mm
+      gt0010|Tumor 4 current size: 10,mm
+      gt0011|Tumor 5 size at baseline: 10,mm
+      gt0012|Tumor 5 current size: 40,mm
+  expected_output:
+    1:
+      gt0014|Interpretation: Progressive disease
+      gt0024|Total size at baseline: 83,mm
+      gt0025|Total current size: 130,mm
+- id: Test Complete response
+  input:
+    1:
+      gt0003|Tumor 1 size at baseline: 3,mm
+      gt0004|Tumor 1 current size: 0,mm
+      gt0005|Tumor 2 size at baseline: 5,mm
+      gt0006|Tumor 2 current size: 0,mm
+  expected_output:
+    1:
+      gt0014|Interpretation: Complete response
+      gt0024|Total size at baseline: 8,mm
+      gt0025|Total current size: 0,mm

@@ -1,0 +1,92 @@
+guidelines:
+  1: Ideal_Body_Weight_Adjusted_Body_Weight.v0
+test_cases:
+- id: Default
+  input:
+    1: {}
+  expected_output:
+    1: {}
+
+- id: Calculate IBW for female, height [in]
+  input:
+    1:
+      gt0005|Height: 70,in
+      gt0011|Gender: local::at0006|Female|
+  expected_output:
+    1:
+      gt0007|Ideal Body Weight: 151,lb
+
+- id: Calculate IBW for female, height [cm]
+  input:
+    1:
+      gt0005|Height: 180,cm
+      gt0011|Gender: local::at0006|Female|
+  expected_output:
+    1:
+      gt0007|Ideal Body Weight: 70,kg
+
+- id: Calculate IBW for male, height [in]
+  input:
+    1:
+      gt0005|Height: 77,in
+      gt0011|Gender: local::at0005|Male|
+  expected_output:
+    1:
+      gt0007|Ideal Body Weight: 89,lb
+
+- id: Calculate IBW for male, height [cm]
+  input:
+    1:
+      gt0005|Height: 190,cm
+      gt0011|Gender: local::at0005|Male|
+  expected_output:
+    1:
+      gt0007|Ideal Body Weight: 84,kg
+
+- id: Adjusted body weight for male [kg] 
+  input:
+    1:
+      gt0003|Actual Body Weight: 99,kg
+      gt0005|Height: 177,cm
+      gt0011|Gender: local::at0005|Male|
+  expected_output:
+    1:
+      gt0007|Ideal Body Weight: 72,kg
+      gt0014|Adjusted Body Weight: 83,kg
+      gt0023|Actual body weight > IBW: 138,%
+
+- id: Adjusted body weight for male [lb]
+  input:
+    1:
+      gt0003|Actual Body Weight: 150,lb
+      gt0005|Height: 67,in
+      gt0011|Gender: local::at0005|Male|
+  expected_output:
+    1:
+      gt0007|Ideal Body Weight: 66,lb
+      gt0014|Adjusted Body Weight: 100,lb
+      gt0023|Actual body weight > IBW: 227,%
+
+- id: Adjusted body weight for femlae [kg]
+  input:
+    1:
+      gt0003|Actual Body Weight: 80,kg
+      gt0005|Height: 160,cm
+      gt0011|Gender: local::at0006|Female|
+  expected_output:
+    1:
+      gt0007|Ideal Body Weight: 52,kg
+      gt0014|Adjusted Body Weight: 63,kg
+      gt0023|Actual body weight > IBW: 154,%
+
+- id: Adjusted body weight for femlae [lb]
+  input:
+    1:
+      gt0003|Actual Body Weight: 100,lb
+      gt0005|Height: 50,in
+      gt0011|Gender: local::at0006|Female|
+  expected_output:
+    1:
+      gt0007|Ideal Body Weight: 50,lb
+      gt0014|Adjusted Body Weight: 70,lb
+      gt0023|Actual body weight > IBW: 200,%

@@ -1,0 +1,78 @@
+guidelines:
+  1: DAS28-ESR.v1
+test_cases:
+- id: TJC(0)-SJC(0)-PtGDA(0)-ESR(0)
+  input:
+    1:
+      gt0006|Tender joint count (TJC): 0
+      gt0007|Swollen joint count (SJC): 0
+      gt0009|PtGDA score: 0,mm
+      gt0011|Erythrocyte sedimentation rate (ESR): 0,mm/h
+  expected_output:
+    1:
+      gt0003|DAS28-ESR: -∞,1
+      gt0014|Disease activity: local::at0004|Remission|
+
+
+- id: TJC(1)-SJC(1)-PtGDA(1)-ESR(1)
+  input:
+    1:
+      gt0006|Tender joint count (TJC): 1
+      gt0007|Swollen joint count (SJC): 1
+      gt0009|PtGDA score: 1,mm
+      gt0011|Erythrocyte sedimentation rate (ESR): 1,mm/h
+  expected_output:
+    1:
+      gt0003|DAS28-ESR: 0.85,1
+      gt0014|Disease activity: local::at0004|Remission|
+
+- id: TJC(2)-SJC(2)-PtGDA(10)-ESR(10)
+  input:
+    1:
+      gt0006|Tender joint count (TJC): 2
+      gt0007|Swollen joint count (SJC): 2
+      gt0009|PtGDA score: 10,mm
+      gt0011|Erythrocyte sedimentation rate (ESR): 10,mm/h
+  expected_output:
+    1:
+      gt0003|DAS28-ESR: 2.94,1
+      gt0014|Disease activity: local::at0005|Low activity|
+
+
+- id: TJC(2)-SJC(2)-PtGDA(20)-ESR(20)
+  input:
+    1:
+      gt0006|Tender joint count (TJC): 2
+      gt0007|Swollen joint count (SJC): 2
+      gt0009|PtGDA score: 20,mm
+      gt0011|Erythrocyte sedimentation rate (ESR): 20,mm/h
+  expected_output:
+    1:
+      gt0003|DAS28-ESR: 3.56,1
+      gt0014|Disease activity: local::at0006|Moderate activity|
+
+
+- id: TJC(2)-SJC(2)-PtGDA(30)-ESR(30)
+  input:
+    1:
+      gt0006|Tender joint count (TJC): 2
+      gt0007|Swollen joint count (SJC): 2
+      gt0009|PtGDA score: 30,mm
+      gt0011|Erythrocyte sedimentation rate (ESR): 30,mm/h
+  expected_output:
+    1:
+      gt0003|DAS28-ESR: 3.99,1
+      gt0014|Disease activity: local::at0006|Moderate activity|
+
+
+- id: TJC(2)-SJC(2)-PtGDA(30)-ESR(40)
+  input:
+    1:
+      gt0006|Tender joint count (TJC): 2
+      gt0007|Swollen joint count (SJC): 2
+      gt0009|PtGDA score: 30,mm
+      gt0011|Erythrocyte sedimentation rate (ESR): 40,mm/h
+  expected_output:
+    1:
+      gt0003|DAS28-ESR: 4.19,1
+      gt0014|Disease activity: local::at0006|Moderate activity|

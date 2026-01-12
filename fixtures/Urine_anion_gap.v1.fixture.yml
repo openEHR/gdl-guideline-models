@@ -1,0 +1,35 @@
+guidelines:
+  1: Urine_anion_gap.v1
+test_cases:
+- id: Urine anion gap positive
+  input:
+    1:
+      gt0003|Urine sodium (Norm 100-260): 150,mmol/l
+      gt0005|Urine chloride (Norm 80-250): 90,mmol/l
+      gt0007|Urine potassium: 70,mmol/l
+  expected_output:
+    1:
+      gt0010|Comment: Urine anion gap positive. This suggests LOW urinary NH4+ and Renal Tubular Acidosis (RTA) if >10. 
+      gt0009|Urine anion gap: 130.0,mEq/l
+
+- id: Urine anion gap negative
+  input:
+    1:
+      gt0003|Urine sodium (Norm 100-260): 100,mmol/l
+      gt0005|Urine chloride (Norm 80-250): 190,mmol/l
+      gt0007|Urine potassium: 70,mmol/l
+  expected_output:
+    1:
+      gt0010|Comment: Urine anion gap negative. This suggests HIGH urinary NH4+ and possibly diarrheal cause if < -10.
+      gt0009|Urine anion gap: -20.0,mEq/l
+
+- id: Urine anion gap neutral
+  input:
+    1:
+      gt0003|Urine sodium (Norm 100-260): 100,mmol/l
+      gt0005|Urine chloride (Norm 80-250): 170,mmol/l
+      gt0007|Urine potassium: 70,mmol/l
+  expected_output:
+    1:
+      gt0010|Comment: Urine anion gap neutral.
+      gt0009|Urine anion gap: 0.0,mEq/l

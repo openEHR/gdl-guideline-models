@@ -1,0 +1,36 @@
+guidelines:
+  1: Modified_Mallampati_Classification.v1
+test_cases:
+- id: Class I
+  input:
+    1:
+      gt0003|Visualization: local::at0003|Faucial pillars, soft palate, and uvula visualized|
+  expected_output:
+    1:
+      gt0005|Modified Mallampati Classification: local::at0008|Class I|
+
+- id: Class II
+  input:
+    1:
+      gt0003|Visualization: local::at0004|Faucial pillars and soft palate visualized, but uvula masked by tongue base|
+  expected_output:
+    1:
+      gt0005|Modified Mallampati Classification: local::at0009|Class II|
+
+- id: Class III
+  input:
+    1:
+      gt0003|Visualization: local::at0005|Only soft palate visualized|
+  expected_output:
+    1:
+      gt0010|Comment:  Predicted difficult airway by Mallampati. Consider supportive strategies. 
+      gt0005|Modified Mallampati Classification: local::at0010|Class III|
+
+- id: Class IV
+  input:
+    1:
+      gt0003|Visualization: local::at0006|Soft palate not visualized|
+  expected_output:
+    1:
+      gt0010|Comment:  Predicted difficult airway by Mallampati. Consider supportive strategies. 
+      gt0005|Modified Mallampati Classification: local::at0011|Class IV|

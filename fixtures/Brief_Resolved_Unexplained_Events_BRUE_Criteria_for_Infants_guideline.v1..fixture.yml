@@ -1,0 +1,175 @@
+guidelines:
+  1: Brief_Resolved_Unexplained_Events_BRUE_Criteria_for_Infants_guideline.v1
+test_cases:
+- id: Entry criteria + Not BRUE Proceed with usual workup
+  input:
+    1:
+      gt0003|Infant < 1 year old: local::at0043|Yes|
+      gt0004|Asymptomatic on presentation: local::at0045|Yes|
+      gt0005|No explanation for the event after conducting history and physical: local::at0047|Yes|
+      gt0006|History of sudden, brief, and now resolved episode: local::at0049|Yes|
+      gt0007|Cyanosis or pallor: 0|local::at0023|No|
+      gt0008|Absent, decreased, or irregular breathing: 0|local::at0025|No|
+      gt0009|Marked change in tone: 0|local::at0027|No|
+      gt0010|Altered level of responsiveness: 0|local::at0029|No|
+      gt0014|Episode duration <1 minute: local::at0052|No|
+      gt0015|Age >2 months: local::at0054|No|
+      gt0016|No history of prematurity: local::at0056|No|
+      gt0017|No prior BRUE: local::at0058|No|
+      gt0018|No need for CPR by medical provider: local::at0060|No|
+  expected_output:
+    1:
+      gt0013|Diagnostic Result: Not BRUE Proceed with usual workup
+      gt0012|BRUE score: 0
+      gt0028|BRUE criteria: local::at0063|Not BRUE|
+- id: BRUE not lower risk Cyanosis +
+  input:
+    1:
+      gt0003|Infant < 1 year old: local::at0043|Yes|
+      gt0004|Asymptomatic on presentation: local::at0045|Yes|
+      gt0005|No explanation for the event after conducting history and physical: local::at0047|Yes|
+      gt0006|History of sudden, brief, and now resolved episode: local::at0049|Yes|
+      gt0007|Cyanosis or pallor: 1|local::at0024|Yes|
+      gt0008|Absent, decreased, or irregular breathing: 0|local::at0025|No|
+      gt0009|Marked change in tone: 0|local::at0027|No|
+      gt0010|Altered level of responsiveness: 0|local::at0029|No|
+      gt0014|Episode duration <1 minute: local::at0052|No|
+      gt0015|Age >2 months: local::at0054|No|
+      gt0016|No history of prematurity: local::at0056|No|
+      gt0017|No prior BRUE: local::at0058|No|
+      gt0018|No need for CPR by medical provider: local::at0060|No|
+  expected_output:
+    1:
+      gt0013|Diagnostic Result: BRUE not lower risk
+      gt0012|BRUE score: 1
+      gt0028|BRUE criteria: local::at0062|BRUE|
+- id: BRUE not lower risk all BRUE criteria +
+  input:
+    1:
+      gt0003|Infant < 1 year old: local::at0043|Yes|
+      gt0004|Asymptomatic on presentation: local::at0045|Yes|
+      gt0005|No explanation for the event after conducting history and physical: local::at0047|Yes|
+      gt0006|History of sudden, brief, and now resolved episode: local::at0049|Yes|
+      gt0007|Cyanosis or pallor: 1|local::at0024|Yes|
+      gt0008|Absent, decreased, or irregular breathing: 1|local::at0026|Yes|
+      gt0009|Marked change in tone: 1|local::at0028|Yes|
+      gt0010|Altered level of responsiveness: 1|local::at0030|Yes|
+      gt0014|Episode duration <1 minute: local::at0052|No|
+      gt0015|Age >2 months: local::at0054|No|
+      gt0016|No history of prematurity: local::at0056|No|
+      gt0017|No prior BRUE: local::at0058|No|
+      gt0018|No need for CPR by medical provider: local::at0060|No|
+  expected_output:
+    1:
+      gt0013|Diagnostic Result: BRUE not lower risk
+      gt0012|BRUE score: 4
+      gt0028|BRUE criteria: local::at0062|BRUE|
+- id: BRUE not lower risk with 1 lower risk BRUE criteria
+  input:
+    1:
+      gt0003|Infant < 1 year old: local::at0043|Yes|
+      gt0004|Asymptomatic on presentation: local::at0045|Yes|
+      gt0005|No explanation for the event after conducting history and physical: local::at0047|Yes|
+      gt0006|History of sudden, brief, and now resolved episode: local::at0049|Yes|
+      gt0007|Cyanosis or pallor: 1|local::at0024|Yes|
+      gt0008|Absent, decreased, or irregular breathing: 1|local::at0026|Yes|
+      gt0009|Marked change in tone: 1|local::at0028|Yes|
+      gt0010|Altered level of responsiveness: 1|local::at0030|Yes|
+      gt0014|Episode duration <1 minute: local::at0051|Yes|
+      gt0015|Age >2 months: local::at0054|No|
+      gt0016|No history of prematurity: local::at0056|No|
+      gt0017|No prior BRUE: local::at0058|No|
+      gt0018|No need for CPR by medical provider: local::at0060|No|
+  expected_output:
+    1:
+      gt0013|Diagnostic Result: BRUE not lower risk
+      gt0012|BRUE score: 4
+      gt0028|BRUE criteria: local::at0062|BRUE|
+- id: BRUE not lower risk with 2 Lower risk BRUE criteria
+  input:
+    1:
+      gt0003|Infant < 1 year old: local::at0043|Yes|
+      gt0004|Asymptomatic on presentation: local::at0045|Yes|
+      gt0005|No explanation for the event after conducting history and physical: local::at0047|Yes|
+      gt0006|History of sudden, brief, and now resolved episode: local::at0049|Yes|
+      gt0007|Cyanosis or pallor: 1|local::at0024|Yes|
+      gt0008|Absent, decreased, or irregular breathing: 1|local::at0026|Yes|
+      gt0009|Marked change in tone: 1|local::at0028|Yes|
+      gt0010|Altered level of responsiveness: 1|local::at0030|Yes|
+      gt0014|Episode duration <1 minute: local::at0051|Yes|
+      gt0015|Age >2 months: local::at0053|Yes|
+      gt0016|No history of prematurity: local::at0056|No|
+      gt0017|No prior BRUE: local::at0058|No|
+      gt0018|No need for CPR by medical provider: local::at0060|No|
+  expected_output:
+    1:
+      gt0013|Diagnostic Result: BRUE not lower risk
+      gt0012|BRUE score: 4
+      gt0028|BRUE criteria: local::at0062|BRUE|
+- id: BRUE not lower risk with 3 Lower risk BRUE criteria
+  input:
+    1:
+      gt0003|Infant < 1 year old: local::at0043|Yes|
+      gt0004|Asymptomatic on presentation: local::at0045|Yes|
+      gt0005|No explanation for the event after conducting history and physical: local::at0047|Yes|
+      gt0006|History of sudden, brief, and now resolved episode: local::at0049|Yes|
+      gt0007|Cyanosis or pallor: 1|local::at0024|Yes|
+      gt0008|Absent, decreased, or irregular breathing: 1|local::at0026|Yes|
+      gt0009|Marked change in tone: 1|local::at0028|Yes|
+      gt0010|Altered level of responsiveness: 1|local::at0030|Yes|
+      gt0014|Episode duration <1 minute: local::at0051|Yes|
+      gt0015|Age >2 months: local::at0053|Yes|
+      gt0016|No history of prematurity: local::at0055|Yes|
+      gt0017|No prior BRUE: local::at0058|No|
+      gt0018|No need for CPR by medical provider: local::at0060|No|
+  expected_output:
+    1:
+      gt0013|Diagnostic Result: BRUE not lower risk
+      gt0012|BRUE score: 4
+      gt0028|BRUE criteria: local::at0062|BRUE|
+- id: BRUE not lower risk with 4 Lower risk BRUE criteria
+  input:
+    1:
+      gt0003|Infant < 1 year old: local::at0043|Yes|
+      gt0004|Asymptomatic on presentation: local::at0045|Yes|
+      gt0005|No explanation for the event after conducting history and physical: local::at0047|Yes|
+      gt0006|History of sudden, brief, and now resolved episode: local::at0049|Yes|
+      gt0007|Cyanosis or pallor: 1|local::at0024|Yes|
+      gt0008|Absent, decreased, or irregular breathing: 1|local::at0026|Yes|
+      gt0009|Marked change in tone: 1|local::at0028|Yes|
+      gt0010|Altered level of responsiveness: 1|local::at0030|Yes|
+      gt0014|Episode duration <1 minute: local::at0051|Yes|
+      gt0015|Age >2 months: local::at0053|Yes|
+      gt0016|No history of prematurity: local::at0055|Yes|
+      gt0017|No prior BRUE: local::at0057|Yes|
+      gt0018|No need for CPR by medical provider: local::at0060|No|
+  expected_output:
+    1:
+      gt0013|Diagnostic Result: BRUE not lower risk
+      gt0012|BRUE score: 4
+      gt0028|BRUE criteria: local::at0062|BRUE|
+- id: BRUE Lower risk
+  input:
+    1:
+      gt0003|Infant < 1 year old: local::at0043|Yes|
+      gt0004|Asymptomatic on presentation: local::at0045|Yes|
+      gt0005|No explanation for the event after conducting history and physical: local::at0047|Yes|
+      gt0006|History of sudden, brief, and now resolved episode: local::at0049|Yes|
+      gt0007|Cyanosis or pallor: 1|local::at0024|Yes|
+      gt0008|Absent, decreased, or irregular breathing: 1|local::at0026|Yes|
+      gt0009|Marked change in tone: 1|local::at0028|Yes|
+      gt0010|Altered level of responsiveness: 1|local::at0030|Yes|
+      gt0014|Episode duration <1 minute: local::at0051|Yes|
+      gt0015|Age >2 months: local::at0053|Yes|
+      gt0016|No history of prematurity: local::at0055|Yes|
+      gt0017|No prior BRUE: local::at0057|Yes|
+      gt0018|No need for CPR by medical provider: local::at0059|Yes|
+  expected_output:
+    1:
+      gt0013|Diagnostic Result: BRUE Lower risk. Assess social risk factors to detect child abuse. Should not admit for monitoring or do laboratory workup.
+      gt0012|BRUE score: 4
+      gt0023|Recommendations should do: Assess social risk factors to detect child abuse (L=C- S= M). Offer CPR training resources (L= C- S=M). Educate about BRUEs (L=C- S=M). Use shared decision-making (L=C- S=M).
+      gt0028|BRUE criteria: local::at0062|BRUE|
+      gt0025|Recommendations may do: Briefly monitor with pulse oximetry and serial observation (L=D -S= W). 12-lead EKG (L=C- S= W). Pertussis testing (L=B- S=W).
+      gt0026|Recommendations Not needed: Admission solely for cardiorespiratory monitoring (L=B- S=W). Neuroimaging (CT MRI or ultrasonography) to detect child abuse (L=C - S=W). Urinalysis (bag or catheter) (L=C - S=W). Respiratory viral testing (L=C-S=W). Serum lactic acid or bicarbonate (L=C-S=W). Blood glucose (L=C- S=M).
+      gt0024|Recommendations should NOT do:  Chest x-ray(L=B- S=M). BG or ABG (L=B- S=M). Overnight sleep study (L=B- S=M). Echo (L=C- S=M). Home cardiorespiratory monitoring (L=B- S=M). Neuroimaging (CT- MRI- or ultrasonography) to detect neurologic disorders (L=C- S=M). EEG to detect neurologic disorders (L=C- S=M).  Antiepileptic medication (L=C-S=M). WBC count, blood culture or CSF analysis or culture to detect occult bacterial infection (L=B-S=S). 

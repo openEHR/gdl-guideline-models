@@ -1,0 +1,79 @@
+guidelines:
+  1: cambridge_diabetes_risk_score.v1
+test_cases:
+- id: Warning Age too high
+  input:
+    1:
+      gt0003|Gender|: local::at0005|Male|
+      gt0004|Age|: 121,a
+      gt0006|Family history|: local::at0030|Parent or sibling with diabetes|
+      gt0007|Prescribed antihypertensive medication|: 0|local::at0007|No|
+      gt0008|Prescribed steroids |: 0|local::at0037|No|
+      gt0009|Smoking history|: local::at0034|Ex-smoker|
+      gt0048|Body Mass Index|: 26
+  expected_output:
+    1:
+      gt0023|BMI constant|: 0.699,1
+      gt0029|Smoking history constant|: -0.218,1
+      gt0030|Family history constant|: 0.728,1
+      gt0046|Gender constant|: 0,1
+      gt0042|Warning Age|: 'Too high; please change to proceed.'
+
+- id: Warning Age too low
+  input:
+    1:
+      gt0003|Gender|: local::at0006|Female|
+      gt0004|Age|: 0,a
+      gt0006|Family history|: local::at0029|No diabetic 1st-degree relative|
+      gt0007|Prescribed antihypertensive medication|: 0|local::at0007|No|
+      gt0008|Prescribed steroids |: 0|local::at0037|No|
+      gt0009|Smoking history|: local::at0033|Non-smoker|
+      gt0048|Body Mass Index|: 28
+  expected_output:
+    1:
+      gt0023|BMI constant: 1.97,1
+      gt0029|Smoking history constant|: 0,1
+      gt0030|Family history constant|: 0,1
+      gt0046|Gender constant|: -0.879,1
+      gt0042|Warning Age|: 'Too low; please change to proceed.'
+
+- id: Warning Age Very high
+  input:
+    1:
+      gt0003|Gender|: local::at0005|Male|
+      gt0004|Age|: 110,a
+      gt0006|Family history|: local::at0029|No diabetic 1st-degree relative|
+      gt0007|Prescribed antihypertensive medication|: 0|local::at0007|No|
+      gt0008|Prescribed steroids |: 0|local::at0037|No|
+      gt0009|Smoking history|: local::at0033|Non-smoker|
+      gt0048|Body Mass Index|: 24
+  expected_output:
+    1:
+      gt0022|Probability of T2DM in previously undiagnosed patient|: 64.7,%
+      gt0023|BMI constant: 0,1
+      gt0029|Smoking history constant|: 0,1
+      gt0030|Family history constant|: 0,1
+      gt0038|Exponential expression|: -0.608,1
+      gt0046|Gender constant|: 0,1
+      gt0013|Comment|: 'Risk scores >11% are 85% sensitive for identifying diabetes (HgbA1c ≥7.0%)'
+      gt0042|Warning Age|: 'Very high; double-check.'
+
+- id: Set Probability of T2DM in previously undiagnosed patient > 99%
+  input:
+    1:
+      gt0003|Gender|: local::at0005|Male|
+      gt0004|Age|: 60,a
+      gt0006|Family history|: local::at0031|Parent and sibling with diabetes|
+      gt0007|Prescribed antihypertensive medication|: 1|local::at0008|Yes|
+      gt0008|Prescribed steroids |: 1|local::at0038|Yes|
+      gt0009|Smoking history|: local::at0035|Current smoker|
+      gt0048|Body Mass Index|: 31
+  expected_output:
+    1:
+      gt0022|Probability of T2DM in previously undiagnosed patient|: 99.3,%
+      gt0023|BMI constant: 2.518,1
+      gt0029|Smoking history constant|: 0.855,1
+      gt0030|Family history constant|: 0.753,1
+      gt0038|Exponential expression|: -4.997,1
+      gt0046|Gender constant|: 0,1
+      gt0013|Comment|: 'Risk scores >11% are 85% sensitive for identifying diabetes (HgbA1c ≥7.0%)'

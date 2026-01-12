@@ -1,0 +1,33 @@
+guidelines:
+  1: DLCO.v1
+test_cases:
+- id: Corrected DLCO female
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Age: 40,a
+      gt0006|Hemoglobin: 30,gm/dl
+      gt0008|Predicted DLCO: 23,mL CO/min/mmHg
+  expected_output:
+    1:
+      gt0010|Predicted DLCO adjusted for hemoglobin: 9.97,mmol/min/kPa
+- id: Corrected DLCO male
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Age: 40,a
+      gt0006|Hemoglobin: 30,gm/dl
+      gt0008|Predicted DLCO: 23,mmol/min/kPa
+  expected_output:
+    1:
+      gt0010|Predicted DLCO adjusted for hemoglobin: 29.16,mmol/min/kPa
+- id: Corrected DLCO children
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Age: 14,a
+      gt0006|Hemoglobin: 30,gm/dl
+      gt0008|Predicted DLCO: 23,mmol/min/kPa
+  expected_output:
+    1:
+      gt0010|Predicted DLCO adjusted for hemoglobin: 29.79,mmol/min/kPa

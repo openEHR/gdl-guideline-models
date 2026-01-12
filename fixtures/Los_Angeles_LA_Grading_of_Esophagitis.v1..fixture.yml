@@ -1,0 +1,38 @@
+guidelines:
+  1: Los_Angeles_LA_Grading_of_Esophagitis.v1
+test_cases:
+- id: Grade A
+  input:
+    1:
+      gt0003|Endoscopic findings: local::at0004|Mucosal break(s) ≤5 mm, without continuity across mucosal folds|
+  expected_output:
+    1:
+      gt0006|Grade: local::at0012|A|
+      gt0005|Severity: local::at0009|Mild reflux esophagitis|
+
+- id: Grade B
+  input:
+    1:
+      gt0003|Endoscopic findings: local::at0005|Mucosal break(s) >5 mm, without continuity across mucosal folds|
+  expected_output:
+    1:
+      gt0006|Grade: local::at0013|B|
+      gt0005|Severity: local::at0009|Mild reflux esophagitis|
+
+- id: Grade C
+  input:
+    1:
+      gt0003|Endoscopic findings: local::at0006|Mucosal break(s) continuous between ≥2 mucosal folds, involving <75% of the esophageal circumference|
+  expected_output:
+    1:
+      gt0006|Grade: local::at0014|C|
+      gt0005|Severity: local::at0010|Severe reflux esophagitis|
+
+- id: Grade D
+  input:
+    1:
+      gt0003|Endoscopic findings: local::at0007|Mucosal break(s) involving ≥75% of the esophageal circumference|
+  expected_output:
+    1:
+      gt0006|Grade: local::at0015|D|
+      gt0005|Severity: local::at0010|Severe reflux esophagitis|

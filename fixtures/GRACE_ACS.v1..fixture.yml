@@ -1,0 +1,232 @@
+guidelines:
+  1: GRACE_ACS.v1
+test_cases:
+- id: Old age, prehypertension, high pulse, ST elevation
+  input:
+    1:
+      gt0003|Birthdate: 1944-03-20T07:16Z
+      gt0005|Systolic: 131,mm[Hg]
+      gt0016|Cardiac Arrest at admission: 0|local::at0044|No|
+      gt0017|ST segment Deviation on EKG: 28|local::at0047|Yes|
+      gt0018|Elevated/Abnormal Cardiac Enzymes: 14|local::at0049|Yes|
+      gt0032|Killip Class score: 20|local::at0051|Class 2|
+      gt0010|Heart Rate: 99,/min
+      gt0038|Creatinine: 2,mg/dl
+  expected_output:
+    1:
+      gt0020|Age: 75,a
+      gt0022|Age score: 75|local::at0019|70-79 years|
+      gt0023|Heart Rate score: 15|local::at0025|90-109 bpm|
+      gt0024|Systolic Blood Pressure score: 34|local::at0032|120-139 mmHg|
+      gt0030|Total score: 207
+      gt0025|Creatinine score: 21|local::at0042|2.0-3.99 mg/dL|
+- id: Young with normal values
+  input:
+    1:
+      gt0003|Birthdate: 1991-04-01T10:19Z
+      gt0005|Systolic: 110,mm[Hg]
+      gt0016|Cardiac Arrest at admission: 0|local::at0044|No|
+      gt0017|ST segment Deviation on EKG: 0|local::at0046|No|
+      gt0018|Elevated/Abnormal Cardiac Enzymes: 0|local::at0048|No|
+      gt0032|Killip Class score: 0|local::at0050|Class 1|
+      gt0010|Heart Rate: 71,/min
+      gt0038|Creatinine: 0.3,mg/dl
+  expected_output:
+    1:
+      gt0020|Age: 28,a
+      gt0022|Age score: 0|local::at0014|≤ 30 years|
+      gt0023|Heart Rate score: 9|local::at0024|70-89 bpm|
+      gt0024|Systolic Blood Pressure score: 43|local::at0033|100-119 mmHg|
+      gt0030|Total score: 53
+      gt0025|Creatinine score: 1|local::at0037|0-0.39 mg/dL|
+- id: Killip 1 higher creatinine and HR BP older
+  input:
+    1:
+      gt0003|Birthdate: 1981-04-01T10:19Z
+      gt0005|Systolic: 120,mm[Hg]
+      gt0016|Cardiac Arrest at admission: 0|local::at0044|No|
+      gt0017|ST segment Deviation on EKG: 0|local::at0046|No|
+      gt0018|Elevated/Abnormal Cardiac Enzymes: 0|local::at0048|No|
+      gt0032|Killip Class score: 1|local::at0050|Class 1|
+      gt0010|Heart Rate: 91,/min
+      gt0038|Creatinine: 0.4,mg/dl
+  expected_output:
+    1:
+      gt0020|Age: 38,a
+      gt0022|Age score: 8|local::at0015|30-39 years|
+      gt0023|Heart Rate score: 15|local::at0025|90-109 bpm|
+      gt0024|Systolic Blood Pressure score: 34|local::at0032|120-139 mmHg|
+      gt0030|Total score: 62
+      gt0025|Creatinine score: 4|local::at0038|0.4-0.79 mg/dL|
+- id: Same but age in 40s
+  input:
+    1:
+      gt0003|Birthdate: 1971-04-01T10:19Z
+      gt0005|Systolic: 120,mm[Hg]
+      gt0016|Cardiac Arrest at admission: 0|local::at0044|No|
+      gt0017|ST segment Deviation on EKG: 0|local::at0046|No|
+      gt0018|Elevated/Abnormal Cardiac Enzymes: 0|local::at0048|No|
+      gt0032|Killip Class score: 1|local::at0050|Class 1|
+      gt0010|Heart Rate: 91,/min
+      gt0038|Creatinine: 0.4,mg/dl
+  expected_output:
+    1:
+      gt0020|Age: 48,a
+      gt0022|Age score: 25|local::at0016|40-49 years|
+      gt0023|Heart Rate score: 15|local::at0025|90-109 bpm|
+      gt0024|Systolic Blood Pressure score: 34|local::at0032|120-139 mmHg|
+      gt0030|Total score: 79
+      gt0025|Creatinine score: 4|local::at0038|0.4-0.79 mg/dL|
+- id: Same but age in 50s
+  input:
+    1:
+      gt0003|Birthdate: 1961-04-01T10:19Z
+      gt0005|Systolic: 120,mm[Hg]
+      gt0016|Cardiac Arrest at admission: 0|local::at0044|No|
+      gt0017|ST segment Deviation on EKG: 0|local::at0046|No|
+      gt0018|Elevated/Abnormal Cardiac Enzymes: 0|local::at0048|No|
+      gt0032|Killip Class score: 1|local::at0050|Class 1|
+      gt0010|Heart Rate: 91,/min
+      gt0038|Creatinine: 0.4,mg/dl
+  expected_output:
+    1:
+      gt0020|Age: 58,a
+      gt0022|Age score: 41|local::at0017|50-59 years|
+      gt0023|Heart Rate score: 15|local::at0025|90-109 bpm|
+      gt0024|Systolic Blood Pressure score: 34|local::at0032|120-139 mmHg|
+      gt0030|Total score: 95
+      gt0025|Creatinine score: 4|local::at0038|0.4-0.79 mg/dL|
+- id: 60s higher creatinine
+  input:
+    1:
+      gt0003|Birthdate: 1951-04-01T10:19Z
+      gt0005|Systolic: 120,mm[Hg]
+      gt0016|Cardiac Arrest at admission: 0|local::at0044|No|
+      gt0017|ST segment Deviation on EKG: 0|local::at0046|No|
+      gt0018|Elevated/Abnormal Cardiac Enzymes: 0|local::at0048|No|
+      gt0032|Killip Class score: 1|local::at0050|Class 1|
+      gt0010|Heart Rate: 91,/min
+      gt0038|Creatinine: 0.8,mg/dl
+  expected_output:
+    1:
+      gt0020|Age: 68,a
+      gt0022|Age score: 58|local::at0018|60-69 years|
+      gt0023|Heart Rate score: 15|local::at0025|90-109 bpm|
+      gt0024|Systolic Blood Pressure score: 34|local::at0032|120-139 mmHg|
+      gt0030|Total score: 115
+      gt0025|Creatinine score: 7|local::at0039|0.8-1.19 mg/dL|
+- id: 70s even higher creatinine higher pulse
+  input:
+    1:
+      gt0003|Birthdate: 1941-04-01T10:19Z
+      gt0005|Systolic: 120,mm[Hg]
+      gt0016|Cardiac Arrest at admission: 0|local::at0044|No|
+      gt0017|ST segment Deviation on EKG: 0|local::at0046|No|
+      gt0018|Elevated/Abnormal Cardiac Enzymes: 0|local::at0048|No|
+      gt0032|Killip Class score: 1|local::at0050|Class 1|
+      gt0010|Heart Rate: 111,/min
+      gt0038|Creatinine: 1.2,mg/dl
+  expected_output:
+    1:
+      gt0020|Age: 78,a
+      gt0022|Age score: 75|local::at0019|70-79 years|
+      gt0023|Heart Rate score: 24|local::at0026|110-149 bpm|
+      gt0024|Systolic Blood Pressure score: 34|local::at0032|120-139 mmHg|
+      gt0030|Total score: 144
+      gt0025|Creatinine score: 10|local::at0040|1.20-1.59 mg/dL|
+
+- id: 80s even higher creatinine higher pulse
+  input:
+    1:
+      gt0003|Birthdate: 1931-04-01T10:19Z
+      gt0005|Systolic: 120,mm[Hg]
+      gt0016|Cardiac Arrest at admission: 0|local::at0044|No|
+      gt0017|ST segment Deviation on EKG: 0|local::at0046|No|
+      gt0018|Elevated/Abnormal Cardiac Enzymes: 0|local::at0048|No|
+      gt0032|Killip Class score: 1|local::at0050|Class 1|
+      gt0010|Heart Rate: 151,/min
+      gt0038|Creatinine: 1.6,mg/dl
+  expected_output:
+    1:
+      gt0020|Age: 88,a
+      gt0022|Age score: 91|local::at0020|80-89 years|
+      gt0023|Heart Rate score: 38|local::at0027|150-199 bpm|
+      gt0024|Systolic Blood Pressure score: 34|local::at0032|120-139 mmHg|
+      gt0030|Total score: 177
+      gt0025|Creatinine score: 13|local::at0041|1.60-1.99 mg/dL|
+- id: 90s even higher creatinine higher pulse
+  input:
+    1:
+      gt0003|Birthdate: 1921-04-01T10:19Z
+      gt0005|Systolic: 120,mm[Hg]
+      gt0016|Cardiac Arrest at admission: 0|local::at0044|No|
+      gt0017|ST segment Deviation on EKG: 0|local::at0046|No|
+      gt0018|Elevated/Abnormal Cardiac Enzymes: 0|local::at0048|No|
+      gt0032|Killip Class score: 1|local::at0050|Class 1|
+      gt0010|Heart Rate: 201,/min
+      gt0038|Creatinine: 2.0,mg/dl
+  expected_output:
+    1:
+      gt0020|Age: 98,a
+      gt0022|Age score: 100|local::at0021|≥ 90 years|
+      gt0023|Heart Rate score: 46|local::at0028|≥ 200 bpm|
+      gt0024|Systolic Blood Pressure score: 34|local::at0032|120-139 mmHg|
+      gt0030|Total score: 202
+      gt0025|Creatinine score: 21|local::at0042|2.0-3.99 mg/dL|
+- id: High creatinine
+  input:
+    1:
+      gt0003|Birthdate: 1921-04-01T10:19Z
+      gt0005|Systolic: 120,mm[Hg]
+      gt0016|Cardiac Arrest at admission: 0|local::at0044|No|
+      gt0017|ST segment Deviation on EKG: 0|local::at0046|No|
+      gt0018|Elevated/Abnormal Cardiac Enzymes: 0|local::at0048|No|
+      gt0032|Killip Class score: 1|local::at0050|Class 1|
+      gt0010|Heart Rate: 201,/min
+      gt0038|Creatinine: 4.0,mg/dl
+  expected_output:
+    1:
+      gt0020|Age: 98,a
+      gt0022|Age score: 100|local::at0021|≥ 90 years|
+      gt0023|Heart Rate score: 46|local::at0028|≥ 200 bpm|
+      gt0024|Systolic Blood Pressure score: 34|local::at0032|120-139 mmHg|
+      gt0030|Total score: 209
+      gt0025|Creatinine score: 28|local::at0043|> 4.0 mg/dL|
+- id: Low pulse ST cardiac arrest trop
+  input:
+    1:
+      gt0003|Birthdate: 1991-04-01T10:19Z
+      gt0005|Systolic: 99,mm[Hg]
+      gt0016|Cardiac Arrest at admission: 39|local::at0045|Yes|
+      gt0017|ST segment Deviation on EKG: 28|local::at0047|Yes|
+      gt0018|Elevated/Abnormal Cardiac Enzymes: 14|local::at0049|Yes|
+      gt0032|Killip Class score: 20|local::at0051|Class 2|
+      gt0010|Heart Rate: 69,/min
+      gt0038|Creatinine: 3,mg/dl
+  expected_output:
+    1:
+      gt0020|Age: 28,a
+      gt0022|Age score: 0|local::at0014|≤ 30 years|
+      gt0023|Heart Rate score: 3|local::at0023|50-69 bpm|
+      gt0024|Systolic Blood Pressure score: 53|local::at0034|80-99 mmHg|
+      gt0030|Total score: 178
+      gt0025|Creatinine score: 21|local::at0042|2.0-3.99 mg/dL|
+- id: lower bp
+  input:
+    1:
+      gt0003|Birthdate: 1991-04-01T10:19Z
+      gt0005|Systolic: 79,mm[Hg]
+      gt0016|Cardiac Arrest at admission: 39|local::at0045|Yes|
+      gt0017|ST segment Deviation on EKG: 28|local::at0047|Yes|
+      gt0018|Elevated/Abnormal Cardiac Enzymes: 14|local::at0049|Yes|
+      gt0032|Killip Class score: 20|local::at0051|Class 2|
+      gt0010|Heart Rate: 50,/min
+      gt0038|Creatinine: 3,mg/dl
+  expected_output:
+    1:
+      gt0020|Age: 28,a
+      gt0022|Age score: 0|local::at0014|≤ 30 years|
+      gt0023|Heart Rate score: 3|local::at0023|50-69 bpm|
+      gt0024|Systolic Blood Pressure score: 58|local::at0035|≤ 80 mmHg|
+      gt0030|Total score: 183
+      gt0025|Creatinine score: 21|local::at0042|2.0-3.99 mg/dL|

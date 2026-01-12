@@ -1,1 +1,154 @@
-{"authors":[{"name":"Konstantinos Kalliamvakos","email":"konstantinos.kalliamvakos@cambio.se"}],"updated":"2025-03-05T21:29:13+01:00","name":"BMI form tutorial","description":"","id":"bmi_form_tutorial","version":"1.0.0","format":"CambioForm.v1.1","templates":[{"alias":"T0","id":"bmi_template_tutorial","version":"1.0.0","type":"openEhrOpt14Template"}],"locale":"en","guidelines":[{"condition":"T0_weight && T0_$time_2 && T0_height_length && T0_$time_4","execution":[{"id":"BMI","version":"1"}]}],"elements":[{"type":"form","children":[{"type":"container","children":[{"type":"row","children":[{"type":"column","spanlarge":12,"spanmedium":8,"spansmall":4,"children":[{"type":"input-quantity","name":"T0_weight","unitoptions":[{"unit":"kg","min":0,"max":1000,"minexclusive":false,"maxexclusive":false}],"required":true},{"type":"input-datetime","name":"T0_$time_2","required":true},{"type":"input-quantity","name":"T0_height_length","unitoptions":[{"unit":"cm","min":0,"max":1000,"minexclusive":false,"maxexclusive":false}],"required":true},{"type":"input-datetime","name":"T0_$time_4","required":true},{"type":"input-quantity","name":"T0_body_mass_index","unitoptions":[{"unit":"kg/m2","min":0,"max":1000,"minexclusive":false,"maxexclusive":true,"precision":1}],"required":false,"readonly":true}]}]},{"type":"inline","justifycontent":"end","children":[{"type":"reset-button","id":"reset_button","quiet":true},{"type":"submit-button","justify":"end","id":"submit_button"}]}]}]}],"locales":{"en":{"#reset_button":{"label":"Reset"},"#submit_button":{"label":"Submit"},"[name='T0_weight']":{"label":"Weight"},"[name='T0_height_length']":{"label":"Height"},"[name='T0_body_mass_index']":{"label":"Body mass index"},"[name='T0_$time_2']":{"label":"Weight date/time"},"[name='T0_$time_4']":{"label":"Height date/time"}}}}
+{
+  "authors": [
+    {
+      "name": "Konstantinos Kalliamvakos",
+      "email": "konstantinos.kalliamvakos@cambio.se"
+    }
+  ],
+  "updated": "2025-03-05T21:57:09+01:00",
+  "name": "BMI form tutorial",
+  "description": "",
+  "id": "bmi_form_tutorial",
+  "version": "1.0.0",
+  "format": "CambioForm.v1.1",
+  "templates": [
+    {
+      "alias": "T0",
+      "id": "bmi_template_tutorial",
+      "version": "1.0.0",
+      "type": "openEhrOpt14Template"
+    }
+  ],
+  "locale": "en",
+  "guidelines": [
+    {
+      "condition": "T0_weight && T0_$time_2 && T0_height_length && T0_$time_4",
+      "execution": [
+        {
+          "id": "bmi_calculation_tutorial",
+          "version": "1.0.1"
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "type": "form",
+      "children": [
+        {
+          "type": "container",
+          "children": [
+            {
+              "type": "row",
+              "children": [
+                {
+                  "type": "column",
+                  "spanlarge": 12,
+                  "spanmedium": 8,
+                  "spansmall": 4,
+                  "children": [
+                    {
+                      "type": "input-quantity",
+                      "name": "T0_weight",
+                      "unitoptions": [
+                        {
+                          "unit": "kg",
+                          "min": 0,
+                          "max": 1000,
+                          "minexclusive": false,
+                          "maxexclusive": false
+                        }
+                      ],
+                      "required": true
+                    },
+                    {
+                      "type": "input-datetime",
+                      "name": "T0_$time_2",
+                      "required": true
+                    },
+                    {
+                      "type": "input-quantity",
+                      "name": "T0_height_length",
+                      "unitoptions": [
+                        {
+                          "unit": "cm",
+                          "min": 0,
+                          "max": 1000,
+                          "minexclusive": false,
+                          "maxexclusive": false
+                        }
+                      ],
+                      "required": true
+                    },
+                    {
+                      "type": "input-datetime",
+                      "name": "T0_$time_4",
+                      "required": true
+                    },
+                    {
+                      "type": "input-quantity",
+                      "name": "T0_body_mass_index",
+                      "unitoptions": [
+                        {
+                          "unit": "kg/m2",
+                          "min": 0,
+                          "max": 1000,
+                          "minexclusive": false,
+                          "maxexclusive": true,
+                          "precision": 1
+                        }
+                      ],
+                      "required": false,
+                      "readonly": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "inline",
+              "justifycontent": "end",
+              "children": [
+                {
+                  "type": "reset-button",
+                  "id": "reset_button",
+                  "quiet": true
+                },
+                {
+                  "type": "submit-button",
+                  "justify": "end",
+                  "id": "submit_button"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "locales": {
+    "en": {
+      "#reset_button": {
+        "label": "Reset"
+      },
+      "#submit_button": {
+        "label": "Submit"
+      },
+      "[name='T0_weight']": {
+        "label": "Weight"
+      },
+      "[name='T0_height_length']": {
+        "label": "Height"
+      },
+      "[name='T0_body_mass_index']": {
+        "label": "Body mass index"
+      },
+      "[name='T0_$time_2']": {
+        "label": "Weight date/time"
+      },
+      "[name='T0_$time_4']": {
+        "label": "Height date/time"
+      }
+    }
+  }
+}

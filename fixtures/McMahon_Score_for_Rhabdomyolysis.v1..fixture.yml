@@ -1,0 +1,91 @@
+guidelines:
+  1: McMahon_Score_for_Rhabdomyolysis.v1
+test_cases:
+- id: Rhabdomyolysis Risk Score = 0
+  input:
+    1:
+      gt0003|Rhabdo secondary to seizures, syncope, exercise, statins, or myositis: 0|local::at0017|Yes|
+      gt0033|Sex: 0|local::at0008|Male|
+      gt0016|Age: 40,a
+      gt0007|Initial creatinine: 1,mg/dl
+      gt0009|Initial calcium: 8,mg/dl
+      gt0011|Initial phosphate: 3,mg/dl
+      gt0013|Initial bicarbonate: 20,mEq/l
+      gt0015|Initial CPK: 35000,U/l
+  expected_output:
+    1:
+      gt0023|Initial bicarbonate <19 mEq/L (19 mmol/L): 0|local::at0024|No|
+      gt0021|Initial CPK >40,000 U/L: 0|local::at0014|No|
+      gt0022|Initial phosphate: 0|local::at0020|<4.0 mg/dL (1.0 mmol/L)|
+      gt0020|Initial calcium <7.5 mg/dL (1.88 mmol/L): 0|local::at0011|No|
+      gt0018|Age, years: 0|local::at0003|≤50|
+      gt0035|Initial creatinine: 0|local::at0034|<1.4 mg/dL (124 µmol/L)|
+      gt0026|Recommendation: local::at0031|Usual care (3% risk of death or AKI requiring RRT)|
+      gt0024|Rhabdomyolysis Risk Score: 0.0,1
+      gt0025|Risk group: local::at0028|Low risk|
+- id: Low risk group
+  input:
+    1:
+      gt0003|Rhabdo secondary to seizures, syncope, exercise, statins, or myositis: 0|local::at0017|Yes|
+      gt0033|Sex: 0|local::at0008|Male|
+      gt0016|Age: 55,a
+      gt0007|Initial creatinine: 150,umol/l
+      gt0009|Initial calcium: 2,mmol/l
+      gt0011|Initial phosphate: 1.2,mmol/l
+      gt0013|Initial bicarbonate: 20,mmol/l
+      gt0015|Initial CPK: 35000,U/l
+  expected_output:
+    1:
+      gt0023|Initial bicarbonate <19 mEq/L (19 mmol/L): 0|local::at0024|No|
+      gt0021|Initial CPK >40,000 U/L: 0|local::at0014|No|
+      gt0022|Initial phosphate: 1|local::at0021|4.0–5.4 mg/dL (1.0-1.4 mmol/L)|
+      gt0020|Initial calcium <7.5 mg/dL (1.88 mmol/L): 0|local::at0011|No|
+      gt0018|Age, years: 1|local::at0004|51-70 |
+      gt0035|Initial creatinine: 1|local::at0035|1.4–2.2 mg/dL (124–195 µmol/L)|
+      gt0026|Recommendation: local::at0031|Usual care (3% risk of death or AKI requiring RRT)|
+      gt0024|Rhabdomyolysis Risk Score: 4.5,1
+      gt0025|Risk group: local::at0028|Low risk|
+- id: Not low risk group
+  input:
+    1:
+      gt0003|Rhabdo secondary to seizures, syncope, exercise, statins, or myositis: 3|local::at0018|No|
+      gt0033|Sex: 1|local::at0009|Female|
+      gt0016|Age: 75,a
+      gt0007|Initial creatinine: 2.5,mg/dl
+      gt0009|Initial calcium: 5,mg/dl
+      gt0011|Initial phosphate: 6,mg/dl
+      gt0013|Initial bicarbonate: 18,mEq/l
+      gt0015|Initial CPK: 45000,U/l
+  expected_output:
+    1:
+      gt0023|Initial bicarbonate <19 mEq/L (19 mmol/L): 2|local::at0025|Yes|
+      gt0021|Initial CPK >40,000 U/L: 2|local::at0015|Yes|
+      gt0022|Initial phosphate: 3|local::at0022|>5.4 mg/dL (1.4 mmol/L)|
+      gt0020|Initial calcium <7.5 mg/dL (1.88 mmol/L): 2|local::at0012|Yes|
+      gt0018|Age, years: 2|local::at0005|71-80|
+      gt0035|Initial creatinine: 3|local::at0036|>2.2 mg/dL (195 µmol/L)|
+      gt0026|Recommendation: local::at0032|Initiate renal protective therapy including high-volume fluid resuscitation to urine output 1-2 mL/kg/hr (52% risk of death or AKI requiring RRT at scores ≥10)|
+      gt0024|Rhabdomyolysis Risk Score: 18.5,1
+      gt0025|Risk group: local::at0029|Not low risk|
+- id: Max Rhabdomyolysis Risk Score
+  input:
+    1:
+      gt0003|Rhabdo secondary to seizures, syncope, exercise, statins, or myositis: 3|local::at0018|No|
+      gt0033|Sex: 1|local::at0009|Female|
+      gt0016|Age: 81,a
+      gt0007|Initial creatinine: 2.5,mg/dl
+      gt0009|Initial calcium: 5,mg/dl
+      gt0011|Initial phosphate: 6,mg/dl
+      gt0013|Initial bicarbonate: 18,mEq/l
+      gt0015|Initial CPK: 45000,U/l
+  expected_output:
+    1:
+      gt0023|Initial bicarbonate <19 mEq/L (19 mmol/L): 2|local::at0025|Yes|
+      gt0021|Initial CPK >40,000 U/L: 2|local::at0015|Yes|
+      gt0022|Initial phosphate: 3|local::at0022|>5.4 mg/dL (1.4 mmol/L)|
+      gt0020|Initial calcium <7.5 mg/dL (1.88 mmol/L): 2|local::at0012|Yes|
+      gt0018|Age, years: 3|local::at0006|>80|
+      gt0035|Initial creatinine: 3|local::at0036|>2.2 mg/dL (195 µmol/L)|
+      gt0026|Recommendation: local::at0032|Initiate renal protective therapy including high-volume fluid resuscitation to urine output 1-2 mL/kg/hr (52% risk of death or AKI requiring RRT at scores ≥10)|
+      gt0024|Rhabdomyolysis Risk Score: 19.0,1
+      gt0025|Risk group: local::at0029|Not low risk|

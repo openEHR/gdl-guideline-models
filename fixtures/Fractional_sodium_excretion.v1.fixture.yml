@@ -1,0 +1,83 @@
+guidelines:
+  1: Fractional_sodium_excretion.v1
+test_cases:
+- id: Low urine sodium
+  input:
+    1:
+      gt0003|serum Sodium (sNa): 136,mmol/l
+      gt0004|urine Sodium (uNa): 35,mmol/l
+      gt0005|serum Creatinine (sCr): 60,umol/l
+      gt0006|urine Creatinine (uCr): 1768,umol/l
+  expected_output:
+    1:
+      gt0008|serum Sodium (sNa): 136,mmol/l
+      gt0011|urine Creatinine (uCr): 1768,umol/l
+      gt0010|serum Creatinine (sCr): 60,umol/l
+      gt0009|urine Sodium (uNa): 35,mmol/l
+      gt0012|Fractional excretion of sodium (FENa): 0.87,%
+      gt0022|Cause of ARF: local::at0003|Prerenal etiology|
+
+- id: Normal
+  input:
+    1:
+      gt0003|serum Sodium (sNa): 136,mmol/l
+      gt0004|urine Sodium (uNa): 70,mmol/l
+      gt0005|serum Creatinine (sCr): 60,umol/l
+      gt0006|urine Creatinine (uCr): 1768,umol/l
+  expected_output:
+    1:
+      gt0008|serum Sodium (sNa): 136,mmol/l
+      gt0011|urine Creatinine (uCr): 1768,umol/l
+      gt0010|serum Creatinine (sCr): 60,umol/l
+      gt0009|urine Sodium (uNa): 70,mmol/l
+      gt0012|Fractional excretion of sodium (FENa): 1.75,%
+      gt0022|Cause of ARF: local::at0004|Intrinsic renal etiology|
+
+- id: High urine sodium
+  input:
+    1:
+      gt0003|serum Sodium (sNa): 136,mmol/l
+      gt0004|urine Sodium (uNa): 120,mmol/l
+      gt0005|serum Creatinine (sCr): 60,umol/l
+      gt0006|urine Creatinine (uCr): 1768,umol/l
+  expected_output:
+    1:
+      gt0008|serum Sodium (sNa): 136,mmol/l
+      gt0011|urine Creatinine (uCr): 1768,umol/l
+      gt0010|serum Creatinine (sCr): 60,umol/l
+      gt0009|urine Sodium (uNa): 120,mmol/l
+      gt0012|Fractional excretion of sodium (FENa): 2.99,%
+      gt0022|Cause of ARF: local::at0004|Intrinsic renal etiology|
+
+- id: High serum sodium
+  input:
+    1:
+      gt0003|serum Sodium (sNa): 160,mmol/l
+      gt0004|urine Sodium (uNa): 70,mmol/l
+      gt0005|serum Creatinine (sCr): 60,umol/l
+      gt0006|urine Creatinine (uCr): 1768,umol/l
+  expected_output:
+    1:
+      gt0008|serum Sodium (sNa): 160,mmol/l
+      gt0011|urine Creatinine (uCr): 1768,umol/l
+      gt0010|serum Creatinine (sCr): 60,umol/l
+      gt0009|urine Sodium (uNa): 70,mmol/l
+      gt0012|Fractional excretion of sodium (FENa): 1.48,%
+      gt0022|Cause of ARF: local::at0004|Intrinsic renal etiology|
+
+
+- id: High urine creatinine
+  input:
+    1:
+      gt0003|serum Sodium (sNa): 160,mmol/l
+      gt0004|urine Sodium (uNa): 70,mmol/l
+      gt0005|serum Creatinine (sCr): 60,umol/l
+      gt0006|urine Creatinine (uCr): 30000,umol/l
+  expected_output:
+    1:
+      gt0008|serum Sodium (sNa): 160,mmol/l
+      gt0011|urine Creatinine (uCr): 30000,umol/l
+      gt0010|serum Creatinine (sCr): 60,umol/l
+      gt0009|urine Sodium (uNa): 70,mmol/l
+      gt0012|Fractional excretion of sodium (FENa): 0.09,%
+      gt0022|Cause of ARF: local::at0003|Prerenal etiology|

@@ -1,0 +1,96 @@
+guidelines:
+  1: High-dose_Insulin_Euglycemia_Therapy_HIET_guideline.v1
+test_cases:
+- id: 80 kg, Glucose 80, D25
+  input:
+    1:
+      gt0004|Weight: 80,kg
+      'gt0007|Serum Glucose ': 80,mg/dl
+      gt0011|Dextrose replacement for infusion: local::at0009|D25|
+  expected_output:
+    1:
+      gt0038|D25 continuous Infusion: 80,cc/h
+      gt0021|Comment Regular Insulin: 1-2 cc/kg D50 bolus (since serum glucose is <250 mg/dL or 13.9 mmol/L)
+      gt0036|Continuous monitoring: Serum glucose every 30 minutes for 1-2 hours until stable. Potassium every 1 hour.
+      gt0034|Dextrose bolus Min: 80,cc
+      gt0013|Regular Insulin Bolus: 80,units
+      gt0022|Comment Dextrose infusion: D25 continuous infusion (titrate to maintain glucose 110–250 mg/dL or 6.1-13.9 mmol/L)
+      gt0033|Max Regular Insulin Continuous Infusion: 80,units/h
+      gt0029|Dextrose bolus Max: 160,cc
+      gt0014|Min Regular Insulin Continuous Infusion: 40,units/h
+- id: 80 kg, Glucose 80, D10
+  input:
+    1:
+      gt0004|Weight: 80,kg
+      'gt0007|Serum Glucose ': 80,mg/dl
+      gt0011|Dextrose replacement for infusion: local::at0010|D10|
+  expected_output:
+    1:
+      gt0021|Comment Regular Insulin: 1-2 cc/kg D50 bolus (since serum glucose is <250 mg/dL or 13.9 mmol/L)
+      gt0036|Continuous monitoring: Serum glucose every 30 minutes for 1-2 hours until stable. Potassium every 1 hour.
+      gt0034|Dextrose bolus Min: 80,cc
+      gt0013|Regular Insulin Bolus: 80,units
+      gt0022|Comment Dextrose infusion: D10 continuous infusion (titrate to maintain glucose 110–250 mg/dL or 6.1-13.9 mmol/L)
+      gt0033|Max Regular Insulin Continuous Infusion: 80,units/h
+      gt0029|Dextrose bolus Max: 160,cc
+      gt0014|Min Regular Insulin Continuous Infusion: 40,units/h
+      gt0039|D10 continuous infusion: 200,cc/h
+- id: 80 kg, Glucose 8,D50
+  input:
+    1:
+      gt0004|Weight: 80,kg
+      'gt0007|Serum Glucose ': 8,mmol/l
+      gt0011|Dextrose replacement for infusion: local::at0008|D50|
+  expected_output:
+    1:
+      gt0021|Comment Regular Insulin: 1-2 cc/kg D50 bolus (since serum glucose is <250 mg/dL or 13.9 mmol/L)
+      gt0015|D50 continuous Infusion: 40,cc/h
+      gt0036|Continuous monitoring: Serum glucose every 30 minutes for 1-2 hours until stable. Potassium every 1 hour.
+      gt0034|Dextrose bolus Min: 80,cc
+      gt0013|Regular Insulin Bolus: 80,units
+      gt0022|Comment Dextrose infusion: D50 continuous infusion (titrate to maintain glucose 110–250 mg/dL or 6.1-13.9 mmol/L)
+      gt0033|Max Regular Insulin Continuous Infusion: 80,units/h
+      gt0029|Dextrose bolus Max: 160,cc
+      gt0014|Min Regular Insulin Continuous Infusion: 40,units/h
+- id: 80 kg, Glucose >250, D50
+  input:
+    1:
+      gt0004|Weight: 80,kg
+      'gt0007|Serum Glucose ': 260,mg/dl
+      gt0011|Dextrose replacement for infusion: local::at0008|D50|
+  expected_output:
+    1:
+      gt0015|D50 continuous Infusion: 40,cc/h
+      gt0036|Continuous monitoring: Serum glucose every 30 minutes for 1-2 hours until stable. Potassium every 1 hour.
+      gt0013|Regular Insulin Bolus: 80,units
+      gt0022|Comment Dextrose infusion: D50 continuous infusion (titrate to maintain glucose 110–250 mg/dL or 6.1-13.9 mmol/L)
+      gt0033|Max Regular Insulin Continuous Infusion: 80,units/h
+      gt0014|Min Regular Insulin Continuous Infusion: 40,units/h
+- id: 80 kg, Glucose >250,  D25
+  input:
+    1:
+      gt0004|Weight: 80,kg
+      'gt0007|Serum Glucose ': 260,mg/dl
+      gt0011|Dextrose replacement for infusion: local::at0009|D25|
+  expected_output:
+    1:
+      gt0038|D25 continuous Infusion: 80,cc/h
+      gt0036|Continuous monitoring: Serum glucose every 30 minutes for 1-2 hours until stable. Potassium every 1 hour.
+      gt0013|Regular Insulin Bolus: 80,units
+      gt0022|Comment Dextrose infusion: D25 continuous infusion (titrate to maintain glucose 110–250 mg/dL or 6.1-13.9 mmol/L)
+      gt0033|Max Regular Insulin Continuous Infusion: 80,units/h
+      gt0014|Min Regular Insulin Continuous Infusion: 40,units/h
+- id: 80 kg, Glucose >250,  D 10
+  input:
+    1:
+      gt0004|Weight: 80,kg
+      'gt0007|Serum Glucose ': 260,mg/dl
+      gt0011|Dextrose replacement for infusion: local::at0010|D10|
+  expected_output:
+    1:
+      gt0036|Continuous monitoring: Serum glucose every 30 minutes for 1-2 hours until stable. Potassium every 1 hour.
+      gt0013|Regular Insulin Bolus: 80,units
+      gt0022|Comment Dextrose infusion: D10 continuous infusion (titrate to maintain glucose 110–250 mg/dL or 6.1-13.9 mmol/L)
+      gt0033|Max Regular Insulin Continuous Infusion: 80,units/h
+      gt0014|Min Regular Insulin Continuous Infusion: 40,units/h
+      gt0039|D10 continuous infusion: 200,cc/h

@@ -1,0 +1,60 @@
+guidelines:
+  1: Maddrey_Score_guideline.v1
+test_cases:
+- id: Warning Too Low
+  input:
+    1:
+      gt0003|PT: 7,s
+      gt0006|PT control: 7,s
+      gt0011|Total Bilirubin (mg/dl or umol/l): 0,mg/dl
+  expected_output:
+    1:
+      gt0016|Warning PT control: Too low please change to proceed.
+      gt0015|Warning PT: Too low please change to proceed.
+      gt0017|Warning Total bilirubin: Too low please change to proceed.
+- id: Warning Very Low
+  input:
+    1:
+      gt0003|PT: 8,s
+      gt0006|PT control: 8,s
+      gt0011|Total Bilirubin (mg/dl or umol/l): 1,mg/dl
+  expected_output:
+    1:
+      gt0009|Interpretation: Good prognosis.
+      gt0016|Warning PT control: Very low double-check.
+      gt0008|Discriminant function: 1.00,1
+      gt0015|Warning PT: Very low double-check.
+- id: Warning very High
+  input:
+    1:
+      gt0003|PT: 51,s
+      gt0006|PT control: 51,s
+      gt0011|Total Bilirubin (mg/dl or umol/l): 359.19,umol/l
+  expected_output:
+    1:
+      gt0009|Interpretation: Good prognosis.
+      gt0016|Warning PT control: Very high double-check.
+      gt0008|Discriminant function: 21.00,1
+      gt0015|Warning PT: Very high double-check.
+      gt0017|Warning Total bilirubin: Very high double-check.
+- id: Warning Too High
+  input:
+    1:
+      gt0003|PT: 101,s
+      gt0006|PT control: 101,s
+      gt0011|Total Bilirubin (mg/dl or umol/l): 51,mg/dl
+  expected_output:
+    1:
+      gt0016|Warning PT control: Too high please change to proceed.
+      gt0015|Warning PT: Too high please change to proceed.
+      gt0017|Warning Total bilirubin: Too high please change to proceed.
+- id: DF>32
+  input:
+    1:
+      gt0003|PT: 18,s
+      gt0006|PT control: 10,s
+      gt0011|Total Bilirubin (mg/dl or umol/l): 6,mg/dl
+  expected_output:
+    1:
+      gt0009|Interpretation: Scores> 32 are suggestive for a poor prognosis with 35-45% mortality risk within first month and demand a liver biopsy while they indicate potential need for corticosteroid therapy as a treatment in patients with severe acute alcohol related hepatitis.
+      gt0008|Discriminant function: 42.80,1

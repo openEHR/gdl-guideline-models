@@ -1,0 +1,78 @@
+current_datetime: '2019-11-28T00:00:00+01:00'
+guidelines:
+  1: Dragon_tPA_Score.v1
+test_cases:
+- id: case_1:Total score =1
+  input:
+    1:
+      gt0004|HyperDense Cerebral Artery / Early Infarct on CT: 0|local::at0013|No|
+      gt0005|Onset of GlucoseTreatment >90 minutes: 0|local::at0023|No|
+      gt0014|Birthdate: 1996-04-01T20:10Z
+      gt0020|Glucose at Baseline: 140,mg/dl
+      gt0022|Total NIHSS score: 4
+      gt0042|mRS total score: 2
+  expected_output:
+    1:
+      gt0007|Modified Rankin Scale >1, prestroke: 1|local::at0017|Yes|
+      gt0011|Baseline NIH Stroke Scale score: 0|local::at0025|Score 0-4|
+      gt0009|Glucose at Baseline>144 mg/dL (8 mmol/L): 0|local::at0021|No|
+      gt0012|Total Score: 1
+      gt0008|Age Score: 0|local::at0018|<65 yrs|
+      gt0016|Age: 23,a
+      gt0044|Percent of Cohort: 0|local::at0006|96% good outcome|
+
+- id: case_2:Total score =5
+  input:
+    1:
+      gt0004|HyperDense Cerebral Artery / Early Infarct on CT: 1|local::at0014|Either|
+      gt0005|Onset of GlucoseTreatment >90 minutes: 1|local::at0024|Yes|
+      gt0014|Birthdate: 1953-04-15T20:10Z
+      gt0020|Glucose at Baseline: 150,mg/dl
+      gt0022|Total NIHSS score: 9
+      gt0042|mRS total score: 1
+  expected_output:
+    1:
+      gt0007|Modified Rankin Scale >1, prestroke: 0|local::at0016|No|
+      gt0011|Baseline NIH Stroke Scale score: 1|local::at0026|Score 5-9|
+      gt0009|Glucose at Baseline>144 mg/dL (8 mmol/L): 1|local::at0022|Yes|
+      gt0012|Total Score: 5
+      gt0008|Age Score: 1|local::at0019|65-79 yrs|
+      gt0016|Age: 66,a
+
+- id: case_3:Total score = 8
+  input:
+    1:
+      gt0004|HyperDense Cerebral Artery / Early Infarct on CT: 2|local::at0015|Both|
+      gt0005|Onset of GlucoseTreatment >90 minutes: 1|local::at0024|Yes|
+      gt0014|Birthdate: 1945-04-04T20:10Z
+      gt0020|Glucose at Baseline: 150,mg/dl
+      gt0022|Total NIHSS score: 12
+      gt0042|mRS total score: 2
+  expected_output:
+    1:
+      gt0007|Modified Rankin Scale >1, prestroke: 1|local::at0017|Yes|
+      gt0011|Baseline NIH Stroke Scale score: 2|local::at0027|Score 10-15|
+      gt0009|Glucose at Baseline>144 mg/dL (8 mmol/L): 1|local::at0022|Yes|
+      gt0012|Total Score: 8
+      gt0008|Age Score: 1|local::at0019|65-79 yrs|
+      gt0016|Age: 74,a
+      gt0044|Percent of Cohort: 3|local::at0009|0% good outcome|
+
+- id: case_4:Total score = 10
+  input:
+    1:
+      gt0004|HyperDense Cerebral Artery / Early Infarct on CT: 2|local::at0015|Both|
+      gt0005|Onset of GlucoseTreatment >90 minutes: 1|local::at0024|Yes|
+      gt0014|Birthdate: 1932-04-05T20:10Z
+      gt0020|Glucose at Baseline: 150,mg/dl
+      gt0022|Total NIHSS score: 16
+      gt0042|mRS total score: 2
+  expected_output:
+    1:
+      gt0007|Modified Rankin Scale >1, prestroke: 1|local::at0017|Yes|
+      gt0011|Baseline NIH Stroke Scale score: 3|local::at0028|Score >15|
+      gt0009|Glucose at Baseline>144 mg/dL (8 mmol/L): 1|local::at0022|Yes|
+      gt0012|Total Score: 10
+      gt0008|Age Score: 2|local::at0020|≥80 yrs|
+      gt0016|Age: 87,a
+      gt0044|Percent of Cohort: 3|local::at0009|0% good outcome|

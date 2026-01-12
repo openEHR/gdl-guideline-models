@@ -1,0 +1,565 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.fast_tracking_outpatients_after_ambulatory_surgery.v0
+
+concept
+	[at0000]	-- Fast-tracking utskrivningskriterier efter dagkirurgiska ingrepp
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["es"] = <
+			language = <[ISO_639-1::es]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"A quick tracking of some signals and symptoms in order to perform a shorter postoperative recovery process">
+			use = <"Can be use by different healthcare professionals that are responsible for the patient in order to decide if the patient can be discharged from the unit area.">
+			keywords = <"Fast-tracking", "Ambulatory Surgery", "Discharge", "Score">
+			misuse = <"The fast-Tracking scale after ambulatory surgery is a complement of a complet assessment that the responsible caregiver needs to perform in order to valorate if the patient is ready to go home, but in any case can be a substitutive of the assessment. ">
+			copyright = <"@CambioCDS">
+		>
+		["es"] = <
+			language = <[ISO_639-1::es]>
+			purpose = <"Herramienta para verificar que el paciente cumple los criterios para ser dado de alta después de una cirugía ambulatoria">
+			use = <"Puede ser usada por el profesional de salud a cargo del paciente para poder decidir si el paciente es elegible para ser dado de alta. Estos criterios son utilizados para trasladar al paciente desde la Fase I reanimación post quirúrgica (PACU) hacia la Fase II  alta hospitalaria. La calificación tiene que ser mayor o igual a 12, con ninguna puntuación por debajo <1 para que el paciente sea calificado como elegible para ser dado de alta después de una cirugía ambulatoria con anestesia general. ">
+			keywords = <"Fast-tracking", "Cirugía ambulatoria", "Alta postoperatoria", "Escala">
+			misuse = <"La escala de Fast-Tracking es un complemento de una evaluación general que el profesional de salud puede realizar para poder valorar si el paciente está listo para ser dado de alta, pero en ningún caso un substituto de la evaluación general. ">
+			copyright = <"CambioCDS(en)">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"En snabb spårning av flera vitala funktioner och symptomen med anledningen att minska tiden på uppvaknings verksamheten. ">
+			use = <"Kriterierna används för att flytta patienten från fas I postanestesivårdsenhet (PACU) till fas II-nedstegsenhet. Poängen måste vara ≤ 12, utan någon kriterium med poäng <1 för att uppfylla utskrivnings kriterium efter dagkirurgiska ingrepp. Checklistan kan användas av olika vårdpersonal som är ansvariga för patienten för att bestämma om patienten fyller utskrivnings kriterierna. 
+">
+			keywords = <"Dagkirurgi", "Utskrivningskriterier", "Fast-tracking", "Checklista">
+			misuse = <"Fast-tracking checklistan skall användas som en ersättning till en fullständig bedömning av patienten som den ansvariga vårdgivaren behöver genomföra för att värdera om patienten är redo att åka hem.">
+			copyright = <"CambioCDS">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1.         Watkins AC, White PF. Fast-tracking after ambulatory surgery. Journal of Perianesthesia Nursing. 2001;16(6):379–87. 
+2.         White PF. Criteria for fast-tracking outpatients after ambulatory surgery. J Clin Anesth. 1999 Feb;11(1):78-9. doi: 10.1016/s0952-8180(98)00119-6. PMID: 10396724
+3.         Vergara-Amador E, Fuentes Losada LM, Mauricio A, Tobar M. Técnica anestésica de rápida recuperación para cirugía de mano ambulatoria Rapid recovery anesthesia technique for ambulatory hand surgery. Vol. 34, Barranquilla (Col.). 2018. 
+ 
+ 
+">
+		["MD5-CAM-1.0.1"] = <"607A7C23EFB0FFDDD15411174C3E8496">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Fast-tracking utskrivningskriterier efter dagkirurgiska ingrepp
+		data matches {
+			ITEM_TREE[at0001] matches {	-- *Tree(en)
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0031] occurrences matches {0..1} matches {	-- 1- Medvetande
+						value matches {
+							0|[local::at0034], 	-- Kontaktbar vid taktkänsla stimulering
+							1|[local::at0033], 	-- Kontaktbar vid lätt eller verbal stimulering
+							2|[local::at0032]  	-- Fullt vaken
+						}
+					}
+					ELEMENT[at0035] occurrences matches {0..1} matches {	-- 2- Mobilisering
+						value matches {
+							0|[local::at0036], 	-- Kan INTE mobilisera extremiteter
+							1|[local::at0037], 	-- Lite svårt att mobilisera extremiteter
+							2|[local::at0038]  	-- Fri mobilisering av alla extremiteter
+						}
+					}
+					ELEMENT[at0039] occurrences matches {0..1} matches {	-- 3- Cirkulation
+						value matches {
+							0|[local::at0043], 	-- Blodtryck ± 50% från bas blodtrycket
+							1|[local::at0041], 	-- Blodtryck ± 30 % från bas blodtrycket
+							2|[local::at0040]  	-- Blodtryck ± 15% från bas blodtrycket
+						}
+					}
+					ELEMENT[at0044] occurrences matches {0..1} matches {	-- 4- Respiration
+						value matches {
+							0|[local::at0048], 	-- Dyspneik med svag hosta
+							1|[local::at0046], 	-- Takypne med god hosta
+							2|[local::at0045]  	-- Andninsfrekvens 10-20 / min och kan ta någon djup andetag
+						}
+					}
+					ELEMENT[at0049] occurrences matches {0..1} matches {	-- 5- Syremättnad
+						value matches {
+							0|[local::at0050], 	-- SpO2 <90% med O2 tillägg
+							1|[local::at0051], 	-- Behöver O2 tillägg for att behålla SpO2
+							2|[local::at0052]  	-- SpO2 >90% med luftanding
+						}
+					}
+					ELEMENT[at0053] occurrences matches {0..1} matches {	-- 6- Smärta
+						value matches {
+							0|[local::at0054], 	-- Ihållande måttlig till svår smärta
+							1|[local::at0055], 	-- Måttlig till svår smärta som kontroleras med intravenösa smärtstillande
+							2|[local::at0056]  	-- Ingen smärta eller obehag
+						}
+					}
+					ELEMENT[at0057] occurrences matches {0..1} matches {	-- 7- Illamående och kräkningar
+						value matches {
+							0|[local::at0058], 	-- Ihållande måttlig till svår illamående eller kräkningar
+							1|[local::at0059], 	-- Övergående illamående eller kräkningar som kontroleras med intravenosa antiemetika
+							2|[local::at0060]  	-- Inget illamående eller kräkningar
+						}
+					}
+					ELEMENT[at0061] occurrences matches {0..1} matches {	-- *Fast-track Checklista
+						value matches {
+							DV_COUNT matches {
+								magnitude matches {|0..14|}
+							}
+						}
+					}
+					ELEMENT[at0082] occurrences matches {0..1} matches {	-- Utvärdering av resultat: 
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0083, 	-- Patienten uppfyller utskrivningskriterier
+									at0084]	-- Patienten uppfyller INTE utskrivningskriterier
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Fast tracking outpatients after ambulatory surgery">
+					description = <"A tool to decide if a patient can be discharge from the Recovery Room after an Ambulatory Surgery">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0031"] = <
+					text = <"1- Level of consciousness">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"Awake and Oriented">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"Arousable with minimal stimulation">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"Responsive only to tactile stimulation">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"2- Physical activity">
+					description = <"*">
+				>
+				["at0036"] = <
+					text = <"Unable to voluntary move extremities">
+					description = <"*">
+				>
+				["at0037"] = <
+					text = <"Some weakness in movement of extremities">
+					description = <"*">
+				>
+				["at0038"] = <
+					text = <"Able to move all extremities on command">
+					description = <"*">
+				>
+				["at0039"] = <
+					text = <"3- Hemodynamic stability">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <"Blood pressure ± 15% of baseline">
+					description = <"*">
+				>
+				["at0041"] = <
+					text = <"Blood pressure ± 30 % of baseline">
+					description = <"*">
+				>
+				["at0043"] = <
+					text = <"Blood pressure ± 50% of baseline">
+					description = <"*">
+				>
+				["at0044"] = <
+					text = <"4- Respiratory stability">
+					description = <"*">
+				>
+				["at0045"] = <
+					text = <"Respiratory rate 10 to 20 breaths/min, able to breathe deeply">
+					description = <"*">
+				>
+				["at0046"] = <
+					text = <"Tachypnea with good cough">
+					description = <"*">
+				>
+				["at0048"] = <
+					text = <"Dyspneic with weak cough">
+					description = <"*">
+				>
+				["at0049"] = <
+					text = <"5- Oxygen saturation status">
+					description = <"*">
+				>
+				["at0050"] = <
+					text = <"saturation <90% with supplemental oxygen">
+					description = <"*">
+				>
+				["at0051"] = <
+					text = <"requires supplemental oxygen to maintain saturation">
+					description = <"*">
+				>
+				["at0052"] = <
+					text = <"maintains value >90% while breathing room air">
+					description = <"*">
+				>
+				["at0053"] = <
+					text = <"6- Postoperative pain assessment">
+					description = <"*">
+				>
+				["at0054"] = <
+					text = <"Persistent moderate-to-severe pain">
+					description = <"*">
+				>
+				["at0055"] = <
+					text = <"Moderate-to-severe pain controlled with intravenous analgesics">
+					description = <"*">
+				>
+				["at0056"] = <
+					text = <"No or mild discomfort">
+					description = <"*">
+				>
+				["at0057"] = <
+					text = <"7- Postoperative emetic symptoms">
+					description = <"*">
+				>
+				["at0058"] = <
+					text = <"Persistent moderate-to-severe nausea or vomiting">
+					description = <"*">
+				>
+				["at0059"] = <
+					text = <"Transient vomiting or retching controlled with intravenous antiemetics">
+					description = <"*">
+				>
+				["at0060"] = <
+					text = <"No or mild nausea with no active vomiting">
+					description = <"*">
+				>
+				["at0061"] = <
+					text = <"Fast-track Index Score">
+					description = <"*">
+				>
+				["at0082"] = <
+					text = <"Score Interpretation: ">
+					description = <"*">
+				>
+				["at0083"] = <
+					text = <"Patient is elegible to be discharged">
+					description = <"*">
+				>
+				["at0084"] = <
+					text = <"Patient is not elegible to be discharged">
+					description = <"*">
+				>
+			>
+		>
+		["es"] = <
+			items = <
+				["at0000"] = <
+					text = <"Criterios de Fast-Track tras cirugia ambulatoria">
+					description = <"Herramienta para verificar que el paciente cumple los criterios para ser dado de alta después de una cirugía ambulatoria">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0031"] = <
+					text = <"1- Nivel de conciencia">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"Consciente y orientado">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"Alertable con mínima estimulación">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"Alertable únicamente con estimulación táctil">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"2- Actividad Física">
+					description = <"*">
+				>
+				["at0036"] = <
+					text = <"Incapaz de mover voluntariamente las extremidades">
+					description = <"*">
+				>
+				["at0037"] = <
+					text = <"Cierta debilidad en el movimiento de las extremidades">
+					description = <"*">
+				>
+				["at0038"] = <
+					text = <"Capacidad para movilizar todas las extremidades a la orden">
+					description = <"*">
+				>
+				["at0039"] = <
+					text = <"3- Estabilidad hemodinámica">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <"Presión arterial  ± 15% de la presión arterial media inicial">
+					description = <"*">
+				>
+				["at0041"] = <
+					text = <"Presión arterial ± 30 de la presión arterial media inicial">
+					description = <"*">
+				>
+				["at0043"] = <
+					text = <"Presión arterial ± 50% de la presión arterial media inicial">
+					description = <"*">
+				>
+				["at0044"] = <
+					text = <"4- Estabilidad respiratoria">
+					description = <"*">
+				>
+				["at0045"] = <
+					text = <"Frecuencia respiratoria de 10 a 20 resp/min, capacidad de respirar profundo">
+					description = <"*">
+				>
+				["at0046"] = <
+					text = <"Taquipnea con buena tos">
+					description = <"*">
+				>
+				["at0048"] = <
+					text = <"Disnea con tos débil">
+					description = <"*">
+				>
+				["at0049"] = <
+					text = <"5- Saturación de oxígeno">
+					description = <"*">
+				>
+				["at0050"] = <
+					text = <"Mantiene un valor mayor a 90 % con el aire de la sala">
+					description = <"*">
+				>
+				["at0051"] = <
+					text = <"Requiere oxígeno suplementario">
+					description = <"*">
+				>
+				["at0052"] = <
+					text = <"Saturación menor del 90 % con oxígeno suplementario">
+					description = <"*">
+				>
+				["at0053"] = <
+					text = <"6- Dolor postoperatorio">
+					description = <"*">
+				>
+				["at0054"] = <
+					text = <"Dolor severo persistente">
+					description = <"*">
+				>
+				["at0055"] = <
+					text = <"Dolor moderado a severo controlado con analgésicos endovenosos
+">
+					description = <"*">
+				>
+				["at0056"] = <
+					text = <"Ningun o mínimo dolor">
+					description = <"*">
+				>
+				["at0057"] = <
+					text = <"7- Síntomas eméticos postoperatorios">
+					description = <"*">
+				>
+				["at0058"] = <
+					text = <"Náuseas y vómitos persistentes moderado a severo">
+					description = <"*">
+				>
+				["at0059"] = <
+					text = <"Vómito transitorio o arcada">
+					description = <"*">
+				>
+				["at0060"] = <
+					text = <"Ninguno o náuseas leves sin vómito">
+					description = <"*">
+				>
+				["at0061"] = <
+					text = <"Fast-track calificación">
+					description = <"*">
+				>
+				["at0082"] = <
+					text = <"Evaluación de los resultados: ">
+					description = <"*">
+				>
+				["at0083"] = <
+					text = <"El paciente es elegible para ser dado de alta">
+					description = <"**(en)">
+				>
+				["at0084"] = <
+					text = <"El paciente NO es elegible para ser dado de alta">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Fast-tracking utskrivningskriterier efter dagkirurgiska ingrepp">
+					description = <"Ett verktyg som vårdpersonal kan använda för att bestämma om patienten fyller utskrivningskriterier efter ett dagkirurgisk ingrepp. ">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0031"] = <
+					text = <"1- Medvetande">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"Fullt vaken">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"Kontaktbar vid lätt eller verbal stimulering">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"Kontaktbar vid taktkänsla stimulering">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"2- Mobilisering">
+					description = <"*">
+				>
+				["at0036"] = <
+					text = <"Kan INTE mobilisera extremiteter">
+					description = <"*">
+				>
+				["at0037"] = <
+					text = <"Lite svårt att mobilisera extremiteter">
+					description = <"*">
+				>
+				["at0038"] = <
+					text = <"Fri mobilisering av alla extremiteter">
+					description = <"*">
+				>
+				["at0039"] = <
+					text = <"3- Cirkulation">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <"Blodtryck ± 15% från bas blodtrycket">
+					description = <"*">
+				>
+				["at0041"] = <
+					text = <"Blodtryck ± 30 % från bas blodtrycket">
+					description = <"*">
+				>
+				["at0043"] = <
+					text = <"Blodtryck ± 50% från bas blodtrycket">
+					description = <"*">
+				>
+				["at0044"] = <
+					text = <"4- Respiration">
+					description = <"*">
+				>
+				["at0045"] = <
+					text = <"Andninsfrekvens 10-20 / min och kan ta någon djup andetag">
+					description = <"*">
+				>
+				["at0046"] = <
+					text = <"Takypne med god hosta">
+					description = <"*">
+				>
+				["at0048"] = <
+					text = <"Dyspneik med svag hosta">
+					description = <"*">
+				>
+				["at0049"] = <
+					text = <"5- Syremättnad">
+					description = <"*">
+				>
+				["at0050"] = <
+					text = <"SpO2 <90% med O2 tillägg">
+					description = <"*">
+				>
+				["at0051"] = <
+					text = <"Behöver O2 tillägg for att behålla SpO2">
+					description = <"*">
+				>
+				["at0052"] = <
+					text = <"SpO2 >90% med luftanding">
+					description = <"*">
+				>
+				["at0053"] = <
+					text = <"6- Smärta">
+					description = <"*">
+				>
+				["at0054"] = <
+					text = <"Ihållande måttlig till svår smärta">
+					description = <"*">
+				>
+				["at0055"] = <
+					text = <"Måttlig till svår smärta som kontroleras med intravenösa smärtstillande">
+					description = <"*">
+				>
+				["at0056"] = <
+					text = <"Ingen smärta eller obehag">
+					description = <"*">
+				>
+				["at0057"] = <
+					text = <"7- Illamående och kräkningar">
+					description = <"*">
+				>
+				["at0058"] = <
+					text = <"Ihållande måttlig till svår illamående eller kräkningar">
+					description = <"*">
+				>
+				["at0059"] = <
+					text = <"Övergående illamående eller kräkningar som kontroleras med intravenosa antiemetika">
+					description = <"*">
+				>
+				["at0060"] = <
+					text = <"Inget illamående eller kräkningar">
+					description = <"*">
+				>
+				["at0061"] = <
+					text = <"*Fast-track Checklista">
+					description = <"*">
+				>
+				["at0082"] = <
+					text = <"Utvärdering av resultat: ">
+					description = <"*">
+				>
+				["at0083"] = <
+					text = <"Patienten uppfyller utskrivningskriterier">
+					description = <"*">
+				>
+				["at0084"] = <
+					text = <"Patienten uppfyller INTE utskrivningskriterier">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

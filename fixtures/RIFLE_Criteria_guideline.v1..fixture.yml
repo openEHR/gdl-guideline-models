@@ -1,0 +1,95 @@
+guidelines:
+  1: RIFLE_Criteria_guideline.v1
+test_cases:
+- id: ESRD
+  input:
+    1:
+      gt0003|End stage renal disease: local::at0005|Yes|
+  expected_output:
+    1:
+      gt0009| Level of renal dysfunction: local::at0034|ESRD, RIFLE-E|
+- id: RIFLE-L
+  input:
+    1:
+      gt0003|End stage renal disease: local::at0006|No|
+      gt0004|Persistent acute kidney injury: local::at0005|Yes|
+  expected_output:
+    1:
+      gt0009| Level of renal dysfunction: local::at0033|Loss of kidney function, RIFLE-L|
+- id: RIFLE-R
+  input:
+    1:
+      gt0003|End stage renal disease: local::at0006|No|
+      gt0004|Persistent acute kidney injury: local::at0006|No|
+      gt0005|Serum creatinine: local::at0044|1.5-2x above baseline|
+      gt0006|GFR: local::at0047|>25% decrease below baseline|
+      gt0007|Urine output: local::at0050|<0.5 mL/kg/hr x 6 hr|
+  expected_output:
+    1:
+      gt0009| Level of renal dysfunction: local::at0029|Risk of renal dysfunction, RIFLE-R|
+- id: Injury to the kidney, RIFLE-I
+  input:
+    1:
+      gt0003|End stage renal disease: local::at0006|No|
+      gt0004|Persistent acute kidney injury: local::at0006|No|
+      gt0005|Serum creatinine: local::at0045|>2-3x above baseline|
+      gt0006|GFR: local::at0047|>25% decrease below baseline|
+      gt0007|Urine output: local::at0050|<0.5 mL/kg/hr x 6 hr|
+  expected_output:
+    1:
+      gt0009| Level of renal dysfunction: local::at0030|Injury to the kidney, RIFLE-I|
+- id: RIFLE-F
+  input:
+    1:
+      gt0003|End stage renal disease: local::at0006|No|
+      gt0004|Persistent acute kidney injury: local::at0006|No|
+      gt0005|Serum creatinine: local::at0046|>3x above baseline, ≥4 mg/dL (350 µmol/L), or acute rise ≥0.5 mg/dL (44 µmol/L)|
+      gt0006|GFR: local::at0047|>25% decrease below baseline|
+      gt0007|Urine output: local::at0050|<0.5 mL/kg/hr x 6 hr|
+  expected_output:
+    1:
+      gt0009| Level of renal dysfunction: local::at0031|Failure of kidney function, RIFLE-F (RIFLE-FO if oliguria)|
+- id: RIFLE-I, GFR is the worst
+  input:
+    1:
+      gt0003|End stage renal disease: local::at0006|No|
+      gt0004|Persistent acute kidney injury: local::at0006|No|
+      gt0005|Serum creatinine: local::at0044|1.5-2x above baseline|
+      gt0006|GFR: local::at0048|>50% decrease below baseline|
+      gt0007|Urine output: local::at0050|<0.5 mL/kg/hr x 6 hr|
+  expected_output:
+    1:
+      gt0009| Level of renal dysfunction: local::at0030|Injury to the kidney, RIFLE-I|
+- id: Failure, GFR is the worst
+  input:
+    1:
+      gt0003|End stage renal disease: local::at0006|No|
+      gt0004|Persistent acute kidney injury: local::at0006|No|
+      gt0005|Serum creatinine: local::at0044|1.5-2x above baseline|
+      gt0006|GFR: local::at0049|>75% decrease below baseline|
+      gt0007|Urine output: local::at0050|<0.5 mL/kg/hr x 6 hr|
+  expected_output:
+    1:
+      gt0009| Level of renal dysfunction: local::at0031|Failure of kidney function, RIFLE-F (RIFLE-FO if oliguria)|
+- id: Injury , UO is the worst
+  input:
+    1:
+      gt0003|End stage renal disease: local::at0006|No|
+      gt0004|Persistent acute kidney injury: local::at0006|No|
+      gt0005|Serum creatinine: local::at0044|1.5-2x above baseline|
+      gt0006|GFR: local::at0047|>25% decrease below baseline|
+      gt0007|Urine output: local::at0051|<0.5 mL/kg/hr x 12 hr|
+  expected_output:
+    1:
+      gt0009| Level of renal dysfunction: local::at0030|Injury to the kidney, RIFLE-I|
+- id: Failure , UO is the worst
+  input:
+    1:
+      gt0003|End stage renal disease: local::at0006|No|
+      gt0004|Persistent acute kidney injury: local::at0006|No|
+      gt0005|Serum creatinine: local::at0044|1.5-2x above baseline|
+      gt0006|GFR: local::at0047|>25% decrease below baseline|
+      gt0007|Urine output: local::at0052|<0.3 mL/kg/hr x 24 hr (oliguria), or anuria x 12 hr|
+  expected_output:
+    1:
+      gt0009| Level of renal dysfunction: local::at0031|Failure of kidney function, RIFLE-F (RIFLE-FO if oliguria)|

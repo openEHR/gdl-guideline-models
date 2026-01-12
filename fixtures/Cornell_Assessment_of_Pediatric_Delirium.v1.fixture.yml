@@ -1,0 +1,183 @@
+guidelines:
+  1: Cornell_Assessment_of_Pediatric_Delirium.v1
+test_cases:
+- id: Test no input
+  input:
+    1: {}
+  expected_output:
+    1: {}
+- id: Makes eye contact with caregiver missing (negative test)
+  input:
+    1:
+      gt0004|Actions are purposeful: 1|local::at0020|Often|
+      gt0005|Aware of surroundings: 3|local::at0022|Rarely|
+      gt0006|Communicates needs and wants: 0|local::at0024|Always|
+      gt0009|Restless: 4|local::at0033|Always|
+      gt0010|Inconsolable: 1|local::at0035|Rarely|
+      gt0012|Underactive (very little movement while awake): 2|local::at0041|Sometimes|
+      gt0013|Takes long time to respond to interactions: 3|local::at0047|Often|
+  expected_output:
+    1: {}
+- id: Actions are purposeful missing (negative test)
+  input:
+    1:
+      gt0003|Makes eye contact with caregiver: 2|local::at0016|Sometimes|
+      gt0005|Aware of surroundings: 3|local::at0022|Rarely|
+      gt0006|Communicates needs and wants: 0|local::at0024|Always|
+      gt0009|Restless: 4|local::at0033|Always|
+      gt0010|Inconsolable: 1|local::at0035|Rarely|
+      gt0012|Underactive (very little movement while awake): 2|local::at0041|Sometimes|
+      gt0013|Takes long time to respond to interactions: 3|local::at0047|Often|
+  expected_output:
+    1: {}
+- id: Aware of surroundings missing (negative test)
+  input:
+    1:
+      gt0003|Makes eye contact with caregiver: 2|local::at0016|Sometimes|
+      gt0004|Actions are purposeful: 3|local::at0022|Rarely|
+      gt0006|Communicates needs and wants: 0|local::at0024|Always|
+      gt0009|Restless: 4|local::at0033|Always|
+      gt0010|Inconsolable: 1|local::at0035|Rarely|
+      gt0012|Underactive (very little movement while awake): 2|local::at0041|Sometimes|
+      gt0013|Takes long time to respond to interactions: 3|local::at0047|Often|
+  expected_output:
+    1: {}
+- id: Communicates needs and wants missing (negative test)
+  input:
+    1:
+      gt0003|Makes eye contact with caregiver: 2|local::at0016|Sometimes|
+      gt0004|Actions are purposeful: 3|local::at0022|Rarely|
+      gt0005|Aware of surroundings: 2|local::at0021|Sometimes|
+      gt0009|Restless: 4|local::at0033|Always|
+      gt0010|Inconsolable: 1|local::at0035|Rarely|
+      gt0012|Underactive (very little movement while awake): 2|local::at0041|Sometimes|
+      gt0013|Takes long time to respond to interactions: 3|local::at0047|Often|
+  expected_output:
+    1: {}
+- id: Restless missing (negative test)
+  input:
+    1:
+      gt0003|Makes eye contact with caregiver: 2|local::at0016|Sometimes|
+      gt0004|Actions are purposeful: 3|local::at0022|Rarely|
+      gt0005|Aware of surroundings: 2|local::at0021|Sometimes|
+      gt0006|Communicates needs and wants: 3|local::at0027|Rarely|
+      gt0010|Inconsolable: 1|local::at0035|Rarely|
+      gt0012|Underactive (very little movement while awake): 2|local::at0041|Sometimes|
+      gt0013|Takes long time to respond to interactions: 3|local::at0047|Often|
+  expected_output:
+    1: {}
+- id: Inconsolable missing (negative test)
+  input:
+    1:
+      gt0003|Makes eye contact with caregiver: 2|local::at0016|Sometimes|
+      gt0004|Actions are purposeful: 3|local::at0022|Rarely|
+      gt0005|Aware of surroundings: 2|local::at0021|Sometimes|
+      gt0006|Communicates needs and wants: 3|local::at0027|Rarely|
+      gt0009|Restless: 2|local::at0031|Sometimes|
+      gt0012|Underactive (very little movement while awake): 2|local::at0041|Sometimes|
+      gt0013|Takes long time to respond to interactions: 3|local::at0047|Often|
+  expected_output:
+    1: {}
+- id: Underactive missing (negative test)
+  input:
+    1:
+      gt0003|Makes eye contact with caregiver: 2|local::at0016|Sometimes|
+      gt0004|Actions are purposeful: 3|local::at0022|Rarely|
+      gt0005|Aware of surroundings: 2|local::at0021|Sometimes|
+      gt0006|Communicates needs and wants: 3|local::at0027|Rarely|
+      gt0009|Restless: 2|local::at0031|Sometimes|
+      gt0010|Inconsolable: 2|local::at0036|Sometimes|
+      gt0013|Takes long time to respond to interactions: 3|local::at0047|Often|
+  expected_output:
+    1: {}
+- id: Takes long time to respond to interactions missing (negative test)
+  input:
+    1:
+      gt0003|Makes eye contact with caregiver: 2|local::at0016|Sometimes|
+      gt0004|Actions are purposeful: 3|local::at0022|Rarely|
+      gt0005|Aware of surroundings: 2|local::at0021|Sometimes|
+      gt0006|Communicates needs and wants: 3|local::at0027|Rarely|
+      gt0009|Restless: 2|local::at0031|Sometimes|
+      gt0010|Inconsolable: 2|local::at0036|Sometimes|
+      gt0012|Underactive (very little movement while awake): 3|local::at0042|Often|
+  expected_output:
+    1: {}
+- id: All inputs 0 points returns 'Pediatric delirium absent'
+  input:
+    1:
+      gt0003|Makes eye contact with caregiver: 0|local::at0014|Always|
+      gt0004|Actions are purposeful: 0|local::at0019|Always|
+      gt0005|Aware of surroundings: 0|local::at0019|Always|
+      gt0006|Communicates needs and wants: 0|local::at0024|Always|
+      gt0009|Restless: 0|local::at0029|Never|
+      gt0010|Inconsolable: 0|local::at0034|Never|
+      gt0012|Underactive (very little movement while awake): 0|local::at0039|Never|
+      gt0013|Takes long time to respond to interactions: 0|local::at0044|Never|
+  expected_output:
+    1:
+      gt0015|Interpretation: Pediatric delirium absent
+      gt0023|Recommendation: Continue usual care and monitoring.
+      gt0017|CAPD score: 0
+- id: All inputs 1 points returns 'Pediatric delirium absent'
+  input:
+    1:
+      gt0003|Makes eye contact with caregiver: 1|local::at0015|Often|
+      gt0004|Actions are purposeful: 1|local::at0020|Often|
+      gt0005|Aware of surroundings: 1|local::at0020|Often|
+      gt0006|Communicates needs and wants: 1|local::at0025|Often|
+      gt0009|Restless: 1|local::at0030|Rarely|
+      gt0010|Inconsolable: 1|local::at0035|Rarely|
+      gt0012|Underactive (very little movement while awake): 1|local::at0040|Rarely|
+      gt0013|Takes long time to respond to interactions: 1|local::at0045|Rarely|
+  expected_output:
+    1:
+      gt0015|Interpretation: Pediatric delirium absent
+      gt0023|Recommendation: Continue usual care and monitoring.
+      gt0017|CAPD score: 8
+- id: All inputs 2 points returns 'Pediatric delirium present'
+  input:
+    1:
+      gt0003|Makes eye contact with caregiver: 2|local::at0016|Sometimes|
+      gt0004|Actions are purposeful: 2|local::at0021|Sometimes|
+      gt0005|Aware of surroundings: 2|local::at0021|Sometimes|
+      gt0006|Communicates needs and wants: 2|local::at0026|Sometimes|
+      gt0009|Restless: 2|local::at0031|Sometimes|
+      gt0010|Inconsolable: 2|local::at0036|Sometimes|
+      gt0012|Underactive (very little movement while awake): 2|local::at0041|Sometimes|
+      gt0013|Takes long time to respond to interactions: 2|local::at0046|Sometimes|
+  expected_output:
+    1:
+      gt0015|Interpretation: Pediatric delirium present
+      gt0023|Recommendation: Investigate and treat underlying medical condition(s) causing delirium, consider interventions with parents and child life services, and/or consult to psychiatry or palliative care as appropriate, consider medications like melatonin or QUEtiapine (SEROquel) in select cases.
+      gt0017|CAPD score: 16
+- id: All inputs 3 points returns 'Pediatric delirium present'
+  input:
+    1:
+      gt0003|Makes eye contact with caregiver: 3|local::at0017|Rarely|
+      gt0004|Actions are purposeful: 3|local::at0022|Rarely|
+      gt0005|Aware of surroundings: 3|local::at0022|Rarely|
+      gt0006|Communicates needs and wants: 3|local::at0027|Rarely|
+      gt0009|Restless: 3|local::at0032|Often|
+      gt0010|Inconsolable: 3|local::at0037|Often|
+      gt0012|Underactive (very little movement while awake): 3|local::at0042|Often|
+      gt0013|Takes long time to respond to interactions: 3|local::at0047|Often|
+  expected_output:
+    1:
+      gt0015|Interpretation: Pediatric delirium present
+      gt0017|CAPD score: 24
+- id: All inputs 4 points returns 'Pediatric delirium present'
+  input:
+    1:
+      gt0003|Makes eye contact with caregiver: 4|local::at0018|Never|
+      gt0004|Actions are purposeful: 4|local::at0023|Never|
+      gt0005|Aware of surroundings: 4|local::at0023|Never|
+      gt0006|Communicates needs and wants: 4|local::at0028|Never|
+      gt0009|Restless: 4|local::at0033|Always|
+      gt0010|Inconsolable: 4|local::at0038|Always|
+      gt0012|Underactive (very little movement while awake): 4|local::at0043|Always|
+      gt0013|Takes long time to respond to interactions: 4|local::at0048|Always|
+  expected_output:
+    1:
+      gt0015|Interpretation: Pediatric delirium present
+      gt0023|Recommendation: Investigate and treat underlying medical condition(s) causing delirium, consider interventions with parents and child life services, and/or consult to psychiatry or palliative care as appropriate, consider medications like melatonin or QUEtiapine (SEROquel) in select cases.
+      gt0017|CAPD score: 32

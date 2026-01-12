@@ -1,0 +1,42 @@
+guidelines:
+  1: Modified_Aldrete_Score_guideline.v1
+test_cases:
+- id: Total score, all variables have max values
+  input:
+    1:
+      gt0003|Consciousness: 2|local::at0005|Fully awake|
+      gt0004|Activity: 2|local::at0011|Able to move four extremities voluntarily or  on command|
+      gt0005|Respiration: 2|local::at0015|Able to breath deeply and cough freely|
+      gt0006|Circulation: 2|local::at0019|BP ≠ 20% of the preanesthetic level|
+      gt0007|O2 saturation: 2|local::at0023|Maintaining O2 saturation >90% on room air|
+      gt0008|Color: 2|local::at0027|Normal |
+  expected_output:
+    1:
+      gt0010|Modified Aldrete Score: 12
+      gt0012|Interpretation: Patients with values of 9 or greater who have an appropriate escort can be discharged from the unit.
+- id: Total  score, all variables hsve min values
+  input:
+    1:
+      gt0003|Consciousness: 0|local::at0007|Not responding|
+      gt0004|Activity: 0|local::at0009|Unable to move extremities voluntarily or on command|
+      gt0005|Respiration: 0|local::at0013|Apneic or on mechanical ventilator|
+      gt0006|Circulation: 0|local::at0017|BP ≠ 50% of the preanesthetic level|
+      gt0007|O2 saturation: 0|local::at0021|O2 saturation <90% despite O2 supplementation|
+      gt0008|Color: 0|local::at0025|Cyanotic |
+  expected_output:
+    1:
+      gt0010|Modified Aldrete Score: 0
+      gt0012|Interpretation: Patients with values of 9 or greater who have an appropriate escort can be discharged from the unit.
+- id: Total score, all variables have value of 1
+  input:
+    1:
+      gt0003|Consciousness: 1|local::at0006|Arousable on calling|
+      gt0004|Activity: 1|local::at0010|Able to move two extremities voluntarily or on command|
+      gt0005|Respiration: 1|local::at0014|Dyspnea, limited breathing or tachypnea|
+      gt0006|Circulation: 1|local::at0018|BP between 20% and 49% of the preanesthetic level|
+      gt0007|O2 saturation: 1|local::at0022|Needs inhalation to maintain O2 saturation >90%|
+      gt0008|Color: 1|local::at0026|Pale, jaundiced, blotchy|
+  expected_output:
+    1:
+      gt0010|Modified Aldrete Score: 6
+      gt0012|Interpretation: Patients with values of 9 or greater who have an appropriate escort can be discharged from the unit.

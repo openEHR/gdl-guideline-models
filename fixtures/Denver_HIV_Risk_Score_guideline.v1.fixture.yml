@@ -1,0 +1,89 @@
+guidelines:
+  1: Denver_HIV_Risk_Score_guideline.v0
+test_cases:
+- id: Very low risk
+  input:
+    1:
+      gt0004|Age, years: 0|local::at0005|<22 OR >60|
+      gt0005|Gender: 0|local::at0010|Female|
+      gt0006|Race/ethnicity: 0|local::at0013|American Indian, Alaska Native, Native\
+        \ Hawaiian, non-Hawaiian Pacific Islander, or other OR White|
+      ? gt0007|Sexual practices(Choose practice that yields the highest score, e.g.
+        if patient engages in both vaginal and receptive anal intercourse, choose
+        the latter to assign 8 points)
+      : -10|local::at0018|Vaginal intercourse|
+      gt0008|Other risk factors: -4|local::at0023|Past HIVtesting|
+  expected_output:
+    1:
+      gt0009|Score: -14
+      gt0013|Risk: local::at0003|Very low|
+      gt0014|HIV prevalence (95% CI): local::at0009|0.31% (0.20-0.45)|
+
+- id: Low Risk
+  input:
+    1:
+      gt0004|Age, years: 4|local::at0006|22-25 OR 55-60|
+      gt0005|Gender: 21|local::at0011|Male|
+      gt0006|Race/ethnicity: 0|local::at0013|American Indian, Alaska Native, Native\
+        \ Hawaiian, non-Hawaiian Pacific Islander, or other OR White|
+      ? gt0007|Sexual practices(Choose practice that yields the highest score, e.g.
+        if patient engages in both vaginal and receptive anal intercourse, choose
+        the latter to assign 8 points)
+      : 0|local::at0017|None of the above|
+      gt0008|Other risk factors: 0|local::at0022|Neither|
+  expected_output:
+    1:
+      gt0009|Score: 25
+      gt0013|Risk: local::at0004|Low|
+      gt0014|HIV prevalence (95% CI): local::at0010|0.41% (0.29-0.57)|
+
+- id: Moderate risk
+  input:
+    1:
+      gt0004|Age, years: 0|local::at0005|<22 OR >60|
+      gt0005|Gender: 21|local::at0011|Male|
+      gt0006|Race/ethnicity: 9|local::at0015|Black|
+      ? gt0007|Sexual practices(Choose practice that yields the highest score, e.g.
+        if patient engages in both vaginal and receptive anal intercourse, choose
+        the latter to assign 8 points)
+      : 0|local::at0017|None of the above|
+      gt0008|Other risk factors: 0|local::at0022|Neither|
+  expected_output:
+    1:
+      gt0009|Score: 30
+      gt0013|Risk: local::at0005|Moderate|
+      gt0014|HIV prevalence (95% CI): local::at0011|0.99% (0.63-1.47)|
+
+- id: High risk
+  input:
+    1:
+      gt0004|Age, years: 10|local::at0007|26-32 OR 47-54|
+      gt0005|Gender: 21|local::at0011|Male|
+      gt0006|Race/ethnicity: 9|local::at0015|Black|
+      ? gt0007|Sexual practices(Choose practice that yields the highest score, e.g.
+        if patient engages in both vaginal and receptive anal intercourse, choose
+        the latter to assign 8 points)
+      : 0|local::at0017|None of the above|
+      gt0008|Other risk factors: 0|local::at0022|Neither|
+  expected_output:
+    1:
+      gt0009|Score: 40
+      gt0013|Risk: local::at0006|High|
+      gt0014|HIV prevalence (95% CI): local::at0012|1.59% (1.02-2.36)|
+
+- id: Very high risk
+  input:
+    1:
+      gt0004|Age, years: 12|local::at0008|33-46|
+      gt0005|Gender: 21|local::at0011|Male|
+      gt0006|Race/ethnicity: 9|local::at0015|Black|
+      ? gt0007|Sexual practices(Choose practice that yields the highest score, e.g.
+        if patient engages in both vaginal and receptive anal intercourse, choose
+        the latter to assign 8 points)
+      : 22|local::at0020|Sex with a male|
+      gt0008|Other risk factors: 9|local::at0024|Injection drug use|
+  expected_output:
+    1:
+      gt0009|Score: 73
+      gt0013|Risk: local::at0007|Very High|
+      gt0014|HIV prevalence (95% CI): local::at0013|3.59% (2.73-4.63)|

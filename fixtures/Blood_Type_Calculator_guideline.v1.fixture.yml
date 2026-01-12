@@ -1,0 +1,174 @@
+guidelines:
+  1: Blood_Type_Calculator_guideline.v1
+test_cases:
+- id: P1 O, Rh- and P2 O, Rh-
+  input:
+    1:
+      gt0003|AOB parent1: local::at0011|O|
+      gt0004|RH parent1: local::at0013|Rh-|
+      gt0005|AOB parent2: local::at0011|O|
+      gt0006|RH parent2: local::at0013|Rh-|
+  expected_output:
+    1:
+      gt0008|Child's blood group: O
+      gt0009|Child's Rh type: Negative
+- id: P1 O, Rh+ and P2 O, Rh+
+  input:
+    1:
+      gt0003|AOB parent1: local::at0011|O|
+      gt0004|RH parent1: local::at0012|Rh+|
+      gt0005|AOB parent2: local::at0011|O|
+      gt0006|RH parent2: local::at0012|Rh+|
+  expected_output:
+    1:
+      gt0008|Child's blood group: O
+      gt0009|Child's Rh type: Positive or Negative
+- id: P1 O, Rh- and P2 O, Rh+
+  input:
+    1:
+      gt0003|AOB parent1: local::at0011|O|
+      gt0004|RH parent1: local::at0013|Rh-|
+      gt0005|AOB parent2: local::at0011|O|
+      gt0006|RH parent2: local::at0012|Rh+|
+  expected_output:
+    1:
+      gt0008|Child's blood group: O
+      gt0009|Child's Rh type: Positive or Negative
+- id: P1 O and P2 A
+  input:
+    1:
+      gt0003|AOB parent1: local::at0011|O|
+      gt0005|AOB parent2: local::at0008|A|
+  expected_output:
+    1:
+      gt0008|Child's blood group: O or A
+- id: P1 A, P2 O
+  input:
+    1:
+      gt0003|AOB parent1: local::at0008|A|
+      gt0004|RH parent1: local::at0012|Rh+|
+      gt0005|AOB parent2: local::at0011|O|
+      gt0006|RH parent2: local::at0012|Rh+|
+  expected_output:
+    1:
+      gt0008|Child's blood group: O or A
+      gt0009|Child's Rh type: Positive or Negative
+- id: O and B
+  input:
+    1:
+      gt0003|AOB parent1: local::at0011|O|
+      gt0005|AOB parent2: local::at0009|B|
+  expected_output:
+    1:
+      gt0008|Child's blood group: O or B
+- id: P1 B, P2 O
+  input:
+    1:
+      gt0003|AOB parent1: local::at0009|B|
+      gt0004|RH parent1: local::at0012|Rh+|
+      gt0005|AOB parent2: local::at0011|O|
+      gt0006|RH parent2: local::at0012|Rh+|
+  expected_output:
+    1:
+      gt0008|Child's blood group: O or B
+      gt0009|Child's Rh type: Positive or Negative
+- id: P1 O and P2 AB
+  input:
+    1:
+      gt0003|AOB parent1: local::at0011|O|
+      gt0005|AOB parent2: local::at0010|AB|
+  expected_output:
+    1:
+      gt0008|Child's blood group: A or B
+- id: P1 AB, P2 O
+  input:
+    1:
+      gt0003|AOB parent1: local::at0010|AB|
+      gt0004|RH parent1: local::at0013|Rh-|
+      gt0005|AOB parent2: local::at0011|O|
+      gt0006|RH parent2: local::at0013|Rh-|
+  expected_output:
+    1:
+      gt0008|Child's blood group: A or B
+      gt0009|Child's Rh type: Negative
+- id: P1 A, P2 A
+  input:
+    1:
+      gt0003|AOB parent1: local::at0008|A|
+      gt0005|AOB parent2: local::at0008|A|
+  expected_output:
+    1:
+      gt0008|Child's blood group: O or A
+- id: P1 A, P2 B
+  input:
+    1:
+      gt0003|AOB parent1: local::at0008|A|
+      gt0005|AOB parent2: local::at0009|B|
+  expected_output:
+    1:
+      gt0008|Child's blood group: O or A or B or AB
+- id: P1 B, P2 A
+  input:
+    1:
+      gt0003|AOB parent1: local::at0009|B|
+      gt0004|RH parent1: local::at0013|Rh-|
+      gt0005|AOB parent2: local::at0008|A|
+      gt0006|RH parent2: local::at0013|Rh-|
+  expected_output:
+    1:
+      gt0008|Child's blood group: O or A or B or AB
+      gt0009|Child's Rh type: Negative
+- id: P1 A, P2 AB
+  input:
+    1:
+      gt0003|AOB parent1: local::at0008|A|
+      gt0005|AOB parent2: local::at0010|AB|
+  expected_output:
+    1:
+      gt0008|Child's blood group: A or B or AB
+- id: P1 AB, P2 A
+  input:
+    1:
+      gt0003|AOB parent1: local::at0010|AB|
+      gt0004|RH parent1: local::at0013|Rh-|
+      gt0005|AOB parent2: local::at0008|A|
+      gt0006|RH parent2: local::at0013|Rh-|
+  expected_output:
+    1:
+      gt0008|Child's blood group: A or B or AB
+      gt0009|Child's Rh type: Negative
+- id: P1 B, P2 B
+  input:
+    1:
+      gt0003|AOB parent1: local::at0009|B|
+      gt0005|AOB parent2: local::at0009|B|
+  expected_output:
+    1:
+      gt0008|Child's blood group: O or B
+- id: P1 AB, P2 AB
+  input:
+    1:
+      gt0003|AOB parent1: local::at0010|AB|
+      gt0005|AOB parent2: local::at0010|AB|
+  expected_output:
+    1:
+      gt0008|Child's blood group: A or B or AB
+- id: P1 B, P2 AB
+  input:
+    1:
+      gt0003|AOB parent1: local::at0009|B|
+      gt0005|AOB parent2: local::at0010|AB|
+  expected_output:
+    1:
+      gt0008|Child's blood group: A or B or AB
+- id: P1 AB, P2 B
+  input:
+    1:
+      gt0003|AOB parent1: local::at0010|AB|
+      gt0004|RH parent1: local::at0012|Rh+|
+      gt0005|AOB parent2: local::at0009|B|
+      gt0006|RH parent2: local::at0012|Rh+|
+  expected_output:
+    1:
+      gt0008|Child's blood group: A or B or AB
+      gt0009|Child's Rh type: Positive or Negative

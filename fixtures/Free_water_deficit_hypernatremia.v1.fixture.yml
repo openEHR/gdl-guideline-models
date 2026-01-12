@@ -1,0 +1,147 @@
+guidelines:
+  1: Free_water_deficit_hypernatremia.v1
+test_cases:
+- id: Adult Male
+  input:
+    1:
+      gt0003|Sex: local::at0005|Male|
+      gt0005|Weight: 80,kg
+      gt0007|Sodium (Use only if sodium >140): 145,mmol/l
+      gt0010|Age range: local::at0007|Adult|
+      gt0033|Sodium desired: 125,mmol/l
+  expected_output:
+    1:
+      gt0032|Weight in kg: 80
+      gt0017|% total body water: 60,%
+      gt0012|Free water deficit: 7.7,l
+- id: Adult Female
+  input:
+    1:
+      gt0003|Sex: local::at0006|Female|
+      gt0005|Weight: 90,lb
+      gt0007|Sodium (Use only if sodium >140): 145,mmol/l
+      gt0010|Age range: local::at0007|Adult|
+      gt0033|Sodium desired: 125,mmol/l
+  expected_output:
+    1:
+      gt0032|Weight in kg: 41,kg
+      gt0017|% total body water: 50,%
+      gt0012|Free water deficit: 3.3,l
+- id: Elderly Female
+  input:
+    1:
+      gt0003|Sex: local::at0006|Female|
+      gt0005|Weight: 60,kg
+      gt0007|Sodium (Use only if sodium >140): 145,mEq/l
+      gt0010|Age range: local::at0008|Elderly|
+      gt0033|Sodium desired: 120,mmol/l
+  expected_output:
+    1:
+      gt0032|Weight in kg: 60
+      gt0017|% total body water: 45,%
+      gt0012|Free water deficit: 5.6,l
+- id: Elderly Male
+  input:
+    1:
+      gt0003|Sex: local::at0005|Male|
+      gt0005|Weight: 60,kg
+      gt0007|Sodium (Use only if sodium >140): 145,mEq/l
+      gt0010|Age range: local::at0008|Elderly|
+      gt0033|Sodium desired: 120,mmol/l
+  expected_output:
+    1:
+      gt0032|Weight in kg: 60
+      gt0017|% total body water: 50,%
+      gt0012|Free water deficit: 6.2,l
+- id: Child
+  input:
+    1:
+      gt0003|Sex: local::at0006|Female|
+      gt0005|Weight: 15,kg
+      gt0007|Sodium (Use only if sodium >140): 145,mmol/l
+      gt0010|Age range: local::at0006|Child|
+      gt0033|Sodium desired: 125,mmol/l
+  expected_output:
+    1:
+      gt0032|Weight in kg: 15
+      gt0017|% total body water: 60,%
+      gt0012|Free water deficit: 1.4,l
+- id: Warning Weight Too High
+  input:
+    1:
+      gt0003|Sex: local::at0006|Female|
+      gt0005|Weight: 273,kg
+      gt0007|Sodium (Use only if sodium >140): 145,mmol/l
+      gt0010|Age range: local::at0006|Child|
+      gt0033|Sodium desired: 125,mmol/l
+  expected_output:
+    1:
+      gt0013|Warning Weight: Too high; please change to proceed.
+      gt0032|Weight in kg: 273
+- id: Warning Weight Very High
+  input:
+    1:
+      gt0003|Sex: local::at0006|Female|
+      gt0005|Weight: 250,kg
+      gt0007|Sodium (Use only if sodium >140): 145,mmol/l
+      gt0010|Age range: local::at0006|Child|
+      gt0033|Sodium desired: 125,mmol/l
+  expected_output:
+    1:
+      gt0013|Warning Weight: Very high; double-check.
+      gt0032|Weight in kg: 250
+      gt0017|% total body water: 60,%
+      gt0012|Free water deficit: 24.0,l
+- id: Warning Weight Too Low
+  input:
+    1:
+      gt0003|Sex: local::at0006|Female|
+      gt0005|Weight: 0,kg
+      gt0007|Sodium (Use only if sodium >140): 145,mmol/l
+      gt0010|Age range: local::at0006|Child|
+      gt0033|Sodium desired: 125,mmol/l
+  expected_output:
+    1:
+      gt0013|Warning Weight: Too low; please change to proceed.
+      gt0032|Weight in kg: 0
+- id: Warning Sodium and Sodium desired Too High
+  input:
+    1:
+      gt0003|Sex: local::at0005|Male|
+      gt0005|Weight: 60,kg
+      gt0007|Sodium (Use only if sodium >140): 210,mEq/l
+      gt0010|Age range: local::at0008|Elderly|
+      gt0033|Sodium desired: 210,mmol/l
+  expected_output:
+    1:
+      gt0032|Weight in kg: 60
+      gt0015|Warning Sodium desired: Too high; please change to proceed.
+      gt0014|Warning Sodium: Too high; please change to proceed.
+- id: Warning Sodium and Sodium desired Very High
+  input:
+    1:
+      gt0003|Sex: local::at0005|Male|
+      gt0005|Weight: 60,kg
+      gt0007|Sodium (Use only if sodium >140): 172,mEq/l
+      gt0010|Age range: local::at0008|Elderly|
+      gt0033|Sodium desired: 172,mmol/l
+  expected_output:
+    1:
+      gt0032|Weight in kg: 60
+      gt0015|Warning Sodium desired: Very high; double-check.
+      gt0014|Warning Sodium: Very high; double-check.
+      gt0017|% total body water: 50,%
+      gt0012|Free water deficit: 0.0,l
+- id: Warning Sodium and Sodium desired Too Low
+  input:
+    1:
+      gt0003|Sex: local::at0005|Male|
+      gt0005|Weight: 60,kg
+      gt0007|Sodium (Use only if sodium >140): 70,mEq/l
+      gt0010|Age range: local::at0008|Elderly|
+      gt0033|Sodium desired: 70,mmol/l
+  expected_output:
+    1:
+      gt0032|Weight in kg: 60
+      gt0015|Warning Sodium desired: Too low; please change to proceed.
+      gt0014|Warning Sodium: Too low; please change to proceed.

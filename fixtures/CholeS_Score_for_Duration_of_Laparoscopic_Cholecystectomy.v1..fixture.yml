@@ -1,0 +1,132 @@
+guidelines:
+  1: CholeS_Score_for_Duration_of_Laparoscopic_Cholecystectomy.v1
+test_cases:
+- id: 1. Zero score
+  input:
+    1:
+      gt0003|Age: 39,a
+      gt0006|Indication: local::at0022|Pancreatitis|
+      gt0047|Gender: 0|local::at0019|Female|
+      gt0008|Body Mass Index: 24,kg/m2
+      gt0010|Common bile duct diameter: 0|local::at0029|Normal|
+      gt0011|Gallbladder wall: local::at0044|Normal|
+      gt0012|Pre-operative CT done: local::at0033|No|
+      gt0013|Intra-op cholangiogram planned: 0|local::at0035|No|
+      gt0014|Number of previous surgical admissions: local::at0037|0|
+      gt0015|ASA Class: local::at0040|1|
+  expected_output:
+    1:
+      gt0024|Age, years Q: 0,1
+      gt0021|ASA Class Q: 0,1
+      gt0025|Gallbladder wall Q: 0,1
+      gt0022|Pre-operative CT done Q: 0,1
+      gt0023|Number of previous surgical admissions Q: 0,1
+      gt0020|Indication Q: 0,1
+      gt0033|BMI: 0|local::at0026|<25|
+      gt0053|Risk group: local::at0010|Low risk group|
+      gt0054|Score intepretation: local::at0013|Likelihood of operative time >90 minutes is 5.1%|
+      gt0056|CholeS total score quantity: 0.0
+
+- id: 2. Age and BMI edge values 1
+  input:
+    1:
+      gt0003|Age: 40,a
+      gt0006|Indication: local::at0022|Pancreatitis|
+      gt0047|Gender: 0|local::at0019|Female|
+      gt0008|Body Mass Index: 25,kg/m2
+      gt0010|Common bile duct diameter: 0|local::at0029|Normal|
+      gt0011|Gallbladder wall: local::at0044|Normal|
+      gt0012|Pre-operative CT done: local::at0033|No|
+      gt0013|Intra-op cholangiogram planned: 0|local::at0035|No|
+      gt0014|Number of previous surgical admissions: local::at0037|0|
+      gt0015|ASA Class: local::at0040|1|
+  expected_output:
+    1:
+      gt0024|Age, years Q: 1.5,1
+      gt0021|ASA Class Q: 0,1
+      gt0025|Gallbladder wall Q: 0,1
+      gt0022|Pre-operative CT done Q: 0,1
+      gt0023|Number of previous surgical admissions Q: 0,1
+      gt0020|Indication Q: 0,1
+      gt0033|BMI: 1|local::at0027|25-35|
+      gt0053|Risk group: local::at0010|Low risk group|
+      gt0054|Score intepretation: local::at0013|Likelihood of operative time >90 minutes is 5.1%|
+      gt0056|CholeS total score quantity: 2.5
+
+- id: 3. Mid-range score
+  input:
+    1:
+      gt0003|Age: 36,a
+      gt0006|Indication: local::at0022|Pancreatitis|
+      gt0047|Gender: 0|local::at0019|Female|
+      gt0008|Body Mass Index: 35,kg/m2
+      gt0010|Common bile duct diameter: 0|local::at0029|Normal|
+      gt0011|Gallbladder wall: local::at0045|Thick|
+      gt0012|Pre-operative CT done: local::at0033|No|
+      gt0013|Intra-op cholangiogram planned: 3|local::at0036|Yes|
+      gt0014|Number of previous surgical admissions: local::at0038|1-2|
+      gt0015|ASA Class: local::at0041|2|
+  expected_output:
+    1:
+      gt0024|Age, years Q: 0,1
+      gt0021|ASA Class Q: 1,1
+      gt0025|Gallbladder wall Q: 1.5,1
+      gt0022|Pre-operative CT done Q: 0,1
+      gt0023|Number of previous surgical admissions Q: 1,1
+      gt0020|Indication Q: 0,1
+      gt0033|BMI: 1|local::at0027|25-35|
+      gt0053|Risk group: local::at0011|Intermediate risk group|
+      gt0054|Score intepretation: local::at0014|Likelihood of operative time >90 minutes is 5.1-41.8%|
+      gt0056|CholeS total score quantity: 7.5
+
+- id: 4. High range score
+  input:
+    1:
+      gt0003|Age: 24,a
+      gt0006|Indication: local::at0022|Pancreatitis|
+      gt0047|Gender: 0|local::at0019|Female|
+      gt0008|Body Mass Index: 24,kg/m2
+      gt0010|Common bile duct diameter: 2|local::at0030|Dilated|
+      gt0011|Gallbladder wall: local::at0045|Thick|
+      gt0012|Pre-operative CT done: local::at0034|Yes|
+      gt0013|Intra-op cholangiogram planned: 3|local::at0036|Yes|
+      gt0014|Number of previous surgical admissions: local::at0038|1-2|
+      gt0015|ASA Class: local::at0040|1|
+  expected_output:
+    1:
+      gt0024|Age, years Q: 0,1
+      gt0021|ASA Class Q: 0,1
+      gt0025|Gallbladder wall Q: 1.5,1
+      gt0022|Pre-operative CT done Q: 1.5,1
+      gt0023|Number of previous surgical admissions Q: 1,1
+      gt0020|Indication Q: 0,1
+      gt0033|BMI: 0|local::at0026|<25|
+      gt0053|Risk group: local::at0012|High risk group|
+      gt0054|Score intepretation: local::at0015|Likelihood of operative time >90 minutes is 41.8%|
+      gt0056|CholeS total score quantity: 9.0
+
+- id: 5. Maximum score
+  input:
+    1:
+      gt0003|Age: 60,a
+      gt0006|Indication: local::at0025|Acalculous or cholecystitis|
+      gt0047|Gender: 1|local::at0020|Male|
+      gt0008|Body Mass Index: 40,kg/m2
+      gt0010|Common bile duct diameter: 2|local::at0030|Dilated|
+      gt0011|Gallbladder wall: local::at0045|Thick|
+      gt0012|Pre-operative CT done: local::at0034|Yes|
+      gt0013|Intra-op cholangiogram planned: 3|local::at0036|Yes|
+      gt0014|Number of previous surgical admissions: local::at0039|>2|
+      gt0015|ASA Class: local::at0042|>2|
+  expected_output:
+    1:
+      gt0024|Age, years Q: 1.5,1
+      gt0021|ASA Class Q: 2.5,1
+      gt0025|Gallbladder wall Q: 1.5,1
+      gt0022|Pre-operative CT done Q: 1.5,1
+      gt0023|Number of previous surgical admissions Q: 2.5,1
+      gt0020|Indication Q: 2.5,1
+      gt0033|BMI: 2|local::at0028|>35|
+      gt0053|Risk group: local::at0012|High risk group|
+      gt0054|Score intepretation: local::at0015|Likelihood of operative time >90 minutes is 41.8%|
+      gt0056|CholeS total score quantity: 20.0

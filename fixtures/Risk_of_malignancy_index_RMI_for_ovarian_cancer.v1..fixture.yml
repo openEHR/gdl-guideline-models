@@ -1,0 +1,34 @@
+guidelines:
+  1: Risk_of_malignancy_index_RMI_for_ovarian_cancer.v1
+test_cases:
+- id: Low Risk of malignancy
+  input:
+    1:
+      gt0042|Multiloculated cysts: 0|local::at0004|No|
+      gt0043|Solid areas: 0|local::at0007|No|
+      gt0044|Bilateral lesions: 0|local::at0010|No|
+      gt0045|Ascites: 1|local::at0014|Yes|
+      gt0046|Intra-abdominal metastases: 0|local::at0016|No|
+      gt0047|Menopausal status (Postmenopausal status = >1 year of amenorrhea or age ≥50 years if patient is status post hysterectomy): 3|local::at0021|Postmenopausal|
+      gt0013|Serum CA-125: 22,U/ml
+  expected_output:
+    1:
+      gt0051|Risk of malignancy: local::at0023|Low|
+      gt0049|Ultrasound features score: 1
+      gt0050|RMI: 66.0,1
+
+- id: High Risk of malignancy
+  input:
+    1:
+      gt0042|Multiloculated cysts: 1|local::at0005|Yes|
+      gt0043|Solid areas: 1|local::at0008|Yes|
+      gt0044|Bilateral lesions: 1|local::at0011|Yes|
+      gt0045|Ascites: 1|local::at0014|Yes|
+      gt0046|Intra-abdominal metastases: 1|local::at0017|Yes|
+      gt0047|Menopausal status (Postmenopausal status = >1 year of amenorrhea or age ≥50 years if patient is status post hysterectomy): 3|local::at0021|Postmenopausal|
+      gt0013|Serum CA-125: 30,U/ml
+  expected_output:
+    1:
+      gt0051|Risk of malignancy: local::at0024|High|
+      gt0049|Ultrasound features score: 5
+      gt0050|RMI: 270.0,1

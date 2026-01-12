@@ -1,0 +1,282 @@
+guidelines:
+  1: GO_FAR_Good_Outcome_Following_Attempted_Resuscitation_Score_guideline.v1
+test_cases:
+- id: Above average survival, -15
+  input:
+    1:
+      gt0008|Age, Years: 0|local::at0005|<70|
+      gt0009|Neurologically intact or with minimal deficits at admission: -15|local::at0012|Yes|
+      gt0010|Major trauma (injury associated with shock or altered mental status during current admission): 0|local::at0014|No|
+      gt0011|Acute stroke (ischemic or hemorrhagic stroke during current admission): 0|local::at0017|No|
+      gt0012|Metastatic or hematologic cancer: 0|local::at0020|No|
+      gt0013|Septicemia (documented bloodstream infection with antibiotics not yet started or still ongoing): 0|local::at0023|No|
+      gt0014|Medical noncardiac diagnosis on admission: 0|local::at0026|No|
+      gt0015|Hepatic insufficiency (total bilirubin >2 mg/dL or 34 µmol/L and AST >2x upper limit of normal, or cirrhosis): 0|local::at0029|No|
+      gt0016|Admit from skilled nursing facility: 0|local::at0032|No|
+      ? gt0017|Hypotension or hypoperfusion within 4 hrs prior to arrest (SBP <90,
+        MAP <60, pressors or inotropes other than dopamine ≤3 µmol/kg/min after volume
+        expansion, or intra-aortic balloon pump)
+      : 0|local::at0045|No|
+      gt0018|Renal insufficiency or dialysis: 0|local::at0036|No|
+      ? 'gt0019|Respiratory insufficiency within 4 hrs of arrest (any of the following:
+        P/F ratio <300, PaO2 <60, SaO2 <90%; PaCO2, ETCO2, or transcutaneous CO2 >50,
+        spontaneous RR >40 or <5, or noninvasive or invasive ventilation)'
+      : 0|local::at0039|No|
+      gt0020|Pneumonia (documented active pneumonia with antibiotics not yet started or still ongoing): 0|local::at0042|No|
+  expected_output:
+    1:
+      gt0004|Score: -15
+      gt0006|Risk group: local::at0007|Above average survival|
+      gt0007|Survival to discharge with minimal neurologic disability: local::at0011|>15%|
+
+- id: Above average survival, -6
+  input:
+    1:
+      gt0008|Age, Years: 0|local::at0005|<70|
+      gt0009|Neurologically intact or with minimal deficits at admission: -15|local::at0012|Yes|
+      gt0010|Major trauma (injury associated with shock or altered mental status during current admission): 0|local::at0014|No|
+      gt0011|Acute stroke (ischemic or hemorrhagic stroke during current admission): 8|local::at0018|Yes|
+      gt0012|Metastatic or hematologic cancer: 0|local::at0020|No|
+      gt0013|Septicemia (documented bloodstream infection with antibiotics not yet started or still ongoing): 0|local::at0023|No|
+      gt0014|Medical noncardiac diagnosis on admission: 0|local::at0026|No|
+      gt0015|Hepatic insufficiency (total bilirubin >2 mg/dL or 34 µmol/L and AST >2x upper limit of normal, or cirrhosis): 0|local::at0029|No|
+      gt0016|Admit from skilled nursing facility: 0|local::at0032|No|
+      ? gt0017|Hypotension or hypoperfusion within 4 hrs prior to arrest (SBP <90,
+        MAP <60, pressors or inotropes other than dopamine ≤3 µmol/kg/min after volume
+        expansion, or intra-aortic balloon pump)
+      : 0|local::at0045|No|
+      gt0018|Renal insufficiency or dialysis: 0|local::at0036|No|
+      ? 'gt0019|Respiratory insufficiency within 4 hrs of arrest (any of the following:
+        P/F ratio <300, PaO2 <60, SaO2 <90%; PaCO2, ETCO2, or transcutaneous CO2 >50,
+        spontaneous RR >40 or <5, or noninvasive or invasive ventilation)'
+      : 0|local::at0039|No|
+      gt0020|Pneumonia (documented active pneumonia with antibiotics not yet started or still ongoing): 1|local::at0043|Yes|
+  expected_output:
+    1:
+      gt0004|Score: -6
+      gt0006|Risk group: local::at0007|Above average survival|
+      gt0007|Survival to discharge with minimal neurologic disability: local::at0011|>15%|
+
+- id: Average survival, -5
+  input:
+    1:
+      gt0008|Age, Years: 2|local::at0006|70-74|
+      gt0009|Neurologically intact or with minimal deficits at admission: -15|local::at0012|Yes|
+      gt0010|Major trauma (injury associated with shock or altered mental status during current admission): 0|local::at0014|No|
+      gt0011|Acute stroke (ischemic or hemorrhagic stroke during current admission): 8|local::at0018|Yes|
+      gt0012|Metastatic or hematologic cancer: 0|local::at0020|No|
+      gt0013|Septicemia (documented bloodstream infection with antibiotics not yet started or still ongoing): 0|local::at0023|No|
+      gt0014|Medical noncardiac diagnosis on admission: 0|local::at0026|No|
+      gt0015|Hepatic insufficiency (total bilirubin >2 mg/dL or 34 µmol/L and AST >2x upper limit of normal, or cirrhosis): 0|local::at0029|No|
+      gt0016|Admit from skilled nursing facility: 0|local::at0032|No|
+      ? gt0017|Hypotension or hypoperfusion within 4 hrs prior to arrest (SBP <90,
+        MAP <60, pressors or inotropes other than dopamine ≤3 µmol/kg/min after volume
+        expansion, or intra-aortic balloon pump)
+      : 0|local::at0045|No|
+      gt0018|Renal insufficiency or dialysis: 0|local::at0036|No|
+      ? 'gt0019|Respiratory insufficiency within 4 hrs of arrest (any of the following:
+        P/F ratio <300, PaO2 <60, SaO2 <90%; PaCO2, ETCO2, or transcutaneous CO2 >50,
+        spontaneous RR >40 or <5, or noninvasive or invasive ventilation)'
+      : 0|local::at0039|No|
+      gt0020|Pneumonia (documented active pneumonia with antibiotics not yet started or still ongoing): 0|local::at0042|No|
+  expected_output:
+    1:
+      gt0004|Score: -5
+      gt0006|Risk group: local::at0006|Average survival|
+      gt0007|Survival to discharge with minimal neurologic disability: local::at0010|3-15%|
+
+- id: Above average survival, 13
+  input:
+    1:
+      gt0008|Age, Years: 5|local::at0007|75-79|
+      gt0009|Neurologically intact or with minimal deficits at admission: 0|local::at0011|No|
+      gt0010|Major trauma (injury associated with shock or altered mental status during current admission): 0|local::at0014|No|
+      gt0011|Acute stroke (ischemic or hemorrhagic stroke during current admission): 8|local::at0018|Yes|
+      gt0012|Metastatic or hematologic cancer: 0|local::at0020|No|
+      gt0013|Septicemia (documented bloodstream infection with antibiotics not yet started or still ongoing): 0|local::at0023|No|
+      gt0014|Medical noncardiac diagnosis on admission: 0|local::at0026|No|
+      gt0015|Hepatic insufficiency (total bilirubin >2 mg/dL or 34 µmol/L and AST >2x upper limit of normal, or cirrhosis): 0|local::at0029|No|
+      gt0016|Admit from skilled nursing facility: 0|local::at0032|No|
+      ? gt0017|Hypotension or hypoperfusion within 4 hrs prior to arrest (SBP <90,
+        MAP <60, pressors or inotropes other than dopamine ≤3 µmol/kg/min after volume
+        expansion, or intra-aortic balloon pump)
+      : 0|local::at0045|No|
+      gt0018|Renal insufficiency or dialysis: 0|local::at0036|No|
+      ? 'gt0019|Respiratory insufficiency within 4 hrs of arrest (any of the following:
+        P/F ratio <300, PaO2 <60, SaO2 <90%; PaCO2, ETCO2, or transcutaneous CO2 >50,
+        spontaneous RR >40 or <5, or noninvasive or invasive ventilation)'
+      : 0|local::at0039|No|
+      gt0020|Pneumonia (documented active pneumonia with antibiotics not yet started or still ongoing): 0|local::at0042|No|
+  expected_output:
+    1:
+      gt0004|Score: 13
+      gt0006|Risk group: local::at0006|Average survival|
+      gt0007|Survival to discharge with minimal neurologic disability: local::at0010|3-15%|
+
+- id: Low survival, 14
+  input:
+    1:
+      gt0008|Age, Years: 6|local::at0008|80-84|
+      gt0009|Neurologically intact or with minimal deficits at admission: 0|local::at0011|No|
+      gt0010|Major trauma (injury associated with shock or altered mental status during current admission): 0|local::at0014|No|
+      gt0011|Acute stroke (ischemic or hemorrhagic stroke during current admission): 8|local::at0018|Yes|
+      gt0012|Metastatic or hematologic cancer: 0|local::at0020|No|
+      gt0013|Septicemia (documented bloodstream infection with antibiotics not yet started or still ongoing): 0|local::at0023|No|
+      gt0014|Medical noncardiac diagnosis on admission: 0|local::at0026|No|
+      gt0015|Hepatic insufficiency (total bilirubin >2 mg/dL or 34 µmol/L and AST >2x upper limit of normal, or cirrhosis): 0|local::at0029|No|
+      gt0016|Admit from skilled nursing facility: 0|local::at0032|No|
+      ? gt0017|Hypotension or hypoperfusion within 4 hrs prior to arrest (SBP <90,
+        MAP <60, pressors or inotropes other than dopamine ≤3 µmol/kg/min after volume
+        expansion, or intra-aortic balloon pump)
+      : 0|local::at0045|No|
+      gt0018|Renal insufficiency or dialysis: 0|local::at0036|No|
+      ? 'gt0019|Respiratory insufficiency within 4 hrs of arrest (any of the following:
+        P/F ratio <300, PaO2 <60, SaO2 <90%; PaCO2, ETCO2, or transcutaneous CO2 >50,
+        spontaneous RR >40 or <5, or noninvasive or invasive ventilation)'
+      : 0|local::at0039|No|
+      gt0020|Pneumonia (documented active pneumonia with antibiotics not yet started or still ongoing): 0|local::at0042|No|
+  expected_output:
+    1:
+      gt0004|Score: 14
+      gt0006|Risk group: local::at0005|Low survival|
+      gt0007|Survival to discharge with minimal neurologic disability: local::at0009|1-3%|
+- id: Low survival, 23
+  input:
+    1:
+      gt0008|Age, Years: 6|local::at0008|80-84|
+      gt0009|Neurologically intact or with minimal deficits at admission: 0|local::at0011|No|
+      gt0010|Major trauma (injury associated with shock or altered mental status during current admission): 10|local::at0015|Yes|
+      gt0011|Acute stroke (ischemic or hemorrhagic stroke during current admission): 0|local::at0017|No|
+      gt0012|Metastatic or hematologic cancer: 7|local::at0021|Yes|
+      gt0013|Septicemia (documented bloodstream infection with antibiotics not yet started or still ongoing): 0|local::at0023|No|
+      gt0014|Medical noncardiac diagnosis on admission: 0|local::at0026|No|
+      gt0015|Hepatic insufficiency (total bilirubin >2 mg/dL or 34 µmol/L and AST >2x upper limit of normal, or cirrhosis): 0|local::at0029|No|
+      gt0016|Admit from skilled nursing facility: 0|local::at0032|No|
+      ? gt0017|Hypotension or hypoperfusion within 4 hrs prior to arrest (SBP <90,
+        MAP <60, pressors or inotropes other than dopamine ≤3 µmol/kg/min after volume
+        expansion, or intra-aortic balloon pump)
+      : 0|local::at0045|No|
+      gt0018|Renal insufficiency or dialysis: 0|local::at0036|No|
+      ? 'gt0019|Respiratory insufficiency within 4 hrs of arrest (any of the following:
+        P/F ratio <300, PaO2 <60, SaO2 <90%; PaCO2, ETCO2, or transcutaneous CO2 >50,
+        spontaneous RR >40 or <5, or noninvasive or invasive ventilation)'
+      : 0|local::at0039|No|
+      gt0020|Pneumonia (documented active pneumonia with antibiotics not yet started or still ongoing): 0|local::at0042|No|
+  expected_output:
+    1:
+      gt0004|Score: 23
+      gt0006|Risk group: local::at0005|Low survival|
+      gt0007|Survival to discharge with minimal neurologic disability: local::at0009|1-3%|
+
+
+- id: Very low survival, 24
+  input:
+    1:
+      gt0008|Age, Years: 6|local::at0008|80-84|
+      gt0009|Neurologically intact or with minimal deficits at admission: 0|local::at0011|No|
+      gt0010|Major trauma (injury associated with shock or altered mental status during current admission): 10|local::at0015|Yes|
+      gt0011|Acute stroke (ischemic or hemorrhagic stroke during current admission): 0|local::at0017|No|
+      gt0012|Metastatic or hematologic cancer: 7|local::at0021|Yes|
+      gt0013|Septicemia (documented bloodstream infection with antibiotics not yet started or still ongoing): 0|local::at0023|No|
+      gt0014|Medical noncardiac diagnosis on admission: 0|local::at0026|No|
+      gt0015|Hepatic insufficiency (total bilirubin >2 mg/dL or 34 µmol/L and AST >2x upper limit of normal, or cirrhosis): 0|local::at0029|No|
+      gt0016|Admit from skilled nursing facility: 0|local::at0032|No|
+      ? gt0017|Hypotension or hypoperfusion within 4 hrs prior to arrest (SBP <90,
+        MAP <60, pressors or inotropes other than dopamine ≤3 µmol/kg/min after volume
+        expansion, or intra-aortic balloon pump)
+      : 0|local::at0045|No|
+      gt0018|Renal insufficiency or dialysis: 0|local::at0036|No|
+      ? 'gt0019|Respiratory insufficiency within 4 hrs of arrest (any of the following:
+        P/F ratio <300, PaO2 <60, SaO2 <90%; PaCO2, ETCO2, or transcutaneous CO2 >50,
+        spontaneous RR >40 or <5, or noninvasive or invasive ventilation)'
+      : 0|local::at0039|No|
+      gt0020|Pneumonia (documented active pneumonia with antibiotics not yet started or still ongoing): 1|local::at0043|Yes|
+  expected_output:
+    1:
+      gt0004|Score: 24
+      gt0006|Risk group: local::at0004|Very low survival|
+      gt0007|Survival to discharge with minimal neurologic disability: local::at0008|<1%|
+
+- id: Average survival, 0
+  input:
+    1:
+      gt0008|Age, Years: 0|local::at0005|<70|
+      gt0009|Neurologically intact or with minimal deficits at admission: 0|local::at0011|No|
+      gt0010|Major trauma (injury associated with shock or altered mental status during current admission): 0|local::at0014|No|
+      gt0011|Acute stroke (ischemic or hemorrhagic stroke during current admission): 0|local::at0017|No|
+      gt0012|Metastatic or hematologic cancer: 0|local::at0020|No|
+      gt0013|Septicemia (documented bloodstream infection with antibiotics not yet started or still ongoing): 0|local::at0023|No|
+      gt0014|Medical noncardiac diagnosis on admission: 0|local::at0026|No|
+      gt0015|Hepatic insufficiency (total bilirubin >2 mg/dL or 34 µmol/L and AST >2x upper limit of normal, or cirrhosis): 0|local::at0029|No|
+      gt0016|Admit from skilled nursing facility: 0|local::at0032|No|
+      ? gt0017|Hypotension or hypoperfusion within 4 hrs prior to arrest (SBP <90,
+        MAP <60, pressors or inotropes other than dopamine ≤3 µmol/kg/min after volume
+        expansion, or intra-aortic balloon pump)
+      : 0|local::at0045|No|
+      gt0018|Renal insufficiency or dialysis: 0|local::at0036|No|
+      ? 'gt0019|Respiratory insufficiency within 4 hrs of arrest (any of the following:
+        P/F ratio <300, PaO2 <60, SaO2 <90%; PaCO2, ETCO2, or transcutaneous CO2 >50,
+        spontaneous RR >40 or <5, or noninvasive or invasive ventilation)'
+      : 0|local::at0039|No|
+      gt0020|Pneumonia (documented active pneumonia with antibiotics not yet started or still ongoing): 0|local::at0042|No|
+  expected_output:
+    1:
+      gt0004|Score: 0
+      gt0006|Risk group: local::at0006|Average survival|
+      gt0007|Survival to discharge with minimal neurologic disability: local::at0010|3-15%|
+
+
+
+- id: Very low survival, 76
+  input:
+    1:
+      gt0008|Age, Years: 11|local::at0009|≥85|
+      gt0009|Neurologically intact or with minimal deficits at admission: 0|local::at0011|No|
+      gt0010|Major trauma (injury associated with shock or altered mental status during current admission): 10|local::at0015|Yes|
+      gt0011|Acute stroke (ischemic or hemorrhagic stroke during current admission): 8|local::at0018|Yes|
+      gt0012|Metastatic or hematologic cancer: 7|local::at0021|Yes|
+      gt0013|Septicemia (documented bloodstream infection with antibiotics not yet started or still ongoing): 7|local::at0024|Yes|
+      gt0014|Medical noncardiac diagnosis on admission: 7|local::at0027|Yes|
+      gt0015|Hepatic insufficiency (total bilirubin >2 mg/dL or 34 µmol/L and AST >2x upper limit of normal, or cirrhosis): 6|local::at0030|Yes|
+      gt0016|Admit from skilled nursing facility: 6|local::at0033|Yes|
+      ? gt0017|Hypotension or hypoperfusion within 4 hrs prior to arrest (SBP <90,
+        MAP <60, pressors or inotropes other than dopamine ≤3 µmol/kg/min after volume
+        expansion, or intra-aortic balloon pump)
+      : 5|local::at0046|Yes|
+      gt0018|Renal insufficiency or dialysis: 4|local::at0037|Yes|
+      ? 'gt0019|Respiratory insufficiency within 4 hrs of arrest (any of the following:
+        P/F ratio <300, PaO2 <60, SaO2 <90%; PaCO2, ETCO2, or transcutaneous CO2 >50,
+        spontaneous RR >40 or <5, or noninvasive or invasive ventilation)'
+      : 4|local::at0040|Yes|
+      gt0020|Pneumonia (documented active pneumonia with antibiotics not yet started or still ongoing): 1|local::at0043|Yes|
+  expected_output:
+    1:
+      gt0004|Score: 76
+      gt0006|Risk group: local::at0004|Very low survival|
+      gt0007|Survival to discharge with minimal neurologic disability: local::at0008|<1%|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

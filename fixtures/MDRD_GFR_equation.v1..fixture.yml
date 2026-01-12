@@ -1,0 +1,65 @@
+current_datetime: '2019-09-01T00:00:00+01:00'
+
+guidelines:
+  1: MDRD_GFR_equation.v1
+test_cases:
+- id: female, black, creatinine in mg/dL
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Birthdate: 1986-12-11T22:39+01:00[Europe/Stockholm]
+      gt0005|Black ethnicity: 1|local::at0021|Yes|
+      gt0007|Creatinine: 6,mg/dl
+  expected_output:
+    1:
+      gt0024|Gender factor contribution: 0.742
+      gt0025|Ethnicity factor contribution: 1.212
+      gt0011|Glomerular Filtration Rate by MDRD-GFR equation: 10.4,ml/min
+      gt0017|Age: 33,a
+      gt0021|Creatinine: 6,mg/dl
+
+- id: female, black, creatinine in µmol/l
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Birthdate: 1986-12-11T22:39+01:00[Europe/Stockholm]
+      gt0005|Black ethnicity: 1|local::at0021|Yes|
+      gt0007|Creatinine: 200,µmol/l
+  expected_output:
+    1:
+      gt0024|Gender factor contribution: 0.742
+      gt0025|Ethnicity factor contribution: 1.212
+      gt0011|Glomerular Filtration Rate by MDRD-GFR equation: 0.2,ml/min
+      gt0017|Age: 33,a
+      gt0021|Creatinine: 2.260,mg/dl
+
+- id: male, non-black, creatinine in µmol/l
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Birthdate: 1963-07-24T22:39+01:00[Europe/Stockholm]
+      gt0005|Black ethnicity: 0|local::at0020|No|
+      gt0007|Creatinine: 150,µmol/l
+  expected_output:
+    1:
+      gt0024|Gender factor contribution: 1
+      gt0025|Ethnicity factor contribution: 1
+      gt0011|Glomerular Filtration Rate by MDRD-GFR equation: 0.3,ml/min
+      gt0017|Age: 56,a
+      gt0021|Creatinine: 1.695,mg/dl
+
+- id: male, non-black, creatinine in mg/dL
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Birthdate: 1956-01-10T22:39+01:00[Europe/Stockholm]
+      gt0005|Black ethnicity: 0|local::at0020|No|
+      gt0007|Creatinine: 3,mg/dl
+  expected_output:
+    1:
+      gt0024|Gender factor contribution: 1
+      gt0025|Ethnicity factor contribution: 1
+      gt0011|Glomerular Filtration Rate by MDRD-GFR equation: 22.5,ml/min
+      gt0017|Age: 64,a
+      gt0021|Creatinine: 3,mg/dl
+

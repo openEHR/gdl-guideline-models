@@ -1,0 +1,34 @@
+guidelines:
+  1: New_Orleans_Charity_Head_Trauma_Injury_Rule.v1
+test_cases:
+- id: Head CT not necessary 
+  input:
+    1:
+      gt0003|Headache: 0|local::at0003|No|
+      gt0004|Vomiting: 0|local::at0006|No|
+      gt0005|Alcohol or drug intoxication: 0|local::at0012|No|
+      gt0006|Persisent anterograde amnesia (short-term memory deficits): 0|local::at0015|No|
+      gt0007|Visible trauma above the clavicle: 0|local::at0019|No|
+      gt0008|Seizure: 0|local::at0021|No|
+      gt0014|Age: 40,a
+  expected_output:
+    1:
+      gt0012|New Orleans head CT suggestion: local::at0025|The New Orleans Head CT Rule suggests a head CT is NOT necessary for this patient to rule out an intracranial traumatic finding (sensitivity 97-100%).|
+      gt0010|Age > 60: 0|local::at0009|No|
+      gt0011|New Orleans head CT Score: 0
+
+- id: Head CT is necessary
+  input:
+    1:
+      gt0003|Headache: 0|local::at0003|No|
+      gt0004|Vomiting: 0|local::at0006|No|
+      gt0005|Alcohol or drug intoxication: 0|local::at0012|No|
+      gt0006|Persisent anterograde amnesia (short-term memory deficits): 0|local::at0015|No|
+      gt0007|Visible trauma above the clavicle: 0|local::at0019|No|
+      gt0008|Seizure: 1|local::at0022|Yes|
+      gt0014|Age: 70,a
+  expected_output:
+    1:
+      gt0012|New Orleans head CT suggestion: local::at0026|The New Orleans Head CT Rule suggests a head CT is necessary for this patient to rule out an intracranial traumatic finding (sensitivity 97-100%).|
+      gt0010|Age > 60: 1|local::at0010|Yes|
+      gt0011|New Orleans head CT Score: 2

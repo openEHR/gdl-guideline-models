@@ -1,0 +1,128 @@
+guidelines:
+  1: chemo_radiat_score.v0
+test_cases:
+- id: Test 1
+  input:
+    1:
+      gt0003|History of congestive heart failure: 0|local::at0028|No|
+      gt0050|History of stroke: 0|local::at0032|No|
+      gt0006|Hypertension: 0|local::at0027|Absent|
+      gt0007|Diabetes: 0|local::at0027|Absent|
+      gt0009|Age: 24,a
+      gt0017|Body mass index: 22,kg/m2
+      gt0019|Myocardial infarction/ peripheral artery occlusive disease: 0|local::at0015|No|
+      gt0020|Abnormal lipid profile: 0|local::at0024|No|
+      gt0021|Irradiation to left breast with ≥30 Gy dose: 1|local::at0031|Yes|
+      gt0053|Anthracycline dose: 0.1,g/m2
+      gt0047|Relative eGFR: 99,mL/min/{1.73_m2}
+  expected_output:
+    1:
+      gt0026|Risk Stratification: local::at0003|Low Risk|
+      gt0041|Transient ischemic attack/stroke: 0|local::at0034|No|
+      gt0032|Congestive Heart Failure: 0|local::at0005|No|
+      gt0034|Elderly: 0|local::at0012|No|
+      gt0037|Renal failure: 0|local::at0021|No|
+      gt0051|Total score: 2
+      gt0033|Hypertension: 0|local::at0008|No|
+      gt0036|Obesity: 0|local::at0018|No|
+      gt0039|Diabetes mellitus: 0|local::at0027|No|
+- id: Test Case 2
+  input:
+    1:
+      gt0003|History of congestive heart failure: 0|local::at0028|No|
+      gt0050|History of stroke: 1|local::at0033|Yes|
+      gt0006|Hypertension: 1|local::at0028|Present|
+      gt0007|Diabetes: 0|local::at0027|Absent|
+      gt0009|Age: 24,a
+      gt0017|Body mass index: 22,kg/m2
+      gt0019|Myocardial infarction/ peripheral artery occlusive disease: 0|local::at0015|No|
+      gt0020|Abnormal lipid profile: 0|local::at0024|No|
+      gt0021|Irradiation to left breast with ≥30 Gy dose: 1|local::at0031|Yes|
+      gt0053|Anthracycline dose: 0.1,g/m2
+      gt0047|Relative eGFR: 99,mL/min/{1.73_m2}
+  expected_output:
+    1:
+      gt0026|Risk Stratification: local::at0004|Intermediate Risk|
+      gt0041|Transient ischemic attack/stroke: 1|local::at0035|Yes|
+      gt0032|Congestive Heart Failure: 0|local::at0005|No|
+      gt0034|Elderly: 0|local::at0012|No|
+      gt0037|Renal failure: 0|local::at0021|No|
+      gt0051|Total score: 4
+      gt0033|Hypertension: 1|local::at0009|Yes|
+      gt0036|Obesity: 0|local::at0018|No|
+      gt0039|Diabetes mellitus: 0|local::at0027|No|
+- id: Test Case 3
+  input:
+    1:
+      gt0003|History of congestive heart failure: 0|local::at0028|No|
+      gt0050|History of stroke: 1|local::at0033|Yes|
+      gt0006|Hypertension: 1|local::at0028|Present|
+      gt0007|Diabetes: 1|local::at0028|Present|
+      gt0009|Age: 24,a
+      gt0017|Body mass index: 22,kg/m2
+      gt0019|Myocardial infarction/ peripheral artery occlusive disease: 2|local::at0016|Yes|
+      gt0020|Abnormal lipid profile: 0|local::at0024|No|
+      gt0021|Irradiation to left breast with ≥30 Gy dose: 1|local::at0031|Yes|
+      gt0053|Anthracycline dose: 0.1,g/m2
+      gt0047|Relative eGFR: 99,mL/min/{1.73_m2}
+  expected_output:
+    1:
+      gt0026|Risk Stratification: local::at0005|High risk|
+      gt0041|Transient ischemic attack/stroke: 1|local::at0035|Yes|
+      gt0032|Congestive Heart Failure: 0|local::at0005|No|
+      gt0034|Elderly: 0|local::at0012|No|
+      gt0037|Renal failure: 0|local::at0021|No|
+      gt0051|Total score: 7
+      gt0033|Hypertension: 1|local::at0009|Yes|
+      gt0036|Obesity: 0|local::at0018|No|
+      gt0039|Diabetes mellitus: 1|local::at0028|Yes|
+- id: Test 4
+  input:
+    1:
+      gt0003|History of congestive heart failure: 0|local::at0028|No|
+      gt0050|History of stroke: 1|local::at0033|Yes|
+      gt0006|Hypertension: 1|local::at0028|Present|
+      gt0007|Diabetes: 1|local::at0028|Present|
+      gt0009|Age: 67,a
+      gt0017|Body mass index: 26,kg/m2
+      gt0019|Myocardial infarction/ peripheral artery occlusive disease: 2|local::at0016|Yes|
+      gt0020|Abnormal lipid profile: 0|local::at0024|No|
+      gt0021|Irradiation to left breast with ≥30 Gy dose: 1|local::at0031|Yes|
+      gt0053|Anthracycline dose: 0.1,g/m2
+      gt0047|Relative eGFR: 54,mL/min/{1.73_m2}
+  expected_output:
+    1:
+      gt0026|Risk Stratification: local::at0005|High risk|
+      gt0041|Transient ischemic attack/stroke: 1|local::at0035|Yes|
+      gt0032|Congestive Heart Failure: 0|local::at0005|No|
+      gt0034|Elderly: 1|local::at0013|Yes|
+      gt0037|Renal failure: 1|local::at0022|Yes|
+      gt0051|Total score: 10
+      gt0033|Hypertension: 1|local::at0009|Yes|
+      gt0036|Obesity: 1|local::at0019|Yes|
+      gt0039|Diabetes mellitus: 1|local::at0028|Yes|
+- id: Test 5
+  input:
+    1:
+      gt0003|History of congestive heart failure: 1|local::at0029|Yes|
+      gt0050|History of stroke: 1|local::at0033|Yes|
+      gt0006|Hypertension: 1|local::at0028|Present|
+      gt0007|Diabetes: 1|local::at0028|Present|
+      gt0009|Age: 67,a
+      gt0017|Body mass index: 26,kg/m2
+      gt0019|Myocardial infarction/ peripheral artery occlusive disease: 2|local::at0016|Yes|
+      gt0020|Abnormal lipid profile: 0|local::at0024|No|
+      gt0021|Irradiation to left breast with ≥30 Gy dose: 1|local::at0031|Yes|
+      gt0053|Anthracycline dose: 0.1,g/m2
+      gt0047|Relative eGFR: 54,mL/min/{1.73_m2}
+  expected_output:
+    1:
+      gt0026|Risk Stratification: local::at0005|High risk|
+      gt0041|Transient ischemic attack/stroke: 1|local::at0035|Yes|
+      gt0032|Congestive Heart Failure: 2|local::at0006|Yes|
+      gt0034|Elderly: 1|local::at0013|Yes|
+      gt0037|Renal failure: 1|local::at0022|Yes|
+      gt0051|Total score: 12
+      gt0033|Hypertension: 1|local::at0009|Yes|
+      gt0036|Obesity: 1|local::at0019|Yes|
+      gt0039|Diabetes mellitus: 1|local::at0028|Yes|

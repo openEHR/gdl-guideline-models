@@ -1,0 +1,318 @@
+guidelines:
+  1: PROCAM_score_guideline.v1
+test_cases:
+- id: Score 87
+  input:
+    1:
+      gt0003|Age, years: 26|local::at0009|60-65 years|
+      gt0004|LDL cholesterol, mg/dL: 20|local::at0015|≥190 mg/dL|
+      gt0005|HDL cholesterol, mg/dL: 11|local::at0020|<35 mg/dL|
+      gt0006|Triglycerides, mg/dL: 4|local::at0025|≥200  mg/dL|
+      gt0007|Smoker: 8|local::at0028|Yes|
+      gt0008|Diabetes mellitus: 6|local::at0031|Yes|
+      gt0009|MI in family history: 4|local::at0034|Yes|
+      gt0010|Systolic blood pressure, mmHg: 8|local::at0040|≥160 mm Hg|
+  expected_output:
+    1:
+      gt0023|Estimated Risk of Acute Coronary Events in 10 y: ≥40.00%
+      gt0012|Total score: 87
+- id: score 0
+  input:
+    1:
+      gt0003|Age, years: 0|local::at0005| 35–39 years|
+      gt0004|LDL cholesterol, mg/dL: 0|local::at0011|<100 mg/dL|
+      gt0005|HDL cholesterol, mg/dL: 0|local::at0017|≥55 mg/dL|
+      gt0006|Triglycerides, mg/dL: 0|local::at0022|<100 mg/dL|
+      gt0007|Smoker: 0|local::at0027|No|
+      gt0008|Diabetes mellitus: 0|local::at0027|No|
+      gt0009|MI in family history: 0|local::at0027|No|
+      gt0010|Systolic blood pressure, mmHg: 0|local::at0036|<120 mm Hg|
+  expected_output:
+    1:
+      gt0023|Estimated Risk of Acute Coronary Events in 10 y: <1.00%
+      gt0012|Total score: 0
+- id: score 6
+  input:
+    1:
+      gt0003|Age, years: 6|local::at0006|40-44 years|
+      gt0004|LDL cholesterol, mg/dL: 0|local::at0011|<100 mg/dL|
+      gt0005|HDL cholesterol, mg/dL: 0|local::at0017|≥55 mg/dL|
+      gt0006|Triglycerides, mg/dL: 0|local::at0022|<100 mg/dL|
+      gt0007|Smoker: 0|local::at0027|No|
+      gt0008|Diabetes mellitus: 0|local::at0027|No|
+      gt0009|MI in family history: 0|local::at0027|No|
+      gt0010|Systolic blood pressure, mmHg: 0|local::at0036|<120 mm Hg|
+  expected_output:
+    1:
+      gt0023|Estimated Risk of Acute Coronary Events in 10 y: <1.00%
+      gt0012|Total score: 6
+- id: score 11
+  input:
+    1:
+      gt0003|Age, years: 6|local::at0006|40-44 years|
+      gt0004|LDL cholesterol, mg/dL: 5|local::at0012|100-129 mg/dL|
+      gt0005|HDL cholesterol, mg/dL: 0|local::at0017|≥55 mg/dL|
+      gt0006|Triglycerides, mg/dL: 0|local::at0022|<100 mg/dL|
+      gt0007|Smoker: 0|local::at0027|No|
+      gt0008|Diabetes mellitus: 0|local::at0027|No|
+      gt0009|MI in family history: 0|local::at0027|No|
+      gt0010|Systolic blood pressure, mmHg: 0|local::at0036|<120 mm Hg|
+  expected_output:
+    1:
+      'gt0023|Estimated Risk of Acute Coronary Events in 10 y ': <1.00%
+      gt0012|Total score: 11
+- id: score 38
+  input:
+    1:
+      gt0003|Age, years: 6|local::at0006|40-44 years|
+      gt0004|LDL cholesterol, mg/dL: 5|local::at0012|100-129 mg/dL|
+      gt0005|HDL cholesterol, mg/dL: 5|local::at0018|45-54 mg/dL|
+      gt0006|Triglycerides, mg/dL: 2|local::at0023|100–149 mg/dL|
+      gt0007|Smoker: 8|local::at0028|Yes|
+      gt0008|Diabetes mellitus: 6|local::at0031|Yes|
+      gt0009|MI in family history: 4|local::at0034|Yes|
+      gt0010|Systolic blood pressure, mmHg: 2|local::at0037|120–129 mm Hg|
+  expected_output:
+    1:
+      'gt0023|Estimated Risk of Acute Coronary Events in 10 y ': 5.00–9.99%
+      gt0012|Total score: 38
+- id: score 39
+  input:
+    1:
+      gt0003|Age, years: 6|local::at0006|40-44 years|
+      gt0004|LDL cholesterol, mg/dL: 5|local::at0012|100-129 mg/dL|
+      gt0005|HDL cholesterol, mg/dL: 5|local::at0018|45-54 mg/dL|
+      gt0006|Triglycerides, mg/dL: 2|local::at0023|100–149 mg/dL|
+      gt0007|Smoker: 8|local::at0028|Yes|
+      gt0008|Diabetes mellitus: 6|local::at0031|Yes|
+      gt0009|MI in family history: 4|local::at0034|Yes|
+      gt0010|Systolic blood pressure, mmHg: 3|local::at0038|130–139 mm Hg|
+  expected_output:
+    1:
+      'gt0023|Estimated Risk of Acute Coronary Events in 10 y ': 5.00–9.99%
+      gt0012|Total score: 39
+- id: score 41
+  input:
+    1:
+      gt0003|Age, years: 6|local::at0006|40-44 years|
+      gt0004|LDL cholesterol, mg/dL: 5|local::at0012|100-129 mg/dL|
+      gt0005|HDL cholesterol, mg/dL: 5|local::at0018|45-54 mg/dL|
+      gt0006|Triglycerides, mg/dL: 2|local::at0023|100–149 mg/dL|
+      gt0007|Smoker: 8|local::at0028|Yes|
+      gt0008|Diabetes mellitus: 6|local::at0031|Yes|
+      gt0009|MI in family history: 4|local::at0034|Yes|
+      gt0010|Systolic blood pressure, mmHg: 5|local::at0039|140–159 mm Hg|
+  expected_output:
+    1:
+      'gt0023|Estimated Risk of Acute Coronary Events in 10 y ': 5.00–9.99%
+      gt0012|Total score: 41
+- id: score 45
+  input:
+    1:
+      gt0003|Age, years: 6|local::at0006|40-44 years|
+      gt0004|LDL cholesterol, mg/dL: 5|local::at0012|100-129 mg/dL|
+      gt0005|HDL cholesterol, mg/dL: 5|local::at0018|45-54 mg/dL|
+      gt0006|Triglycerides, mg/dL: 3|local::at0024|150–199 mg/dL|
+      gt0007|Smoker: 8|local::at0028|Yes|
+      gt0008|Diabetes mellitus: 6|local::at0031|Yes|
+      gt0009|MI in family history: 4|local::at0034|Yes|
+      gt0010|Systolic blood pressure, mmHg: 8|local::at0040|≥160 mm Hg|
+  expected_output:
+    1:
+      'gt0023|Estimated Risk of Acute Coronary Events in 10 y ': 10.00–19.99%
+      gt0012|Total score: 45
+- id: score 46
+  input:
+    1:
+      gt0003|Age, years: 6|local::at0006|40-44 years|
+      gt0004|LDL cholesterol, mg/dL: 5|local::at0012|100-129 mg/dL|
+      gt0005|HDL cholesterol, mg/dL: 5|local::at0018|45-54 mg/dL|
+      gt0006|Triglycerides, mg/dL: 4|local::at0025|≥200  mg/dL|
+      gt0007|Smoker: 8|local::at0028|Yes|
+      gt0008|Diabetes mellitus: 6|local::at0031|Yes|
+      gt0009|MI in family history: 4|local::at0034|Yes|
+      gt0010|Systolic blood pressure, mmHg: 8|local::at0040|≥160 mm Hg|
+  expected_output:
+    1:
+      'gt0023|Estimated Risk of Acute Coronary Events in 10 y ': 10.00–19.99%
+      gt0012|Total score: 46
+- id: score 49
+  input:
+    1:
+      gt0003|Age, years: 6|local::at0006|40-44 years|
+      gt0004|LDL cholesterol, mg/dL: 5|local::at0012|100-129 mg/dL|
+      gt0005|HDL cholesterol, mg/dL: 8|local::at0019|35-44 mg/dL|
+      gt0006|Triglycerides, mg/dL: 4|local::at0025|≥200  mg/dL|
+      gt0007|Smoker: 8|local::at0028|Yes|
+      gt0008|Diabetes mellitus: 6|local::at0031|Yes|
+      gt0009|MI in family history: 4|local::at0034|Yes|
+      gt0010|Systolic blood pressure, mmHg: 8|local::at0040|≥160 mm Hg|
+  expected_output:
+    1:
+      'gt0023|Estimated Risk of Acute Coronary Events in 10 y ': 10.00–19.99%
+      gt0012|Total score: 49
+- id: score 52
+  input:
+    1:
+      gt0003|Age, years: 6|local::at0006|40-44 years|
+      gt0004|LDL cholesterol, mg/dL: 5|local::at0012|100-129 mg/dL|
+      gt0005|HDL cholesterol, mg/dL: 11|local::at0020|<35 mg/dL|
+      gt0006|Triglycerides, mg/dL: 4|local::at0025|≥200  mg/dL|
+      gt0007|Smoker: 8|local::at0028|Yes|
+      gt0008|Diabetes mellitus: 6|local::at0031|Yes|
+      gt0009|MI in family history: 4|local::at0034|Yes|
+      gt0010|Systolic blood pressure, mmHg: 8|local::at0040|≥160 mm Hg|
+  expected_output:
+    1:
+      'gt0023|Estimated Risk of Acute Coronary Events in 10 y ': 10.00–19.99%
+      gt0012|Total score: 52
+- id: score 57
+  input:
+    1:
+      gt0003|Age, years: 6|local::at0006|40-44 years|
+      gt0004|LDL cholesterol, mg/dL: 10|local::at0013|130-159 mg/dL|
+      gt0005|HDL cholesterol, mg/dL: 11|local::at0020|<35 mg/dL|
+      gt0006|Triglycerides, mg/dL: 4|local::at0025|≥200  mg/dL|
+      gt0007|Smoker: 8|local::at0028|Yes|
+      gt0008|Diabetes mellitus: 6|local::at0031|Yes|
+      gt0009|MI in family history: 4|local::at0034|Yes|
+      gt0010|Systolic blood pressure, mmHg: 8|local::at0040|≥160 mm Hg|
+  expected_output:
+    1:
+      'gt0023|Estimated Risk of Acute Coronary Events in 10 y ': 20.00–39.99%
+      gt0012|Total score: 57
+- id: score 61
+  input:
+    1:
+      gt0003|Age, years: 6|local::at0006|40-44 years|
+      gt0004|LDL cholesterol, mg/dL: 14|local::at0014|160-189 mg/dL|
+      gt0005|HDL cholesterol, mg/dL: 11|local::at0020|<35 mg/dL|
+      gt0006|Triglycerides, mg/dL: 4|local::at0025|≥200  mg/dL|
+      gt0007|Smoker: 8|local::at0028|Yes|
+      gt0008|Diabetes mellitus: 6|local::at0031|Yes|
+      gt0009|MI in family history: 4|local::at0034|Yes|
+      gt0010|Systolic blood pressure, mmHg: 8|local::at0040|≥160 mm Hg|
+  expected_output:
+    1:
+      'gt0023|Estimated Risk of Acute Coronary Events in 10 y ': 20.00–39.99%
+      gt0012|Total score: 61
+- id: score 67
+  input:
+    1:
+      gt0003|Age, years: 6|local::at0006|40-44 years|
+      gt0004|LDL cholesterol, mg/dL: 20|local::at0015|≥190 mg/dL|
+      gt0005|HDL cholesterol, mg/dL: 11|local::at0020|<35 mg/dL|
+      gt0006|Triglycerides, mg/dL: 4|local::at0025|≥200  mg/dL|
+      gt0007|Smoker: 8|local::at0028|Yes|
+      gt0008|Diabetes mellitus: 6|local::at0031|Yes|
+      gt0009|MI in family history: 4|local::at0034|Yes|
+      gt0010|Systolic blood pressure, mmHg: 8|local::at0040|≥160 mm Hg|
+  expected_output:
+    1:
+      'gt0023|Estimated Risk of Acute Coronary Events in 10 y ': ≥40.00%
+      gt0012|Total score: 67
+- id: score 72
+  input:
+    1:
+      gt0003|Age, years: 11|local::at0007|45-49 years|
+      gt0004|LDL cholesterol, mg/dL: 20|local::at0015|≥190 mg/dL|
+      gt0005|HDL cholesterol, mg/dL: 11|local::at0020|<35 mg/dL|
+      gt0006|Triglycerides, mg/dL: 4|local::at0025|≥200  mg/dL|
+      gt0007|Smoker: 8|local::at0028|Yes|
+      gt0008|Diabetes mellitus: 6|local::at0031|Yes|
+      gt0009|MI in family history: 4|local::at0034|Yes|
+      gt0010|Systolic blood pressure, mmHg: 8|local::at0040|≥160 mm Hg|
+  expected_output:
+    1:
+      'gt0023|Estimated Risk of Acute Coronary Events in 10 y ': ≥40.00%
+      gt0012|Total score: 72
+- id: score 82
+  input:
+    1:
+      gt0003|Age, years: 21|local::at0008|55-59 years|
+      gt0004|LDL cholesterol, mg/dL: 20|local::at0015|≥190 mg/dL|
+      gt0005|HDL cholesterol, mg/dL: 11|local::at0020|<35 mg/dL|
+      gt0006|Triglycerides, mg/dL: 4|local::at0025|≥200  mg/dL|
+      gt0007|Smoker: 8|local::at0028|Yes|
+      gt0008|Diabetes mellitus: 6|local::at0031|Yes|
+      gt0009|MI in family history: 4|local::at0034|Yes|
+      gt0010|Systolic blood pressure, mmHg: 8|local::at0040|≥160 mm Hg|
+  expected_output:
+    1:
+      'gt0023|Estimated Risk of Acute Coronary Events in 10 y ': ≥40.00%
+      gt0012|Total score: 82
+- id: score 20
+  input:
+    1:
+      gt0003|Age, years: 6|local::at0006|40-44 years|
+      gt0004|LDL cholesterol, mg/dL: 0|local::at0011|<100 mg/dL|
+      gt0005|HDL cholesterol, mg/dL: 0|local::at0017|≥55 mg/dL|
+      gt0006|Triglycerides, mg/dL: 4|local::at0025|≥200  mg/dL|
+      gt0007|Smoker: 0|local::at0027|No|
+      gt0008|Diabetes mellitus: 6|local::at0031|Yes|
+      gt0009|MI in family history: 4|local::at0034|Yes|
+      gt0010|Systolic blood pressure, mmHg: 0|local::at0036|<120 mm Hg|
+  expected_output:
+    1:
+      'gt0023|Estimated Risk of Acute Coronary Events in 10 y ': <1.00%
+      gt0012|Total score: 20
+- id: score 21
+  input:
+    1:
+      gt0003|Age, years: 6|local::at0006|40-44 years|
+      gt0004|LDL cholesterol, mg/dL: 0|local::at0011|<100 mg/dL|
+      gt0005|HDL cholesterol, mg/dL: 0|local::at0017|≥55 mg/dL|
+      gt0006|Triglycerides, mg/dL: 3|local::at0024|150–199 mg/dL|
+      gt0007|Smoker: 0|local::at0027|No|
+      gt0008|Diabetes mellitus: 6|local::at0031|Yes|
+      gt0009|MI in family history: 4|local::at0034|Yes|
+      gt0010|Systolic blood pressure, mmHg: 2|local::at0037|120–129 mm Hg|
+  expected_output:
+    1:
+      'gt0023|Estimated Risk of Acute Coronary Events in 10 y ': 1.00–1.99%
+      gt0012|Total score: 21
+- id: score 29
+  input:
+    1:
+      gt0003|Age, years: 6|local::at0006|40-44 years|
+      gt0004|LDL cholesterol, mg/dL: 0|local::at0011|<100 mg/dL|
+      gt0005|HDL cholesterol, mg/dL: 0|local::at0017|≥55 mg/dL|
+      gt0006|Triglycerides, mg/dL: 3|local::at0024|150–199 mg/dL|
+      gt0007|Smoker: 8|local::at0028|Yes|
+      gt0008|Diabetes mellitus: 6|local::at0031|Yes|
+      gt0009|MI in family history: 4|local::at0034|Yes|
+      gt0010|Systolic blood pressure, mmHg: 2|local::at0037|120–129 mm Hg|
+  expected_output:
+    1:
+      'gt0023|Estimated Risk of Acute Coronary Events in 10 y ': 2.00 –4.99%
+      gt0012|Total score: 29
+- id: score 38
+  input:
+    1:
+      gt0003|Age, years: 6|local::at0006|40-44 years|
+      gt0004|LDL cholesterol, mg/dL: 0|local::at0011|<100 mg/dL|
+      gt0005|HDL cholesterol, mg/dL: 8|local::at0019|35-44 mg/dL|
+      gt0006|Triglycerides, mg/dL: 4|local::at0025|≥200  mg/dL|
+      gt0007|Smoker: 8|local::at0028|Yes|
+      gt0008|Diabetes mellitus: 6|local::at0031|Yes|
+      gt0009|MI in family history: 4|local::at0034|Yes|
+      gt0010|Systolic blood pressure, mmHg: 2|local::at0037|120–129 mm Hg|
+  expected_output:
+    1:
+      'gt0023|Estimated Risk of Acute Coronary Events in 10 y ': 5.00–9.99%
+      gt0012|Total score: 38
+- id: score 46
+  input:
+    1:
+      gt0003|Age, years: 11|local::at0007|45-49 years|
+      gt0004|LDL cholesterol, mg/dL: 10|local::at0013|130-159 mg/dL|
+      gt0005|HDL cholesterol, mg/dL: 5|local::at0018|45-54 mg/dL|
+      gt0006|Triglycerides, mg/dL: 2|local::at0023|100–149 mg/dL|
+      gt0007|Smoker: 8|local::at0028|Yes|
+      gt0008|Diabetes mellitus: 6|local::at0031|Yes|
+      gt0009|MI in family history: 4|local::at0034|Yes|
+      gt0010|Systolic blood pressure, mmHg: 0|local::at0036|<120 mm Hg|
+  expected_output:
+    1:
+      'gt0023|Estimated Risk of Acute Coronary Events in 10 y ': 10.00–19.99%
+      gt0012|Total score: 46

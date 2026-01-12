@@ -1,0 +1,26 @@
+guidelines:
+  1: Harmless_Acute_Pancreatitis_Score.v1
+test_cases:
+- id: Score 0
+  input:
+    1:
+      gt0004|Hematocrit ≥ 43% (male) or 39.6% (female): 0|local::at0011|No|
+      gt0005|Creatinine ≥2 mg/dL (177 µmol/L): 0|local::at0008|No|
+      gt0006|Peritonitis (rebound tenderness/guarding): 0|local::at0005|Absent|
+  expected_output:
+    1:
+      gt0009|Total Score: 0
+      gt0014|Severity: 0|local::at0003|Non-severe pancreatitis|
+
+- id: Score Greater than 0
+  input:
+    1:
+      gt0004|Hematocrit ≥ 43% (male) or 39.6% (female): 0|local::at0011|No|
+      gt0005|Creatinine ≥2 mg/dL (177 µmol/L): 1|local::at0009|Yes|
+      gt0006|Peritonitis (rebound tenderness/guarding): 0|local::at0005|Absent|
+  expected_output:
+    1:
+      gt0009|Total Score: 1
+      gt0014|Severity: 1|local::at0004|Do not rule out a harmful first attack of acute pancreatitis. Consider further testing and possible admission to the ICU.|
+
+

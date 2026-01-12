@@ -1,0 +1,26 @@
+guidelines:
+  1: Cstat_Calculation_guideline.v1
+test_cases:
+- id: Not Normal Cstat
+  input:
+    1:
+      gt0003|Corrected/delivered tidal volume (ΔV): 100,ml
+      gt0004|Plateau pressure (Pplat): 10,cm[H20]
+      gt0005|PEEP: 4,cm[H20]
+      gt0009|Is this a COVID-19 patient?: local::at0010|Confirmed positive|
+  expected_output:
+    1:
+      gt0007|Static lung compliance (Cstat): 16.7,mL/cm H2O
+      gt0014|Note: Normal static lung compliance is 50-100 mL/cm H₂O
+- id: Normal Cstat
+  input:
+    1:
+      gt0003|Corrected/delivered tidal volume (ΔV): 300,ml
+      gt0004|Plateau pressure (Pplat): 10,cm[H20]
+      gt0005|PEEP: 4,cm[H20]
+      gt0009|Is this a COVID-19 patient?: local::at0010|Confirmed positive|
+  expected_output:
+    1:
+      gt0007|Static lung compliance (Cstat): 50.0,mL/cm H2O
+      gt0014|Note: Normal static lung compliance is 50-100 mL/cm H₂O
+      gt0008|Interpretation: Normal static lung compliance

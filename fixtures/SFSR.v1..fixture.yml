@@ -1,0 +1,96 @@
+guidelines:
+  1: SFSR.v1
+test_cases:
+- id: CHF(0)-EKG(0)-SB(0)-PCV(0)-SBP(0)
+  input:
+    1:
+      gt0003|Congestive Heart Failure History: 0|local::at0021|False|
+      gt0004|EKG abnormal: 0|local::at0017|False|
+      gt0005|Shortness of Breath: 0|local::at0015|False|
+      gt0014|Packed cell volume (PCV): 40,%
+      gt0016|Systolic: 100,mm[Hg]
+  expected_output:
+    1:
+      gt0012|Any response positive?: 0|local::at0011|False|
+      gt0011|Systolic BP <90 mmHg at Triage: 0|local::at0013|False|
+      gt0008|Hematocrit <30%: 0|local::at0019|False|
+      gt0028|SFSR interpretation: 0|local::at0003|Patient is in the low-risk group for serious outcomes.|
+
+- id: CHF(1)-EKG(0)-SB(0)-PCV(0)-SBP(0)
+  input:
+    1:
+      gt0003|Congestive Heart Failure History: 1|local::at0022|True|
+      gt0004|EKG abnormal: 0|local::at0017|False|
+      gt0005|Shortness of Breath: 0|local::at0015|False|
+      gt0014|Packed cell volume (PCV): 40,%
+      gt0016|Systolic: 100,mm[Hg]
+  expected_output:
+    1:
+      gt0012|Any response positive?: 1|local::at0012|True|
+      gt0011|Systolic BP <90 mmHg at Triage: 0|local::at0013|False|
+      gt0008|Hematocrit <30%: 0|local::at0019|False|
+      gt0028|SFSR interpretation: 1|local::at0004|Patient is NOT in the low-risk group for serious outcomes and further investigation is warranted|
+
+
+- id: CHF(1)-EKG(1)-SB(0)-PCV(0)-SBP(0)
+  input:
+    1:
+      gt0003|Congestive Heart Failure History: 1|local::at0022|True|
+      gt0004|EKG abnormal: 1|local::at0018|True|
+      gt0005|Shortness of Breath: 0|local::at0015|False|
+      gt0014|Packed cell volume (PCV): 40,%
+      gt0016|Systolic: 100,mm[Hg]
+  expected_output:
+    1:
+      gt0012|Any response positive?: 1|local::at0012|True|
+      gt0011|Systolic BP <90 mmHg at Triage: 0|local::at0013|False|
+      gt0008|Hematocrit <30%: 0|local::at0019|False|
+      gt0028|SFSR interpretation: 1|local::at0004|Patient is NOT in the low-risk group for serious outcomes and further investigation is warranted|
+
+
+- id: CHF(1)-EKG(1)-SB(1)-PCV(0)-SBP(0)
+  input:
+    1:
+      gt0003|Congestive Heart Failure History: 1|local::at0022|True|
+      gt0004|EKG abnormal: 1|local::at0018|True|
+      gt0005|Shortness of Breath: 1|local::at0016|True|
+      gt0014|Packed cell volume (PCV): 40,%
+      gt0016|Systolic: 100,mm[Hg]
+  expected_output:
+    1:
+      gt0012|Any response positive?: 1|local::at0012|True|
+      gt0011|Systolic BP <90 mmHg at Triage: 0|local::at0013|False|
+      gt0008|Hematocrit <30%: 0|local::at0019|False|
+      gt0028|SFSR interpretation: 1|local::at0004|Patient is NOT in the low-risk group for serious outcomes and further investigation is warranted|
+
+
+- id: CHF(1)-EKG(1)-SB(1)-PCV(1)-SBP(0)
+  input:
+    1:
+      gt0003|Congestive Heart Failure History: 1|local::at0022|True|
+      gt0004|EKG abnormal: 1|local::at0018|True|
+      gt0005|Shortness of Breath: 1|local::at0016|True|
+      gt0014|Packed cell volume (PCV): 20,%
+      gt0016|Systolic: 100,mm[Hg]
+  expected_output:
+    1:
+      gt0012|Any response positive?: 1|local::at0012|True|
+      gt0011|Systolic BP <90 mmHg at Triage: 0|local::at0013|False|
+      gt0008|Hematocrit <30%: 1|local::at0020|True|
+      gt0028|SFSR interpretation: 1|local::at0004|Patient is NOT in the low-risk group for serious outcomes and further investigation is warranted|
+
+
+- id: CHF(1)-EKG(1)-SB(1)-PCV(1)-SBP(1)
+  input:
+    1:
+      gt0003|Congestive Heart Failure History: 1|local::at0022|True|
+      gt0004|EKG abnormal: 1|local::at0018|True|
+      gt0005|Shortness of Breath: 1|local::at0016|True|
+      gt0014|Packed cell volume (PCV): 20,%
+      gt0016|Systolic: 80,mm[Hg]
+  expected_output:
+    1:
+      gt0012|Any response positive?: 1|local::at0012|True|
+      gt0011|Systolic BP <90 mmHg at Triage: 1|local::at0014|True|
+      gt0008|Hematocrit <30%: 1|local::at0020|True|
+      gt0028|SFSR interpretation: 1|local::at0004|Patient is NOT in the low-risk group for serious outcomes and further investigation is warranted|

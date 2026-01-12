@@ -1,0 +1,143 @@
+guidelines:
+  1: HBI.v1
+test_cases:
+- id: Score 1 remission
+  input:
+    1:
+      gt0005|General well-being: 0|local::at0007|Very well|
+      gt0006|Abdominal pain: 0|local::at0013|None|
+      gt0007|Number of liquid/soft stools: 1,1
+      gt0008|Abdominal mass: 0|local::at0019|None|
+      gt0009|Arthralgia: 0|local::at0024|No|
+      gt0010|Uveitis: 0|local::at0027|No|
+      gt0011|Erythema nodosum: 0|local::at0030|No|
+      gt0012|Aphtous ulcers: 0|local::at0033|No|
+      gt0013|New fistula: 0|local::at0042|No|
+      gt0014|Anal fissures: 0|local::at0039|No|
+      gt0015|Abscess: 0|local::at0045|No|
+  expected_output:
+    1:
+      gt0018|Total score: 1
+      gt0023|Severity: 0|local::at0005|Remission|
+
+- id: No complications, mild
+  input:
+    1:
+      gt0005|General well-being: 2|local::at0009|Poor|
+      gt0006|Abdominal pain: 2|local::at0015|Moderate|
+      gt0007|Number of liquid/soft stools: 1,1
+      gt0008|Abdominal mass: 1|local::at0020|Dubious|
+      gt0009|Arthralgia: 0|local::at0024|No|
+      gt0010|Uveitis: 0|local::at0027|No|
+      gt0011|Erythema nodosum: 0|local::at0030|No|
+      gt0012|Aphtous ulcers: 0|local::at0033|No|
+      gt0013|New fistula: 0|local::at0042|No|
+      gt0014|Anal fissures: 0|local::at0039|No|
+      gt0015|Abscess: 0|local::at0045|No|
+  expected_output:
+    1:
+      gt0018|Total score: 6
+      gt0023|Severity: 1|local::at0006|Mild disease|
+
+- id: No complications, moderate
+  input:
+    1:
+      gt0005|General well-being: 2|local::at0009|Poor|
+      gt0006|Abdominal pain: 3|local::at0016|Severe|
+      gt0007|Number of liquid/soft stools: 1,1
+      gt0008|Abdominal mass: 2|local::at0021|Definite|
+      gt0009|Arthralgia: 0|local::at0024|No|
+      gt0010|Uveitis: 0|local::at0027|No|
+      gt0011|Erythema nodosum: 0|local::at0030|No|
+      gt0012|Aphtous ulcers: 0|local::at0033|No|
+      gt0013|New fistula: 0|local::at0042|No|
+      gt0014|Anal fissures: 0|local::at0039|No|
+      gt0015|Abscess: 0|local::at0045|No|
+  expected_output:
+    1:
+      gt0018|Total score: 8
+      gt0023|Severity: 2|local::at0007|Moderate disease|
+
+
+
+- id: Diarrhea, severe Crohn
+  input:
+    1:
+      gt0005|General well-being: 2|local::at0009|Poor|
+      gt0006|Abdominal pain: 3|local::at0016|Severe|
+      gt0007|Number of liquid/soft stools: 10,1
+      gt0008|Abdominal mass: 2|local::at0021|Definite|
+      gt0009|Arthralgia: 0|local::at0024|No|
+      gt0010|Uveitis: 0|local::at0027|No|
+      gt0011|Erythema nodosum: 0|local::at0030|No|
+      gt0012|Aphtous ulcers: 0|local::at0033|No|
+      gt0013|New fistula: 0|local::at0042|No|
+      gt0014|Anal fissures: 0|local::at0039|No|
+      gt0015|Abscess: 0|local::at0045|No|
+  expected_output:
+    1:
+      gt0018|Total score: 17
+      gt0023|Severity: 3|local::at0008|Severe disease|
+
+- id: Half of the complications, moderate
+  input:
+    1:
+      gt0005|General well-being: 2|local::at0009|Poor|
+      gt0006|Abdominal pain: 3|local::at0016|Severe|
+      gt0007|Number of liquid/soft stools: 2,1
+      gt0008|Abdominal mass: 2|local::at0021|Definite|
+      gt0009|Arthralgia: 1|local::at0025|Yes|
+      gt0010|Uveitis: 1|local::at0028|Yes|
+      gt0011|Erythema nodosum: 1|local::at0031|Yes|
+      gt0012|Aphtous ulcers: 1|local::at0034|Yes|
+      gt0013|New fistula: 0|local::at0042|No|
+      gt0014|Anal fissures: 0|local::at0039|No|
+      gt0015|Abscess: 0|local::at0045|No|
+  expected_output:
+    1:
+      gt0018|Total score: 13
+      gt0023|Severity: 2|local::at0007|Moderate disease|
+
+
+- id: All complications, severe
+  input:
+    1:
+      gt0005|General well-being: 2|local::at0009|Poor|
+      gt0006|Abdominal pain: 3|local::at0016|Severe|
+      gt0007|Number of liquid/soft stools: 2,1
+      gt0008|Abdominal mass: 2|local::at0021|Definite|
+      gt0009|Arthralgia: 1|local::at0025|Yes|
+      gt0010|Uveitis: 1|local::at0028|Yes|
+      gt0011|Erythema nodosum: 1|local::at0031|Yes|
+      gt0012|Aphtous ulcers: 1|local::at0034|Yes|
+      gt0013|New fistula: 0|local::at0042|No|
+      gt0014|Anal fissures: 0|local::at0039|No|
+      gt0015|Abscess: 0|local::at0045|No|
+  expected_output:
+    1:
+      gt0018|Total score: 13
+      gt0023|Severity: 2|local::at0007|Moderate disease|
+
+
+- id: All complications, moderate
+  input:
+    1:
+      gt0005|General well-being: 0|local::at0007|Very well|
+      gt0006|Abdominal pain: 1|local::at0014|Mild|
+      gt0007|Number of liquid/soft stools: 2,1
+      gt0008|Abdominal mass: 2|local::at0021|Definite|
+      gt0009|Arthralgia: 1|local::at0025|Yes|
+      gt0010|Uveitis: 1|local::at0028|Yes|
+      gt0011|Erythema nodosum: 1|local::at0031|Yes|
+      gt0012|Aphtous ulcers: 1|local::at0034|Yes|
+      gt0013|New fistula: 1|local::at0043|Yes|
+      gt0014|Anal fissures: 1|local::at0040|Yes|
+      gt0015|Abscess: 1|local::at0046|Yes|
+  expected_output:
+    1:
+      gt0018|Total score: 12
+      gt0023|Severity: 2|local::at0007|Moderate disease|
+
+
+
+

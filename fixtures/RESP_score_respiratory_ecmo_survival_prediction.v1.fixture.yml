@@ -1,0 +1,229 @@
+guidelines:
+  1: RESP_score_respiratory_ecmo_survival_prediction.v1
+test_cases:
+- id: age 49, RESP score 15 (max)
+  input:
+    1:
+      gt0003|Age: 49,a
+      gt0005|Immunocompromised status: 0|local::at0010|No|
+      gt0006|Mechanical ventilation prior to initiation of ECMO: 3|local::at0012|<48\
+        \ hours|
+      gt0007|Acute respiratory diagnosis group: 11|local::at0018|Asthma|
+      gt0008|Central nervous system dysfunction: 0|local::at0025|No|
+      gt0009|Acute associated (nonpulmonary) infection: 0|local::at0028|No|
+      gt0010|Neuromuscular blockade agents before ECMO: 1|local::at0030|Yes|
+      gt0011|Nitric oxide use before ECMO: 0|local::at0034|No|
+      gt0012|Bicarbonate infusion before ECMO: 0|local::at0037|No|
+      gt0013|Cardiac arrest before ECMO: 0|local::at0040|No|
+      gt0014|PaCO₂: 0|local::at0043|<75 mmHg or <10 kPa|
+      gt0015|Peak inspiratory pressure: 0|local::at0046|<42 cm H₂O or <4.1 kPa|
+  expected_output:
+    1:
+      gt0018|Age, yr: 0|local::at0005|18 to 49|
+      gt0020|RESP Score: 15
+      gt0022|Predicted in-hospital survival rate: 1|local::at0009|92%|
+      gt0021|Risk Class: 1|local::at0003|I|
+
+- id: age 50, RESP score 6, risk class I
+  input:
+    1:
+      gt0003|Age: 50,a
+      gt0005|Immunocompromised status: 0|local::at0010|No|
+      gt0006|Mechanical ventilation prior to initiation of ECMO: 3|local::at0012|<48\
+        \ hours|
+      gt0007|Acute respiratory diagnosis group: 5|local::at0020|Aspiration penumonitis|
+      gt0008|Central nervous system dysfunction: 0|local::at0025|No|
+      gt0009|Acute associated (nonpulmonary) infection: 0|local::at0028|No|
+      gt0010|Neuromuscular blockade agents before ECMO: 0|local::at0031|No|
+      gt0011|Nitric oxide use before ECMO: 0|local::at0034|No|
+      gt0012|Bicarbonate infusion before ECMO: 0|local::at0037|No|
+      gt0013|Cardiac arrest before ECMO: 0|local::at0040|No|
+      gt0014|PaCO₂: 0|local::at0043|<75 mmHg or <10 kPa|
+      gt0015|Peak inspiratory pressure: 0|local::at0046|<42 cm H₂O or <4.1 kPa|
+  expected_output:
+    1:
+      gt0018|Age, yr: -2|local::at0006|50 to 59|
+      gt0020|RESP Score: 6
+      gt0022|Predicted in-hospital survival rate: 1|local::at0009|92%|
+      gt0021|Risk Class: 1|local::at0003|I|
+
+- id: age 59, RESP score 5, risk class II
+  input:
+    1:
+      gt0003|Age: 59,a
+      gt0005|Immunocompromised status: 0|local::at0010|No|
+      gt0006|Mechanical ventilation prior to initiation of ECMO: 3|local::at0012|<48\
+        \ hours|
+      gt0007|Acute respiratory diagnosis group: 5|local::at0020|Aspiration penumonitis|
+      gt0008|Central nervous system dysfunction: 0|local::at0025|No|
+      gt0009|Acute associated (nonpulmonary) infection: 0|local::at0028|No|
+      gt0010|Neuromuscular blockade agents before ECMO: 0|local::at0031|No|
+      gt0011|Nitric oxide use before ECMO: -1|local::at0033|Yes|
+      gt0012|Bicarbonate infusion before ECMO: 0|local::at0037|No|
+      gt0013|Cardiac arrest before ECMO: 0|local::at0040|No|
+      gt0014|PaCO₂: 0|local::at0043|<75 mmHg or <10 kPa|
+      gt0015|Peak inspiratory pressure: 0|local::at0046|<42 cm H₂O or <4.1 kPa|
+  expected_output:
+    1:
+      gt0018|Age, yr: -2|local::at0006|50 to 59|
+      gt0020|RESP Score: 5
+      gt0022|Predicted in-hospital survival rate: 2|local::at0010|76%|
+      gt0021|Risk Class: 2|local::at0004|II|
+
+- id: age 60, RESP score 3, risk class II
+  input:
+    1:
+      gt0003|Age: 60,a
+      gt0005|Immunocompromised status: 0|local::at0010|No|
+      gt0006|Mechanical ventilation prior to initiation of ECMO: 3|local::at0012|<48\
+        \ hours|
+      gt0007|Acute respiratory diagnosis group: 5|local::at0020|Aspiration penumonitis|
+      gt0008|Central nervous system dysfunction: 0|local::at0025|No|
+      gt0009|Acute associated (nonpulmonary) infection: 0|local::at0028|No|
+      gt0010|Neuromuscular blockade agents before ECMO: 1|local::at0030|Yes|
+      gt0011|Nitric oxide use before ECMO: -1|local::at0033|Yes|
+      gt0012|Bicarbonate infusion before ECMO: -2|local::at0036|Yes|
+      gt0013|Cardiac arrest before ECMO: 0|local::at0040|No|
+      gt0014|PaCO₂: 0|local::at0043|<75 mmHg or <10 kPa|
+      gt0015|Peak inspiratory pressure: 0|local::at0046|<42 cm H₂O or <4.1 kPa|
+  expected_output:
+    1:
+      gt0018|Age, yr: -3|local::at0007|≥60|
+      gt0020|RESP Score: 3
+      gt0022|Predicted in-hospital survival rate: 2|local::at0010|76%|
+      gt0021|Risk Class: 2|local::at0004|II|
+
+- id: RESP score 2, risk class III
+  input:
+    1:
+      gt0003|Age: 60,a
+      gt0005|Immunocompromised status: 0|local::at0010|No|
+      gt0006|Mechanical ventilation prior to initiation of ECMO: 3|local::at0012|<48\
+        \ hours|
+      gt0007|Acute respiratory diagnosis group: 5|local::at0020|Aspiration penumonitis|
+      gt0008|Central nervous system dysfunction: 0|local::at0025|No|
+      gt0009|Acute associated (nonpulmonary) infection: 0|local::at0028|No|
+      gt0010|Neuromuscular blockade agents before ECMO: 1|local::at0030|Yes|
+      gt0011|Nitric oxide use before ECMO: -1|local::at0033|Yes|
+      gt0012|Bicarbonate infusion before ECMO: -2|local::at0036|Yes|
+      gt0013|Cardiac arrest before ECMO: 0|local::at0040|No|
+      gt0014|PaCO₂: -1|local::at0042|≥75 mmHg or ≥10 kPa|
+      gt0015|Peak inspiratory pressure: 0|local::at0046|<42 cm H₂O or <4.1 kPa|
+  expected_output:
+    1:
+      gt0018|Age, yr: -3|local::at0007|≥60|
+      gt0020|RESP Score: 2
+      gt0022|Predicted in-hospital survival rate: 3|local::at0011|57%|
+      gt0021|Risk Class: 3|local::at0005|III|
+
+- id: RESP score -1, risk class III
+  input:
+    1:
+      gt0003|Age: 60,a
+      gt0005|Immunocompromised status: 0|local::at0010|No|
+      gt0006|Mechanical ventilation prior to initiation of ECMO: 3|local::at0012|<48\
+        \ hours|
+      gt0007|Acute respiratory diagnosis group: 5|local::at0020|Aspiration penumonitis|
+      gt0008|Central nervous system dysfunction: 0|local::at0025|No|
+      gt0009|Acute associated (nonpulmonary) infection: 0|local::at0028|No|
+      gt0010|Neuromuscular blockade agents before ECMO: 0|local::at0031|No|
+      gt0011|Nitric oxide use before ECMO: -1|local::at0033|Yes|
+      gt0012|Bicarbonate infusion before ECMO: -2|local::at0036|Yes|
+      gt0013|Cardiac arrest before ECMO: -2|local::at0039|Yes|
+      gt0014|PaCO₂: -1|local::at0042|≥75 mmHg or ≥10 kPa|
+      gt0015|Peak inspiratory pressure: 0|local::at0046|<42 cm H₂O or <4.1 kPa|
+  expected_output:
+    1:
+      gt0018|Age, yr: -3|local::at0007|≥60|
+      gt0020|RESP Score: -1
+      gt0022|Predicted in-hospital survival rate: 3|local::at0011|57%|
+      gt0021|Risk Class: 3|local::at0005|III|
+
+- id: RESP score -2, risk class IV
+  input:
+    1:
+      gt0003|Age: 60,a
+      gt0005|Immunocompromised status: 0|local::at0010|No|
+      gt0006|Mechanical ventilation prior to initiation of ECMO: 3|local::at0012|<48\
+        \ hours|
+      gt0007|Acute respiratory diagnosis group: 5|local::at0020|Aspiration penumonitis|
+      gt0008|Central nervous system dysfunction: 0|local::at0025|No|
+      gt0009|Acute associated (nonpulmonary) infection: 0|local::at0028|No|
+      gt0010|Neuromuscular blockade agents before ECMO: 0|local::at0031|No|
+      gt0011|Nitric oxide use before ECMO: -1|local::at0033|Yes|
+      gt0012|Bicarbonate infusion before ECMO: -2|local::at0036|Yes|
+      gt0013|Cardiac arrest before ECMO: -2|local::at0039|Yes|
+      gt0014|PaCO₂: -1|local::at0042|≥75 mmHg or ≥10 kPa|
+      gt0015|Peak inspiratory pressure: -1|local::at0045|≥42 cm H₂O or ≥4.1 kPa|
+  expected_output:
+    1:
+      gt0018|Age, yr: -3|local::at0007|≥60|
+      gt0020|RESP Score: -2
+      gt0022|Predicted in-hospital survival rate: 4|local::at0012|33%|
+      gt0021|Risk Class: 4|local::at0006|IV|
+
+- id: RESP score -5, risk class IV
+  input:
+    1:
+      gt0003|Age: 60,a
+      gt0005|Immunocompromised status: 0|local::at0010|No|
+      gt0006|Mechanical ventilation prior to initiation of ECMO: 0|local::at0014|>7 days|
+      gt0007|Acute respiratory diagnosis group: 5|local::at0020|Aspiration penumonitis|
+      gt0008|Central nervous system dysfunction: 0|local::at0025|No|
+      gt0009|Acute associated (nonpulmonary) infection: 0|local::at0028|No|
+      gt0010|Neuromuscular blockade agents before ECMO: 0|local::at0031|No|
+      gt0011|Nitric oxide use before ECMO: -1|local::at0033|Yes|
+      gt0012|Bicarbonate infusion before ECMO: -2|local::at0036|Yes|
+      gt0013|Cardiac arrest before ECMO: -2|local::at0039|Yes|
+      gt0014|PaCO₂: -1|local::at0042|≥75 mmHg or ≥10 kPa|
+      gt0015|Peak inspiratory pressure: -1|local::at0045|≥42 cm H₂O or ≥4.1 kPa|
+  expected_output:
+    1:
+      gt0018|Age, yr: -3|local::at0007|≥60|
+      gt0020|RESP Score: -5
+      gt0022|Predicted in-hospital survival rate: 4|local::at0012|33%|
+      gt0021|Risk Class: 4|local::at0006|IV|
+
+- id: RESP score -6, risk class V
+  input:
+    1:
+      gt0003|Age: 60,a
+      gt0005|Immunocompromised status: -2|local::at0009|Yes|
+      gt0006|Mechanical ventilation prior to initiation of ECMO: 1|local::at0013|48 hours to 7 days|
+      gt0007|Acute respiratory diagnosis group: 5|local::at0020|Aspiration penumonitis|
+      gt0008|Central nervous system dysfunction: 0|local::at0025|No|
+      gt0009|Acute associated (nonpulmonary) infection: 0|local::at0028|No|
+      gt0010|Neuromuscular blockade agents before ECMO: 0|local::at0031|No|
+      gt0011|Nitric oxide use before ECMO: -1|local::at0033|Yes|
+      gt0012|Bicarbonate infusion before ECMO: -2|local::at0036|Yes|
+      gt0013|Cardiac arrest before ECMO: -2|local::at0039|Yes|
+      gt0014|PaCO₂: -1|local::at0042|≥75 mmHg or ≥10 kPa|
+      gt0015|Peak inspiratory pressure: -1|local::at0045|≥42 cm H₂O or ≥4.1 kPa|
+  expected_output:
+    1:
+      gt0018|Age, yr: -3|local::at0007|≥60|
+      gt0020|RESP Score: -6
+      gt0022|Predicted in-hospital survival rate: 5|local::at0013|18%|
+      gt0021|Risk Class: 5|local::at0007|V|
+
+- id: RESP score -22 (min)
+  input:
+    1:
+      gt0003|Age: 60,a
+      gt0005|Immunocompromised status: -2|local::at0009|Yes|
+      gt0006|Mechanical ventilation prior to initiation of ECMO: 0|local::at0014|>7 days|
+      gt0007|Acute respiratory diagnosis group: 0|local::at0022|Nonrespiratory and chronic respiratory diagnoses|
+      gt0008|Central nervous system dysfunction: -7|local::at0024|Yes|
+      gt0009|Acute associated (nonpulmonary) infection: -3|local::at0027|Yes|
+      gt0010|Neuromuscular blockade agents before ECMO: 0|local::at0031|No|
+      gt0011|Nitric oxide use before ECMO: -1|local::at0033|Yes|
+      gt0012|Bicarbonate infusion before ECMO: -2|local::at0036|Yes|
+      gt0013|Cardiac arrest before ECMO: -2|local::at0039|Yes|
+      gt0014|PaCO₂: -1|local::at0042|≥75 mmHg or ≥10 kPa|
+      gt0015|Peak inspiratory pressure: -1|local::at0045|≥42 cm H₂O or ≥4.1 kPa|
+  expected_output:
+    1:
+      gt0018|Age, yr: -3|local::at0007|≥60|
+      gt0020|RESP Score: -22
+      gt0022|Predicted in-hospital survival rate: 5|local::at0013|18%|
+      gt0021|Risk Class: 5|local::at0007|V|

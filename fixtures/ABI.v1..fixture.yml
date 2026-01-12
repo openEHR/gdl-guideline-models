@@ -1,0 +1,190 @@
+guidelines:
+  1: ABI.v1
+test_cases:
+- id: Default
+  input:
+    1: {}
+  expected_output:
+    1: {}
+- id: Severe Arterial Disease - Left and Right
+  input:
+    1:
+      gt0003|Highest pressure in both arms: 45,mm[Hg]
+      gt0004|Right foot pressure: 21,mm[Hg]
+      gt0005|Left foot pressure: 20,mm[Hg]
+  expected_output:
+    1:
+      gt0007|Right ABI: 0.47,1
+      gt0008|Left ABI: 0.44,1
+      gt0031|Vessel structure interpretation - Left: local::at0007|Severe Arterial Disease|
+      gt0029|Vessel structure interpretation - Right: local::at0007|Severe Arterial Disease|
+      gt0032|Recommendation - Left: local::at0011|Refer to vascular specialist|
+      gt0030|Recommendation - Right: local::at0011|Refer to vascular specialist|
+- id: Moderate Arterial Disease - Left and Right
+  input:
+    1:
+      gt0003|Highest pressure in both arms: 45,mm[Hg]
+      gt0004|Right foot pressure: 33,mm[Hg]
+      gt0005|Left foot pressure: 29,mm[Hg]
+  expected_output:
+    1:
+      gt0007|Right ABI: 0.73,1
+      gt0008|Left ABI: 0.64,1
+      gt0031|Vessel structure interpretation - Left: local::at0006|Moderate Arterial Disease|
+      gt0029|Vessel structure interpretation - Right: local::at0006|Moderate Arterial Disease|
+      gt0032|Recommendation - Left: local::at0011|Refer to vascular specialist|
+      gt0030|Recommendation - Right: local::at0011|Refer to vascular specialist|
+- id: Some Arterial Disease - Left and Right
+  input:
+    1:
+      gt0003|Highest pressure in both arms: 80,mm[Hg]
+      gt0004|Right foot pressure: 68,mm[Hg]
+      gt0005|Left foot pressure: 66,mm[Hg]
+  expected_output:
+    1:
+      gt0007|Right ABI: 0.85,1
+      gt0008|Left ABI: 0.82,1
+      gt0031|Vessel structure interpretation - Left: local::at0005|Some Arterial Disease|
+      gt0029|Vessel structure interpretation - Right: local::at0005|Some Arterial Disease|
+      gt0032|Recommendation - Left: local::at0010|Treat risk factors|
+      gt0030|Recommendation - Right: local::at0010|Treat risk factors|
+- id: Acceptable - Left and Right
+  input:
+    1:
+      gt0003|Highest pressure in both arms: 85,mm[Hg]
+      gt0004|Right foot pressure: 78,mm[Hg]
+      gt0005|Left foot pressure: 77,mm[Hg]
+  expected_output:
+    1:
+      gt0007|Right ABI: 0.92,1
+      gt0008|Left ABI: 0.91,1
+      gt0031|Vessel structure interpretation - Left: local::at0004|Acceptable|
+      gt0029|Vessel structure interpretation - Right: local::at0004|Acceptable|
+      gt0032|Recommendation - Left: local::at0009|None|
+      gt0030|Recommendation - Right: local::at0009|None|
+- id: Normal - Left and Right
+  input:
+    1:
+      gt0003|Highest pressure in both arms: 85,mm[Hg]
+      gt0004|Right foot pressure: 85,mm[Hg]
+      gt0005|Left foot pressure: 85,mm[Hg]
+  expected_output:
+    1:
+      gt0007|Right ABI: 1.00,1
+      gt0008|Left ABI: 1.00,1
+      gt0031|Vessel structure interpretation - Left: local::at0003|Normal|
+      gt0029|Vessel structure interpretation - Right: local::at0003|Normal|
+      gt0032|Recommendation - Left: local::at0009|None|
+      gt0030|Recommendation - Right: local::at0009|None|
+- id: Left-Severe Arterial Disease, Right-Moderate Arterial Disease
+  input:
+    1:
+      gt0003|Highest pressure in both arms: 85,mm[Hg]
+      gt0004|Right foot pressure: 60,mm[Hg]
+      gt0005|Left foot pressure: 40,mm[Hg]
+  expected_output:
+    1:
+      gt0007|Right ABI: 0.71,1
+      gt0008|Left ABI: 0.47,1
+      gt0031|Vessel structure interpretation - Left: local::at0007|Severe Arterial Disease|
+      gt0029|Vessel structure interpretation - Right: local::at0006|Moderate Arterial Disease|
+      gt0032|Recommendation - Left: local::at0011|Refer to vascular specialist|
+      gt0030|Recommendation - Right: local::at0011|Refer to vascular specialist|
+- id: Left-Moderate Arterial Disease, Right-Severe Arterial Disease
+  input:
+    1:
+      gt0003|Highest pressure in both arms: 55,mm[Hg]
+      gt0004|Right foot pressure: 11,mm[Hg]
+      gt0005|Left foot pressure: 33,mm[Hg]
+  expected_output:
+    1:
+      gt0007|Right ABI: 0.20,1
+      gt0008|Left ABI: 0.60,1
+      gt0031|Vessel structure interpretation - Left: local::at0006|Moderate Arterial Disease|
+      gt0029|Vessel structure interpretation - Right: local::at0007|Severe Arterial Disease|
+      gt0032|Recommendation - Left: local::at0011|Refer to vascular specialist|
+      gt0030|Recommendation - Right: local::at0011|Refer to vascular specialist|
+- id: Left-Moderate Arterial Disease, Right-Some Arterial Disease
+  input:
+    1:
+      gt0003|Highest pressure in both arms: 85,mm[Hg]
+      gt0004|Right foot pressure: 70,mm[Hg]
+      gt0005|Left foot pressure: 60,mm[Hg]
+  expected_output:
+    1:
+      gt0007|Right ABI: 0.82,1
+      gt0008|Left ABI: 0.71,1
+      gt0031|Vessel structure interpretation - Left: local::at0006|Moderate Arterial Disease|
+      gt0029|Vessel structure interpretation - Right: local::at0005|Some Arterial Disease|
+      gt0032|Recommendation - Left: local::at0011|Refer to vascular specialist|
+      gt0030|Recommendation - Right: local::at0010|Treat risk factors|
+- id: Left-Some Arterial Disease, Right-Moderate Arterial Disease
+  input:
+    1:
+      gt0003|Highest pressure in both arms: 85,mm[Hg]
+      gt0004|Right foot pressure: 60,mm[Hg]
+      gt0005|Left foot pressure: 70,mm[Hg]
+  expected_output:
+    1:
+      gt0007|Right ABI: 0.71,1
+      gt0008|Left ABI: 0.82,1
+      gt0031|Vessel structure interpretation - Left: local::at0005|Some Arterial Disease|
+      gt0029|Vessel structure interpretation - Right: local::at0006|Moderate Arterial Disease|
+      gt0032|Recommendation - Left: local::at0010|Treat risk factors|
+      gt0030|Recommendation - Right: local::at0011|Refer to vascular specialist|
+- id: Left-Some Arterial Disease, Right-Acceptable,
+  input:
+    1:
+      gt0003|Highest pressure in both arms: 85,mm[Hg]
+      gt0004|Right foot pressure: 80,mm[Hg]
+      gt0005|Left foot pressure: 70,mm[Hg]
+  expected_output:
+    1:
+      gt0007|Right ABI: 0.94,1
+      gt0008|Left ABI: 0.82,1
+      gt0031|Vessel structure interpretation - Left: local::at0005|Some Arterial Disease|
+      gt0029|Vessel structure interpretation - Right: local::at0004|Acceptable|
+      gt0032|Recommendation - Left: local::at0010|Treat risk factors|
+      gt0030|Recommendation - Right: local::at0009|None|
+- id: Left-Acceptable, Right-Some Arterial Disease
+  input:
+    1:
+      gt0003|Highest pressure in both arms: 85,mm[Hg]
+      gt0004|Right foot pressure: 70,mm[Hg]
+      gt0005|Left foot pressure: 80,mm[Hg]
+  expected_output:
+    1:
+      gt0007|Right ABI: 0.82,1
+      gt0008|Left ABI: 0.94,1
+      gt0031|Vessel structure interpretation - Left: local::at0004|Acceptable|
+      gt0029|Vessel structure interpretation - Right: local::at0005|Some Arterial Disease|
+      gt0032|Recommendation - Left: local::at0009|None|
+      gt0030|Recommendation - Right: local::at0010|Treat risk factors|
+- id: Left-Normal, Right-Acceptable
+  input:
+    1:
+      gt0003|Highest pressure in both arms: 85,mm[Hg]
+      gt0004|Right foot pressure: 80,mm[Hg]
+      gt0005|Left foot pressure: 90,mm[Hg]
+  expected_output:
+    1:
+      gt0007|Right ABI: 0.94,1
+      gt0008|Left ABI: 1.06,1
+      gt0031|Vessel structure interpretation - Left: local::at0003|Normal|
+      gt0029|Vessel structure interpretation - Right: local::at0004|Acceptable|
+      gt0032|Recommendation - Left: local::at0009|None|
+      gt0030|Recommendation - Right: local::at0009|None|
+- id: Left-Acceptable, Right-Normal
+  input:
+    1:
+      gt0003|Highest pressure in both arms: 85,mm[Hg]
+      gt0004|Right foot pressure: 90,mm[Hg]
+      gt0005|Left foot pressure: 80,mm[Hg]
+  expected_output:
+    1:
+      gt0007|Right ABI: 1.06,1
+      gt0008|Left ABI: 0.94,1
+      gt0031|Vessel structure interpretation - Left: local::at0004|Acceptable|
+      gt0029|Vessel structure interpretation - Right: local::at0003|Normal|
+      gt0032|Recommendation - Left: local::at0009|None|
+      gt0030|Recommendation - Right: local::at0009|None|

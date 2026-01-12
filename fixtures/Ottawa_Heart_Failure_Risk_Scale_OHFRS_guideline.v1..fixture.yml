@@ -1,0 +1,201 @@
+guidelines:
+  1: Ottawa_Heart_Failure_Risk_Scale_OHFRS_guideline.v1
+test_cases:
+- id: score 0
+  input:
+    1:
+      gt0003|Stroke or TIA: 0|local::at0006|No|
+      gt0004|Intubation for respiratory distress: 0|local::at0006|No|
+      gt0005|Heart rate on ED arrival ≥110: 0|local::at0006|No|
+      gt0006|SaO₂ <90% on arrival: 0|local::at0006|No|
+      gt0007|Heart rate ≥110 during 3-minutes walk test (or too ill to perform walk test): 0|local::at0006|No|
+      gt0008|New ischemic changes on EKG: 0|local::at0006|No|
+      gt0009|Urea ≥12 mmol/L (33 mg/dL): 0|local::at0006|No|
+      gt0010|Serum CO₂ ≥35 mmol/L (mEq/L): 0|local::at0006|No|
+      gt0011|Troponin I or T elevated to MI level: 0|local::at0006|No|
+      gt0012|NT-proBNP ≥5,000 ng/L (pg/mL): 0|local::at0006|No|
+  expected_output:
+    1:
+      gt0014|Total score: 0
+      gt0031|Category: local::at0004|Low risk and consider discharge with close follow up and return precautions if no other concerning findings|
+      gt0030|Risk of serious adverse event: 2.8%
+- id: score 1
+  input:
+    1:
+      gt0003|Stroke or TIA: 0|local::at0006|No|
+      gt0004|Intubation for respiratory distress: 0|local::at0006|No|
+      gt0005|Heart rate on ED arrival ≥110: 0|local::at0006|No|
+      gt0006|SaO₂ <90% on arrival: 0|local::at0006|No|
+      gt0007|Heart rate ≥110 during 3-minutes walk test (or too ill to perform walk test): 0|local::at0006|No|
+      gt0008|New ischemic changes on EKG: 0|local::at0006|No|
+      gt0009|Urea ≥12 mmol/L (33 mg/dL): 1|local::at0007|Yes|
+      gt0010|Serum CO₂ ≥35 mmol/L (mEq/L): 0|local::at0006|No|
+      gt0011|Troponin I or T elevated to MI level: 0|local::at0006|No|
+      gt0012|NT-proBNP ≥5,000 ng/L (pg/mL): 0|local::at0006|No|
+  expected_output:
+    1:
+      gt0014|Total score: 1
+      gt0031|Category: local::at0005|Medium risk and may consider discharge based on patient factors|
+      gt0030|Risk of serious adverse event: 5.1%
+- id: score 2
+  input:
+    1:
+      gt0003|Stroke or TIA: 0|local::at0006|No|
+      gt0004|Intubation for respiratory distress: 0|local::at0006|No|
+      gt0005|Heart rate on ED arrival ≥110: 0|local::at0006|No|
+      gt0006|SaO₂ <90% on arrival: 0|local::at0006|No|
+      gt0007|Heart rate ≥110 during 3-minutes walk test (or too ill to perform walk test): 0|local::at0006|No|
+      gt0008|New ischemic changes on EKG: 0|local::at0006|No|
+      gt0009|Urea ≥12 mmol/L (33 mg/dL): 0|local::at0006|No|
+      gt0010|Serum CO₂ ≥35 mmol/L (mEq/L): 0|local::at0006|No|
+      gt0011|Troponin I or T elevated to MI level: 2|local::at0007|Yes|
+      gt0012|NT-proBNP ≥5,000 ng/L (pg/mL): 0|local::at0006|No|
+  expected_output:
+    1:
+      gt0014|Total score: 2
+      gt0031|Category: local::at0005|Medium risk and may consider discharge based on patient factors|
+      gt0030|Risk of serious adverse event: 9.2%
+- id: score 3
+  input:
+    1:
+      gt0003|Stroke or TIA: 0|local::at0006|No|
+      gt0004|Intubation for respiratory distress: 0|local::at0006|No|
+      gt0005|Heart rate on ED arrival ≥110: 0|local::at0006|No|
+      gt0006|SaO₂ <90% on arrival: 0|local::at0006|No|
+      gt0007|Heart rate ≥110 during 3-minutes walk test (or too ill to perform walk test): 0|local::at0006|No|
+      gt0008|New ischemic changes on EKG: 0|local::at0006|No|
+      gt0009|Urea ≥12 mmol/L (33 mg/dL): 0|local::at0006|No|
+      gt0010|Serum CO₂ ≥35 mmol/L (mEq/L): 0|local::at0006|No|
+      gt0011|Troponin I or T elevated to MI level: 2|local::at0007|Yes|
+      gt0012|NT-proBNP ≥5,000 ng/L (pg/mL): 1|local::at0036|Yes|
+  expected_output:
+    1:
+      gt0014|Total score: 3
+      gt0031|Category: local::at0006|High risk and Not safe for discharge by OHFRS|
+      gt0030|Risk of serious adverse event: 15.9%
+- id: score 4
+  input:
+    1:
+      gt0003|Stroke or TIA: 0|local::at0006|No|
+      gt0004|Intubation for respiratory distress: 0|local::at0006|No|
+      gt0005|Heart rate on ED arrival ≥110: 0|local::at0006|No|
+      gt0006|SaO₂ <90% on arrival: 0|local::at0006|No|
+      gt0007|Heart rate ≥110 during 3-minutes walk test (or too ill to perform walk test): 0|local::at0006|No|
+      gt0008|New ischemic changes on EKG: 0|local::at0006|No|
+      gt0009|Urea ≥12 mmol/L (33 mg/dL): 0|local::at0006|No|
+      gt0010|Serum CO₂ ≥35 mmol/L (mEq/L): 2|local::at0007|Yes|
+      gt0011|Troponin I or T elevated to MI level: 2|local::at0007|Yes|
+      gt0012|NT-proBNP ≥5,000 ng/L (pg/mL): 0|local::at0006|No|
+  expected_output:
+    1:
+      gt0014|Total score: 4
+      gt0031|Category: local::at0006|High risk and Not safe for discharge by OHFRS|
+      gt0030|Risk of serious adverse event: 26.1%
+- id: score 5
+  input:
+    1:
+      gt0003|Stroke or TIA: 0|local::at0006|No|
+      gt0004|Intubation for respiratory distress: 0|local::at0006|No|
+      gt0005|Heart rate on ED arrival ≥110: 0|local::at0006|No|
+      gt0006|SaO₂ <90% on arrival: 0|local::at0006|No|
+      gt0007|Heart rate ≥110 during 3-minutes walk test (or too ill to perform walk test): 0|local::at0006|No|
+      gt0008|New ischemic changes on EKG: 0|local::at0006|No|
+      gt0009|Urea ≥12 mmol/L (33 mg/dL): 1|local::at0007|Yes|
+      gt0010|Serum CO₂ ≥35 mmol/L (mEq/L): 2|local::at0007|Yes|
+      gt0011|Troponin I or T elevated to MI level: 2|local::at0007|Yes|
+      gt0012|NT-proBNP ≥5,000 ng/L (pg/mL): 0|local::at0006|No|
+  expected_output:
+    1:
+      gt0014|Total score: 5
+      gt0031|Category: local::at0007|Very high risk and not safe for discharge by OHFRS|
+      gt0030|Risk of serious adverse event: 39.8%
+- id: score 6
+  input:
+    1:
+      gt0003|Stroke or TIA: 0|local::at0006|No|
+      gt0004|Intubation for respiratory distress: 0|local::at0006|No|
+      gt0005|Heart rate on ED arrival ≥110: 0|local::at0006|No|
+      gt0006|SaO₂ <90% on arrival: 0|local::at0006|No|
+      gt0007|Heart rate ≥110 during 3-minutes walk test (or too ill to perform walk test): 1|local::at0007|Yes|
+      gt0008|New ischemic changes on EKG: 0|local::at0006|No|
+      gt0009|Urea ≥12 mmol/L (33 mg/dL): 1|local::at0007|Yes|
+      gt0010|Serum CO₂ ≥35 mmol/L (mEq/L): 2|local::at0007|Yes|
+      gt0011|Troponin I or T elevated to MI level: 2|local::at0007|Yes|
+      gt0012|NT-proBNP ≥5,000 ng/L (pg/mL): 0|local::at0006|No|
+  expected_output:
+    1:
+      gt0014|Total score: 6
+      gt0031|Category: local::at0007|Very high risk and not safe for discharge by OHFRS|
+      gt0030|Risk of serious adverse event: 55.3%
+- id: score 7
+  input:
+    1:
+      gt0003|Stroke or TIA: 0|local::at0006|No|
+      gt0004|Intubation for respiratory distress: 0|local::at0006|No|
+      gt0005|Heart rate on ED arrival ≥110: 0|local::at0006|No|
+      gt0006|SaO₂ <90% on arrival: 1|local::at0007|Yes|
+      gt0007|Heart rate ≥110 during 3-minutes walk test (or too ill to perform walk test): 1|local::at0007|Yes|
+      gt0008|New ischemic changes on EKG: 0|local::at0006|No|
+      gt0009|Urea ≥12 mmol/L (33 mg/dL): 1|local::at0007|Yes|
+      gt0010|Serum CO₂ ≥35 mmol/L (mEq/L): 2|local::at0007|Yes|
+      gt0011|Troponin I or T elevated to MI level: 2|local::at0007|Yes|
+      gt0012|NT-proBNP ≥5,000 ng/L (pg/mL): 0|local::at0006|No|
+  expected_output:
+    1:
+      gt0014|Total score: 7
+      gt0031|Category: local::at0007|Very high risk and not safe for discharge by OHFRS|
+      gt0030|Risk of serious adverse event: 69.8%
+- id: score 8
+  input:
+    1:
+      gt0003|Stroke or TIA: 0|local::at0006|No|
+      gt0004|Intubation for respiratory distress: 0|local::at0006|No|
+      gt0005|Heart rate on ED arrival ≥110: 0|local::at0006|No|
+      gt0006|SaO₂ <90% on arrival: 1|local::at0007|Yes|
+      gt0007|Heart rate ≥110 during 3-minutes walk test (or too ill to perform walk test): 0|local::at0006|No|
+      gt0008|New ischemic changes on EKG: 2|local::at0007|Yes|
+      gt0009|Urea ≥12 mmol/L (33 mg/dL): 1|local::at0007|Yes|
+      gt0010|Serum CO₂ ≥35 mmol/L (mEq/L): 2|local::at0007|Yes|
+      gt0011|Troponin I or T elevated to MI level: 2|local::at0007|Yes|
+      gt0012|NT-proBNP ≥5,000 ng/L (pg/mL): 0|local::at0006|No|
+  expected_output:
+    1:
+      gt0014|Total score: 8
+      gt0031|Category: local::at0007|Very high risk and not safe for discharge by OHFRS|
+      gt0030|Risk of serious adverse event: 81.2%
+- id: score 9
+  input:
+    1:
+      gt0003|Stroke or TIA: 0|local::at0006|No|
+      gt0004|Intubation for respiratory distress: 0|local::at0006|No|
+      gt0005|Heart rate on ED arrival ≥110: 2|local::at0007|Yes|
+      gt0006|SaO₂ <90% on arrival: 0|local::at0006|No|
+      gt0007|Heart rate ≥110 during 3-minutes walk test (or too ill to perform walk test): 0|local::at0006|No|
+      gt0008|New ischemic changes on EKG: 2|local::at0007|Yes|
+      gt0009|Urea ≥12 mmol/L (33 mg/dL): 1|local::at0007|Yes|
+      gt0010|Serum CO₂ ≥35 mmol/L (mEq/L): 2|local::at0007|Yes|
+      gt0011|Troponin I or T elevated to MI level: 2|local::at0007|Yes|
+      gt0012|NT-proBNP ≥5,000 ng/L (pg/mL): 0|local::at0006|No|
+  expected_output:
+    1:
+      gt0014|Total score: 9
+      gt0031|Category: local::at0007|Very high risk and not safe for discharge by OHFRS|
+      gt0030|Risk of serious adverse event: 89.0%
+- id: score more than 9
+  input:
+    1:
+      gt0003|Stroke or TIA: 1|local::at0007|Yes|
+      gt0004|Intubation for respiratory distress: 0|local::at0006|No|
+      gt0005|Heart rate on ED arrival ≥110: 2|local::at0007|Yes|
+      gt0006|SaO₂ <90% on arrival: 0|local::at0006|No|
+      gt0007|Heart rate ≥110 during 3-minutes walk test (or too ill to perform walk test): 0|local::at0006|No|
+      gt0008|New ischemic changes on EKG: 2|local::at0007|Yes|
+      gt0009|Urea ≥12 mmol/L (33 mg/dL): 1|local::at0007|Yes|
+      gt0010|Serum CO₂ ≥35 mmol/L (mEq/L): 2|local::at0007|Yes|
+      gt0011|Troponin I or T elevated to MI level: 2|local::at0007|Yes|
+      gt0012|NT-proBNP ≥5,000 ng/L (pg/mL): 0|local::at0006|No|
+  expected_output:
+    1:
+      gt0014|Total score: 10
+      gt0031|Category: local::at0007|Very high risk and not safe for discharge by OHFRS|
+      gt0030|Risk of serious adverse event: more than 89.0%

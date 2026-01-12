@@ -1,0 +1,210 @@
+guidelines:
+  1: MAGGIC_Risk_Calculator_for_Heart_Failure_guideline.v1
+test_cases:
+- id: EF29,  BP 110, Age 54, Score 9
+  input:
+    1:
+      gt0003|Age: 54,a
+      gt0006|Systolic BP: 110,mm[Hg]
+      gt0008|EF: 29,%
+      gt0071|Body Mass Index: 30,kg/m2
+      gt0076|Creatinine: 89,µmol/l
+      gt0125|NYHA Class: 0|local::at0029|Class I|
+      gt0126|Gender: 0|local::at0034|Female|
+      gt0127|Current smoker: 0|local::at0037|No|
+      gt0128|Diabetes: 0|local::at0040|No|
+      gt0129|COPD: 0|local::at0043|No|
+      gt0130|Heart failure first diagnosed ≥18 months ago: 0|local::at0046|No|
+      gt0131|Beta blocker: 0|local::at0050|Yes|
+      gt0132|ACEi/ARB: 0|local::at0053|Yes|
+  expected_output:
+    1:
+      gt0072|BMI assessment: 0|local::at0014|≥30|
+      gt0025|Age assessment, EF<30: 0|local::at0095|<55|
+      gt0028|EF assessment: 5|local::at0077|25-29|
+      gt0104|MAGGIC Score: 9
+      gt0022|sBP Assessment, EF<30: 4|local::at0084|110-119|
+      gt0078|Creatinine Assessment: 0|local::at0020| <90|
+      gt0135|3 year probability of death: local::at0064|9.2%|
+      gt0134|1 year probability of death: local::at0013|3.6%|
+- id: EF 30, BP 110, Age 54, Score 7
+  input:
+    1:
+      gt0003|Age: 54,a
+      gt0006|Systolic BP: 110,mm[Hg]
+      gt0008|EF: 30,%
+      gt0071|Body Mass Index: 29,kg/m2
+      gt0076|Creatinine: 89,µmol/l
+      gt0125|NYHA Class: 0|local::at0029|Class I|
+      gt0126|Gender: 0|local::at0034|Female|
+      gt0127|Current smoker: 0|local::at0037|No|
+      gt0128|Diabetes: 0|local::at0040|No|
+      gt0129|COPD: 0|local::at0043|No|
+      gt0130|Heart failure first diagnosed ≥18 months ago: 0|local::at0046|No|
+      gt0131|Beta blocker: 0|local::at0050|Yes|
+      gt0132|ACEi/ARB: 0|local::at0053|Yes|
+  expected_output:
+    1:
+      gt0072|BMI assessment: 2|local::at0015|25-29|
+      gt0104|MAGGIC Score: 7
+      gt0028|EF assessment: 3|local::at0076|30-34|
+      gt0023|sBP Assessment, EF 30-39: 2|local::at0089|110-119|
+      gt0078|Creatinine Assessment: 0|local::at0020| <90|
+      gt0026|Age Assessment, Ef 30-39: 0|local::at0103|<55|
+      gt0135|3 year probability of death: local::at0062|7.7%|
+      gt0134|1 year probability of death: local::at0011|2.9%|
+- id: EF 40, BP 110, Age 54, Score 7
+  input:
+    1:
+      gt0003|Age: 54,a
+      gt0006|Systolic BP: 110,mm[Hg]
+      gt0008|EF: 40,%
+      gt0071|Body Mass Index: 29,kg/m2
+      gt0076|Creatinine: 89,µmol/l
+      gt0125|NYHA Class: 0|local::at0029|Class I|
+      gt0126|Gender: 0|local::at0034|Female|
+      gt0127|Current smoker: 0|local::at0037|No|
+      gt0128|Diabetes: 0|local::at0040|No|
+      gt0129|COPD: 0|local::at0043|No|
+      gt0130|Heart failure first diagnosed ≥18 months ago: 0|local::at0046|No|
+      gt0131|Beta blocker: 0|local::at0050|Yes|
+      gt0132|ACEi/ARB: 0|local::at0053|Yes|
+  expected_output:
+    1:
+      gt0072|BMI assessment: 2|local::at0015|25-29|
+      gt0027|Age Assessment, Ef >=40: 0|local::at0111|<55|
+      gt0104|MAGGIC Score: 3
+      gt0024|sBP Assessment, EF >=40: 1|local::at0093|110-129|
+      gt0028|EF assessment: 0|local::at0074|≥40|
+      gt0078|Creatinine Assessment: 0|local::at0020| <90|
+      gt0027|Age Assessment, Ef>=40: 0|local::at0111|<55|
+      gt0135|3 year probability of death: local::at0058|5.2%|
+      gt0134|1 year probability of death: local::at0007|2%|
+- id: EF 40, BP 150, Age 90, Score 23
+  input:
+    1:
+      gt0003|Age: 90,a
+      gt0006|Systolic BP: 150,mm[Hg]
+      gt0008|EF: 40,%
+      gt0071|Body Mass Index: 30,kg/m2
+      gt0076|Creatinine: 250,µmol/l
+      gt0125|NYHA Class: 0|local::at0029|Class I|
+      gt0126|Gender: 0|local::at0034|Female|
+      gt0127|Current smoker: 0|local::at0037|No|
+      gt0128|Diabetes: 0|local::at0040|No|
+      gt0129|COPD: 0|local::at0043|No|
+      gt0130|Heart failure first diagnosed ≥18 months ago: 0|local::at0046|No|
+      gt0131|Beta blocker: 0|local::at0050|Yes|
+      gt0132|ACEi/ARB: 0|local::at0053|Yes|
+  expected_output:
+    1:
+      gt0072|BMI assessment: 0|local::at0014|≥30|
+      gt0027|Age Assessment, Ef >=40: 15|local::at0117|≥80|
+      gt0104|MAGGIC Score: 23
+      gt0024|sBP Assessment, EF >=40: 0|local::at0094|≥130|
+      gt0028|EF assessment: 0|local::at0074|≥40|
+      gt0078|Creatinine Assessment: 8|local::at0027|≥250|
+      gt0135|3 year probability of death: local::at0078|31.6%|
+      gt0134|1 year probability of death: local::at0027|13.4%|
+- id: EF 40, BP 149, Age 79, Score 20
+  input:
+    1:
+      gt0003|Age: 79,a
+      gt0006|Systolic BP: 149,mm[Hg]
+      gt0008|EF: 40,%
+      gt0071|Body Mass Index: 29,kg/m2
+      gt0076|Creatinine: 249,µmol/l
+      gt0125|NYHA Class: 0|local::at0029|Class I|
+      gt0126|Gender: 0|local::at0034|Female|
+      gt0127|Current smoker: 0|local::at0037|No|
+      gt0128|Diabetes: 0|local::at0040|No|
+      gt0129|COPD: 0|local::at0043|No|
+      gt0130|Heart failure first diagnosed ≥18 months ago: 0|local::at0046|No|
+      gt0131|Beta blocker: 0|local::at0050|Yes|
+      gt0132|ACEi/ARB: 0|local::at0053|Yes|
+  expected_output:
+    1:
+      gt0072|BMI assessment: 2|local::at0015|25-29|
+      gt0027|Age Assessment, Ef >=40: 12|local::at0116|75-79|
+      gt0104|MAGGIC Score: 20
+      gt0024|sBP Assessment, EF >=40: 0|local::at0094|≥130|
+      gt0028|EF assessment: 0|local::at0074|≥40|
+      gt0078|Creatinine Assessment: 6|local::at0026|210-249|
+      gt0135|3 year probability of death: local::at0075|24.7%|
+      gt0134|1 year probability of death: local::at0024|10.2%|
+- id: EF 34, BP 130, Age 75, Score 22
+  input:
+    1:
+      gt0003|Age: 75,a
+      gt0006|Systolic BP: 130,mm[Hg]
+      gt0008|EF: 34,%
+      gt0071|Body Mass Index: 20,kg/m2
+      gt0076|Creatinine: 170,µmol/l
+      gt0125|NYHA Class: 0|local::at0029|Class I|
+      gt0126|Gender: 0|local::at0034|Female|
+      gt0127|Current smoker: 0|local::at0037|No|
+      gt0128|Diabetes: 0|local::at0040|No|
+      gt0129|COPD: 0|local::at0043|No|
+      gt0130|Heart failure first diagnosed ≥18 months ago: 0|local::at0046|No|
+      gt0131|Beta blocker: 0|local::at0050|Yes|
+      gt0132|ACEi/ARB: 0|local::at0053|Yes|
+  expected_output:
+    1:
+      gt0072|BMI assessment: 3|local::at0016|20-24|
+      gt0104|MAGGIC Score: 22
+      gt0028|EF assessment: 3|local::at0076|30-34|
+      gt0023|sBP Assessment, EF 30-39: 1|local::at0088|120-139|
+      gt0078|Creatinine Assessment: 5|local::at0025|170-209|
+      gt0026|Age Assessment, Ef 30-39: 10|local::at0108|75-79|
+      gt0135|3 year probability of death: local::at0077|29.2%|
+      gt0134|1 year probability of death: local::at0026|12.2%|
+- id: MAGGIC score = 0
+  input:
+    1:
+      gt0003|Age: 40,a
+      gt0006|Systolic BP: 152,mm[Hg]
+      gt0008|EF: 50,%
+      gt0071|Body Mass Index: 32,kg/m2
+      gt0076|Creatinine: 60,µmol/l
+      gt0125|NYHA Class: 0|local::at0029|Class I|
+      gt0126|Gender: 0|local::at0034|Female|
+      gt0127|Current smoker: 0|local::at0037|No|
+      gt0128|Diabetes: 0|local::at0040|No|
+      gt0129|COPD: 0|local::at0043|No|
+      gt0130|Heart failure first diagnosed ≥18 months ago: 0|local::at0046|No|
+      gt0131|Beta blocker: 0|local::at0050|Yes|
+      gt0132|ACEi/ARB: 0|local::at0053|Yes|
+  expected_output:
+    1:
+      gt0072|BMI assessment: 0|local::at0014|≥30|
+      gt0027|Age Assessment, Ef >=40: 0|local::at0111|<55|
+      gt0024|sBP Assessment, EF >=40: 0|local::at0094|≥130|
+      gt0028|EF assessment: 0|local::at0074|≥40|
+      gt0104|MAGGIC Score: 0
+      gt0078|Creatinine Assessment: 0|local::at0020| <90|
+      gt0135|3 year probability of death: local::at0055|3.9%|
+      gt0134|1 year probability of death: local::at0004|1.5%|
+- id: MAGGIC score = 57
+  input:
+    1:
+      gt0003|Age: 82,a
+      gt0006|Systolic BP: 100,mm[Hg]
+      gt0008|EF: 16,%
+      gt0071|Body Mass Index: 14,kg/m2
+      gt0076|Creatinine: 300,µmol/l
+      gt0125|NYHA Class: 8|local::at0032|Class IV|
+      gt0126|Gender: 1|local::at0035|Male|
+      gt0127|Current smoker: 1|local::at0038|Yes|
+      gt0128|Diabetes: 3|local::at0041|Yes|
+      gt0129|COPD: 2|local::at0044|Yes|
+      gt0130|Heart failure first diagnosed ≥18 months ago: 2|local::at0047|Yes|
+      gt0131|Beta blocker: 3|local::at0049|No|
+      gt0132|ACEi/ARB: 1|local::at0052|No|
+  expected_output:
+    1:
+      gt0072|BMI assessment: 6|local::at0018|<15|
+      gt0025|Age assessment, EF<30: 10|local::at0101|≥80|
+      gt0028|EF assessment: 7|local::at0079|<20|
+      gt0104|MAGGIC Score: 57
+      gt0022|sBP Assessment, EF<30: 5|local::at0085|<110|
+      gt0078|Creatinine Assessment: 8|local::at0027|≥250|

@@ -1,0 +1,99 @@
+guidelines:
+  1: Plasma_Dosage_guideline.v1
+test_cases:
+- id: 50 kg, O, total plasma dose transfusion 500
+  input:
+    1:
+      gt0003|Weight (kg): 50,kg
+      gt0005|Desired plasma dosage: 10,ml/kg
+      gt0006|Unit volume: 100,ml
+      gt0023|ABO phenotype of the recipient: local::at0023|O|
+  expected_output:
+    1:
+      gt0009|FFP units for transfusion: 5,units
+      gt0024|ABO phenotype of units to transfuse (in order of preference): local::at0028|O, A, B, AB|
+      gt0008|Total plasma dose for transfusion: 500,ml
+- id: 100 kg, A, Total plasma dose for transfusion 2000
+  input:
+    1:
+      gt0003|Weight (kg): 100,kg
+      gt0005|Desired plasma dosage: 20,ml/kg
+      gt0006|Unit volume: 200,ml
+      gt0023|ABO phenotype of the recipient: local::at0024|A|
+  expected_output:
+    1:
+      gt0009|FFP units for transfusion: 10,units
+      gt0024|ABO phenotype of units to transfuse (in order of preference): local::at0029|A, AB|
+      gt0008|Total plasma dose for transfusion: 2000,ml
+- id: 100 kg, B, Total plasma dose for transfusion 2000
+  input:
+    1:
+      gt0003|Weight (kg): 100,kg
+      gt0005|Desired plasma dosage: 20,ml/kg
+      gt0006|Unit volume: 200,ml
+      gt0023|ABO phenotype of the recipient: local::at0025|B|
+  expected_output:
+    1:
+      gt0009|FFP units for transfusion: 10,units
+      gt0024|ABO phenotype of units to transfuse (in order of preference): local::at0030|B, AB|
+      gt0008|Total plasma dose for transfusion: 2000,ml
+- id: 100 kg, AB, Total plasma dose for transfusion 2000
+  input:
+    1:
+      gt0003|Weight (kg): 100,kg
+      gt0005|Desired plasma dosage: 20,ml/kg
+      gt0006|Unit volume: 200,ml
+      gt0023|ABO phenotype of the recipient: local::at0026|AB|
+  expected_output:
+    1:
+      gt0009|FFP units for transfusion: 10,units
+      gt0024|ABO phenotype of units to transfuse (in order of preference): local::at0031|AB|
+      gt0008|Total plasma dose for transfusion: 2000,ml
+- id: Warning Too low and infinity
+  input:
+    1:
+      gt0003|Weight (kg): 0,kg
+      gt0005|Desired plasma dosage: 9,ml/kg
+      gt0006|Unit volume: 0,ml
+  expected_output:
+    1:
+      gt0012|Warning to unit volume: Infinity
+      gt0011|Warning to plasma dose: Too Low please change to proceed.
+      gt0010|Warning to weight: Too Low please change to proceed.
+- id: Warning Too high
+  input:
+    1:
+      gt0003|Weight (kg): 273,kg
+      gt0005|Desired plasma dosage: 21,ml/kg
+      gt0006|Unit volume: 501,ml
+  expected_output:
+    1:
+      gt0012|Warning to unit volume: Too High please change to proceed.
+      gt0011|Warning to plasma dose: Too High please change to proceed.
+      gt0010|Warning to weight: Too High please change to proceed.
+- id: warning very high 227
+  input:
+    1:
+      gt0003|Weight (kg): 227,kg
+      gt0005|Desired plasma dosage: 10,ml/kg
+      gt0006|Unit volume: 50,ml
+      gt0023|ABO phenotype of the recipient: local::at0026|AB|
+  expected_output:
+    1:
+      gt0009|FFP units for transfusion: 45,units
+      gt0024|ABO phenotype of units to transfuse (in order of preference): local::at0031|AB|
+      gt0008|Total plasma dose for transfusion: 2270,ml
+      gt0010|Warning to weight: Very high double check.
+- id: warning very high 272
+  input:
+    1:
+      gt0003|Weight (kg): 272,kg
+      gt0005|Desired plasma dosage: 10,ml/kg
+      gt0006|Unit volume: 50,ml
+      gt0023|ABO phenotype of the recipient: local::at0026|AB|
+  expected_output:
+    1:
+      gt0009|FFP units for transfusion: 54,units
+      gt0024|ABO phenotype of units to transfuse (in order of preference): local::at0031|AB|
+      gt0008|Total plasma dose for transfusion: 2720,ml
+      gt0010|Warning to weight: Very high double check.

@@ -1,3 +1,160 @@
+current_datetime: 2025-11-11T12:00:00+01:00
 guidelines:
   "1": SCORE2.v0.1
-test_cases: []
+test_cases:
+  - id: Test case 1
+    input:
+      "1":
+        gt0018|Age: 42,a
+        gt0025|Gender: local::at0005|Male|
+        gt0007|Systolic: 150,mm[Hg]
+        gt0161|Total Cholesterol: 4,mmol/l
+        gt0154|HDL Cholesterol: 2,mmol/l
+        gt0157|Cigarrete smoking: local::at0007|No|
+    expected_output:
+      "1":
+        gt0159|10 year risk score: 1.6,%
+        gt0160|Interpretation: 1|local::at0010|Low to moderate risk|
+  - id: Test case 2
+    input:
+      "1":
+        gt0018|Age: 50,a
+        gt0025|Gender: local::at0006|Female|
+        gt0007|Systolic: 120,mm[Hg]
+        gt0161|Total Cholesterol: 110,mg/dl
+        gt0154|HDL Cholesterol: 45,mg/dl
+        gt0157|Cigarrete smoking: local::at0006|Yes|
+    expected_output:
+      "1":
+        gt0159|10 year risk score: 3.0,%
+        gt0160|Interpretation: 1|local::at0010|Low to moderate risk|
+  - id: Test case 3
+    input:
+      "1":
+        gt0018|Age: 69,a
+        gt0025|Gender: local::at0005|Male|
+        gt0007|Systolic: 150,mm[Hg]
+        gt0161|Total Cholesterol: 150,mg/dl
+        gt0154|HDL Cholesterol: 45,mg/dl
+        gt0157|Cigarrete smoking: local::at0006|Yes|
+    expected_output:
+      "1":
+        gt0159|10 year risk score: 18.1,%
+        gt0160|Interpretation: 3|local::at0012|Very high risk|
+  - id: Test case 4
+    input:
+      "1":
+        gt0018|Age: 65,a
+        gt0025|Gender: local::at0006|Female|
+        gt0007|Systolic: 150,mm[Hg]
+        gt0161|Total Cholesterol: 100,mg/dl
+        gt0154|HDL Cholesterol: 40,mg/dl
+        gt0157|Cigarrete smoking: local::at0006|Yes|
+    expected_output:
+      "1":
+        gt0159|10 year risk score: 11.2,%
+        gt0160|Interpretation: 3|local::at0012|Very high risk|
+  - id: Test case 5
+    input:
+      "1":
+        gt0018|Age: 65,a
+        gt0025|Gender: local::at0006|Female|
+        gt0007|Systolic: 130,mm[Hg]
+        gt0161|Total Cholesterol: 150,mg/dl
+        gt0154|HDL Cholesterol: 150,mg/dl
+        gt0157|Cigarrete smoking: local::at0006|Yes|
+    expected_output:
+      "1":
+        gt0159|10 year risk score: 4.2,%
+        gt0160|Interpretation: 1|local::at0010|Low to moderate risk|
+  - id: Test case 6
+    input:
+      "1":
+        gt0018|Age: 40,a
+        gt0025|Gender: local::at0006|Female|
+        gt0007|Systolic: 100,mm[Hg]
+        gt0161|Total Cholesterol: 150,mg/dl
+        gt0154|HDL Cholesterol: 60,mg/dl
+        gt0157|Cigarrete smoking: local::at0007|No|
+    expected_output:
+      "1":
+        gt0159|10 year risk score: 0.5,%
+        gt0160|Interpretation: 1|local::at0010|Low to moderate risk|
+  - id: Test case 7
+    input:
+      "1":
+        gt0018|Age: 45,a
+        gt0025|Gender: local::at0006|Female|
+        gt0007|Systolic: 150,mm[Hg]
+        gt0161|Total Cholesterol: 150,mg/dl
+        gt0154|HDL Cholesterol: 60,mg/dl
+        gt0157|Cigarrete smoking: local::at0007|No|
+    expected_output:
+      "1":
+        gt0159|10 year risk score: 1.6,%
+        gt0160|Interpretation: 1|local::at0010|Low to moderate risk|
+  - id: Test case 8
+    input:
+      "1":
+        gt0018|Age: 69,a
+        gt0025|Gender: local::at0006|Female|
+        gt0007|Systolic: 150,mm[Hg]
+        gt0161|Total Cholesterol: 150,mg/dl
+        gt0154|HDL Cholesterol: 60,mg/dl
+        gt0157|Cigarrete smoking: local::at0006|Yes|
+    expected_output:
+      "1":
+        gt0159|10 year risk score: 13.2,%
+        gt0160|Interpretation: 3|local::at0012|Very high risk|
+  - id: Test case 9
+    input:
+      "1":
+        gt0018|Age: 50,a
+        gt0025|Gender: local::at0005|Male|
+        gt0007|Systolic: 150,mm[Hg]
+        gt0161|Total Cholesterol: 150,mg/dl
+        gt0154|HDL Cholesterol: 60,mg/dl
+        gt0157|Cigarrete smoking: local::at0006|Yes|
+    expected_output:
+      "1":
+        gt0159|10 year risk score: 5.6,%
+        gt0160|Interpretation: 2|local::at0011|High risk|
+  - id: Test case 10
+    input:
+      "1":
+        gt0018|Age: 42,a
+        gt0025|Gender: local::at0005|Male|
+        gt0007|Systolic: 150,mm[Hg]
+        gt0161|Total Cholesterol: 4,mmol/l
+        gt0154|HDL Cholesterol: 2,mmol/l
+        gt0157|Cigarrete smoking: local::at0007|No|
+    expected_output:
+      "1":
+        gt0159|10 year risk score: 1.6,%
+        gt0160|Interpretation: 1|local::at0010|Low to moderate risk|
+  - id: Testa case 11
+    input:
+      "1":
+        gt0018|Age: 48,a
+        gt0025|Gender: local::at0005|Male|
+        gt0007|Systolic: 170,mm[Hg]
+        gt0161|Total Cholesterol: 200,mg/dl
+        gt0154|HDL Cholesterol: 45,mg/dl
+        gt0157|Cigarrete smoking: local::at0006|Yes|
+    expected_output:
+      "1":
+        gt0159|10 year risk score: 9.9,%
+        gt0160|Interpretation: 3|local::at0012|Very high risk|
+  - id: Testa case 12
+    input:
+      "1":
+        gt0018|Age: 46,a
+        gt0025|Gender: local::at0006|Female|
+        gt0007|Systolic: 150,mm[Hg]
+        gt0161|Total Cholesterol: 200,mg/dl
+        gt0154|HDL Cholesterol: 60,mg/dl
+        gt0157|Cigarrete smoking: local::at0006|Yes|
+    expected_output:
+      "1":
+        gt0159|10 year risk score: 3.7,%
+        gt0160|Interpretation: 2|local::at0011|High risk|

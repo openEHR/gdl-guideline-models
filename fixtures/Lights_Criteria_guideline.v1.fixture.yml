@@ -1,0 +1,56 @@
+guidelines:
+  1: Lights_Criteria_guideline.v1
+test_cases:
+- id: Warning too low
+  input:
+    1:
+      gt0003|Total Serum Protein (gm/l): 0,gm/l
+      gt0004|Pleural fluid Protein (gm/l)): 0,gm/l
+      gt0006|Serum LDH: 59,u/l
+      gt0008|Pleural fluid LDH: 60,u/l
+      gt0009|Upper limit of normal serum LDH: 6,u/l
+      gt0010|Is this a COVID-19 patient?: local::at0015|Unlikely|
+  expected_output:
+    1:
+      gt0016|Warning to Serum LDH: Too low please change to proceed.
+      gt0014|Warning to Total serum Protein: Too low please change to proceed.
+      gt0035|Diagnosis: None of Light’s criteria met; suggests likely transudative effusion
+      gt0015|Warning to Pleural fluid Protein: Too low please change to proceed.
+      gt0037|2/3 Serum LDH Upper Limit of Normal: 4.0,1
+- id: warning very high
+  input:
+    1:
+      gt0003|Total Serum Protein (gm/l): 71,gm/l
+      gt0004|Pleural fluid Protein (gm/l)): 71,gm/l
+      gt0006|Serum LDH: 161,u/l
+      gt0008|Pleural fluid LDH: 501,u/l
+      gt0009|Upper limit of normal serum LDH: 6,u/l
+      gt0010|Is this a COVID-19 patient?: local::at0015|Unlikely|
+  expected_output:
+    1:
+      gt0016|Warning to Serum LDH: Very high double-check.
+      gt0014|Warning to Total serum Protein: Very high double check.
+      gt0012|Pleural fluid protein / Serum protein: 1.0,1
+      gt0017|Warning to Pleural fluid LDH: Very high double-check.
+      gt0013|Pleural fluid LDH / Serum LDH: 3.1,1
+      gt0035|Diagnosis: At least one of Light’s Criteria has been met and according to one study, this was 98% sensitive for exudative effusion
+      gt0015|Warning to Pleural fluid Protein: Very high double check.
+      gt0037|2/3 Serum LDH Upper Limit of Normal: 4.0,1
+- id: Warning too high
+  input:
+    1:
+      gt0003|Total Serum Protein (gm/l): 201,gm/l
+      gt0004|Pleural fluid Protein (gm/l)): 101,gm/l
+      gt0006|Serum LDH: 5001,u/l
+      gt0008|Pleural fluid LDH: 2001,u/l
+      gt0009|Upper limit of normal serum LDH: 2001,u/l
+      gt0010|Is this a COVID-19 patient?: local::at0015|Unlikely|
+  expected_output:
+    1:
+      gt0016|Warning to Serum LDH: Too high please change to proceed.
+      gt0014|Warning to Total serum Protein: Too high please change to proceed.
+      gt0017|Warning to Pleural fluid LDH: Too high please change to proceed.
+      gt0035|Diagnosis: None of Light’s criteria met; suggests likely transudative effusion
+      gt0015|Warning to Pleural fluid Protein: Too high please change to proceed.
+      gt0018|Warning to Upper limit of normal serum LDH: Too high please change to proceed.
+

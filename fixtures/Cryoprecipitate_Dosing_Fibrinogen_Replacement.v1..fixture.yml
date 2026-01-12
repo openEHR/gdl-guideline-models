@@ -1,0 +1,51 @@
+guidelines:
+  1: Cryoprecipitate_Dosing_Fibrinogen_Replacement.v1
+test_cases:
+- id: Warning-Plasma Volume Too high
+  input:
+    1:
+      gt0019|Initial fibrinogen: 100,mg/dl
+      gt0004|Plasma volume: 20100,ml
+      gt0005|Goal fibrinogen: 300,mg/dl
+      gt0006|Fibrinogen content of unit: 250,mg/dl
+  expected_output:
+    1:
+      gt0017|Fibrinogen content of unit: 250,mg/dl
+      gt0010|Warning-Plasma volume: Too high; please change to proceed.
+
+- id: Warning-Plasma Volume Too low
+  input:
+    1:
+      gt0019|Initial fibrinogen: 100,mg/dl
+      gt0004|Plasma volume: -1,ml
+      gt0005|Goal fibrinogen: 300,mg/dl
+      gt0006|Fibrinogen content of unit: 250,mg/dl
+  expected_output:
+    1:
+      gt0017|Fibrinogen content of unit: 250,mg/dl
+      gt0010|Warning-Plasma volume: Too low; please change to proceed.
+
+- id: Warning-Plasma Volume Very high
+  input:
+    1:
+      gt0019|Initial fibrinogen: 100,mg/dl
+      gt0004|Plasma volume: 5010,ml
+      gt0005|Goal fibrinogen: 300,mg/dl
+      gt0006|Fibrinogen content of unit: 250,mg/dl
+  expected_output:
+    1:
+      gt0017|Fibrinogen content of unit: 250,mg/dl
+      gt0011|Cryoprecipitate dose: 40,units
+      gt0010|Warning-Plasma volume: Very high; double-check.
+
+- id: Calculate Cryoprecipitate dose within normal range
+  input:
+    1:
+      gt0004|Plasma volume: 67,ml
+      gt0005|Goal fibrinogen: 400,mg/dl
+      gt0006|Fibrinogen content of unit: 200,mg/dl
+      gt0019|Initial fibrinogen: 250,mg/dl
+  expected_output:
+    1:
+      gt0011|Cryoprecipitate dose: 1,units
+      gt0017|Fibrinogen content of unit: 250,mg/dl

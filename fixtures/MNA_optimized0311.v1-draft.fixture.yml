@@ -1,0 +1,33 @@
+guidelines:
+  "1": MNA_optimized0311.v1-draft
+test_cases:
+  - id: "Malnourish: bmi19"
+    input:
+      "1":
+        "gt0003|Has food intake declined over the past 3 months due to loss of appetite, digestive problems, chewing or swallowing difficulties?": 0|local::at0005|Severe decrease in food intake|
+        gt0004|Weight loss during the last 3 months: 0|local::at0009|Weight loss greater than 3kg|
+        gt0005|Mobility: 0|local::at0014|Bed or chair bound|
+        gt0006|Has suffered psychological stress or acute disease in the past 3 months?: 0|local::at0018|Yes|
+        gt0007|Neuropsychological problems: 0|local::at0021|Severe dementia or depression|
+        gt0034|Calf circumference (CC): 0|local::at0031|CC less than 31 cm|
+        gt0061|Body Mass Index: 19,kg/m2
+    expected_output:
+      "1":
+        gt0016|F. Body Mass Index (kg/m2): 1|local::at0026|BMI 19 to less than 21|
+        gt0017|MNA score: "1"
+        gt0064|Risk assessment: Malnourish
+  - id: "risk of Malnourish: bmi22"
+    input:
+      "1":
+        "gt0003|Has food intake declined over the past 3 months due to loss of appetite, digestive problems, chewing or swallowing difficulties?": 1|local::at0006|Moderate decrease in food intake|
+        gt0004|Weight loss during the last 3 months: 2|local::at0011|Weight loss between 1 and 3kg|
+        gt0005|Mobility: 2|local::at0016|Goes out|
+        gt0006|Has suffered psychological stress or acute disease in the past 3 months?: 0|local::at0018|Yes|
+        gt0007|Neuropsychological problems: 1|local::at0022|Mild dementia|
+        gt0034|Calf circumference (CC): 0|local::at0031|CC less than 31 cm|
+        gt0061|Body Mass Index: 22,kg/m2
+    expected_output:
+      "1":
+        gt0016|F. Body Mass Index (kg/m2): 2|local::at0027|BMI 21 to less than 23|
+        gt0017|MNA score: "8"
+        gt0064|Risk assessment: At risk of malnutrition

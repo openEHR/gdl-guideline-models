@@ -1,0 +1,25 @@
+guidelines:
+  1: Revised_natural_history_model_guideline.v1
+test_cases:
+- id: Alb (gm/dl), Bili (mg/dl)
+  input:
+    1:
+      gt0003|Age: 20,a
+      gt0005|Bilirubin: 2,mg/dl
+      gt0007|Aspartate aminotransferase (AST): 1,U/l
+      gt0009|Variceal bleeding: 1|local::at0005|Yes|
+      gt0011|Albumin: 1,gm/dl
+  expected_output:
+    1:
+      gt0013|Risk Score: 1.37,1
+- id: Alb (gm/l), Bili (umol/l)
+  input:
+    1:
+      gt0003|Age: 20,a
+      gt0005|Bilirubin: 176.8,umol/l
+      gt0007|Aspartate aminotransferase (AST): 1,U/l
+      gt0009|Variceal bleeding: 1|local::at0005|Yes|
+      gt0011|Albumin: 10,gm/l
+  expected_output:
+    1:
+      gt0013|Risk Score: 1.37,1

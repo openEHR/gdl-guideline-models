@@ -1,0 +1,54 @@
+guidelines:
+  1: LACE_readmission_index.v1
+test_cases:
+- id: LACE Index 0 (min)
+  input:
+    1:
+      gt0068|Length of Stay: 0|local::at0037|<1 day|
+      gt0005|Admission type: 0|local::at0008|Elective / Routine|
+      gt0067|Charlson Comorbidity Index: 0|local::at0027|0 point|
+      gt0060|Number of previous ED visits within 6 months: 0|local::at0032|0|
+  expected_output:
+    1:
+      gt0028|LACE Index Score: 0
+      gt0018|Expected probability: 2,%
+      gt0017|Risk of unplanned readmission in 30 days after discharge: 0|local::at0003|Low|
+
+- id: LACE Index 9, low risk
+  input:
+    1:
+      gt0068|Length of Stay: 0|local::at0037|<1 day|
+      gt0005|Admission type: 3|local::at0009|Acute / Emergent|
+      gt0067|Charlson Comorbidity Index: 3|local::at0030|3 points|
+      gt0060|Number of previous ED visits within 6 months: 3|local::at0035|3|
+  expected_output:
+    1:
+      gt0028|LACE Index Score: 9
+      gt0018|Expected probability: 10.3,%
+      gt0017|Risk of unplanned readmission in 30 days after discharge: 0|local::at0003|Low|
+
+- id: LACE Index 10, high risk
+  input:
+    1:
+      gt0068|Length of Stay: 0|local::at0037|<1 day|
+      gt0005|Admission type: 3|local::at0009|Acute / Emergent|
+      gt0067|Charlson Comorbidity Index: 3|local::at0030|3 points|
+      gt0060|Number of previous ED visits within 6 months: 4|local::at0036|≥4|
+  expected_output:
+    1:
+      gt0028|LACE Index Score: 10
+      gt0018|Expected probability: 12.2,%
+      gt0017|Risk of unplanned readmission in 30 days after discharge: 1|local::at0004|High|
+
+- id: LACE Index 19 (max)
+  input:
+    1:
+      gt0068|Length of Stay: 7|local::at0026|≥14 days|
+      gt0005|Admission type: 3|local::at0009|Acute / Emergent|
+      gt0067|Charlson Comorbidity Index: 5|local::at0031|≥4 points|
+      gt0060|Number of previous ED visits within 6 months: 4|local::at0036|≥4|
+  expected_output:
+    1:
+      gt0028|LACE Index Score: 19
+      gt0018|Expected probability: 43.7,%
+      gt0017|Risk of unplanned readmission in 30 days after discharge: 1|local::at0004|High|

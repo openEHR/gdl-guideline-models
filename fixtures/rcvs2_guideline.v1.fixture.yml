@@ -1,0 +1,119 @@
+guidelines:
+  1: rcvs2_guideline.v1
+test_cases:
+- id: 1. No input
+  input:
+    1: {}
+  expected_output:
+    1: {}
+- id: 2. Test precondition age >= 18 (negative test)
+  input:
+    1:
+      gt0003|Recurrent or single TCH: 0|local::at0006|Absent|
+      gt0004|Carotid artery (intracranial): 0|local::at0009|Not affected|
+      gt0005|Vasoconstrictive trigger: 0|local::at0006|Absent|
+      gt0006|Sex: 1|local::at0014|Female|
+      gt0007|Subarachnoid hemorrhage: 1|local::at0005|Present|
+      gt0022|Age: 16,a
+  expected_output:
+    1: {}
+- id: 3. Test precondition age <= 55 (negative test)
+  input:
+    1:
+      gt0003|Recurrent or single TCH: 0|local::at0006|Absent|
+      gt0004|Carotid artery (intracranial): 0|local::at0009|Not affected|
+      gt0005|Vasoconstrictive trigger: 0|local::at0006|Absent|
+      gt0006|Sex: 1|local::at0014|Female|
+      gt0007|Subarachnoid hemorrhage: 1|local::at0005|Present|
+      gt0022|Age: 60,a
+  expected_output:
+    1: {}
+- id: 4. No recurrent or single TCH (negative test)
+  input:
+    1:
+      gt0004|Carotid artery (intracranial): 0|local::at0009|Not affected|
+      gt0005|Vasoconstrictive trigger: 0|local::at0006|Absent|
+      gt0006|Sex: 1|local::at0014|Female|
+      gt0007|Subarachnoid hemorrhage: 1|local::at0005|Present|
+      gt0022|Age: 44,a
+  expected_output:
+    1: {}
+- id: 5. No carotid artery (negative test)
+  input:
+    1:
+      gt0003|Recurrent or single TCH: 5|local::at0005|Present|
+      gt0005|Vasoconstrictive trigger: 0|local::at0006|Absent|
+      gt0006|Sex: 1|local::at0014|Female|
+      gt0007|Subarachnoid hemorrhage: 1|local::at0005|Present|
+      gt0022|Age: 44,a
+  expected_output:
+    1: {}
+- id: 6. No vasoconstrictive trigger (negative test)
+  input:
+    1:
+      gt0003|Recurrent or single TCH: 5|local::at0005|Present|
+      gt0004|Carotid artery (intracranial): -2|local::at0008|Affected|
+      gt0006|Sex: 1|local::at0014|Female|
+      gt0007|Subarachnoid hemorrhage: 1|local::at0005|Present|
+      gt0022|Age: 44,a
+  expected_output:
+    1: {}
+- id: 7. No sex (negative test)
+  input:
+    1:
+      gt0003|Recurrent or single TCH: 5|local::at0005|Present|
+      gt0004|Carotid artery (intracranial): -2|local::at0008|Affected|
+      gt0005|Vasoconstrictive trigger: 0|local::at0006|Absent|
+      gt0007|Subarachnoid hemorrhage: 1|local::at0005|Present|
+      gt0022|Age: 44,a
+  expected_output:
+    1: {}
+- id: 8. No subarachnoid hemorrhage (negative test)
+  input:
+    1:
+      gt0003|Recurrent or single TCH: 5|local::at0005|Present|
+      gt0004|Carotid artery (intracranial): -2|local::at0008|Affected|
+      gt0005|Vasoconstrictive trigger: 0|local::at0006|Absent|
+      gt0006|Sex: 1|local::at0014|Female|
+      gt0022|Age: 44,a
+  expected_output:
+    1: {}
+- id: 9. Interpretation Negative
+  input:
+    1:
+      gt0003|Recurrent or single TCH: 0|local::at0006|Absent|
+      gt0004|Carotid artery (intracranial): 0|local::at0009|Not affected|
+      gt0005|Vasoconstrictive trigger: 0|local::at0006|Absent|
+      gt0006|Sex: 1|local::at0014|Female|
+      gt0007|Subarachnoid hemorrhage: 1|local::at0005|Present|
+      gt0022|Age: 33,a
+  expected_output:
+    1:
+      gt0009|RCVS2 score: 2
+      gt0011|Diagnosis: Negative
+- id: 10. Interpretation Equivocal
+  input:
+    1:
+      gt0003|Recurrent or single TCH: 0|local::at0006|Absent|
+      gt0004|Carotid artery (intracranial): 0|local::at0009|Not affected|
+      gt0005|Vasoconstrictive trigger: 3|local::at0005|Present|
+      gt0006|Sex: 0|local::at0015|Male|
+      gt0007|Subarachnoid hemorrhage: 1|local::at0005|Present|
+      gt0022|Age: 33,a
+  expected_output:
+    1:
+      gt0009|RCVS2 score: 4
+      gt0011|Diagnosis: Equivocal
+- id: 11. Interpretation Positive
+  input:
+    1:
+      gt0003|Recurrent or single TCH: 5|local::at0005|Present|
+      gt0004|Carotid artery (intracranial): 0|local::at0009|Not affected|
+      gt0005|Vasoconstrictive trigger: 3|local::at0005|Present|
+      gt0006|Sex: 0|local::at0015|Male|
+      gt0007|Subarachnoid hemorrhage: 1|local::at0005|Present|
+      gt0022|Age: 33,a
+  expected_output:
+    1:
+      gt0009|RCVS2 score: 9
+      gt0011|Diagnosis: Positive

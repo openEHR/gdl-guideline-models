@@ -1,0 +1,23 @@
+guidelines:
+  1: Adrenal_washout.v1
+test_cases:
+- id: Default
+  input:
+    1: {}
+  expected_output:
+    1: {}
+
+- id: Calculate Absolute and relative washout
+  input:
+    1:
+      gt0003|Pre-contrast HU: 5,HU
+      gt0004|60-75 second post-contrast HU: 15,HU
+      gt0005|15 minutes delayed phase HU: 6,HU
+  expected_output:
+    1:
+      gt0010|Relative washout comment: Relative Washout less than 40% is indeterminate.
+      gt0008|Relative washout: 60,%
+      gt0009|Absolute washout comment: Absolute Washout ≥ 60% is strongly suggestive of adrenal adenoma.
+      gt0007|Absolute washout: 90,%
+
+

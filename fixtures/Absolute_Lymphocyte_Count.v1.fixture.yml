@@ -1,0 +1,33 @@
+guidelines:
+  1: Absolute_Lymphocyte_Count.v1
+test_cases:
+- id: ALC less than 1000
+  input:
+    1:
+      gt0003|White Blood Cell Count: 2,10*3/uL
+      gt0004|Lymphochytes: 2,%
+  expected_output:
+    1:
+      gt0006|Evaluation: 1|local::at0006|If the patient is HIV+, he/she likely has AIDS (CD4 < 200 with 96% specificity)|
+      gt0008|Absolute Lymphocyte Count: 40,1/mm3
+
+- id: ALC between 1000 and 2000
+  input:
+    1:
+      gt0003|White Blood Cell Count: 25,10*3/uL
+      gt0004|Lymphochytes: 5,%
+  expected_output:
+    1:
+      gt0006|Evaluation: 2|local::at0007|Cannot reliably predict if CD4 is > or < 200|
+      gt0008|Absolute Lymphocyte Count: 1250,1/mm3
+
+- id: ALC Greater then 2000
+  input:
+    1:
+      gt0003|White Blood Cell Count: 20,10*3/uL
+      gt0004|Lymphochytes: 20,%
+  expected_output:
+    1:
+      gt0006|Evaluation: 3|local::at0008|The patient likely does not have AIDS (CD4 > 200 with 90-97% sensitivity)|
+      gt0008|Absolute Lymphocyte Count: 4000,1/mm3
+

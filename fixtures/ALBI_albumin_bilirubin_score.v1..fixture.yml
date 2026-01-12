@@ -1,0 +1,59 @@
+guidelines:
+  1: ALBI_albumin_bilirubin_score.v1
+test_cases:
+- id: bilirubin in umol/L, ALBI score -1.39, grade 3
+  input:
+    1:
+      gt0003|Total bilirubin: 32,µmol/l
+      gt0004|Albumin: 28,gm/l
+  expected_output:
+    1:
+      gt0007|ALBI score: -1.39
+      gt0009|Grading: 3|local::at0005|Grade 3|
+      gt0010|Median survival: 3|local::at0009|2.3-15.5 months|
+
+- id: bilirubin in umol/L, ALBI score -1.40, grade 2
+  input:
+    1:
+      gt0003|Total bilirubin: 31,µmol/l
+      gt0004|Albumin: 28,gm/l
+  expected_output:
+    1:
+      gt0007|ALBI score: -1.40
+      gt0009|Grading: 2|local::at0004|Grade 2|
+      gt0010|Median survival: 2|local::at0008|5.3-46.5 months|
+
+- id: bilirubin in mg/dL, ALBI score -2.59, grade 2
+  input:
+    1:
+      gt0003|Total bilirubin: 1,mg/dl
+      gt0004|Albumin: 40,gm/l
+  expected_output:
+    1:
+      gt0007|ALBI score: -2.59
+      gt0009|Grading: 2|local::at0004|Grade 2|
+      gt0010|Median survival: 2|local::at0008|5.3-46.5 months|
+
+- id: bilirubin in umol/L, ALBI score -2.62, grade 1
+  input:
+    1:
+      gt0003|Total bilirubin: 15,µmol/l
+      gt0004|Albumin: 40,gm/l
+  expected_output:
+    1:
+      gt0007|ALBI score: -2.62
+      gt0009|Grading: 1|local::at0003|Grade 1|
+      gt0010|Median survival: 1|local::at0007|18.5-85.6 months|
+
+- id: bilirubin in mg/dL, ALBI score -2.62, grade 1
+  input:
+    1:
+      gt0003|Total bilirubin: 0.9,mg/dl
+      gt0004|Albumin: 40,gm/l
+  expected_output:
+    1:
+      gt0007|ALBI score: -2.62
+      gt0009|Grading: 1|local::at0003|Grade 1|
+      gt0010|Median survival: 1|local::at0007|18.5-85.6 months|
+
+

@@ -1,0 +1,158 @@
+guidelines:
+  "1": bmi_calculation_tutorial.v1.0.0
+test_cases:
+  - id: 01. No input
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Wrong weight unit
+    input:
+      "1":
+        gt0003|Weight: 90,[lb_av]
+        gt0004|Event time: 2025-02-20T07:00:00+01:00
+        gt0006|Height/Length: 183,cm
+        gt0007|Event time: 2025-02-20T07:00:00+01:00
+    expected_output:
+      "1": {}
+  - id: 03. Wrong height unit
+    input:
+      "1":
+        gt0003|Weight: 90,kg
+        gt0004|Event time: 2025-02-20T07:00:00+01:00
+        gt0006|Height/Length: 183,[in_i]
+        gt0007|Event time: 2025-02-20T07:00:00+01:00
+    expected_output:
+      "1": {}
+  - id: 04. Weight 3000 kg
+    input:
+      "1":
+        gt0003|Weight: 3000,kg
+        gt0004|Event time: 2025-02-20T07:00:00+01:00
+        gt0006|Height/Length: 183,cm
+        gt0007|Event time: 2025-02-20T07:00:00+01:00
+    expected_output:
+      "1":
+        gt0009|Body mass index: 895.82,kg/m2
+        gt0012|BMI classification: 5|local::at0008|Obesity class III|
+  - id: 05. Height 1000 kg
+    input:
+      "1":
+        gt0003|Weight: 90,kg
+        gt0004|Event time: 2025-02-20T07:00:00+01:00
+        gt0006|Height/Length: 1000,cm
+        gt0007|Event time: 2025-02-20T07:00:00+01:00
+    expected_output:
+      "1":
+        gt0009|Body mass index: 0.90,kg/m2
+        gt0012|BMI classification: 0|local::at0003|Underweight|
+  - id: 06. BMI below 18.5
+    input:
+      "1":
+        gt0003|Weight: 60,kg
+        gt0004|Event time: 2025-02-20T07:00:00+01:00
+        gt0006|Height/Length: 183,cm
+        gt0007|Event time: 2025-02-20T07:00:00+01:00
+    expected_output:
+      "1":
+        gt0009|Body mass index: 17.92,kg/m2
+        gt0012|BMI classification: 0|local::at0003|Underweight|
+  - id: 07. BMI 18.5
+    input:
+      "1":
+        gt0003|Weight: 61.94,kg
+        gt0004|Event time: 2025-02-20T07:00:00+01:00
+        gt0006|Height/Length: 183,cm
+        gt0007|Event time: 2025-02-20T07:00:00+01:00
+    expected_output:
+      "1":
+        gt0009|Body mass index: 18.50,kg/m2
+        gt0012|BMI classification: 1|local::at0004|Normal weight|
+  - id: 08. BMI 24.9
+    input:
+      "1":
+        gt0003|Weight: 83.4,kg
+        gt0004|Event time: 2025-02-20T07:00:00+01:00
+        gt0006|Height/Length: 183,cm
+        gt0007|Event time: 2025-02-20T07:00:00+01:00
+    expected_output:
+      "1":
+        gt0009|Body mass index: 24.90,kg/m2
+        gt0012|BMI classification: 1|local::at0004|Normal weight|
+  - id: 09. BMI 25
+    input:
+      "1":
+        gt0003|Weight: 83.72,kg
+        gt0004|Event time: 2025-02-20T07:00:00+01:00
+        gt0006|Height/Length: 183,cm
+        gt0007|Event time: 2025-02-20T07:00:00+01:00
+    expected_output:
+      "1":
+        gt0009|Body mass index: 25.00,kg/m2
+        gt0012|BMI classification: 2|local::at0005|Pre-obesity|
+  - id: 10. BMI 29.9
+    input:
+      "1":
+        gt0003|Weight: 100.14,kg
+        gt0004|Event time: 2025-02-20T07:00:00+01:00
+        gt0006|Height/Length: 183,cm
+        gt0007|Event time: 2025-02-20T07:00:00+01:00
+    expected_output:
+      "1":
+        gt0009|Body mass index: 29.90,kg/m2
+        gt0012|BMI classification: 2|local::at0005|Pre-obesity|
+  - id: 11. BMI 30
+    input:
+      "1":
+        gt0003|Weight: 100.45,kg
+        gt0004|Event time: 2025-02-20T07:00:00+01:00
+        gt0006|Height/Length: 183,cm
+        gt0007|Event time: 2025-02-20T07:00:00+01:00
+    expected_output:
+      "1":
+        gt0009|Body mass index: 30.00,kg/m2
+        gt0012|BMI classification: 3|local::at0006|Obesity class I|
+  - id: 12. BMI 34.9
+    input:
+      "1":
+        gt0003|Weight: 116.89,kg
+        gt0004|Event time: 2025-02-20T07:00:00+01:00
+        gt0006|Height/Length: 183,cm
+        gt0007|Event time: 2025-02-20T07:00:00+01:00
+    expected_output:
+      "1":
+        gt0009|Body mass index: 34.90,kg/m2
+        gt0012|BMI classification: 3|local::at0006|Obesity class I|
+  - id: 13. BMI 35
+    input:
+      "1":
+        gt0003|Weight: 117.2,kg
+        gt0004|Event time: 2025-02-20T07:00:00+01:00
+        gt0006|Height/Length: 183,cm
+        gt0007|Event time: 2025-02-20T07:00:00+01:00
+    expected_output:
+      "1":
+        gt0009|Body mass index: 35.00,kg/m2
+        gt0012|BMI classification: 4|local::at0007|Obesity class II|
+  - id: 14. BMI 39.9
+    input:
+      "1":
+        gt0003|Weight: 133.63,kg
+        gt0004|Event time: 2025-02-20T07:00:00+01:00
+        gt0006|Height/Length: 183,cm
+        gt0007|Event time: 2025-02-20T07:00:00+01:00
+    expected_output:
+      "1":
+        gt0009|Body mass index: 39.90,kg/m2
+        gt0012|BMI classification: 4|local::at0007|Obesity class II|
+  - id: 15. BMI 40
+    input:
+      "1":
+        gt0003|Weight: 133.95,kg
+        gt0004|Event time: 2025-02-20T07:00:00+01:00
+        gt0006|Height/Length: 183,cm
+        gt0007|Event time: 2025-02-20T07:00:00+01:00
+    expected_output:
+      "1":
+        gt0009|Body mass index: 40.00,kg/m2
+        gt0012|BMI classification: 5|local::at0008|Obesity class III|

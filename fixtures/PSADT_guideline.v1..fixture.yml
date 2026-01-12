@@ -1,0 +1,48 @@
+guidelines:
+  1: PSADT_guideline.v1
+test_cases:
+- id: Slope PSA 2.3
+  input:
+    1:
+      gt0003|PSA1: 1,ng/mL
+      gt0020|PSA1 Event time: 2021-03-15T13:48+01:00[Europe/Stockholm]
+      gt0019|PSA2: 10,ng/mL
+      gt0021|PSA2 Event time: 2021-04-15T13:48+02:00[Europe/Stockholm]
+  expected_output:
+    1:
+      gt0010|Slope PSA: 2.303,1
+      gt0009|PSA doubling time: 0.301,mo
+      gt0024|Time between PSA1 and PSA2 measurement: 1,mo
+- id: same time for both PSA
+  input:
+    1:
+      gt0003|PSA1: 1,ng/mL
+      gt0020|PSA1 Event time: 2021-04-15T14:08:12.556+02:00[Europe/Stockholm]
+      gt0019|PSA2: 10,ng/mL
+      gt0021|PSA2 Event time: 2021-04-15T14:08:12.556+02:00[Europe/Stockholm]
+  expected_output:
+    1:
+      gt0016|Warning: PSA value should be increasing over time.
+- id: Same value for both PSA
+  input:
+    1:
+      gt0003|PSA1: 10,ng/mL
+      gt0020|PSA1 Event time: 2021-03-15T14:08+01:00[Europe/Stockholm]
+      gt0019|PSA2: 10,ng/mL
+      gt0021|PSA2 Event time: 2021-04-15T14:08:12.556+02:00[Europe/Stockholm]
+  expected_output:
+    1:
+      gt0016|Warning: PSA value should be increasing over time.
+      gt0024|Time between PSA1 and PSA2 measurement: 1,mo
+- id: PSA 0.6
+  input:
+    1:
+      gt0003|PSA1: 5,ng/mL
+      gt0020|PSA1 Event time: 2021-03-15T14:08+01:00[Europe/Stockholm]
+      gt0019|PSA2: 10,ng/mL
+      gt0021|PSA2 Event time: 2021-04-15T14:08:12.556+02:00[Europe/Stockholm]
+  expected_output:
+    1:
+      gt0010|Slope PSA: 0.693,1
+      gt0009|PSA doubling time: 1.000,mo
+      gt0024|Time between PSA1 and PSA2 measurement: 1,mo

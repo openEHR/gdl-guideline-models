@@ -1,0 +1,355 @@
+guidelines:
+  1: Estimated_GFR.v1
+test_cases:
+- id: 1. eGFR using MDRD formula, male
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0005|Male|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 66,umol/l
+      gt0031|Black ethnicity (required for MDRD formula)|: 0|local::at0020|No|
+      gt0032|S.Cystatin-C, mg/dl|: 0.9,mg/dl
+      gt0035|Formula|: local::at0024|MDRD formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0040|Estimated Glomerular Filtration Rate - Relative|: 108.52,ml/min/1.73m2
+- id: 2. eGFR using MDRD formula, female, s.Cr in mg/dl
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0006|Female|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 0.7,mg/dl
+      gt0031|Black ethnicity (required for MDRD formula)|: 1|local::at0021|Yes|
+      gt0032|S.Cystatin-C, mg/dl|: 0.9,mg/dl
+      gt0035|Formula|: local::at0024|MDRD formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0040|Estimated Glomerular Filtration Rate - Relative|: 104.97,ml/min/1.73m2
+- id: 3. eGFR using Cockcroft-Gault formula, female
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0006|Female|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 66,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.9,mg/dl
+      gt0035|Formula|: local::at0023|Cockcroft-Gault formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0037|Estimated Glomerular Filtration Rate|: 89.0,ml/min
+- id: 4. eGFR using Cockcroft-Gault formula, male
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0005|Male|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 66,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.9,mg/dl
+      gt0035|Formula|: local::at0023|Cockcroft-Gault formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0037|Estimated Glomerular Filtration Rate|: 106.0,ml/min
+- id: 5. eGFR using Revised Lund-Malmö formula, male, s.Cr<180umol/l
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0005|Male|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 66,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.9,mg/dl
+      gt0035|Formula|: local::at0029|Revised Lund-Malmö formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0037|Estimated Glomerular Filtration Rate|: 94.00,ml/min
+- id: 6. eGFR using Revised Lund-Malmö formula, male, s.Cr>=180umol/l
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0005|Male|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 188,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.9,mg/dl
+      gt0035|Formula|: local::at0029|Revised Lund-Malmö formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0037|Estimated Glomerular Filtration Rate|: 30.00,ml/min
+- id: 7. eGFR using Revised Lund-Malmö formula, female, s.Cr<150umol/l
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0006|Female|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 60,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.9,mg/dl
+      gt0035|Formula|: local::at0029|Revised Lund-Malmö formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0037|Estimated Glomerular Filtration Rate|: 87,ml/min
+- id: 8. eGFR using Revised Lund-Malmö formula, female, s.Cr>=150umol/l
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0006|Female|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 160,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.9,mg/dl
+      gt0035|Formula|: local::at0029|Revised Lund-Malmö formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0037|Estimated Glomerular Filtration Rate|: 28.00,ml/min
+- id: 9. eGFR using Revised Schwartz formula (Age group 1 - 16 yrs)
+  input:
+    1:
+      gt0003|Birthdate|: 2011-08-18T16:03Z
+      gt0004|Gender|: local::at0005|Male|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 66,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.9,mg/dl
+      gt0035|Formula|: local::at0028|Revised Schwartz formula (Age group 1-16 years)|
+      gt0043|Height|: 64,in
+  expected_output:
+    1:
+      gt0006|Age|: 11.0,a
+      gt0040|Estimated Glomerular Filtration Rate - Relative|: 90.02,ml/min/1.73m2
+- id: 10. eGFR using CKD-EPI Creatinine formula, male, s.Cr<=80umol/l
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0005|Male|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 66,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.9,mg/dl
+      gt0035|Formula|: local::at0025|CKD-EPI Creatinine formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0040|Estimated Glomerular Filtration Rate - Relative|: 102.75,ml/min/1.73m2
+- id: 11. eGFR using CKD-EPI Creatinine formula, male, s.Cr>80umol/l
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0005|Male|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 90,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.9,mg/dl
+      gt0035|Formula|: local::at0025|CKD-EPI Creatinine formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0040|Estimated Glomerular Filtration Rate - Relative|: 82.07,ml/min/1.73m2
+- id: 12. eGFR using CKD-EPI Creatinine formula, female, s.Cr<=62umol/l
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0006|Female|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 60,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.9,mg/dl
+      gt0035|Formula|: local::at0025|CKD-EPI Creatinine formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0040|Estimated Glomerular Filtration Rate - Relative|: 98.14,ml/min/1.73m2
+- id: 13. eGFR using CKD-EPI Creatinine formula, female, s.Cr>62umol/l
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0006|Female|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 64,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.9,mg/dl
+      gt0035|Formula|: local::at0025|CKD-EPI Creatinine formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0040|Estimated Glomerular Filtration Rate - Relative|: 93.48,ml/min/1.73m2
+- id: 14. eGFR using CKD-EPI Cystatin C formula, male, s.Cys<=0.8mg/dl
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0005|Male|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 66,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.7,mg/dl
+      gt0035|Formula|: local::at0031|CKD-EPI Cystatin C formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0040|Estimated Glomerular Filtration Rate - Relative|: 113.58,ml/min/1.73m2
+- id: 15. eGFR using CKD-EPI Cystatin C formula, male, s.Cys>0.8mg/dl
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0005|Male|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 66,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.9,mg/dl
+      gt0035|Formula|: local::at0031|CKD-EPI Cystatin C formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0040|Estimated Glomerular Filtration Rate - Relative|: 90.87,ml/min/1.73m2
+- id: 16. eGFR using CKD-EPI Cystatin C formula, female, s.Cys<=0.8mg/dl
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0006|Female|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 66,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.7,mg/dl
+      gt0035|Formula|: local::at0031|CKD-EPI Cystatin C formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0040|Estimated Glomerular Filtration Rate - Relative|: 105.86,ml/min/1.73m2
+- id: 17. eGFR using CKD-EPI Cystatin C formula, female, s.Cys>0.8mg/dl
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0006|Female|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 66,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.9,mg/dl
+      gt0035|Formula|: local::at0031|CKD-EPI Cystatin C formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0040|Estimated Glomerular Filtration Rate - Relative|: 84.70,ml/min/1.73m2
+- id: 18. eGFR using CKD-EPI Creatinine Cystatin C formula, female, s.Cr<=62umol/l & s.Cys<=0.8mg/dl
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0006|Female|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 60,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.7,mg/dl
+      gt0035|Formula|: local::at0032|CKD-EPI Creatinine Cystatin C formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0040|Estimated Glomerular Filtration Rate - Relative|: 104.0,ml/min/1.73m2
+- id: 19. eGFR using CKD-EPI Creatinine Cystatin C formula, female, s.Cr>62umol/l & s.Cys<=0.8mg/dl
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0006|Female|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 64,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.7,mg/dl
+      gt0035|Formula|: local::at0032|CKD-EPI Creatinine Cystatin C formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0040|Estimated Glomerular Filtration Rate - Relative|: 101.2,ml/min/1.73m2
+- id: 20. eGFR using CKD-EPI Creatinine Cystatin C formula, female, s.Cr<=62umol/l & s.Cys>0.8mg/dl
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0006|Female|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 60,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.9,mg/dl
+      gt0035|Formula|: local::at0032|CKD-EPI Creatinine Cystatin C formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0040|Estimated Glomerular Filtration Rate - Relative|: 91.0,ml/min/1.73m2
+- id: 21. eGFR using CKD-EPI Creatinine Cystatin C formula, female, s.Cr>62umol/l & s.Cys>0.8mg/dl
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0006|Female|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 64,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.9,mg/dl
+      gt0035|Formula|: local::at0032|CKD-EPI Creatinine Cystatin C formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0040|Estimated Glomerular Filtration Rate - Relative|: 88.6,ml/min/1.73m2
+- id: 22. eGFR using CKD-EPI Creatinine Cystatin C formula, male, s.Cr<=80umol/l & s.Cys<=0.8mg/dl
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0005|Male|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 60,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.7,mg/dl
+      gt0035|Formula|: local::at0032|CKD-EPI Creatinine Cystatin C formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0040|Estimated Glomerular Filtration Rate - Relative|: 113.7,ml/min/1.73m2
+- id: 23. eGFR using CKD-EPI Creatinine Cystatin C formula, male, s.Cr<=80umol/l & s.Cys>0.8mg/dl
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0005|Male|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 60,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.9,mg/dl
+      gt0035|Formula|: local::at0032|CKD-EPI Creatinine Cystatin C formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0040|Estimated Glomerular Filtration Rate - Relative|: 99.4,ml/min/1.73m2
+- id: 24. eGFR using CKD-EPI Creatinine Cystatin C formula, male, s.Cr>80umol/l & s.Cys<=0.8mg/dl
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0005|Male|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 90,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.7,mg/dl
+      gt0035|Formula|: local::at0032|CKD-EPI Creatinine Cystatin C formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0040|Estimated Glomerular Filtration Rate - Relative|: 99.6,ml/min/1.73m2
+- id: 25. eGFR using CKD-EPI Creatinine Cystatin C formula, male, s.Cr>80umol/l & s.Cys>0.8mg/dl
+  input:
+    1:
+      gt0003|Birthdate|: 1966-08-18T16:03Z
+      gt0004|Gender|: local::at0005|Male|
+      gt0008|Weight|: 66,kg
+      gt0019|S.Creatinine, umol/l or mg/dl|: 90,umol/l
+      gt0032|S.Cystatin-C, mg/dl|: 0.9,mg/dl
+      gt0035|Formula|: local::at0032|CKD-EPI Creatinine Cystatin C formula|
+      gt0043|Height|: 160,cm
+  expected_output:
+    1:
+      gt0006|Age|: 56.0,a
+      gt0040|Estimated Glomerular Filtration Rate - Relative|: 87.1,ml/min/1.73m2

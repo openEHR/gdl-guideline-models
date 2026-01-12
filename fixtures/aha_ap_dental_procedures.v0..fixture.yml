@@ -1,0 +1,341 @@
+guidelines:
+  1: aha_ap_dental_procedures.v0
+test_cases:
+- id: 0.1. Not_recommended_everything_no
+  input:
+    1:
+      gt0046|Invasive dental procedure: local::at0012|No|
+      gt0047|Prosthetic cardiac valve or material: local::at0012|No|
+      gt0048|Previous, relapse, or recurrent IE: local::at0012|No|
+      gt0049|Congenital Heart Disease: local::at0012|No|
+      gt0050|Cardiac transplant recipient who develop cardiac valvulopathy: local::at0012|No|
+      gt0051|Other underlying conditions: local::at0091|None|
+      gt0052|Ability to take oral medication: local::at0012|No|
+      gt0054|Allergy to medication: local::at0091|None|
+      gt0064|Weight: 50,kg
+      gt0102|Age: 30,a
+  expected_output:
+    1:
+      gt0150|Topic: No antibiotic prophylaxis is recommended prior to the procedure.
+- id: 0.2. Not_recommended_non_invasive_procedure
+  input:
+    1:
+      gt0046|Invasive dental procedure: local::at0012|No|
+      gt0047|Prosthetic cardiac valve or material: local::at0012|No|
+      gt0048|Previous, relapse, or recurrent IE: local::at0011|Yes|
+      gt0049|Congenital Heart Disease: local::at0011|Yes|
+      gt0050|Cardiac transplant recipient who develop cardiac valvulopathy: local::at0011|Yes|
+      gt0051|Other underlying conditions: local::at0091|None|
+      gt0052|Ability to take oral medication: local::at0012|No|
+      gt0054|Allergy to medication: local::at0091|None|
+      gt0064|Weight: 50,kg
+      gt0102|Age: 30,a
+  expected_output:
+    1:
+      gt0150|Topic: No antibiotic prophylaxis is recommended prior to the procedure.
+- id: 0.3. Not_recommended_no_underlying_conditions
+  input:
+    1:
+      gt0046|Invasive dental procedure: local::at0011|Yes|
+      gt0047|Prosthetic cardiac valve or material: local::at0012|No|
+      gt0048|Previous, relapse, or recurrent IE: local::at0012|No|
+      gt0049|Congenital Heart Disease: local::at0012|No|
+      gt0050|Cardiac transplant recipient who develop cardiac valvulopathy: local::at0012|No|
+      gt0051|Other underlying conditions: local::at0091|None|
+      gt0052|Ability to take oral medication: local::at0012|No|
+      gt0054|Allergy to medication: local::at0091|None|
+      gt0064|Weight: 50,kg
+      gt0102|Age: 30,a
+  expected_output:
+    1:
+      gt0150|Topic: No antibiotic prophylaxis is recommended prior to the procedure.
+- id: 1.1. Oral_yes_allergy_yes_adult
+  input:
+    1:
+      gt0046|Invasive dental procedure: local::at0011|Yes|
+      gt0047|Prosthetic cardiac valve or material: local::at0012|No|
+      gt0048|Previous, relapse, or recurrent IE: local::at0011|Yes|
+      gt0049|Congenital Heart Disease: local::at0012|No|
+      gt0050|Cardiac transplant recipient who develop cardiac valvulopathy: local::at0012|No|
+      gt0051|Other underlying conditions: local::at0091|None|
+      gt0052|Ability to take oral medication: local::at0011|Yes|
+      gt0054|Allergy to medication: local::at0103|Allergic to Ampicillin|
+      gt0064|Weight: 50,kg
+      gt0102|Age: 30,a
+  expected_output:
+    1:
+      gt0109|Medication item 3: Doxycycline
+      gt0111|Dose 2: 500.0,mg
+      gt0110|Dose 1: 2.0,g
+      gt0112|Dose 3: 100.0,mg
+      gt0108|Medication item 2: Azithromycin or Clarithromycin
+      gt0113|Route: local::at0159|Oral|
+      gt0107|Medication item 1: Cephalexin
+      gt0150|Topic: Antibiotic prophylaxis is recommended for the patient as a single dose 30 to 60 minutes prior to the dental procedure. Any of the following regimens are recommended.
+      gt0149|Recommendation 1: Cephalexin Oral 2g or other first- or second- generation oral cephalosporin in equivalent adult or pediatric dosing.
+      gt0152|Recommendation 3: Doxycycline Oral 100mg.
+      gt0151|Recommendation 2: Azithromycin or Clarithromycin Oral 500mg
+- id: 1.2 Oral_yes_allergy_yes_pediatric_over_threshold_weight
+  input:
+    1:
+      gt0046|Invasive dental procedure: local::at0011|Yes|
+      gt0047|Prosthetic cardiac valve or material: local::at0012|No|
+      gt0048|Previous, relapse, or recurrent IE: local::at0011|Yes|
+      gt0049|Congenital Heart Disease: local::at0012|No|
+      gt0050|Cardiac transplant recipient who develop cardiac valvulopathy: local::at0012|No|
+      gt0051|Other underlying conditions: local::at0091|None|
+      gt0052|Ability to take oral medication: local::at0011|Yes|
+      gt0054|Allergy to medication: local::at0103|Allergic to Ampicillin|
+      gt0064|Weight: 47,kg
+      gt0102|Age: 15,a
+  expected_output:
+    1:
+      gt0109|Medication item 3: Doxycycline
+      gt0111|Dose 2: 500.0,mg
+      gt0110|Dose 1: 2.0,g
+      gt0112|Dose 3: 100.0,mg
+      gt0108|Medication item 2: Azithromycin or Clarithromycin
+      gt0113|Route: local::at0159|Oral|
+      gt0107|Medication item 1: Cephalexin
+      gt0150|Topic: Antibiotic prophylaxis is recommended for the patient as a single dose 30 to 60 minutes prior to the dental procedure. Any of the following regimens are recommended.
+      gt0149|Recommendation 1: Cephalexin Oral 2g or other first- or second- generation oral cephalosporin in equivalent adult or pediatric dosing.
+      gt0152|Recommendation 3: Doxycycline Oral 100mg.
+      gt0151|Recommendation 2: Azithromycin or Clarithromycin Oral 500mg
+- id: 1.3. Oral_yes_allergy_yes_pediatric
+  input:
+    1:
+      gt0046|Invasive dental procedure: local::at0011|Yes|
+      gt0047|Prosthetic cardiac valve or material: local::at0012|No|
+      gt0048|Previous, relapse, or recurrent IE: local::at0011|Yes|
+      gt0049|Congenital Heart Disease: local::at0012|No|
+      gt0050|Cardiac transplant recipient who develop cardiac valvulopathy: local::at0012|No|
+      gt0051|Other underlying conditions: local::at0091|None|
+      gt0052|Ability to take oral medication: local::at0011|Yes|
+      gt0054|Allergy to medication: local::at0103|Allergic to Ampicillin|
+      gt0064|Weight: 30,kg
+      gt0102|Age: 7,a
+  expected_output:
+    1:
+      gt0109|Medication item 3: Doxycycline
+      gt0111|Dose 2: 450.0,mg
+      gt0110|Dose 1: 1500.0,mg
+      gt0112|Dose 3: 66.0,mg
+      gt0108|Medication item 2: Azithromycin or Clarithromycin
+      gt0113|Route: local::at0159|Oral|
+      gt0107|Medication item 1: Cephalexin
+      gt0150|Topic: Antibiotic prophylaxis is recommended for the patient as a single dose 30 to 60 minutes prior to the dental procedure. Any of the following regimens are recommended.
+      gt0149|Recommendation 1: Cephalexin Oral 1,500mg or other first- or second- generation oral cephalosporin in equivalent adult or pediatric dosing.
+      gt0152|Recommendation 3: Doxycycline Oral 66mg.
+      gt0151|Recommendation 2: Azithromycin or Clarithromycin Oral 450mg
+- id: 2.1. Oral_yes_allergy_no_adult
+  input:
+    1:
+      gt0046|Invasive dental procedure: local::at0011|Yes|
+      gt0047|Prosthetic cardiac valve or material: local::at0012|No|
+      gt0048|Previous, relapse, or recurrent IE: local::at0011|Yes|
+      gt0049|Congenital Heart Disease: local::at0012|No|
+      gt0050|Cardiac transplant recipient who develop cardiac valvulopathy: local::at0012|No|
+      gt0051|Other underlying conditions: local::at0091|None|
+      gt0052|Ability to take oral medication: local::at0011|Yes|
+      gt0054|Allergy to medication: local::at0091|None|
+      gt0064|Weight: 53,kg
+      gt0102|Age: 37,a
+  expected_output:
+    1:
+      gt0110|Dose 1: 2.0,g
+      gt0113|Route: local::at0159|Oral|
+      gt0107|Medication item 1: Amoxicillin
+      gt0150|Topic: Antibiotic prophylaxis is recommended for the patient as a single dose 30 to 60 minutes prior to the dental procedure. Any of the following regimens are recommended.
+      gt0149|Recommendation 1: Amoxicillin Oral 2g.
+- id: 2.2. Oral_yes_allergy_no_pediatric_over_threshold_weight
+  input:
+    1:
+      gt0046|Invasive dental procedure: local::at0011|Yes|
+      gt0047|Prosthetic cardiac valve or material: local::at0012|No|
+      gt0048|Previous, relapse, or recurrent IE: local::at0011|Yes|
+      gt0049|Congenital Heart Disease: local::at0012|No|
+      gt0050|Cardiac transplant recipient who develop cardiac valvulopathy: local::at0012|No|
+      gt0051|Other underlying conditions: local::at0091|None|
+      gt0052|Ability to take oral medication: local::at0011|Yes|
+      gt0054|Allergy to medication: local::at0091|None|
+      gt0064|Weight: 41,kg
+      gt0102|Age: 13,a
+  expected_output:
+    1:
+      gt0110|Dose 1: 2.0,g
+      gt0113|Route: local::at0159|Oral|
+      gt0107|Medication item 1: Amoxicillin
+      gt0150|Topic: Antibiotic prophylaxis is recommended for the patient as a single dose 30 to 60 minutes prior to the dental procedure. Any of the following regimens are recommended.
+      gt0149|Recommendation 1: Amoxicillin Oral 2g.
+- id: 2.3. Oral_yes_allergy_no_pediatric
+  input:
+    1:
+      gt0046|Invasive dental procedure: local::at0011|Yes|
+      gt0047|Prosthetic cardiac valve or material: local::at0012|No|
+      gt0048|Previous, relapse, or recurrent IE: local::at0011|Yes|
+      gt0049|Congenital Heart Disease: local::at0012|No|
+      gt0050|Cardiac transplant recipient who develop cardiac valvulopathy: local::at0012|No|
+      gt0051|Other underlying conditions: local::at0091|None|
+      gt0052|Ability to take oral medication: local::at0011|Yes|
+      gt0054|Allergy to medication: local::at0091|None|
+      gt0064|Weight: 20,kg
+      gt0102|Age: 12,a
+  expected_output:
+    1:
+      gt0110|Dose 1: 1000.0,mg
+      gt0113|Route: local::at0159|Oral|
+      gt0107|Medication item 1: Amoxicillin
+      gt0150|Topic: Antibiotic prophylaxis is recommended for the patient as a single dose 30 to 60 minutes prior to the dental procedure. Any of the following regimens are recommended.
+      gt0149|Recommendation 1: Amoxicillin Oral 1,000mg.
+- id: 3.1. Oral_no_allergy_yes_adult
+  input:
+    1:
+      gt0046|Invasive dental procedure: local::at0011|Yes|
+      gt0047|Prosthetic cardiac valve or material: local::at0012|No|
+      gt0048|Previous, relapse, or recurrent IE: local::at0011|Yes|
+      gt0049|Congenital Heart Disease: local::at0012|No|
+      gt0050|Cardiac transplant recipient who develop cardiac valvulopathy: local::at0012|No|
+      gt0051|Other underlying conditions: local::at0091|None|
+      gt0052|Ability to take oral medication: local::at0012|No|
+      gt0054|Allergy to medication: local::at0103|Allergic to Ampicillin|
+      gt0064|Weight: 48,kg
+      gt0102|Age: 25,a
+  expected_output:
+    1:
+      gt0110|Dose 1: 1.0,g
+      gt0113|Route: local::at0160|Intramuscular (IM) or Intravenous (IV)|
+      gt0107|Medication item 1: Cefazolin or Ceftriaxone
+      gt0150|Topic: Antibiotic prophylaxis is recommended for the patient as a single dose 30 to 60 minutes prior to the dental procedure. Any of the following regimens are recommended.
+      gt0149|Recommendation 1: Cefazolin or Ceftriaxone Intramuscular (IM) or Intravenous (IV) 1g.
+- id: 3.2. Oral_no_allergy_yes_pediatric_over_threshold_weight
+  input:
+    1:
+      gt0046|Invasive dental procedure: local::at0011|Yes|
+      gt0047|Prosthetic cardiac valve or material: local::at0012|No|
+      gt0048|Previous, relapse, or recurrent IE: local::at0011|Yes|
+      gt0049|Congenital Heart Disease: local::at0012|No|
+      gt0050|Cardiac transplant recipient who develop cardiac valvulopathy: local::at0012|No|
+      gt0051|Other underlying conditions: local::at0091|None|
+      gt0052|Ability to take oral medication: local::at0012|No|
+      gt0054|Allergy to medication: local::at0103|Allergic to Ampicillin|
+      gt0064|Weight: 48,kg
+      gt0102|Age: 17,a
+  expected_output:
+    1:
+      gt0110|Dose 1: 1.0,g
+      gt0113|Route: local::at0160|Intramuscular (IM) or Intravenous (IV)|
+      gt0107|Medication item 1: Cefazolin or Ceftriaxone
+      gt0150|Topic: Antibiotic prophylaxis is recommended for the patient as a single dose 30 to 60 minutes prior to the dental procedure. Any of the following regimens are recommended.
+      gt0149|Recommendation 1: Cefazolin or Ceftriaxone Intramuscular (IM) or Intravenous (IV) 1g.
+- id: 3.3. Oral_no_allergy_yes_pediatric
+  input:
+    1:
+      gt0046|Invasive dental procedure: local::at0011|Yes|
+      gt0047|Prosthetic cardiac valve or material: local::at0012|No|
+      gt0048|Previous, relapse, or recurrent IE: local::at0011|Yes|
+      gt0049|Congenital Heart Disease: local::at0012|No|
+      gt0050|Cardiac transplant recipient who develop cardiac valvulopathy: local::at0012|No|
+      gt0051|Other underlying conditions: local::at0091|None|
+      gt0052|Ability to take oral medication: local::at0012|No|
+      gt0054|Allergy to medication: local::at0103|Allergic to Ampicillin|
+      gt0064|Weight: 18,kg
+      gt0102|Age: 6,a
+  expected_output:
+    1:
+      gt0110|Dose 1: 900.0,mg
+      gt0113|Route: local::at0160|Intramuscular (IM) or Intravenous (IV)|
+      gt0107|Medication item 1: Cefazolin or Ceftriaxone
+      gt0150|Topic: Antibiotic prophylaxis is recommended for the patient as a single dose 30 to 60 minutes prior to the dental procedure. Any of the following regimens are recommended.
+      gt0149|Recommendation 1: Cefazolin or Ceftriaxone Intramuscular (IM) or Intravenous (IV) 900mg.
+- id: 4.1. Oral_no_allergy_no_adult
+  input:
+    1:
+      gt0046|Invasive dental procedure: local::at0011|Yes|
+      gt0047|Prosthetic cardiac valve or material: local::at0012|No|
+      gt0048|Previous, relapse, or recurrent IE: local::at0011|Yes|
+      gt0049|Congenital Heart Disease: local::at0012|No|
+      gt0050|Cardiac transplant recipient who develop cardiac valvulopathy: local::at0012|No|
+      gt0051|Other underlying conditions: local::at0091|None|
+      gt0052|Ability to take oral medication: local::at0012|No|
+      gt0054|Allergy to medication: local::at0091|None|
+      gt0064|Weight: 58,kg
+      gt0102|Age: 36,a
+  expected_output:
+    1:
+      gt0111|Dose 2: 2.0,g
+      gt0110|Dose 1: 1.0,g
+      gt0108|Medication item 2: Ampicillin
+      gt0113|Route: local::at0160|Intramuscular (IM) or Intravenous (IV)|
+      gt0107|Medication item 1: Cefazolin or Ceftriaxone
+      gt0150|Topic: Antibiotic prophylaxis is recommended for the patient as a single dose 30 to 60 minutes prior to the dental procedure. Any of the following regimens are recommended.
+      gt0149|Recommendation 1: Ampicillin Intramuscular (IM) or Intravenous (IV) 2g.
+      gt0151|Recommendation 2: Cefazolin or Ceftriaxone Intramuscular (IM) or Intravenous (IV) 1g (Cephalosporins should not be used in an individual with a history of anaphylaxis, angioedema, or urticarial with penicillin or ampicillin).
+- id: 4.2. Oral_no_allergy_no_pediatric_over_threshold_weight
+  input:
+    1:
+      gt0046|Invasive dental procedure: local::at0011|Yes|
+      gt0047|Prosthetic cardiac valve or material: local::at0012|No|
+      gt0048|Previous, relapse, or recurrent IE: local::at0011|Yes|
+      gt0049|Congenital Heart Disease: local::at0012|No|
+      gt0050|Cardiac transplant recipient who develop cardiac valvulopathy: local::at0012|No|
+      gt0051|Other underlying conditions: local::at0091|None|
+      gt0052|Ability to take oral medication: local::at0012|No|
+      gt0054|Allergy to medication: local::at0091|None|
+      gt0064|Weight: 48,kg
+      gt0102|Age: 16,a
+  expected_output:
+    1:
+      gt0111|Dose 2: 2.0,g
+      gt0110|Dose 1: 1.0,g
+      gt0108|Medication item 2: Ampicillin
+      gt0113|Route: local::at0160|Intramuscular (IM) or Intravenous (IV)|
+      gt0107|Medication item 1: Cefazolin or Ceftriaxone
+      gt0150|Topic: Antibiotic prophylaxis is recommended for the patient as a single dose 30 to 60 minutes prior to the dental procedure. Any of the following regimens are recommended.
+      gt0149|Recommendation 1: Ampicillin Intramuscular (IM) or Intravenous (IV) 2g.
+      gt0151|Recommendation 2: Cefazolin or Ceftriaxone Intramuscular (IM) or Intravenous (IV) 1g (Cephalosporins should not be used in an individual with a history of anaphylaxis, angioedema, or urticarial with penicillin or ampicillin).
+- id: 4.3. Oral_no_allergy_no_pediatric_between_threshold_weights
+  input:
+    1:
+      gt0046|Invasive dental procedure: local::at0011|Yes|
+      gt0047|Prosthetic cardiac valve or material: local::at0012|No|
+      gt0048|Previous, relapse, or recurrent IE: local::at0011|Yes|
+      gt0049|Congenital Heart Disease: local::at0012|No|
+      gt0050|Cardiac transplant recipient who develop cardiac valvulopathy: local::at0012|No|
+      gt0051|Other underlying conditions: local::at0091|None|
+      gt0052|Ability to take oral medication: local::at0012|No|
+      gt0054|Allergy to medication: local::at0091|None|
+      gt0064|Weight: 38,kg
+      gt0102|Age: 16,a
+  expected_output:
+    1:
+      gt0111|Dose 2: 1900.0,mg
+      gt0110|Dose 1: 1.0,g
+      gt0108|Medication item 2: Ampicillin
+      gt0113|Route: local::at0160|Intramuscular (IM) or Intravenous (IV)|
+      gt0107|Medication item 1: Cefazolin or Ceftriaxone
+      gt0150|Topic: Antibiotic prophylaxis is recommended for the patient as a single dose 30 to 60 minutes prior to the dental procedure. Any of the following regimens are recommended.
+      gt0149|Recommendation 1: Ampicillin Intramuscular (IM) or Intravenous (IV) 1,900mg.
+      gt0151|Recommendation 2: Cefazolin or Ceftriaxone Intramuscular (IM) or Intravenous (IV) 1g (Cephalosporins should not be used in an individual with a history of anaphylaxis, angioedema, or urticarial with penicillin or ampicillin).
+- id: 4.4. Oral_no_allergy_no_pediatric
+  input:
+    1:
+      gt0046|Invasive dental procedure: local::at0011|Yes|
+      gt0047|Prosthetic cardiac valve or material: local::at0012|No|
+      gt0048|Previous, relapse, or recurrent IE: local::at0011|Yes|
+      gt0049|Congenital Heart Disease: local::at0012|No|
+      gt0050|Cardiac transplant recipient who develop cardiac valvulopathy: local::at0012|No|
+      gt0051|Other underlying conditions: local::at0091|None|
+      gt0052|Ability to take oral medication: local::at0012|No|
+      gt0054|Allergy to medication: local::at0091|None|
+      gt0064|Weight: 19,kg
+      gt0102|Age: 8,a
+  expected_output:
+    1:
+      gt0111|Dose 2: 950.0,mg
+      gt0110|Dose 1: 950.0,mg
+      gt0108|Medication item 2: Ampicillin
+      gt0113|Route: local::at0160|Intramuscular (IM) or Intravenous (IV)|
+      gt0107|Medication item 1: Cefazolin or Ceftriaxone
+      gt0150|Topic: Antibiotic prophylaxis is recommended for the patient as a single dose 30 to 60 minutes prior to the dental procedure. Any of the following regimens are recommended.
+      gt0149|Recommendation 1: Ampicillin Intramuscular (IM) or Intravenous (IV) 950mg.
+      gt0151|Recommendation 2: Cefazolin or Ceftriaxone Intramuscular (IM) or Intravenous (IV) 950mg (Cephalosporins should not be used in an individual with a history of anaphylaxis, angioedema, or urticarial with penicillin or ampicillin).

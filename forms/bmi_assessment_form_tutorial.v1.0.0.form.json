@@ -1,0 +1,392 @@
+{
+  "authors": [
+    {
+      "name": "Konstantinos Kalliamvakos",
+      "email": "konstantinos.kalliamvakos@cambio.se"
+    }
+  ],
+  "updated": "2025-03-07T22:07:18+01:00",
+  "name": "BMI assessment form tutorial",
+  "description": "",
+  "id": "bmi_assessment_form_tutorial",
+  "version": "1.0.0",
+  "format": "CambioForm.v1.1",
+  "templates": [
+    {
+      "alias": "T0",
+      "id": "bmi_assessment_template_tutorial",
+      "version": "0.0.1",
+      "type": "openEhrOpt14Template"
+    }
+  ],
+  "locale": "en",
+  "actions": [
+    {
+      "condition": "T0_bmi_classification",
+      "assignments": [
+        "indicator_text.text = 'BMI classification: ' + T0_bmi_classification.text"
+      ],
+      "name": "Set BMI classification text"
+    },
+    {
+      "condition": "!T0_weight || !T0_$time_2 || !T0_height_length || !T0_$time_4",
+      "assignments": [
+        "indicator_text.text = '*More information is needed*'",
+        "indicator.variant = 'info'",
+        "T0_bmi_classification = ''"
+      ],
+      "name": "Set indicator default text"
+    },
+    {
+      "condition": "T0_bmi_classification == 'at0006' || T0_bmi_classification == 'at0007' || T0_bmi_classification == 'at0008'",
+      "assignments": [
+        "indicator.variant = 'error'"
+      ],
+      "name": "Set indicator to error"
+    },
+    {
+      "condition": "T0_bmi_classification == 'at0003' || T0_bmi_classification == 'at0005'",
+      "assignments": [
+        "indicator.variant = 'warning'"
+      ],
+      "name": "Set indicator to warning"
+    },
+    {
+      "condition": "T0_bmi_classification == 'at0004'",
+      "assignments": [
+        "indicator.variant = 'success'"
+      ],
+      "name": "Set indicator to success"
+    },
+    {
+      "condition": "T0_bmi_classification",
+      "assignments": [
+        "T0_body_mass_index.hidden = false"
+      ],
+      "otherwise": [
+        "T0_body_mass_index.hidden = true"
+      ],
+      "name": "Display BMI result"
+    }
+  ],
+  "guidelines": [
+    {
+      "condition": "T0_weight && T0_$time_2 && T0_height_length && T0_$time_4",
+      "execution": [
+        {
+          "id": "bmi_calculation_tutorial",
+          "version": "1.0.1"
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "type": "form",
+      "children": [
+        {
+          "type": "container",
+          "children": [
+            {
+              "type": "row",
+              "children": [
+                {
+                  "type": "column",
+                  "spanlarge": 12,
+                  "spanmedium": 8,
+                  "spansmall": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "textalign": "center",
+                      "id": "text"
+                    },
+                    {
+                      "type": "spacer",
+                      "size": "s"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "row",
+              "children": [
+                {
+                  "type": "column",
+                  "spanlarge": 6,
+                  "spanmedium": 4,
+                  "spansmall": 2,
+                  "children": [
+                    {
+                      "type": "card",
+                      "children": [
+                        {
+                          "type": "text",
+                          "textalign": "center",
+                          "id": "text_1"
+                        },
+                        {
+                          "type": "spacer",
+                          "size": "xs"
+                        },
+                        {
+                          "type": "row",
+                          "children": [
+                            {
+                              "type": "column",
+                              "spanlarge": 3,
+                              "spanmedium": 2,
+                              "spansmall": 3,
+                              "children": [
+                                {
+                                  "type": "input-quantity",
+                                  "name": "T0_weight",
+                                  "unitoptions": [
+                                    {
+                                      "unit": "kg",
+                                      "min": 0,
+                                      "max": 1000,
+                                      "minexclusive": false,
+                                      "maxexclusive": false
+                                    }
+                                  ],
+                                  "required": true
+                                }
+                              ]
+                            },
+                            {
+                              "type": "column",
+                              "spanlarge": 3,
+                              "spanmedium": 2,
+                              "spansmall": 3,
+                              "children": [
+                                {
+                                  "type": "input-datetime",
+                                  "name": "T0_$time_2",
+                                  "required": true
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "row",
+                          "children": [
+                            {
+                              "type": "column",
+                              "spanlarge": 3,
+                              "spanmedium": 2,
+                              "spansmall": 3,
+                              "children": [
+                                {
+                                  "type": "input-quantity",
+                                  "name": "T0_height_length",
+                                  "unitoptions": [
+                                    {
+                                      "unit": "cm",
+                                      "min": 0,
+                                      "max": 1000,
+                                      "minexclusive": false,
+                                      "maxexclusive": false
+                                    }
+                                  ],
+                                  "required": true
+                                }
+                              ]
+                            },
+                            {
+                              "type": "column",
+                              "spanlarge": 3,
+                              "spanmedium": 2,
+                              "spansmall": 3,
+                              "children": [
+                                {
+                                  "type": "input-datetime",
+                                  "name": "T0_$time_4",
+                                  "required": true
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "column",
+                  "spanlarge": 6,
+                  "spanmedium": 4,
+                  "spansmall": 2,
+                  "children": [
+                    {
+                      "type": "card",
+                      "children": [
+                        {
+                          "type": "text",
+                          "textalign": "center",
+                          "id": "text_2"
+                        },
+                        {
+                          "type": "spacer",
+                          "size": "xs"
+                        },
+                        {
+                          "type": "row",
+                          "children": [
+                            {
+                              "type": "column",
+                              "spanlarge": 6,
+                              "spanmedium": 4,
+                              "spansmall": 2,
+                              "children": [
+                                {
+                                  "type": "indicator",
+                                  "id": "indicator",
+                                  "headless": true,
+                                  "iconplacement": "left",
+                                  "children": [
+                                    {
+                                      "type": "display",
+                                      "readonly": true,
+                                      "id": "T0_body_mass_index",
+                                      "precision": 1,
+                                      "hidden": true
+                                    },
+                                    {
+                                      "type": "input-select",
+                                      "name": "T0_bmi_classification",
+                                      "clearable": true,
+                                      "display": "dropdown",
+                                      "hidden": true
+                                    },
+                                    {
+                                      "type": "text",
+                                      "textalign": "start",
+                                      "id": "indicator_text"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "row",
+              "children": [
+                {
+                  "type": "column",
+                  "spanlarge": 12,
+                  "spanmedium": 8,
+                  "spansmall": 4,
+                  "children": [
+                    {
+                      "type": "spacer",
+                      "size": "s"
+                    },
+                    {
+                      "type": "inline",
+                      "justifycontent": "end",
+                      "children": [
+                        {
+                          "type": "reset-button",
+                          "id": "reset_button",
+                          "quiet": true
+                        },
+                        {
+                          "type": "submit-button",
+                          "justify": "end",
+                          "id": "submit_button"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "locales": {
+    "en": {
+      "#reset_button": {
+        "label": "Reset"
+      },
+      "#submit_button": {
+        "label": "Submit"
+      },
+      "[name='T0_weight']": {
+        "label": "Weight"
+      },
+      "[name='T0_height_length']": {
+        "label": "Height"
+      },
+      "[name='T0_$time_2']": {
+        "label": "Weight date/time"
+      },
+      "[name='T0_$time_4']": {
+        "label": "Height date/time"
+      },
+      "#text": {
+        "text": "# BMI Calculation"
+      },
+      "#text_1": {
+        "text": "## Measurements"
+      },
+      "#text_2": {
+        "text": "## Result"
+      },
+      "[name='T0_bmi_classification']": {
+        "label": "BMI classification",
+        "options": [
+          {
+            "text": "Underweight",
+            "value": "at0003",
+            "magnitude": 0
+          },
+          {
+            "text": "Normal weight",
+            "value": "at0004",
+            "magnitude": 1
+          },
+          {
+            "text": "Pre-obesity",
+            "value": "at0005",
+            "magnitude": 2
+          },
+          {
+            "text": "Obesity class I",
+            "value": "at0006",
+            "magnitude": 3
+          },
+          {
+            "text": "Obesity class II",
+            "value": "at0007",
+            "magnitude": 4
+          },
+          {
+            "text": "Obesity class III",
+            "value": "at0008",
+            "magnitude": 5
+          }
+        ]
+      },
+      "#T0_body_mass_index": {
+        "unit": "kg/m2",
+        "text": "BMI: "
+      },
+      "#indicator_text": {
+        "text": "*More information is needed*"
+      }
+    }
+  }
+}

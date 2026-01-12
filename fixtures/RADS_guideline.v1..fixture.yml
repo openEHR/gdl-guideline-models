@@ -1,0 +1,48 @@
+guidelines:
+  1: RADS_guideline.v1
+test_cases:
+- id: RADS>8
+  input:
+    1:
+      gt0004|Worst finding, 1st quadrant left lung: 3|local::at0008|Consolidation|
+      gt0005|Worst finding, 2nd quadrant left lung: 3|local::at0013|Consolidation|
+      gt0006|Worst finding, 3rd quadrant left lung: 2|local::at0017|Ground glass opacification|
+      gt0007|Worst finding, 4th quadrant left lung: 1|local::at0021|Increased interstitial markings|
+      gt0008|Worst finding, 1st quadrant right lung: 0|local::at0025|Normal|
+      gt0009|Worst finding, 2nd quadrant right lung: 0|local::at0030|Normal|
+      gt0010|Worst finding, 3rd quadrant right lung: 0|local::at0035|Normal|
+      gt0011|Worst finding, 4th quadrant right lung: 0|local::at0040|Normal|
+  expected_output:
+    1:
+      gt0013|RADS: 9
+      gt0014|Interpretation: local::at0046|RADS >8 associated with 12.7x increased risk of composite endpoint including pneumonia, acute lung injury/ARDS, and death.|
+- id: RADS=8
+  input:
+    1:
+      gt0004|Worst finding, 1st quadrant left lung: 3|local::at0008|Consolidation|
+      gt0005|Worst finding, 2nd quadrant left lung: 3|local::at0013|Consolidation|
+      gt0006|Worst finding, 3rd quadrant left lung: 2|local::at0017|Ground glass opacification|
+      gt0007|Worst finding, 4th quadrant left lung: 0|local::at0020|Normal|
+      gt0008|Worst finding, 1st quadrant right lung: 0|local::at0025|Normal|
+      gt0009|Worst finding, 2nd quadrant right lung: 0|local::at0030|Normal|
+      gt0010|Worst finding, 3rd quadrant right lung: 0|local::at0035|Normal|
+      gt0011|Worst finding, 4th quadrant right lung: 0|local::at0040|Normal|
+  expected_output:
+    1:
+      gt0013|RADS: 8
+      gt0014|Interpretation: local::at0047|RADS ≤8 associated with lower risk of composite endpoint including pneumonia, acute lung injury/ARDS, and death.|
+- id: RADS<8
+  input:
+    1:
+      gt0004|Worst finding, 1st quadrant left lung: 3|local::at0008|Consolidation|
+      gt0005|Worst finding, 2nd quadrant left lung: 3|local::at0013|Consolidation|
+      gt0006|Worst finding, 3rd quadrant left lung: 0|local::at0015|Normal|
+      gt0007|Worst finding, 4th quadrant left lung: 0|local::at0020|Normal|
+      gt0008|Worst finding, 1st quadrant right lung: 0|local::at0025|Normal|
+      gt0009|Worst finding, 2nd quadrant right lung: 0|local::at0030|Normal|
+      gt0010|Worst finding, 3rd quadrant right lung: 0|local::at0035|Normal|
+      gt0011|Worst finding, 4th quadrant right lung: 0|local::at0040|Normal|
+  expected_output:
+    1:
+      gt0013|RADS: 6
+      gt0014|Interpretation: local::at0047|RADS ≤8 associated with lower risk of composite endpoint including pneumonia, acute lung injury/ARDS, and death.|

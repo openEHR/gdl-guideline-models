@@ -1,0 +1,128 @@
+guidelines:
+  1: Crohns_Disease_Activity_Index_CDAI.v1
+test_cases:
+- id: 1. Negative score
+  input:
+    1:
+      gt0003|Weight: 76,kg
+      gt0005|Ideal Body Weight: 76,kg
+      gt0007|Gender: local::at0005|Male|
+      gt0009|Total number of soft/liquid stools in the last 7 days: 1,1
+      gt0010|Abdominal pain: 0|local::at0105|None|
+      gt0011|General well-being: 0|local::at0100|Generally well|
+      gt0012|Anti-diarrhea drug use: 0|local::at0097|No|
+      gt0013|Abdominal mass: 0|local::at0109|No|
+      gt0014|Hematocrit: 55,%
+      gt0015|Arthritis/arthralgias: 0|local::at0112|No|
+      gt0016|Iritis/uveitis: 0|local::at0114|No|
+      gt0017|Anal fissure, fistula, or abscess: 0|local::at0118|No|
+      gt0018|Other fistula: 0|local::at0120|No|
+      gt0019|Fever/temperature > 100°F/37.8°C: 0|local::at0122|No|
+      gt0020|Erythema nodosum, pyoderma gangrenosum, or apthous stomatitis: 0|local::at0116|No|
+  expected_output:
+    1:
+      gt0023|Ideal Hematocrit: -8
+      gt0024|% missing from ideal body weight: 0.00
+      gt0022|Total score for extraintestinal findings/complications: 0
+      gt0027|CDAI total score: -46
+      gt0026|CDAI score interpretation: local::at0004|CDAI <150 is a marker of remission of Crohn’s disease|
+- id: 2. Positive score
+  input:
+    1:
+      gt0003|Weight: 70,kg
+      gt0005|Ideal Body Weight: 67,kg
+      gt0007|Gender: local::at0006|Female|
+      gt0009|Total number of soft/liquid stools in the last 7 days: 2,1
+      gt0010|Abdominal pain: 1|local::at0106|Mild|
+      gt0011|General well-being: 1|local::at0101|Slightly under par|
+      gt0012|Anti-diarrhea drug use: 0|local::at0097|No|
+      gt0013|Abdominal mass: 0|local::at0109|No|
+      gt0014|Hematocrit: 55,%
+      gt0015|Arthritis/arthralgias: 0|local::at0112|No|
+      gt0016|Iritis/uveitis: 0|local::at0114|No|
+      gt0017|Anal fissure, fistula, or abscess: 0|local::at0118|No|
+      gt0018|Other fistula: 0|local::at0120|No|
+      gt0019|Fever/temperature > 100°F/37.8°C: 0|local::at0122|No|
+      gt0020|Erythema nodosum, pyoderma gangrenosum, or apthous stomatitis: 0|local::at0116|No|
+  expected_output:
+    1:
+      gt0023|Ideal Hematocrit: -13
+      gt0024|% missing from ideal body weight: -4.48
+      gt0022|Total score for extraintestinal findings/complications: 0
+      gt0027|CDAI total score: 5
+      gt0026|CDAI score interpretation: local::at0004|CDAI <150 is a marker of remission of Crohn’s disease|
+- id: 3. Mid-range score 1
+  input:
+    1:
+      gt0003|Weight: 70,kg
+      gt0005|Ideal Body Weight: 67,kg
+      gt0007|Gender: local::at0006|Female|
+      gt0009|Total number of soft/liquid stools in the last 7 days: 2,1
+      gt0010|Abdominal pain: 1|local::at0106|Mild|
+      gt0011|General well-being: 1|local::at0101|Slightly under par|
+      gt0012|Anti-diarrhea drug use: 1|local::at0098|Yes|
+      gt0013|Abdominal mass: 2|local::at0110|Questionable|
+      gt0014|Hematocrit: 55,%
+      gt0015|Arthritis/arthralgias: 1|local::at0113|Yes|
+      gt0016|Iritis/uveitis: 1|local::at0115|Yes|
+      gt0017|Anal fissure, fistula, or abscess: 1|local::at0119|Yes|
+      gt0018|Other fistula: 1|local::at0121|Yes|
+      gt0019|Fever/temperature > 100°F/37.8°C: 1|local::at0123|Yes|
+      gt0020|Erythema nodosum, pyoderma gangrenosum, or apthous stomatitis: 0|local::at0116|No|
+  expected_output:
+    1:
+      gt0023|Ideal Hematocrit: -13
+      gt0024|% missing from ideal body weight: -4.48
+      gt0022|Total score for extraintestinal findings/complications: 5
+      gt0027|CDAI total score: 155
+      gt0026|CDAI score interpretation: local::at0010|CDAI of 150-450 is used as a marker of active Crohn's disease. The higher the score, the more severe the disease activity.|
+- id: 4. Mid-range score 2
+  input:
+    1:
+      gt0003|Weight: 70,kg
+      gt0005|Ideal Body Weight: 67,kg
+      gt0007|Gender: local::at0006|Female|
+      gt0009|Total number of soft/liquid stools in the last 7 days: 5,1
+      gt0010|Abdominal pain: 3|local::at0108|Severe|
+      gt0011|General well-being: 2|local::at0102|Poor|
+      gt0012|Anti-diarrhea drug use: 1|local::at0098|Yes|
+      gt0013|Abdominal mass: 5|local::at0111|Definite|
+      gt0014|Hematocrit: 52,%
+      gt0015|Arthritis/arthralgias: 1|local::at0113|Yes|
+      gt0016|Iritis/uveitis: 1|local::at0115|Yes|
+      gt0017|Anal fissure, fistula, or abscess: 1|local::at0119|Yes|
+      gt0018|Other fistula: 1|local::at0121|Yes|
+      gt0019|Fever/temperature > 100°F/37.8°C: 1|local::at0123|Yes|
+      gt0020|Erythema nodosum, pyoderma gangrenosum, or apthous stomatitis: 0|local::at0116|No|
+  expected_output:
+    1:
+      gt0023|Ideal Hematocrit: -10
+      gt0024|% missing from ideal body weight: -4.48
+      gt0022|Total score for extraintestinal findings/complications: 5
+      gt0027|CDAI total score: 328
+      gt0026|CDAI score interpretation: local::at0010|CDAI of 150-450 is used as a marker of active Crohn's disease. The higher the score, the more severe the disease activity.|
+- id: 5. Score above 450
+  input:
+    1:
+      gt0003|Weight: 70,kg
+      gt0005|Ideal Body Weight: 75,kg
+      gt0007|Gender: local::at0006|Female|
+      gt0009|Total number of soft/liquid stools in the last 7 days: 10,1
+      gt0010|Abdominal pain: 3|local::at0108|Severe|
+      gt0011|General well-being: 4|local::at0104|Terrible|
+      gt0012|Anti-diarrhea drug use: 1|local::at0098|Yes|
+      gt0013|Abdominal mass: 5|local::at0111|Definite|
+      gt0014|Hematocrit: 49,%
+      gt0015|Arthritis/arthralgias: 1|local::at0113|Yes|
+      gt0016|Iritis/uveitis: 1|local::at0115|Yes|
+      gt0017|Anal fissure, fistula, or abscess: 1|local::at0119|Yes|
+      gt0018|Other fistula: 1|local::at0121|Yes|
+      gt0019|Fever/temperature > 100°F/37.8°C: 1|local::at0123|Yes|
+      gt0020|Erythema nodosum, pyoderma gangrenosum, or apthous stomatitis: 0|local::at0116|No|
+  expected_output:
+    1:
+      gt0023|Ideal Hematocrit: -7
+      gt0024|% missing from ideal body weight: 6.67
+      gt0022|Total score for extraintestinal findings/complications: 5
+      gt0027|CDAI total score: 465
+      gt0026|CDAI score interpretation: local::at0005|CDAI >450 is a marker of severe Crohn's disease|

@@ -1,0 +1,111 @@
+guidelines:
+  1: MFIS_shortened.v1
+test_cases:
+- id: Q1(0)-Q9(0)-Q10(0)-Q17(0)-Q19(0)
+  input:
+    1:
+      gt0004|19. I have had trouble concentrating: 0|local::at0118|Never|
+      gt0005|1. I have been less alert: 0|local::at0028|Never|
+      gt0006|9. I have been less motivated to do things away from home: 0|local::at0068|Never|
+      gt0007|10. I have had trouble maintaining physical effort for long periods: 0|local::at0073|Never|
+      gt0008|17. I have been less able to complete tasks that require physical effort: 0|local::at0108|Never|
+  expected_output:
+    1:
+      gt0016|Total score: 0
+
+- id: Q1(1)-Q9(0)-Q10(0)-Q17(0)-Q19(0)
+  input:
+    1:
+      gt0004|19. I have had trouble concentrating: 1|local::at0119|Rarely|
+      gt0005|1. I have been less alert: 0|local::at0028|Never|
+      gt0006|9. I have been less motivated to do things away from home: 0|local::at0068|Never|
+      gt0007|10. I have had trouble maintaining physical effort for long periods: 0|local::at0073|Never|
+      gt0008|17. I have been less able to complete tasks that require physical effort: 0|local::at0108|Never|
+  expected_output:
+    1:
+      gt0016|Total score: 1
+
+- id: Q1(1)-Q9(1)-Q10(0)-Q17(0)-Q19(0)
+  input:
+    1:
+      gt0004|19. I have had trouble concentrating: 1|local::at0119|Rarely|
+      gt0005|1. I have been less alert: 1|local::at0029|Rarely|
+      gt0006|9. I have been less motivated to do things away from home: 0|local::at0068|Never|
+      gt0007|10. I have had trouble maintaining physical effort for long periods: 0|local::at0073|Never|
+      gt0008|17. I have been less able to complete tasks that require physical effort: 0|local::at0108|Never|
+  expected_output:
+    1:
+      gt0016|Total score: 2
+
+- id: Q1(1)-Q9(1)-Q10(1)-Q17(0)-Q19(0)
+  input:
+    1:
+      gt0004|19. I have had trouble concentrating: 1|local::at0119|Rarely|
+      gt0005|1. I have been less alert: 1|local::at0029|Rarely|
+      gt0006|9. I have been less motivated to do things away from home: 1|local::at0069|Rarely|
+      gt0007|10. I have had trouble maintaining physical effort for long periods: 0|local::at0073|Never|
+      gt0008|17. I have been less able to complete tasks that require physical effort: 0|local::at0108|Never|
+  expected_output:
+    1:
+      gt0016|Total score: 3
+
+- id: Q1(1)-Q9(1)-Q10(1)-Q17(1)-Q19(0)
+  input:
+    1:
+      gt0004|19. I have had trouble concentrating: 1|local::at0119|Rarely|
+      gt0005|1. I have been less alert: 1|local::at0029|Rarely|
+      gt0006|9. I have been less motivated to do things away from home: 1|local::at0069|Rarely|
+      gt0007|10. I have had trouble maintaining physical effort for long periods: 1|local::at0074|Rarely|
+      gt0008|17. I have been less able to complete tasks that require physical effort: 0|local::at0108|Never|
+  expected_output:
+    1:
+      gt0016|Total score: 4
+
+- id: Q1(1)-Q9(1)-Q10(1)-Q17(1)-Q19(1)
+  input:
+    1:
+      gt0004|19. I have had trouble concentrating: 1|local::at0119|Rarely|
+      gt0005|1. I have been less alert: 1|local::at0029|Rarely|
+      gt0006|9. I have been less motivated to do things away from home: 1|local::at0069|Rarely|
+      gt0007|10. I have had trouble maintaining physical effort for long periods: 1|local::at0074|Rarely|
+      gt0008|17. I have been less able to complete tasks that require physical effort: 1|local::at0109|Rarely|
+  expected_output:
+    1:
+      gt0016|Total score: 5
+
+
+- id: Q1(0)-Q9(1)-Q10(2)-Q17(3)-Q19(4)
+  input:
+    1:
+      gt0004|19. I have had trouble concentrating: 0|local::at0118|Never|
+      gt0005|1. I have been less alert: 1|local::at0029|Rarely|
+      gt0006|9. I have been less motivated to do things away from home: 2|local::at0070|Sometimes|
+      gt0007|10. I have had trouble maintaining physical effort for long periods: 3|local::at0076|Often|
+      gt0008|17. I have been less able to complete tasks that require physical effort: 4|local::at0112|Almost always|
+  expected_output:
+    1:
+      gt0016|Total score: 10
+
+- id: Q1(4)-Q9(3)-Q10(2)-Q17(1)-Q19(0)
+  input:
+    1:
+      gt0004|19. I have had trouble concentrating: 4|local::at0122|Almost always|
+      gt0005|1. I have been less alert: 3|local::at0031|Often|
+      gt0006|9. I have been less motivated to do things away from home: 2|local::at0070|Sometimes|
+      gt0007|10. I have had trouble maintaining physical effort for long periods: 1|local::at0074|Rarely|
+      gt0008|17. I have been less able to complete tasks that require physical effort: 0|local::at0108|Never|
+  expected_output:
+    1:
+      gt0016|Total score: 10
+
+- id: Q1(4)-Q9(4)-Q10(4)-Q17(4)-Q19(4)
+  input:
+    1:
+      gt0004|19. I have had trouble concentrating: 4|local::at0122|Almost always|
+      gt0005|1. I have been less alert: 4|local::at0032|Almost always|
+      gt0006|9. I have been less motivated to do things away from home: 4|local::at0072|Almost always|
+      gt0007|10. I have had trouble maintaining physical effort for long periods: 4|local::at0077|Almost always|
+      gt0008|17. I have been less able to complete tasks that require physical effort: 4|local::at0112|Almost always|
+  expected_output:
+    1:
+      gt0016|Total score: 20

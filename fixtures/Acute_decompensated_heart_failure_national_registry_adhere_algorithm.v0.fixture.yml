@@ -1,0 +1,90 @@
+guidelines:
+  1: Acute_decompensated_heart_failure_national_registry_adhere_algorithm.v0.gdl2.v0
+test_cases:
+- id: Testing for low risk (BUN <43 and sBP >=115)
+  input:
+    1:
+      gt0012|BUN: 42,mg/dL
+      gt0015|Systolic BP: 115,mm[Hg]
+  expected_output:
+    1:
+      gt0009|Mortality risk: local::at0004|Low risk - 2.1% Mortality risk from ADHF|
+
+- id: no effect of creatinine
+  input:
+    1:
+      gt0012|BUN: 42,mg/dL
+      gt0015|Systolic BP: 115,mm[Hg]
+      gt0025|Creatinine: 121,mg/dl
+  expected_output:
+    1:
+      gt0009|Mortality risk: local::at0004|Low risk - 2.1% Mortality risk from ADHF|
+
+- id: using mmol/L units for BUN
+  input:
+    1:
+      gt0012|BUN: 15.3,mmol/L
+      gt0015|Systolic BP: 115,mm[Hg]
+      gt0025|Creatinine: 121,umol/l
+  expected_output:
+    1:
+      gt0009|Mortality risk: local::at0004|Low risk - 2.1% Mortality risk from ADHF|
+
+- id: Testing for intermediate risk 3 (BUN <43 and sBP <115
+  input:
+    1:
+      gt0012|BUN: 34,mg/dL
+      gt0015|Systolic BP: 110,mm[Hg]
+  expected_output:
+    1:
+      gt0009|Mortality risk: local::at0007|Intermediate risk 3 - 5.5% Mortality risk from ADHF|
+
+- id: Testing for intermediate risk 2 (BUN >43 and sBP >115)
+  input:
+    1:
+      gt0012|BUN: 45,mg/dL
+      gt0015|Systolic BP: 120,mm[Hg]
+  expected_output:
+    1:
+      gt0009|Mortality risk: local::at0005|Intermediate risk 2 - 6.4% Mortality risk from ADHF|
+
+- id: Testing for intermediate risk 1. If creatinine is missing the rule won't execute
+  input:
+    1:
+      gt0012|BUN: 34,mg/dL
+      gt0015|Systolic BP: 110,mm[Hg]
+  expected_output:
+    1:
+      gt0009|Mortality risk: local::at0007|Intermediate risk 3 - 5.5% Mortality risk from ADHF|
+
+- id: Testing for intermediate risk 1. (BUN >46, sBP <115, Creatinine <2.75)
+  input:
+    1:
+      gt0012|BUN: 46,mg/dL
+      gt0015|Systolic BP: 110,mm[Hg]
+      gt0025|Creatinine: 2.70,mg/dl
+  expected_output:
+    1:
+      gt0009|Mortality risk: local::at0008|Intermediate risk 1 - 12.4% Mortality risk from ADHF|
+
+- id: Testing for high risk. (BUN >46, sBP <115, Creatinine >2.75)
+  input:
+    1:
+      gt0012|BUN: 46,mg/dL
+      gt0015|Systolic BP: 110,mm[Hg]
+      gt0025|Creatinine: 2.76,mg/dl
+  expected_output:
+    1:
+      gt0009|Mortality risk: local::at0006|High risk - 21.9% Mortality risk from ADHF|
+
+- id: Testing for high risk with different creatinine unit. (BUN >46, sBP <115, Creatinine >2.75)
+  input:
+    1:
+      gt0012|BUN: 46,mg/dL
+      gt0015|Systolic BP: 110,mm[Hg]
+      gt0025|Creatinine: 243.2,umol/l
+  expected_output:
+    1:
+      gt0009|Mortality risk: local::at0006|High risk - 21.9% Mortality risk from ADHF|
+
+

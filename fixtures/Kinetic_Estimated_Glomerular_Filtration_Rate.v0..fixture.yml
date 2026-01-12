@@ -1,0 +1,34 @@
+guidelines:
+  1: Kinetic_Estimated_Glomerular_Filtration_Rate.v0
+test_cases:
+- id: Creatinine in mg/dl
+  input:
+    1:
+      gt0003|Gender: local::at0005|Male|
+      gt0004|Age: 33,a
+      gt0005|Black ethnicity: 1|local::at0021|Yes|
+      gt0011|Time between both creatinine measurements: 15,h
+      gt0027|Baseline creatinine: 1.4,mg/dl
+      gt0028|First recorded creatinine (Cr1): 1,mg/dl
+      gt0029|Second recorded creatinine (Cr2): 1.3,mg/dl
+  expected_output:
+    1:
+      gt0022|Cr mean: 1.15,mg/dl
+      gt0013|KeGFR: 62.24,ml/min
+      gt0016|Glomerular Filtration Rate by MDRD-GFR equation: 75.18,ml/min
+
+- id: Creatinine in umol/L
+  input:
+    1:
+      gt0003|Gender: local::at0006|Female|
+      gt0004|Age: 33,a
+      gt0005|Black ethnicity: 0|local::at0020|No|
+      gt0011|Time between both creatinine measurements: 10,h
+      gt0027|Baseline creatinine: 123,umol/l
+      gt0028|First recorded creatinine (Cr1): 88,umol/l
+      gt0029|Second recorded creatinine (Cr2): 114,umol/l
+  expected_output:
+    1:
+      gt0022|Cr mean: 1.14,mg/dl
+      gt0013|KeGFR: 29.96,ml/min
+      gt0016|Glomerular Filtration Rate by MDRD-GFR equation: 46.36,ml/min

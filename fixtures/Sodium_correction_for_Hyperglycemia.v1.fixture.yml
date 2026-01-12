@@ -1,0 +1,97 @@
+guidelines:
+  1: Sodium_correction_for_Hyperglycemia.v1
+test_cases:
+- id: glucose(normal)_sodium(normal)
+  input:
+    1:
+      gt0006|Glucose result: 80,mg/dl
+      gt0010|Serum Sodium: 140,mmol/l
+  expected_output:
+    1:
+      gt0004|Corrected Sodium (Hillier, 1999): 140,mmol/l
+      gt0003|Corrected Sodium (Katz, 1973): 140,mmol/l
+
+- id: glucose(normal)_sodium(low)
+  input:
+    1:
+      gt0006|Glucose result: 80,mg/dl
+      gt0010|Serum Sodium: 100,mmol/l
+  expected_output:
+    1:
+      gt0004|Corrected Sodium (Hillier, 1999): 100,mmol/l
+      gt0003|Corrected Sodium (Katz, 1973): 100,mmol/l
+
+- id: glucose(normal)_sodium(high)
+  input:
+    1:
+      gt0006|Glucose result: 80,mg/dl
+      gt0010|Serum Sodium: 200,mmol/l
+  expected_output:
+    1:
+      gt0004|Corrected Sodium (Hillier, 1999): 200,mmol/l
+      gt0003|Corrected Sodium (Katz, 1973): 200,mmol/l
+
+
+- id: glucose(low)_sodium(normal)
+  input:
+    1:
+      gt0006|Glucose result: 50,mg/dl
+      gt0010|Serum Sodium: 140,mmol/l
+  expected_output:
+    1:
+      gt0004|Corrected Sodium (Hillier, 1999): 139,mmol/l
+      gt0003|Corrected Sodium (Katz, 1973): 139,mmol/l
+
+- id: glucose(low)_sodium(low)
+  input:
+    1:
+      gt0006|Glucose result: 50,mg/dl
+      gt0010|Serum Sodium: 100,mmol/l
+  expected_output:
+    1:
+      gt0004|Corrected Sodium (Hillier, 1999): 99,mmol/l
+      gt0003|Corrected Sodium (Katz, 1973): 99,mmol/l
+
+
+- id: glucose(low)_sodium(high)
+  input:
+    1:
+      gt0006|Glucose result: 50,mg/dl
+      gt0010|Serum Sodium: 200,mmol/l
+  expected_output:
+    1:
+      gt0004|Corrected Sodium (Hillier, 1999): 199,mmol/l
+      gt0003|Corrected Sodium (Katz, 1973): 199,mmol/l
+
+
+- id: glucose(high)_sodium(normal)
+  input:
+    1:
+      gt0006|Glucose result: 200,mg/dl
+      gt0010|Serum Sodium: 140,mmol/l
+  expected_output:
+    1:
+      gt0004|Corrected Sodium (Hillier, 1999): 142,mmol/l
+      gt0003|Corrected Sodium (Katz, 1973): 142,mmol/l
+
+
+- id: glucose(high)_sodium(low)
+  input:
+    1:
+      gt0006|Glucose result: 200,mg/dl
+      gt0010|Serum Sodium: 100,mmol/l
+  expected_output:
+    1:
+      gt0004|Corrected Sodium (Hillier, 1999): 102,mmol/l
+      gt0003|Corrected Sodium (Katz, 1973): 102,mmol/l
+
+- id: glucose(high)_sodium(high)
+  input:
+    1:
+      gt0006|Glucose result: 200,mg/dl
+      gt0010|Serum Sodium: 200,mmol/l
+  expected_output:
+    1:
+      gt0004|Corrected Sodium (Hillier, 1999): 202,mmol/l
+      gt0003|Corrected Sodium (Katz, 1973): 202,mmol/l
+

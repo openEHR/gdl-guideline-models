@@ -1,0 +1,24 @@
+guidelines:
+  1: Sgarbossas_criteria_for_MI_in_LBBB.v1
+test_cases:
+- id: Sgarbossa's score <3
+  input:
+    1:
+      gt0013|Concordant ST elevation > 1mm in leads with a positive QRS complex: 0|local::at0003|No|
+      gt0014|Concordant ST depression > 1 mm in V1-V3: 0|local::at0003|No|
+      gt0015|Excessively discordant ST elevation (or depression) in leads with a negative QRS: 2|local::at0004|Yes|
+  expected_output:
+    1:
+      gt0018|Comment: In the original Sgarbossa criteria, a score of <3 typically is not considered diagnostic of acute MI, but also does not rule out MI. In concerning patients, repeating EKGs and cardiac enzymes may be helpful, along with cardiology consultation. NOTE; the Modified Sgarbossa Criteria (which changes the third criteria) does not use the points system, it is positive if any criteria are met.
+      gt0017|Sgarbossa's score: 2
+
+- id: Sgarbossa's score ≥3
+  input:
+    1:
+      gt0013|Concordant ST elevation > 1mm in leads with a positive QRS complex: 0|local::at0003|No|
+      gt0014|Concordant ST depression > 1 mm in V1-V3: 3|local::at0004|Yes|
+      gt0015|Excessively discordant ST elevation (or depression) in leads with a negative QRS: 2|local::at0004|Yes|
+  expected_output:
+    1:
+      gt0018|Comment: A score of ≥ 3 has a specificity of 90% for diagnosing acute MI. Also note; the Modified Sgarbossa Criteria (which changes the third criteria) does not use the points system, it is positive if any criteria are met.
+      gt0017|Sgarbossa's score: 5

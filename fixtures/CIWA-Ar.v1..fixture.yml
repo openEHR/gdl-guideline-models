@@ -1,0 +1,212 @@
+guidelines:
+  1: CIWA-Ar.v1
+test_cases:
+- id: nausea(0)-tremor(0)-sweats(0)-anxiety(0)-agitation(0)-tactile(0)-auditory(0)-visual(0)-headache(0)-orientation(0)
+  input:
+    1:
+      gt0006|Nausea/vomiting: 0|local::at0016|No nausea or vomiting|
+      gt0007|Tremor: 0|local::at0024|No tremor|
+      gt0008|Paroxysmal sweats: 0|local::at0032|No sweat visible|
+      gt0009|Anxiety: 0|local::at0040|No anxiety, at ease|
+      gt0010|Agitation: 0|local::at0048|Normal activity|
+      gt0011|Tactile disturbance: 0|local::at0056|None|
+      gt0012|Auditory disturbance: 0|local::at0064|Not present|
+      gt0013|Visual disturbance: 0|local::at0072|Not present|
+      gt0014|Headache, fullness in head: 0|local::at0080|Not present|
+      gt0015|Orientation and clouding of sensorium: 0|local::at0088|Oriented and can do serial additions|
+
+  expected_output:
+    1:
+      gt0024|Total score: 0
+      gt0038|Alcohol withdrawal: 0|local::at0003|Mild|
+
+- id: nausea(1)-tremor(1)-sweats(1)-anxiety(1)-agitation(1)-tactile(1)-auditory(1)-visual(1)-headache(1)-orientation(1)
+  input:
+    1:
+      gt0006|Nausea/vomiting: 1|local::at0017|Mild nausea with no vomiting|
+      gt0007|Tremor: 1|local::at0025|Not visible but can be felt fingertip to fingertip|
+      gt0008|Paroxysmal sweats: 1|local::at0033|Barely perceptible sweating, palms moist|
+      gt0009|Anxiety: 1|local::at0041|Mildly anxious|
+      gt0010|Agitation: 1|local::at0049|Somewhat more than normal activity|
+      gt0011|Tactile disturbance: 1|local::at0057|Very mild itching, pins and needles, burning or numbness|
+      gt0012|Auditory disturbance: 1|local::at0065|Very mild harshness or ability to frighten|
+      gt0013|Visual disturbance: 1|local::at0073|Very mild sensitivity|
+      gt0014|Headache, fullness in head: 1|local::at0081|Very mild|
+      gt0015|Orientation and clouding of sensorium: 1|local::at0089|Cannot do serial additions or is uncertain about date|
+  expected_output:
+    1:
+      gt0024|Total score: 10
+      gt0038|Alcohol withdrawal: 0|local::at0003|Mild|
+
+
+- id: nausea(2)-tremor(2)-sweats(2)-anxiety(2)-agitation(2)-tactile(2)-auditory(2)-visual(2)-headache(2)-orientation(2)
+  input:
+    1:
+      gt0006|Nausea/vomiting: 2|local::at0018|.|
+      gt0007|Tremor: 2|local::at0026|.|
+      gt0008|Paroxysmal sweats: 2|local::at0034|.|
+      gt0009|Anxiety: 2|local::at0042|.|
+      gt0010|Agitation: 2|local::at0050|.|
+      gt0011|Tactile disturbance: 2|local::at0058|Mild itching, pins and needles, burning or numbness|
+      gt0012|Auditory disturbance: 2|local::at0066|Mild harshness or ability to frighten|
+      gt0013|Visual disturbance: 2|local::at0074|Mild sensitivity|
+      gt0014|Headache, fullness in head: 2|local::at0082|Mild|
+      gt0015|Orientation and clouding of sensorium: 2|local::at0090|Disoriented for date by no more than two calendar days|
+  expected_output:
+    1:
+      gt0024|Total score: 20
+      gt0038|Alcohol withdrawal: 1|local::at0004|Moderate|
+
+
+
+- id: nausea(3)-tremor(3)-sweats(3)-anxiety(3)-agitation(3)-tactile(3)-auditory(3)-visual(3)-headache(3)-orientation(3)
+  input:
+    1:
+      gt0006|Nausea/vomiting: 3|local::at0019|.|
+      gt0007|Tremor: 3|local::at0027|.|
+      gt0008|Paroxysmal sweats: 3|local::at0035|.|
+      gt0009|Anxiety: 3|local::at0043|.|
+      gt0010|Agitation: 3|local::at0051|.|
+      gt0011|Tactile disturbance: 3|local::at0059|Moderate itching, pins and needles, burning or numbness|
+      gt0012|Auditory disturbance: 3|local::at0067|Moderate harshness or ability to frighten|
+      gt0013|Visual disturbance: 3|local::at0075|Moderate sensitivity|
+      gt0014|Headache, fullness in head: 3|local::at0083|Moderate|
+      gt0015|Orientation and clouding of sensorium: 3|local::at0091|Disoriented for date by more than two calendar days|
+  expected_output:
+    1:
+      gt0024|Total score: 30
+      gt0038|Alcohol withdrawal: 2|local::at0005|Severe|
+
+
+
+- id: nausea(4)-tremor(4)-sweats(4)-anxiety(4)-agitation(4)-tactile(4)-auditory(4)-visual(4)-headache(4)-orientation(4)
+  input:
+    1:
+      gt0006|Nausea/vomiting: 4|local::at0020|Intermittent nausea with dry heaves|
+      gt0007|Tremor: 4|local::at0028|Moderate, with arms extended|
+      gt0008|Paroxysmal sweats: 4|local::at0036|Beads of sweat obvious on forehead|
+      gt0009|Anxiety: 4|local::at0044|Moderately anxious, or guarded, so anxiety is inferred|
+      gt0010|Agitation: 4|local::at0052|Moderately fidgety and restless|
+      gt0011|Tactile disturbance: 4|local::at0060|Moderately severe hallucinations|
+      gt0012|Auditory disturbance: 4|local::at0068|Moderately severe hallucinations|
+      gt0013|Visual disturbance: 4|local::at0076|Moderately severe hallucinations|
+      gt0014|Headache, fullness in head: 4|local::at0084|Moderately severe|
+      gt0015|Orientation and clouding of sensorium: 4|local::at0092|Disoriented for place and/or person|
+  expected_output:
+    1:
+      gt0024|Total score: 40
+      gt0038|Alcohol withdrawal: 2|local::at0005|Severe|
+
+
+
+- id: nausea(5)-tremor(5)-sweats(5)-anxiety(5)-agitation(5)-tactile(5)-auditory(5)-visual(5)-headache(5)-orientation(4)
+  input:
+    1:
+      gt0006|Nausea/vomiting: 4|local::at0020|Intermittent nausea with dry heaves|
+      gt0007|Tremor: 4|local::at0028|Moderate, with arms extended|
+      gt0008|Paroxysmal sweats: 4|local::at0036|Beads of sweat obvious on forehead|
+      gt0009|Anxiety: 4|local::at0044|Moderately anxious, or guarded, so anxiety is inferred|
+      gt0010|Agitation: 4|local::at0052|Moderately fidgety and restless|
+      gt0011|Tactile disturbance: 4|local::at0060|Moderately severe hallucinations|
+      gt0012|Auditory disturbance: 4|local::at0068|Moderately severe hallucinations|
+      gt0013|Visual disturbance: 4|local::at0076|Moderately severe hallucinations|
+      gt0014|Headache, fullness in head: 4|local::at0084|Moderately severe|
+      gt0015|Orientation and clouding of sensorium: 4|local::at0092|Disoriented for place and/or person|
+  expected_output:
+    1:
+      gt0024|Total score: 40
+      gt0038|Alcohol withdrawal: 2|local::at0005|Severe|
+
+
+- id: nausea(6)-tremor(6)-sweats(6)-anxiety(6)-agitation(6)-tactile(6)-auditory(6)-visual(6)-headache(6)-orientation(4)
+  input:
+    1:
+      gt0006|Nausea/vomiting: 6|local::at0022|.|
+      gt0007|Tremor: 6|local::at0030|.|
+      gt0008|Paroxysmal sweats: 6|local::at0038|.|
+      gt0009|Anxiety: 6|local::at0046|.|
+      gt0010|Agitation: 6|local::at0054|.|
+      gt0011|Tactile disturbance: 6|local::at0062|Extremely severe hallucinations|
+      gt0012|Auditory disturbance: 6|local::at0070|Extremely severe hallucinations|
+      gt0013|Visual disturbance: 6|local::at0078|Extremely severe hallucinations|
+      gt0014|Headache, fullness in head: 6|local::at0086|Very severe|
+      gt0015|Orientation and clouding of sensorium: 4|local::at0092|Disoriented for place and/or person|
+  expected_output:
+    1:
+      gt0024|Total score: 58
+      gt0038|Alcohol withdrawal: 2|local::at0005|Severe|
+
+
+- id: nausea(7)-tremor(7)-sweats(7)-anxiety(7)-agitation(7)-tactile(7)-auditory(7)-visual(7)-headache(7)-orientation(4)
+  input:
+    1:
+      gt0006|Nausea/vomiting: 7|local::at0023|Constant nausea, frequently dry heaves and vomiting|
+      gt0007|Tremor: 7|local::at0031|Severe, even with arms not extended|
+      gt0008|Paroxysmal sweats: 7|local::at0039|Drenching sweats|
+      gt0009|Anxiety: 7|local::at0047|Equivalent to acute panic states as seen in severe delirium or acute schizophrenic reactions|
+      gt0010|Agitation: 7|local::at0055|Paces back and forth during most of the interview or constantly thrashes about|
+      gt0011|Tactile disturbance: 7|local::at0063|Continuous hallucinations|
+      gt0012|Auditory disturbance: 7|local::at0071|Continuous hallucinations|
+      gt0013|Visual disturbance: 7|local::at0079|Continuous hallucinations|
+      gt0014|Headache, fullness in head: 7|local::at0087|Extremely severe|
+      gt0015|Orientation and clouding of sensorium: 4|local::at0092|Disoriented for place and/or person|
+  expected_output:
+    1:
+      gt0024|Total score: 67
+      gt0038|Alcohol withdrawal: 2|local::at0005|Severe|
+
+
+- id: nausea(1)-tremor(2)-sweats(3)-anxiety(4)-agitation(5)-tactile(6)-auditory(7)-visual(7)-headache(7)-orientation(4)
+  input:
+    1:
+      gt0006|Nausea/vomiting: 1|local::at0017|Mild nausea with no vomiting|
+      gt0007|Tremor: 2|local::at0026|.|
+      gt0008|Paroxysmal sweats: 3|local::at0035|.|
+      gt0009|Anxiety: 4|local::at0044|Moderately anxious, or guarded, so anxiety is inferred|
+      gt0010|Agitation: 5|local::at0053|.|
+      gt0011|Tactile disturbance: 6|local::at0062|Extremely severe hallucinations|
+      gt0012|Auditory disturbance: 7|local::at0071|Continuous hallucinations|
+      gt0013|Visual disturbance: 7|local::at0079|Continuous hallucinations|
+      gt0014|Headache, fullness in head: 7|local::at0087|Extremely severe|
+      gt0015|Orientation and clouding of sensorium: 4|local::at0092|Disoriented for place and/or person|
+  expected_output:
+    1:
+      gt0024|Total score: 46
+      gt0038|Alcohol withdrawal: 2|local::at0005|Severe|
+
+- id: nausea(1)-tremor(2)-sweats(3)-anxiety(7)-agitation(6)-tactile(5)-auditory(4)-visual(3)-headache(2)-orientation(1)
+  input:
+    1:
+      gt0006|Nausea/vomiting: 1|local::at0017|Mild nausea with no vomiting|
+      gt0007|Tremor: 2|local::at0026|.|
+      gt0008|Paroxysmal sweats: 3|local::at0035|.|
+      gt0009|Anxiety: 7|local::at0047|Equivalent to acute panic states as seen in severe delirium or acute schizophrenic reactions|
+      gt0010|Agitation: 6|local::at0054|.|
+      gt0011|Tactile disturbance: 5|local::at0061|Severe hallucinations|
+      gt0012|Auditory disturbance: 4|local::at0068|Moderately severe hallucinations|
+      gt0013|Visual disturbance: 3|local::at0075|Moderate sensitivity|
+      gt0014|Headache, fullness in head: 2|local::at0082|Mild|
+      gt0015|Orientation and clouding of sensorium: 1|local::at0089|Cannot do serial additions or is uncertain about date|
+  expected_output:
+    1:
+      gt0024|Total score: 34
+      gt0038|Alcohol withdrawal: 2|local::at0005|Severe|
+
+
+- id: nausea(0)-tremor(0)-sweats(1)-anxiety(1)-agitation(1)-tactile(1)-auditory(2)-visual(0)-headache(6)-orientation(3)
+  input:
+    1:
+      gt0006|Nausea/vomiting: 0|local::at0016|No nausea or vomiting|
+      gt0007|Tremor: 0|local::at0024|No tremor|
+      gt0008|Paroxysmal sweats: 1|local::at0033|Barely perceptible sweating, palms moist|
+      gt0009|Anxiety: 1|local::at0041|Mildly anxious|
+      gt0010|Agitation: 1|local::at0049|Somewhat more than normal activity|
+      gt0011|Tactile disturbance: 1|local::at0057|Very mild itching, pins and needles, burning or numbness|
+      gt0012|Auditory disturbance: 2|local::at0066|Mild harshness or ability to frighten|
+      gt0013|Visual disturbance: 0|local::at0072|Not present|
+      gt0014|Headache, fullness in head: 6|local::at0086|Very severe|
+      gt0015|Orientation and clouding of sensorium: 3|local::at0091|Disoriented for date by more than two calendar days|
+  expected_output:
+    1:
+      gt0024|Total score: 15
+      gt0038|Alcohol withdrawal: 0|local::at0003|Mild|

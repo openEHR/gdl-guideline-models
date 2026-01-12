@@ -1,0 +1,84 @@
+guidelines:
+  1: PECARN.v0
+test_cases:
+- id: Age > 20, not executed
+  input:
+    1:
+      gt0004|Age: 20,a
+      gt0006|Mental status: local::at0008|Normal (GCS=15)|
+      gt0007|Palpable skull fracture: local::at0012|Has palpable skull fracture|
+      gt0008|Scalp haematoma: local::at0016|No scalp haematoma|
+      gt0009|Loss of consciousness: local::at0019|No loss of consciousness|
+      gt0010|Acting normally according to the parents: local::at0023|Acting normally according to parents|
+      gt0011|Severity of injury mechanism: local::at0028|Non-severe injury mechanism|
+      gt0012|Vomiting: local::at0032|No vomiting|
+      gt0013|Basilar skull fracture: local::at0035|No signs of basilar skull fracture|
+      gt0014|Severity of headache: local::at0039|No headache|
+  expected_output:
+    1: {}
+- id: Age < 2 years, CT imaging not recommended
+  input:
+    1:
+      gt0004|Age: 1,a
+      gt0006|Mental status: local::at0008|Normal (GCS=15)|
+      gt0007|Palpable skull fracture: local::at0013|No palpable skull fracture|
+      gt0008|Scalp haematoma: local::at0016|No scalp haematoma|
+      gt0009|Loss of consciousness: local::at0019|No loss of consciousness|
+      gt0010|Acting normally according to the parents: local::at0023|Acting normally according to parents|
+      gt0011|Severity of injury mechanism: local::at0028|Non-severe injury mechanism|
+      gt0012|Vomiting: local::at0032|No vomiting|
+      gt0013|Basilar skull fracture: local::at0035|No signs of basilar skull fracture|
+      gt0014|Severity of headache: local::at0039|No headache|
+  expected_output:
+    1:
+      gt0025|Rationale: local::at0010|<0·02% risk of ciTBI|
+      gt0024|Recommendation: local::at0008|CT imaging not recommended|
+- id: Age < 2 years, CT imaging recommended
+  input:
+    1:
+      gt0004|Age: 1,a
+      gt0006|Mental status: local::at0008|Normal (GCS=15)|
+      gt0007|Palpable skull fracture: local::at0013|No palpable skull fracture|
+      gt0008|Scalp haematoma: local::at0015|Has non-frontal scalp haematoma|
+      gt0009|Loss of consciousness: local::at0019|No loss of consciousness|
+      gt0010|Acting normally according to the parents: local::at0024|Acting abnormally according to parents|
+      gt0011|Severity of injury mechanism: local::at0028|Non-severe injury mechanism|
+      gt0012|Vomiting: local::at0032|No vomiting|
+      gt0013|Basilar skull fracture: local::at0035|No signs of basilar skull fracture|
+      gt0014|Severity of headache: local::at0039|No headache|
+  expected_output:
+    1:
+      gt0024|Recommendation: local::at0009|CT imaging recommended|
+- id: Age >= 2 years, CT imaging not recommended
+  input:
+    1:
+      gt0004|Age: 3,a
+      gt0006|Mental status: local::at0008|Normal (GCS=15)|
+      gt0007|Palpable skull fracture: local::at0013|No palpable skull fracture|
+      gt0008|Scalp haematoma: local::at0015|Has non-frontal scalp haematoma|
+      gt0009|Loss of consciousness: local::at0019|No loss of consciousness|
+      gt0010|Acting normally according to the parents: local::at0024|Acting abnormally according to parents|
+      gt0011|Severity of injury mechanism: local::at0028|Non-severe injury mechanism|
+      gt0012|Vomiting: local::at0032|No vomiting|
+      gt0013|Basilar skull fracture: local::at0035|No signs of basilar skull fracture|
+      gt0014|Severity of headache: local::at0039|No headache|
+  expected_output:
+    1:
+      gt0025|Rationale: local::at0011|<0·05% risk of ciTBI|
+      gt0024|Recommendation: local::at0008|CT imaging not recommended|
+- id: Age >= 2 years, CT imaging recommended
+  input:
+    1:
+      gt0004|Age: 3,a
+      gt0006|Mental status: local::at0008|Normal (GCS=15)|
+      gt0007|Palpable skull fracture: local::at0013|No palpable skull fracture|
+      gt0008|Scalp haematoma: local::at0015|Has non-frontal scalp haematoma|
+      gt0009|Loss of consciousness: local::at0019|No loss of consciousness|
+      gt0010|Acting normally according to the parents: local::at0024|Acting abnormally according to parents|
+      gt0011|Severity of injury mechanism: local::at0028|Non-severe injury mechanism|
+      gt0012|Vomiting: local::at0031|Vomiting|
+      gt0013|Basilar skull fracture: local::at0035|No signs of basilar skull fracture|
+      gt0014|Severity of headache: local::at0041|Severe headache|
+  expected_output:
+    1:
+      gt0024|Recommendation: local::at0009|CT imaging recommended|

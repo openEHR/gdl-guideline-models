@@ -1,0 +1,99 @@
+guidelines:
+  1: Revised_Schwartz_guideline.v1
+test_cases:
+- id: cm, mg/dl
+  input:
+    1:
+      gt0003|Height, cm: 180,cm
+      gt0005|Serum creatinine, mg/dL: 2,mg/dl
+      gt0040|Formula: local::at0028|Revised Schwartz|
+      gt0042|Age: 2,a
+  expected_output:
+    1:
+      gt0011|Severity: Mild-severe
+      gt0010|CKD stage: 3b
+      gt0038|Estimated Glomerular Filtration Rate - Relative: 37.170,ml/min/1.73m2
+- id: in, umol/l
+  input:
+    1:
+      gt0003|Height, cm: 70.87,in
+      gt0005|Serum creatinine, mg/dL: 176.8,µmol/l
+      gt0040|Formula: local::at0028|Revised Schwartz|
+      gt0042|Age: 2,a
+  expected_output:
+    1:
+      gt0011|Severity: Mild-severe
+      gt0010|CKD stage: 3b
+      gt0038|Estimated Glomerular Filtration Rate - Relative: 37.212,ml/min/1.73m2
+- id: eGFR>90
+  input:
+    1:
+      gt0003|Height, cm: 180,cm
+      gt0005|Serum creatinine, mg/dL: 0.8,mg/dl
+      gt0040|Formula: local::at0028|Revised Schwartz|
+      gt0042|Age: 2,a
+  expected_output:
+    1:
+      gt0011|Severity: Normal
+      gt0010|CKD stage: 1
+      gt0038|Estimated Glomerular Filtration Rate - Relative: 92.925,ml/min/1.73m2
+- id: eGFR 60-89
+  input:
+    1:
+      gt0003|Height, cm: 180,cm
+      gt0005|Serum creatinine, mg/dL: 1,mg/dl
+      gt0040|Formula: local::at0028|Revised Schwartz|
+      gt0042|Age: 2,a
+  expected_output:
+    1:
+      gt0011|Severity: Mild
+      gt0010|CKD stage: 2
+      gt0038|Estimated Glomerular Filtration Rate - Relative: 74.340,ml/min/1.73m2
+- id: eGFR 39
+  input:
+    1:
+      gt0003|Height, cm: 180,cm
+      gt0005|Serum creatinine, mg/dL: 1.9,mg/dl
+      gt0040|Formula: local::at0028|Revised Schwartz|
+      gt0042|Age: 2,a
+  expected_output:
+    1:
+      gt0011|Severity: Mild-severe
+      gt0010|CKD stage: 3b
+      gt0038|Estimated Glomerular Filtration Rate - Relative: 39.126,ml/min/1.73m2
+- id: eGFR 53
+  input:
+    1:
+      gt0003|Height, cm: 180,cm
+      gt0005|Serum creatinine, mg/dL: 1.4,mg/dl
+      gt0040|Formula: local::at0028|Revised Schwartz|
+      gt0042|Age: 2,a
+  expected_output:
+    1:
+      gt0011|Severity: Mild-moderate
+      gt0010|CKD stage: 3a
+      gt0038|Estimated Glomerular Filtration Rate - Relative: 53.100,ml/min/1.73m2
+- id: eGFR 24
+  input:
+    1:
+      gt0003|Height, cm: 180,cm
+      gt0005|Serum creatinine, mg/dL: 3,mg/dl
+      gt0040|Formula: local::at0028|Revised Schwartz|
+      gt0042|Age: 2,a
+  expected_output:
+    1:
+      gt0011|Severity: Severe
+      gt0010|CKD stage: 4
+      gt0038|Estimated Glomerular Filtration Rate - Relative: 24.780,ml/min/1.73m2
+- id: eGFR<15
+  input:
+    1:
+      gt0003|Height, cm: 180,cm
+      gt0005|Serum creatinine, mg/dL: 5,mg/dl
+      gt0040|Formula: local::at0028|Revised Schwartz|
+      gt0042|Age: 2,a
+  expected_output:
+    1:
+      gt0011|Severity: End-stage renal disease
+      gt0010|CKD stage: 5
+      gt0038|Estimated Glomerular Filtration Rate - Relative: 14.868,ml/min/1.73m2

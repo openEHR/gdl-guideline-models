@@ -1,0 +1,245 @@
+guidelines:
+  1: GBS.v1
+test_cases:
+- id: Female, HB, Urea out-of-range
+  input:
+    1:
+      gt0003|Haemoglobin: 11,gm/dl
+      gt0005|Urea: 19,mg/dl
+      gt0007|Systolic: 109,mm[Hg]
+      gt0009|Gender: local::at0006|Female|
+      gt0011|Rate: 76,/min
+      gt0013|Melaena: 0|local::at0017|No|
+      gt0014|Syncope: 0|local::at0019|No|
+      gt0017|Liver disease: 0|local::at0041|No|
+      gt0018|Heart failure (unspecified): 0|local::at0044|No|
+  expected_output:
+    1:
+      gt0033|Haemoglobin (Hb): 1|local::at0037|Hb 12 - 13 g/dl in men (or 10 - 12 g/dl in women)|
+      gt0036|Pulse: 0|local::at0025|Pulse <100 /min|
+      gt0040|Heart failure: 0|local::at0023|No|
+      gt0034|Sex: 0|local::at0015|Female|
+      gt0039|Liver disease: 0|local::at0021|No|
+      gt0037|Melaena: 0|local::at0017|No|
+      gt0038|Syncope: 0|local::at0019|No|
+      gt0032|Blood Urea Nitrogen (BUN): 2|local::at0032|BUN = 18.2 - <22.4 mg/dl|
+      gt0035|Systolic blood pressure (SBP): 1|local::at0028|SBP = 100 - 109 mmHg|
+      gt0041|Total score: 4
+      gt0068|Score interpretation: 1|local::at0004|Score > 0 suggesting high risk of complications|
+      gt0069|Recommendation: 1|local::at0007|Intervention required|
+
+- id: Female, Low BP, urea out-of-range
+  input:
+    1:
+      gt0003|Haemoglobin: 13,gm/dl
+      gt0005|Urea: 19,mg/dl
+      gt0007|Systolic: 109,mm[Hg]
+      gt0009|Gender: local::at0006|Female|
+      gt0011|Rate: 76,/min
+      gt0013|Melaena: 0|local::at0017|No|
+      gt0014|Syncope: 0|local::at0019|No|
+      gt0017|Liver disease: 0|local::at0041|No|
+      gt0018|Heart failure (unspecified): 0|local::at0044|No|
+  expected_output:
+    1:
+      gt0033|Haemoglobin (Hb): 0|local::at0036|Hb >13 g/dl in men (or >12 g/dl in women)|
+      gt0036|Pulse: 0|local::at0025|Pulse <100 /min|
+      gt0040|Heart failure: 0|local::at0023|No|
+      gt0034|Sex: 0|local::at0015|Female|
+      gt0039|Liver disease: 0|local::at0021|No|
+      gt0037|Melaena: 0|local::at0017|No|
+      gt0038|Syncope: 0|local::at0019|No|
+      gt0032|Blood Urea Nitrogen (BUN): 2|local::at0032|BUN = 18.2 - <22.4 mg/dl|
+      gt0035|Systolic blood pressure (SBP): 1|local::at0028|SBP = 100 - 109 mmHg|
+      gt0041|Total score: 3
+      gt0068|Score interpretation: 1|local::at0004|Score > 0 suggesting high risk of complications|
+      gt0069|Recommendation: 1|local::at0007|Intervention required|
+
+- id: Healthy female
+  input:
+    1:
+      gt0003|Haemoglobin: 13,gm/dl
+      gt0005|Urea: 18,mg/dl
+      gt0007|Systolic: 120,mm[Hg]
+      gt0009|Gender: local::at0006|Female|
+      gt0011|Rate: 76,/min
+      gt0013|Melaena: 0|local::at0017|No|
+      gt0014|Syncope: 0|local::at0019|No|
+      gt0017|Liver disease: 0|local::at0041|No|
+      gt0018|Heart failure (unspecified): 0|local::at0044|No|
+  expected_output:
+    1:
+      gt0033|Haemoglobin (Hb): 0|local::at0036|Hb >13 g/dl in men (or >12 g/dl in women)|
+      gt0036|Pulse: 0|local::at0025|Pulse <100 /min|
+      gt0040|Heart failure: 0|local::at0023|No|
+      gt0034|Sex: 0|local::at0015|Female|
+      gt0039|Liver disease: 0|local::at0021|No|
+      gt0037|Melaena: 0|local::at0017|No|
+      gt0038|Syncope: 0|local::at0019|No|
+      gt0032|Blood Urea Nitrogen (BUN): 0|local::at0031|BUN <18.2 mg/dl|
+      gt0035|Systolic blood pressure (SBP): 0|local::at0027|SBP >=110 mmHg|
+      gt0041|Total score: 0
+      gt0068|Score interpretation: 0|local::at0003|Score 0 suggesting a 0.5% risk of complications|
+      gt0069|Recommendation: 0|local::at0006|No intervention required|
+
+- id: Same in male, means too low Hb
+  input:
+    1:
+      gt0003|Haemoglobin: 13,gm/dl
+      gt0005|Urea: 18,mg/dl
+      gt0007|Systolic: 120,mm[Hg]
+      gt0009|Gender: local::at0005|Male|
+      gt0011|Rate: 76,/min
+      gt0013|Melaena: 0|local::at0017|No|
+      gt0014|Syncope: 0|local::at0019|No|
+      gt0017|Liver disease: 0|local::at0041|No|
+      gt0018|Heart failure (unspecified): 0|local::at0044|No|
+  expected_output:
+    1:
+      gt0033|Haemoglobin (Hb): 1|local::at0037|Hb 12 - 13 g/dl in men (or 10 - 12 g/dl in women)|
+      gt0036|Pulse: 0|local::at0025|Pulse <100 /min|
+      gt0040|Heart failure: 0|local::at0023|No|
+      gt0034|Sex: 1|local::at0016|Male|
+      gt0039|Liver disease: 0|local::at0021|No|
+      gt0037|Melaena: 0|local::at0017|No|
+      gt0038|Syncope: 0|local::at0019|No|
+      gt0032|Blood Urea Nitrogen (BUN): 0|local::at0031|BUN <18.2 mg/dl|
+      gt0035|Systolic blood pressure (SBP): 0|local::at0027|SBP >=110 mmHg|
+      gt0041|Total score: 1
+      gt0068|Score interpretation: 1|local::at0004|Score > 0 suggesting high risk of complications|
+      gt0069|Recommendation: 1|local::at0007|Intervention required|
+
+- id: High pulse
+  input:
+    1:
+      gt0003|Haemoglobin: 13,gm/dl
+      gt0005|Urea: 18,mg/dl
+      gt0007|Systolic: 120,mm[Hg]
+      gt0009|Gender: local::at0005|Male|
+      gt0011|Rate: 120,/min
+      gt0013|Melaena: 0|local::at0017|No|
+      gt0014|Syncope: 0|local::at0019|No|
+      gt0017|Liver disease: 0|local::at0041|No|
+      gt0018|Heart failure (unspecified): 0|local::at0044|No|
+  expected_output:
+    1:
+      gt0033|Haemoglobin (Hb): 1|local::at0037|Hb 12 - 13 g/dl in men (or 10 - 12 g/dl in women)|
+      gt0036|Pulse: 1|local::at0026|Pulse >=100 /min|
+      gt0040|Heart failure: 0|local::at0023|No|
+      gt0034|Sex: 1|local::at0016|Male|
+      gt0039|Liver disease: 0|local::at0021|No|
+      gt0037|Melaena: 0|local::at0017|No|
+      gt0038|Syncope: 0|local::at0019|No|
+      gt0032|Blood Urea Nitrogen (BUN): 0|local::at0031|BUN <18.2 mg/dl|
+      gt0035|Systolic blood pressure (SBP): 0|local::at0027|SBP >=110 mmHg|
+      gt0041|Total score: 2
+      gt0068|Score interpretation: 1|local::at0004|Score > 0 suggesting high risk of complications|
+      gt0069|Recommendation: 1|local::at0007|Intervention required|
+
+- id: Melanea
+  input:
+    1:
+      gt0003|Haemoglobin: 13,gm/dl
+      gt0005|Urea: 18,mg/dl
+      gt0007|Systolic: 120,mm[Hg]
+      gt0009|Gender: local::at0005|Male|
+      gt0011|Rate: 120,/min
+      gt0013|Melaena: 1|local::at0018|Yes|
+      gt0014|Syncope: 0|local::at0019|No|
+      gt0017|Liver disease: 0|local::at0041|No|
+      gt0018|Heart failure (unspecified): 0|local::at0044|No|
+  expected_output:
+    1:
+      gt0033|Haemoglobin (Hb): 1|local::at0037|Hb 12 - 13 g/dl in men (or 10 - 12 g/dl in women)|
+      gt0036|Pulse: 1|local::at0026|Pulse >=100 /min|
+      gt0040|Heart failure: 0|local::at0023|No|
+      gt0034|Sex: 1|local::at0016|Male|
+      gt0039|Liver disease: 0|local::at0021|No|
+      gt0037|Melaena: 1|local::at0018|Yes|
+      gt0038|Syncope: 0|local::at0019|No|
+      gt0032|Blood Urea Nitrogen (BUN): 0|local::at0031|BUN <18.2 mg/dl|
+      gt0035|Systolic blood pressure (SBP): 0|local::at0027|SBP >=110 mmHg|
+      gt0041|Total score: 3
+      gt0068|Score interpretation: 1|local::at0004|Score > 0 suggesting high risk of complications|
+      gt0069|Recommendation: 1|local::at0007|Intervention required|
+
+- id: Syncope
+  input:
+    1:
+      gt0003|Haemoglobin: 13,gm/dl
+      gt0005|Urea: 18,mg/dl
+      gt0007|Systolic: 120,mm[Hg]
+      gt0009|Gender: local::at0005|Male|
+      gt0011|Rate: 120,/min
+      gt0013|Melaena: 0|local::at0017|No|
+      gt0014|Syncope: 2|local::at0020|Yes|
+      gt0017|Liver disease: 0|local::at0041|No|
+      gt0018|Heart failure (unspecified): 0|local::at0044|No|
+  expected_output:
+    1:
+      gt0033|Haemoglobin (Hb): 1|local::at0037|Hb 12 - 13 g/dl in men (or 10 - 12 g/dl in women)|
+      gt0036|Pulse: 1|local::at0026|Pulse >=100 /min|
+      gt0040|Heart failure: 0|local::at0023|No|
+      gt0034|Sex: 1|local::at0016|Male|
+      gt0039|Liver disease: 0|local::at0021|No|
+      gt0037|Melaena: 0|local::at0017|No|
+      gt0038|Syncope: 2|local::at0020|Yes|
+      gt0032|Blood Urea Nitrogen (BUN): 0|local::at0031|BUN <18.2 mg/dl|
+      gt0035|Systolic blood pressure (SBP): 0|local::at0027|SBP >=110 mmHg|
+      gt0041|Total score: 4
+      gt0068|Score interpretation: 1|local::at0004|Score > 0 suggesting high risk of complications|
+      gt0069|Recommendation: 1|local::at0007|Intervention required|
+
+- id: Liver disease
+  input:
+    1:
+      gt0003|Haemoglobin: 13,gm/dl
+      gt0005|Urea: 18,mg/dl
+      gt0007|Systolic: 120,mm[Hg]
+      gt0009|Gender: local::at0005|Male|
+      gt0011|Rate: 120,/min
+      gt0013|Melaena: 0|local::at0017|No|
+      gt0014|Syncope: 2|local::at0020|Yes|
+      gt0017|Liver disease: 1|local::at0042|Yes|
+      gt0018|Heart failure (unspecified): 0|local::at0044|No|
+  expected_output:
+    1:
+      gt0033|Haemoglobin (Hb): 1|local::at0037|Hb 12 - 13 g/dl in men (or 10 - 12 g/dl in women)|
+      gt0036|Pulse: 1|local::at0026|Pulse >=100 /min|
+      gt0040|Heart failure: 0|local::at0023|No|
+      gt0034|Sex: 1|local::at0016|Male|
+      gt0039|Liver disease: 2|local::at0022|Yes|
+      gt0037|Melaena: 0|local::at0017|No|
+      gt0038|Syncope: 2|local::at0020|Yes|
+      gt0032|Blood Urea Nitrogen (BUN): 0|local::at0031|BUN <18.2 mg/dl|
+      gt0035|Systolic blood pressure (SBP): 0|local::at0027|SBP >=110 mmHg|
+      gt0041|Total score: 6
+      gt0068|Score interpretation: 1|local::at0004|Score > 0 suggesting high risk of complications|
+      gt0069|Recommendation: 1|local::at0007|Intervention required|
+
+- id: Liver disease and heart failure
+  input:
+    1:
+      gt0003|Haemoglobin: 13,gm/dl
+      gt0005|Urea: 18,mg/dl
+      gt0007|Systolic: 120,mm[Hg]
+      gt0009|Gender: local::at0005|Male|
+      gt0011|Rate: 120,/min
+      gt0013|Melaena: 0|local::at0017|No|
+      gt0014|Syncope: 2|local::at0020|Yes|
+      gt0017|Liver disease: 1|local::at0042|Yes|
+      gt0018|Heart failure (unspecified): 1|local::at0045|Yes|
+  expected_output:
+    1:
+      gt0033|Haemoglobin (Hb): 1|local::at0037|Hb 12 - 13 g/dl in men (or 10 - 12 g/dl in women)|
+      gt0036|Pulse: 1|local::at0026|Pulse >=100 /min|
+      gt0040|Heart failure: 2|local::at0024|Yes|
+      gt0034|Sex: 1|local::at0016|Male|
+      gt0039|Liver disease: 2|local::at0022|Yes|
+      gt0037|Melaena: 0|local::at0017|No|
+      gt0038|Syncope: 2|local::at0020|Yes|
+      gt0032|Blood Urea Nitrogen (BUN): 0|local::at0031|BUN <18.2 mg/dl|
+      gt0035|Systolic blood pressure (SBP): 0|local::at0027|SBP >=110 mmHg|
+      gt0041|Total score: 8
+      gt0068|Score interpretation: 1|local::at0004|Score > 0 suggesting high risk of complications|
+      gt0069|Recommendation: 1|local::at0007|Intervention required|

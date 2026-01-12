@@ -1,0 +1,135 @@
+guidelines:
+  1: CLIF_C_ACLF_guideline.v1
+current_datetime:
+language:
+test_cases:
+- id: 0. No input
+  input:
+    1:
+      {}
+  expected_output:
+    1:
+      {}
+    fhir:
+    - named_object:
+      expected_values:
+- id: 1. Info. available PaO2/FiO2
+  input:
+    1:
+      gt0003|Age|: 55,a
+      gt0030|White cell count|: 5,10*9/l
+      gt0007|Bilirubin|: 2|local::at0007|6 to 12 mg/dL (102.6 to <205.2 µmol/L)|
+      gt0008|Creatinine|: 1|local::at0010|<2 mg/dL (<176.8 µmol/L)|
+      gt0009|West-Haven Grade for Hepatic Encephalopathy|: 1|local::at0014|0|
+      gt0010|INR|: 1|local::at0018|<2.0|
+      gt0011|MAP|: 1|local::at0022|≥70|
+      gt0012|Information available|: local::at0030|PaO2/FiO2 ratio|
+      gt0013|PaO2/FiO2 ratio|: 1|local::at0032|>300|
+  expected_output:
+    1:
+      gt0016|Total score|: 35,1
+      gt0017|Probability of dying at 1 month|: 6.9,%
+      gt0018|Probability of dying at 3 months|: 15.2,%
+      gt0019|Probability of dying at 6 months|: 18.6,%
+      gt0020|Probability of dying at 1 year|: 25.8,%
+    fhir:
+    - named_object:
+      expected_values:
+- id: 2. Info. available SpO2/FiO2
+  input:
+    1:
+      gt0003|Age|: 80,a
+      gt0030|White cell count|: 10,10*9/l
+      gt0007|Bilirubin|: 2|local::at0007|6 to 12 mg/dL (102.6 to <205.2 µmol/L)|
+      gt0008|Creatinine|: 1|local::at0010|<2 mg/dL (<176.8 µmol/L)|
+      gt0009|West-Haven Grade for Hepatic Encephalopathy|: 1|local::at0014|0|
+      gt0010|INR|: 1|local::at0018|<2.0|
+      gt0011|MAP|: 1|local::at0022|≥70|
+      gt0012|Information available|: local::at0029|SpO2/FiO2 ratio|
+      gt0014|SpO2/FiO2 ratio|: 2|local::at0037|>214 to 357|
+  expected_output:
+    1:
+      gt0016|Total score|: 53,1
+      gt0017|Probability of dying at 1 month|: 34.9,%
+      gt0018|Probability of dying at 3 months|: 54.6,%
+      gt0019|Probability of dying at 6 months|: 59.6,%
+      gt0020|Probability of dying at 1 year|: 67.1,%
+    fhir:
+    - named_object:
+      expected_values:
+- id: 3. Info. available SpO2/FiO2, but PaO2/FiO2 value
+  input:
+    1:
+      gt0003|Age|: 80,a
+      gt0030|White cell count|: 10,10*9/l
+      gt0007|Bilirubin|: 2|local::at0007|6 to 12 mg/dL (102.6 to <205.2 µmol/L)|
+      gt0008|Creatinine|: 1|local::at0010|<2 mg/dL (<176.8 µmol/L)|
+      gt0009|West-Haven Grade for Hepatic Encephalopathy|: 1|local::at0014|0|
+      gt0010|INR|: 1|local::at0018|<2.0|
+      gt0011|MAP|: 1|local::at0022|≥70|
+      gt0012|Information available|: local::at0029|SpO2/FiO2 ratio|
+      gt0013|PaO2/FiO2 ratio|: 1|local::at0032|>300|
+  expected_output:
+    1:
+      {}
+    fhir:
+    - named_object:
+      expected_values:
+- id: 4. Info. available PaO2/FiO2, but SpO2/FiO2 value
+  input:
+    1:
+      gt0003|Age|: 80,a
+      gt0030|White cell count|: 10,10*9/l
+      gt0007|Bilirubin|: 2|local::at0007|6 to 12 mg/dL (102.6 to <205.2 µmol/L)|
+      gt0008|Creatinine|: 1|local::at0010|<2 mg/dL (<176.8 µmol/L)|
+      gt0009|West-Haven Grade for Hepatic Encephalopathy|: 1|local::at0014|0|
+      gt0010|INR|: 1|local::at0018|<2.0|
+      gt0011|MAP|: 1|local::at0022|≥70|
+      gt0012|Information available|: local::at0030|PaO2/FiO2 ratio|
+      gt0014|SpO2/FiO2 ratio|: 2|local::at0037|>214 to 357|
+  expected_output:
+    1:
+      {}
+    fhir:
+    - named_object:
+      expected_values:
+- id: 5. Info. available PaO2/FiO2, but both ratio values
+  input:
+    1:
+      gt0003|Age|: 55,a
+      gt0030|White cell count|: 5,10*9/l
+      gt0007|Bilirubin|: 2|local::at0007|6 to 12 mg/dL (102.6 to <205.2 µmol/L)|
+      gt0008|Creatinine|: 1|local::at0010|<2 mg/dL (<176.8 µmol/L)|
+      gt0009|West-Haven Grade for Hepatic Encephalopathy|: 1|local::at0014|0|
+      gt0010|INR|: 1|local::at0018|<2.0|
+      gt0011|MAP|: 1|local::at0022|≥70|
+      gt0012|Information available|: local::at0030|PaO2/FiO2 ratio|
+      gt0013|PaO2/FiO2 ratio|: 1|local::at0032|>300|
+      gt0014|SpO2/FiO2 ratio|: 2|local::at0037|>214 to 357|
+  expected_output:
+    1:
+      gt0016|Total score|: 35,1
+      gt0017|Probability of dying at 1 month|: 6.9,%
+      gt0018|Probability of dying at 3 months|: 15.2,%
+      gt0019|Probability of dying at 6 months|: 18.6,%
+      gt0020|Probability of dying at 1 year|: 25.8,%
+    fhir:
+    - named_object:
+      expected_values:
+- id: 6. No Age
+  input:
+    1:
+      gt0030|White cell count|: 7,10*9/l
+      gt0007|Bilirubin|: 2|local::at0007|6 to 12 mg/dL (102.6 to <205.2 µmol/L)|
+      gt0008|Creatinine|: 1|local::at0010|<2 mg/dL (<176.8 µmol/L)|
+      gt0009|West-Haven Grade for Hepatic Encephalopathy|: 3|local::at0016|3-4|
+      gt0010|INR|: 1|local::at0018|<2.0|
+      gt0011|MAP|: 1|local::at0022|≥70|
+      gt0012|Information available|: local::at0029|SpO2/FiO2 ratio|
+      gt0013|PaO2/FiO2 ratio|: 1|local::at0032|>300|
+  expected_output:
+    1:
+      {}
+    fhir:
+    - named_object:
+      expected_values:

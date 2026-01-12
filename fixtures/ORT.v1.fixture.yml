@@ -1,0 +1,172 @@
+current_datetime: '2019-11-28T00:00:00+01:00'
+guidelines:
+  1: ORT.v1
+test_cases:
+- id: case_1:Female, age 16-45
+  input:
+    1:
+      gt0027|Birthdate: 2000-06-01T13:45Z
+      gt0028|Gender: local::at0006|Female|
+      gt0073|History of preadolescent sexual abuse: 0|local::at0019|No|
+      gt0074|History of depression: 0|local::at0021|No|
+      gt0075|History of ADD,OCD,Bipolar or Schizophrenia: 0|local::at0023|No|
+      gt0076|History of alcohol abuse: 0|local::at0025|No|
+      gt0078|History of prescription drug use: 0|local::at0029|No|
+      gt0079|Family history alcohol abuse: 0|local::at0039|No|
+      gt0081|Family history prescription drug abuse: 0|local::at0037|No|
+      gt0085|History of illegal drug abuse: 0|local::at0027|No|
+      gt0095|Family history illegal drug abuse: 0|local::at0041|No|
+  expected_output:
+    1:
+      gt0035|Age: 19,a
+      gt0071|Calculate score women: 1
+      gt0061|Age 16-45: 1|local::at0018|Yes|
+      gt0105|Risk interpretation: 0|local::at0003|Low risk|
+
+- id: case_2:Male, age 16-45
+  input:
+    1:
+      gt0027|Birthdate: 2000-06-01T13:45Z
+      gt0028|Gender: local::at0005|Male|
+      gt0073|History of preadolescent sexual abuse: 0|local::at0019|No|
+      gt0074|History of depression: 0|local::at0021|No|
+      gt0075|History of ADD,OCD,Bipolar or Schizophrenia: 0|local::at0023|No|
+      gt0076|History of alcohol abuse: 0|local::at0025|No|
+      gt0078|History of prescription drug use: 0|local::at0029|No|
+      gt0079|Family history alcohol abuse: 0|local::at0039|No|
+      gt0081|Family history prescription drug abuse: 0|local::at0037|No|
+      gt0085|History of illegal drug abuse: 0|local::at0027|No|
+      gt0095|Family history illegal drug abuse: 0|local::at0041|No|
+  expected_output:
+    1:
+      gt0035|Age: 19,a
+      gt0070|Calculate score men: 1
+      gt0061|Age 16-45: 1|local::at0018|Yes|
+      gt0105|Risk interpretation: 0|local::at0003|Low risk|
+
+- id: case_3:Female, age <16
+  input:
+    1:
+      gt0027|Birthdate: 2007-06-05T13:45Z
+      gt0028|Gender: local::at0006|Female|
+      gt0073|History of preadolescent sexual abuse: 0|local::at0019|No|
+      gt0074|History of depression: 0|local::at0021|No|
+      gt0075|History of ADD,OCD,Bipolar or Schizophrenia: 0|local::at0023|No|
+      gt0076|History of alcohol abuse: 0|local::at0025|No|
+      gt0078|History of prescription drug use: 0|local::at0029|No|
+      gt0079|Family history alcohol abuse: 0|local::at0039|No|
+      gt0081|Family history prescription drug abuse: 0|local::at0037|No|
+      gt0085|History of illegal drug abuse: 0|local::at0027|No|
+      gt0095|Family history illegal drug abuse: 0|local::at0041|No|
+  expected_output:
+    1:
+      gt0035|Age: 12,a
+      gt0071|Calculate score women: 0
+      gt0061|Age 16-45: 0|local::at0017|No|
+      gt0105|Risk interpretation: 0|local::at0003|Low risk|
+
+
+- id: case_4:Male, age <16
+  input:
+    1:
+      gt0027|Birthdate: 2007-06-05T13:45Z
+      gt0028|Gender: local::at0005|Male|
+      gt0073|History of preadolescent sexual abuse: 0|local::at0019|No|
+      gt0074|History of depression: 0|local::at0021|No|
+      gt0075|History of ADD,OCD,Bipolar or Schizophrenia: 0|local::at0023|No|
+      gt0076|History of alcohol abuse: 0|local::at0025|No|
+      gt0078|History of prescription drug use: 0|local::at0029|No|
+      gt0079|Family history alcohol abuse: 0|local::at0039|No|
+      gt0081|Family history prescription drug abuse: 0|local::at0037|No|
+      gt0085|History of illegal drug abuse: 0|local::at0027|No|
+      gt0095|Family history illegal drug abuse: 0|local::at0041|No|
+  expected_output:
+    1:
+      gt0035|Age: 12,a
+      gt0070|Calculate score men: 0
+      gt0061|Age 16-45: 0|local::at0017|No|
+      gt0105|Risk interpretation: 0|local::at0003|Low risk|
+
+- id: case_5:Female, age <16
+  input:
+    1:
+      gt0027|Birthdate: 2007-06-05T13:45Z
+      gt0028|Gender: local::at0006|Female|
+      gt0073|History of preadolescent sexual abuse: 3|local::at0020|Yes|
+      gt0074|History of depression: 1|local::at0022|Yes|
+      gt0075|History of ADD,OCD,Bipolar or Schizophrenia: 2|local::at0024|Yes|
+      gt0076|History of alcohol abuse: 3|local::at0026|Yes|
+      gt0078|History of prescription drug use: 5|local::at0030|Yes|
+      gt0079|Family history alcohol abuse: 1|local::at0040|Yes|
+      gt0081|Family history prescription drug abuse: 4|local::at0038|Yes|
+      gt0085|History of illegal drug abuse: 4|local::at0028|Yes|
+      gt0095|Family history illegal drug abuse: 1|local::at0042|Yes|
+  expected_output:
+    1:
+      gt0035|Age: 12,a
+      gt0071|Calculate score women: 25
+      gt0061|Age 16-45: 0|local::at0017|No|
+      gt0105|Risk interpretation: 2|local::at0005|High risk|
+
+- id: case_6:Male, age <16
+  input:
+    1:
+      gt0027|Birthdate: 2007-06-05T13:45Z
+      gt0028|Gender: local::at0005|Male|
+      gt0073|History of preadolescent sexual abuse: 3|local::at0020|Yes|
+      gt0074|History of depression: 1|local::at0022|Yes|
+      gt0075|History of ADD,OCD,Bipolar or Schizophrenia: 2|local::at0024|Yes|
+      gt0076|History of alcohol abuse: 3|local::at0026|Yes|
+      gt0078|History of prescription drug use: 5|local::at0030|Yes|
+      gt0079|Family history alcohol abuse: 1|local::at0040|Yes|
+      gt0081|Family history prescription drug abuse: 4|local::at0038|Yes|
+      gt0085|History of illegal drug abuse: 4|local::at0028|Yes|
+      gt0095|Family history illegal drug abuse: 1|local::at0042|Yes|
+  expected_output:
+    1:
+      gt0035|Age: 12,a
+      gt0070|Calculate score men: 25
+      gt0061|Age 16-45: 0|local::at0017|No|
+      gt0105|Risk interpretation: 2|local::at0005|High risk|
+
+- id: case_7:Female, age 16-45
+  input:
+    1:
+      gt0027|Birthdate: 2000-06-05T13:45Z
+      gt0028|Gender: local::at0006|Female|
+      gt0073|History of preadolescent sexual abuse: 3|local::at0020|Yes|
+      gt0074|History of depression: 1|local::at0022|Yes|
+      gt0075|History of ADD,OCD,Bipolar or Schizophrenia: 2|local::at0024|Yes|
+      gt0076|History of alcohol abuse: 3|local::at0026|Yes|
+      gt0078|History of prescription drug use: 5|local::at0030|Yes|
+      gt0079|Family history alcohol abuse: 1|local::at0040|Yes|
+      gt0081|Family history prescription drug abuse: 4|local::at0038|Yes|
+      gt0085|History of illegal drug abuse: 4|local::at0028|Yes|
+      gt0095|Family history illegal drug abuse: 1|local::at0042|Yes|
+  expected_output:
+    1:
+      gt0035|Age: 19,a
+      gt0071|Calculate score women: 26
+      gt0061|Age 16-45: 1|local::at0018|Yes|
+      gt0105|Risk interpretation: 2|local::at0005|High risk|
+
+- id: case_8:Male, age 16-45
+  input:
+    1:
+      gt0027|Birthdate: 2000-06-05T13:45Z
+      gt0028|Gender: local::at0005|Male|
+      gt0073|History of preadolescent sexual abuse: 3|local::at0020|Yes|
+      gt0074|History of depression: 1|local::at0022|Yes|
+      gt0075|History of ADD,OCD,Bipolar or Schizophrenia: 2|local::at0024|Yes|
+      gt0076|History of alcohol abuse: 3|local::at0026|Yes|
+      gt0078|History of prescription drug use: 5|local::at0030|Yes|
+      gt0079|Family history alcohol abuse: 1|local::at0040|Yes|
+      gt0081|Family history prescription drug abuse: 4|local::at0038|Yes|
+      gt0085|History of illegal drug abuse: 4|local::at0028|Yes|
+      gt0095|Family history illegal drug abuse: 1|local::at0042|Yes|
+  expected_output:
+    1:
+      gt0035|Age: 19,a
+      gt0070|Calculate score men: 26
+      gt0061|Age 16-45: 1|local::at0018|Yes|
+      gt0105|Risk interpretation: 2|local::at0005|High risk|
