@@ -1,0 +1,107 @@
+archetype (adl_version=1.4; uid=5b4b15d4-f55c-49e0-aba0-914e235738cf)
+	openEHR-EHR-EVALUATION.nice_traffic_light_risk_assessment_.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-11-10">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"f651fa243feebc96354c13f8ef37c225">
+		["build_uid"] = <"05ed886b-dcbc-3612-be8a-3580b55c4df6">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Nice traffic light risk assessment
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0011] occurrences matches {0..1} matches {    -- Risk severity
+						value matches {
+							DV_QUANTITY matches {*}
+						}
+					}
+					ELEMENT[at0003] occurrences matches {0..1} matches {    -- Risk category
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0004,    -- Green
+									at0005,    -- Amber
+									at0006]    -- Red
+								}
+							}
+						}
+					}
+					ELEMENT[at0007] occurrences matches {0..1} matches {    -- Interpretation
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0002] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Nice traffic light risk assessment">
+					description = <"Nice traffic light risk assessment ">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Risk category">
+					description = <"">
+				>
+				["at0004"] = <
+					text = <"Green">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Amber">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Red">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Interpretation">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Risk severity">
+					description = <"">
+				>
+			>
+		>
+	>
