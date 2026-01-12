@@ -18,21 +18,22 @@ description
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"To record the results for each component parameter required to compute the T, N, and M categories and the final TNM stage for hepatocellular carcinoma of the liver.">
+			purpose = <"To record the results for each component parameter required to determine the corresponding TNM stage group for hepatocellular carcinoma of the liver.">
 			keywords = <"tnm","tumour","node","metastasis","liver","hepatocellular","carcinoma","cancer","hcc","staging">
 			copyright = <"© Cambio CDS">
-			use = <"Use to record the results for each component parameter required to compute the T, N, and M categories and the final TNM stage for hepatocellular carcinoma of the liver.">
-			misuse = <"Not to be used to record the final T, N, or M categories or the TNM stage.">
+			use = <"Use to record the results for each component parameter required to determine the corresponding TNM stage group for hepatocellular carcinoma of the liver.">
+			misuse = <"Not to be used to record the TNM stage.">
 		>
 	>
 	other_details = <
 		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Regionala cancercentrum i samverkan. Nationellt vårdprogram levercellscancer: Kapitel 9 Kategorisering av tumören. Kunskapsbanken, 2024. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/levercellscancer/vardprogram/kategorisering-av-tumoren/
+Brierley JD, Gospodarowicz MK, Wittekind C, editors. TNM classification of malignant tumours. 8th ed. Hoboken (NJ): Wiley Blackwell; 2017">
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"49e72af6e9f6ffe289de2b521b3254f7">
 		["build_uid"] = <"86290e76-c063-4dca-b1c1-35ce928b9f7f">
-		["references"] = <"Regionala cancercentrum i samverkan. Nationellt vårdprogram levercellscancer: Kapitel 9 Kategorisering av tumören. Kunskapsbanken, 2024. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/levercellscancer/vardprogram/kategorisering-av-tumoren/
-Brierley JD, Gospodarowicz MK, Wittekind C, editors. TNM classification of malignant tumours. 8th ed. Hoboken (NJ): Wiley Blackwell; 2017">
 	>
 
 definition
@@ -44,58 +45,18 @@ definition
 						data matches {
 							ITEM_TREE[at0003] matches {    -- Tree
 								items cardinality matches {0..*; unordered} matches {
-									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Primary tumor assessable
-										value matches {
-											DV_BOOLEAN matches {*}
-										}
-									}
-									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Evidence of primary tumor
-										value matches {
-											DV_BOOLEAN matches {*}
-										}
-									}
-									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tumor pattern
-										value matches {
-											DV_CODED_TEXT matches {
-												defining_code matches {
-													[local::
-													at0009,    -- Solitary tumour ≤2cm with or without vascular invasion
-													at0010,    -- Solitary tumour >2cm without vascular invasion
-													at0011,    -- Solitary tumour >2cm with vascular invasion
-													at0012,    -- Multiple tumours, none >5cm
-													at0013,    -- Multiple tumours, any >5cm
-													at0014]    -- Tumour(s) with major vein involvement or adjacent organ invasion or peritoneal perforation
-												}
-											}
-										}
-									}
-									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Regional lymph nodes assessable
-										value matches {
-											DV_BOOLEAN matches {*}
-										}
-									}
-									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Regional lymph node metastasis
-										value matches {
-											DV_BOOLEAN matches {*}
-										}
-									}
-									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Distant metastasis present
-										value matches {
-											DV_BOOLEAN matches {*}
-										}
-									}
 									ELEMENT[at0018] occurrences matches {0..1} matches {    -- T - Primary tumour
 										value matches {
 											DV_CODED_TEXT matches {
 												defining_code matches {
 													[local::
-													at0019,    -- TX
-													at0020,    -- T0
-													at0021,    -- T1a
-													at0022,    -- T1b
-													at0023,    -- T2
-													at0024,    -- T3
-													at0025]    -- T4
+													at0019,    -- TX - Primary tumour cannot be assessed
+													at0020,    -- T0 - No evidence of primary tumour
+													at0021,    -- T1a - Solitary tumour ≤ 2 cm, with or without vascular invasion
+													at0022,    -- T1b - Solitary tumour > 2 cm, without vascular invasion
+													at0023,    -- T2 - Solitary tumour > 2 cm with vascular invasion OR multiple tumours, none > 5 cm
+													at0024,    -- T3 - Multiple tumours, at least one > 5 cm
+													at0025]    -- T4 - Tumour(s) involving a major branch of the portal vein or hepatic vein with direct invasion of adjacent organs (other than the gallbladder), OR perforation of visceral peritoneum
 												}
 											}
 										}
@@ -105,9 +66,9 @@ definition
 											DV_CODED_TEXT matches {
 												defining_code matches {
 													[local::
-													at0027,    -- NX
-													at0028,    -- N0
-													at0029]    -- N1
+													at0027,    -- NX - Regional lymph nodes cannot be assessed
+													at0028,    -- N0 - No regional lymph node metastasis
+													at0029]    -- N1 - Regional lymph node metastasis present
 												}
 											}
 										}
@@ -117,8 +78,8 @@ definition
 											DV_CODED_TEXT matches {
 												defining_code matches {
 													[local::
-													at0031,    -- M0
-													at0032]    -- M1
+													at0031,    -- M0 - No distant metastasis
+													at0032]    -- M1 - Distant metastasis present
 												}
 											}
 										}
@@ -148,7 +109,7 @@ ontology
 			items = <
 				["at0000"] = <
 					text = <"TNM classification for liver hepatocellular carcinoma">
-					description = <"A structured set of clinical and pathological input parameters required to determine the Tumour, Node, Metastasis (TNM) classification for hepatocellular carcinoma of the liver.">
+					description = <"A structured clinical staging concept used to record Tumour (T), Node (N), and Metastasis (M) categories and to support determination of the TNM stage group for hepatocellular carcinoma of the liver.">
 					comment = <"Original version, c 1970">
 				>
 				["at0001"] = <
@@ -172,84 +133,36 @@ ontology
 					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
 					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
 				>
-				["at0006"] = <
-					text = <"Primary tumor assessable">
-					description = <"">
-				>
-				["at0007"] = <
-					text = <"Evidence of primary tumor">
-					description = <"">
-				>
-				["at0008"] = <
-					text = <"Tumor pattern">
-					description = <"">
-				>
-				["at0009"] = <
-					text = <"Solitary tumour ≤2cm with or without vascular invasion">
-					description = <"">
-				>
-				["at0010"] = <
-					text = <"Solitary tumour >2cm without vascular invasion">
-					description = <"">
-				>
-				["at0011"] = <
-					text = <"Solitary tumour >2cm with vascular invasion">
-					description = <"">
-				>
-				["at0012"] = <
-					text = <"Multiple tumours, none >5cm">
-					description = <"">
-				>
-				["at0013"] = <
-					text = <"Multiple tumours, any >5cm">
-					description = <"">
-				>
-				["at0014"] = <
-					text = <"Tumour(s) with major vein involvement or adjacent organ invasion or peritoneal perforation">
-					description = <"">
-				>
-				["at0015"] = <
-					text = <"Regional lymph nodes assessable">
-					description = <"">
-				>
-				["at0016"] = <
-					text = <"Regional lymph node metastasis">
-					description = <"">
-				>
-				["at0017"] = <
-					text = <"Distant metastasis present">
-					description = <"">
-				>
 				["at0018"] = <
 					text = <"T - Primary tumour">
 					description = <"">
 				>
 				["at0019"] = <
-					text = <"TX">
+					text = <"TX - Primary tumour cannot be assessed">
 					description = <"">
 				>
 				["at0020"] = <
-					text = <"T0">
+					text = <"T0 - No evidence of primary tumour">
 					description = <"">
 				>
 				["at0021"] = <
-					text = <"T1a">
+					text = <"T1a - Solitary tumour ≤ 2 cm, with or without vascular invasion">
 					description = <"">
 				>
 				["at0022"] = <
-					text = <"T1b">
+					text = <"T1b - Solitary tumour > 2 cm, without vascular invasion">
 					description = <"">
 				>
 				["at0023"] = <
-					text = <"T2">
+					text = <"T2 - Solitary tumour > 2 cm with vascular invasion OR multiple tumours, none > 5 cm">
 					description = <"">
 				>
 				["at0024"] = <
-					text = <"T3">
+					text = <"T3 - Multiple tumours, at least one > 5 cm">
 					description = <"">
 				>
 				["at0025"] = <
-					text = <"T4">
+					text = <"T4 - Tumour(s) involving a major branch of the portal vein or hepatic vein with direct invasion of adjacent organs (other than the gallbladder), OR perforation of visceral peritoneum">
 					description = <"">
 				>
 				["at0026"] = <
@@ -257,15 +170,15 @@ ontology
 					description = <"">
 				>
 				["at0027"] = <
-					text = <"NX">
+					text = <"NX - Regional lymph nodes cannot be assessed">
 					description = <"">
 				>
 				["at0028"] = <
-					text = <"N0">
+					text = <"N0 - No regional lymph node metastasis">
 					description = <"">
 				>
 				["at0029"] = <
-					text = <"N1">
+					text = <"N1 - Regional lymph node metastasis present">
 					description = <"">
 				>
 				["at0030"] = <
@@ -273,11 +186,11 @@ ontology
 					description = <"">
 				>
 				["at0031"] = <
-					text = <"M0">
+					text = <"M0 - No distant metastasis">
 					description = <"">
 				>
 				["at0032"] = <
-					text = <"M1">
+					text = <"M1 - Distant metastasis present">
 					description = <"">
 				>
 			>
