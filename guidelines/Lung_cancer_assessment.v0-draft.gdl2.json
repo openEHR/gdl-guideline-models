@@ -1,0 +1,252 @@
+{
+  "uuid" : "",
+  "id" : "Lung_cancer_assessment.v0-draft",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Mahmoud Elachi",
+      "email" : "mel.achi@gmail.com",
+      "organisation" : "Cambio"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en"
+      }
+    },
+    "other_details" : {
+      "en" : "drafting "
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0049" : {
+        "id" : "gt0049",
+        "model_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0050" : {
+            "id" : "gt0050",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "a"
+            ]
+          }
+        }
+      },
+      "gt0051" : {
+        "id" : "gt0051",
+        "model_id" : "openEHR-EHR-OBSERVATION.lung_cancer_anamnes.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.lung_cancer_anamnes.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0052" : {
+            "id" : "gt0052",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]/items[at0009]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0010",
+              "local::at0011",
+              "local::at0012"
+            ]
+          },
+          "gt0053" : {
+            "id" : "gt0053",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]/items[at0006]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0054" : {
+            "id" : "gt0054",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]/items[at0008]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "a"
+            ]
+          },
+          "gt0055" : {
+            "id" : "gt0055",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0014]/items[at0016]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0056" : {
+            "id" : "gt0056",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0024]/items[at0025]",
+            "data_type" : "DV_BOOLEAN"
+          }
+        }
+      },
+      "gt0057" : {
+        "id" : "gt0057",
+        "model_id" : "openEHR-EHR-OBSERVATION.lung_cancer_symptom.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.lung_cancer_symptom.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0058" : {
+            "id" : "gt0058",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0059" : {
+            "id" : "gt0059",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0060" : {
+            "id" : "gt0060",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0061" : {
+            "id" : "gt0061",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0010]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0062" : {
+            "id" : "gt0062",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0011]/items[at0012]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0063" : {
+            "id" : "gt0063",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0011]/items[at0013]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0064" : {
+            "id" : "gt0064",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0011]/items[at0014]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0065" : {
+            "id" : "gt0065",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0011]/items[at0015]",
+            "data_type" : "DV_BOOLEAN"
+          }
+        }
+      },
+      "gt0066" : {
+        "id" : "gt0066",
+        "model_id" : "openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0067" : {
+            "id" : "gt0067",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0030]/items[at0022]",
+            "data_type" : "DV_BOOLEAN"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0068" : {
+        "id" : "gt0068",
+        "priority" : 1,
+        "when" : [
+          "$gt0050|Age|>30",
+          "$gt0053|Smoking|==true||$gt0052|Smoking status|==local::at0010|Currently smoker|||$gt0052|Smoking status|==local::at0012|Former smoker|",
+          "$gt0058|Cough present|==true&&$gt0059|Hemoptysis|==true&&$gt0062|Weight loss|==true&&$gt0061|Chest pain|==true"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Lung_cancer_assessment"
+          },
+          "gt0049" : {
+            "id" : "gt0049",
+            "text" : "openEHR-EHR-OBSERVATION.basic_demographic.v1"
+          },
+          "gt0050" : {
+            "id" : "gt0050",
+            "text" : "Age"
+          },
+          "gt0051" : {
+            "id" : "gt0051",
+            "text" : "openEHR-EHR-OBSERVATION.lung_cancer_anamnes.v0"
+          },
+          "gt0052" : {
+            "id" : "gt0052",
+            "text" : "Smoking status"
+          },
+          "gt0053" : {
+            "id" : "gt0053",
+            "text" : "Smoking"
+          },
+          "gt0054" : {
+            "id" : "gt0054",
+            "text" : "Years of smoking"
+          },
+          "gt0055" : {
+            "id" : "gt0055",
+            "text" : "History in the family"
+          },
+          "gt0056" : {
+            "id" : "gt0056",
+            "text" : "Occupational exposure"
+          },
+          "gt0057" : {
+            "id" : "gt0057",
+            "text" : "openEHR-EHR-OBSERVATION.lung_cancer_symptom.v0"
+          },
+          "gt0058" : {
+            "id" : "gt0058",
+            "text" : "Cough present"
+          },
+          "gt0059" : {
+            "id" : "gt0059",
+            "text" : "Hemoptysis"
+          },
+          "gt0060" : {
+            "id" : "gt0060",
+            "text" : "Dyspnea"
+          },
+          "gt0061" : {
+            "id" : "gt0061",
+            "text" : "Chest pain"
+          },
+          "gt0062" : {
+            "id" : "gt0062",
+            "text" : "Weight loss"
+          },
+          "gt0063" : {
+            "id" : "gt0063",
+            "text" : "Loss of appetite"
+          },
+          "gt0064" : {
+            "id" : "gt0064",
+            "text" : "Fever"
+          },
+          "gt0065" : {
+            "id" : "gt0065",
+            "text" : "Fatigue"
+          },
+          "gt0066" : {
+            "id" : "gt0066",
+            "text" : "openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0"
+          },
+          "gt0067" : {
+            "id" : "gt0067",
+            "text" : "PET‑CT performed"
+          },
+          "gt0068" : {
+            "id" : "gt0068",
+            "text" : "",
+            "description" : ""
+          }
+        }
+      }
+    }
+  }
+}
