@@ -1,21 +1,33 @@
-archetype (adl_version=1.4)
+archetype (adl_version=1.4; uid=05343982-832e-398c-bc6f-eb97ad5dc5e1)
 	openEHR-EHR-EVALUATION.neutrophil_lymphocyte_ratio_calculator.v0
 
 concept
-	[at0000]	-- Neutrophil lymphocyte ratio calculator
+	[at0000]
+
 language
 	original_language = <[ISO_639-1::en]>
+	translations = <
+		["zh"] = <
+			language = <[ISO_639-1::zh]>
+			author = <
+			>
+		>
+	>
+
 description
 	original_author = <
-		["name"] = <"Therese Lindberg">
-		["email"] = <"therese.lindberg@cambio.se">
-		["organisation"] = <"Cambio CDS">
 		["date"] = <"2020-11-19">
+		["name"] = <"Therese Lindberg">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"therese.lindberg@cambio.se">
 	>
+	lifecycle_state = <"0">
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
 			purpose = <"To calculate neutrophil-lymphocyte ratio.">
+			keywords = <"neutrophil","lymphocyte","ratio","NLR","physiologic stress level">
+			copyright = <"@CambioCDS">
 			use = <"Neutrophil-lymphocyte ratio (NLR) = (Absolute neutrophil count, cells/μL) / (Absolute lymphocyte count, cells/μL)
 
 Note: Neutrophil and lymphocyte can also be entered as percentages.
@@ -26,39 +38,39 @@ Neutrophil-lymphocyte ratio	           Physiologic stress level
 6-8	           Mild
 9-18	           Moderate
 >18	           Severe">
-			keywords = <"neutrophil", "lymphocyte", "ratio", "NLR", "physiologic stress level">
-			misuse = <"">
-			copyright = <"@CambioCDS">
+		>
+		["zh"] = <
+			language = <[ISO_639-1::zh]>
+			copyright = <"© openEHR Foundation">
 		>
 	>
-	lifecycle_state = <"0">
-	other_contributors = <>
 	other_details = <
 		["references"] = <"1. Zahorec R. Ratio of Neutrophil to Lymphocyte Counts--Rapid and Simple Parameter of Systemic Inflammation and Stress in Critically Ill.Bratisl Lek Listy. 2001;102(1):5-14. ">
 		["current_contact"] = <"Therese Lindberg, Cambio CDS<therese.lindberg@cambio.se>">
 		["MD5-CAM-1.0.1"] = <"624EE70D27E658FAD03AE56B29928508">
+		["build_uid"] = <"f5ca7c36-ff94-3e1a-9a27-e1b6abd5068d">
 	>
 
 definition
-	EVALUATION[at0000] matches {	-- Neutrophil lymphocyte ratio calculator
+	EVALUATION[at0000] matches {    -- Neutrophil lymphocyte ratio calculator
 		data matches {
-			ITEM_TREE[at0001] matches {	-- Tree
+			ITEM_TREE[at0001] matches {    -- Tree
 				items cardinality matches {0..*; unordered} matches {
-					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Physiologic stress level
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- Physiologic stress level
 						value matches {
 							DV_CODED_TEXT matches {
 								defining_code matches {
 									[local::
-									at0003, 	-- Normal
-									at0004, 	-- Not known
-									at0005, 	-- Mild
-									at0006, 	-- Moderate
-									at0007]	-- Severe
+									at0003,    -- Normal
+									at0004,    -- Not known
+									at0005,    -- Mild
+									at0006,    -- Moderate
+									at0007]    -- Severe
 								}
 							}
 						}
 					}
-					ELEMENT[at0008] occurrences matches {0..1} matches {	-- Neutrophil-Lymphocyte Ratio
+					ELEMENT[at0008] occurrences matches {0..1} matches {    -- Neutrophil-Lymphocyte Ratio
 						value matches {
 							C_DV_QUANTITY <
 								property = <[openehr::380]>
@@ -113,6 +125,46 @@ ontology
 				>
 				["at0008"] = <
 					text = <"Neutrophil-Lymphocyte Ratio">
+					description = <"*">
+				>
+			>
+		>
+		["zh"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Neutrophil lymphocyte ratio calculator (en)">
+					description = <"*Neutrophil-Lymphocyte Ratio (NLR) Calculator calculates neutrophil-lymphocyte ratio. (en)">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"*Physiologic stress level (en)">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"*Normal (en)">
+					description = <"*Neutrophil-lymphocyte ratio; 1-3 (en)">
+				>
+				["at0004"] = <
+					text = <"*Not known (en)">
+					description = <"*Neutrophil-lymphocyte ratio; 4-5 (en)">
+				>
+				["at0005"] = <
+					text = <"*Mild (en)">
+					description = <"*Neutrophil-lymphocyte ratio; 6-8 (en)">
+				>
+				["at0006"] = <
+					text = <"*Moderate (en)">
+					description = <"*Neutrophil-lymphocyte ratio; 9-18 (en)">
+				>
+				["at0007"] = <
+					text = <"*Severe (en)">
+					description = <"*Neutrophil-lymphocyte ratio > 18 (en)">
+				>
+				["at0008"] = <
+					text = <"*中性粒细胞-淋巴细胞比值">
 					description = <"*">
 				>
 			>
