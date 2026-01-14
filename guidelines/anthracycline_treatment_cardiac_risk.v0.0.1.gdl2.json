@@ -1,0 +1,288 @@
+{
+  "uuid" : "",
+  "id" : "anthracycline_treatment_cardiac_risk.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Katja Mariko Wilde",
+      "email" : "katja-wilde@t-online.de",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-01-14"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To stratify baseline cardiac risk in patients prior to anthracycline treatment.",
+        "keywords" : [
+          "anthracycline",
+          "cardiac",
+          "risk",
+          "assessment",
+          "breast",
+          "cancer"
+        ],
+        "use" : "Use to stratify cardiac risk in patients considered for anthracycline-based therapy prior to treatment initiation using a simplified rule-based approach derived from predefined risk factors.\n\nThe guideline evaluates three groups of inputs:\n- Very high risk factors (boolean)\n- High risk factors (boolean)\n- Medium risk factors (ordinal, scored as 0, 1, or 2 points)\n\nRisk stratification is performed as follows:\n- Very high risk: presence of any very high risk factor\n- High risk: presence of any high risk factor or a total medium-risk score ≥ 5 points\n- Intermediate risk: total medium-risk score between 2 and 4 points",
+        "misuse" : "Not to be used for:\n- diagnosis of cardiovascular disease\n- assessment of cardiac function or treatment response\n- prediction of individual cardiac outcomes",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Regionala cancercentrum i samverkan. Nationellt vårdprogram bröstcancer: Kapitel 21 Kardioonkologi. Kunskapsbanken, 2025. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/brostcancer/vardprogram/kardioonkologi/\n",
+      "en" : "A structured guideline used to stratify patients into cardiac risk categories prior to anthracycline treatment, based on predefined clinical, laboratory, and treatment-related risk factors."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.anthracycline_cardiac_risk_factors.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.anthracycline_cardiac_risk_factors.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0037]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0038",
+              "0|local::at0039",
+              "2|local::at0040"
+            ]
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0042]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0043",
+              "0|local::at0045",
+              "2|local::at0044"
+            ]
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0011]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0012]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0014",
+              "1|local::at0015"
+            ]
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0016]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0017",
+              "1|local::at0018"
+            ]
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0019]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0020",
+              "1|local::at0021"
+            ]
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0022]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0023",
+              "1|local::at0024"
+            ]
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0025]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0026",
+              "1|local::at0027"
+            ]
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0028]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0029",
+              "1|local::at0030"
+            ]
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0031]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0032",
+              "1|local::at0033"
+            ]
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0034]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0035",
+              "1|local::at0036"
+            ]
+          }
+        }
+      },
+      "gt0018" : {
+        "id" : "gt0018",
+        "model_id" : "openEHR-EHR-OBSERVATION.anthracycline_cardiac_risk_factors.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.anthracycline_cardiac_risk_factors.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0019" : {
+            "id" : "gt0019",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0046]",
+            "data_type" : "DV_COUNT"
+          }
+        }
+      },
+      "gt0020" : {
+        "id" : "gt0020",
+        "model_id" : "openEHR-EHR-EVALUATION.anthracycline_cardiac_risk_assessment.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.anthracycline_cardiac_risk_assessment.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0021" : {
+            "id" : "gt0021",
+            "path" : "/data[at0003]/items[at0004]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Cardiac risk stratification prior to anthracycline treatment",
+            "description" : "A structured guideline used to stratify patients into cardiac risk categories prior to anthracycline treatment, based on predefined clinical, laboratory, and treatment-related risk factors."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.anthracycline_cardiac_risk_factors.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Heart failure or cardiomyopathy"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Valvular heart disease"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Coronary artery disease"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "Left ventricular ejection fraction"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Age"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Prior anthracycline exposure"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Prior radiotherapy to the heart"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Elevated troponin"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Elevated pro-BNP"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Hypertension > 140/90 or medication"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Chronic renal failure (eGFR < 60)"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Diabetes"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "Prior cytostatics, not anthracyclines"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "Smoker"
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "Obesity BMI > 30"
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "openEHR-EHR-OBSERVATION.anthracycline_cardiac_risk_factors.v0"
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "Total score of moderate risk factors"
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "openEHR-EHR-EVALUATION.anthracycline_cardiac_risk_assessment.v0"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "Risk category"
+          }
+        }
+      }
+    }
+  }
+}
