@@ -1,0 +1,263 @@
+guidelines:
+  "1": GLOBE_Score_Final.v0.0.1
+test_cases:
+  - id: "Case 1: age<45 & lower than threshold"
+    input:
+      "1":
+        gt0003|Age: 40,a
+        gt0005|Platelet count: 250,10*9/l
+        gt0007|Total Serum Bilirubin: 1,mg/dl
+        gt0008|Upper limit of normal Total Serum Bilirubin according to your lab: 1.23,mg/dl
+        gt0010|ALP: 130,U/l
+        gt0013|Upper limit of normal ALP according to your lab: 125,U/l
+        gt0033|Serum Albumin: 4200,gm/dl
+        gt0037|Lower limit of normal Serum Albumin according to your lab: 3500,gm/dl
+    expected_output:
+      "1":
+        gt0015|Albumin/LLN: 1.200,1
+        gt0020|Bilirubin/ULN: 0.813,1
+        gt0022|ALP/ULN: 1.040,1
+        gt0024|GLOBE Score: -0.555,1
+        gt0053|Is the transplant-free survival diminished when comparing with an age- and sex-matched  population?: 2|local::at0019|No|
+        gt0066|Probability of transplant-free survival at 5-year (%): 96.422,1
+        gt0067|Probability of transplant-free survival at 10-year (%): 90.655,%
+  - id: "Case 2: age<45 & higher than threshold"
+    input:
+      "1":
+        gt0003|Age: 40,a
+        gt0005|Platelet count: 250,10*9/l
+        gt0007|Total Serum Bilirubin: 1,mg/dl
+        gt0008|Upper limit of normal Total Serum Bilirubin according to your lab: 1.23,mg/dl
+        gt0010|ALP: 130,U/l
+        gt0013|Upper limit of normal ALP according to your lab: 125,U/l
+        gt0033|Serum Albumin: 4000,gm/dl
+        gt0037|Lower limit of normal Serum Albumin according to your lab: 3500,gm/dl
+    expected_output:
+      "1":
+        gt0015|Albumin/LLN: 1.143,1
+        gt0020|Bilirubin/ULN: 0.813,1
+        gt0022|ALP/ULN: 1.040,1
+        gt0024|GLOBE Score: -0.426,1
+        gt0053|Is the transplant-free survival diminished when comparing with an age- and sex-matched  population?: 0|local::at0018|Yes|
+        gt0066|Probability of transplant-free survival at 5-year (%): 95.939,1
+        gt0067|Probability of transplant-free survival at 10-year (%): 89.438,%
+  - id: "Case 3: 45<=age<52 & lower than threshold"
+    input:
+      "1":
+        gt0003|Age: 46,a
+        gt0005|Platelet count: 220,10*9/l
+        gt0007|Total Serum Bilirubin: 1.1,mg/dl
+        gt0008|Upper limit of normal Total Serum Bilirubin according to your lab: 1.23,mg/dl
+        gt0010|ALP: 130,U/l
+        gt0013|Upper limit of normal ALP according to your lab: 125,U/l
+        gt0033|Serum Albumin: 4000,gm/dl
+        gt0037|Lower limit of normal Serum Albumin according to your lab: 3500,gm/dl
+    expected_output:
+      "1":
+        gt0015|Albumin/LLN: 1.143,1
+        gt0020|Bilirubin/ULN: 0.894,1
+        gt0022|ALP/ULN: 1.040,1
+        gt0024|GLOBE Score: 0.007,1
+        gt0053|Is the transplant-free survival diminished when comparing with an age- and sex-matched  population?: 2|local::at0019|No|
+        gt0066|Probability of transplant-free survival at 5-year (%): 93.808,1
+        gt0067|Probability of transplant-free survival at 10-year (%): 84.189,%
+  - id: "Case 4: 45<=age<52 & higher than threshold"
+    input:
+      "1":
+        gt0003|Age: 46,a
+        gt0005|Platelet count: 215,10*9/l
+        gt0007|Total Serum Bilirubin: 1.1,mg/dl
+        gt0008|Upper limit of normal Total Serum Bilirubin according to your lab: 1.23,mg/dl
+        gt0010|ALP: 130,U/l
+        gt0013|Upper limit of normal ALP according to your lab: 125,U/l
+        gt0033|Serum Albumin: 4000,gm/dl
+        gt0037|Lower limit of normal Serum Albumin according to your lab: 3500,gm/dl
+    expected_output:
+      "1":
+        gt0015|Albumin/LLN: 1.143,1
+        gt0020|Bilirubin/ULN: 0.894,1
+        gt0022|ALP/ULN: 1.040,1
+        gt0024|GLOBE Score: 0.020,1
+        gt0053|Is the transplant-free survival diminished when comparing with an age- and sex-matched  population?: 0|local::at0018|Yes|
+        gt0066|Probability of transplant-free survival at 5-year (%): 93.730,1
+        gt0067|Probability of transplant-free survival at 10-year (%): 83.999,%
+  - id: "Case 5: 52<=age<58 & lower than threshold"
+    input:
+      "1":
+        gt0003|Age: 56,a
+        gt0005|Platelet count: 215,10*9/l
+        gt0007|Total Serum Bilirubin: 1.1,mg/dl
+        gt0008|Upper limit of normal Total Serum Bilirubin according to your lab: 1.23,mg/dl
+        gt0010|ALP: 130,U/l
+        gt0013|Upper limit of normal ALP according to your lab: 125,U/l
+        gt0033|Serum Albumin: 4000,gm/dl
+        gt0037|Lower limit of normal Serum Albumin according to your lab: 3500,gm/dl
+    expected_output:
+      "1":
+        gt0015|Albumin/LLN: 1.143,1
+        gt0020|Bilirubin/ULN: 0.894,1
+        gt0022|ALP/ULN: 1.040,1
+        gt0024|GLOBE Score: 0.464,1
+        gt0053|Is the transplant-free survival diminished when comparing with an age- and sex-matched  population?: 2|local::at0019|No|
+        gt0066|Probability of transplant-free survival at 5-year (%): 90.398,1
+        gt0067|Probability of transplant-free survival at 10-year (%): 76.200,%
+  - id: "Case 6: 52<=age<58 & higher than threshold"
+    input:
+      "1":
+        gt0003|Age: 56,a
+        gt0005|Platelet count: 210,10*9/l
+        gt0007|Total Serum Bilirubin: 1.21,mg/dl
+        gt0008|Upper limit of normal Total Serum Bilirubin according to your lab: 1.23,mg/dl
+        gt0010|ALP: 145,U/l
+        gt0013|Upper limit of normal ALP according to your lab: 125,U/l
+        gt0033|Serum Albumin: 4000,gm/dl
+        gt0037|Lower limit of normal Serum Albumin according to your lab: 3500,gm/dl
+    expected_output:
+      "1":
+        gt0015|Albumin/LLN: 1.143,1
+        gt0020|Bilirubin/ULN: 0.984,1
+        gt0022|ALP/ULN: 1.160,1
+        gt0024|GLOBE Score: 0.604,1
+        gt0053|Is the transplant-free survival diminished when comparing with an age- and sex-matched  population?: 0|local::at0018|Yes|
+        gt0066|Probability of transplant-free survival at 5-year (%): 89.037,1
+        gt0067|Probability of transplant-free survival at 10-year (%): 73.150,%
+  - id: "Case 7: 58<=age<66 & lower than threshold"
+    input:
+      "1":
+        gt0003|Age: 64,a
+        gt0005|Platelet count: 210,10*9/l
+        gt0007|Total Serum Bilirubin: 1.21,mg/dl
+        gt0008|Upper limit of normal Total Serum Bilirubin according to your lab: 1.23,mg/dl
+        gt0010|ALP: 145,U/l
+        gt0013|Upper limit of normal ALP according to your lab: 125,U/l
+        gt0033|Serum Albumin: 4000,gm/dl
+        gt0037|Lower limit of normal Serum Albumin according to your lab: 3500,gm/dl
+    expected_output:
+      "1":
+        gt0015|Albumin/LLN: 1.143,1
+        gt0020|Bilirubin/ULN: 0.984,1
+        gt0022|ALP/ULN: 1.160,1
+        gt0024|GLOBE Score: 0.959,1
+        gt0053|Is the transplant-free survival diminished when comparing with an age- and sex-matched  population?: 2|local::at0019|No|
+        gt0066|Probability of transplant-free survival at 5-year (%): 84.738,1
+        gt0067|Probability of transplant-free survival at 10-year (%): 64.024,%
+  - id: "Case 8: 58<=age<66 & higher than threshold"
+    input:
+      "1":
+        gt0003|Age: 65,a
+        gt0005|Platelet count: 200,10*9/l
+        gt0007|Total Serum Bilirubin: 1.21,mg/dl
+        gt0008|Upper limit of normal Total Serum Bilirubin according to your lab: 1.23,mg/dl
+        gt0010|ALP: 145,U/l
+        gt0013|Upper limit of normal ALP according to your lab: 125,U/l
+        gt0033|Serum Albumin: 4000,gm/dl
+        gt0037|Lower limit of normal Serum Albumin according to your lab: 3500,gm/dl
+    expected_output:
+      "1":
+        gt0015|Albumin/LLN: 1.143,1
+        gt0020|Bilirubin/ULN: 0.984,1
+        gt0022|ALP/ULN: 1.160,1
+        gt0024|GLOBE Score: 1.029,1
+        gt0053|Is the transplant-free survival diminished when comparing with an age- and sex-matched  population?: 0|local::at0018|Yes|
+        gt0066|Probability of transplant-free survival at 5-year (%): 83.727,1
+        gt0067|Probability of transplant-free survival at 10-year (%): 61.987,%
+  - id: "Case 9: age>=66 & lower than threshold"
+    input:
+      "1":
+        gt0003|Age: 70,a
+        gt0005|Platelet count: 190,10*9/l
+        gt0007|Total Serum Bilirubin: 1.4,mg/dl
+        gt0008|Upper limit of normal Total Serum Bilirubin according to your lab: 1.23,mg/dl
+        gt0010|ALP: 150,U/l
+        gt0013|Upper limit of normal ALP according to your lab: 125,U/l
+        gt0033|Serum Albumin: 3800,gm/dl
+        gt0037|Lower limit of normal Serum Albumin according to your lab: 3500,gm/dl
+    expected_output:
+      "1":
+        gt0015|Albumin/LLN: 1.086,1
+        gt0020|Bilirubin/ULN: 1.138,1
+        gt0022|ALP/ULN: 1.200,1
+        gt0024|GLOBE Score: 1.554,1
+        gt0053|Is the transplant-free survival diminished when comparing with an age- and sex-matched  population?: 2|local::at0019|No|
+        gt0066|Probability of transplant-free survival at 5-year (%): 74.064,1
+        gt0067|Probability of transplant-free survival at 10-year (%): 44.555,%
+  - id: "Case 10: age>=66 & higher than threshold"
+    input:
+      "1":
+        gt0003|Age: 74,a
+        gt0005|Platelet count: 170,10*9/l
+        gt0007|Total Serum Bilirubin: 1.4,mg/dl
+        gt0008|Upper limit of normal Total Serum Bilirubin according to your lab: 1.23,mg/dl
+        gt0010|ALP: 150,U/l
+        gt0013|Upper limit of normal ALP according to your lab: 125,U/l
+        gt0033|Serum Albumin: 3800,gm/dl
+        gt0037|Lower limit of normal Serum Albumin according to your lab: 3500,gm/dl
+    expected_output:
+      "1":
+        gt0015|Albumin/LLN: 1.086,1
+        gt0020|Bilirubin/ULN: 1.138,1
+        gt0022|ALP/ULN: 1.200,1
+        gt0024|GLOBE Score: 1.783,1
+        gt0053|Is the transplant-free survival diminished when comparing with an age- and sex-matched  population?: 0|local::at0018|Yes|
+        gt0066|Probability of transplant-free survival at 5-year (%): 68.556,1
+        gt0067|Probability of transplant-free survival at 10-year (%): 36.186,%
+  - id: "Case 11: unit convert 1"
+    input:
+      "1":
+        gt0003|Age: 57,a
+        gt0005|Platelet count: 170,10*9/l
+        gt0007|Total Serum Bilirubin: 24,umol/l
+        gt0008|Upper limit of normal Total Serum Bilirubin according to your lab: 1.23,mg/dl
+        gt0010|ALP: 195,U/l
+        gt0013|Upper limit of normal ALP according to your lab: 125,U/l
+        gt0033|Serum Albumin: 37000,gm/l
+        gt0037|Lower limit of normal Serum Albumin according to your lab: 3500,gm/dl
+    expected_output:
+      "1":
+        gt0015|Albumin/LLN: 1.057,1
+        gt0020|Bilirubin/ULN: 1.141,1
+        gt0022|ALP/ULN: 1.560,1
+        gt0024|GLOBE Score: 1.185,1
+        gt0053|Is the transplant-free survival diminished when comparing with an age- and sex-matched  population?: 0|local::at0018|Yes|
+        gt0066|Probability of transplant-free survival at 5-year (%): 81.253,1
+        gt0067|Probability of transplant-free survival at 10-year (%): 57.179,%
+  - id: "Case 12: unit convert 2"
+    input:
+      "1":
+        gt0003|Age: 57,a
+        gt0005|Platelet count: 170,10*9/l
+        gt0007|Total Serum Bilirubin: 1.4,mg/dl
+        gt0008|Upper limit of normal Total Serum Bilirubin according to your lab: 21,umol/l
+        gt0010|ALP: 195,U/l
+        gt0013|Upper limit of normal ALP according to your lab: 125,U/l
+        gt0033|Serum Albumin: 3700,gm/dl
+        gt0037|Lower limit of normal Serum Albumin according to your lab: 35000,gm/l
+    expected_output:
+      "1":
+        gt0015|Albumin/LLN: 1.057,1
+        gt0020|Bilirubin/ULN: 1.140,1
+        gt0022|ALP/ULN: 1.560,1
+        gt0024|GLOBE Score: 1.184,1
+        gt0053|Is the transplant-free survival diminished when comparing with an age- and sex-matched  population?: 0|local::at0018|Yes|
+        gt0066|Probability of transplant-free survival at 5-year (%): 81.270,1
+        gt0067|Probability of transplant-free survival at 10-year (%): 57.211,%
+  - id: "Case 13: survival rate too small"
+    input:
+      "1":
+        gt0003|Age: 85,a
+        gt0005|Platelet count: 80,10*9/l
+        gt0007|Total Serum Bilirubin: 4.9,mg/dl
+        gt0008|Upper limit of normal Total Serum Bilirubin according to your lab: 1.23,mg/dl
+        gt0010|ALP: 390,U/l
+        gt0013|Upper limit of normal ALP according to your lab: 125,U/l
+        gt0033|Serum Albumin: 2000,gm/dl
+        gt0037|Lower limit of normal Serum Albumin according to your lab: 3500,gm/dl
+    expected_output:
+      "1":
+        gt0015|Albumin/LLN: 0.571,1
+        gt0020|Bilirubin/ULN: 3.984,1
+        gt0022|ALP/ULN: 3.120,1
+        gt0024|GLOBE Score: 5.169,1
+        gt0053|Is the transplant-free survival diminished when comparing with an age- and sex-matched  population?: 0|local::at0018|Yes|
+        gt0066|Probability of transplant-free survival at 5-year (%): 0.000,1
+        gt0067|Probability of transplant-free survival at 10-year (%): 0.000,%
