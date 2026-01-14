@@ -1,0 +1,109 @@
+archetype (adl_version=1.4; uid=f1383a19-6157-469e-b07c-3ff86e2f7149)
+	openEHR-EHR-EVALUATION.anthracycline_cardiac_risk_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-01-14">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter for risk assessment prior to anthracycline treatment.">
+			keywords = <"anthracycline","cardiac","risk","assessment","breast","cancer">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter for risk assessment prior to anthracycline treatment.">
+			misuse = <"Not to be used to record the individual cardiac risk factors.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"d686f583-d7cc-4bb5-89ca-a7f04d762cfe">
+		["references"] = <"Regionala cancercentrum i samverkan. Nationellt vårdprogram bröstcancer: Kapitel 21 Kardioonkologi. Kunskapsbanken, 2025. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/brostcancer/vardprogram/kardioonkologi/">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Cardiac risk assessment before anthracycline treatment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Risk category
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- Very high
+									at0006,    -- High
+									at0007]    -- Intermediate
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Cardiac risk assessment before anthracycline treatment">
+					description = <"A structured clinical assessment that records the overall cardiac risk category prior to anthracycline treatment, based on predefined risk factors.">
+					comment = <"Swedish national breast cancer programme table source, c. 2025.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Risk category">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Very high">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"High">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Intermediate">
+					description = <"">
+				>
+			>
+		>
+	>
