@@ -1,0 +1,83 @@
+guidelines:
+  "1": Adjuvant_chemotherapy_for_colorectal_cancer.v0.0.1
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. TNM stage missing (negative test).
+    input:
+      "1":
+        gt0004|Risk factors: local::at0017|0–1 risk factor|
+    expected_output:
+      "1": {}
+  - id: 03. Risk factors missing (negative test).
+    input:
+      "1":
+        gt0003|TNM stage: local::at0007|T1–2 N0|
+    expected_output:
+      "1": {}
+  - id: 04. Set to Fluoropyrimidine for 6 months.
+    input:
+      "1":
+        gt0003|TNM stage: local::at0009|T3 N0, pMMR/MSS|
+        gt0004|Risk factors: local::at0018|≥ 2 risk factors|
+    expected_output:
+      "1":
+        gt0006|Adjuvant kemoterapi: local::at0007|Fluoropyrimidine for 6 months|
+  - id: 05. Set to CAPOX for 3 months or FOLFOX for 3 months.
+    input:
+      "1":
+        gt0003|TNM stage: local::at0011|T4 N0, pMMR/MSS|
+        gt0004|Risk factors: local::at0018|≥ 2 risk factors|
+    expected_output:
+      "1":
+        gt0006|Adjuvant kemoterapi: local::at0008|CAPOX for 3 months or FOLFOX for 3 months|
+  - id: 06.  Set to CAPOX for 3 months or FOLFOX for 3 months with observation.
+    input:
+      "1":
+        gt0003|TNM stage: local::at0010|T4 N0, dMMR/MSI‑high|
+        gt0004|Risk factors: local::at0018|≥ 2 risk factors|
+    expected_output:
+      "1":
+        gt0006|Adjuvant kemoterapi: local::at0008|CAPOX for 3 months or FOLFOX for 3 months|
+        gt0007|Observation: local::at0011|If combination therapy is not used for any
+          reason, fluoropyrimidine monotherapy is used for 6 months, except in
+          dMMR/MSI-high stage II–III disease, where combination therapy is
+          preferred.|
+  - id: 07. Set to CAPOX for 3 months or FOLFOX for 6 months.
+    input:
+      "1":
+        gt0003|TNM stage: local::at0015|Tx N2, dMMR/MSI‑high and pMMR/MSS|
+        gt0004|Risk factors: local::at0017|0–1 risk factor|
+    expected_output:
+      "1":
+        gt0006|Adjuvant kemoterapi: local::at0009|CAPOX for 3 months or FOLFOX for 6 months|
+  - id: 08. Set to CAPOX for 3 months or FOLFOX for 6 months with observation.
+    input:
+      "1":
+        gt0003|TNM stage: local::at0013|T3 N1, dMMR/MSI‑high and pMMR/MSS|
+        gt0004|Risk factors: local::at0018|≥ 2 risk factors|
+    expected_output:
+      "1":
+        gt0006|Adjuvant kemoterapi: local::at0009|CAPOX for 3 months or FOLFOX for 6 months|
+        gt0007|Observation: local::at0012|Oxaliplatin should be discontinued after 6
+          months to avoid persistent neuropathy. Treatment should then continue
+          with fluoropyrimidine monotherapy.|
+  - id: 09. Set to CAPOX for 3-6 months or FOLFOX for 6 months.
+    input:
+      "1":
+        gt0003|TNM stage: local::at0015|Tx N2, dMMR/MSI‑high and pMMR/MSS|
+        gt0004|Risk factors: local::at0018|≥ 2 risk factors|
+    expected_output:
+      "1":
+        gt0006|Adjuvant kemoterapi: local::at0010|CAPOX for 3-6 months or FOLFOX for 6 months|
+  - id: 10. Set to Abstain.
+    input:
+      "1":
+        gt0003|TNM stage: local::at0007|T1–2 N0|
+        gt0004|Risk factors: local::at0017|0–1 risk factor|
+    expected_output:
+      "1":
+        gt0006|Adjuvant kemoterapi: local::at0006|Abstain|
