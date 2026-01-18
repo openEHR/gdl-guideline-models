@@ -1,0 +1,244 @@
+archetype (adl_version=1.4; uid=302e4b6f-dd01-4485-9949-36df938c352d)
+	openEHR-EHR-OBSERVATION.bwh_t_stage.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-01-18">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and the resulting BWH T stage for cutaneous squamous cell carcinoma without metastatic disease.">
+			keywords = <"bwh","brigham","womens","hospital","cutaneous","squamous","cell","carcinoma">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and the resulting BWH T stage for cutaneous squamous cell carcinoma without metastatic disease.">
+			misuse = <"Not to be used for TNM staging of cutaneous squamous cell carcinoma.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Regionala cancercentrum i samverkan. Nationellt vårdprogram skivepitelcancer i huden: Kapitel 8 Kategorisering av tumören. Kunskapsbanken, 2021. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/skivepitelcancer-i-huden/vardprogram/kategorisering-av-tumoren/
+Karia PS, Jambusaria-Pahlajani A, Harrington DP, Murphy GF, Qureshi AA, Schmults CD. Evaluation of American Joint Committee on Cancer, International Union Against Cancer, and Brigham and Women's Hospital tumor staging for cutaneous squamous cell carcinoma. J Clin Oncol. 2014 Feb 1;32(4):327-34. doi: 10.1200/JCO.2012.48.5326. Epub 2013 Dec 23. PMID: 24366933; PMCID: PMC3897257.">
+		["build_uid"] = <"d58377da-c21b-4c61-beac-7fe66fe20513">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Brigham and Women’s Hospital (BWH) T-stage classification
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Clinical tumour diameter ≥ 2 cm
+										value matches {
+											0|[local::at0007],
+											1|[local::at0009]
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Invasion beyond subcutaneous fat
+										value matches {
+											0|[local::at0011],
+											1|[local::at0012]
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- Poor differentiation present
+										value matches {
+											0|[local::at0014],
+											1|[local::at0015]
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Perineural invasion of nerve ≥ 0.1 mm
+										value matches {
+											0|[local::at0017],
+											1|[local::at0018]
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {    -- Bone invasion
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {    -- Risk factor count
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- BWH T stage
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0022,    -- BWH-T1
+													at0023,    -- BWH-T2a
+													at0024,    -- BWH-T2b
+													at0025]    -- BWH-T3
+												}
+											}
+										}
+									}
+									ELEMENT[at0026] occurrences matches {0..1} matches {    -- Postoperative risk group
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0027,    -- Low risk
+													at0028]    -- High risk
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Brigham and Women’s Hospital (BWH) T-stage classification">
+					description = <"A structured classification used to stage the primary cutaneous squamous cell carcinoma (cSCC) tumour in the absence of metastatic disease, based on defined histopathological and clinical high-risk features.">
+					comment = <"Original version, c 2014">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Clinical tumour diameter ≥ 2 cm">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Invasion beyond subcutaneous fat">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Poor differentiation present">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Perineural invasion of nerve ≥ 0.1 mm">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Bone invasion">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Risk factor count">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"BWH T stage">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"BWH-T1">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"BWH-T2a">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"BWH-T2b">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"BWH-T3">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Postoperative risk group">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Low risk">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"High risk">
+					description = <"">
+				>
+			>
+		>
+	>
