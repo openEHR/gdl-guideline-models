@@ -1,0 +1,181 @@
+archetype (adl_version=1.4; uid=1b5c56fa-d631-4920-830a-2fcf7a872208)
+	openEHR-EHR-OBSERVATION.recommendations_for_adjuvant_chemotherapy.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-01-15">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the recommended adjuvant chemotherapy regimen and duration.">
+			keywords = <"colon, cancer, adjuvant, chemotherapy, CAPOX, FOLFOX, 5-FU, MSI, MMR", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the treatment recommendations regarding adjuvant therapy and the specific regimen based on TNM Stage and risk factors.">
+			misuse = <"Not to be used for other types of cancer. ">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Osterman E, Glimelius B. Recurrence Risk After Up-to-Date Colon Cancer Staging, Surgery, and Pathology: Analysis of the Entire Swedish Population. Dis Colon Rectum. 2018 Sep;61(9):1016-1025. doi: 10.1097/DCR.0000000000001158. Erratum in: Dis Colon Rectum. 2020 Mar;63(3):e36-e37. doi: 10.1097/DCR.0000000000001618. PMID: 30086050.
+
+Nationellt vårdprogram tjock- och ändtarmscancer [Internet]. Regionala cancercentrum i samverkan; 2023 [cited 2026 Jan 15]. 13.5 Adjuvant cytostatikabehandling. Tabell 17. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/tjock-och-andtarmscancer/vardprogram/adjuvant-cytostatikabehandling/">
+		["build_uid"] = <"c08e2ab4-458a-3fda-b108-826faa9b3018">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Recommendations for adjuvant chemotherapy for colon cancer
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- TNM stage
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- T1–2 N0
+													at0008,    -- T3 N0, dMMR/MSI‑high
+													at0009,    -- T3 N0, pMMR/MSS
+													at0010,    -- T4 N0, dMMR/MSI‑high
+													at0011,    -- T4 N0, pMMR/MSS
+													at0012,    -- T1–2 N1, dMMR/MSI‑high and pMMR/MSS
+													at0013,    -- T3 N1, dMMR/MSI‑high and pMMR/MSS
+													at0014,    -- T4 N1, dMMR/MSI‑high and pMMR/MSS
+													at0015]    -- Tx N2, dMMR/MSI‑high and pMMR/MSS
+												}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Risk factors
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0017,    -- 0–1 risk factor
+													at0018]    -- ≥ 2 risk factors
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Recommendations for adjuvant chemotherapy for colon cancer">
+					description = <"Recommendations for adjuvant chemotherapy after radical surgery for localized colon cancer.">
+					comment = <"Original version, c 2018">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"TNM stage">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"T1–2 N0">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"T3 N0, dMMR/MSI‑high">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"T3 N0, pMMR/MSS">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"T4 N0, dMMR/MSI‑high">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"T4 N0, pMMR/MSS">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"T1–2 N1, dMMR/MSI‑high and pMMR/MSS">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"T3 N1, dMMR/MSI‑high and pMMR/MSS">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"T4 N1, dMMR/MSI‑high and pMMR/MSS">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Tx N2, dMMR/MSI‑high and pMMR/MSS">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Risk factors">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"0–1 risk factor">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"≥ 2 risk factors">
+					description = <"">
+				>
+			>
+		>
+	>
