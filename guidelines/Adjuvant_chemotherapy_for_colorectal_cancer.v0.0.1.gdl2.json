@@ -1,0 +1,239 @@
+{
+  "uuid" : "",
+  "id" : "Adjuvant_chemotherapy_for_colorectal_cancer.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Kevin Arjona",
+      "email" : "kevin.arjona@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-01-16"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To determine the appropriate adjuvant regimen based on TNM stage and risk factors.",
+        "keywords" : [
+          "colon",
+          "cancer",
+          "adjuvant",
+          "chemotherapy",
+          "CAPOX",
+          "FOLFOX",
+          "5-FU",
+          "MSI",
+          "MMR",
+          "colorectal"
+        ],
+        "use" : "Use to evaluate patients post-radical surgery.",
+        "misuse" : "Not to be used for other types of cancer.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Osterman E, Glimelius B. Recurrence Risk After Up-to-Date Colon Cancer Staging, Surgery, and Pathology: Analysis of the Entire Swedish Population. Dis Colon Rectum. 2018 Sep;61(9):1016-1025. doi: 10.1097/DCR.0000000000001158. Erratum in: Dis Colon Rectum. 2020 Mar;63(3):e36-e37. doi: 10.1097/DCR.0000000000001618. PMID: 30086050.\n\nNationellt vårdprogram tjock- och ändtarmscancer [Internet]. Regionala cancercentrum i samverkan; 2023 [cited 2026 Jan 15]. 13.5 Adjuvant cytostatikabehandling. Tabell 17. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/tjock-och-andtarmscancer/vardprogram/adjuvant-cytostatikabehandling/",
+      "en" : "Recommentations for adjuvant chemotherapy for colorectal cancer after radical surgery"
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.recommendations_for_adjuvant_chemotherapy.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.recommendations_for_adjuvant_chemotherapy.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0007",
+              "local::at0008",
+              "local::at0009",
+              "local::at0010",
+              "local::at0011",
+              "local::at0012",
+              "local::at0013",
+              "local::at0014",
+              "local::at0015"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0016]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0017",
+              "local::at0018"
+            ]
+          }
+        }
+      },
+      "gt0005" : {
+        "id" : "gt0005",
+        "model_id" : "openEHR-EHR-EVALUATION.recommendations_for_adjuvant_chemotherapy_for_colon_cancer_assessment.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.recommendations_for_adjuvant_chemotherapy_for_colon_cancer_assessment.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0003]/items[at0004]",
+            "data_type" : "DV_CODED_TEXT"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0003]/items[at0005]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      }
+    },
+    "pre_conditions" : [
+      "$gt0003|TNM stage|!=null",
+      "$gt0004|Risk factors|!=null"
+    ],
+    "default_actions" : [
+      "$gt0006|Adjuvant kemoterapi|=local::at0006|Abstain|"
+    ],
+    "rules" : {
+      "gt0008" : {
+        "id" : "gt0008",
+        "priority" : 6,
+        "when" : [
+          "($gt0003|TNM stage|==local::at0011|T4 N0, pMMR/MSS|&&$gt0004|Risk factors|==local::at0017|0–1 risk factor|)||($gt0003|TNM stage|==local::at0009|T3 N0, pMMR/MSS|&&$gt0004|Risk factors|==local::at0018|≥ 2 risk factors|)"
+        ],
+        "then" : [
+          "$gt0006|Adjuvant kemoterapi|=local::at0007|Fluoropyrimidine for 6 months|"
+        ]
+      },
+      "gt0009" : {
+        "id" : "gt0009",
+        "priority" : 5,
+        "when" : [
+          "(($gt0003|TNM stage|==local::at0012|T1–2 N1, dMMR/MSI‑high and pMMR/MSS|||$gt0003|TNM stage|==local::at0013|T3 N1, dMMR/MSI‑high and pMMR/MSS|)&&$gt0004|Risk factors|==local::at0017|0–1 risk factor|)||($gt0003|TNM stage|==local::at0011|T4 N0, pMMR/MSS|&&$gt0004|Risk factors|==local::at0018|≥ 2 risk factors|)"
+        ],
+        "then" : [
+          "$gt0006|Adjuvant kemoterapi|=local::at0008|CAPOX for 3 months or FOLFOX for 3 months|"
+        ]
+      },
+      "gt0011" : {
+        "id" : "gt0011",
+        "priority" : 4,
+        "when" : [
+          "$gt0003|TNM stage|==local::at0010|T4 N0, dMMR/MSI‑high|",
+          "$gt0004|Risk factors|==local::at0018|≥ 2 risk factors|"
+        ],
+        "then" : [
+          "$gt0006|Adjuvant kemoterapi|=local::at0008|CAPOX for 3 months or FOLFOX for 3 months|",
+          "$gt0007|Observation|=local::at0011|If combination therapy is not used for any reason, fluoropyrimidine monotherapy is used for 6 months, except in dMMR/MSI-high stage II–III disease, where combination therapy is preferred.|"
+        ]
+      },
+      "gt0010" : {
+        "id" : "gt0010",
+        "priority" : 3,
+        "when" : [
+          "(($gt0003|TNM stage|==local::at0014|T4 N1, dMMR/MSI‑high and pMMR/MSS|||$gt0003|TNM stage|==local::at0015|Tx N2, dMMR/MSI‑high and pMMR/MSS|)&&$gt0004|Risk factors|==local::at0017|0–1 risk factor|)||($gt0003|TNM stage|==local::at0012|T1–2 N1, dMMR/MSI‑high and pMMR/MSS|&&$gt0004|Risk factors|==local::at0018|≥ 2 risk factors|)"
+        ],
+        "then" : [
+          "$gt0006|Adjuvant kemoterapi|=local::at0009|CAPOX for 3 months or FOLFOX for 6 months|"
+        ]
+      },
+      "gt0012" : {
+        "id" : "gt0012",
+        "priority" : 2,
+        "when" : [
+          "$gt0003|TNM stage|==local::at0013|T3 N1, dMMR/MSI‑high and pMMR/MSS|",
+          "$gt0004|Risk factors|==local::at0018|≥ 2 risk factors|"
+        ],
+        "then" : [
+          "$gt0006|Adjuvant kemoterapi|=local::at0009|CAPOX for 3 months or FOLFOX for 6 months|",
+          "$gt0007|Observation|=local::at0012|Oxaliplatin should be discontinued after 6 months to avoid persistent neuropathy. Treatment should then continue with fluoropyrimidine monotherapy.|"
+        ]
+      },
+      "gt0013" : {
+        "id" : "gt0013",
+        "priority" : 1,
+        "when" : [
+          "($gt0003|TNM stage|==local::at0014|T4 N1, dMMR/MSI‑high and pMMR/MSS|||$gt0003|TNM stage|==local::at0015|Tx N2, dMMR/MSI‑high and pMMR/MSS|local::at0015|Tx N2, dMMR/MSI‑high and pMMR/MSS|)&&$gt0004|Risk factors|==local::at0018|≥ 2 risk factors|"
+        ],
+        "then" : [
+          "$gt0006|Adjuvant kemoterapi|=local::at0010|CAPOX for 3-6 months or FOLFOX for 6 months|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Adjuvant chemotherapy for colorectal cancer",
+            "description" : "Recommendations for adjuvant chemotherapy for colon cancer after radical surgery."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.recommendations_for_adjuvant_chemotherapy.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "TNM stage"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Risk factors"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "openEHR-EHR-EVALUATION.recommendations_for_adjuvant_chemotherapy_for_colon_cancer_assessment.v0"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "Adjuvant kemoterapi"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Observation"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Set to Fluoropyrimidine for 6 months.",
+            "description" : "adjuvant kemotherapy recommendation: Fluoropyrimidine for 6 months."
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Set to CAPOX for 3 months or FOLFOX for 3 months.",
+            "description" : "adjuvant kemotherapy recommendation: CAPOX for 3 months or FOLFOX for 3 months."
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Set to CAPOX for 3 months or FOLFOX for 6 months.",
+            "description" : "adjuvant kemotherapy recommendation: CAPOX for 3 months or FOLFOX for 6 months."
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : " Set to CAPOX for 3 months or FOLFOX for 3 months with observation.",
+            "description" : "adjuvant kemotherapy recommendation: CAPOX for 3 months or FOLFOX for 3 months."
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Set to CAPOX for 3 months or FOLFOX for 6 months with observation.",
+            "description" : "adjuvant kemotherapy recommendation: CAPOX for 3 months or FOLFOX for 6 months."
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Set to CAPOX for 3-6 months or FOLFOX for 6 months.",
+            "description" : "adjuvant kemotherapy recommendation: CAPOX for 3 months or FOLFOX for 6 months."
+          }
+        }
+      }
+    }
+  }
+}
