@@ -1,0 +1,168 @@
+archetype (adl_version=1.4; uid=fa63aaf7-e9c9-47cb-94fd-c928397e556f)
+	openEHR-EHR-OBSERVATION.colorectal_cancer_follow_up.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-01-15">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the recommended surveillance activities at specific time intervals post-operation.">
+			keywords = <"colorectal, cancer, surveillance, follow-up, CEA, CT, recurrence", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to determine the content of the check-ups for patients operated for Stage II or III colorectal cancer or appendix neoplasia.">
+			misuse = <"Not to be used for Stage I patients. Not to be used for patients where comorbidities contraindicate treatment of recurrence.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Cervantes A, Adam R, Roselló S, Arnold D, Normanno N, Taïeb J, Seligmann J, De Baere T, Osterlund P, Yoshino T, Martinelli E; ESMO Guidelines Committee. Electronic address: clinicalguidelines@esmo.org. Metastatic colorectal cancer: ESMO Clinical Practice Guideline for diagnosis, treatment and follow-up. Ann Oncol. 2023 Jan;34(1):10-32. doi: 10.1016/j.annonc.2022.10.003. Epub 2022 Oct 25. PMID: 36307056.
+
+Yoshino T, Cervantes A, Bando H, Martinelli E, Oki E, Xu RH, Mulansari NA, Govind Babu K, Lee MA, Tan CK, Cornelio G, Chong DQ, Chen LT, Tanasanvimon S, Prasongsook N, Yeh KH, Chua C, Sacdalan MD, Sow Jenson WJ, Kim ST, Chacko RT, Syaiful RA, Zhang SZ, Curigliano G, Mishima S, Nakamura Y, Ebi H, Sunakawa Y, Takahashi M, Baba E, Peters S, Ishioka C, Pentheroudakis G. Pan-Asian adapted ESMO Clinical Practice Guidelines for the diagnosis, treatment and follow-up of patients with metastatic colorectal cancer. ESMO Open. 2023 Jun;8(3):101558. doi: 10.1016/j.esmoop.2023.101558. Epub 2023 May 24. PMID: 37236086; PMCID: PMC10220270.
+
+Nationellt vårdprogram tjock- och ändtarmscancer [Internet]. Regionala cancercentrum i samverkan; 2023 [cited 2026 Jan 15]. 17.2.3 Schema för uppföljning. Tabell 19. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/tjock-och-andtarmscancer/vardprogram/uppfoljning/">
+		["build_uid"] = <"b7b49cf1-b8c6-3770-9ba4-0b2e238d1bfa">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Colorectal cancer follow up recommendations
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Follow up and interval
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- CT thorax–abdomen and CEA at 6 months and at 3 years.
+													at0008,    -- CT thorax–abdomen and CEA at 6, 12, 18, and 24 months, then annually for years 3–5.
+													at0009,    -- No follow-up necessary.
+													at0010]    -- CT thorax–abdomen and tumor markers (CEA, CA 125, CA 19-9, CA 15-3) at 6, 12, 18, and 24 months, then annually for years 3–5.
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Procedure
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0015,    -- Primary surgery stage II–III.
+													at0016,    -- After metastatic surgery of Liver, lung or peritoneum.
+													at0017,    -- Appendiceal neoplasia (LAMN/HAMN) non-perforated without mucus in the abdomen.
+													at0018]    -- Appendiceal neoplasia (LAMN/HAMN) with epithelial cells in free mucus.
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Colorectal cancer follow up recommendations">
+					description = <"Recommended surveillance schedule for detecting recurrence after curative surgery for colorectal cancer (Stage II-III).">
+					comment = <"Original version, c 2023">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Follow up and interval">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"CT thorax–abdomen and CEA at 6 months and at 3 years.">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"CT thorax–abdomen and CEA at 6, 12, 18, and 24 months, then annually for years 3–5.">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"No follow-up necessary.">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"CT thorax–abdomen and tumor markers (CEA, CA 125, CA 19-9, CA 15-3) at 6, 12, 18, and 24 months, then annually for years 3–5.">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Procedure">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Primary surgery stage II–III.">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"After metastatic surgery of Liver, lung or peritoneum.">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Appendiceal neoplasia (LAMN/HAMN) non-perforated without mucus in the abdomen.">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Appendiceal neoplasia (LAMN/HAMN) with epithelial cells in free mucus.">
+					description = <"">
+				>
+			>
+		>
+	>
