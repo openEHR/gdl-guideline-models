@@ -1,0 +1,177 @@
+{
+  "uuid" : "",
+  "id" : "Colorectal_cancer_postoperative_follow_up_recommendations.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Kevin Arjona",
+      "email" : "kevin.arjona@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-01-16"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To provide the recommended surveillance activities at specific time intervals post-operation in patients with diagnosed colorectal cancer.",
+        "keywords" : [
+          "cancer",
+          "colon",
+          "colorectal",
+          "surveillance",
+          "follow-up",
+          "CEA",
+          "CT",
+          "recurrence",
+          "CA125",
+          "CA19-9",
+          "CA15-3",
+          "tumor",
+          "markers"
+        ],
+        "use" : "Use to determine the surveillance schedule for patients operated for Stage II or III colorectal cancer or appendix neoplasia.",
+        "misuse" : "Not to be used for Stage I patients. \n\nNot to be used for patients where comorbidities contraindicate treatment of recurrence.\n\nNot to be used in other types of cancer.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Cervantes A, Adam R, Roselló S, Arnold D, Normanno N, Taïeb J, Seligmann J, De Baere T, Osterlund P, Yoshino T, Martinelli E; ESMO Guidelines Committee. Electronic address: clinicalguidelines@esmo.org. Metastatic colorectal cancer: ESMO Clinical Practice Guideline for diagnosis, treatment and follow-up. Ann Oncol. 2023 Jan;34(1):10-32. doi: 10.1016/j.annonc.2022.10.003. Epub 2022 Oct 25. PMID: 36307056.\n\nYoshino T, Cervantes A, Bando H, Martinelli E, Oki E, Xu RH, Mulansari NA, Govind Babu K, Lee MA, Tan CK, Cornelio G, Chong DQ, Chen LT, Tanasanvimon S, Prasongsook N, Yeh KH, Chua C, Sacdalan MD, Sow Jenson WJ, Kim ST, Chacko RT, Syaiful RA, Zhang SZ, Curigliano G, Mishima S, Nakamura Y, Ebi H, Sunakawa Y, Takahashi M, Baba E, Peters S, Ishioka C, Pentheroudakis G. Pan-Asian adapted ESMO Clinical Practice Guidelines for the diagnosis, treatment and follow-up of patients with metastatic colorectal cancer. ESMO Open. 2023 Jun;8(3):101558. doi: 10.1016/j.esmoop.2023.101558. Epub 2023 May 24. PMID: 37236086; PMCID: PMC10220270.\n\nNationellt vårdprogram tjock- och ändtarmscancer [Internet]. Regionala cancercentrum i samverkan; 2023 [cited 2026 Jan 15]. 17.2.3 Schema för uppföljning. Tabell 19. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/tjock-och-andtarmscancer/vardprogram/uppfoljning/",
+      "en" : "Recommended surveillance schedule for detecting recurrence after curative surgery for colorectal cancer (Stage II-III)."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.colorectal_cancer_follow_up.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.colorectal_cancer_follow_up.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0014]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0015",
+              "local::at0016",
+              "local::at0017",
+              "local::at0018"
+            ]
+          }
+        }
+      },
+      "gt0004" : {
+        "id" : "gt0004",
+        "model_id" : "openEHR-EHR-OBSERVATION.colorectal_cancer_follow_up.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.colorectal_cancer_follow_up.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      }
+    },
+    "pre_conditions" : [
+      "$gt0003|Procedure|!=null"
+    ],
+    "rules" : {
+      "gt0006" : {
+        "id" : "gt0006",
+        "priority" : 4,
+        "when" : [
+          "$gt0003|Procedure|==local::at0015|Primary surgery stage II–III.|"
+        ],
+        "then" : [
+          "$gt0005|Follow up and interval|=local::at0007|CT thorax–abdomen and CEA at 6 months and at 3 years.|"
+        ]
+      },
+      "gt0007" : {
+        "id" : "gt0007",
+        "priority" : 3,
+        "when" : [
+          "$gt0003|Procedure|==local::at0016|After metastatic surgery of Liver, lung or peritoneum.|"
+        ],
+        "then" : [
+          "$gt0005|Follow up and interval|=local::at0008|CT thorax–abdomen and CEA at 6, 12, 18, and 24 months, then annually for years 3–5.|"
+        ]
+      },
+      "gt0008" : {
+        "id" : "gt0008",
+        "priority" : 2,
+        "when" : [
+          "$gt0003|Procedure|==local::at0017|Appendiceal neoplasia (LAMN/HAMN) non-perforated without mucus in the abdomen.|"
+        ],
+        "then" : [
+          "$gt0005|Follow up and interval|=local::at0009|No follow-up necessary.|"
+        ]
+      },
+      "gt0009" : {
+        "id" : "gt0009",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|Procedure|==local::at0018|Appendiceal neoplasia (LAMN/HAMN) with epithelial cells in free mucus.|"
+        ],
+        "then" : [
+          "$gt0005|Follow up and interval|=local::at0010|CT thorax–abdomen and tumor markers (CEA, CA 125, CA 19-9, CA 15-3) at 6, 12, 18, and 24 months, then annually for years 3–5.|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Colorectal cancer postoperative follow-up recommendations",
+            "description" : " Recommended surveillance schedule for detecting recurrence after curative surgery for colorectal cancer (Stage II-III)."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.colorectal_cancer_follow_up.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Procedure"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "openEHR-EHR-OBSERVATION.colorectal_cancer_follow_up.v0"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Follow up and interval"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "Set to CT thorax-abdomen + CEA 6m, 3y.",
+            "description" : ""
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Set to CT thorax-abdomen + CEA.",
+            "description" : ""
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Set to No follow-up necessary.",
+            "description" : ""
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Set to CT thorax-abdomen + tumor markers.",
+            "description" : ""
+          }
+        }
+      }
+    }
+  }
+}
