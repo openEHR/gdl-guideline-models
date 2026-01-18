@@ -1,0 +1,145 @@
+archetype (adl_version=1.4; uid=b7b51bb5-fece-4fff-b869-7692dd9fd03a)
+	openEHR-EHR-EVALUATION.recommendations_for_adjuvant_chemotherapy_for_colon_cancer_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-01-15">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the recommended adjuvant chemotherapy regimen and duration.">
+			keywords = <"colon, cancer, adjuvant, chemotherapy, CAPOX, FOLFOX, 5-FU, MSI, MMR, assessment", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the treatment recommendations regarding adjuvant therapy and the specific regimen based on TNM Stage and risk factors.">
+			misuse = <"Not to be used for other types of cancer. ">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Osterman E, Glimelius B. Recurrence Risk After Up-to-Date Colon Cancer Staging, Surgery, and Pathology: Analysis of the Entire Swedish Population. Dis Colon Rectum. 2018 Sep;61(9):1016-1025. doi: 10.1097/DCR.0000000000001158. Erratum in: Dis Colon Rectum. 2020 Mar;63(3):e36-e37. doi: 10.1097/DCR.0000000000001618. PMID: 30086050.
+
+Nationellt vårdprogram tjock- och ändtarmscancer [Internet]. Regionala cancercentrum i samverkan; 2023 [cited 2026 Jan 15]. 13.5 Adjuvant cytostatikabehandling. Tabell 17. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/tjock-och-andtarmscancer/vardprogram/adjuvant-cytostatikabehandling/">
+		["build_uid"] = <"ec2901db-6702-3a95-92b6-cd7cd777ba73">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Recommendations for adjuvant chemotherapy for colon cancer assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Adjuvant kemoterapi
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0006,    -- Abstain
+									at0007,    -- Fluoropyrimidine for 6 months
+									at0008,    -- CAPOX for 3 months or FOLFOX for 3 months
+									at0009,    -- CAPOX for 3 months or FOLFOX for 6 months
+									at0010]    -- CAPOX for 3-6 months or FOLFOX for 6 months
+								}
+							}
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {    -- Observation
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0011,    -- If combination therapy is not used for any reason, fluoropyrimidine monotherapy is used for 6 months, except in dMMR/MSI-high stage II–III disease, where combination therapy is preferred.
+									at0012]    -- Oxaliplatin should be discontinued after 6 months to avoid persistent neuropathy. Treatment should then continue with fluoropyrimidine monotherapy.
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Recommendations for adjuvant chemotherapy for colon cancer assessment">
+					description = <"Assessment of recommendations for adjuvant chemotherapy for colon cancer after radical surgery for localized colon cancer.">
+					comment = <"Original version, c 2018">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Adjuvant kemoterapi">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Observation">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Abstain">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Fluoropyrimidine for 6 months">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"CAPOX for 3 months or FOLFOX for 3 months">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"CAPOX for 3 months or FOLFOX for 6 months">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"CAPOX for 3-6 months or FOLFOX for 6 months">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"If combination therapy is not used for any reason, fluoropyrimidine monotherapy is used for 6 months, except in dMMR/MSI-high stage II–III disease, where combination therapy is preferred.">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Oxaliplatin should be discontinued after 6 months to avoid persistent neuropathy. Treatment should then continue with fluoropyrimidine monotherapy.">
+					description = <"">
+				>
+			>
+		>
+	>
