@@ -1,0 +1,41 @@
+guidelines:
+  "1": Colorectal_cancer_postoperative_follow_up_recommendations.v0.0.1
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Set to CT thorax-abdomen + CEA 6m, 3y.
+    input:
+      "1":
+        gt0003|Procedure: local::at0015|Primary surgery stage II–III.|
+    expected_output:
+      "1":
+        gt0005|Follow up and interval: local::at0007|CT thorax–abdomen and CEA at 6 months and at 3 years.|
+  - id: 03. Set to CT thorax-abdomen + CEA.
+    input:
+      "1":
+        gt0003|Procedure: local::at0016|After metastatic surgery of Liver, lung or peritoneum.|
+    expected_output:
+      "1":
+        gt0005|Follow up and interval: local::at0008|CT thorax–abdomen and CEA at 6, 12,
+          18, and 24 months, then annually for years 3–5.|
+  - id: 04. Set to No follow-up necessary.
+    input:
+      "1":
+        gt0003|Procedure: local::at0017|Appendiceal neoplasia (LAMN/HAMN) non-perforated
+          without mucus in the abdomen.|
+    expected_output:
+      "1":
+        gt0005|Follow up and interval: local::at0009|No follow-up necessary.|
+  - id: 05. Set to CT thorax-abdomen + tumor markers.
+    input:
+      "1":
+        gt0003|Procedure: local::at0018|Appendiceal neoplasia (LAMN/HAMN) with
+          epithelial cells in free mucus.|
+    expected_output:
+      "1":
+        gt0005|Follow up and interval: local::at0010|CT thorax–abdomen and tumor markers
+          (CEA, CA 125, CA 19-9, CA 15-3) at 6, 12, 18, and 24 months, then
+          annually for years 3–5.|
