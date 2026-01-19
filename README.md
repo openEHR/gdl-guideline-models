@@ -11,22 +11,22 @@ We've gathered all of the available applications in one place and organized them
 
 If you would like to test an app, simply click on "ENG" to access the English version, and "SWE" for the Swedish version. To view a detailed description of the app and its components, click on the application name.
 
-### *Published Apps: 700*
+### *Published Apps: 705*
 
 ----------
 
 ### Latest added
 
-1. International Consensus Classification (ICC) Diagnostic Criteria for Primary Myelofibrosis (PMF) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ICC_Primary_Myelofibrosis_Diagnostic_Criteria/0.1.0?language=en))
-2. Rome IV Diagnostic Criteria for Rumination Syndrome - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rome_IV_Diagnostic_Criteria_for_Rumination_Syndrome/0.1.0?language=en))
-3. LV Mass Index Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Left_ventricle_Mass_Index_LVMI/0.1.0?language=en))
-4. Mutation-Enhanced International Prognostic Score System (MIPSS70/MIPSS70+) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MIPSS70/0.1.0?language=en))
-5. Wisconsin Criteria - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Wisconsin_criteria/0.1.0?language=en))
-6. Ottawa Ankle Rule - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Ottawa_Ankle_Rule/0.1.0?language=en))
-7. Ottawa Knee Rule - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Ottawa_Knee_Rule/0.1.0?language=en))
-8. Rome IV Diagnostic Criteria for Biliary Pain - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rome_IV_Diagnostic_Criteria_for_Biliary_Pain_BP/0.1.0?language=en))
-9. World Health Organization (WHO) Diagnostic Criteria for Polycythemia Vera - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/WHO_Diagnostic_Criteria_for_Polycythemia_Vera/0.1.0?language=en))
-10. Neck Disability Index (NDI) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/NDI_calculation/0.1.0?language=en))
+1. GLOBE score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/GLOBE_Score_Final/0.0.1?language=en))
+2. GUSS Test - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/THE_GUSS_TEST/0.1?language=en)) 
+3. METS IR - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/METS_IR/2?language=en)) 
+4. NICE NG143 Traffic Light - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/NICE_NG143_Traffic_Light_Assessment/0?language=en))
+5. SCORE2 - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/SCORE2/0.1?language=en))
+6. International Consensus Classification (ICC) Diagnostic Criteria for Primary Myelofibrosis (PMF) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ICC_Primary_Myelofibrosis_Diagnostic_Criteria/0.1.0?language=en))
+7. Rome IV Diagnostic Criteria for Rumination Syndrome - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rome_IV_Diagnostic_Criteria_for_Rumination_Syndrome/0.1.0?language=en))
+8. LV Mass Index Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Left_ventricle_Mass_Index_LVMI/0.1.0?language=en))
+9. Mutation-Enhanced International Prognostic Score System (MIPSS70/MIPSS70+) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MIPSS70/0.1.0?language=en))
+10. Wisconsin Criteria - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Wisconsin_criteria/0.1.0?language=en))
 
 ----------
 
@@ -1704,6 +1704,20 @@ _Select a medical specialty below to view the available apps._
 * Diagnostic criteria for preeclampsia - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=en))/([_GER_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=de))/([_ES_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=es))/([_CAT_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=ca))/([_FR_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=fr))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Diagnostic_criteria_for_preeclampsia/2.3?language=sv))
 
 * MELD_3_0 - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MELD_3_0/3.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MELD_3_0/3.1?language=sv))
+----------
+
+### CDS App Challenge 2025 submissions
+
+----------
+* GLOBE score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/GLOBE_Score_Final/0.0.1?language=en))
+
+* NICE NG143 Traffic Light - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/NICE_NG143_Traffic_Light_Assessment/0?language=en))
+
+* SCORE2 - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/SCORE2/0.1?language=en))
+
+* GUSS Test - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/THE_GUSS_TEST/0.1?language=en))
+
+* METS IR - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/METS_IR/2?language=en))
 ----------
 
 ### Disclaimer
