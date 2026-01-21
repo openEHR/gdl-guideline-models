@@ -90,27 +90,31 @@ _Select a medical specialty below to view the available apps._
 
 ----------
 
-[CDS Summer App Challenge 2017](https://github.com/openEHR/gdl-guideline-models#cds-summer-app-challenge-2017)
+[CDS Summer App Challenge 2017 Submissions](https://github.com/openEHR/gdl-guideline-models?tab=readme-ov-file#cds-summer-app-challenge-2017-submissions)
 
 ----------
 
-[CDS Summer App Challenge 2018](https://github.com/openEHR/gdl-guideline-models#cds-summer-app-challenge-2018)
+[CDS Summer App Challenge 2018 Submissions](https://github.com/openEHR/gdl-guideline-models?tab=readme-ov-file#cds-summer-app-challenge-2018-submissions)
 
 ----------
 
-[CDS App Challenge 2019](https://github.com/openEHR/gdl-guideline-models#cds-app-challenge-2019)
+[CDS App Challenge 2019 Submissions](https://github.com/openEHR/gdl-guideline-models?tab=readme-ov-file#cds-app-challenge-2019-submissions)
 
 ----------
 
-[CDS App Challenge 2020 Submissions](https://github.com/openEHR/gdl-guideline-models#cds-app-challenge-2020-submissions)
+[CDS App Challenge 2020 Submissions](https://github.com/openEHR/gdl-guideline-models?tab=readme-ov-file#cds-app-challenge-2020-submissions)
 
 -----------
 
-[CDS App Challenge 2021 Submissions](https://github.com/openEHR/gdl-guideline-models#cds-app-challenge-2021-submissions)
+[CDS App Challenge 2021 Submissions](https://github.com/openEHR/gdl-guideline-models?tab=readme-ov-file#cds-app-challenge-2021-submissions)
 
 -----------
 
-[CDS App Challenge 2023-2024 Submissions](https://github.com/openEHR/gdl-guideline-models#cds-app-challenge-2023-submissions)
+[CDS App Challenge 2023-2024 Submissions](https://github.com/openEHR/gdl-guideline-models?tab=readme-ov-file#cds-app-challenge-2023---2024-submissions)
+
+-----------
+
+[CDS App Challenge 2025 Submissions](https://github.com/openEHR/gdl-guideline-models?tab=readme-ov-file#cds-app-challenge-2025-submissions)
 
 -----------
 
@@ -1608,7 +1612,7 @@ _Select a medical specialty below to view the available apps._
 
 ----------
 
-### CDS Summer App Challenge 2017
+### CDS Summer App Challenge 2017 Submissions
 
 ----------
 * Combined Critical Illness Recognition in All Ages - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Pediatrics_Sirs2/1?language=en))
@@ -1618,7 +1622,7 @@ _Select a medical specialty below to view the available apps._
 * Estimated Glomerular Filtration Rate LM-Rev - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Estimated_GFR_LM_Revised/1?language=en))
 ----------
 
-### CDS Summer App Challenge 2018
+### CDS Summer App Challenge 2018 Submissions
 
 ----------
 * Opioid Conversion to Morphine Milligram Equivalent - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MorphineEquivalentScore/1?language=en))
@@ -1626,7 +1630,7 @@ _Select a medical specialty below to view the available apps._
 * Replacement Doses of Vitamin D - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Replacement_Doses_of_Vitamin_D/2?language=en))
 ----------
 
-### CDS App Challenge 2019
+### CDS App Challenge 2019 Submissions
 
 ----------
 * Holliday-Segar Fluid and Electrolyte Maintenance Formula - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Holliday-Segar_fluid_and_electrolyte_maintenance_formula/1?language=en))/([_IND_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Holliday-Segar_fluid_and_electrolyte_maintenance_formula/1?language=id))
@@ -1694,7 +1698,7 @@ _Select a medical specialty below to view the available apps._
 * tPA Contraindications for Ischemic Stroke - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/tPA_Contraindications_for_Ischemic_Stroke_guideline/0?language=en))
 -----------
 
-### CDS App Challenge 2023 - 2024 submissions
+### CDS App Challenge 2023 - 2024 Submissions
 
 ----------
 * ISWT (Incremental Shuttle Walk Test)  - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISWT/16.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ISWT/16.1?language=sv))
@@ -1706,7 +1710,7 @@ _Select a medical specialty below to view the available apps._
 * MELD_3_0 - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MELD_3_0/3.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MELD_3_0/3.1?language=sv))
 ----------
 
-### CDS App Challenge 2025 submissions
+### CDS App Challenge 2025 Submissions
 
 ----------
 * GLOBE score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/GLOBE_Score_Final/0.0.1?language=en))
