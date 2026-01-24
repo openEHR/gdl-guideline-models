@@ -1,0 +1,133 @@
+{
+  "uuid" : "",
+  "id" : "Symptom_Based_Entry_into_SVF.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Mahmoud Elachi",
+      "email" : "mel.achi@gmail.com",
+      "organisation" : "Cambio CDS"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To identify patients who should be entered into the Standardiserat Vårdförlopp (SVF) for suspected lung cancer based on symptoms, age, smoking status, and findings",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "en" : "To determines who should enter the cancer investigation flow."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "a"
+            ]
+          }
+        }
+      },
+      "gt0004" : {
+        "id" : "gt0004",
+        "model_id" : "openEHR-EHR-OBSERVATION.lung_cancer_anamnes.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.lung_cancer_anamnes.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]/items[at0006]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]/items[at0009]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0010",
+              "local::at0011",
+              "local::at0012"
+            ]
+          }
+        }
+      },
+      "gt0007" : {
+        "id" : "gt0007",
+        "model_id" : "openEHR-EHR-OBSERVATION.lung_cancer_symptom.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.lung_cancer_symptom.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0008" : {
+            "id" : "gt0008",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type" : "DV_BOOLEAN"
+          }
+        }
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Symptom-Based Entry into SVF"
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.basic_demographic.v1"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Age"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "openEHR-EHR-OBSERVATION.lung_cancer_anamnes.v0"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Smoking"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "Smoking status"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "openEHR-EHR-OBSERVATION.lung_cancer_symptom.v0"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Cough present"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Hemoptysis"
+          }
+        }
+      }
+    }
+  }
+}
