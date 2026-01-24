@@ -1,0 +1,80 @@
+guidelines:
+  "1": Symptom_Based_Entry_into_SVF.v0.0.1
+test_cases:
+  - id: not eligible
+    input:
+      "1":
+        gt0046|Age: 74,a
+        gt0048|Smoking status: local::at0012|Former smoker|
+        gt0050|Years since quitting: 10,a
+        gt0051|Number of pack per year: 14,a
+    expected_output:
+      "1":
+        gt0033|Further investigation needed: "false"
+  - id: not eligible 2
+    input:
+      "1":
+        gt0046|Age: 50,a
+        gt0048|Smoking status: local::at0012|Former smoker|
+        gt0050|Years since quitting: 10,a
+        gt0051|Number of pack per year: 14,a
+    expected_output:
+      "1":
+        gt0033|Further investigation needed: "false"
+  - id: not eligible 3
+    input:
+      "1":
+        gt0046|Age: 50,a
+        gt0048|Smoking status: local::at0012|Former smoker|
+        gt0051|Number of pack per year: 14,a
+    expected_output:
+      "1":
+        gt0033|Further investigation needed: "false"
+  - id: eligible
+    input:
+      "1":
+        gt0046|Age: 50,a
+        gt0048|Smoking status: local::at0010|Currently smoker|
+        gt0051|Number of pack per year: 15,a
+    expected_output:
+      "1":
+        gt0033|Further investigation needed: "true"
+  - id: eligible 2
+    input:
+      "1":
+        gt0046|Age: 66,a
+        gt0048|Smoking status: local::at0010|Currently smoker|
+        gt0051|Number of pack per year: 15,a
+    expected_output:
+      "1":
+        gt0033|Further investigation needed: "true"
+  - id: eligible & former smoker
+    input:
+      "1":
+        gt0046|Age: 66,a
+        gt0048|Smoking status: local::at0012|Former smoker|
+        gt0050|Years since quitting: 1,a
+        gt0051|Number of pack per year: 15,a
+    expected_output:
+      "1":
+        gt0033|Further investigation needed: "true"
+  - id: eligible & former smoker 2
+    input:
+      "1":
+        gt0046|Age: 70,a
+        gt0048|Smoking status: local::at0012|Former smoker|
+        gt0050|Years since quitting: 1,a
+        gt0051|Number of pack per year: 15,a
+    expected_output:
+      "1":
+        gt0033|Further investigation needed: "true"
+  - id: not eligible & former smoker
+    input:
+      "1":
+        gt0046|Age: 75,a
+        gt0048|Smoking status: local::at0012|Former smoker|
+        gt0050|Years since quitting: 1,a
+        gt0051|Number of pack per year: 15,a
+    expected_output:
+      "1":
+        gt0033|Further investigation needed: "false"
