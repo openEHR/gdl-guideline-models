@@ -1,0 +1,275 @@
+archetype (adl_version=1.4; uid=96a1ea3f-4ecc-4a41-8b9e-69d9d10b780a)
+	openEHR-EHR-EVALUATION.tnm_ovarian_fallopian_peritoneal_clinical_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-01-26">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the derived TNM and FIGO stage group for ovarian, fallopian tube, and primary peritoneal carcinoma based on the clinical T, N, and M categories.">
+			keywords = <"tnm","figo","uicc","ovarian","fallopian","tube","peritoneal","carcinoma","staging","oncology">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the derived TNM and FIGO stage group for ovarian, fallopian tube, and primary peritoneal carcinoma based on the clinical T, N, and M categories.">
+			misuse = <"Not to be used for recording raw tumour findings, lymph node measurements, imaging results, surgical findings, or pathological TNM (pTNM).">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Regionala cancercentrum i samverkan. Nationellt vårdprogram Äggstockscancer med epitelial histologi: Kapitel 1 Sammanfattning. Kunskapsbanken, 2025. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/aggstockscancer-epitelial/vardprogram/sammanfattning/
+Brierley JD, Gospodarowicz MK, Wittekind C, editors. TNM classification of malignant tumours. 8th ed. Hoboken (NJ): Wiley Blackwell; 2017
+Prat J. Ovarian, fallopian tube and peritoneal cancer staging: Rationale and explanation of new FIGO staging 2013. Best Pract Res Clin Obstet Gynaecol. 2015 Aug;29(6):858-69. doi: 10.1016/j.bpobgyn.2015.03.006. Epub 2015 Mar 31. PMID: 25890882.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"6633d3b9fceee6a478f7c9d4caf52541">
+		["build_uid"] = <"9b8676f6-c756-4414-8272-b9aa272dfb01">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- TNM classification for ovarian, fallopian tube and primary peritoneal carcinoma (clinical)
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- TNM stage group
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- Stage I
+									at0006,    -- Stage IA
+									at0007,    -- Stage IB
+									at0008,    -- Stage IC
+									at0009,    -- Stage II
+									at0010,    -- Stage IIA
+									at0011,    -- Stage IIB
+									at0012,    -- Stage IIC
+									at0013,    -- Stage IIIA1
+									at0014,    -- Stage IIIA2
+									at0015,    -- Stage IIIB
+									at0016,    -- Stage IIIC
+									at0017,    -- Stage IV
+									at0018,    -- Stage IVA
+									at0019,    -- Stage IVB
+									at0037]    -- Stage cannot be assigned
+								}
+							}
+						}
+					}
+					ELEMENT[at0020] occurrences matches {0..1} matches {    -- FIGO stage
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0021,    -- Stage I
+									at0022,    -- Stage IA
+									at0023,    -- Stage IB
+									at0024,    -- Stage IC
+									at0025,    -- Stage II
+									at0026,    -- Stage IIA
+									at0027,    -- Stage IIB
+									at0028,    -- Stage III
+									at0029,    -- Stage IIIA1i
+									at0030,    -- Stage IIIA1ii
+									at0031,    -- Stage IIIA2
+									at0032,    -- Stage IIIB
+									at0033,    -- Stage IIIC
+									at0034,    -- Stage IV
+									at0035,    -- Stage IVA
+									at0036,    -- Stage IVB
+									at0038]    -- Stage cannot be assigned
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"TNM classification for ovarian, fallopian tube and primary peritoneal carcinoma (clinical)">
+					description = <"A structured clinical evaluation representing the interpreted TNM categories and derived stage group for ovarian, fallopian tube, and primary peritoneal carcinoma, based on the UICC TNM classification (8th edition) and corresponding FIGO 2013 staging definitions.">
+					comment = <"UICC TNM Classification of Malignant Tumours, 8th edition (2017); FIGO staging system revised 2013">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"TNM stage group">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Stage I">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Stage IA">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Stage IB">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Stage IC">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Stage II">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Stage IIA">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Stage IIB">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Stage IIC">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Stage IIIA1">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Stage IIIA2">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Stage IIIB">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Stage IIIC">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Stage IV">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Stage IVA">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Stage IVB">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"FIGO stage">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Stage I">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Stage IA">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Stage IB">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Stage IC">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Stage II">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Stage IIA">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Stage IIB">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Stage III">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Stage IIIA1i">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Stage IIIA1ii">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Stage IIIA2">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Stage IIIB">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Stage IIIC">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Stage IV">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"Stage IVA">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Stage IVB">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"Stage cannot be assigned">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"Stage cannot be assigned">
+					description = <"">
+				>
+			>
+		>
+	>
