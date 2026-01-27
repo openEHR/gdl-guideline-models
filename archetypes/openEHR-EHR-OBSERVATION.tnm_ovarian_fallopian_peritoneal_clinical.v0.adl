@@ -1,0 +1,254 @@
+archetype (adl_version=1.4; uid=053f202b-4685-4ac7-92d7-54bebbe6dad6)
+	openEHR-EHR-OBSERVATION.tnm_ovarian_fallopian_peritoneal_clinical.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-01-23">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter required to determine the clinical T, N, and M categories for ovarian, fallopian tube, and primary peritoneal carcinoma.">
+			keywords = <"tnm","figo","uicc","ovarian","fallopian","tube","peritoneal","carcinoma","staging","oncology">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter required to determine the clinical T, N, and M categories for ovarian, fallopian tube, and primary peritoneal carcinoma.">
+			misuse = <"Not to be used for recording TNM classification of other gynaecological malignancies or for pathological TNM (pTNM) staging.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Regionala cancercentrum i samverkan. Nationellt vårdprogram Äggstockscancer med epitelial histologi: Kapitel 1 Sammanfattning. Kunskapsbanken, 2025. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/aggstockscancer-epitelial/vardprogram/sammanfattning/
+Brierley JD, Gospodarowicz MK, Wittekind C, editors. TNM classification of malignant tumours. 8th ed. Hoboken (NJ): Wiley Blackwell; 2017
+Prat J. Ovarian, fallopian tube and peritoneal cancer staging: Rationale and explanation of new FIGO staging 2013. Best Pract Res Clin Obstet Gynaecol. 2015 Aug;29(6):858-69. doi: 10.1016/j.bpobgyn.2015.03.006. Epub 2015 Mar 31. PMID: 25890882.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"8f986e59f9a0ee20b79584db80e09265">
+		["build_uid"] = <"e436d9df-8ba4-4151-bf18-b0f448d1669c">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- TNM categories for ovarian, fallopian tube and primary peritoneal carcinoma (clinical)
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- T - Primary tumour
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- TX - Primary tumour cannot be assessed
+													at0008,    -- T0 - No evidence of primary tumour
+													at0009,    -- T1 - Tumour limited to the ovaries (one or both) or fallopian tube(s)
+													at0010,    -- T1a - Tumour limited to one ovary; capsule intact, no tumour on ovarian surface or fallopian tube surface; no malignant cells in ascites or peritoneal washings
+													at0011,    -- T1b - Tumour limited to both ovaries or fallopian tubes; capsule intact, no tumour on ovarian or fallopian tube surface; no malignant cells in ascites or peritoneal washings
+													at0012,    -- T1c1 - Tumour limited to one or both ovaries or fallopian tubes with surgical spill
+													at0013,    -- T1c2 - Tumour limited to one or both ovaries or fallopian tubes with capsule ruptured before surgery or tumour on ovarian or fallopian tube surface
+													at0014,    -- T1c3 - Tumour limited to one or both ovaries or fallopian tubes with malignant cells in ascites or peritoneal washings
+													at0015,    -- T2 - Tumour involves one or both ovaries or fallopian tubes with pelvic extension (below the pelvic brim) or primary peritoneal cancer
+													at0016,    -- T2a - Extension and/or implants on uterus and/or fallopian tube(s) and/or ovary(ies)
+													at0017,    -- T2b - Extension to other pelvic tissues, including bowel within the pelvis
+													at0018,    -- T3a - Microscopic extrapelvic (above the pelvic brim) peritoneal involvement with or without retroperitoneal lymph node involvement (including bowel involvement)
+													at0019,    -- T3b - Macroscopic peritoneal metastasis beyond pelvic brim 2 cm or less in greatest dimension, including bowel involvement outside the pelvis, with or without retroperitoneal nodes
+													at0020]    -- T3c - Peritoneal metastasis beyond pelvic brim more than 2 cm in greatest dimension and/or retroperitoneal lymph node metastasis (includes extension to capsule of liver and spleen without parenchymal involvement)
+												}
+											}
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- N - Regional lymph nodes
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0022,    -- NX - Regional lymph nodes cannot be assessed
+													at0023,    -- N0 - No regional lymph node metastasis
+													at0024,    -- N1 - Retroperitoneal lymph node metastasis only
+													at0025,    -- N1a - Lymph node metastasis not more than 10 mm in greatest dimension
+													at0026]    -- N1b - Lymph node metastasis more than 10 mm in greatest dimension
+												}
+											}
+										}
+									}
+									ELEMENT[at0027] occurrences matches {0..1} matches {    -- M - Distant metastasis
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0028,    -- M0 - No distant metastasis
+													at0029,    -- M1 - Distant metastasis (excludes peritoneal metastasis)
+													at0030,    -- M1a - Pleural effusion with positive cytology
+													at0031]    -- M1b - Parenchymal metastasis and metastasis to extra-abdominal organs (including inguinal lymph nodes and lymph nodes outside the abdominal cavity)
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"TNM categories for ovarian, fallopian tube and primary peritoneal carcinoma (clinical)">
+					description = <"A clinical observation recording the Tumour (T), Node (N), and Metastasis (M) categories for ovarian, fallopian tube, and primary peritoneal carcinoma according to the UICC TNM 8th edition classification, which corresponds to the FIGO 2013 staging framework.">
+					comment = <"FIGO staging system revised 2013; TNM classification aligned with UICC 8th edition.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"T - Primary tumour">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"TX - Primary tumour cannot be assessed">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"T0 - No evidence of primary tumour">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"T1 - Tumour limited to the ovaries (one or both) or fallopian tube(s)">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"T1a - Tumour limited to one ovary; capsule intact, no tumour on ovarian surface or fallopian tube surface; no malignant cells in ascites or peritoneal washings">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"T1b - Tumour limited to both ovaries or fallopian tubes; capsule intact, no tumour on ovarian or fallopian tube surface; no malignant cells in ascites or peritoneal washings">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"T1c1 - Tumour limited to one or both ovaries or fallopian tubes with surgical spill">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"T1c2 - Tumour limited to one or both ovaries or fallopian tubes with capsule ruptured before surgery or tumour on ovarian or fallopian tube surface">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"T1c3 - Tumour limited to one or both ovaries or fallopian tubes with malignant cells in ascites or peritoneal washings">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"T2 - Tumour involves one or both ovaries or fallopian tubes with pelvic extension (below the pelvic brim) or primary peritoneal cancer">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"T2a - Extension and/or implants on uterus and/or fallopian tube(s) and/or ovary(ies)">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"T2b - Extension to other pelvic tissues, including bowel within the pelvis">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"T3a - Microscopic extrapelvic (above the pelvic brim) peritoneal involvement with or without retroperitoneal lymph node involvement (including bowel involvement)">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"T3b - Macroscopic peritoneal metastasis beyond pelvic brim 2 cm or less in greatest dimension, including bowel involvement outside the pelvis, with or without retroperitoneal nodes">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"T3c - Peritoneal metastasis beyond pelvic brim more than 2 cm in greatest dimension and/or retroperitoneal lymph node metastasis (includes extension to capsule of liver and spleen without parenchymal involvement)">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"N - Regional lymph nodes">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"NX - Regional lymph nodes cannot be assessed">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"N0 - No regional lymph node metastasis">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"N1 - Retroperitoneal lymph node metastasis only">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"N1a - Lymph node metastasis not more than 10 mm in greatest dimension">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"N1b - Lymph node metastasis more than 10 mm in greatest dimension">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"M - Distant metastasis">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"M0 - No distant metastasis">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"M1 - Distant metastasis (excludes peritoneal metastasis)">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"M1a - Pleural effusion with positive cytology">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"M1b - Parenchymal metastasis and metastasis to extra-abdominal organs (including inguinal lymph nodes and lymph nodes outside the abdominal cavity)">
+					description = <"">
+				>
+			>
+		>
+	>
