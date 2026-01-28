@@ -1,0 +1,245 @@
+archetype (adl_version=1.4; uid=c8d30939-2a7a-4005-afb1-237202cb713d)
+	openEHR-EHR-OBSERVATION.ovarian_adjuvant_chemotherapy_early_stage.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-01-28">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and the recommended primary adjuvant chemotherapy regimen for early-stage ovarian, fallopian tube, and primary peritoneal carcinoma.">
+			keywords = <"ovarian","fallopian tube","primary peritoneal","cancer","adjuvant","chemotherapy","early stage","figo","histology","treatment","recommendation","oncology">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and the recommended primary adjuvant chemotherapy regimen for early-stage ovarian, fallopian tube, and primary peritoneal carcinoma.">
+			misuse = <"Not to be used for staging ovarian cancer, for treatment decision-making in advanced-stage disease, or for recording chemotherapy administration details.
+Not to be used for malignancies other than ovarian, fallopian tube, or primary peritoneal carcinoma.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Regionala cancercentrum i samverkan. Nationellt vårdprogram Äggstockscancer med epitelial histologi: Kapitel 11 Primärbehandling. Kunskapsbanken, 2025. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/aggstockscancer-epitelial/vardprogram/primarbehandling/">
+		["build_uid"] = <"e079b72d-4652-4872-b36a-fd5f7660b58c">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Primary adjuvant chemotherapy for early-stage ovarian cancer
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Histology / differentiation grade
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- High-grade serous (HGS)
+													at0008,    -- Endometrioid - FIGO grade 1
+													at0009,    -- Endometrioid – FIGO grade 2
+													at0010,    -- Endometrioid – FIGO grade 3
+													at0011,    -- Clear cell
+													at0012,    -- Mucinous
+													at0013,    -- Low-grade serous (LGS)
+													at0014]    -- Undifferentiated / carcinosarcoma
+												}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- FIGO stage
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0016,    -- IA-B
+													at0017,    -- IA-C
+													at0018]    -- IC
+												}
+											}
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {    -- Lymph node dissection status
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0020,    -- Lymph node dissection indicated
+													at0021,    -- Lymph node dissection not performed
+													at0022]    -- Lymph node dissection not indicated
+												}
+											}
+										}
+									}
+									ELEMENT[at0023] occurrences matches {0..1} matches {    -- Primary adjuvant treatment
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0024,    -- Carboplatin monotherapy (AUC 6), every 3 weeks for 6 cycles
+													at0025,    -- Carboplatin (AUC 5) plus paclitaxel (175 mg/m²), every 3 weeks for 6 cycles
+													at0026,    -- Carboplatin (AUC 5) plus paclitaxel (175 mg/m²), every 3 weeks for 6 cycles
+													at0027,    -- No adjuvant chemotherapy recommended
+													at0028]    -- Adjuvant chemotherapy cannot be determined based on available inputs
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Primary adjuvant chemotherapy for early-stage ovarian cancer">
+					description = <"A structured clinical observation used to record tumour histology and differentiation grade, FIGO stage group, lymph node dissection status, and the corresponding recommended primary adjuvant chemotherapy regimen for early-stage ovarian, fallopian tube, and primary peritoneal carcinoma, in accordance with national treatment guidelines.">
+					comment = <"Based on national ovarian cancer treatment recommendations for FIGO stage IA–IC disease, 2025">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Histology / differentiation grade">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"High-grade serous (HGS)">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Endometrioid - FIGO grade 1">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Endometrioid – FIGO grade 2">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Endometrioid – FIGO grade 3">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Clear cell">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Mucinous">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Low-grade serous (LGS)">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Undifferentiated / carcinosarcoma">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"FIGO stage">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"IA-B">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"IA-C">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"IC">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Lymph node dissection status">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Lymph node dissection indicated">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Lymph node dissection not performed">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Lymph node dissection not indicated">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Primary adjuvant treatment">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Carboplatin monotherapy (AUC 6), every 3 weeks for 6 cycles">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Carboplatin (AUC 5) plus paclitaxel (175 mg/m²), every 3 weeks for 6 cycles">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Carboplatin (AUC 5) plus paclitaxel (175 mg/m²), every 3 weeks for 6 cycles">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"No adjuvant chemotherapy recommended">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Adjuvant chemotherapy cannot be determined based on available inputs">
+					description = <"">
+				>
+			>
+		>
+	>
