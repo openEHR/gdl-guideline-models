@@ -1,0 +1,231 @@
+{
+  "uuid" : "",
+  "id" : "lung_nodule_followup.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Mahmoud Elachi",
+      "email" : "mel.achi@gmail.com",
+      "organisation" : "Cambio CDS"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To provide evidence-based recommendations for radiological follow-up of incidental solid lung nodules based on size and patient risk profile.",
+        "keywords" : [
+          "lung cancer",
+          "lung nodule",
+          "solid nodule",
+          "screening",
+          "incidental finding",
+          "CT scan",
+          "risk assessment"
+        ],
+        "use" : "To be used as the output of a clinical decision support rule triggered by a radiology report identifying a solid pulmonary nodule in a patient aged ≥ 35 years.",
+        "misuse" : "Not intended for patients under 35 years, immunocompromised individuals, or those with known cancer history.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Regionala cancercentrum i samverkan. Nationellt vårdprogram lungcancer. Kunskapsbanken, 2025.\nAvailable at: kunskapsbanken.cancercentrum.se/diagnoser/lungcancer/vardprogram/",
+      "en" : "Scans often find small nodules, and the decision whether to follow up or not is complex but well-defined in Kapitel 6."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0031]/items[at0032]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mm"
+            ]
+          }
+        }
+      },
+      "gt0004" : {
+        "id" : "gt0004",
+        "model_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "a"
+            ]
+          }
+        }
+      },
+      "gt0006" : {
+        "id" : "gt0006",
+        "model_id" : "openEHR-EHR-OBSERVATION.lung_cancer_anamnes.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.lung_cancer_anamnes.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0008" : {
+            "id" : "gt0008",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]/items[at0009]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0010",
+              "local::at0011",
+              "local::at0012"
+            ]
+          }
+        }
+      },
+      "gt0009" : {
+        "id" : "gt0009",
+        "model_id" : "openEHR-EHR-OBSERVATION.lung_cancer_anamnes.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.lung_cancer_anamnes.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0010" : {
+            "id" : "gt0010",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0033]/items[at0038]",
+            "data_type" : "DV_TEXT"
+          }
+        }
+      },
+      "gt0013" : {
+        "id" : "gt0013",
+        "model_id" : "openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0014" : {
+            "id" : "gt0014",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0044]/items[at0050]",
+            "data_type" : "DV_CODED_TEXT"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0044]/items[at0045]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0011" : {
+        "id" : "gt0011",
+        "priority" : 3,
+        "when" : [
+          "$gt0005|Age|.magnitude<=35&&$gt0003|Tumor size|.magnitude<6"
+        ],
+        "then" : [
+          "$gt0010|No follow-up needed|=false"
+        ]
+      },
+      "gt0012" : {
+        "id" : "gt0012",
+        "priority" : 2,
+        "when" : [
+          "$gt0003|Tumor size|.magnitude>=6&&$gt0003|Tumor size|.magnitude<=8",
+          "$gt0008|Smoking status|==local::at0011|Never|&&$gt0005|Age|.magnitude<=35"
+        ],
+        "then" : [
+          "$gt0014|follow-up CT at 12 months|=true"
+        ]
+      },
+      "gt0016" : {
+        "id" : "gt0016",
+        "priority" : 1,
+        "when" : [
+          "$gt0005|Age|.magnitude>=35",
+          "$gt0003|Tumor size|.magnitude>8"
+        ],
+        "then" : [
+          "$gt0015|follow-up CT at 6–12 months|=true"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Follow-up of incidental small lung nodules",
+            "description" : "To help determining appropriate follow-up intervals or further diagnostic workup for incidentally detected solid lung nodules in adults. Based on nodule size and risk factors, this rule supports safe surveillance or escalation to tumor staging, aligned with Kapitel 6 of the Swedish Lung Cancer Programme"
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Tumor size"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "openEHR-EHR-OBSERVATION.basic_demographic.v1"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Age"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "openEHR-EHR-OBSERVATION.lung_cancer_anamnes.v0"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Smoking status"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "openEHR-EHR-OBSERVATION.lung_cancer_anamnes.v0"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "No follow-up needed"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "No risk",
+            "description" : ""
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Low risk",
+            "description" : ""
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "follow-up CT at 12 months"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "follow-up CT at 6–12 months"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "High risk",
+            "description" : ""
+          }
+        }
+      }
+    }
+  }
+}
