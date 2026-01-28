@@ -1,0 +1,58 @@
+guidelines:
+  "1": Lung_Cancer_MDT_staging.v0.0.3
+test_cases:
+  - id: testing when PET lymph node status is any of N1, N2, N3
+    input:
+      "1":
+        gt0024|PET lymph node uptake: local::at0027|N2|
+        gt0025|CT lymph node enlargement: "true"
+        gt0026|PET mediastinum status: "true"
+        gt0027|Tumor size: 3,cm
+        gt0028|Tumor location: local::at0034|Central|
+        gt0029|Peripheral third of lung: "true"
+        gt0039|PET tumor: "true"
+    expected_output:
+      "1":
+        gt0014|Mediastinal staging required: "true"
+        gt0015|Recommended staging method: local::at0046|EBUS-TBNA|
+  - id: testing  2 when PET lymph node status is any of N1, N2, N3
+    input:
+      "1":
+        gt0024|PET lymph node uptake: local::at0026|N1|
+    expected_output:
+      "1":
+        gt0014|Mediastinal staging required: "true"
+        gt0015|Recommended staging method: local::at0046|EBUS-TBNA|
+  - id: testing  rule 1.2
+    input:
+      "1":
+        gt0024|PET lymph node uptake: local::at0025|N0|
+        gt0026|PET mediastinum status: "false"
+        gt0027|Tumor size: 4,cm
+    expected_output:
+      "1":
+        gt0014|Mediastinal staging required: "true"
+        gt0015|Recommended staging method: local::at0046|EBUS-TBNA|
+  - id: testing  rule 2
+    input:
+      "1":
+        gt0024|PET lymph node uptake: local::at0025|N0|
+        gt0025|CT lymph node enlargement: "false"
+        gt0026|PET mediastinum status: "false"
+        gt0027|Tumor size: 3,cm
+        gt0028|Tumor location: local::at0035|Peripheral|
+        gt0039|PET tumor: "true"
+    expected_output:
+      "1":
+        gt0014|Mediastinal staging required: "false"
+  - id: negative test
+    input:
+      "1":
+        gt0025|CT lymph node enlargement: "true"
+        gt0026|PET mediastinum status: "true"
+        gt0027|Tumor size: 3,cm
+        gt0028|Tumor location: local::at0034|Central|
+        gt0029|Peripheral third of lung: "true"
+        gt0039|PET tumor: "true"
+    expected_output:
+      "1": {}
