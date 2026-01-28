@@ -1,0 +1,242 @@
+{
+  "uuid" : "c9e4e6ed-0b48-408c-9f00-fbfe38d28b3e",
+  "id" : "Lung_Cancer_MDT_staging.v0.0.3",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Mahmoud Elachi",
+      "email" : "mel.achi@gmail.com",
+      "organisation" : "Cambio CDS"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To record whether MDT referral is recommended and to guide referral scheduling",
+        "keywords" : [
+          "MDT",
+          "multidisciplinary team",
+          "lung cancer",
+          "NSCLC",
+          "mediastinal staging",
+          "EBUS",
+          "EUS",
+          "PET-CT",
+          "lymph nodes",
+          "N2",
+          "N3",
+          "CT scan"
+        ],
+        "use" : "To be used as the output of a clinical decision support rule suggesting MDT referral",
+        "misuse" : "Not intended for palliative care cases or in absence of adequate imaging. Do not use without PET-CT data or if diagnosis is not suspected/confirmed NSCLC.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Regionala cancercentrum i samverkan. Nationellt vårdprogram lungcancer. Kunskapsbanken, 2025.\nAvailable at: kunskapsbanken.cancercentrum.se/diagnoser/lungcancer/vardprogram/",
+      "en" : "A clinical decision guideline for determining whether invasive mediastinal lymph node staging (e.g. EBUS-TBNA, EUS-FNA, or mediastinoscopy) is required prior to curative treatment in patients with suspected or confirmed NSCLC, based on PET-CT findings, tumor size, location, and radiological nodal status."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0013" : {
+        "id" : "gt0013",
+        "model_id" : "openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0014" : {
+            "id" : "gt0014",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0044]/items[at0013]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0044]/items[at0045]",
+            "data_type" : "DV_CODED_TEXT"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0044]/items[at0050]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      },
+      "gt0021" : {
+        "id" : "gt0021",
+        "model_id" : "openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0024" : {
+            "id" : "gt0024",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0030]/items[at0024]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0025",
+              "local::at0026",
+              "local::at0027",
+              "local::at0028"
+            ]
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0030]/items[at0029]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0030]/items[at0056]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0031]/items[at0032]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "cm"
+            ]
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0031]/items[at0033]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0034",
+              "local::at0035"
+            ]
+          },
+          "gt0029" : {
+            "id" : "gt0029",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0031]/items[at0036]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0039" : {
+            "id" : "gt0039",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0030]/items[at0057]",
+            "data_type" : "DV_BOOLEAN"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0036" : {
+        "id" : "gt0036",
+        "priority" : 3,
+        "when" : [
+          "$gt0024|PET lymph node uptake|==local::at0026|N1|||$gt0024|PET lymph node uptake|==local::at0027|N2|||$gt0024|PET lymph node uptake|==local::at0028|N3|"
+        ],
+        "then" : [
+          "$gt0014|Mediastinal staging required|=true",
+          "$gt0015|Recommended staging method|=local::at0046|EBUS-TBNA|"
+        ]
+      },
+      "gt0037" : {
+        "id" : "gt0037",
+        "priority" : 2,
+        "when" : [
+          "$gt0026|PET mediastinum status|==false",
+          "$gt0027|Tumor size|.magnitude>3||$gt0025|CT lymph node enlargement|==true"
+        ],
+        "then" : [
+          "$gt0014|Mediastinal staging required|=true",
+          "$gt0015|Recommended staging method|=local::at0046|EBUS-TBNA|"
+        ]
+      },
+      "gt0038" : {
+        "id" : "gt0038",
+        "priority" : 1,
+        "when" : [
+          "$gt0027|Tumor size|<=3",
+          "$gt0028|Tumor location|==local::at0035|Peripheral|&&$gt0039|PET tumor|==true",
+          "$gt0024|PET lymph node uptake|==local::at0025|N0|",
+          "$gt0025|CT lymph node enlargement|==false"
+        ],
+        "then" : [
+          "$gt0014|Mediastinal staging required|=false"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Lung_Cancer_MDT_staging",
+            "description" : "To help determining whether invasive mediastinal lymph node staging (e.g. EBUS-TBNA, EUS-FNA, or mediastinoscopy) is required prior to curative treatment in patients with suspected or confirmed NSCLC, based on PET-CT findings, tumor size, location, and radiological nodal status."
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Mediastinal staging required"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "Recommended staging method"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "Next staging step"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0"
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "text" : "PET lymph node uptake"
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "text" : "CT lymph node enlargement"
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "text" : "PET mediastinum status"
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "text" : "Tumor size"
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "text" : "Tumor location"
+          },
+          "gt0029" : {
+            "id" : "gt0029",
+            "text" : "Peripheral third of lung"
+          },
+          "gt0036" : {
+            "id" : "gt0036",
+            "text" : "Rule 1 - PET-positive lymph nodes",
+            "description" : ""
+          },
+          "gt0037" : {
+            "id" : "gt0037",
+            "text" : "Rule 1.2 - PET-negative mediastinum + risk factors",
+            "description" : ""
+          },
+          "gt0038" : {
+            "id" : "gt0038",
+            "text" : "Rule 2 - Low-risk peripheral tumour",
+            "description" : ""
+          },
+          "gt0039" : {
+            "id" : "gt0039",
+            "text" : "PET tumor"
+          }
+        }
+      }
+    }
+  }
+}
