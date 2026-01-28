@@ -1,0 +1,101 @@
+guidelines:
+  "1": lung_nodule_followup.v0.0.2
+test_cases:
+  - id: no risk test 1
+    input:
+      "1":
+        gt0003|Tumor size: 5,mm
+        gt0005|Age: 36,a
+    expected_output:
+      "1":
+        gt0010|Follow-up needed: "false"
+  - id: no risk test 2
+    input:
+      "1":
+        gt0003|Tumor size: 4,mm
+        gt0005|Age: 40,a
+        gt0008|Smoking status: local::at0010|Currently smoker|
+    expected_output:
+      "1":
+        gt0010|Follow-up needed: "false"
+  - id: low risk test 1
+    input:
+      "1":
+        gt0003|Tumor size: 6,mm
+        gt0005|Age: 40,a
+        gt0008|Smoking status: local::at0010|Currently smoker|
+    expected_output:
+      "1":
+        gt0010|Follow-up needed: "true"
+  - id: low risk test 2
+    input:
+      "1":
+        gt0003|Tumor size: 6,mm
+        gt0005|Age: 40,a
+        gt0008|Smoking status: local::at0011|Never|
+    expected_output:
+      "1":
+        gt0014|follow-up CT at 12 months: "true"
+  - id: low risk test 3
+    input:
+      "1":
+        gt0003|Tumor size: 8,mm
+        gt0005|Age: 40,a
+        gt0008|Smoking status: local::at0011|Never|
+    expected_output:
+      "1":
+        gt0014|follow-up CT at 12 months: "true"
+  - id: high risk test 1
+    input:
+      "1":
+        gt0003|Tumor size: 9,mm
+        gt0005|Age: 40,a
+        gt0008|Smoking status: local::at0011|Never|
+    expected_output:
+      "1":
+        gt0015|follow-up CT at 6–12 months: "true"
+  - id: high risk test 2
+    input:
+      "1":
+        gt0003|Tumor size: 9,mm
+        gt0005|Age: 40,a
+        gt0008|Smoking status: local::at0010|Currently smoker|
+    expected_output:
+      "1":
+        gt0015|follow-up CT at 6–12 months: "true"
+  - id: high risk test 3
+    input:
+      "1":
+        gt0003|Tumor size: 9,mm
+        gt0005|Age: 55,a
+        gt0008|Smoking status: local::at0010|Currently smoker|
+    expected_output:
+      "1":
+        gt0015|follow-up CT at 6–12 months: "true"
+  - id: high risk test 4
+    input:
+      "1":
+        gt0003|Tumor size: 9,mm
+        gt0005|Age: 55,a
+        gt0008|Smoking status: local::at0011|Never|
+    expected_output:
+      "1":
+        gt0015|follow-up CT at 6–12 months: "true"
+  - id: under age test 1
+    input:
+      "1":
+        gt0003|Tumor size: 9,mm
+        gt0005|Age: 34,a
+        gt0008|Smoking status: local::at0011|Never|
+    expected_output:
+      "1":
+        gt0010|Follow-up needed: "false"
+  - id: under age test 2
+    input:
+      "1":
+        gt0003|Tumor size: 9,mm
+        gt0005|Age: 34,a
+        gt0008|Smoking status: local::at0010|Currently smoker|
+    expected_output:
+      "1":
+        gt0010|Follow-up needed: "false"
