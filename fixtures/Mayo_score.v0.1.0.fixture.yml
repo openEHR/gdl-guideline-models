@@ -1,0 +1,78 @@
+guidelines:
+  "1": Mayo_score.v0.1.0
+test_cases:
+  - id: 01 - All input values are 0
+    input:
+      "1":
+        gt0003|Stool frequency: 0|local::at0010|Normal number of stools|
+        gt0004|Rectal bleeding: 0|local::at0015|No blood seen|
+        gt0005|Endoscopy findings: 0|local::at0020|Normal or inactive disease|
+        gt0006|Global assessment: 0|local::at0025|Normal or inactive disease|
+    expected_output:
+      "1":
+        gt0008|Total Mayo score: "0"
+  - id: 02 - All input values are 1
+    input:
+      "1":
+        gt0003|Stool frequency: 1|local::at0011|1-2 stools more than normal|
+        gt0004|Rectal bleeding: 1|local::at0016|Streaks of blood with stool less than half the time|
+        gt0005|Endoscopy findings: 1|local::at0021|Mild disease|
+        gt0006|Global assessment: 1|local::at0026|Mild disease|
+    expected_output:
+      "1":
+        gt0008|Total Mayo score: "4"
+  - id: 03 - All input values are 2
+    input:
+      "1":
+        gt0003|Stool frequency: 2|local::at0012|3-4 stools more than normal|
+        gt0004|Rectal bleeding: 2|local::at0017|Obvious blood with stool most of the time|
+        gt0005|Endoscopy findings: 2|local::at0022|Moderate disease|
+        gt0006|Global assessment: 2|local::at0027|Moderate disease|
+    expected_output:
+      "1":
+        gt0008|Total Mayo score: "8"
+  - id: 04 - All input values are 3
+    input:
+      "1":
+        gt0003|Stool frequency: 3|local::at0013|5 or more stools more than normal|
+        gt0004|Rectal bleeding: 3|local::at0018|Blood alone passed|
+        gt0005|Endoscopy findings: 3|local::at0023|Severe disease|
+        gt0006|Global assessment: 3|local::at0028|Severe disease|
+    expected_output:
+      "1":
+        gt0008|Total Mayo score: "12"
+  - id: " 05 - Partial mayo score: no endoscopy findings"
+    input:
+      "1":
+        gt0003|Stool frequency: 0|local::at0010|Normal number of stools|
+        gt0004|Rectal bleeding: 2|local::at0017|Obvious blood with stool most of the time|
+        gt0006|Global assessment: 1|local::at0026|Mild disease|
+    expected_output:
+      "1":
+        gt0011|Partial Mayo score: "3"
+  - id: 06 - No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 07 - Missing stool frequency and endoscopy findings (negative test)
+    input:
+      "1":
+        gt0004|Rectal bleeding: 2|local::at0017|Obvious blood with stool most of the time|
+        gt0006|Global assessment: 1|local::at0026|Mild disease|
+    expected_output:
+      "1": {}
+  - id: 08 - Missing rectal bleeding and endoscopy findings (negative test)
+    input:
+      "1":
+        gt0003|Stool frequency: 3|local::at0013|5 or more stools more than normal|
+        gt0006|Global assessment: 1|local::at0026|Mild disease|
+    expected_output:
+      "1": {}
+  - id: 09 - Missing global assessment and endoscopy findings (negative test)
+    input:
+      "1":
+        gt0003|Stool frequency: 3|local::at0013|5 or more stools more than normal|
+        gt0004|Rectal bleeding: 2|local::at0017|Obvious blood with stool most of the time|
+    expected_output:
+      "1": {}
