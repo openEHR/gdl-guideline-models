@@ -1,0 +1,203 @@
+guidelines:
+  "1": NEWS2_score.v0.1.0
+test_cases:
+  - id: 01. No inputs (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Respiration rate missing (negative test).
+    input:
+      "1":
+        gt0004|SpO₂ Scale 1: 0|local::at0030|≥96|
+        gt0005|SpO₂ Scale 2: 0|local::at0048|88-92 or ≥93 on air|
+        gt0006|Air or oxygen?: 0|local::at0036|Air|
+        gt0007|Systolic blood pressure: 0|local::at0014|111-219|
+        gt0008|Consciousness: 0|local::at0024|Alert|
+        gt0009|Temperature: 0|local::at0022|36.1-38.0|
+        gt0010|Pulse: 0|local::at0013|51-90|
+        gt0029|Hypercapnic respiratory failure: local::at0016|No|
+    expected_output:
+      "1": {}
+  - id: 03. SpO₂ missing (negative test).
+    input:
+      "1":
+        gt0003|Respiration rate: 0|local::at0018|12-20|
+        gt0006|Air or oxygen?: 0|local::at0036|Air|
+        gt0007|Systolic blood pressure: 0|local::at0014|111-219|
+        gt0008|Consciousness: 0|local::at0024|Alert|
+        gt0009|Temperature: 0|local::at0022|36.1-38.0|
+        gt0010|Pulse: 0|local::at0013|51-90|
+        gt0029|Hypercapnic respiratory failure: local::at0015|Yes|
+    expected_output:
+      "1": {}
+  - id: 04. Air or oxygen? missing (negative test).
+    input:
+      "1":
+        gt0003|Respiration rate: 0|local::at0018|12-20|
+        gt0004|SpO₂ Scale 1: 0|local::at0030|≥96|
+        gt0005|SpO₂ Scale 2: 0|local::at0048|88-92 or ≥93 on air|
+        gt0007|Systolic blood pressure: 0|local::at0014|111-219|
+        gt0008|Consciousness: 0|local::at0024|Alert|
+        gt0009|Temperature: 0|local::at0022|36.1-38.0|
+        gt0010|Pulse: 0|local::at0013|51-90|
+        gt0029|Hypercapnic respiratory failure: local::at0015|Yes|
+    expected_output:
+      "1": {}
+  - id: 05. Systolic blood pressure missing (negative test).
+    input:
+      "1":
+        gt0003|Respiration rate: 0|local::at0018|12-20|
+        gt0004|SpO₂ Scale 1: 0|local::at0030|≥96|
+        gt0005|SpO₂ Scale 2: 0|local::at0048|88-92 or ≥93 on air|
+        gt0006|Air or oxygen?: 0|local::at0036|Air|
+        gt0008|Consciousness: 0|local::at0024|Alert|
+        gt0009|Temperature: 0|local::at0022|36.1-38.0|
+        gt0010|Pulse: 0|local::at0013|51-90|
+        gt0029|Hypercapnic respiratory failure: local::at0015|Yes|
+    expected_output:
+      "1": {}
+  - id: 06. Consciousness missing (negative test).
+    input:
+      "1":
+        gt0003|Respiration rate: 0|local::at0018|12-20|
+        gt0004|SpO₂ Scale 1: 0|local::at0030|≥96|
+        gt0005|SpO₂ Scale 2: 0|local::at0048|88-92 or ≥93 on air|
+        gt0006|Air or oxygen?: 0|local::at0036|Air|
+        gt0007|Systolic blood pressure: 0|local::at0014|111-219|
+        gt0009|Temperature: 0|local::at0022|36.1-38.0|
+        gt0010|Pulse: 0|local::at0013|51-90|
+        gt0029|Hypercapnic respiratory failure: local::at0015|Yes|
+    expected_output:
+      "1": {}
+  - id: 07. Temperature missing (negative test).
+    input:
+      "1":
+        gt0003|Respiration rate: 0|local::at0018|12-20|
+        gt0004|SpO₂ Scale 1: 0|local::at0030|≥96|
+        gt0005|SpO₂ Scale 2: 0|local::at0048|88-92 or ≥93 on air|
+        gt0006|Air or oxygen?: 0|local::at0036|Air|
+        gt0007|Systolic blood pressure: 0|local::at0014|111-219|
+        gt0008|Consciousness: 0|local::at0024|Alert|
+        gt0010|Pulse: 0|local::at0013|51-90|
+        gt0029|Hypercapnic respiratory failure: local::at0015|Yes|
+    expected_output:
+      "1": {}
+  - id: 08. Pulse missing (negative test).
+    input:
+      "1":
+        gt0003|Respiration rate: 0|local::at0018|12-20|
+        gt0004|SpO₂ Scale 1: 0|local::at0030|≥96|
+        gt0005|SpO₂ Scale 2: 0|local::at0048|88-92 or ≥93 on air|
+        gt0006|Air or oxygen?: 0|local::at0036|Air|
+        gt0007|Systolic blood pressure: 0|local::at0014|111-219|
+        gt0008|Consciousness: 0|local::at0024|Alert|
+        gt0009|Temperature: 0|local::at0022|36.1-38.0|
+        gt0029|Hypercapnic respiratory failure: local::at0015|Yes|
+    expected_output:
+      "1": {}
+  - id: 09. Hypercapnic respiratory failure missing (negative test).
+    input:
+      "1":
+        gt0003|Respiration rate: 0|local::at0018|12-20|
+        gt0004|SpO₂ Scale 1: 0|local::at0030|≥96|
+        gt0005|SpO₂ Scale 2: 0|local::at0048|88-92 or ≥93 on air|
+        gt0006|Air or oxygen?: 0|local::at0036|Air|
+        gt0007|Systolic blood pressure: 0|local::at0014|111-219|
+        gt0008|Consciousness: 0|local::at0024|Alert|
+        gt0009|Temperature: 0|local::at0022|36.1-38.0|
+        gt0010|Pulse: 0|local::at0013|51-90|
+    expected_output:
+      "1": {}
+  - id: 10. low risk, No hypercapnic respiratory failure
+    input:
+      "1":
+        gt0003|Respiration rate: 2|local::at0020|21-24|
+        gt0004|SpO₂ Scale 1: 0|local::at0030|≥96|
+        gt0006|Air or oxygen?: 0|local::at0036|Air|
+        gt0007|Systolic blood pressure: 0|local::at0014|111-219|
+        gt0008|Consciousness: 0|local::at0024|Alert|
+        gt0009|Temperature: 0|local::at0022|36.1-38.0|
+        gt0010|Pulse: 0|local::at0013|51-90|
+        gt0029|Hypercapnic respiratory failure: local::at0016|No|
+    expected_output:
+      "1":
+        gt0012|Total score: "2"
+        gt0013|Clinical risk category: local::at0057|Low|
+        gt0031|Frequency of monitoring: local::at0007|Every 4-6 hours|
+        gt0032|Response: local::at0014|Assessment by a competent registered nurse or
+          equivalent, to decide change in frequency of clinical monitoring or
+          escalation of care|
+  - id: 11. Low medium risk, hypercapnic respiratory failure present
+    input:
+      "1":
+        gt0003|Respiration rate: 0|local::at0018|12-20|
+        gt0005|SpO₂ Scale 2: 0|local::at0048|88-92 or ≥93 on air|
+        gt0006|Air or oxygen?: 0|local::at0036|Air|
+        gt0007|Systolic blood pressure: 0|local::at0014|111-219|
+        gt0008|Consciousness: 3|local::at0025|C, V, P or U|
+        gt0009|Temperature: 0|local::at0022|36.1-38.0|
+        gt0010|Pulse: 0|local::at0013|51-90|
+        gt0029|Hypercapnic respiratory failure: local::at0015|Yes|
+    expected_output:
+      "1":
+        gt0012|Total score: "3"
+        gt0013|Clinical risk category: local::at0058|Low-medium|
+        gt0031|Frequency of monitoring: local::at0008|Every 1 hour|
+        gt0032|Response: local::at0013|Urgent review by a ward-based doctor, to decide
+          change in frequency of clinical monitoring or escalation of care|
+  - id: 12. medium risk
+    input:
+      "1":
+        gt0003|Respiration rate: 2|local::at0020|21-24|
+        gt0004|SpO₂ Scale 1: 0|local::at0030|≥96|
+        gt0006|Air or oxygen?: 0|local::at0036|Air|
+        gt0007|Systolic blood pressure: 3|local::at0067|≥220|
+        gt0008|Consciousness: 0|local::at0024|Alert|
+        gt0009|Temperature: 0|local::at0022|36.1-38.0|
+        gt0010|Pulse: 0|local::at0013|51-90|
+        gt0029|Hypercapnic respiratory failure: local::at0016|No|
+    expected_output:
+      "1":
+        gt0012|Total score: "5"
+        gt0013|Clinical risk category: local::at0059|Medium|
+        gt0031|Frequency of monitoring: local::at0008|Every 1 hour|
+        gt0032|Response: local::at0012|Urgent review by a ward-based doctor or acute
+          team nurse, to decide if critical care team assessment is needed|
+  - id: 13. High risk
+    input:
+      "1":
+        gt0003|Respiration rate: 2|local::at0020|21-24|
+        gt0004|SpO₂ Scale 1: 0|local::at0030|≥96|
+        gt0006|Air or oxygen?: 0|local::at0036|Air|
+        gt0007|Systolic blood pressure: 3|local::at0067|≥220|
+        gt0008|Consciousness: 0|local::at0024|Alert|
+        gt0009|Temperature: 0|local::at0022|36.1-38.0|
+        gt0010|Pulse: 3|local::at0065|≥131|
+        gt0029|Hypercapnic respiratory failure: local::at0016|No|
+    expected_output:
+      "1":
+        gt0012|Total score: "8"
+        gt0013|Clinical risk category: local::at0060|High|
+        gt0031|Frequency of monitoring: local::at0009|Continuous monitoring|
+        gt0032|Response: local::at0013|Urgent review by a ward-based doctor, to decide
+          change in frequency of clinical monitoring or escalation of care|
+  - id: 14. low risk score 0
+    input:
+      "1":
+        gt0003|Respiration rate: 0|local::at0018|12-20|
+        gt0004|SpO₂ Scale 1: 0|local::at0030|≥96|
+        gt0006|Air or oxygen?: 0|local::at0036|Air|
+        gt0007|Systolic blood pressure: 0|local::at0014|111-219|
+        gt0008|Consciousness: 0|local::at0024|Alert|
+        gt0009|Temperature: 0|local::at0022|36.1-38.0|
+        gt0010|Pulse: 0|local::at0013|51-90|
+        gt0029|Hypercapnic respiratory failure: local::at0016|No|
+    expected_output:
+      "1":
+        gt0012|Total score: "0"
+        gt0013|Clinical risk category: local::at0057|Low|
+        gt0031|Frequency of monitoring: local::at0006|Every 12 hours|
+        gt0032|Response: local::at0014|Assessment by a competent registered nurse or
+          equivalent, to decide change in frequency of clinical monitoring or
+          escalation of care|
