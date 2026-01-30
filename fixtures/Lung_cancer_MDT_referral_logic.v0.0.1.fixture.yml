@@ -1,0 +1,99 @@
+guidelines:
+  "1": Lung_cancer_MDT_referral_logic.v0.0.1
+test_cases:
+  - id: When N is true t1
+    input:
+      "1":
+        gt0012|N stage: local::at0028|N3|
+        gt0016|PET-CT Lymph Node Uptake: "false"
+        gt0017|Tumor location: local::at0034|Central|
+        gt0018|Signs of mediastinal invasion: "false"
+    expected_output:
+      "1":
+        gt0003|Referral recommended: "true"
+  - id: When N is true t2
+    input:
+      "1":
+        gt0012|N stage: local::at0027|N2|
+        gt0016|PET-CT Lymph Node Uptake: "false"
+        gt0017|Tumor location: local::at0034|Central|
+        gt0018|Signs of mediastinal invasion: "false"
+    expected_output:
+      "1":
+        gt0003|Referral recommended: "true"
+  - id: When N is false t1
+    input:
+      "1":
+        gt0012|N stage: local::at0026|N1|
+        gt0016|PET-CT Lymph Node Uptake: "false"
+        gt0017|Tumor location: local::at0035|Peripheral|
+        gt0018|Signs of mediastinal invasion: "false"
+    expected_output:
+      "1":
+        gt0003|Referral recommended: "false"
+  - id: When N is false t2
+    input:
+      "1":
+        gt0012|N stage: local::at0025|N0|
+        gt0016|PET-CT Lymph Node Uptake: "false"
+        gt0017|Tumor location: local::at0035|Peripheral|
+        gt0018|Signs of mediastinal invasion: "false"
+    expected_output:
+      "1":
+        gt0003|Referral recommended: "false"
+  - id: Node Uptake true 1
+    input:
+      "1":
+        gt0012|N stage: local::at0025|N0|
+        gt0016|PET-CT Lymph Node Uptake: "true"
+        gt0017|Tumor location: local::at0035|Peripheral|
+        gt0018|Signs of mediastinal invasion: "false"
+    expected_output:
+      "1":
+        gt0003|Referral recommended: "true"
+  - id: Node Uptake true 2
+    input:
+      "1":
+        gt0012|N stage: local::at0026|N1|
+        gt0016|PET-CT Lymph Node Uptake: "true"
+        gt0017|Tumor location: local::at0035|Peripheral|
+        gt0018|Signs of mediastinal invasion: "false"
+    expected_output:
+      "1":
+        gt0003|Referral recommended: "true"
+  - id: Tumor location central
+    input:
+      "1":
+        gt0012|N stage: local::at0026|N1|
+        gt0016|PET-CT Lymph Node Uptake: "false"
+        gt0017|Tumor location: local::at0034|Central|
+        gt0018|Signs of mediastinal invasion: "false"
+    expected_output:
+      "1":
+        gt0003|Referral recommended: "true"
+  - id: Tumor location central  & N true
+    input:
+      "1":
+        gt0012|N stage: local::at0027|N2|
+        gt0016|PET-CT Lymph Node Uptake: "false"
+        gt0017|Tumor location: local::at0034|Central|
+        gt0018|Signs of mediastinal invasion: "false"
+    expected_output:
+      "1":
+        gt0003|Referral recommended: "true"
+  - id: Signs of mediastinal invasion true
+    input:
+      "1":
+        gt0012|N stage: local::at0025|N0|
+        gt0016|PET-CT Lymph Node Uptake: "false"
+        gt0017|Tumor location: local::at0035|Peripheral|
+        gt0018|Signs of mediastinal invasion: "true"
+    expected_output:
+      "1":
+        gt0003|Referral recommended: "true"
+  - id: no input
+    input:
+      "1": {}
+    expected_output:
+      "1":
+        gt0003|Referral recommended: "false"
