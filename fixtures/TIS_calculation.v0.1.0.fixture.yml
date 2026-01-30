@@ -1,0 +1,169 @@
+current_datetime: 2025-01-01T07:00:00+01:00
+guidelines:
+  "1": TIS_calculation.v0.1.0
+test_cases:
+  - id: 01. Test default action, no input
+    input:
+      "1": {}
+    expected_output:
+      "1":
+        gt0021|Static balance score: "0"
+        gt0022|Dynamic Balance score: "0"
+        gt0023|Coordination score: "0"
+  - id: 02. All scores 0, maintaing starting position No
+    input:
+      "1":
+        gt0003|Maintains starting position: 0|local::at0005|No|
+    expected_output:
+      "1":
+        gt0021|Static balance score: "0"
+        gt0022|Dynamic Balance score: "0"
+        gt0023|Coordination score: "0"
+        gt0024|Total score: "0"
+  - id: 03.  Maintaing starting position Yes and other input set to 0, Static
+      balance 2
+    input:
+      "1":
+        gt0003|Maintains starting position: 2|local::at0006|Yes|
+        gt0004|Therapist crosses unaffected leg: 0|local::at0008|Falls or can’t maintain
+          sitting position for 10 seconds without arm support|
+        gt0005|Patient crosses unaffected leg: 0|local::at0011|Falls|
+        gt0006|Shortens hemiplegic side: 0|local::at0017|Falls, needs support from upper
+          extremity, or elbow does not touch the bed or table|
+        gt0007|Shortens hemiplegic side - repetition 1: 0|local::at0020|No (or opposite) shortening/lengthening|
+        gt0008|Shortens hemiplegic side - repetition 2: 0|local::at0023|Compensation
+          (with upper extremity, hips, knees, or feet)|
+        gt0009|Shortens unaffected side: 0|local::at0017|Falls, needs support from upper
+          extremity, or elbow does not touch the bed or table|
+        gt0010|Shorten unaffected side - repetition 1: 0|local::at0020|No (or opposite) shortening/lengthening|
+        gt0011|Shorten unaffected side - repetition 2: 0|local::at0023|Compensation
+          (with upper extremity, hips, knees, or feet)|
+        gt0012|Lifts pelvis hemiplegic side: 0|local::at0020|No (or opposite) shortening/lengthening|
+        gt0013|Lifts pelvis hemiplegic side - repetition 1: 0|local::at0030|Compensation (with upper extremity or foot)|
+        gt0014|Lifts pelvis unaffected side: 0|local::at0020|No (or opposite) shortening/lengthening|
+        gt0015|Lifts pelvis unaffected side - repetition 1: 0|local::at0030|Compensation (with upper extremity or foot)|
+        gt0016|Rotates upper trunk: 0|local::at0036|Hemiplegic side not moved 3x|
+        gt0017|Rotates upper trunk - repetition 1: 0|local::at0040|Assymetrical rotation|
+        gt0018|Rotates lower trunk: 0|local::at0036|Hemiplegic side not moved 3x|
+        gt0019|Rotates lower trunk - repetition 1: 0|local::at0040|Assymetrical rotation|
+    expected_output:
+      "1":
+        gt0021|Static balance score: "2"
+        gt0022|Dynamic Balance score: "0"
+        gt0023|Coordination score: "0"
+        gt0024|Total score: "2"
+  - id: 04.  Static balance 7, Dynamic score 0, Coordination score 0 and Total score
+      7
+    input:
+      "1":
+        gt0003|Maintains starting position: 2|local::at0006|Yes|
+        gt0004|Therapist crosses unaffected leg: 2|local::at0009|Maintains sitting position for 10 seconds|
+        gt0005|Patient crosses unaffected leg: 3|local::at0014|Crosses legs without displacement or assistance|
+        gt0006|Shortens hemiplegic side: 0|local::at0017|Falls, needs support from upper
+          extremity, or elbow does not touch the bed or table|
+        gt0007|Shortens hemiplegic side - repetition 1: 0|local::at0020|No (or opposite) shortening/lengthening|
+        gt0008|Shortens hemiplegic side - repetition 2: 0|local::at0023|Compensation
+          (with upper extremity, hips, knees, or feet)|
+        gt0009|Shortens unaffected side: 0|local::at0017|Falls, needs support from upper
+          extremity, or elbow does not touch the bed or table|
+        gt0010|Shorten unaffected side - repetition 1: 0|local::at0020|No (or opposite) shortening/lengthening|
+        gt0011|Shorten unaffected side - repetition 2: 0|local::at0023|Compensation
+          (with upper extremity, hips, knees, or feet)|
+        gt0012|Lifts pelvis hemiplegic side: 0|local::at0020|No (or opposite) shortening/lengthening|
+        gt0013|Lifts pelvis hemiplegic side - repetition 1: 0|local::at0030|Compensation (with upper extremity or foot)|
+        gt0014|Lifts pelvis unaffected side: 0|local::at0020|No (or opposite) shortening/lengthening|
+        gt0015|Lifts pelvis unaffected side - repetition 1: 0|local::at0030|Compensation (with upper extremity or foot)|
+        gt0016|Rotates upper trunk: 0|local::at0036|Hemiplegic side not moved 3x|
+        gt0017|Rotates upper trunk - repetition 1: 0|local::at0040|Assymetrical rotation|
+        gt0018|Rotates lower trunk: 0|local::at0036|Hemiplegic side not moved 3x|
+        gt0019|Rotates lower trunk - repetition 1: 0|local::at0040|Assymetrical rotation|
+    expected_output:
+      "1":
+        gt0021|Static balance score: "7"
+        gt0022|Dynamic Balance score: "0"
+        gt0023|Coordination score: "0"
+        gt0024|Total score: "7"
+  - id: 05.  Static balance 7, Dynamic score 10, Coordination score 0 and Total
+      score 17
+    input:
+      "1":
+        gt0003|Maintains starting position: 2|local::at0006|Yes|
+        gt0004|Therapist crosses unaffected leg: 2|local::at0009|Maintains sitting position for 10 seconds|
+        gt0005|Patient crosses unaffected leg: 3|local::at0014|Crosses legs without displacement or assistance|
+        gt0006|Shortens hemiplegic side: 1|local::at0018|Moves actively without help,
+          elbow touches bed or table|
+        gt0007|Shortens hemiplegic side - repetition 1: 1|local::at0021|Appropriate shortening/lengthening|
+        gt0008|Shortens hemiplegic side - repetition 2: 1|local::at0024|Moves without compensation|
+        gt0009|Shortens unaffected side: 1|local::at0018|Moves actively without help,
+          elbow touches bed or table|
+        gt0010|Shorten unaffected side - repetition 1: 1|local::at0021|Appropriate shortening/lengthening|
+        gt0011|Shorten unaffected side - repetition 2: 1|local::at0024|Moves without compensation|
+        gt0012|Lifts pelvis hemiplegic side: 1|local::at0021|Appropriate shortening/lengthening|
+        gt0013|Lifts pelvis hemiplegic side - repetition 1: 1|local::at0031|Moves without compensation|
+        gt0014|Lifts pelvis unaffected side: 1|local::at0021|Appropriate shortening/lengthening|
+        gt0015|Lifts pelvis unaffected side - repetition 1: 1|local::at0031|Moves without compensation|
+        gt0016|Rotates upper trunk: 0|local::at0036|Hemiplegic side not moved 3x|
+        gt0017|Rotates upper trunk - repetition 1: 0|local::at0040|Assymetrical rotation|
+        gt0018|Rotates lower trunk: 0|local::at0036|Hemiplegic side not moved 3x|
+        gt0019|Rotates lower trunk - repetition 1: 0|local::at0040|Assymetrical rotation|
+    expected_output:
+      "1":
+        gt0021|Static balance score: "7"
+        gt0022|Dynamic Balance score: "10"
+        gt0023|Coordination score: "0"
+        gt0024|Total score: "17"
+  - id: 06.  Static balance 7, Dynamic score 10, Coordination score 3 and Total
+      score 23
+    input:
+      "1":
+        gt0003|Maintains starting position: 2|local::at0006|Yes|
+        gt0004|Therapist crosses unaffected leg: 2|local::at0009|Maintains sitting position for 10 seconds|
+        gt0005|Patient crosses unaffected leg: 3|local::at0014|Crosses legs without displacement or assistance|
+        gt0006|Shortens hemiplegic side: 1|local::at0018|Moves actively without help,
+          elbow touches bed or table|
+        gt0007|Shortens hemiplegic side - repetition 1: 1|local::at0021|Appropriate shortening/lengthening|
+        gt0008|Shortens hemiplegic side - repetition 2: 1|local::at0024|Moves without compensation|
+        gt0009|Shortens unaffected side: 1|local::at0018|Moves actively without help,
+          elbow touches bed or table|
+        gt0010|Shorten unaffected side - repetition 1: 1|local::at0021|Appropriate shortening/lengthening|
+        gt0011|Shorten unaffected side - repetition 2: 1|local::at0024|Moves without compensation|
+        gt0012|Lifts pelvis hemiplegic side: 1|local::at0021|Appropriate shortening/lengthening|
+        gt0013|Lifts pelvis hemiplegic side - repetition 1: 1|local::at0031|Moves without compensation|
+        gt0014|Lifts pelvis unaffected side: 1|local::at0021|Appropriate shortening/lengthening|
+        gt0015|Lifts pelvis unaffected side - repetition 1: 1|local::at0031|Moves without compensation|
+        gt0016|Rotates upper trunk: 2|local::at0038|Symmetrical rotation|
+        gt0017|Rotates upper trunk - repetition 1: 1|local::at0041|Symmetrical rotation|
+        gt0018|Rotates lower trunk: 2|local::at0038|Symmetrical rotation|
+        gt0019|Rotates lower trunk - repetition 1: 1|local::at0041|Symmetrical rotation|
+    expected_output:
+      "1":
+        gt0021|Static balance score: "7"
+        gt0022|Dynamic Balance score: "10"
+        gt0023|Coordination score: "6"
+        gt0024|Total score: "23"
+  - id: 07.  No total score, maintains starting position missing (negative test)
+    input:
+      "1":
+        gt0004|Therapist crosses unaffected leg: 2|local::at0009|Maintains sitting position for 10 seconds|
+        gt0005|Patient crosses unaffected leg: 3|local::at0014|Crosses legs without displacement or assistance|
+        gt0006|Shortens hemiplegic side: 1|local::at0018|Moves actively without help,
+          elbow touches bed or table|
+        gt0007|Shortens hemiplegic side - repetition 1: 1|local::at0021|Appropriate shortening/lengthening|
+        gt0008|Shortens hemiplegic side - repetition 2: 1|local::at0024|Moves without compensation|
+        gt0009|Shortens unaffected side: 1|local::at0018|Moves actively without help,
+          elbow touches bed or table|
+        gt0010|Shorten unaffected side - repetition 1: 1|local::at0021|Appropriate shortening/lengthening|
+        gt0011|Shorten unaffected side - repetition 2: 1|local::at0024|Moves without compensation|
+        gt0012|Lifts pelvis hemiplegic side: 1|local::at0021|Appropriate shortening/lengthening|
+        gt0013|Lifts pelvis hemiplegic side - repetition 1: 1|local::at0031|Moves without compensation|
+        gt0014|Lifts pelvis unaffected side: 1|local::at0021|Appropriate shortening/lengthening|
+        gt0015|Lifts pelvis unaffected side - repetition 1: 1|local::at0031|Moves without compensation|
+        gt0016|Rotates upper trunk: 2|local::at0038|Symmetrical rotation|
+        gt0017|Rotates upper trunk - repetition 1: 1|local::at0041|Symmetrical rotation|
+        gt0018|Rotates lower trunk: 2|local::at0038|Symmetrical rotation|
+        gt0019|Rotates lower trunk - repetition 1: 1|local::at0041|Symmetrical rotation|
+    expected_output:
+      "1":
+        gt0021|Static balance score: "0"
+        gt0022|Dynamic Balance score: "0"
+        gt0023|Coordination score: "0"
