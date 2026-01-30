@@ -1,0 +1,54 @@
+current_datetime: 2024-12-30T08:00:00+01:00
+guidelines:
+  "1": Ideal_body_weight.v0.1.0
+test_cases:
+  - id: 01. Male and height in cm
+    input:
+      "1":
+        gt0003|Height: 165,cm
+        gt0005|Gender: local::at0005|Male|
+    expected_output:
+      "1":
+        gt0007|Ideal Body Weight: 61,kg
+  - id: 02. Female and height in cm
+    input:
+      "1":
+        gt0003|Height: 150,cm
+        gt0005|Gender: local::at0006|Female|
+    expected_output:
+      "1":
+        gt0007|Ideal Body Weight: 43,kg
+  - id: 03. Female and height in inches
+    input:
+      "1":
+        gt0003|Height: 64,[in_i]
+        gt0005|Gender: local::at0006|Female|
+    expected_output:
+      "1":
+        gt0007|Ideal Body Weight: 121,lb
+  - id: 04. Male and height in inches
+    input:
+      "1":
+        gt0003|Height: 75,[in_i]
+        gt0005|Gender: local::at0005|Male|
+    expected_output:
+      "1":
+        gt0007|Ideal Body Weight: 187,lb
+  - id: 05. Male and height missing (negative test)
+    input:
+      "1":
+        gt0005|Gender: local::at0005|Male|
+    expected_output:
+      "1": {}
+  - id: 06. Gender missing (negative test)
+    input:
+      "1":
+        gt0003|Height: 70,[in_i]
+    expected_output:
+      "1": {}
+  - id: 07. Female and height missing (negative test)
+    input:
+      "1":
+        gt0005|Gender: local::at0006|Female|
+    expected_output:
+      "1": {}
