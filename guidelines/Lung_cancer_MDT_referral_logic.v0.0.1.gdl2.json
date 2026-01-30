@@ -1,0 +1,227 @@
+{
+  "uuid" : "6480ded0-ed51-4a6c-9fa0-139a1bb73713",
+  "id" : "Lung_cancer_MDT_referral_logic.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Mahmoud Elachi",
+      "email" : "mel.achi@gmail.com",
+      "organisation" : "Cambio CDS"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "keywords" : [
+          "MDT",
+          "multidisciplinary team",
+          "lung cancer",
+          "mediastinal staging",
+          "PET-CT",
+          "lymph nodes",
+          "N2",
+          "N3",
+          "CT scan"
+        ],
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Regionala cancercentrum i samverkan. Nationellt vårdprogram lungcancer. Kunskapsbanken, 2025.\nAvailable at: kunskapsbanken.cancercentrum.se/diagnoser/lungcancer/vardprogram/",
+      "en" : "when a lung cancer patient should be referred to an MDT"
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0044]/items[at0013]",
+            "data_type" : "DV_BOOLEAN"
+          }
+        }
+      },
+      "gt0006" : {
+        "id" : "gt0006",
+        "model_id" : "openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0012" : {
+            "id" : "gt0012",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0030]/items[at0024]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0025",
+              "local::at0026",
+              "local::at0027",
+              "local::at0028"
+            ]
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0030]/items[at0022]",
+            "data_type" : "DV_BOOLEAN"
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0031]/items[at0033]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0034",
+              "local::at0035"
+            ]
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0030]/items[at0029]",
+            "data_type" : "DV_BOOLEAN"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0019" : {
+        "id" : "gt0019",
+        "priority" : 6,
+        "when" : [
+          "$gt0012|N stage|==local::at0027|N2|||$gt0012|N stage|==local::at0028|N3|"
+        ],
+        "then" : [
+          "$gt0003|Referral recommended|=true"
+        ]
+      },
+      "gt0020" : {
+        "id" : "gt0020",
+        "priority" : 5,
+        "when" : [
+          "$gt0016|PET-CT Lymph Node Uptake|==true||$gt0017|Tumor location|==local::at0034|Central|"
+        ],
+        "then" : [
+          "$gt0003|Referral recommended|=true"
+        ]
+      },
+      "gt0023" : {
+        "id" : "gt0023",
+        "priority" : 4,
+        "when" : [
+          "$gt0017|Tumor location|==local::at0034|Central|"
+        ],
+        "then" : [
+          "$gt0003|Referral recommended|=true"
+        ]
+      },
+      "gt0022" : {
+        "id" : "gt0022",
+        "priority" : 3,
+        "when" : [
+          "$gt0018|Signs of mediastinal invasion|==true"
+        ],
+        "then" : [
+          "$gt0003|Referral recommended|=true"
+        ]
+      },
+      "gt0024" : {
+        "id" : "gt0024",
+        "priority" : 2,
+        "when" : [
+          "$gt0012|N stage|==local::at0025|N0|||$gt0012|N stage|==local::at0026|N1|||$gt0016|PET-CT Lymph Node Uptake|==false||$gt0017|Tumor location|==local::at0035|Peripheral|||$gt0018|Signs of mediastinal invasion|==false",
+          "$gt0012|N stage|!=local::at0027|N2|&&$gt0012|N stage|!=local::at0028|N3|&&$gt0016|PET-CT Lymph Node Uptake|!=true&&$gt0017|Tumor location|!=local::at0034|Central|&&$gt0018|Signs of mediastinal invasion|!=true"
+        ],
+        "then" : [
+          "$gt0003|Referral recommended|=false"
+        ]
+      },
+      "gt0025" : {
+        "id" : "gt0025",
+        "priority" : 1,
+        "when" : [
+          "$gt0012|N stage|==null&&$gt0016|PET-CT Lymph Node Uptake|==null&&$gt0017|Tumor location|==null&&$gt0018|Signs of mediastinal invasion|==null"
+        ],
+        "then" : [
+          "$gt0003|Referral recommended|=false"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Lung cancer MDT Referral Logic"
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Referral recommended"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "openEHR-EHR-OBSERVATION.lung_cancer_mdt_referral.v0"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "N stage"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "PET-CT Lymph Node Uptake"
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "Tumor location"
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "Signs of mediastinal invasion"
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "When N-stage = N2 or N3",
+            "description" : ""
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "When PET-CT shows node uptake or Tumor location is central",
+            "description" : ""
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "When CT signs of mediastinal invasion",
+            "description" : ""
+          },
+          "gt0023" : {
+            "id" : "gt0023",
+            "text" : "When tumor location is central",
+            "description" : ""
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "text" : "non referral ",
+            "description" : ""
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "text" : "(copy) non referral ",
+            "description" : ""
+          }
+        }
+      }
+    }
+  }
+}
