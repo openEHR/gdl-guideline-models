@@ -1,0 +1,78 @@
+guidelines:
+  "1": GCS_calculation.v0.1.0
+test_cases:
+  - id: 01. Precondition not met, Age < 18
+    input:
+      "1":
+        gt0003|Best eye response (E): 1|local::at0010|None|
+        gt0004|Best verbal response (V): 1|local::at0014|None|
+        gt0005|Best motor response (M): 1|local::at0019|None|
+        gt0012|Age: 17,a
+    expected_output:
+      "1": {}
+  - id: 02. Minimum possible score E1V1M1
+    input:
+      "1":
+        gt0003|Best eye response (E): 1|local::at0010|None|
+        gt0004|Best verbal response (V): 1|local::at0014|None|
+        gt0005|Best motor response (M): 1|local::at0019|None|
+        gt0012|Age: 18,a
+    expected_output:
+      "1":
+        gt0007|Total score: "3"
+        gt0008|EVM profile: E(1) V(1) M(1)
+  - id: 03. Maximum possible score E4V5M6
+    input:
+      "1":
+        gt0003|Best eye response (E): 4|local::at0013|Spontaneous|
+        gt0004|Best verbal response (V): 5|local::at0018|Orientated|
+        gt0005|Best motor response (M): 6|local::at0024|Obeys commands|
+        gt0012|Age: 18,a
+    expected_output:
+      "1":
+        gt0007|Total score: "15"
+        gt0008|EVM profile: E(4) V(5) M(6)
+  - id: 04. GCS score 6, E2V2M2
+    input:
+      "1":
+        gt0003|Best eye response (E): 2|local::at0011|To pressure|
+        gt0004|Best verbal response (V): 2|local::at0015|Sounds|
+        gt0005|Best motor response (M): 2|local::at0020|Extension|
+        gt0012|Age: 18,a
+    expected_output:
+      "1":
+        gt0007|Total score: "6"
+        gt0008|EVM profile: E(2) V(2) M(2)
+  - id: 05. GCS score 9, E3V3M3
+    input:
+      "1":
+        gt0003|Best eye response (E): 3|local::at0012|To sound|
+        gt0004|Best verbal response (V): 3|local::at0016|Words|
+        gt0005|Best motor response (M): 3|local::at0021|Abnormal flexion|
+        gt0012|Age: 18,a
+    expected_output:
+      "1":
+        gt0007|Total score: "9"
+        gt0008|EVM profile: E(3) V(3) M(3)
+  - id: 06. GCS score 11, E3V4M4
+    input:
+      "1":
+        gt0003|Best eye response (E): 3|local::at0012|To sound|
+        gt0004|Best verbal response (V): 4|local::at0017|Confused|
+        gt0005|Best motor response (M): 4|local::at0022|Normal flexion|
+        gt0012|Age: 18,a
+    expected_output:
+      "1":
+        gt0007|Total score: "11"
+        gt0008|EVM profile: E(3) V(4) M(4)
+  - id: 07. GCS score 12, E3V4M5
+    input:
+      "1":
+        gt0003|Best eye response (E): 3|local::at0012|To sound|
+        gt0004|Best verbal response (V): 4|local::at0017|Confused|
+        gt0005|Best motor response (M): 5|local::at0023|Localising|
+        gt0012|Age: 18,a
+    expected_output:
+      "1":
+        gt0007|Total score: "12"
+        gt0008|EVM profile: E(3) V(4) M(5)
