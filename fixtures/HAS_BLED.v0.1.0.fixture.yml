@@ -1,0 +1,193 @@
+guidelines:
+  "1": HAS_BLED.v0.1.0
+test_cases:
+  - id: 01. No inputs (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Hypertension missing (negative test).
+    input:
+      "1":
+        "gt0005|Abnormal renal function (Dialysis, transplant, Cr >2.26 mg/dL or >200 µmol/L)": 0|local::at0014|No|
+        gt0006|Abnormal liver function (Cirrhosis or bilirubin >2x normal with AST/ALT/AP >3x normal): 0|local::at0014|No|
+        gt0007|Stroke: 0|local::at0014|No|
+        gt0008|Bleeding history or predisposition: 0|local::at0014|No|
+        "gt0009|Labile INR (Unstable/high INRs, time in therapeutic range <60%)": 0|local::at0014|No|
+        gt0010|Elderly (Age >65): 0|local::at0014|No|
+        "gt0011|Drugs concomitantly (Aspirin, clopidogrel, NSAIDs)": 0|local::at0014|No|
+        gt0012|Alcohol concomitantly (≥8 drinks/week): 0|local::at0014|No|
+    expected_output:
+      "1": {}
+  - id: 03. Abnormal renal function missing (negative test).
+    input:
+      "1":
+        "gt0004|Hypertension (Uncontrolled, >160 mmHg systolic)": 0|local::at0014|No|
+        gt0006|Abnormal liver function (Cirrhosis or bilirubin >2x normal with AST/ALT/AP >3x normal): 0|local::at0014|No|
+        gt0007|Stroke: 0|local::at0014|No|
+        gt0008|Bleeding history or predisposition: 0|local::at0014|No|
+        "gt0009|Labile INR (Unstable/high INRs, time in therapeutic range <60%)": 0|local::at0014|No|
+        gt0010|Elderly (Age >65): 0|local::at0014|No|
+        "gt0011|Drugs concomitantly (Aspirin, clopidogrel, NSAIDs)": 0|local::at0014|No|
+        gt0012|Alcohol concomitantly (≥8 drinks/week): 0|local::at0014|No|
+    expected_output:
+      "1": {}
+  - id: 04. Abnormal liver function missing (negative test).
+    input:
+      "1":
+        "gt0004|Hypertension (Uncontrolled, >160 mmHg systolic)": 0|local::at0014|No|
+        "gt0005|Abnormal renal function (Dialysis, transplant, Cr >2.26 mg/dL or >200 µmol/L)": 0|local::at0014|No|
+        gt0007|Stroke: 0|local::at0014|No|
+        gt0008|Bleeding history or predisposition: 0|local::at0014|No|
+        "gt0009|Labile INR (Unstable/high INRs, time in therapeutic range <60%)": 0|local::at0014|No|
+        gt0010|Elderly (Age >65): 0|local::at0014|No|
+        "gt0011|Drugs concomitantly (Aspirin, clopidogrel, NSAIDs)": 0|local::at0014|No|
+        gt0012|Alcohol concomitantly (≥8 drinks/week): 0|local::at0014|No|
+    expected_output:
+      "1": {}
+  - id: 05. Stroke missing (negative test).
+    input:
+      "1":
+        "gt0004|Hypertension (Uncontrolled, >160 mmHg systolic)": 0|local::at0014|No|
+        "gt0005|Abnormal renal function (Dialysis, transplant, Cr >2.26 mg/dL or >200 µmol/L)": 0|local::at0014|No|
+        gt0006|Abnormal liver function (Cirrhosis or bilirubin >2x normal with AST/ALT/AP >3x normal): 0|local::at0014|No|
+        gt0008|Bleeding history or predisposition: 0|local::at0014|No|
+        "gt0009|Labile INR (Unstable/high INRs, time in therapeutic range <60%)": 0|local::at0014|No|
+        gt0010|Elderly (Age >65): 0|local::at0014|No|
+        "gt0011|Drugs concomitantly (Aspirin, clopidogrel, NSAIDs)": 0|local::at0014|No|
+        gt0012|Alcohol concomitantly (≥8 drinks/week): 0|local::at0014|No|
+    expected_output:
+      "1": {}
+  - id: 06. Bleeding history or predisposition missing (negative test).
+    input:
+      "1":
+        "gt0004|Hypertension (Uncontrolled, >160 mmHg systolic)": 0|local::at0014|No|
+        "gt0005|Abnormal renal function (Dialysis, transplant, Cr >2.26 mg/dL or >200 µmol/L)": 0|local::at0014|No|
+        gt0006|Abnormal liver function (Cirrhosis or bilirubin >2x normal with AST/ALT/AP >3x normal): 0|local::at0014|No|
+        gt0007|Stroke: 0|local::at0014|No|
+        "gt0009|Labile INR (Unstable/high INRs, time in therapeutic range <60%)": 0|local::at0014|No|
+        gt0010|Elderly (Age >65): 0|local::at0014|No|
+        "gt0011|Drugs concomitantly (Aspirin, clopidogrel, NSAIDs)": 0|local::at0014|No|
+        gt0012|Alcohol concomitantly (≥8 drinks/week): 0|local::at0014|No|
+    expected_output:
+      "1": {}
+  - id: 07. Labile INR missing (negative test).
+    input:
+      "1":
+        "gt0004|Hypertension (Uncontrolled, >160 mmHg systolic)": 0|local::at0014|No|
+        "gt0005|Abnormal renal function (Dialysis, transplant, Cr >2.26 mg/dL or >200 µmol/L)": 0|local::at0014|No|
+        gt0006|Abnormal liver function (Cirrhosis or bilirubin >2x normal with AST/ALT/AP >3x normal): 0|local::at0014|No|
+        gt0007|Stroke: 0|local::at0014|No|
+        gt0008|Bleeding history or predisposition: 0|local::at0014|No|
+        gt0010|Elderly (Age >65): 0|local::at0014|No|
+        "gt0011|Drugs concomitantly (Aspirin, clopidogrel, NSAIDs)": 0|local::at0014|No|
+        gt0012|Alcohol concomitantly (≥8 drinks/week): 0|local::at0014|No|
+    expected_output:
+      "1": {}
+  - id: 08. Elderly missing (negative test).
+    input:
+      "1":
+        "gt0004|Hypertension (Uncontrolled, >160 mmHg systolic)": 0|local::at0014|No|
+        "gt0005|Abnormal renal function (Dialysis, transplant, Cr >2.26 mg/dL or >200 µmol/L)": 0|local::at0014|No|
+        gt0006|Abnormal liver function (Cirrhosis or bilirubin >2x normal with AST/ALT/AP >3x normal): 0|local::at0014|No|
+        gt0007|Stroke: 0|local::at0014|No|
+        gt0008|Bleeding history or predisposition: 0|local::at0014|No|
+        "gt0009|Labile INR (Unstable/high INRs, time in therapeutic range <60%)": 0|local::at0014|No|
+        "gt0011|Drugs concomitantly (Aspirin, clopidogrel, NSAIDs)": 0|local::at0014|No|
+        gt0012|Alcohol concomitantly (≥8 drinks/week): 0|local::at0014|No|
+    expected_output:
+      "1": {}
+  - id: 09. Drugs concomitantly missing (negative test).
+    input:
+      "1":
+        "gt0004|Hypertension (Uncontrolled, >160 mmHg systolic)": 0|local::at0014|No|
+        "gt0005|Abnormal renal function (Dialysis, transplant, Cr >2.26 mg/dL or >200 µmol/L)": 0|local::at0014|No|
+        gt0006|Abnormal liver function (Cirrhosis or bilirubin >2x normal with AST/ALT/AP >3x normal): 0|local::at0014|No|
+        gt0007|Stroke: 0|local::at0014|No|
+        gt0008|Bleeding history or predisposition: 0|local::at0014|No|
+        "gt0009|Labile INR (Unstable/high INRs, time in therapeutic range <60%)": 0|local::at0014|No|
+        gt0010|Elderly (Age >65): 0|local::at0014|No|
+        gt0012|Alcohol concomitantly (≥8 drinks/week): 0|local::at0014|No|
+    expected_output:
+      "1": {}
+  - id: 10. Alcohol concomitantly missing (negative test).
+    input:
+      "1":
+        "gt0004|Hypertension (Uncontrolled, >160 mmHg systolic)": 0|local::at0014|No|
+        "gt0005|Abnormal renal function (Dialysis, transplant, Cr >2.26 mg/dL or >200 µmol/L)": 0|local::at0014|No|
+        gt0006|Abnormal liver function (Cirrhosis or bilirubin >2x normal with AST/ALT/AP >3x normal): 0|local::at0014|No|
+        gt0007|Stroke: 0|local::at0014|No|
+        gt0008|Bleeding history or predisposition: 0|local::at0014|No|
+        "gt0009|Labile INR (Unstable/high INRs, time in therapeutic range <60%)": 0|local::at0014|No|
+        gt0010|Elderly (Age >65): 0|local::at0014|No|
+        "gt0011|Drugs concomitantly (Aspirin, clopidogrel, NSAIDs)": 0|local::at0014|No|
+    expected_output:
+      "1": {}
+  - id: 11. Low risk, Anticoagulation should be considered
+    input:
+      "1":
+        "gt0004|Hypertension (Uncontrolled, >160 mmHg systolic)": 1|local::at0015|Yes|
+        "gt0005|Abnormal renal function (Dialysis, transplant, Cr >2.26 mg/dL or >200 µmol/L)": 0|local::at0014|No|
+        gt0006|Abnormal liver function (Cirrhosis or bilirubin >2x normal with AST/ALT/AP >3x normal): 0|local::at0014|No|
+        gt0007|Stroke: 0|local::at0014|No|
+        gt0008|Bleeding history or predisposition: 0|local::at0014|No|
+        "gt0009|Labile INR (Unstable/high INRs, time in therapeutic range <60%)": 0|local::at0014|No|
+        gt0010|Elderly (Age >65): 0|local::at0014|No|
+        "gt0011|Drugs concomitantly (Aspirin, clopidogrel, NSAIDs)": 0|local::at0014|No|
+        gt0012|Alcohol concomitantly (≥8 drinks/week): 0|local::at0014|No|
+    expected_output:
+      "1":
+        gt0014|Total score: "1"
+        gt0032|Risk assessment: Patient has a relatively low risk for major bleeding,
+          Anticoagulation should be considered.
+  - id: 12. Moderate risk, Anticoagulation can be considered
+    input:
+      "1":
+        "gt0004|Hypertension (Uncontrolled, >160 mmHg systolic)": 1|local::at0015|Yes|
+        "gt0005|Abnormal renal function (Dialysis, transplant, Cr >2.26 mg/dL or >200 µmol/L)": 1|local::at0015|Yes|
+        gt0006|Abnormal liver function (Cirrhosis or bilirubin >2x normal with AST/ALT/AP >3x normal): 0|local::at0014|No|
+        gt0007|Stroke: 0|local::at0014|No|
+        gt0008|Bleeding history or predisposition: 0|local::at0014|No|
+        "gt0009|Labile INR (Unstable/high INRs, time in therapeutic range <60%)": 0|local::at0014|No|
+        gt0010|Elderly (Age >65): 0|local::at0014|No|
+        "gt0011|Drugs concomitantly (Aspirin, clopidogrel, NSAIDs)": 0|local::at0014|No|
+        gt0012|Alcohol concomitantly (≥8 drinks/week): 0|local::at0014|No|
+    expected_output:
+      "1":
+        gt0014|Total score: "2"
+        gt0032|Risk assessment: Patient has a moderate risk for major bleeding,
+          Anticoagulation can be considered.
+  - id: 13. High risk, Alternatives to anticoagulation should be considered.
+    input:
+      "1":
+        "gt0004|Hypertension (Uncontrolled, >160 mmHg systolic)": 1|local::at0015|Yes|
+        "gt0005|Abnormal renal function (Dialysis, transplant, Cr >2.26 mg/dL or >200 µmol/L)": 1|local::at0015|Yes|
+        gt0006|Abnormal liver function (Cirrhosis or bilirubin >2x normal with AST/ALT/AP >3x normal): 1|local::at0015|Yes|
+        gt0007|Stroke: 1|local::at0015|Yes|
+        gt0008|Bleeding history or predisposition: 0|local::at0014|No|
+        "gt0009|Labile INR (Unstable/high INRs, time in therapeutic range <60%)": 0|local::at0014|No|
+        gt0010|Elderly (Age >65): 0|local::at0014|No|
+        "gt0011|Drugs concomitantly (Aspirin, clopidogrel, NSAIDs)": 0|local::at0014|No|
+        gt0012|Alcohol concomitantly (≥8 drinks/week): 0|local::at0014|No|
+    expected_output:
+      "1":
+        gt0014|Total score: "4"
+        gt0032|Risk assessment: Patient is at high risk for major bleeding, Alternatives
+          to anticoagulation should be considered.
+  - id: 14. Very high risk, Alternatives to anticoagulation should be considered.
+    input:
+      "1":
+        "gt0004|Hypertension (Uncontrolled, >160 mmHg systolic)": 1|local::at0015|Yes|
+        "gt0005|Abnormal renal function (Dialysis, transplant, Cr >2.26 mg/dL or >200 µmol/L)": 1|local::at0015|Yes|
+        gt0006|Abnormal liver function (Cirrhosis or bilirubin >2x normal with AST/ALT/AP >3x normal): 1|local::at0015|Yes|
+        gt0007|Stroke: 1|local::at0015|Yes|
+        gt0008|Bleeding history or predisposition: 1|local::at0015|Yes|
+        "gt0009|Labile INR (Unstable/high INRs, time in therapeutic range <60%)": 1|local::at0015|Yes|
+        gt0010|Elderly (Age >65): 0|local::at0014|No|
+        "gt0011|Drugs concomitantly (Aspirin, clopidogrel, NSAIDs)": 0|local::at0014|No|
+        gt0012|Alcohol concomitantly (≥8 drinks/week): 0|local::at0014|No|
+    expected_output:
+      "1":
+        gt0014|Total score: "6"
+        gt0032|Risk assessment: Patient is at very high risk for major bleeding,
+          Alternatives to anticoagulation should be considered.
