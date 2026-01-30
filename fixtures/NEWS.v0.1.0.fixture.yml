@@ -1,0 +1,158 @@
+guidelines:
+  "1": NEWS.v0.1.0
+test_cases:
+  - id: 01 - Test no input
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02 - Respiration rate input missing (negative test)
+    input:
+      "1":
+        gt0069|Oxygen saturation: 1|local::at0031|94-95|
+        gt0070|Supplemental oxygen: 0|local::at0036|No|
+        gt0071|Body temperature: 0|local::at0022|36.1-38.0|
+        gt0072|Systolic blood pressure: 1|local::at0015|101-110|
+        gt0073|Heart rate: 0|local::at0013|51-90|
+        gt0074|Level of consciousness: 0|local::at0024|A|
+    expected_output:
+      "1": {}
+  - id: 03 - Oxygen saturation input missing (negative test)
+    input:
+      "1":
+        gt0068|Respiration rate: 0|local::at0018|12-20|
+        gt0070|Supplemental oxygen: 0|local::at0036|No|
+        gt0071|Body temperature: 0|local::at0022|36.1-38.0|
+        gt0072|Systolic blood pressure: 1|local::at0015|101-110|
+        gt0073|Heart rate: 0|local::at0013|51-90|
+        gt0074|Level of consciousness: 0|local::at0024|A|
+    expected_output:
+      "1": {}
+  - id: 04 - Supplemental oxygen input missing (negative test)
+    input:
+      "1":
+        gt0068|Respiration rate: 0|local::at0018|12-20|
+        gt0069|Oxygen saturation: 2|local::at0032|92-93|
+        gt0071|Body temperature: 0|local::at0022|36.1-38.0|
+        gt0072|Systolic blood pressure: 1|local::at0015|101-110|
+        gt0073|Heart rate: 0|local::at0013|51-90|
+        gt0074|Level of consciousness: 0|local::at0024|A|
+    expected_output:
+      "1": {}
+  - id: 05 - Body temperature input missing (negative test)
+    input:
+      "1":
+        gt0068|Respiration rate: 0|local::at0018|12-20|
+        gt0069|Oxygen saturation: 2|local::at0032|92-93|
+        gt0070|Supplemental oxygen: 2|local::at0037|Yes|
+        gt0072|Systolic blood pressure: 1|local::at0015|101-110|
+        gt0073|Heart rate: 0|local::at0013|51-90|
+        gt0074|Level of consciousness: 0|local::at0024|A|
+    expected_output:
+      "1": {}
+  - id: 06 - Systolic blood pressure input missing (negative test)
+    input:
+      "1":
+        gt0068|Respiration rate: 0|local::at0018|12-20|
+        gt0069|Oxygen saturation: 2|local::at0032|92-93|
+        gt0070|Supplemental oxygen: 2|local::at0037|Yes|
+        gt0071|Body temperature: 0|local::at0022|36.1-38.0|
+        gt0073|Heart rate: 0|local::at0013|51-90|
+        gt0074|Level of consciousness: 0|local::at0024|A|
+    expected_output:
+      "1": {}
+  - id: 07 - Heart rate input missing (negative test)
+    input:
+      "1":
+        gt0068|Respiration rate: 0|local::at0018|12-20|
+        gt0069|Oxygen saturation: 0|local::at0030|≥96|
+        gt0070|Supplemental oxygen: 0|local::at0036|No|
+        gt0071|Body temperature: 0|local::at0022|36.1-38.0|
+        gt0072|Systolic blood pressure: 0|local::at0014|111-219|
+        gt0074|Level of consciousness: 0|local::at0024|A|
+    expected_output:
+      "1": {}
+  - id: 08 - Level of consciousness input missing (negative test)
+    input:
+      "1":
+        gt0068|Respiration rate: 0|local::at0018|12-20|
+        gt0069|Oxygen saturation: 0|local::at0030|≥96|
+        gt0070|Supplemental oxygen: 0|local::at0036|No|
+        gt0071|Body temperature: 0|local::at0022|36.1-38.0|
+        gt0072|Systolic blood pressure: 0|local::at0014|111-219|
+        gt0073|Heart rate: 1|local::at0012|41-50 or 91-110|
+    expected_output:
+      "1": {}
+  - id: 09 - Low score
+    input:
+      "1":
+        gt0068|Respiration rate: 0|local::at0018|12-20|
+        gt0069|Oxygen saturation: 0|local::at0030|≥96|
+        gt0070|Supplemental oxygen: 2|local::at0037|Yes|
+        gt0071|Body temperature: 0|local::at0022|36.1-38.0|
+        gt0072|Systolic blood pressure: 0|local::at0014|111-219|
+        gt0073|Heart rate: 0|local::at0013|51-90|
+        gt0074|Level of consciousness: 0|local::at0024|A|
+    expected_output:
+      "1":
+        gt0076|Total score: "2"
+        gt0077|Comment: Assessment by a competent registered nurse who should decide if
+          a change to frequency of clinical monitoring or an escalation of
+          clinical care is required
+        gt0079|NEWS Assessment: 1|local::at0005|Low-risk group|
+  - id: 10 - Medium score
+    input:
+      "1":
+        gt0068|Respiration rate: 0|local::at0018|12-20|
+        gt0069|Oxygen saturation: 2|local::at0032|92-93|
+        gt0070|Supplemental oxygen: 2|local::at0037|Yes|
+        gt0071|Body temperature: 2|local::at0038|≥39.1|
+        gt0072|Systolic blood pressure: 0|local::at0014|111-219|
+        gt0073|Heart rate: 0|local::at0013|51-90|
+        gt0074|Level of consciousness: 0|local::at0024|A|
+    expected_output:
+      "1":
+        gt0076|Total score: "6"
+        gt0077|Comment: Urgent review by a clinician skilled with competencies in the
+          assessment of acute illness – usually a ward-based doctor or acute
+          team nurse, who should consider whether escalation of care to a team
+          with critical-care skills is required (ie critical care outreach team)
+        gt0079|NEWS Assessment: 2|local::at0006|Medium-risk group|
+  - id: 11- Red score
+    input:
+      "1":
+        gt0068|Respiration rate: 3|local::at0021|≤8 or ≥25|
+        gt0069|Oxygen saturation: 0|local::at0030|≥96|
+        gt0070|Supplemental oxygen: 2|local::at0037|Yes|
+        gt0071|Body temperature: 0|local::at0022|36.1-38.0|
+        gt0072|Systolic blood pressure: 0|local::at0014|111-219|
+        gt0073|Heart rate: 0|local::at0013|51-90|
+        gt0074|Level of consciousness: 0|local::at0024|A|
+    expected_output:
+      "1":
+        gt0076|Total score: "5"
+        gt0077|Comment: >-
+          Red score (Assigned when an extreme variation in a single
+          physiological parameter is present i.e., a score of 3 in any one
+          physiological parameter.)
+
+
+          Urgent review by a clinician skilled with competencies in the assessment of acute illness – usually a ward-based doctor or acute team nurse, who should consider whether escalation of care to a team with critical-care skills is required (ie critical care outreach team)
+        gt0079|NEWS Assessment: 2|local::at0006|Medium-risk group|
+  - id: 12- High score
+    input:
+      "1":
+        gt0068|Respiration rate: 3|local::at0021|≤8 or ≥25|
+        gt0069|Oxygen saturation: 3|local::at0033|≤91|
+        gt0070|Supplemental oxygen: 2|local::at0037|Yes|
+        gt0071|Body temperature: 1|local::at0023|35.1-36.0 or 38.1-39.0|
+        gt0072|Systolic blood pressure: 3|local::at0017|≤90 or ≥220|
+        gt0073|Heart rate: 3|local::at0010|≤40 or ≥131|
+        gt0074|Level of consciousness: 3|local::at0025|V, P or U|
+    expected_output:
+      "1":
+        gt0076|Total score: "18"
+        gt0077|Comment: Emergency assessment by a clinical team/critical care outreach
+          team with critical-care competencies and usually transfer of the
+          patient to a higher dependency care area.
+        gt0079|NEWS Assessment: 3|local::at0007|High-risk group|
