@@ -1,0 +1,206 @@
+guidelines:
+  "1": wells_criteria_DVT.v0.1.0
+test_cases:
+  - id: 01 - Test no input
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02 - Active cancer input missing (negative test)
+    input:
+      "1":
+        "gt0054|Paralysis, paresis, or recent plaster immobilisation of the legs": 0|local::at0005|Absent|
+        "gt0055|Recently bedridden for 3 days or more, or major surgery within the previous 12 wk requiring general or regional anesthesia": 0|local::at0005|Absent|
+        gt0056|Localized tenderness along the distribution of the deep venous system: 0|local::at0005|Absent|
+        gt0057|Entire leg swollen: 0|local::at0005|Absent|
+        gt0058|Calf swelling at least 3 cm larger than that on the asymptomatic side: 0|local::at0005|Absent|
+        gt0059|Pitting oedema confined to the symptomatic leg: 0|local::at0005|Absent|
+        gt0060|Collateral superficial veins (nonvaricose): 0|local::at0005|Absent|
+        gt0064|Previously documented DVT: 0|local::at0005|Absent|
+        gt0061|Alternative diagnosis at least as likely as DVT: 0|local::at0005|Absent|
+    expected_output:
+      "1": {}
+  - id: 03 - Paralysis, paresis, or recent plaster immobilisation of the legs input
+      missing (negative test)
+    input:
+      "1":
+        gt0053|Active cancer: 1|local::at0006|Present|
+        "gt0055|Recently bedridden for 3 days or more, or major surgery within the previous 12 wk requiring general or regional anesthesia": 0|local::at0005|Absent|
+        gt0056|Localized tenderness along the distribution of the deep venous system: 0|local::at0005|Absent|
+        gt0057|Entire leg swollen: 0|local::at0005|Absent|
+        gt0058|Calf swelling at least 3 cm larger than that on the asymptomatic side: 0|local::at0005|Absent|
+        gt0059|Pitting oedema confined to the symptomatic leg: 0|local::at0005|Absent|
+        gt0060|Collateral superficial veins (nonvaricose): 0|local::at0005|Absent|
+        gt0064|Previously documented DVT: 0|local::at0005|Absent|
+        gt0061|Alternative diagnosis at least as likely as DVT: 0|local::at0005|Absent|
+    expected_output:
+      "1": {}
+  - id: 04 - Recently bedridden for 3 days or more, or major surgery within the
+      previous 12 wk requiring general or regional anesthesia input missing
+      (negative test)
+    input:
+      "1":
+        gt0053|Active cancer: 1|local::at0006|Present|
+        "gt0054|Paralysis, paresis, or recent plaster immobilisation of the legs": 0|local::at0005|Absent|
+        gt0056|Localized tenderness along the distribution of the deep venous system: 0|local::at0005|Absent|
+        gt0057|Entire leg swollen: 0|local::at0005|Absent|
+        gt0058|Calf swelling at least 3 cm larger than that on the asymptomatic side: 0|local::at0005|Absent|
+        gt0059|Pitting oedema confined to the symptomatic leg: 0|local::at0005|Absent|
+        gt0060|Collateral superficial veins (nonvaricose): 0|local::at0005|Absent|
+        gt0064|Previously documented DVT: 0|local::at0005|Absent|
+        gt0061|Alternative diagnosis at least as likely as DVT: 0|local::at0005|Absent|
+    expected_output:
+      "1": {}
+  - id: 05 - Localized tenderness along the distribution of the deep venous system
+      input missing (negative test)
+    input:
+      "1":
+        gt0053|Active cancer: 1|local::at0006|Present|
+        "gt0054|Paralysis, paresis, or recent plaster immobilisation of the legs": 0|local::at0005|Absent|
+        "gt0055|Recently bedridden for 3 days or more, or major surgery within the previous 12 wk requiring general or regional anesthesia": 1|local::at0006|Present|
+        gt0057|Entire leg swollen: 0|local::at0005|Absent|
+        gt0058|Calf swelling at least 3 cm larger than that on the asymptomatic side: 0|local::at0005|Absent|
+        gt0059|Pitting oedema confined to the symptomatic leg: 0|local::at0005|Absent|
+        gt0060|Collateral superficial veins (nonvaricose): 0|local::at0005|Absent|
+        gt0064|Previously documented DVT: 0|local::at0005|Absent|
+        gt0061|Alternative diagnosis at least as likely as DVT: 0|local::at0005|Absent|
+    expected_output:
+      "1": {}
+  - id: 06 - Entire leg swollen input missing (negative test)
+    input:
+      "1":
+        gt0053|Active cancer: 0|local::at0005|Absent|
+        "gt0054|Paralysis, paresis, or recent plaster immobilisation of the legs": 0|local::at0005|Absent|
+        "gt0055|Recently bedridden for 3 days or more, or major surgery within the previous 12 wk requiring general or regional anesthesia": 0|local::at0005|Absent|
+        gt0056|Localized tenderness along the distribution of the deep venous system: 0|local::at0005|Absent|
+        gt0058|Calf swelling at least 3 cm larger than that on the asymptomatic side: 0|local::at0005|Frånvarande|
+        gt0059|Pitting oedema confined to the symptomatic leg: 0|local::at0005|Frånvarande|
+        gt0060|Collateral superficial veins (nonvaricose): 0|local::at0005|Frånvarande|
+        gt0064|Previously documented DVT: 0|local::at0005|Frånvarande|
+        gt0061|Alternative diagnosis at least as likely as DVT: -2|local::at0006|Närvarande|
+    expected_output:
+      "1": {}
+  - id: 07 - Calf swelling at least 3 cm larger than that on the asymptomatic side
+      input missing (negative test)
+    input:
+      "1":
+        gt0053|Active cancer: 0|local::at0005|Absent|
+        "gt0054|Paralysis, paresis, or recent plaster immobilisation of the legs": 0|local::at0005|Absent|
+        "gt0055|Recently bedridden for 3 days or more, or major surgery within the previous 12 wk requiring general or regional anesthesia": 0|local::at0005|Absent|
+        gt0056|Localized tenderness along the distribution of the deep venous system: 0|local::at0005|Absent|
+        gt0057|Entire leg swollen: 1|local::at0006|Present|
+        gt0059|Pitting oedema confined to the symptomatic leg: 0|local::at0005|Frånvarande|
+        gt0060|Collateral superficial veins (nonvaricose): 0|local::at0005|Frånvarande|
+        gt0064|Previously documented DVT: 0|local::at0005|Frånvarande|
+        gt0061|Alternative diagnosis at least as likely as DVT: -2|local::at0006|Närvarande|
+    expected_output:
+      "1": {}
+  - id: 08 - Pitting oedema confined to the symptomatic leg input missing (negative
+      test)
+    input:
+      "1":
+        gt0053|Active cancer: 0|local::at0005|Absent|
+        "gt0054|Paralysis, paresis, or recent plaster immobilisation of the legs": 0|local::at0005|Absent|
+        "gt0055|Recently bedridden for 3 days or more, or major surgery within the previous 12 wk requiring general or regional anesthesia": 0|local::at0005|Absent|
+        gt0056|Localized tenderness along the distribution of the deep venous system: 0|local::at0005|Absent|
+        gt0057|Entire leg swollen: 0|local::at0005|Absent|
+        gt0058|Calf swelling at least 3 cm larger than that on the asymptomatic side: 0|local::at0005|Absent|
+        gt0060|Collateral superficial veins (nonvaricose): 1|local::at0006|Present|
+        gt0064|Previously documented DVT: 1|local::at0006|Present|
+        gt0061|Alternative diagnosis at least as likely as DVT: -2|local::at0006|Present|
+    expected_output:
+      "1": {}
+  - id: 09- Collateral superficial veins (nonvaricose) input missing (negative test)
+    input:
+      "1":
+        gt0053|Active cancer: 0|local::at0005|Absent|
+        "gt0054|Paralysis, paresis, or recent plaster immobilisation of the legs": 0|local::at0005|Absent|
+        "gt0055|Recently bedridden for 3 days or more, or major surgery within the previous 12 wk requiring general or regional anesthesia": 0|local::at0005|Absent|
+        gt0056|Localized tenderness along the distribution of the deep venous system: 0|local::at0005|Absent|
+        gt0057|Entire leg swollen: 0|local::at0005|Absent|
+        gt0058|Calf swelling at least 3 cm larger than that on the asymptomatic side: 0|local::at0005|Absent|
+        gt0059|Pitting oedema confined to the symptomatic leg: 0|local::at0005|Absent|
+        gt0064|Previously documented DVT: 1|local::at0006|Present|
+        gt0061|Alternative diagnosis at least as likely as DVT: -2|local::at0006|Present|
+    expected_output:
+      "1": {}
+  - id: 10- Previously documented DVT input missing (negative test)
+    input:
+      "1":
+        gt0053|Active cancer: 0|local::at0005|Absent|
+        "gt0054|Paralysis, paresis, or recent plaster immobilisation of the legs": 0|local::at0005|Absent|
+        "gt0055|Recently bedridden for 3 days or more, or major surgery within the previous 12 wk requiring general or regional anesthesia": 0|local::at0005|Absent|
+        gt0056|Localized tenderness along the distribution of the deep venous system: 0|local::at0005|Absent|
+        gt0057|Entire leg swollen: 0|local::at0005|Absent|
+        gt0058|Calf swelling at least 3 cm larger than that on the asymptomatic side: 0|local::at0005|Absent|
+        gt0059|Pitting oedema confined to the symptomatic leg: 0|local::at0005|Absent|
+        gt0060|Collateral superficial veins (nonvaricose): 1|local::at0006|Present|
+        gt0061|Alternative diagnosis at least as likely as DVT: -2|local::at0006|Present|
+    expected_output:
+      "1": {}
+  - id: 11- Alternative diagnosis at least as likely as DVT input missing (negative
+      test)
+    input:
+      "1":
+        gt0053|Active cancer: 0|local::at0005|Absent|
+        "gt0054|Paralysis, paresis, or recent plaster immobilisation of the legs": 0|local::at0005|Absent|
+        "gt0055|Recently bedridden for 3 days or more, or major surgery within the previous 12 wk requiring general or regional anesthesia": 0|local::at0005|Absent|
+        gt0056|Localized tenderness along the distribution of the deep venous system: 0|local::at0005|Absent|
+        gt0057|Entire leg swollen: 0|local::at0005|Absent|
+        gt0058|Calf swelling at least 3 cm larger than that on the asymptomatic side: 0|local::at0005|Absent|
+        gt0059|Pitting oedema confined to the symptomatic leg: 0|local::at0005|Absent|
+        gt0060|Collateral superficial veins (nonvaricose): 1|local::at0006|Present|
+        gt0064|Previously documented DVT: 1|local::at0006|Present|
+    expected_output:
+      "1": {}
+  - id: 12- Low/unlikely risk group
+    input:
+      "1":
+        gt0053|Active cancer: 0|local::at0005|Absent|
+        "gt0054|Paralysis, paresis, or recent plaster immobilisation of the legs": 0|local::at0005|Absent|
+        "gt0055|Recently bedridden for 3 days or more, or major surgery within the previous 12 wk requiring general or regional anesthesia": 0|local::at0005|Absent|
+        gt0056|Localized tenderness along the distribution of the deep venous system: 0|local::at0005|Absent|
+        gt0057|Entire leg swollen: 0|local::at0005|Absent|
+        gt0058|Calf swelling at least 3 cm larger than that on the asymptomatic side: 0|local::at0005|Absent|
+        gt0059|Pitting oedema confined to the symptomatic leg: 0|local::at0005|Absent|
+        gt0060|Collateral superficial veins (nonvaricose): 0|local::at0005|Absent|
+        gt0064|Previously documented DVT: 0|local::at0005|Absent|
+        gt0061|Alternative diagnosis at least as likely as DVT: 0|local::at0005|Absent|
+    expected_output:
+      "1":
+        gt0062|Total score: "0"
+        gt0063|DVT probability: Low risk group for DVT. “Unlikely” according to Wells’ DVT studies.
+  - id: 13- Moderate risk group
+    input:
+      "1":
+        gt0053|Active cancer: 1|local::at0006|Present|
+        "gt0054|Paralysis, paresis, or recent plaster immobilisation of the legs": 0|local::at0005|Absent|
+        "gt0055|Recently bedridden for 3 days or more, or major surgery within the previous 12 wk requiring general or regional anesthesia": 0|local::at0005|Absent|
+        gt0056|Localized tenderness along the distribution of the deep venous system: 0|local::at0005|Absent|
+        gt0057|Entire leg swollen: 0|local::at0005|Absent|
+        gt0058|Calf swelling at least 3 cm larger than that on the asymptomatic side: 0|local::at0005|Absent|
+        gt0059|Pitting oedema confined to the symptomatic leg: 0|local::at0005|Absent|
+        gt0060|Collateral superficial veins (nonvaricose): 0|local::at0005|Absent|
+        gt0064|Previously documented DVT: 0|local::at0005|Absent|
+        gt0061|Alternative diagnosis at least as likely as DVT: 0|local::at0005|Absent|
+    expected_output:
+      "1":
+        gt0062|Total score: "1"
+        gt0063|DVT probability: Moderate risk group for DVT.
+  - id: 14- High/likely risk group
+    input:
+      "1":
+        gt0053|Active cancer: 1|local::at0006|Present|
+        "gt0054|Paralysis, paresis, or recent plaster immobilisation of the legs": 1|local::at0006|Present|
+        "gt0055|Recently bedridden for 3 days or more, or major surgery within the previous 12 wk requiring general or regional anesthesia": 1|local::at0006|Present|
+        gt0056|Localized tenderness along the distribution of the deep venous system: 0|local::at0005|Absent|
+        gt0057|Entire leg swollen: 0|local::at0005|Absent|
+        gt0058|Calf swelling at least 3 cm larger than that on the asymptomatic side: 0|local::at0005|Absent|
+        gt0059|Pitting oedema confined to the symptomatic leg: 0|local::at0005|Absent|
+        gt0060|Collateral superficial veins (nonvaricose): 0|local::at0005|Absent|
+        gt0064|Previously documented DVT: 0|local::at0005|Absent|
+        gt0061|Alternative diagnosis at least as likely as DVT: 0|local::at0005|Absent|
+    expected_output:
+      "1":
+        gt0062|Total score: "3"
+        gt0063|DVT probability: High risk group for DVT. “Likely” according to Wells’ DVT studies.
