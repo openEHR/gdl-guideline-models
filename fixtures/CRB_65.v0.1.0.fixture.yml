@@ -1,0 +1,106 @@
+current_datetime: 2024-12-29T08:00:00+01:00
+guidelines:
+  "1": CRB_65.v0.1.0
+test_cases:
+  - id: 01. Test no input
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Confusion empty (negative test)
+    input:
+      "1":
+        gt0019|Hypotension (SBP < 90 mm Hg or DBP<= 60 mm Hg): 0|local::at0017|Absent|
+        gt0020|Age >= 65 years: 0|local::at0019|Absent|
+        gt0021|Respiratory rate >= 30/min: 0|local::at0021|Absent|
+    expected_output:
+      "1": {}
+  - id: 03. Hypotension empty (negative test)
+    input:
+      "1":
+        gt0018|Confusion: 1|local::at0012|Present|
+        gt0020|Age >= 65 years: 0|local::at0019|Absent|
+        gt0021|Respiratory rate >= 30/min: 0|local::at0021|Absent|
+    expected_output:
+      "1": {}
+  - id: 04. Age empty (negative test)
+    input:
+      "1":
+        gt0018|Confusion: 1|local::at0012|Present|
+        gt0019|Hypotension (SBP < 90 mm Hg or DBP<= 60 mm Hg): 1|local::at0018|Present|
+        gt0021|Respiratory rate >= 30/min: 0|local::at0021|Absent|
+    expected_output:
+      "1": {}
+  - id: 05. Respiratory rate empty (negative test)
+    input:
+      "1":
+        gt0018|Confusion: 1|local::at0012|Present|
+        gt0019|Hypotension (SBP < 90 mm Hg or DBP<= 60 mm Hg): 1|local::at0018|Present|
+        gt0020|Age >= 65 years: 1|local::at0020|Present|
+    expected_output:
+      "1": {}
+  - id: 06. Total score 4, High risk
+    input:
+      "1":
+        gt0018|Confusion: 1|local::at0012|Present|
+        gt0019|Hypotension (SBP < 90 mm Hg or DBP<= 60 mm Hg): 1|local::at0018|Present|
+        gt0020|Age >= 65 years: 1|local::at0020|Present|
+        gt0021|Respiratory rate >= 30/min: 1|local::at0022|Present|
+    expected_output:
+      "1":
+        gt0008|Total score: "4"
+        gt0023|Risk assessment: local::at0007|Severe risk|
+        gt0024|Recommendation: local::at0010|Urgent hospital admission|
+        gt0025|30-day mortality: local::at0013|31.3%|
+  - id: 07. Total score 3, High risk
+    input:
+      "1":
+        gt0018|Confusion: 1|local::at0012|Present|
+        gt0019|Hypotension (SBP < 90 mm Hg or DBP<= 60 mm Hg): 1|local::at0018|Present|
+        gt0020|Age >= 65 years: 0|local::at0019|Absent|
+        gt0021|Respiratory rate >= 30/min: 1|local::at0022|Present|
+    expected_output:
+      "1":
+        gt0008|Total score: "3"
+        gt0023|Risk assessment: local::at0007|Severe risk|
+        gt0024|Recommendation: local::at0010|Urgent hospital admission|
+        gt0025|30-day mortality: local::at0013|31.3%|
+  - id: 08. Total score 2, Moderate risk
+    input:
+      "1":
+        gt0018|Confusion: 1|local::at0012|Present|
+        gt0019|Hypotension (SBP < 90 mm Hg or DBP<= 60 mm Hg): 0|local::at0017|Absent|
+        gt0020|Age >= 65 years: 0|local::at0019|Absent|
+        gt0021|Respiratory rate >= 30/min: 1|local::at0022|Present|
+    expected_output:
+      "1":
+        gt0008|Total score: "2"
+        gt0023|Risk assessment: local::at0006|Moderate risk|
+        gt0024|Recommendation: local::at0009|Consider hospital care|
+        gt0025|30-day mortality: local::at0012|8.2%|
+  - id: 09. Total score 1, Moderate risk
+    input:
+      "1":
+        gt0018|Confusion: 1|local::at0012|Present|
+        gt0019|Hypotension (SBP < 90 mm Hg or DBP<= 60 mm Hg): 0|local::at0017|Absent|
+        gt0020|Age >= 65 years: 0|local::at0019|Absent|
+        gt0021|Respiratory rate >= 30/min: 0|local::at0021|Absent|
+    expected_output:
+      "1":
+        gt0008|Total score: "1"
+        gt0023|Risk assessment: local::at0006|Moderate risk|
+        gt0024|Recommendation: local::at0009|Consider hospital care|
+        gt0025|30-day mortality: local::at0012|8.2%|
+  - id: 10. Total score 0, Low risk
+    input:
+      "1":
+        gt0018|Confusion: 0|local::at0011|Absent|
+        gt0019|Hypotension (SBP < 90 mm Hg or DBP<= 60 mm Hg): 0|local::at0017|Absent|
+        gt0020|Age >= 65 years: 0|local::at0019|Absent|
+        gt0021|Respiratory rate >= 30/min: 0|local::at0021|Absent|
+    expected_output:
+      "1":
+        gt0008|Total score: "0"
+        gt0023|Risk assessment: local::at0005|Low risk|
+        gt0024|Recommendation: local::at0008|Consider home treatment|
+        gt0025|30-day mortality: local::at0011|1.2%|
