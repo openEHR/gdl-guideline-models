@@ -1,0 +1,185 @@
+guidelines:
+  "1": PASI.v0.1.0
+test_cases:
+  - id: No lesion
+    input:
+      "1":
+        gt0003|Head - Erythema: 0|local::at0006|None|
+        gt0004|Head - Induration: 0|local::at0012|None|
+        gt0005|Head - Desquamation: 0|local::at0018|None|
+        gt0006|Head - BSA involvement: 0|local::at0024|No involvement|
+        gt0007|Trunk - Erythema: 0|local::at0006|None|
+        gt0008|Trunk - Induration: 0|local::at0012|None|
+        gt0009|Trunk - Desquamation: 0|local::at0018|None|
+        gt0010|Trunk - BSA involvement: 0|local::at0024|No involvement|
+        gt0011|Upper extremities - Erythema: 0|local::at0006|None|
+        gt0012|Upper extremities - Induration: 0|local::at0012|None|
+        gt0013|Upper extremities - Desquamation: 0|local::at0018|None|
+        gt0014|Upper extremities - BSA involvement: 0|local::at0024|No involvement|
+        gt0015|Lower extremities - Erythema: 0|local::at0006|None|
+        gt0016|Lower extremities - Induration: 0|local::at0012|None|
+        gt0017|Lower extremities - Desquamation: 0|local::at0018|None|
+        gt0018|Lower extremities - BSA involvement: 0|local::at0024|No involvement|
+    expected_output:
+      "1":
+        gt0020|PASI for head region: 0.0,1
+        gt0021|PASI for trunk region: 0.0,1
+        gt0022|PASI for upper extremities region: 0.0,1
+        gt0023|PASI for lower extremities region: 0.0,1
+        gt0024|Total PASI: 0.0,1
+  - id: Mild lesions and <10% BSA
+    input:
+      "1":
+        gt0003|Head - Erythema: 1|local::at0007|Mild|
+        gt0004|Head - Induration: 1|local::at0013|Mild|
+        gt0005|Head - Desquamation: 1|local::at0019|Mild|
+        gt0006|Head - BSA involvement: 1|local::at0025|<10%|
+        gt0007|Trunk - Erythema: 1|local::at0007|Mild|
+        gt0008|Trunk - Induration: 1|local::at0013|Mild|
+        gt0009|Trunk - Desquamation: 1|local::at0019|Mild|
+        gt0010|Trunk - BSA involvement: 1|local::at0025|<10%|
+        gt0011|Upper extremities - Erythema: 1|local::at0007|Mild|
+        gt0012|Upper extremities - Induration: 1|local::at0013|Mild|
+        gt0013|Upper extremities - Desquamation: 1|local::at0019|Mild|
+        gt0014|Upper extremities - BSA involvement: 1|local::at0025|<10%|
+        gt0015|Lower extremities - Erythema: 1|local::at0007|Mild|
+        gt0016|Lower extremities - Induration: 1|local::at0013|Mild|
+        gt0017|Lower extremities - Desquamation: 1|local::at0019|Mild|
+        gt0018|Lower extremities - BSA involvement: 1|local::at0025|<10%|
+    expected_output:
+      "1":
+        gt0020|PASI for head region: 0.3,1
+        gt0021|PASI for trunk region: 0.9,1
+        gt0022|PASI for upper extremities region: 0.6,1
+        gt0023|PASI for lower extremities region: 1.2,1
+        gt0024|Total PASI: 3.0,1
+  - id: Moderate lesions and 10-29% BSA
+    input:
+      "1":
+        gt0003|Head - Erythema: 2|local::at0008|Moderate|
+        gt0004|Head - Induration: 2|local::at0014|Moderate|
+        gt0005|Head - Desquamation: 2|local::at0020|Moderate|
+        gt0006|Head - BSA involvement: 2|local::at0026|10%-29%|
+        gt0007|Trunk - Erythema: 2|local::at0008|Moderate|
+        gt0008|Trunk - Induration: 2|local::at0014|Moderate|
+        gt0009|Trunk - Desquamation: 2|local::at0020|Moderate|
+        gt0010|Trunk - BSA involvement: 2|local::at0026|10%-29%|
+        gt0011|Upper extremities - Erythema: 2|local::at0008|Moderate|
+        gt0012|Upper extremities - Induration: 2|local::at0014|Moderate|
+        gt0013|Upper extremities - Desquamation: 2|local::at0020|Moderate|
+        gt0014|Upper extremities - BSA involvement: 2|local::at0026|10%-29%|
+        gt0015|Lower extremities - Erythema: 2|local::at0008|Moderate|
+        gt0016|Lower extremities - Induration: 2|local::at0014|Moderate|
+        gt0017|Lower extremities - Desquamation: 2|local::at0020|Moderate|
+        gt0018|Lower extremities - BSA involvement: 2|local::at0026|10%-29%|
+    expected_output:
+      "1":
+        gt0020|PASI for head region: 1.2,1
+        gt0021|PASI for trunk region: 3.6,1
+        gt0022|PASI for upper extremities region: 2.4,1
+        gt0023|PASI for lower extremities region: 4.8,1
+        gt0024|Total PASI: 12.0,1
+  - id: Severe lesions and 30-49% BSA
+    input:
+      "1":
+        gt0003|Head - Erythema: 3|local::at0009|Severe|
+        gt0004|Head - Induration: 3|local::at0015|Severe|
+        gt0005|Head - Desquamation: 3|local::at0021|Severe|
+        gt0006|Head - BSA involvement: 3|local::at0027|30%-49%|
+        gt0007|Trunk - Erythema: 3|local::at0009|Severe|
+        gt0008|Trunk - Induration: 3|local::at0015|Severe|
+        gt0009|Trunk - Desquamation: 3|local::at0021|Severe|
+        gt0010|Trunk - BSA involvement: 3|local::at0027|30%-49%|
+        gt0011|Upper extremities - Erythema: 3|local::at0009|Severe|
+        gt0012|Upper extremities - Induration: 3|local::at0015|Severe|
+        gt0013|Upper extremities - Desquamation: 3|local::at0021|Severe|
+        gt0014|Upper extremities - BSA involvement: 3|local::at0027|30%-49%|
+        gt0015|Lower extremities - Erythema: 3|local::at0009|Severe|
+        gt0016|Lower extremities - Induration: 3|local::at0015|Severe|
+        gt0017|Lower extremities - Desquamation: 3|local::at0021|Severe|
+        gt0018|Lower extremities - BSA involvement: 3|local::at0027|30%-49%|
+    expected_output:
+      "1":
+        gt0020|PASI for head region: 2.7,1
+        gt0021|PASI for trunk region: 8.1,1
+        gt0022|PASI for upper extremities region: 5.4,1
+        gt0023|PASI for lower extremities region: 10.8,1
+        gt0024|Total PASI: 27.0,1
+  - id: Very severe lesions and 50-69% BSA
+    input:
+      "1":
+        gt0003|Head - Erythema: 4|local::at0010|Very severe|
+        gt0004|Head - Induration: 4|local::at0016|Very severe|
+        gt0005|Head - Desquamation: 4|local::at0022|Very severe|
+        gt0006|Head - BSA involvement: 4|local::at0028|50%-69%|
+        gt0007|Trunk - Erythema: 4|local::at0010|Very severe|
+        gt0008|Trunk - Induration: 4|local::at0016|Very severe|
+        gt0009|Trunk - Desquamation: 4|local::at0022|Very severe|
+        gt0010|Trunk - BSA involvement: 4|local::at0028|50%-69%|
+        gt0011|Upper extremities - Erythema: 4|local::at0010|Very severe|
+        gt0012|Upper extremities - Induration: 4|local::at0016|Very severe|
+        gt0013|Upper extremities - Desquamation: 4|local::at0022|Very severe|
+        gt0014|Upper extremities - BSA involvement: 4|local::at0028|50%-69%|
+        gt0015|Lower extremities - Erythema: 4|local::at0010|Very severe|
+        gt0016|Lower extremities - Induration: 4|local::at0016|Very severe|
+        gt0017|Lower extremities - Desquamation: 4|local::at0022|Very severe|
+        gt0018|Lower extremities - BSA involvement: 4|local::at0028|50%-69%|
+    expected_output:
+      "1":
+        gt0020|PASI for head region: 4.8,1
+        gt0021|PASI for trunk region: 14.4,1
+        gt0022|PASI for upper extremities region: 9.6,1
+        gt0023|PASI for lower extremities region: 19.2,1
+        gt0024|Total PASI: 48.0,1
+  - id: 70-89% BSA
+    input:
+      "1":
+        gt0003|Head - Erythema: 1|local::at0007|Mild|
+        gt0004|Head - Induration: 1|local::at0013|Mild|
+        gt0005|Head - Desquamation: 1|local::at0019|Mild|
+        gt0006|Head - BSA involvement: 5|local::at0029|70%-89%|
+        gt0007|Trunk - Erythema: 1|local::at0007|Mild|
+        gt0008|Trunk - Induration: 1|local::at0013|Mild|
+        gt0009|Trunk - Desquamation: 1|local::at0019|Mild|
+        gt0010|Trunk - BSA involvement: 5|local::at0029|70%-89%|
+        gt0011|Upper extremities - Erythema: 1|local::at0007|Mild|
+        gt0012|Upper extremities - Induration: 1|local::at0013|Mild|
+        gt0013|Upper extremities - Desquamation: 1|local::at0019|Mild|
+        gt0014|Upper extremities - BSA involvement: 5|local::at0029|70%-89%|
+        gt0015|Lower extremities - Erythema: 1|local::at0007|Mild|
+        gt0016|Lower extremities - Induration: 1|local::at0013|Mild|
+        gt0017|Lower extremities - Desquamation: 1|local::at0019|Mild|
+        gt0018|Lower extremities - BSA involvement: 5|local::at0029|70%-89%|
+    expected_output:
+      "1":
+        gt0020|PASI for head region: 1.5,1
+        gt0021|PASI for trunk region: 4.5,1
+        gt0022|PASI for upper extremities region: 3.0,1
+        gt0023|PASI for lower extremities region: 6.0,1
+        gt0024|Total PASI: 15.0,1
+  - id: 90-100% BSA
+    input:
+      "1":
+        gt0003|Head - Erythema: 1|local::at0007|Mild|
+        gt0004|Head - Induration: 1|local::at0013|Mild|
+        gt0005|Head - Desquamation: 1|local::at0019|Mild|
+        gt0006|Head - BSA involvement: 6|local::at0030|90%-100%|
+        gt0007|Trunk - Erythema: 1|local::at0007|Mild|
+        gt0008|Trunk - Induration: 1|local::at0013|Mild|
+        gt0009|Trunk - Desquamation: 1|local::at0019|Mild|
+        gt0010|Trunk - BSA involvement: 6|local::at0030|90%-100%|
+        gt0011|Upper extremities - Erythema: 1|local::at0007|Mild|
+        gt0012|Upper extremities - Induration: 1|local::at0013|Mild|
+        gt0013|Upper extremities - Desquamation: 1|local::at0019|Mild|
+        gt0014|Upper extremities - BSA involvement: 6|local::at0030|90%-100%|
+        gt0015|Lower extremities - Erythema: 1|local::at0007|Mild|
+        gt0016|Lower extremities - Induration: 1|local::at0013|Mild|
+        gt0017|Lower extremities - Desquamation: 1|local::at0019|Mild|
+        gt0018|Lower extremities - BSA involvement: 6|local::at0030|90%-100%|
+    expected_output:
+      "1":
+        gt0020|PASI for head region: 1.8,1
+        gt0021|PASI for trunk region: 5.4,1
+        gt0022|PASI for upper extremities region: 3.6,1
+        gt0023|PASI for lower extremities region: 7.2,1
+        gt0024|Total PASI: 18.0,1
