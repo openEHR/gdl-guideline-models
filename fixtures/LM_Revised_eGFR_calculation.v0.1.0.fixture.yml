@@ -1,0 +1,71 @@
+guidelines:
+  "1": LM_Revised_eGFR_calculation.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Gender input missing (negative test)
+    input:
+      "1":
+        gt0004|Age: 30,a
+        gt0018|Plasma Creatinine: NPU::NPU18016|Plasma Creatinine code|
+        gt0019|Plasma Creatinine result: 100,umol/L
+    expected_output:
+      "1": {}
+  - id: 3. Age input missing (negative test)
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0018|Plasma Creatinine: NPU::NPU18016|Plasma Creatinine code|
+        gt0019|Plasma Creatinine result: 100,umol/L
+    expected_output:
+      "1": {}
+  - id: 4. Plasma Creatinine input missing (negative test)
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0004|Age: 30,a
+    expected_output:
+      "1": {}
+  - id: 5. All inputs - female, pCr < 150 umol/L
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 40,a
+        gt0018|Plasma Creatinine: NPU::NPU18016|Plasma Creatinine code|
+        gt0019|Plasma Creatinine result: 100,umol/L
+    expected_output:
+      "1":
+        gt0022|Relative eGFR: 60,mL/min/{1.73_m2}
+  - id: 6. All inputs - female, pCr >= 150 umol/L
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 40,a
+        gt0018|Plasma Creatinine: NPU::NPU18016|Plasma Creatinine code|
+        gt0019|Plasma Creatinine result: 160,umol/L
+    expected_output:
+      "1":
+        gt0022|Relative eGFR: 31,mL/min/{1.73_m2}
+  - id: 7. All inputs - male, pCr<180 umol/L
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0004|Age: 40,a
+        gt0018|Plasma Creatinine: NPU::NPU18016|Plasma Creatinine code|
+        gt0019|Plasma Creatinine result: 100,umol/L
+    expected_output:
+      "1":
+        gt0022|Relative eGFR: 75,mL/min/{1.73_m2}
+  - id: 8. All inputs - male, pCr>=180 umol/L
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0004|Age: 40,a
+        gt0018|Plasma Creatinine: NPU::NPU18016|Plasma Creatinine code|
+        gt0019|Plasma Creatinine result: 180,umol/L
+    expected_output:
+      "1":
+        gt0022|Relative eGFR: 35,mL/min/{1.73_m2}
