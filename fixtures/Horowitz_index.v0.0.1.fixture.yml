@@ -1,0 +1,58 @@
+guidelines:
+  "1": Horowitz_index.v0.0.1
+test_cases:
+  - id: Test case _01
+    input:
+      "1":
+        gt0004|PaO2: 350,mm[Hg]
+        gt0005|FiO2: 40,%
+    expected_output:
+      "1":
+        gt0007|Calculate Horowitz Index (P/F ratio): 875.0,mm[Hg]
+        gt0008|Severity of ARDS: local::at0025|Not ARDS|
+        gt0009|Mortality interpretation: local::at0020|Mortality undefined|
+        gt0010|Horowitz index interpretation: local::at0014|Horowitz Index (P/F Ratio) >300mmHg|
+  - id: Test case _02
+    input:
+      "1":
+        gt0004|PaO2: 220,mm[Hg]
+        gt0005|FiO2: 85,%
+    expected_output:
+      "1":
+        gt0007|Calculate Horowitz Index (P/F ratio): 258.8,mm[Hg]
+        gt0008|Severity of ARDS: local::at0026|Mild ARDS|
+        gt0009|Mortality interpretation: local::at0021|Mortality 27%|
+        gt0010|Horowitz index interpretation: local::at0015|Horowitz Index (P/F Ratio) >200-300mmHg|
+  - id: Test case _03
+    input:
+      "1":
+        gt0004|PaO2: 150,mm[Hg]
+        gt0005|FiO2: 75,%
+    expected_output:
+      "1":
+        gt0007|Calculate Horowitz Index (P/F ratio): 200.0,mm[Hg]
+        gt0008|Severity of ARDS: local::at0027|Moderate ARDS|
+        gt0009|Mortality interpretation: local::at0022|Mortality 32%|
+        gt0010|Horowitz index interpretation: local::at0016|Horowitz Index (P/F Ratio) >100-200mmHg|
+  - id: Test case _04
+    input:
+      "1":
+        gt0004|PaO2: 50,mm[Hg]
+        gt0005|FiO2: 90,%
+    expected_output:
+      "1":
+        gt0007|Calculate Horowitz Index (P/F ratio): 55.6,mm[Hg]
+        gt0008|Severity of ARDS: local::at0028|Severe ARDS|
+        gt0009|Mortality interpretation: local::at0023|Mortality 45%|
+        gt0010|Horowitz index interpretation: local::at0017|Horowitz Index (P/F Ratio) ≤100mmHg|
+  - id: Test case _05
+    input:
+      "1":
+        gt0004|PaO2: 13.3,kPa
+        gt0005|FiO2: 80,%
+    expected_output:
+      "1":
+        gt0007|Calculate Horowitz Index (P/F ratio): 124.7,mm[Hg]
+        gt0008|Severity of ARDS: local::at0027|Moderate ARDS|
+        gt0009|Mortality interpretation: local::at0022|Mortality 32%|
+        gt0010|Horowitz index interpretation: local::at0016|Horowitz Index (P/F Ratio) >100-200mmHg|
