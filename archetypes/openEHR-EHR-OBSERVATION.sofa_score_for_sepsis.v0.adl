@@ -1,0 +1,681 @@
+archetype (adl_version=1.4; uid=ebd7b511-141f-4b8e-ab22-3d05791344bb)
+	openEHR-EHR-OBSERVATION.sofa_score_for_sepsis.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+			>
+		>
+	>
+
+description
+	original_author = <
+		["date"] = <"2025-01-21">
+		["name"] = <"Rashmi Damodaran">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"rashmi.damodaran@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			copyright = <"© openEHR Foundation">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the parameters to calculate Total score of SOFA">
+			use = <"To calculate Total score of SOFA">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"27f8525ee7fc7e75ac90a97a5c0b566f">
+		["build_uid"] = <"b941dbf8-e80f-32e7-a68f-842f42adda0e">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- SOFA score for sepsis
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Use of additional oxygen
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0055] occurrences matches {0..1} matches {    -- Sat O2 (%)
+										value matches {
+											0|[local::at0060],
+											0|[local::at0056],
+											1|[local::at0057],
+											2|[local::at0058]
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- PaO2/FiO2 (kPa)
+										value matches {
+											0|[local::at0061],
+											0|[local::at0010],
+											1|[local::at0011],
+											2|[local::at0012],
+											3|[local::at0013],
+											4|[local::at0014]
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Platelet count (x 10^9/L)
+										value matches {
+											0|[local::at0062],
+											0|[local::at0016],
+											1|[local::at0017],
+											2|[local::at0018],
+											3|[local::at0019],
+											4|[local::at0020]
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- Total Bilirubin (μmol/L)
+										value matches {
+											0|[local::at0063],
+											0|[local::at0022],
+											1|[local::at0023],
+											2|[local::at0024],
+											3|[local::at0025],
+											4|[local::at0026]
+										}
+									}
+									ELEMENT[at0027] occurrences matches {0..1} matches {    -- Degree of hyptension (MAP, mmHg)/Catecholamines (μg/kg/min)
+										value matches {
+											0|[local::at0064],
+											0|[local::at0028],
+											1|[local::at0029],
+											2|[local::at0030],
+											3|[local::at0031],
+											4|[local::at0032]
+										}
+									}
+									ELEMENT[at0033] occurrences matches {0..1} matches {    -- Glasgow Coma Scale (GCS)
+										value matches {
+											0|[local::at0065],
+											0|[local::at0034],
+											1|[local::at0035],
+											2|[local::at0036],
+											3|[local::at0037],
+											4|[local::at0038]
+										}
+									}
+									ELEMENT[at0039] occurrences matches {0..1} matches {    -- Reaction Level Scale (RLS)
+										value matches {
+											0|[local::at0066],
+											0|[local::at0040],
+											1|[local::at0041],
+											2|[local::at0042],
+											3|[local::at0043],
+											4|[local::at0044]
+										}
+									}
+									ELEMENT[at0045] occurrences matches {0..1} matches {    -- ACVPU scale
+										value matches {
+											0|[local::at0067],
+											0|[local::at0046],
+											1|[local::at0047]
+										}
+									}
+									ELEMENT[at0049] occurrences matches {0..1} matches {    -- Creatinine (μmol/L) and/or Urine output (mL/d)
+										value matches {
+											0|[local::at0068],
+											0|[local::at0050],
+											1|[local::at0051],
+											2|[local::at0052],
+											3|[local::at0053],
+											4|[local::at0054]
+										}
+									}
+									ELEMENT[at0059] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"SOFA score for sepsis">
+					description = <"SOFA score for sepsis">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Use of additional oxygen">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"PaO2/FiO2 (kPa)">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"≥53,3">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"<53,3-40">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"<40-26,7">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"<26,7-13,3">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"<13,3">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Platelet count (x 10^9/L)">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"≥150">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"<150-100">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"<100-50">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"<50-20">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"<20">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Total Bilirubin (μmol/L)">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"<20">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"20-32">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"33-101">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"102-204">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <">204">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Degree of hyptension (MAP, mmHg)/Catecholamines (μg/kg/min)">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"MAP ≥70">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"MAP <70, no vasopressor/inotrpy">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Dopamine ≤5 or Dobutamine">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Dopamine >5-15 or Adrenaline ≤0,1 or Noradrenaline ≤0,1">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Dopamine >15 or Adrenaline >0,1 or Noradrenaline >0,1 or Levosimendan or Vasopressin">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Glasgow Coma Scale (GCS)">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"15">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"13-14">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"10-12">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"6-9">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"<6">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"Reaction Level Scale (RLS)">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"1">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"2">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"3">
+					description = <"">
+				>
+				["at0043"] = <
+					text = <"4-5">
+					description = <"">
+				>
+				["at0044"] = <
+					text = <"6-8">
+					description = <"">
+				>
+				["at0045"] = <
+					text = <"ACVPU scale">
+					description = <"">
+				>
+				["at0046"] = <
+					text = <"Alert (A)">
+					description = <"">
+				>
+				["at0047"] = <
+					text = <"Confusion (C) Voice (V) Pain (P) Unresponsiveness (U)">
+					description = <"">
+				>
+				["at0049"] = <
+					text = <"Creatinine (μmol/L) and/or Urine output (mL/d)">
+					description = <"">
+				>
+				["at0050"] = <
+					text = <"<110">
+					description = <"">
+				>
+				["at0051"] = <
+					text = <"110-170">
+					description = <"">
+				>
+				["at0052"] = <
+					text = <"171-299">
+					description = <"">
+				>
+				["at0053"] = <
+					text = <"300-440 and/or urine output <500">
+					description = <"">
+				>
+				["at0054"] = <
+					text = <">440 and/or urine output <200">
+					description = <"">
+				>
+				["at0055"] = <
+					text = <"Sat O2 (%)">
+					description = <"">
+				>
+				["at0056"] = <
+					text = <"≥95">
+					description = <"">
+				>
+				["at0057"] = <
+					text = <"91-94">
+					description = <"">
+				>
+				["at0058"] = <
+					text = <"≤90">
+					description = <"">
+				>
+				["at0059"] = <
+					text = <"Total score">
+					description = <"">
+				>
+				["at0060"] = <
+					text = <"Missing">
+					description = <"">
+				>
+				["at0061"] = <
+					text = <"Missing">
+					description = <"">
+				>
+				["at0062"] = <
+					text = <"Missing">
+					description = <"">
+				>
+				["at0063"] = <
+					text = <"Missing">
+					description = <"">
+				>
+				["at0064"] = <
+					text = <"Missing">
+					description = <"">
+				>
+				["at0065"] = <
+					text = <"Missing">
+					description = <"">
+				>
+				["at0066"] = <
+					text = <"Missing">
+					description = <"">
+				>
+				["at0067"] = <
+					text = <"Missing">
+					description = <"">
+				>
+				["at0068"] = <
+					text = <"Missing">
+					description = <"">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"SOFA score for sepsis">
+					description = <"*SOFA score for sepsis (en)">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Tillförd syrgas används">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"PaO2/FiO2 (kPa)">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"≥53,3">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"<53,3-40">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"<40-26,7">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"<26,7-13,3">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"<13,3">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Antal trombocyter (x 10^9/L)">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"≥150">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"<150-100">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"<100-50">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"20-49">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"<20">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Totalt Bilirubin (μmol/L)">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"<20">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"20-32">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"33-101">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"102-204">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <">204">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Grad av hyptoni (MAP, mmHg)/Katekolamin (μg/kg/min)">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"MAP ≥70">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"MAP <70">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Dopamin ≤5 eller Dobutamin">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Dopamin >5-15 eller Adrenalin ≤0,1 eller Noradrenalin ≤0,1">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Dopamin >15 eller Adrenalin >0,1 eller Noradrenalin >0,1 eller Levosimendan eller Vasopressin">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Glasgow Coma Scale (GCS)">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"15">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"13-14">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"10-12">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"6-9">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"<6">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"Reaction Level Scale (RLS)">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"1">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"2">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"3">
+					description = <"">
+				>
+				["at0043"] = <
+					text = <"4-5">
+					description = <"">
+				>
+				["at0044"] = <
+					text = <"6-8">
+					description = <"">
+				>
+				["at0045"] = <
+					text = <"ACVPU scale">
+					description = <"">
+				>
+				["at0046"] = <
+					text = <"Alert (A)">
+					description = <"">
+				>
+				["at0047"] = <
+					text = <"Confusion (C) Voice (V) Pain (P) Unresponsiveness (U)">
+					description = <"">
+				>
+				["at0049"] = <
+					text = <"Kreatinin (μmol/L) and/or Diures (mL/d)">
+					description = <"">
+				>
+				["at0050"] = <
+					text = <"<110">
+					description = <"">
+				>
+				["at0051"] = <
+					text = <"110-170">
+					description = <"">
+				>
+				["at0052"] = <
+					text = <"171-299">
+					description = <"">
+				>
+				["at0053"] = <
+					text = <"300-440 och/eller diures <500">
+					description = <"">
+				>
+				["at0054"] = <
+					text = <">440 och/eller diures <200">
+					description = <"">
+				>
+				["at0055"] = <
+					text = <"Sat O2 (%)">
+					description = <"">
+				>
+				["at0056"] = <
+					text = <"≥95">
+					description = <"">
+				>
+				["at0057"] = <
+					text = <"91-94">
+					description = <"">
+				>
+				["at0058"] = <
+					text = <"≤90">
+					description = <"">
+				>
+				["at0059"] = <
+					text = <"Totalpoäng">
+					description = <"">
+				>
+				["at0060"] = <
+					text = <"Saknas">
+					description = <"">
+				>
+				["at0061"] = <
+					text = <"Saknas">
+					description = <"">
+				>
+				["at0062"] = <
+					text = <"Saknas">
+					description = <"">
+				>
+				["at0063"] = <
+					text = <"Saknas">
+					description = <"">
+				>
+				["at0064"] = <
+					text = <"Saknas">
+					description = <"">
+				>
+				["at0065"] = <
+					text = <"Saknas">
+					description = <"">
+				>
+				["at0066"] = <
+					text = <"Saknas">
+					description = <"">
+				>
+				["at0067"] = <
+					text = <"Saknas">
+					description = <"">
+				>
+				["at0068"] = <
+					text = <"Saknas">
+					description = <"">
+				>
+			>
+		>
+	>
