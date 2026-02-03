@@ -1,0 +1,381 @@
+archetype (adl_version=1.4; uid=d090b47e-b0e2-45d0-afa3-b1cd155388d1)
+	openEHR-EHR-OBSERVATION.cha2ds2va_score.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"Konstantinos Kalliamvakos">
+				["organisation"] = <"Cambio Healthcare Systems">
+				["email"] = <"konstantinos.kalliamvakos@cambio.se">
+			>
+		>
+		["el"] = <
+			language = <[ISO_639-1::el]>
+			author = <
+				["name"] = <"Konstantinos Kalliamvakos">
+				["organisation"] = <"Cambio Healthcare Systems">
+				["email"] = <"konstantinos.kalliamvakos@cambio.se">
+			>
+		>
+	>
+
+description
+	original_author = <
+		["date"] = <"2025-08-28">
+		["name"] = <"Konstantinos Kalliamvakos">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"konstantinos.kalliamvakos@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera en individs CHA₂DS₂-VA-poäng parametrar samt totala poäng.">
+			keywords = <"CHA₂DS₂-VA","CHA2DS2-VA","förmaksflimmer","stroke","diabetes","hypertoni","hjärtsvikt","VK-dysfunktion","vascula","sjukdom","ålder">
+			copyright = <"© openEHR Foundation">
+			use = <"Används för att registrera en individs CHA₂DS₂-VA-poäng, både parametrar och totalpoäng, som en del av strokeriskstratifiering hos patienter med förmaksflimmer.">
+			misuse = <"Får inte användas för att registrera CHA₂DS₂-VASc-poängen – använd istället OBSERVATION.chadsvasc_score för detta ändamål.">
+		>
+		["el"] = <
+			language = <[ISO_639-1::el]>
+			purpose = <"Για την καταγραφή των επιμέρους παραμέτρων της βαθμολογίας CHA₂DS₂‑VA και της συνολικής βαθμολογίας.">
+			keywords = <"CHA₂DS₂-VA","CHA2DS2-VA","κολπική","μαρμαρυγή","εγκεφαλικό","διαβήτης","υπέρταση","ΣΚΑ","συμφορητική","καρδιακή","ανεπάρκεια","αγγειακή","νόσος","ηλικία">
+			copyright = <"© openEHR Foundation">
+			use = <"Χρησιμοποιείται για την καταγραφή των επιμέρους παραμέτρων της βαθμολογίας CHA₂DS₂‑VA και της συνολικής βαθμολογίας, ως μέρος της κατηγοριοποίησης κινδύνου για εγκεφαλικό σε ασθενείς με κολπική μαρμαρυγή.">
+			misuse = <"Δεν πρέπει να χρησιμοποιείται για την καταγραφή της βαθμολογίας CHA₂DS₂‑VASc – χρησιμοποιήστε αντ’ αυτού το OBSERVATION.chadsvasc_score για αυτόν τον σκοπό.">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record individual CHA₂DS₂-VA score parameters and total score.">
+			keywords = <"CHA₂DS₂-VA","CHA2DS2-VA","atrial","fibrillation","stroke","diabetes","hypertension","congestive","heart","failure","CHF","vascular","disease","age">
+			copyright = <"Cambio Healthcare Systems">
+			use = <"Use to record individual CHA₂DS₂-VA score parameters and total score as part of stroke risk stratification in patients with atrial fibrillation.">
+			misuse = <"Not to be used to record the CHA₂DS₂-VASc score - use the OBSERVATION.chadsvasc_score for this purpose.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Van Gelder IC, Rienstra M, Bunting K V, Casado-Arroyo R, Caso V, Crijns HJGM, et al. 2024 ESC Guidelines for the management of atrial fibrillation developed in collaboration with the European Association for Cardio-Thoracic Surgery (EACTS): Developed by the task force for the management of atrial fibrillation of the European Society of Cardiology (ESC), with the special contribution of the European Heart Rhythm Association (EHRA) of the ESC. Endorsed by the European Stroke Organisation (ESO). Eur Heart J [Internet]. 2024 Sep 21;45(36):3314–414. Available from: https://doi.org/10.1093/eurheartj/ehae176">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"59d7ceae7eac04cef16840244444982f">
+		["build_uid"] = <"a367229b-f602-382e-99c9-a842622c3b63">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- CHA₂DS₂-VA score
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Congestive Heart Failure
+										value matches {
+											1|[local::at0005],
+											0|[local::at0006]
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Hypertension
+										value matches {
+											1|[local::at0005],
+											0|[local::at0006]
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Diabetes
+										value matches {
+											1|[local::at0005],
+											0|[local::at0006]
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Stroke/TIA/Thromboembolism
+										value matches {
+											2|[local::at0005],
+											0|[local::at0006]
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Vascular disease
+										value matches {
+											1|[local::at0005],
+											0|[local::at0006]
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Age
+										value matches {
+											0|[local::at0012],
+											1|[local::at0013],
+											2|[local::at0014]
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											DV_COUNT matches {
+												magnitude matches {|0..8|}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0016] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0017] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"CHA₂DS₂-VA score">
+					description = <"Risk stratification for stroke based on the CHA₂DS₂-VA score defined by the European Society of Cardiology (ESC) guidelines for management of atrial fibrillation.">
+					comment = <"Original version, c 2024">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Congestive Heart Failure">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Hypertension">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Diabetes">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Stroke/TIA/Thromboembolism">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Vascular disease">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Age">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Under 65">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Between 65-74">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Above or equals to 75">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Total score">
+					description = <"The total sum of each component parameter for the CHA₂DS₂-VA score.">
+				>
+				["at0016"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0017"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"CHA₂DS₂-VA poäng">
+					description = <"Riskstratifiering av stroke baserat på CHA₂DS₂-VA poäng definierat i Socialstyrelsens riktlinjer för hantering av förmaksflimmer.">
+					comment = <"Originalversion, c 2024">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Ospecificerad händelse">
+					description = <"Standard, ospecificerad tidpunkt eller intervallhändelse som kan definieras uttryckligen i en mall eller vid körning.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Hjärtsvikt/VK-dysfunktion">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Ja">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Nej">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Hypertoni">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Diabetes">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Stroke/TIA/Tromboembolism">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Vaskulär sjukdom">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Ålder">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Under 65">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Mellan 65-74">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Över eller lika med 75">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Totalpoäng">
+					description = <"Den totala summan av varje komponentparameter för CHA₂DS₂-VA-poängen.">
+				>
+				["at0016"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0017"] = <
+					text = <"Tillägg">
+					description = <"Ytterligare information som krävs för att utöka modellen med lokalt innehåll eller för att anpassa den till andra referensmodeller eller formaliseringsstandarder.">
+					comment = <"Till exempel lokala informationskrav eller ytterligare metadata för att anpassa till FHIR.">
+				>
+			>
+		>
+		["el"] = <
+			items = <
+				["at0000"] = <
+					text = <"CHA₂DS₂-VA βαθμολογία">
+					description = <"Κατηγοριοποίηση κινδύνου για εγκεφαλικό βάσει της βαθμολογίας CHA₂DS₂‑VA, όπως ορίζεται από τις οδηγίες της Ευρωπαϊκής Εταιρείας Καρδιολογίας (ESC) για τη διαχείριση της κολπικής μαρμαρυγής.">
+					comment = <"Αρχική έκδοση, ≈ 2024">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Οποιοδήποτε χρονικό σημείο">
+					description = <"Προκαθορισμένο, μη καθορισμένο χρονικό σημείο ή ενδιάμεσο χρονικό σημείο, το οποίο μπορεί να οριστεί ρητά σε ένα πρότυπο ή κατά την εκτέλεση.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Συμφορητική Καρδιακή Ανεπάρκεια">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Ναι">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Όχι">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Υπέρταση">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Διαβήτης">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Εγκεφαλικό/TIA/Θρομβοεμβολισμός">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Αγγειακή νόσος">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Ηλικία">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Κάτω των 65 ετών">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Μεταξύ 65–74 ετών">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Ίσο ή μεγαλύτερο των 75 ετών">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Συνολική βαθμολογία">
+					description = <"Το συνολικό άθροισμα κάθε συνιστώσας παραμέτρου για τη βαθμολογία CHA₂DS₂‑VA.">
+				>
+				["at0016"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0017"] = <
+					text = <"Επέκταση">
+					description = <"Επιπλέον πληροφορίες που απαιτούνται για την επέκταση του μοντέλου με τοπικό περιεχόμενο ή για να ευθυγραμμιστεί με άλλα πρότυπα αναφοράς ή μορφοποιήσεις.">
+					comment = <"Για παράδειγμα: τοπικές απαιτήσεις πληροφοριών ή επιπλέον μεταδεδομένα για ευθυγράμμιση με το FHIR.">
+				>
+			>
+		>
+	>
