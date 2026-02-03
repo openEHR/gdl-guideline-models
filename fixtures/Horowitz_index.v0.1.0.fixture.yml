@@ -1,0 +1,110 @@
+guidelines:
+  "1": Horowitz_index.v0.1.0
+test_cases:
+  - id: 01. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. No output, PaO2 missing (negative test)
+    input:
+      "1":
+        gt0030|FiO2 dateTime: 2026-02-03T11:36:54+01:00
+        gt0029|FiO₂: "21"
+    expected_output:
+      "1": {}
+  - id: 03. No output, FiO2 missing (negative test)
+    input:
+      "1":
+        gt0027|PaO2 dateTime: 2026-02-03T08:00:00+01:00
+        gt0025|PaO2: 20,kPa
+    expected_output:
+      "1": {}
+  - id: 04. P/F ratio in kPa, normal
+    input:
+      "1":
+        gt0027|PaO2 dateTime: 2026-02-03T08:00:00+01:00
+        gt0025|PaO2: 12,kPa
+        gt0030|FiO2 dateTime: 2026-02-03T09:00:00+01:00
+        gt0029|FiO₂: "21"
+    expected_output:
+      "1":
+        gt0032|P/F Ratio: 57.1,kPa
+        gt0033|Clinical interpretation: Normal
+  - id: 05. P/F ratio in mmHg, normal
+    input:
+      "1":
+        gt0027|PaO2 dateTime: 2026-02-03T08:00:00+01:00
+        gt0025|PaO2: 90,mm[Hg]
+        gt0030|FiO2 dateTime: 2026-02-03T09:00:00+01:00
+        gt0029|FiO₂: "21"
+    expected_output:
+      "1":
+        gt0032|P/F Ratio: 428.6,mm[Hg]
+        gt0033|Clinical interpretation: Normal
+  - id: 06. P/F ratio in kPa, mild ARDS
+    input:
+      "1":
+        gt0027|PaO2 dateTime: 2026-02-03T08:00:00+01:00
+        gt0025|PaO2: 8,kPa
+        gt0030|FiO2 dateTime: 2026-02-03T09:00:00+01:00
+        gt0029|FiO₂: "21"
+    expected_output:
+      "1":
+        gt0032|P/F Ratio: 38.1,kPa
+        gt0033|Clinical interpretation: Mild ARDS
+  - id: 07. P/F ratio in mmHg, mild ARDS
+    input:
+      "1":
+        gt0027|PaO2 dateTime: 2026-02-03T08:00:00+01:00
+        gt0025|PaO2: 50,mm[Hg]
+        gt0030|FiO2 dateTime: 2026-02-03T09:00:00+01:00
+        gt0029|FiO₂: "21"
+    expected_output:
+      "1":
+        gt0032|P/F Ratio: 238.1,mm[Hg]
+        gt0033|Clinical interpretation: Mild ARDS
+  - id: 08. P/F ratio in kPa, moderate ARDS
+    input:
+      "1":
+        gt0027|PaO2 dateTime: 2026-02-03T08:00:00+01:00
+        gt0025|PaO2: 5,kPa
+        gt0030|FiO2 dateTime: 2026-02-03T09:00:00+01:00
+        gt0029|FiO₂: "21"
+    expected_output:
+      "1":
+        gt0032|P/F Ratio: 23.8,kPa
+        gt0033|Clinical interpretation: Moderate ARDS
+  - id: 09. P/F ratio in mmHg, moderate ARDS
+    input:
+      "1":
+        gt0027|PaO2 dateTime: 2026-02-03T08:00:00+01:00
+        gt0025|PaO2: 40,mm[Hg]
+        gt0030|FiO2 dateTime: 2026-02-03T09:00:00+01:00
+        gt0029|FiO₂: "21"
+    expected_output:
+      "1":
+        gt0032|P/F Ratio: 190.5,mm[Hg]
+        gt0033|Clinical interpretation: Moderate ARDS
+  - id: 10. P/F ratio in kPa, severe ARDS
+    input:
+      "1":
+        gt0027|PaO2 dateTime: 2026-02-03T08:00:00+01:00
+        gt0025|PaO2: 2,kPa
+        gt0030|FiO2 dateTime: 2026-02-03T09:00:00+01:00
+        gt0029|FiO₂: "21"
+    expected_output:
+      "1":
+        gt0032|P/F Ratio: 9.5,kPa
+        gt0033|Clinical interpretation: Severe ARDS
+  - id: 11. P/F ratio in mmHg, severe ARDS
+    input:
+      "1":
+        gt0027|PaO2 dateTime: 2026-02-03T08:00:00+01:00
+        gt0025|PaO2: 20,mm[Hg]
+        gt0030|FiO2 dateTime: 2026-02-03T09:00:00+01:00
+        gt0029|FiO₂: "21"
+    expected_output:
+      "1":
+        gt0032|P/F Ratio: 95.2,mm[Hg]
+        gt0033|Clinical interpretation: Severe ARDS
