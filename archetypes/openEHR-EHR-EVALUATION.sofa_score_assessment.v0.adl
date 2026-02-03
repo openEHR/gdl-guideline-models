@@ -1,0 +1,768 @@
+archetype (adl_version=1.4; uid=1037ffd4-fb9b-44ed-bb07-a461a05c4bc3)
+	openEHR-EHR-EVALUATION.sofa_score_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+			>
+		>
+	>
+
+description
+	original_author = <
+		["date"] = <"2024-10-04">
+		["name"] = <"Rashmi damodaran">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"models@cambiocds.com">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			copyright = <"© openEHR Foundation">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"92e83c87ebc403eeb703bbe338937954">
+		["build_uid"] = <"e1434d47-2258-3583-95c3-150212175f54">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- SOFA score assessment
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- PaO2
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::125]>
+								list = <
+									["1"] = <
+										units = <"kPa">
+									>
+									["2"] = <
+										units = <"mm[Hg]">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0008] occurrences matches {0..1} matches {    -- PaO2 date/time
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					ELEMENT[at0003] occurrences matches {0..1} matches {    -- FiO2
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::380]>
+								list = <
+									["1"] = <
+										units = <"%">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0009] occurrences matches {0..1} matches {    -- FiO2 date/time
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- PaO2/FiO2
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::125]>
+								list = <
+									["1"] = <
+										units = <"kPa">
+									>
+									["2"] = <
+										units = <"mm[Hg]">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0032] occurrences matches {0..1} matches {    -- PaO2/FiO2 date/time
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					ELEMENT[at0038] occurrences matches {0..1} matches {    -- PaO2/FiO2 comment
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0045] occurrences matches {0..1} matches {    -- O2 saturation
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::380]>
+								list = <
+									["1"] = <
+										units = <"%">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0046] occurrences matches {0..1} matches {    -- O2 saturation date/time
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {    -- Systolic Blood Pressure
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::125]>
+								list = <
+									["1"] = <
+										units = <"mm[Hg]">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0011] occurrences matches {0..1} matches {    -- Systolic Blood Pressure date/time
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					ELEMENT[at0006] occurrences matches {0..1} matches {    -- Diastolic Blood Pressure
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::125]>
+								list = <
+									["1"] = <
+										units = <"mm[Hg]">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0012] occurrences matches {0..1} matches {    -- Diastolic Blood Pressure date/time
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					ELEMENT[at0007] occurrences matches {0..1} matches {    -- MAP
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::125]>
+								list = <
+									["1"] = <
+										units = <"mm[Hg]">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0013] occurrences matches {0..1} matches {    -- MAP date/time
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					ELEMENT[at0039] occurrences matches {0..1} matches {    -- MAP comment
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0014] occurrences matches {0..1} matches {    -- Platelet count
+						value matches {
+							C_DV_QUANTITY <
+								
+								list = <
+									["1"] = <
+										units = <"10*3/uL">
+									>
+									["2"] = <
+										units = <"10*9/L">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0015] occurrences matches {0..1} matches {    -- Platelet date/time
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					ELEMENT[at0042] occurrences matches {0..1} matches {    -- Platelet comment
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0016] occurrences matches {0..1} matches {    -- Total Bilirubin
+						value matches {
+							C_DV_QUANTITY <
+								
+								list = <
+									["1"] = <
+										units = <"umol/L">
+									>
+									["2"] = <
+										units = <"mg/dL">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0017] occurrences matches {0..1} matches {    -- Total Bilirubin date/time
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					ELEMENT[at0040] occurrences matches {0..1} matches {    -- Total Bilirubin comment
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0018] occurrences matches {0..1} matches {    -- Creatinine
+						value matches {
+							C_DV_QUANTITY <
+								
+								list = <
+									["1"] = <
+										units = <"umol/L">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0019] occurrences matches {0..1} matches {    -- Creatinine date/time
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					ELEMENT[at0041] occurrences matches {0..1} matches {    -- Creatinine comment
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0020] occurrences matches {0..1} matches {    -- Urine output/24 hrs
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::126]>
+								list = <
+									["1"] = <
+										units = <"ml/d">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0021] occurrences matches {0..1} matches {    -- Urine output date/time
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					ELEMENT[at0033] occurrences matches {0..1} matches {    -- Urine output
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::129]>
+								list = <
+									["1"] = <
+										units = <"mL">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0036] occurrences matches {0..1} matches {    -- Hours
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::128]>
+								list = <
+									["1"] = <
+										units = <"h">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0050] occurrences matches {0..1} matches {    -- Level of consciousness scale
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0051,    -- ACVPU
+									at0052,    -- GCS
+									at0053]    -- RLS
+								}
+							}
+						}
+					}
+					ELEMENT[at0023] occurrences matches {0..1} matches {    -- Glasgow Coma Scale
+						value matches {
+							DV_COUNT matches {*}
+						}
+					}
+					ELEMENT[at0024] occurrences matches {0..1} matches {    -- GCS date/time
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					ELEMENT[at0047] occurrences matches {0..1} matches {    -- RLS
+						value matches {
+							DV_COUNT matches {*}
+						}
+					}
+					ELEMENT[at0048] occurrences matches {0..1} matches {    -- RLS date/time
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					ELEMENT[at0049] occurrences matches {0..1} matches {    -- ACVPU
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0054,    -- Alert (A)
+									at0055,    -- Confusion (C)
+									at0056,    -- Voice (V)
+									at0057,    -- Pain (P)
+									at0058]    -- Unresponsive (U)
+								}
+							}
+						}
+					}
+					ELEMENT[at0059] occurrences matches {0..1} matches {    -- ACVPU date/time
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					ELEMENT[at0043] occurrences matches {0..1} matches {    -- Enable SOFA score assessment
+						value matches {
+							DV_BOOLEAN matches {*}
+						}
+					}
+					ELEMENT[at0044] occurrences matches {0..1} matches {    -- Comments
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0025] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"SOFA score assessment">
+					description = <"SOFA score assessment">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"PaO2">
+					description = <"">
+				>
+				["at0003"] = <
+					text = <"FiO2">
+					description = <"">
+				>
+				["at0004"] = <
+					text = <"PaO2/FiO2">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Systolic Blood Pressure">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Diastolic Blood Pressure">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"MAP">
+					description = <"Mean Arterial Pressure">
+				>
+				["at0008"] = <
+					text = <"PaO2 date/time">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"FiO2 date/time">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Systolic Blood Pressure date/time">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Diastolic Blood Pressure date/time">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"MAP date/time">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Platelet count">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Platelet date/time">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Total Bilirubin">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Total Bilirubin date/time">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Creatinine">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Creatinine date/time">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Urine output/24 hrs">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Urine output date/time">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Glasgow Coma Scale">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"GCS date/time">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0032"] = <
+					text = <"PaO2/FiO2 date/time">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Urine output">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Hours">
+					description = <"Urine output measure for a particular amount of time (hours).">
+				>
+				["at0038"] = <
+					text = <"PaO2/FiO2 comment">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"MAP comment">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"Total Bilirubin comment">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"Creatinine comment">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"Platelet comment">
+					description = <"">
+				>
+				["at0043"] = <
+					text = <"Enable SOFA score assessment">
+					description = <"">
+				>
+				["at0044"] = <
+					text = <"Comments">
+					description = <"">
+				>
+				["at0045"] = <
+					text = <"O2 saturation">
+					description = <"">
+				>
+				["at0046"] = <
+					text = <"O2 saturation date/time">
+					description = <"">
+				>
+				["at0047"] = <
+					text = <"RLS">
+					description = <"">
+				>
+				["at0048"] = <
+					text = <"RLS date/time">
+					description = <"">
+				>
+				["at0049"] = <
+					text = <"ACVPU">
+					description = <"">
+				>
+				["at0050"] = <
+					text = <"Level of consciousness scale">
+					description = <"">
+				>
+				["at0051"] = <
+					text = <"ACVPU">
+					description = <"">
+				>
+				["at0052"] = <
+					text = <"GCS">
+					description = <"">
+				>
+				["at0053"] = <
+					text = <"RLS">
+					description = <"">
+				>
+				["at0054"] = <
+					text = <"Alert (A)">
+					description = <"">
+				>
+				["at0055"] = <
+					text = <"Confusion (C)">
+					description = <"">
+				>
+				["at0056"] = <
+					text = <"Voice (V)">
+					description = <"">
+				>
+				["at0057"] = <
+					text = <"Pain (P)">
+					description = <"">
+				>
+				["at0058"] = <
+					text = <"Unresponsive (U)">
+					description = <"">
+				>
+				["at0059"] = <
+					text = <"ACVPU date/time">
+					description = <"">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"SOFA-poängbedömning">
+					description = <"SOFA-poängbedömning">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"PaO2">
+					description = <"">
+				>
+				["at0003"] = <
+					text = <"FiO2">
+					description = <"">
+				>
+				["at0004"] = <
+					text = <"PaO2/FiO2">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Systoliskt blodtryck">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Diastoliskt blodtryck">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"MAP">
+					description = <"Mean Arterial Pressure">
+				>
+				["at0008"] = <
+					text = <"PaO2 datum/tid">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"FiO2 datum/tid">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Systoliskt blodtryck datum/tid">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Diastoliskt blodtryck datum/tid">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"MAP datum/tid">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Trombocyter">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Trombocyter datum/tid">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Totalt Bilirubin">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Totalt Bilirubin datum/tid">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Kreatinin">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Kreatinin datum/tid">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Urinproduktion/24 h">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Urinproduktion datum/tid">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Glasgow Coma Scale">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"GCS datum/tid">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0032"] = <
+					text = <"PaO2/FiO2 datum/tid">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Urinproduktion">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Antal timmar">
+					description = <"Urinproduktionsmått för en viss tid (timmar).">
+				>
+				["at0038"] = <
+					text = <"PaO2/FiO2 kommentar">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"MAP kommentar">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"Totalt Bilirubin kommentar">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"Kreatinin kommentar">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"Trombocyter kommentar">
+					description = <"">
+				>
+				["at0043"] = <
+					text = <"Aktivera SOFA-poängbedömning">
+					description = <"">
+				>
+				["at0044"] = <
+					text = <"Kommentarer">
+					description = <"">
+				>
+				["at0045"] = <
+					text = <"O2 saturation">
+					description = <"">
+				>
+				["at0046"] = <
+					text = <"O2 saturation datum/tid">
+					description = <"">
+				>
+				["at0047"] = <
+					text = <"RLS">
+					description = <"">
+				>
+				["at0048"] = <
+					text = <"RLS datum/tid">
+					description = <"">
+				>
+				["at0049"] = <
+					text = <"ACVPU">
+					description = <"">
+				>
+				["at0050"] = <
+					text = <"Skala för medvetandenivå">
+					description = <"">
+				>
+				["at0051"] = <
+					text = <"ACVPU">
+					description = <"">
+				>
+				["at0052"] = <
+					text = <"GCS">
+					description = <"">
+				>
+				["at0053"] = <
+					text = <"RLS">
+					description = <"">
+				>
+				["at0054"] = <
+					text = <"Alert (A)">
+					description = <"">
+				>
+				["at0055"] = <
+					text = <"Confusion (C)">
+					description = <"">
+				>
+				["at0056"] = <
+					text = <"Voice (V)">
+					description = <"">
+				>
+				["at0057"] = <
+					text = <"Pain (P)">
+					description = <"">
+				>
+				["at0058"] = <
+					text = <"Unresponsive (U)">
+					description = <"">
+				>
+				["at0059"] = <
+					text = <"ACVPU datum/tid">
+					description = <"">
+				>
+			>
+		>
+	>
