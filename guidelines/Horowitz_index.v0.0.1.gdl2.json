@@ -1,0 +1,252 @@
+{
+  "id" : "Horowitz_index.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Umiah Gohar",
+      "email" : "umiah.gohar@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2024-12-22"
+    },
+    "other_contributors" : [
+      "Rashmi Damodaran"
+    ],
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate and assess lung function and risk-stratify patients with acute respiratory distress syndrome (ARDS).\n\n",
+        "keywords" : [
+          "Horowitz",
+          "index",
+          "PaO2",
+          "FiO2",
+          "P/F ratio",
+          "lung",
+          "function"
+        ],
+        "use" : "The P/F ratio should be used in patients where arterial oxygen partial pressure (PaO2) and the fractional inspired oxygen (FiO2) can be measured accurately. Any estimated values should be interpreted with caution.\n\nThe Horowitz Index (PaO2/FiO2 ratio) is a simple calculation that measures the efficiency of gas exchange in the lungs and provides a crude assessment of the A-a gradient.  It is determined by dividing the partial pressure of oxygen in arterial blood (PaO2) by the fraction of inspired oxygen (FiO2), in accordance with: PaO2/FiO2. \nA lower ratio indicates impaired oxygenation and more severe hypoxemia, commonly seen in conditions like ARDS. \n\nIndex interpretation:\n- P/F Ratio &gt;300mmHg (&gt;40 kPa) - Not ARDS\n- P/F Ratio &gt;200-300mmHg (27–40 kPa) - Mild ARDS\n- P/F Ratio &gt;100-200mmHg (13–27 kPa) - Moderate ARDS\n- P/F Ratio  &lt;100mmHg (&lt;13 kPa) - Severe ARDS\n\nThe following can be used for estimating FiO₂ from oxygen flow/delivery rates.\n1. Type of O₂ delivery: Nasal cannula. Flow rate 1-6 L/min. FiO₂: Room air = 21%, 1 L/min = 25%. 2 L/min = 29%. 3 L/min = 33%. 4 L/min = 37%. 5 L/min = 41% or 6 L/min = 45%.\n2. Type of O₂ delivery: Simple face mask. Flow rate ~6-12 L/min. FiO₂: 35-60% (Varies based on respiratory rate and minute ventilation).\n3. Type of O₂ delivery: Non-rebreather mask. Flow rate ~10-15 L/min. FiO₂: ~70-90%.\n4. Type of O₂ delivery: High-flow nasal cannula. Flow rate Up to 60. FiO₂: 30-100%.",
+        "misuse" : "Not to be used for patients who do not have an arterial blood gas (ABG) analysis available.\n\nNot to be used for distinguishing between hypoventilation and V/Q mismatch. Unlike the A-a gradient, the Horowitz Index does not provide information to differentiate these conditions.\n\nCan only be used to estimate the A-a gradient, assuming PaCO2 is normal and no shunt is present.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Horovitz JH, Carrico CJ, Shires GT. Pulmonary response to major injury. Arch Surg. 1974 Mar;108(3):349-55. doi: 10.1001/archsurg.1974.01350270079014. PMID: 4813333.",
+      "en" : "The Horowitz index is used to assess lung function, particularly in intubated patients."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0003" : {
+        "id" : "gt0003",
+        "model_id" : "openEHR-EHR-OBSERVATION.horowitz_index_for_lung_function_p_f_ratio.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.horowitz_index_for_lung_function_p_f_ratio.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0011]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "kPa",
+              "mm[Hg]"
+            ]
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0012]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "%"
+            ]
+          }
+        }
+      },
+      "gt0006" : {
+        "id" : "gt0006",
+        "model_id" : "openEHR-EHR-OBSERVATION.horowitz_index_for_lung_function_p_f_ratio.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.horowitz_index_for_lung_function_p_f_ratio.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0018]"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0024]"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0019]"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0017" : {
+        "id" : "gt0017",
+        "priority" : 6,
+        "when" : [
+          "$gt0004|PaO2|.unit=='kPa'",
+          "$gt0004|PaO2|!=null",
+          "$gt0005|FiO2|!=null"
+        ],
+        "then" : [
+          "$gt0007|Calculate Horowitz Index (P/F ratio)|.precision=1",
+          "$gt0007|Calculate Horowitz Index (P/F ratio)|.magnitude=($gt0004|PaO2|.magnitude*7.501)/($gt0005|FiO2|.magnitude/100)",
+          "$gt0007|Calculate Horowitz Index (P/F ratio)|.unit='mm[Hg]'"
+        ]
+      },
+      "gt0018" : {
+        "id" : "gt0018",
+        "priority" : 5,
+        "when" : [
+          "$gt0004|PaO2|.unit=='mm[Hg]'",
+          "$gt0004|PaO2|!=null",
+          "$gt0005|FiO2|!=null"
+        ],
+        "then" : [
+          "$gt0007|Calculate Horowitz Index (P/F ratio)|.precision=1",
+          "$gt0007|Calculate Horowitz Index (P/F ratio)|.magnitude=$gt0004|PaO2|.magnitude/($gt0005|FiO2|.magnitude/100)",
+          "$gt0007|Calculate Horowitz Index (P/F ratio)|.unit='mm[Hg]'"
+        ]
+      },
+      "gt0019" : {
+        "id" : "gt0019",
+        "priority" : 4,
+        "when" : [
+          "$gt0007|Calculate Horowitz Index (P/F ratio)|<=100,mm[Hg]"
+        ],
+        "then" : [
+          "$gt0008|Severity of ARDS|=local::at0028|Severe ARDS|",
+          "$gt0009|Mortality interpretation|=local::at0023|Mortality 45%|",
+          "$gt0010|Horowitz index interpretation|=local::at0017|Horowitz Index (P/F Ratio) ≤100mmHg|"
+        ]
+      },
+      "gt0020" : {
+        "id" : "gt0020",
+        "priority" : 3,
+        "when" : [
+          "$gt0007|Calculate Horowitz Index (P/F ratio)|<=200,mm[Hg]",
+          "$gt0007|Calculate Horowitz Index (P/F ratio)|>100,mm[Hg]"
+        ],
+        "then" : [
+          "$gt0008|Severity of ARDS|=local::at0027|Moderate ARDS|",
+          "$gt0009|Mortality interpretation|=local::at0022|Mortality 32%|",
+          "$gt0010|Horowitz index interpretation|=local::at0016|Horowitz Index (P/F Ratio) >100-200mmHg|"
+        ]
+      },
+      "gt0021" : {
+        "id" : "gt0021",
+        "priority" : 2,
+        "when" : [
+          "$gt0007|Calculate Horowitz Index (P/F ratio)|<=300,mm[Hg]",
+          "$gt0007|Calculate Horowitz Index (P/F ratio)|>200,mm[Hg]"
+        ],
+        "then" : [
+          "$gt0008|Severity of ARDS|=local::at0026|Mild ARDS|",
+          "$gt0009|Mortality interpretation|=local::at0021|Mortality 27%|",
+          "$gt0010|Horowitz index interpretation|=local::at0015|Horowitz Index (P/F Ratio) >200-300mmHg|"
+        ]
+      },
+      "gt0022" : {
+        "id" : "gt0022",
+        "priority" : 1,
+        "when" : [
+          "$gt0007|Calculate Horowitz Index (P/F ratio)|>300,mm[Hg]"
+        ],
+        "then" : [
+          "$gt0008|Severity of ARDS|=local::at0025|Not ARDS|",
+          "$gt0009|Mortality interpretation|=local::at0020|Mortality undefined|",
+          "$gt0010|Horowitz index interpretation|=local::at0014|Horowitz Index (P/F Ratio) >300mmHg|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Horowitz index score for Lung Function (P/F Ratio)",
+            "description" : "A score used to assess lung function, particularly in intubated patients."
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "openEHR-EHR-OBSERVATION.horowitz_index_for_lung_function_p_f_ratio.v0"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "PaO2"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "FiO2"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "openEHR-EHR-OBSERVATION.horowitz_index_for_lung_function_p_f_ratio.v0"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Calculate Horowitz Index (P/F ratio)",
+            "description" : "*Horowitz Index (P/F Ratio), mmHg = PaO2 / FiO2"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Severity of ARDS"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Mortality interpretation"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Horowitz index interpretation"
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "Calculate Horowitz Index (P/F ratio) kPa",
+            "description" : ""
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "Calculate Horowitz index (P/F ratio) mmHg",
+            "description" : ""
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "Horowitz ratio interpretation <=100",
+            "description" : ""
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "Horowitz ratio interpretation >100-200",
+            "description" : ""
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "Horowitz ratio interpretation 200-300",
+            "description" : ""
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "Horowitz ratio interpretation >300",
+            "description" : ""
+          }
+        }
+      }
+    }
+  }
+}
