@@ -1,0 +1,124 @@
+archetype (adl_version=1.4; uid=5a412400-8462-48e9-9ea7-fadf8c52c6c1)
+	openEHR-EHR-EVALUATION.cha2ds2va_score_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-02-03">
+		["name"] = <"Rashmi Damodaran">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"rashmi.damodaran@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"2ffde85f-cb24-3917-ab40-f7c5e51d82c9">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- CHA2DS2VA score assessment
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- Annual risk of ischemic stroke
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0003,    -- 0.5%
+									at0004,    -- 1.5%
+									at0005,    -- 2.9%
+									at0006,    -- 5.1%
+									at0007,    -- 7.3%
+									at0008,    -- 11.2%
+									at0009,    -- 15.5%
+									at0010,    -- 14.7%
+									at0011]    -- 19.5%
+								}
+							}
+						}
+					}
+					ELEMENT[at0013] occurrences matches {0..1} matches {    -- Recommendation
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"CHA2DS2VA score assessment">
+					description = <"CHA2DS2VA score assessment">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Annual risk of ischemic stroke">
+					description = <"">
+				>
+				["at0003"] = <
+					text = <"0.5%">
+					description = <"">
+				>
+				["at0004"] = <
+					text = <"1.5%">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"2.9%">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"5.1%">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"7.3%">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"11.2%">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"15.5%">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"14.7%">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"19.5%">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Recommendation">
+					description = <"">
+				>
+			>
+		>
+	>
