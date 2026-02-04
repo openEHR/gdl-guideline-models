@@ -1,0 +1,292 @@
+{
+  "uuid" : "",
+  "id" : "AIR_Score.v1.0.0",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Dennis Forslund",
+      "email" : "models@cambiocds.com",
+      "organisation" : "Cambio Healthcare Systems",
+      "date" : "2016-07-18"
+    },
+    "other_contributors" : [
+      "Jimmy Axelsson",
+      "Rashmi Damodaran"
+    ],
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To objectively aid in determining prognosis and appropriate care level for patients presenting with suspected acute appendicitis. ",
+        "keywords" : [
+          "AIR",
+          "appendicitis",
+          "inflammatory",
+          "response",
+          "surgery"
+        ],
+        "use" : "Use for objective measure in determining prognosis and appropriate care level for patients presenting with suspected acute appendicitis. \n\nAIR is an acronym for Appendicitis Inflammatory Response and consists of seven components, each contributing points to the total score generating an estimated probability as well as a recommendation based on the risk level; \n- Vomiting 0-1\n- Pain in right inferior fossa 0-1\n- Rebound tenderness or muscular defense 0-3\n- Body temperature ≥38.5 0-1\n- Neutrophils 0-2\n- White blood cell count 0-2\n- CRP 0-2\n\nThe tool has a maximum score of 12 points, and the result is associated with one of three categories estimating probability along with a recommendation on appropriate action;\nSum 0-4 - low probability. Consider outpatient follow-up if unaltered general condition.\nSum 5-8 - indeterminate group. Consider in-hospital active observation with rescoring and/or further examination in accordance with local tradition.\nSum 9-12 - high probability. Consider surgical exploration.",
+        "copyright" : "Cambio Healthcare Systems"
+      }
+    },
+    "other_details" : {
+      "references" : "Andersson M, Andersson RE. The appendicitis inflammatory response score: a tool for the diagnosis of acute appendicitis that outperforms the Alvarado score. World journal of surgery. 2008 Aug;32(8):1843–9.",
+      "en" : "AIR score calculation and interpretation."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.air_score.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.air_score.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0025]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0028",
+              "1|local::at0029",
+              "2|local::at0030"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0026]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0031",
+              "1|local::at0032",
+              "2|local::at0033"
+            ]
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0027]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0034",
+              "1|local::at0035",
+              "2|local::at0036"
+            ]
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0016",
+              "1|local::at0017"
+            ]
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0008",
+              "1|local::at0009"
+            ]
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0010",
+              "1|local::at0011"
+            ]
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0012",
+              "1|local::at0013",
+              "2|local::at0014",
+              "3|local::at0015"
+            ]
+          }
+        }
+      },
+      "gt0010" : {
+        "id" : "gt0010",
+        "model_id" : "openEHR-EHR-OBSERVATION.air_score.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.air_score.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0011" : {
+            "id" : "gt0011",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0021]",
+            "data_type" : "DV_COUNT"
+          }
+        }
+      },
+      "gt0012" : {
+        "id" : "gt0012",
+        "model_id" : "openEHR-EHR-EVALUATION.air_score_assessment.v1",
+        "template_id" : "openEHR-EHR-EVALUATION.air_score_assessment.v1",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0013" : {
+            "id" : "gt0013",
+            "path" : "/data[at0001]/items[at0002]",
+            "data_type" : "DV_ORDINAL"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "path" : "/data[at0001]/items[at0003]",
+            "data_type" : "DV_ORDINAL"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0015" : {
+        "id" : "gt0015",
+        "priority" : 4,
+        "when" : [
+          "$gt0003|Neutrophils, %|!=null",
+          "$gt0004|WBC count, x10^9/L|!=null",
+          "$gt0005|CRP level, mg/L|!=null",
+          "$gt0006|Body temperature ≥38.5 C|!=null",
+          "$gt0007|Vomiting|!=null",
+          "$gt0008|Pain in right inferior fossa|!=null",
+          "$gt0009|Rebound tenderness or muscular defense|!=null"
+        ],
+        "then" : [
+          "$gt0011|Total score|.magnitude=$gt0003|Neutrophils, %|.value+$gt0004|WBC count, x10^9/L|.value+$gt0005|CRP level, mg/L|.value+$gt0006|Body temperature ≥38.5 C|.value+$gt0007|Vomiting|.value+$gt0008|Pain in right inferior fossa|.value+$gt0009|Rebound tenderness or muscular defense|.value"
+        ]
+      },
+      "gt0016" : {
+        "id" : "gt0016",
+        "priority" : 3,
+        "when" : [
+          "$gt0011|Total score|>=0",
+          "$gt0011|Total score|<=4"
+        ],
+        "then" : [
+          "$gt0013|Probability of appendicitis|=0|local::at0004|Low probability|",
+          "$gt0014|Recommendation|=0|local::at0007|Consider outpatient follow-up if unaltered general condition|"
+        ]
+      },
+      "gt0017" : {
+        "id" : "gt0017",
+        "priority" : 2,
+        "when" : [
+          "$gt0011|Total score|>=5",
+          "$gt0011|Total score|<=8"
+        ],
+        "then" : [
+          "$gt0013|Probability of appendicitis|=1|local::at0005|Indeterminate group|",
+          "$gt0014|Recommendation|=1|local::at0008|In-hospital active observation|"
+        ]
+      },
+      "gt0018" : {
+        "id" : "gt0018",
+        "priority" : 1,
+        "when" : [
+          "$gt0011|Total score|>=9",
+          "$gt0011|Total score|<=12"
+        ],
+        "then" : [
+          "$gt0013|Probability of appendicitis|=2|local::at0006|High probability|",
+          "$gt0014|Recommendation|=2|local::at0009|Consider surgical exploration|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "AIR Score",
+            "description" : "AIR Score is a scoring system used to aid in determining prognosis and appropriate care level for patients with suspected acute appendicitis. AIR is an acronym for Appendicitis Inflammatory Response and consists of seven components, each contributing points to the total score (max. 12); vomiting, pain in right inferior fossa, rebound tenderness or muscular defense, body temperature ≥38.5, white blood cell count, neutrophil ratio and CRP. The resulting score is used to generate an estimated probability of acute appendicitis as well as a recommendation based on the risk level.\n"
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.air_score.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Neutrophils, %"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "WBC count, x10^9/L"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "CRP level, mg/L"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "Body temperature ≥38.5 C"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Vomiting"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Pain in right inferior fossa"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Rebound tenderness or muscular defense"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "openEHR-EHR-OBSERVATION.air_score.v0"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Total score"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "openEHR-EHR-EVALUATION.air_score_assessment.v1"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Probability of appendicitis"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Recommendation"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "Calculate total score",
+            "description" : ""
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "Set probability to low",
+            "description" : ""
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "Set probability to indeterminate",
+            "description" : ""
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "Set probability to high",
+            "description" : ""
+          }
+        }
+      }
+    }
+  }
+}
