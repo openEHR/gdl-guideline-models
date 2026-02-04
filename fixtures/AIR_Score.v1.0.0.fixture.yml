@@ -1,0 +1,131 @@
+guidelines:
+  "1": AIR_Score.v1.0.0
+test_cases:
+  - id: 01. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Neutrophil input missing (negative test)
+    input:
+      "1":
+        "gt0004|WBC count, x10^9/L": 0|local::at0031|<10|
+        "gt0005|CRP level, mg/L": 0|local::at0034|<10|
+        gt0006|Body temperature ≥38.5 C: 1|local::at0017|Yes|
+        gt0007|Vomiting: 0|local::at0008|No|
+        gt0008|Pain in right inferior fossa: 0|local::at0010|No|
+        gt0009|Rebound tenderness or muscular defense: 1|local::at0013|Light|
+    expected_output:
+      "1": {}
+  - id: 03. WBC input missing (negative test)
+    input:
+      "1":
+        "gt0003|Neutrophils, %": 0|local::at0028|<70%|
+        "gt0005|CRP level, mg/L": 0|local::at0034|<10|
+        gt0006|Body temperature ≥38.5 C: 1|local::at0017|Yes|
+        gt0007|Vomiting: 0|local::at0008|No|
+        gt0008|Pain in right inferior fossa: 0|local::at0010|No|
+        gt0009|Rebound tenderness or muscular defense: 1|local::at0013|Light|
+    expected_output:
+      "1": {}
+  - id: 04. CRP input missing (negative test)
+    input:
+      "1":
+        "gt0003|Neutrophils, %": 0|local::at0028|<70%|
+        "gt0004|WBC count, x10^9/L": 1|local::at0032|10-14,9|
+        gt0006|Body temperature ≥38.5 C: 1|local::at0017|Yes|
+        gt0007|Vomiting: 0|local::at0008|No|
+        gt0008|Pain in right inferior fossa: 0|local::at0010|No|
+        gt0009|Rebound tenderness or muscular defense: 1|local::at0013|Light|
+    expected_output:
+      "1": {}
+  - id: 05. Body temperature input missing (negative test)
+    input:
+      "1":
+        "gt0003|Neutrophils, %": 0|local::at0028|<70%|
+        "gt0004|WBC count, x10^9/L": 1|local::at0032|10-14,9|
+        "gt0005|CRP level, mg/L": 1|local::at0035|10-49|
+        gt0007|Vomiting: 0|local::at0008|No|
+        gt0008|Pain in right inferior fossa: 0|local::at0010|No|
+        gt0009|Rebound tenderness or muscular defense: 1|local::at0013|Light|
+    expected_output:
+      "1": {}
+  - id: 06. Vomiting input missing (negative test)
+    input:
+      "1":
+        "gt0003|Neutrophils, %": 0|local::at0028|<70%|
+        "gt0004|WBC count, x10^9/L": 1|local::at0032|10-14,9|
+        "gt0005|CRP level, mg/L": 1|local::at0035|10-49|
+        gt0006|Body temperature ≥38.5 C: 0|local::at0016|No|
+        gt0008|Pain in right inferior fossa: 0|local::at0010|No|
+        gt0009|Rebound tenderness or muscular defense: 1|local::at0013|Light|
+    expected_output:
+      "1": {}
+  - id: 07. Pain input missing (negative test)
+    input:
+      "1":
+        "gt0003|Neutrophils, %": 0|local::at0028|<70%|
+        "gt0004|WBC count, x10^9/L": 1|local::at0032|10-14,9|
+        "gt0005|CRP level, mg/L": 1|local::at0035|10-49|
+        gt0006|Body temperature ≥38.5 C: 0|local::at0016|No|
+        gt0007|Vomiting: 0|local::at0008|No|
+        gt0009|Rebound tenderness or muscular defense: 1|local::at0013|Light|
+    expected_output:
+      "1": {}
+  - id: 08. Rebound tenderness input missing (negative test)
+    input:
+      "1":
+        "gt0003|Neutrophils, %": 0|local::at0028|<70%|
+        "gt0004|WBC count, x10^9/L": 1|local::at0032|10-14,9|
+        "gt0005|CRP level, mg/L": 1|local::at0035|10-49|
+        gt0006|Body temperature ≥38.5 C: 0|local::at0016|No|
+        gt0007|Vomiting: 0|local::at0008|No|
+        gt0008|Pain in right inferior fossa: 1|local::at0011|Yes|
+    expected_output:
+      "1": {}
+  - id: 09. Total score 3, low probability
+    input:
+      "1":
+        "gt0003|Neutrophils, %": 0|local::at0028|<70%|
+        "gt0004|WBC count, x10^9/L": 1|local::at0032|10-14,9|
+        "gt0005|CRP level, mg/L": 1|local::at0035|10-49|
+        gt0006|Body temperature ≥38.5 C: 0|local::at0016|No|
+        gt0007|Vomiting: 0|local::at0008|No|
+        gt0008|Pain in right inferior fossa: 1|local::at0011|Yes|
+        gt0009|Rebound tenderness or muscular defense: 0|local::at0012|None|
+    expected_output:
+      "1":
+        gt0011|Total score: "3"
+        gt0013|Probability of appendicitis: 0|local::at0004|Low probability|
+        gt0014|Recommendation: 0|local::at0007|Consider outpatient follow-up if
+          unaltered general condition|
+  - id: 10. Total score 5, intermediate probability
+    input:
+      "1":
+        "gt0003|Neutrophils, %": 1|local::at0029|70-84%|
+        "gt0004|WBC count, x10^9/L": 1|local::at0032|10-14,9|
+        "gt0005|CRP level, mg/L": 1|local::at0035|10-49|
+        gt0006|Body temperature ≥38.5 C: 1|local::at0017|Yes|
+        gt0007|Vomiting: 0|local::at0008|No|
+        gt0008|Pain in right inferior fossa: 1|local::at0011|Yes|
+        gt0009|Rebound tenderness or muscular defense: 0|local::at0012|None|
+    expected_output:
+      "1":
+        gt0011|Total score: "5"
+        gt0013|Probability of appendicitis: 1|local::at0005|Indeterminate group|
+        gt0014|Recommendation: 1|local::at0008|In-hospital active observation|
+  - id: 11. Total score 9, high probability
+    input:
+      "1":
+        "gt0003|Neutrophils, %": 1|local::at0029|70-84%|
+        "gt0004|WBC count, x10^9/L": 1|local::at0032|10-14,9|
+        "gt0005|CRP level, mg/L": 1|local::at0035|10-49|
+        gt0006|Body temperature ≥38.5 C: 1|local::at0017|Yes|
+        gt0007|Vomiting: 1|local::at0009|Yes|
+        gt0008|Pain in right inferior fossa: 1|local::at0011|Yes|
+        gt0009|Rebound tenderness or muscular defense: 3|local::at0015|Strong|
+    expected_output:
+      "1":
+        gt0011|Total score: "9"
+        gt0013|Probability of appendicitis: 2|local::at0006|High probability|
+        gt0014|Recommendation: 2|local::at0009|Consider surgical exploration|
