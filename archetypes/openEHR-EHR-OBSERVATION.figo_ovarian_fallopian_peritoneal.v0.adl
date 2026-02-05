@@ -45,34 +45,7 @@ definition
 						data matches {
 							ITEM_TREE[at0003] matches {    -- Tree
 								items cardinality matches {0..*; unordered} matches {
-									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Primary tumour origin/site
-										value matches {
-											DV_CODED_TEXT matches {
-												defining_code matches {
-													[local::
-													at0007,    -- Ovarian carcinoma
-													at0008,    -- Fallopian tube carcinoma
-													at0009,    -- Primary peritoneal carcinoma
-													at0010]    -- Cannot be determined / unknown
-												}
-											}
-										}
-									}
-									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Overall disease distribution
-										value matches {
-											DV_CODED_TEXT matches {
-												defining_code matches {
-													[local::
-													at0012,    -- Confined to ovaries/ovary or fallopian tube(s)
-													at0013,    -- Pelvic extension below pelvic brim OR primary peritoneal cancer
-													at0014,    -- Extrapelvic peritoneal spread and/or retroperitoneal lymph node metastasis
-													at0015,    -- Distant metastasis excluding peritoneal metastasis
-													at0016]    -- Cannot be determined / unknown
-												}
-											}
-										}
-									}
-									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Primary site involvement pattern
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Ovary and fallopian tube involvement pattern
 										value matches {
 											DV_CODED_TEXT matches {
 												defining_code matches {
@@ -106,18 +79,6 @@ definition
 													at0028,    -- Not applicable
 													at0029,    -- Extension to and/or implants on uterus, tubes, or ovaries
 													at0030]    -- Extension to other pelvic intraperitoneal tissues
-												}
-											}
-										}
-									}
-									ELEMENT[at0031] occurrences matches {0..1} matches {    -- Retroperitoneal lymph node involvement
-										value matches {
-											DV_CODED_TEXT matches {
-												defining_code matches {
-													[local::
-													at0032,    -- Not applicable
-													at0033,    -- No retroperitoneal lymph node metastasis
-													at0034]    -- Retroperitoneal lymph node metastasis present
 												}
 											}
 										}
@@ -157,6 +118,36 @@ definition
 													at0048]    -- Parenchymal metastasis and/or extra-abdominal organ metastasis (incl. inguinal nodes and nodes outside abdominal cavity)
 												}
 											}
+										}
+									}
+									ELEMENT[at0049] occurrences matches {0..1} matches {    -- Primary peritoneal carcinoma
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0050] occurrences matches {0..1} matches {    -- Tumour confined to ovaries/ovary or fallopian tube(s)
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0051] occurrences matches {0..1} matches {    -- Pelvic extension below pelvic brim
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0052] occurrences matches {0..1} matches {    -- Extrapelvic peritoneal spread
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0053] occurrences matches {0..1} matches {    -- Retroperitoneal lymph node metastasis
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0054] occurrences matches {0..1} matches {    -- Distant metastasis excluding peritoneal metastasis
+										value matches {
+											DV_BOOLEAN matches {*}
 										}
 									}
 								}
@@ -208,52 +199,8 @@ ontology
 					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
 					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
 				>
-				["at0006"] = <
-					text = <"Primary tumour origin/site">
-					description = <"">
-				>
-				["at0007"] = <
-					text = <"Ovarian carcinoma">
-					description = <"">
-				>
-				["at0008"] = <
-					text = <"Fallopian tube carcinoma">
-					description = <"">
-				>
-				["at0009"] = <
-					text = <"Primary peritoneal carcinoma">
-					description = <"">
-				>
-				["at0010"] = <
-					text = <"Cannot be determined / unknown">
-					description = <"">
-				>
-				["at0011"] = <
-					text = <"Overall disease distribution">
-					description = <"">
-				>
-				["at0012"] = <
-					text = <"Confined to ovaries/ovary or fallopian tube(s)">
-					description = <"">
-				>
-				["at0013"] = <
-					text = <"Pelvic extension below pelvic brim OR primary peritoneal cancer">
-					description = <"">
-				>
-				["at0014"] = <
-					text = <"Extrapelvic peritoneal spread and/or retroperitoneal lymph node metastasis">
-					description = <"">
-				>
-				["at0015"] = <
-					text = <"Distant metastasis excluding peritoneal metastasis">
-					description = <"">
-				>
-				["at0016"] = <
-					text = <"Cannot be determined / unknown">
-					description = <"">
-				>
 				["at0017"] = <
-					text = <"Primary site involvement pattern">
+					text = <"Ovary and fallopian tube involvement pattern">
 					description = <"">
 				>
 				["at0018"] = <
@@ -308,22 +255,6 @@ ontology
 					text = <"Extension to other pelvic intraperitoneal tissues">
 					description = <"">
 				>
-				["at0031"] = <
-					text = <"Retroperitoneal lymph node involvement">
-					description = <"">
-				>
-				["at0032"] = <
-					text = <"Not applicable">
-					description = <"">
-				>
-				["at0033"] = <
-					text = <"No retroperitoneal lymph node metastasis">
-					description = <"">
-				>
-				["at0034"] = <
-					text = <"Retroperitoneal lymph node metastasis present">
-					description = <"">
-				>
 				["at0036"] = <
 					text = <"Largest retroperitoneal nodal metastasis size">
 					description = <"">
@@ -374,6 +305,30 @@ ontology
 				>
 				["at0048"] = <
 					text = <"Parenchymal metastasis and/or extra-abdominal organ metastasis (incl. inguinal nodes and nodes outside abdominal cavity)">
+					description = <"">
+				>
+				["at0049"] = <
+					text = <"Primary peritoneal carcinoma">
+					description = <"">
+				>
+				["at0050"] = <
+					text = <"Tumour confined to ovaries/ovary or fallopian tube(s)">
+					description = <"">
+				>
+				["at0051"] = <
+					text = <"Pelvic extension below pelvic brim">
+					description = <"">
+				>
+				["at0052"] = <
+					text = <"Extrapelvic peritoneal spread">
+					description = <"">
+				>
+				["at0053"] = <
+					text = <"Retroperitoneal lymph node metastasis">
+					description = <"">
+				>
+				["at0054"] = <
+					text = <"Distant metastasis excluding peritoneal metastasis">
 					description = <"">
 				>
 			>
