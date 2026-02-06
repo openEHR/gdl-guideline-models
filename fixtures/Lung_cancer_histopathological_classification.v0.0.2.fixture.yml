@@ -1,0 +1,231 @@
+guidelines:
+  "1": Lung_cancer_histopathological_classification.v0.0.2
+test_cases:
+  - id: test Glandular 1
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0059|Glandular|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0097|Other|
+  - id: test Glandular 2
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0059|Glandular|
+        gt0007|TTF-1 result: local::at0070|Positive|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0094|Adenocarcinoma|
+  - id: test Glandular 3
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0059|Glandular|
+        gt0007|TTF-1 result: local::at0072|Not done|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0097|Other|
+  - id: test Glandular 4
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0059|Glandular|
+        gt0007|TTF-1 result: local::at0072|Not done|
+        gt0009|p40 result: local::at0074|Positive|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0097|Other|
+  - id: test Glandular 5
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0059|Glandular|
+        gt0007|TTF-1 result: local::at0072|Not done|
+        gt0009|p40 result: local::at0074|Positive|
+        gt0011|Synaptophysin result: local::at0082|Positive|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0097|Other|
+  - id: test Glandular 0
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0059|Glandular|
+        gt0007|TTF-1 result: local::at0070|Positive|
+        gt0009|p40 result: local::at0074|Positive|
+        gt0011|Synaptophysin result: local::at0082|Positive|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0094|Adenocarcinoma|
+  - id: test Keratinizing 0
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0060|Keratinizing|
+        gt0007|TTF-1 result: local::at0070|Positive|
+        gt0009|p40 result: local::at0074|Positive|
+        gt0011|Synaptophysin result: local::at0082|Positive|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0095|Squamous cell carcinoma|
+  - id: test Keratinizing 1
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0060|Keratinizing|
+        gt0009|p40 result: local::at0074|Positive|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0095|Squamous cell carcinoma|
+  - id: test Keratinizing 2
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0060|Keratinizing|
+        gt0009|p40 result: local::at0075|Negative|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0097|Other|
+  - id: test Keratinizing 3
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0060|Keratinizing|
+        gt0009|p40 result: local::at0075|Negative|
+        gt0010|CK5/6 result: local::at0078|Positive|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0095|Squamous cell carcinoma|
+  - id: test Keratinizing 4
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0060|Keratinizing|
+        gt0009|p40 result: local::at0075|Negative|
+        gt0010|CK5/6 result: local::at0079|Negative|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0097|Other|
+  - id: test Keratinizing 5
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0060|Keratinizing|
+        gt0009|p40 result: local::at0076|Not done|
+        gt0010|CK5/6 result: local::at0080|Not done|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0097|Other|
+  - id: test Keratinizing 6
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0060|Keratinizing|
+        gt0010|CK5/6 result: local::at0080|Not done|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0097|Other|
+  - id: test Keratinizing 7
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0060|Keratinizing|
+        gt0010|CK5/6 result: local::at0078|Positive|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0095|Squamous cell carcinoma|
+  - id: test Small-cell 1
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0061|Small-cell|
+        gt0011|Synaptophysin result: local::at0082|Positive|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0096|Small-cell carcinoma|
+  - id: test Small-cell 0
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0061|Small-cell|
+        gt0012|Chromogranin result: local::at0086|Positive|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0096|Small-cell carcinoma|
+  - id: test Small-cell 2
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0061|Small-cell|
+        gt0011|Synaptophysin result: local::at0082|Positive|
+        gt0012|Chromogranin result: local::at0086|Positive|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0096|Small-cell carcinoma|
+  - id: test Small-cell 3
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0061|Small-cell|
+        gt0011|Synaptophysin result: local::at0083|Negative|
+        gt0012|Chromogranin result: local::at0087|Negative|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0097|Other|
+  - id: test Small-cell 4
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0061|Small-cell|
+        gt0011|Synaptophysin result: local::at0082|Positive|
+        gt0012|Chromogranin result: local::at0087|Negative|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0096|Small-cell carcinoma|
+  - id: test Small-cell 5
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0061|Small-cell|
+        gt0012|Chromogranin result: local::at0087|Negative|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0097|Other|
+  - id: test Small-cell 6
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0061|Small-cell|
+        gt0012|Chromogranin result: local::at0088|Not done|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0097|Other|
+  - id: test Solid 1
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0062|Solid|
+        gt0012|Chromogranin result: local::at0088|Not done|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0098|Unclassified|
+  - id: test Acinar 1
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0063|Acinar|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0098|Unclassified|
+  - id: test Papillary 1
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0064|Papillary|
+        gt0010|CK5/6 result: local::at0078|Positive|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0098|Unclassified|
+  - id: test Poorly differentiated 1
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0065|Poorly differentiated|
+        gt0009|p40 result: local::at0074|Positive|
+        gt0011|Synaptophysin result: local::at0083|Negative|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0098|Unclassified|
+  - id: test Acinar 2
+    input:
+      "1":
+        gt0003|Tumor morphology: local::at0063|Acinar|
+        gt0009|p40 result: local::at0074|Positive|
+        gt0011|Synaptophysin result: local::at0083|Negative|
+        gt0012|Chromogranin result: local::at0087|Negative|
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0098|Unclassified|
+  - id: test no value
+    input:
+      "1": {}
+    expected_output:
+      "1":
+        gt0005|Histological subtype: local::at0098|Unclassified|
