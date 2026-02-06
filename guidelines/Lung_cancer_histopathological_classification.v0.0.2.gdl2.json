@@ -1,0 +1,290 @@
+{
+  "uuid" : "77896c5b-6e2c-4238-aacd-53fb51b0b637",
+  "id" : "Lung_cancer_histopathological_classification.v0.0.2",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Mahmoud Elachi",
+      "email" : "mel.achi@gmail.com",
+      "organisation" : "Cambio CDS"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To record morphology and immunohistochemical findings relevant for subtyping lung cancer according to current national guidelines.",
+        "keywords" : [
+          "lung cancer",
+          "histopathology",
+          "biomarker",
+          "immunohistochemistry",
+          "diagnosis"
+        ],
+        "use" : "Used during pathological assessment of lung tumor tissue. Supports diagnostic classification into adenocarcinoma, squamous cell carcinoma, small-cell lung cancer, or other subtypes.",
+        "misuse" : "Not intended for molecular genetic testing or treatment planning. Do not use for non-lung tumors.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Regionala cancercentrum i samverkan. Nationellt vårdprogram lungcancer. Kunskapsbanken, 2025.\nAvailable at: kunskapsbanken.cancercentrum.se/diagnoser/lungcancer/vardprogram/",
+      "en" : "A clinical decision guideline for classifying the histopathological subtype of lung cancer in patients with suspected or confirmed malignancy, based on tumor morphology and immunohistochemical markers such as TTF-1, p40, CK5/6, synaptophysin, chromogranin A, and Ki-67."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.lung_cancer_histopathology.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.lung_cancer_histopathology.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0031]/items[at0058]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0059",
+              "local::at0060",
+              "local::at0061",
+              "local::at0062",
+              "local::at0063",
+              "local::at0064",
+              "local::at0065"
+            ]
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0067]/items[at0069]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0070",
+              "local::at0071",
+              "local::at0072"
+            ]
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0067]/items[at0073]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0074",
+              "local::at0075",
+              "local::at0076"
+            ]
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0067]/items[at0077]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0078",
+              "local::at0079",
+              "local::at0080"
+            ]
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0067]/items[at0081]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0082",
+              "local::at0083",
+              "local::at0084"
+            ]
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0067]/items[at0085]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0086",
+              "local::at0087",
+              "local::at0088"
+            ]
+          }
+        }
+      },
+      "gt0004" : {
+        "id" : "gt0004",
+        "model_id" : "openEHR-EHR-OBSERVATION.lung_cancer_histopathology.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.lung_cancer_histopathology.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0093]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0006" : {
+        "id" : "gt0006",
+        "priority" : 7,
+        "when" : [
+          "$gt0003|Tumor morphology|==local::at0059|Glandular|&&$gt0007|TTF-1 result|==local::at0070|Positive|"
+        ],
+        "then" : [
+          "$gt0005|Histological subtype|=local::at0094|Adenocarcinoma|"
+        ]
+      },
+      "gt0008" : {
+        "id" : "gt0008",
+        "priority" : 6,
+        "when" : [
+          "$gt0003|Tumor morphology|==local::at0060|Keratinizing|&&($gt0009|p40 result|==local::at0074|Positive|||$gt0010|CK5/6 result|==local::at0078|Positive|)"
+        ],
+        "then" : [
+          "$gt0005|Histological subtype|=local::at0095|Squamous cell carcinoma|"
+        ]
+      },
+      "gt0013" : {
+        "id" : "gt0013",
+        "priority" : 5,
+        "when" : [
+          "$gt0003|Tumor morphology|==local::at0061|Small-cell|&&($gt0011|Synaptophysin result|==local::at0082|Positive|||$gt0012|Chromogranin result|==local::at0086|Positive|)"
+        ],
+        "then" : [
+          "$gt0005|Histological subtype|=local::at0096|Small-cell carcinoma|"
+        ]
+      },
+      "gt0014" : {
+        "id" : "gt0014",
+        "priority" : 4,
+        "when" : [
+          "$gt0003|Tumor morphology|!=null&&$gt0003|Tumor morphology|==local::at0059|Glandular|",
+          "$gt0007|TTF-1 result|==local::at0071|Negative|||$gt0007|TTF-1 result|==local::at0072|Not done|||$gt0007|TTF-1 result|==null"
+        ],
+        "then" : [
+          "$gt0005|Histological subtype|=local::at0097|Other|"
+        ]
+      },
+      "gt0015" : {
+        "id" : "gt0015",
+        "priority" : 3,
+        "when" : [
+          "$gt0003|Tumor morphology|!=null&&$gt0003|Tumor morphology|==local::at0060|Keratinizing|",
+          "$gt0009|p40 result|==local::at0075|Negative|||$gt0009|p40 result|==local::at0076|Not done|||$gt0009|p40 result|==null",
+          "$gt0010|CK5/6 result|==local::at0079|Negative|||$gt0010|CK5/6 result|==local::at0080|Not done|||$gt0010|CK5/6 result|==null"
+        ],
+        "then" : [
+          "$gt0005|Histological subtype|=local::at0097|Other|"
+        ]
+      },
+      "gt0016" : {
+        "id" : "gt0016",
+        "priority" : 2,
+        "when" : [
+          "$gt0003|Tumor morphology|!=null&&$gt0003|Tumor morphology|==local::at0061|Small-cell|",
+          "$gt0011|Synaptophysin result|==local::at0083|Negative|||$gt0011|Synaptophysin result|==local::at0084|Not done|||$gt0011|Synaptophysin result|==null",
+          "$gt0012|Chromogranin result|==local::at0087|Negative|||$gt0012|Chromogranin result|==local::at0088|Not done|||$gt0012|Chromogranin result|==null"
+        ],
+        "then" : [
+          "$gt0005|Histological subtype|=local::at0097|Other|"
+        ]
+      },
+      "gt0017" : {
+        "id" : "gt0017",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|Tumor morphology|!=local::at0059|Glandular|",
+          "$gt0003|Tumor morphology|!=local::at0060|Keratinizing|",
+          "$gt0003|Tumor morphology|!=local::at0061|Small-cell|"
+        ],
+        "then" : [
+          "$gt0005|Histological subtype|=local::at0098|Unclassified|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Lung cancer histopathological classification",
+            "description" : "A clinical decision guideline for classifying the histopathological subtype of lung cancer in patients with suspected or confirmed malignancy, based on tumor morphology and immunohistochemical markers such as TTF-1, p40, CK5/6, synaptophysin, chromogranin A, and Ki-67."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.lung_cancer_histopathology.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Tumor morphology"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "openEHR-EHR-OBSERVATION.lung_cancer_histopathology.v0"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Histological subtype"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "R1: Adenocarcinoma",
+            "description" : ""
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "TTF-1 result"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "R2: Squamous cell carcinoma",
+            "description" : ""
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "p40 result"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "CK5/6 result"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Synaptophysin result"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Chromogranin result"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "R3: Small-cell carcinoma",
+            "description" : ""
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "R4: Other - 1",
+            "description" : ""
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "R4: Other - 2",
+            "description" : ""
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "R4: Other - 3",
+            "description" : ""
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "R5: Unclassified ",
+            "description" : ""
+          }
+        }
+      }
+    }
+  }
+}
