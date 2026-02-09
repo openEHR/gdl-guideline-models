@@ -1,0 +1,261 @@
+{
+  "uuid" : "13c0fdfd-d2fe-40a4-b4d7-3e353f960ba6",
+  "id" : "Horowitz_index.v0.1.0-draft",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Umiah Gohar",
+      "email" : "umiah.gohar@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2024-12-22"
+    },
+    "other_contributors" : [
+      "Rashmi Damodaran"
+    ],
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate and assess lung function and risk-stratify patients with acute respiratory distress syndrome (ARDS).\n\n",
+        "keywords" : [
+          "Horowitz",
+          "index",
+          "PaO2",
+          "FiO2",
+          "P/F ratio",
+          "lung",
+          "function"
+        ],
+        "use" : "The P/F ratio should be used in patients where arterial oxygen partial pressure (PaO2) and the fractional inspired oxygen (FiO2) can be measured accurately. Any estimated values should be interpreted with caution.\n\nThe Horowitz Index (PaO2/FiO2 ratio) is a simple calculation that measures the efficiency of gas exchange in the lungs and provides a crude assessment of the A-a gradient.  It is determined by dividing the partial pressure of oxygen in arterial blood (PaO2) by the fraction of inspired oxygen (FiO2), in accordance with: PaO2/FiO2. \nA lower ratio indicates impaired oxygenation and more severe hypoxemia, commonly seen in conditions like ARDS. \n\nIndex interpretation:\n\nP/F Ratio  &gt; 300 mmHg (&gt; 40 kPa) - Not ARDS\n\nP/F Ratio  &gt; 200-300 mmHg (27–40 kPa) - Mild ARDS\n\nP/F Ratio  &gt; 100-200 mmHg (13–27 kPa) - Moderate ARDS\n\nP/F Ratio  &lt; 100 mmHg (&lt; 13 kPa) - Severe ARDS\n\nThe following can be used for estimating FiO₂ from oxygen flow/delivery rates.\n1. Type of O₂ delivery: Nasal cannula. Flow rate 1-6 L/min. FiO₂: Room air = 21%, 1 L/min = 25%. 2 L/min = 29%. 3 L/min = 33%. 4 L/min = 37%. 5 L/min = 41% or 6 L/min = 45%.\n2. Type of O₂ delivery: Simple face mask. Flow rate ~6-12 L/min. FiO₂: 35-60% (Varies based on respiratory rate and minute ventilation).\n3. Type of O₂ delivery: Non-rebreather mask. Flow rate ~10-15 L/min. FiO₂: ~70-90%.\n4. Type of O₂ delivery: High-flow nasal cannula. Flow rate Up to 60. FiO₂: 30-100%.",
+        "misuse" : "Not to be used for patients who do not have an arterial blood gas (ABG) analysis available.\n\nNot to be used for distinguishing between hypoventilation and V/Q mismatch. Unlike the A-a gradient, the Horowitz Index does not provide information to differentiate these conditions.\n\nCan only be used to estimate the A-a gradient, assuming PaCO2 is normal and no shunt is present.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Horovitz JH, Carrico CJ, Shires GT. Pulmonary response to major injury. Arch Surg. 1974 Mar;108(3):349-55. doi: 10.1001/archsurg.1974.01350270079014. PMID: 4813333.",
+      "en" : "The Horowitz index is used to assess lung function, particularly in intubated patients."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0023" : {
+        "id" : "gt0023",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0025" : {
+            "id" : "gt0025",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "kPa"
+            ]
+          },
+          "gt0038" : {
+            "id" : "gt0038",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024]",
+            "data_type" : "DV_TEXT"
+          }
+        },
+        "predicates" : [
+          "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024] is_a local::gt0026|PaO2 code|"
+        ]
+      },
+      "gt0028" : {
+        "id" : "gt0028",
+        "model_id" : "openEHR-EHR-OBSERVATION.respiration.v2",
+        "template_id" : "openEHR-EHR-OBSERVATION.respiration.v2",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0029" : {
+            "id" : "gt0029",
+            "path" : "/data[at0001]/events[at0002]/state[at0022]/items[openEHR-EHR-CLUSTER.inspired_oxygen.v1]/items[at0052]"
+          }
+        }
+      },
+      "gt0031" : {
+        "id" : "gt0031",
+        "model_id" : "openEHR-EHR-OBSERVATION.pf_ratio.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.pf_ratio.v1",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0032" : {
+            "id" : "gt0032",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "kPa",
+              "mm[Hg]"
+            ]
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type" : "DV_TEXT"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0017" : {
+        "id" : "gt0017",
+        "priority" : 5,
+        "when" : [
+          "$gt0025|PaO2|!=null",
+          "$gt0029|FiO₂ (as proportion)|!=null"
+        ],
+        "then" : [
+          "$gt0032|P/F Ratio|.magnitude=$gt0025|PaO2|.magnitude/$gt0029|FiO₂ (as proportion)|",
+          "$gt0032|P/F Ratio|.unit=$gt0025|PaO2|.unit",
+          "$gt0032|P/F Ratio|.precision=1"
+        ]
+      },
+      "gt0019" : {
+        "id" : "gt0019",
+        "priority" : 4,
+        "when" : [
+          "$gt0032|P/F Ratio|<=100,mm[Hg]||$gt0032|P/F Ratio|<=13,kPa"
+        ],
+        "then" : [
+          "$gt0033|Clinical interpretation|=$gt0034|Severe ARDS|.term"
+        ]
+      },
+      "gt0020" : {
+        "id" : "gt0020",
+        "priority" : 3,
+        "when" : [
+          "$gt0032|P/F Ratio|<=200,mm[Hg]||$gt0032|P/F Ratio|<=27,kPa",
+          "$gt0032|P/F Ratio|>100,mm[Hg]||$gt0032|P/F Ratio|>13,kPa"
+        ],
+        "then" : [
+          "$gt0033|Clinical interpretation|=$gt0035|Moderate ARDS|.term"
+        ]
+      },
+      "gt0021" : {
+        "id" : "gt0021",
+        "priority" : 2,
+        "when" : [
+          "$gt0032|P/F Ratio|<=300,mm[Hg]||$gt0032|P/F Ratio|<=40,kPa",
+          "$gt0032|P/F Ratio|>200,mm[Hg]||$gt0032|P/F Ratio|>27,kPa"
+        ],
+        "then" : [
+          "$gt0033|Clinical interpretation|=$gt0036|Mild ARDS|.term"
+        ]
+      },
+      "gt0022" : {
+        "id" : "gt0022",
+        "priority" : 1,
+        "when" : [
+          "$gt0032|P/F Ratio|>300,mm[Hg]||$gt0032|P/F Ratio|>40,kPa"
+        ],
+        "then" : [
+          "$gt0033|Clinical interpretation|=$gt0037|Normal|.term"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Horowitz index score for Lung Function (P/F Ratio)",
+            "description" : "A score used to assess lung function, particularly in intubated patients."
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "Calculate Horowitz Index (P/F ratio)",
+            "description" : ""
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "Set  to severe ARDS",
+            "description" : "P/F ratio <= 100 mmHg OR P/F ratio <= 13 kPa"
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "Set to moderate ARDS",
+            "description" : "P/F ratio  >100 - 200 mmHG OR P/F ratio > 13 - 27 kPa"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "Set to mild ARDS",
+            "description" : "P/F ratio  >200 - 300 mmHg OR P/F ratio >27 - 40 kPa"
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "Set to Normal",
+            "description" : "P/F ratio > 300 mmHg OR P/F ratio  > 40 kPa"
+          },
+          "gt0023" : {
+            "id" : "gt0023",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "text" : "PaO2"
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "text" : "PaO2 code"
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "text" : "openEHR-EHR-OBSERVATION.respiration.v2"
+          },
+          "gt0029" : {
+            "id" : "gt0029",
+            "text" : "FiO₂ (as proportion)"
+          },
+          "gt0031" : {
+            "id" : "gt0031",
+            "text" : "openEHR-EHR-OBSERVATION.pf_ratio.v1"
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "text" : "P/F Ratio"
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "text" : "Clinical interpretation"
+          },
+          "gt0034" : {
+            "id" : "gt0034",
+            "text" : "Severe ARDS"
+          },
+          "gt0035" : {
+            "id" : "gt0035",
+            "text" : "Moderate ARDS"
+          },
+          "gt0036" : {
+            "id" : "gt0036",
+            "text" : "Mild ARDS"
+          },
+          "gt0037" : {
+            "id" : "gt0037",
+            "text" : "Normal"
+          },
+          "gt0038" : {
+            "id" : "gt0038",
+            "text" : "PaO2 test"
+          }
+        }
+      }
+    },
+    "term_bindings" : {
+      "LOINC" : {
+        "id" : "LOINC",
+        "bindings" : {
+          "gt0026" : { }
+        }
+      }
+    }
+  }
+}
