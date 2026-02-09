@@ -1,0 +1,319 @@
+guidelines:
+  "1": Calcium_corrected.v0.1.0
+test_cases:
+  - id: 01. Normal albumin (40 g/L), calcium 9.0 mg/dL - no correction needed
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 9.0,mg/dL
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 40,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 9.0,mg/dL
+  - id: 02. Low albumin (30 g/L), calcium 9.0 mg/dL - correction required
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 9.0,mg/dL
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 30,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 9.8,mg/dL
+  - id: 03. Very low albumin (20 g/L), calcium 8.0 mg/dL
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 8.0,mg/dL
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 20,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 9.6,mg/dL
+  - id: 04. Low albumin (25 g/L), calcium 8.5 mg/dL
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 8.5,mg/dL
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 25,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 9.7,mg/dL
+  - id: 05. Low albumin (35 g/L), calcium 9.5 mg/dL
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 9.5,mg/dL
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 35,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 9.9,mg/dL
+  - id: 06. Normal albumin (40 g/L), calcium 2.25 mmol/L - no correction needed
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 2.2,mmol/L
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 40,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 2.20,mmol/L
+  - id: 07. Low albumin (30 g/L), calcium 2.2 mmol/L - correction required
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 2.2,mmol/L
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 30,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 2.40,mmol/L
+  - id: 08. Very low albumin (20 g/L), calcium 2.0 mmol/L
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 2.0,mmol/L
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 20,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 2.40,mmol/L
+  - id: 09. Low albumin (25 g/L), calcium 2.1 mmol/L
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 2.1,mmol/L
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 25,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 2.40,mmol/L
+  - id: 10. Low albumin (35 g/L), calcium 2.3 mmol/L
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 2.3,mmol/L
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 35,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 2.40,mmol/L
+  - id: 11. Hypocalcemia with low albumin (25 g/L), calcium 7.5 mg/dL
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 7.5,mg/dL
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 25,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 8.7,mg/dL
+  - id: 12. Hypercalcemia with low albumin (25 g/L), calcium 11.0 mg/dL
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 11.0,mg/dL
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 25,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 12.2,mg/dL
+  - id: 13. Severely low albumin (15 g/L), calcium 8.0 mg/dL
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 8.0,mg/dL
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 15,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 10.0,mg/dL
+  - id: 14. Severely low albumin (15 g/L), calcium 1.8 mmol/L
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 1.8,mmol/L
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 15,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 2.30,mmol/L
+  - id: 15. Borderline low albumin (38 g/L), calcium 9.0 mg/dL
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 9.0,mg/dL
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 38,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 9.2,mg/dL
+  - id: 16. Borderline low albumin (38 g/L), calcium 2.25 mmol/L
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 2.25,mmol/L
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 38,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 2.29,mmol/L
+  - id: 17. Low calcium with normal albumin (40 g/L), calcium 8.0 mg/dL
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 8.0,mg/dL
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 40,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 8.0,mg/dL
+  - id: 18. High calcium with normal albumin (40 g/L), calcium 11.0 mg/dL
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 11.0,mg/dL
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 40,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 11.0,mg/dL
+  - id: 19. Low albumin (32 g/L), calcium 8.8 mg/dL
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 8.8,mg/dL
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 32,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 9.4,mg/dL
+  - id: 20. Low albumin (32 g/L), calcium 2.2 mmol/L
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 2.2,mmol/L
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 32,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 2.36,mmol/L
+  - id: 21. Low albumin (28 g/L), calcium 9.2 mg/dL
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 9.2,mg/dL
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 28,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 10.2,mg/dL
+  - id: 22. Low albumin (28 g/L), calcium 2.3 mmol/L
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 2.3,mmol/L
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 28,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 2.54,mmol/L
+  - id: 23. Albumin 22 g/L, calcium 7.8 mg/dL - significant correction
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 7.8,mg/dL
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 22,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 9.2,mg/dL
+  - id: 24. Albumin 22 g/L, calcium 1.95 mmol/L - significant correction
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 1.95,mmol/L
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 22,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 2.31,mmol/L
+  - id: 25. Edge case - albumin 39 g/L, calcium 10.0 mg/dL
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 10.0,mg/dL
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 39,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 10.1,mg/dL
+  - id: 26. Edge case - albumin 39 g/L, calcium 2.5 mmol/L
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 2.52,mmol/L
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 39,g/L
+    expected_output:
+      "1":
+        gt0018|Corrected Calcium: 2.54,mmol/L
+  - id: 27. Missing calcium input (negative test)
+    input:
+      "1":
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 30,g/L
+    expected_output:
+      "1": {}
+  - id: 28. Missing albumin input (negative test)
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 9.0,mg/dL
+    expected_output:
+      "1": {}
+  - id: 29. Missing both calcium and albumin (negative test)
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+    expected_output:
+      "1": {}
+  - id: 30. Missing all inputs (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 31. Calcium without albumin test code (negative test)
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 9.0,mg/dL
+        gt0011|Albumin: 30,g/L
+    expected_output:
+      "1": {}
+  - id: 32. Albumin without calcium test code (negative test)
+    input:
+      "1":
+        gt0014|Calcium: 9.0,mg/dL
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 30,g/L
+    expected_output:
+      "1": {}
+  - id: 33. Missing calcium value with mmol/L unit context (negative test)
+    input:
+      "1":
+        gt0010|Albumin test: NPU::NPU19673|Albumin|
+        gt0011|Albumin: 35,g/L
+    expected_output:
+      "1": {}
+  - id: 34. Missing albumin value with mmol/L unit context (negative test)
+    input:
+      "1":
+        gt0013|Calcium test: NPU::NPU01443|Calcium|
+        gt0014|Calcium: 2.25,mmol/L
+    expected_output:
+      "1": {}
