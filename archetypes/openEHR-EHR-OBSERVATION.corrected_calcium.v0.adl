@@ -1,0 +1,106 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.corrected_calcium.v0
+
+concept
+	[at0000]	-- Corrected Calcium
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Rashmi Damodaran">
+		["email"] = <"rashmi.damodaran@cambio.com">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2026-02-09">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the corrected calcium value, adjusted for serum albumin levels.">
+			use = <"Use to record corrected calcium concentration in serum or plasma. Corrected calcium is calculated to adjust for low albumin levels, providing a more accurate assessment of calcium status.
+
+The corrected calcium value accounts for protein-bound calcium and reflects the physiologically active ionized calcium more accurately than total calcium alone when albumin levels are abnormal.">
+			keywords = <"calcium", "corrected calcium", "albumin", "hypercalcemia", "hypocalcemia", "laboratory">
+			misuse = <"Not to be used for recording ionized calcium measurements - use a specific ionized calcium archetype for that purpose.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"Payne RB, Little AJ, Williams RB, Milner JR. Interpretation of serum calcium in patients with abnormal serum proteins. Br Med J. 1973 Dec 15;4(5893):643-6.">
+		["MD5-CAM-1.0.1"] = <"">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Corrected Calcium
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Corrected Calcium
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::119]>
+												list = <
+													["1"] = <
+														units = <"mg/dL">
+														magnitude = <|0.0..20.0|>
+														precision = <|2|>
+													>
+													["2"] = <
+														units = <"mmol/L">
+														magnitude = <|0.0..5.0|>
+														precision = <|2|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {	-- Comment
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Corrected Calcium">
+					description = <"Calcium concentration corrected for serum albumin levels.">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Corrected Calcium">
+					description = <"Calcium concentration adjusted for serum albumin levels.">
+				>
+				["at0005"] = <
+					text = <"Comment">
+					description = <"Additional narrative about the corrected calcium measurement not captured in other fields.">
+				>
+			>
+		>
+	>
