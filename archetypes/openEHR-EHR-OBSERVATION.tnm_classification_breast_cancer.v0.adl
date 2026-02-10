@@ -1,4 +1,4 @@
-archetype (adl_version=1.4; uid=4f67969b-635e-4e40-a30a-70b04577958e)
+archetype (adl_version=1.4; uid=a8b2c1d3-4e5f-6789-abcd-ef0123456789)
 	openEHR-EHR-OBSERVATION.tnm_classification_breast_cancer.v0
 
 concept
@@ -9,36 +9,35 @@ language
 
 description
 	original_author = <
-		["date"] = <"2025-11-21">
-		["name"] = <"Katja Mariko Wilde">
+		["date"] = <"2026-02-05">
+		["name"] = <"Rashmi Damodaran">
 		["organisation"] = <"Cambio CDS">
-		["email"] = <"katja-wilde@t-online.de">
+		["email"] = <"rashmi.damodaran@cambio.se">
 	>
-	lifecycle_state = <"in_development">
+	lifecycle_state = <"Author draft">
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"To record the clinical TNM categories (T, N, M) and stage group for breast cancer, using the definitions from the UICC TNM system.">
-			keywords = <"tnm","tumour","node","metastasis","breast","cancer","staging">
+			purpose = <"To record the TNM classification for breast cancer, including both clinical (cTNM) and pathological (pTNM) staging according to the UICC TNM 8th edition.">
+			keywords = <"breast", "cancer", "TNM", "staging", "classification", "tumor", "node", "metastasis", "clinical", "pathological">
 			copyright = <"© Cambio CDS">
-			use = <"Use to record the clinical TNM categories (T, N, M) and stage group for breast cancer, using the definitions from the UICC TNM system.">
-			misuse = <"Not to be used for deriving TNM classification from unstructured radiology or pathology reports.
-Not to be used for non-breast cancers.">
+			use = <"Use to record the clinical and pathological TNM classification for breast cancer staging. This archetype supports both pre-treatment clinical staging (cTNM) and post-surgical pathological staging (pTNM).">
+			misuse = <"Not to be used for TNM classification of other cancer types. Not to be used for treatment planning without clinical verification.">
 		>
 	>
 	other_details = <
-		["custodian_organisation"] = <"openEHR Foundation">
-		["references"] = <"Regionala cancercentrum i samverkan. Nationellt vårdprogram bröstcancer: Kapitel 10 Kategorisering av tumören. Kunskapsbanken, 2025. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/brostcancer/vardprogram/kvalitetsdokument-for-patologi/
-Brierley JD, Gospodarowicz MK, Wittekind C, editors. TNM classification of malignant tumours. 8th ed. Hoboken (NJ): Wiley Blackwell; 2017">
+		["licence"] = <"">
+		["custodian_organisation"] = <"Cambio CDS">
+		["references"] = <"Brierley JD, Gospodarowicz MK, Wittekind C, editors. TNM Classification of Malignant Tumours. 8th ed. Oxford: Wiley-Blackwell; 2017.">
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"0105a5f60ecc4e21f686bcac33124994">
-		["build_uid"] = <"2855a991-2bc8-4d34-9253-9ea3bdb53bbf">
+		["MD5-CAM-1.0.1"] = <"">
+		["build_uid"] = <"">
 	>
 
 definition
-	OBSERVATION[at0000] matches {    -- TNM Classification for Breast Cancer
+	OBSERVATION[at0000] matches {    -- TNM classification - Breast
 		data matches {
 			HISTORY[at0001] matches {    -- History
 				events cardinality matches {1..*; unordered} matches {
@@ -46,160 +45,240 @@ definition
 						data matches {
 							ITEM_TREE[at0003] matches {    -- Tree
 								items cardinality matches {0..*; unordered} matches {
-									ELEMENT[at0059] occurrences matches {0..1} matches {    -- Primary tumour evaluable
-										value matches {
-											DV_BOOLEAN matches {*}
-										}
-									}
-									ELEMENT[at0060] occurrences matches {0..1} matches {    -- Primary tumour present
-										value matches {
-											DV_BOOLEAN matches {*}
-										}
-									}
-									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Invasive tumour size
-										value matches {
-											C_DV_QUANTITY <
-												property = <[openehr::122]>
-												list = <
-													["1"] = <
-														units = <"mm">
+									CLUSTER[at0004] occurrences matches {0..1} matches {    -- Clinical classification (cTNM)
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0086] occurrences matches {0..1} matches {    -- Tumor size
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::122]>
+														list = <
+															["1"] = <
+																units = <"mm">
+																magnitude = <|>=0.0|>
+																precision = <|1|>
+															>
+														>
 													>
-												>
-											>
-										}
-									}
-									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Carcinoma in situ type
-										value matches {
-											DV_CODED_TEXT matches {
-												defining_code matches {
-													[local::
-													at0011,    -- None
-													at0008,    -- DCIS
-													at0009,    -- LCIS
-													at0010]    -- Paget
+												}
+											}
+											ELEMENT[at0005] occurrences matches {0..1} matches {    -- cT - Primary tumor
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0006,    -- TX - Primary tumor cannot be assessed
+															at0007,    -- T0 - No evidence of primary tumor
+															at0099,    -- Tis - Carcinoma in situ
+															at0087,    -- T1 - Tumor ≤20 mm in greatest dimension
+															at0014,    -- T2 - Tumor >20-50 mm
+															at0015,    -- T3 - Tumor >50 mm
+															at0088]    -- T4 - Tumor with extension to chest wall and/or skin
+														}
+													}
+												}
+											}
+											ELEMENT[at0100] occurrences matches {0..1} matches {    -- cTis subcategory
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0008,    -- Tis (DCIS) - Ductal carcinoma in situ
+															at0009]    -- Tis (Paget) - Paget disease of nipple with no tumor
+														}
+													}
+												}
+											}
+											ELEMENT[at0089] occurrences matches {0..1} matches {    -- cT1 subcategory
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0090,    -- T1mi - Tumor ≤1 mm (microinvasion)
+															at0091,    -- T1a - Tumor >1-5 mm
+															at0092,    -- T1b - Tumor >5-10 mm
+															at0093]    -- T1c - Tumor >10-20 mm
+														}
+													}
+												}
+											}
+											ELEMENT[at0094] occurrences matches {0..1} matches {    -- cT4 subcategory
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0095,    -- T4a - Extension to chest wall
+															at0096,    -- T4b - Ulceration or satellite nodules or edema
+															at0097,    -- T4c - Both T4a and T4b
+															at0098]    -- T4d - Inflammatory carcinoma
+														}
+													}
+												}
+											}
+											ELEMENT[at0020] occurrences matches {0..1} matches {    -- cN - Regional lymph nodes
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0021,    -- NX - Regional lymph nodes cannot be assessed
+															at0022,    -- N0 - No regional lymph node metastasis
+															at0023,    -- N1 - Metastasis to movable ipsilateral level I, II axillary lymph node(s)
+															at0101,    -- N2 - Metastasis in fixed axillary or internal mammary nodes
+															at0102]    -- N3 - Metastasis in infraclavicular, internal mammary/axillary, or supraclavicular nodes
+														}
+													}
+												}
+											}
+											ELEMENT[at0103] occurrences matches {0..1} matches {    -- cN2 subcategory
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0024,    -- N2a - Metastasis in ipsilateral level I, II axillary lymph nodes fixed to one another or other structures
+															at0025]    -- N2b - Metastasis only in clinically detected ipsilateral internal mammary nodes
+														}
+													}
+												}
+											}
+											ELEMENT[at0104] occurrences matches {0..1} matches {    -- cN3 subcategory
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0026,    -- N3a - Metastasis in ipsilateral infraclavicular lymph node(s)
+															at0027,    -- N3b - Metastasis in ipsilateral internal mammary and axillary lymph node(s)
+															at0028]    -- N3c - Metastasis in ipsilateral supraclavicular lymph node(s)
+														}
+													}
+												}
+											}
+											ELEMENT[at0029] occurrences matches {0..1} matches {    -- cM - Distant metastasis
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0030,    -- M0 - No distant metastasis
+															at0031]    -- M1 - Distant metastasis
+														}
+													}
 												}
 											}
 										}
 									}
-									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Chest wall invasion
-										value matches {
-											DV_BOOLEAN matches {*}
-										}
-									}
-									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Skin involvement
-										value matches {
-											DV_BOOLEAN matches {*}
-										}
-									}
-									ELEMENT[at0019] occurrences matches {0..1} matches {    -- Inflammatory carcinoma
-										value matches {
-											DV_BOOLEAN matches {*}
-										}
-									}
-									ELEMENT[at0020] occurrences matches {0..1} matches {    -- Regional lymph nodes evaluable
-										value matches {
-											DV_BOOLEAN matches {*}
-										}
-									}
-									ELEMENT[at0049] occurrences matches {0..1} matches {    -- Any regional node metastasis
-										value matches {
-											DV_BOOLEAN matches {*}
-										}
-									}
-									ELEMENT[at0062] occurrences matches {0..1} matches {    -- Nodal micrometastases only
-										value matches {
-											DV_BOOLEAN matches {*}
-										}
-									}
-									ELEMENT[at0050] occurrences matches {0..1} matches {    -- Axillary level I, II nodes involved
-										value matches {
-											DV_BOOLEAN matches {*}
-										}
-									}
-									ELEMENT[at0051] occurrences matches {0..1} matches {    -- Axillary node status
-										value matches {
-											DV_CODED_TEXT matches {
-												defining_code matches {
-													[local::
-													at0052,    -- None
-													at0053,    -- Movable
-													at0054]    -- Fixed or Matted
+									CLUSTER[at0042] occurrences matches {0..1} matches {    -- Pathological classification (pTNM)
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0043] occurrences matches {0..1} matches {    -- pT - Primary tumor
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0044,    -- pTX - Primary tumor cannot be assessed
+															at0045,    -- pT0 - No evidence of primary tumor
+															at0105,    -- pTis - Carcinoma in situ
+															at0106,    -- pT1 - Tumor ≤20 mm in greatest dimension
+															at0052,    -- pT2 - Tumor >20-50 mm
+															at0053,    -- pT3 - Tumor >50 mm
+															at0107]    -- pT4 - Tumor with extension to chest wall and/or skin
+														}
+													}
 												}
 											}
-										}
-									}
-									ELEMENT[at0055] occurrences matches {0..1} matches {    -- Clinically detected internal mammary nodes
-										value matches {
-											DV_BOOLEAN matches {*}
-										}
-									}
-									ELEMENT[at0056] occurrences matches {0..1} matches {    -- Clinically detected axillary nodes present
-										value matches {
-											DV_BOOLEAN matches {*}
-										}
-									}
-									ELEMENT[at0057] occurrences matches {0..1} matches {    -- Infraclavicular nodes involved
-										value matches {
-											DV_BOOLEAN matches {*}
-										}
-									}
-									ELEMENT[at0058] occurrences matches {0..1} matches {    -- Supraclavicular nodes involved
-										value matches {
-											DV_BOOLEAN matches {*}
-										}
-									}
-									ELEMENT[at0022] occurrences matches {0..1} matches {    -- Distant metastasis
-										value matches {
-											DV_BOOLEAN matches {*}
-										}
-									}
-									ELEMENT[at0023] occurrences matches {0..1} matches {    -- T - Primary tumour
-										value matches {
-											DV_CODED_TEXT matches {
-												defining_code matches {
-													[local::
-													at0024,    -- TX - primary tumour cannot be assessed
-													at0025,    -- T0 - no evidence of primary tumour
-													at0026,    -- Tis - carcinoma in situ
-													at0027,    -- T1mi - microinvasion, ≤ 1 mm
-													at0028,    -- T1a - tumour > 1 mm to ≤ 5 mm
-													at0029,    -- T1b - tumour > 5 mm to ≤ 10 mm
-													at0030,    -- T1c - tumour > 10 mm to ≤ 20 mm
-													at0031,    -- T2 - tumour > 20 mm to ≤ 50 mm
-													at0032,    -- T3 - tumour > 50 mm
-													at0033,    -- T4a - any size with extension to chest wall
-													at0034,    -- T4b - any size with skin involvement (ulceration/ipsilateral skin nodules/oedema)
-													at0035,    -- T4c - any size with both chest wall and skin involvement
-													at0036]    -- T4d - any size, inflammatory carcinoma
+											ELEMENT[at0108] occurrences matches {0..1} matches {    -- pTis subcategory
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0046,    -- pTis (DCIS) - Ductal carcinoma in situ
+															at0047]    -- pTis (Paget) - Paget disease of nipple with no tumor
+														}
+													}
 												}
 											}
-										}
-									}
-									ELEMENT[at0037] occurrences matches {0..1} matches {    -- N - Regional lymph nodes
-										value matches {
-											DV_CODED_TEXT matches {
-												defining_code matches {
-													[local::
-													at0038,    -- NX - regional lymph nodes cannot be assessed
-													at0039,    -- N0 - no regional lymph node metastasis
-													at0061,    -- N1mi - micrometastases only
-													at0040,    -- N1 - movable ipsilateral level I–II axillary node metastasis
-													at0041,    -- N2a - ipsilateral level I–II axillary nodes fixed or matted
-													at0042,    -- N2b - clinically detected internal mammary nodes, no clinically evident axillary nodes
-													at0043,    -- N3a - ipsilateral infraclavicular (level III axillary) node(s)
-													at0044,    -- N3b - internal mammary + axillary node metastasis
-													at0045]    -- N3c - ipsilateral supraclavicular node(s)
+											ELEMENT[at0109] occurrences matches {0..1} matches {    -- pT1 subcategory
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0048,    -- pT1mi - Tumor ≤1 mm
+															at0049,    -- pT1a - Tumor >1-5 mm
+															at0050,    -- pT1b - Tumor >5-10 mm
+															at0051]    -- pT1c - Tumor >10-20 mm
+														}
+													}
 												}
 											}
-										}
-									}
-									ELEMENT[at0046] occurrences matches {0..1} matches {    -- M - Distant metastasis
-										value matches {
-											DV_CODED_TEXT matches {
-												defining_code matches {
-													[local::
-													at0047,    -- M0 - no distant metastasis
-													at0048]    -- M1 - distant metastasis present
+											ELEMENT[at0110] occurrences matches {0..1} matches {    -- pT4 subcategory
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0054,    -- pT4a - Extension to chest wall
+															at0055,    -- pT4b - Ulceration or satellite nodules or edema
+															at0056,    -- pT4c - Both pT4a and pT4b
+															at0057]    -- pT4d - Inflammatory carcinoma
+														}
+													}
+												}
+											}
+											ELEMENT[at0058] occurrences matches {0..1} matches {    -- pN - Regional lymph nodes
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0059,    -- pNX - Regional lymph nodes cannot be assessed
+															at0060,    -- pN0 - No regional lymph node metastasis histologically
+															at0061,    -- pN0(i+) - Malignant cells ≤0.2 mm (isolated tumor cells)
+															at0111,    -- pN1 - Micrometastases or metastases in 1-3 axillary/internal mammary nodes
+															at0112,    -- pN2 - Metastases in 4-9 axillary or internal mammary nodes
+															at0113]    -- pN3 - Metastases in ≥10 nodes or supraclavicular nodes
+														}
+													}
+												}
+											}
+											ELEMENT[at0114] occurrences matches {0..1} matches {    -- pN1 subcategory
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0062,    -- pN1mi - Micrometastases (>0.2 mm but ≤2.0 mm)
+															at0063,    -- pN1a - Metastases in 1-3 axillary lymph nodes
+															at0064,    -- pN1b - Metastases in internal mammary nodes (sentinel node biopsy)
+															at0065]    -- pN1c - Metastases in 1-3 axillary and internal mammary nodes
+														}
+													}
+												}
+											}
+											ELEMENT[at0115] occurrences matches {0..1} matches {    -- pN2 subcategory
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0066,    -- pN2a - Metastases in 4-9 axillary lymph nodes
+															at0067]    -- pN2b - Metastases in clinically detected internal mammary nodes only
+														}
+													}
+												}
+											}
+											ELEMENT[at0116] occurrences matches {0..1} matches {    -- pN3 subcategory
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0068,    -- pN3a - Metastases in ≥10 axillary nodes or infraclavicular nodes
+															at0069,    -- pN3b - Metastases in internal mammary and axillary nodes (clinically detected)
+															at0070]    -- pN3c - Metastases in ipsilateral supraclavicular lymph nodes
+														}
+													}
+												}
+											}
+											ELEMENT[at0071] occurrences matches {0..1} matches {    -- pM - Distant metastasis
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0072,    -- pM0 - No distant metastasis
+															at0073]    -- pM1 - Distant metastasis confirmed microscopically
+														}
+													}
 												}
 											}
 										}
@@ -212,12 +291,9 @@ definition
 			}
 		}
 		protocol matches {
-			ITEM_TREE[at0004] matches {    -- Item tree
+			ITEM_TREE[at0084] matches {    -- Item tree
 				items cardinality matches {0..*; unordered} matches {
-					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
-						include
-							archetype_id/value matches {/.*/}
-					}
+					CLUSTER[at0085] occurrences matches {0..1} matches {*}    -- Extension
 				}
 			}
 		}
@@ -228,9 +304,8 @@ ontology
 		["en"] = <
 			items = <
 				["at0000"] = <
-					text = <"TNM Classification for Breast Cancer">
-					description = <"A structured record of the TNM classification for breast cancer, including T, N and M categories according to international TNM definitions.">
-					comment = <"Original version, c 1950">
+					text = <"TNM classification - Breast">
+					description = <"TNM classification for breast cancer according to the UICC TNM 8th edition, including both clinical (cTNM) and pathological (pTNM) staging.">
 				>
 				["at0001"] = <
 					text = <"History">
@@ -238,224 +313,352 @@ ontology
 				>
 				["at0002"] = <
 					text = <"Any event">
-					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+					description = <"@ internal @">
 				>
 				["at0003"] = <
 					text = <"Tree">
 					description = <"@ internal @">
 				>
 				["at0004"] = <
+					text = <"Clinical classification (cTNM)">
+					description = <"Pre-treatment clinical classification based on physical examination, imaging, and biopsy.">
+				>
+				["at0005"] = <
+					text = <"cT - Primary tumor">
+					description = <"Clinical assessment of the primary tumor category.">
+				>
+				["at0006"] = <
+					text = <"TX - Primary tumor cannot be assessed">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"T0 - No evidence of primary tumor">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Tis (DCIS) - Ductal carcinoma in situ">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Tis (Paget) - Paget disease of nipple with no tumor">
+					description = <"Paget disease of the nipple not associated with invasive carcinoma and/or DCIS in the underlying breast parenchyma.">
+				>
+				["at0014"] = <
+					text = <"T2 - Tumor >20 mm but ≤50 mm">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"T3 - Tumor >50 mm">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"cN - Regional lymph nodes">
+					description = <"Clinical assessment of regional lymph nodes.">
+				>
+				["at0021"] = <
+					text = <"NX - Regional lymph nodes cannot be assessed">
+					description = <"e.g., previously removed.">
+				>
+				["at0022"] = <
+					text = <"N0 - No regional lymph node metastasis">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"N1 - Metastasis to movable ipsilateral level I, II axillary lymph node(s)">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"N2a - Metastasis in ipsilateral level I, II axillary lymph nodes fixed to one another or other structures">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"N2b - Metastasis only in clinically detected ipsilateral internal mammary nodes">
+					description = <"In the absence of clinically evident level I, II axillary lymph node metastasis.">
+				>
+				["at0026"] = <
+					text = <"N3a - Metastasis in ipsilateral infraclavicular lymph node(s)">
+					description = <"Level III axillary, with or without level I, II axillary node involvement.">
+				>
+				["at0027"] = <
+					text = <"N3b - Metastasis in ipsilateral internal mammary and axillary lymph node(s)">
+					description = <"Clinically detected ipsilateral internal mammary lymph node(s) with clinically evident level I, II axillary lymph node metastasis.">
+				>
+				["at0028"] = <
+					text = <"N3c - Metastasis in ipsilateral supraclavicular lymph node(s)">
+					description = <"With or without axillary or internal mammary lymph node involvement.">
+				>
+				["at0029"] = <
+					text = <"cM - Distant metastasis">
+					description = <"Clinical assessment of distant metastasis.">
+				>
+				["at0030"] = <
+					text = <"M0 - No distant metastasis">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"M1 - Distant metastasis">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"Pathological classification (pTNM)">
+					description = <"Post-surgical histopathological classification based on examination of the resected specimen.">
+				>
+				["at0043"] = <
+					text = <"pT - Primary tumor">
+					description = <"Pathological assessment of the primary tumor.">
+				>
+				["at0044"] = <
+					text = <"pTX - Primary tumor cannot be assessed">
+					description = <"">
+				>
+				["at0045"] = <
+					text = <"pT0 - No evidence of primary tumor">
+					description = <"">
+				>
+				["at0046"] = <
+					text = <"pTis (DCIS) - Ductal carcinoma in situ">
+					description = <"">
+				>
+				["at0047"] = <
+					text = <"pTis (Paget) - Paget disease of nipple with no tumor">
+					description = <"Paget disease of the nipple not associated with invasive carcinoma and/or DCIS in the underlying breast parenchyma.">
+				>
+				["at0048"] = <
+					text = <"pT1mi - Tumor ≤1 mm">
+					description = <"Microinvasion ≤1 mm in greatest dimension.">
+				>
+				["at0049"] = <
+					text = <"pT1a - Tumor >1 mm but ≤5 mm">
+					description = <"">
+				>
+				["at0050"] = <
+					text = <"pT1b - Tumor >5 mm but ≤10 mm">
+					description = <"">
+				>
+				["at0051"] = <
+					text = <"pT1c - Tumor >10 mm but ≤20 mm">
+					description = <"">
+				>
+				["at0052"] = <
+					text = <"pT2 - Tumor >20 mm but ≤50 mm">
+					description = <"">
+				>
+				["at0053"] = <
+					text = <"pT3 - Tumor >50 mm">
+					description = <"">
+				>
+				["at0054"] = <
+					text = <"pT4a - Extension to chest wall">
+					description = <"Extension to the chest wall, not including only pectoralis muscle adherence/invasion.">
+				>
+				["at0055"] = <
+					text = <"pT4b - Ulceration or satellite nodules or edema">
+					description = <"Ulceration and/or ipsilateral satellite nodules and/or edema (including peau d'orange) of the skin.">
+				>
+				["at0056"] = <
+					text = <"pT4c - Both pT4a and pT4b">
+					description = <"">
+				>
+				["at0057"] = <
+					text = <"pT4d - Inflammatory carcinoma">
+					description = <"">
+				>
+				["at0058"] = <
+					text = <"pN - Regional lymph nodes">
+					description = <"Pathological assessment of regional lymph nodes.">
+				>
+				["at0059"] = <
+					text = <"pNX - Regional lymph nodes cannot be assessed">
+					description = <"e.g., previously removed, or not removed for pathological study.">
+				>
+				["at0060"] = <
+					text = <"pN0 - No regional lymph node metastasis histologically">
+					description = <"No regional lymph node metastasis histologically, no additional examination for isolated tumor cells.">
+				>
+				["at0061"] = <
+					text = <"pN0(i+) - Malignant cells ≤0.2 mm (isolated tumor cells)">
+					description = <"Malignant cells in regional lymph node(s) no greater than 0.2 mm detected by H&E or IHC.">
+				>
+				["at0062"] = <
+					text = <"pN1mi - Micrometastases (>0.2 mm but ≤2.0 mm)">
+					description = <"">
+				>
+				["at0063"] = <
+					text = <"pN1a - Metastases in 1-3 axillary lymph nodes">
+					description = <"At least one metastasis greater than 2.0 mm.">
+				>
+				["at0064"] = <
+					text = <"pN1b - Metastases in internal mammary nodes (sentinel node biopsy)">
+					description = <"Metastases in internal mammary nodes with micrometastases or macrometastases detected by sentinel lymph node biopsy but not clinically detected.">
+				>
+				["at0065"] = <
+					text = <"pN1c - Metastases in 1-3 axillary and internal mammary nodes">
+					description = <"Metastases in 1-3 axillary lymph nodes and in internal mammary lymph nodes with micrometastases or macrometastases detected by sentinel lymph node biopsy but not clinically detected.">
+				>
+				["at0066"] = <
+					text = <"pN2a - Metastases in 4-9 axillary lymph nodes">
+					description = <"At least one tumor deposit greater than 2.0 mm.">
+				>
+				["at0067"] = <
+					text = <"pN2b - Metastases in clinically detected internal mammary nodes only">
+					description = <"In the absence of axillary lymph node metastases.">
+				>
+				["at0068"] = <
+					text = <"pN3a - Metastases in ≥10 axillary nodes or infraclavicular nodes">
+					description = <"Metastases in 10 or more axillary lymph nodes (at least one tumor deposit >2.0 mm) or metastases to the infraclavicular (level III axillary) lymph nodes.">
+				>
+				["at0069"] = <
+					text = <"pN3b - Metastases in internal mammary and axillary nodes (clinically detected)">
+					description = <"Metastases in clinically detected ipsilateral internal mammary lymph nodes in the presence of one or more positive axillary lymph nodes; or in more than 3 axillary lymph nodes and in internal mammary lymph nodes detected by sentinel lymph node biopsy but not clinically detected.">
+				>
+				["at0070"] = <
+					text = <"pN3c - Metastases in ipsilateral supraclavicular lymph nodes">
+					description = <"">
+				>
+				["at0071"] = <
+					text = <"pM - Distant metastasis">
+					description = <"Pathological assessment of distant metastasis.">
+				>
+				["at0072"] = <
+					text = <"pM0 - No distant metastasis">
+					description = <"">
+				>
+				["at0073"] = <
+					text = <"pM1 - Distant metastasis confirmed microscopically">
+					description = <"">
+				>
+				["at0084"] = <
 					text = <"Item tree">
 					description = <"@ internal @">
 				>
-				["at0005"] = <
+				["at0085"] = <
 					text = <"Extension">
 					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
 					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
 				>
-				["at0006"] = <
-					text = <"Invasive tumour size">
+				["at0086"] = <
+					text = <"Tumor size">
+					description = <"The greatest dimension of the primary tumor measured in millimeters.">
+				>
+				["at0087"] = <
+					text = <"T1 - Tumor ≤20 mm in greatest dimension">
+					description = <"Tumor 20 mm or less in greatest dimension. Use the T1 subcategory element to specify T1mi, T1a, T1b, or T1c.">
+				>
+				["at0088"] = <
+					text = <"T4 - Tumor with extension to chest wall and/or skin">
+					description = <"Tumor of any size with direct extension to the chest wall and/or to the skin. Use the T4 subcategory element to specify T4a, T4b, T4c, or T4d.">
+				>
+				["at0089"] = <
+					text = <"cT1 subcategory">
+					description = <"Subcategory for T1 tumors based on size.">
+				>
+				["at0090"] = <
+					text = <"T1mi - Tumor ≤1 mm (microinvasion)">
+					description = <"Microinvasion ≤1 mm in greatest dimension.">
+				>
+				["at0091"] = <
+					text = <"T1a - Tumor >1 mm but ≤5 mm">
 					description = <"">
 				>
-				["at0007"] = <
-					text = <"Carcinoma in situ type">
+				["at0092"] = <
+					text = <"T1b - Tumor >5 mm but ≤10 mm">
 					description = <"">
 				>
-				["at0008"] = <
-					text = <"DCIS">
+				["at0093"] = <
+					text = <"T1c - Tumor >10 mm but ≤20 mm">
 					description = <"">
 				>
-				["at0009"] = <
-					text = <"LCIS">
+				["at0094"] = <
+					text = <"cT4 subcategory">
+					description = <"Subcategory for T4 tumors based on type of extension.">
+				>
+				["at0095"] = <
+					text = <"T4a - Extension to chest wall">
+					description = <"Extension to the chest wall, not including only pectoralis muscle adherence/invasion.">
+				>
+				["at0096"] = <
+					text = <"T4b - Ulceration or satellite nodules or edema">
+					description = <"Ulceration and/or ipsilateral satellite nodules and/or edema (including peau d'orange) of the skin.">
+				>
+				["at0097"] = <
+					text = <"T4c - Both T4a and T4b">
 					description = <"">
 				>
-				["at0010"] = <
-					text = <"Paget">
+				["at0098"] = <
+					text = <"T4d - Inflammatory carcinoma">
 					description = <"">
 				>
-				["at0011"] = <
-					text = <"None">
-					description = <"">
+				["at0099"] = <
+					text = <"Tis - Carcinoma in situ">
+					description = <"Carcinoma in situ (DCIS or Paget disease). Use the Tis subcategory element to specify the type.">
 				>
-				["at0012"] = <
-					text = <"Chest wall invasion">
-					description = <"">
+				["at0100"] = <
+					text = <"cTis subcategory">
+					description = <"Subcategory for Tis tumors based on histological type.">
 				>
-				["at0018"] = <
-					text = <"Skin involvement">
-					description = <"">
+				["at0101"] = <
+					text = <"N2 - Metastasis in fixed axillary or internal mammary nodes">
+					description = <"Metastasis in ipsilateral level I, II axillary lymph nodes fixed to one another or to other structures, or in clinically detected ipsilateral internal mammary nodes in the absence of clinically evident axillary lymph node metastasis.">
 				>
-				["at0019"] = <
-					text = <"Inflammatory carcinoma">
-					description = <"">
+				["at0102"] = <
+					text = <"N3 - Metastasis in infraclavicular, internal mammary/axillary, or supraclavicular nodes">
+					description = <"Metastasis in ipsilateral infraclavicular lymph nodes, or in ipsilateral internal mammary and axillary lymph nodes, or in ipsilateral supraclavicular lymph nodes.">
 				>
-				["at0020"] = <
-					text = <"Regional lymph nodes evaluable">
-					description = <"">
+				["at0103"] = <
+					text = <"cN2 subcategory">
+					description = <"Subcategory for N2 regional lymph node metastasis.">
 				>
-				["at0022"] = <
-					text = <"Distant metastasis">
-					description = <"">
+				["at0104"] = <
+					text = <"cN3 subcategory">
+					description = <"Subcategory for N3 regional lymph node metastasis.">
 				>
-				["at0023"] = <
-					text = <"T - Primary tumour">
-					description = <"">
+				["at0105"] = <
+					text = <"pTis - Carcinoma in situ">
+					description = <"Carcinoma in situ (DCIS or Paget disease). Use the pTis subcategory element to specify the type.">
 				>
-				["at0024"] = <
-					text = <"TX - primary tumour cannot be assessed">
-					description = <"">
+				["at0106"] = <
+					text = <"pT1 - Tumor ≤20 mm in greatest dimension">
+					description = <"Tumor 20 mm or less in greatest dimension. Use the pT1 subcategory element to specify pT1mi, pT1a, pT1b, or pT1c.">
 				>
-				["at0025"] = <
-					text = <"T0 - no evidence of primary tumour">
-					description = <"">
+				["at0107"] = <
+					text = <"pT4 - Tumor with extension to chest wall and/or skin">
+					description = <"Tumor of any size with direct extension to the chest wall and/or to the skin. Use the pT4 subcategory element to specify pT4a, pT4b, pT4c, or pT4d.">
 				>
-				["at0026"] = <
-					text = <"Tis - carcinoma in situ">
-					description = <"">
+				["at0108"] = <
+					text = <"pTis subcategory">
+					description = <"Subcategory for pTis tumors based on histological type.">
 				>
-				["at0027"] = <
-					text = <"T1mi - microinvasion, ≤ 1 mm">
-					description = <"">
+				["at0109"] = <
+					text = <"pT1 subcategory">
+					description = <"Subcategory for pT1 tumors based on size.">
 				>
-				["at0028"] = <
-					text = <"T1a - tumour > 1 mm to ≤ 5 mm">
-					description = <"">
+				["at0110"] = <
+					text = <"pT4 subcategory">
+					description = <"Subcategory for pT4 tumors based on type of extension.">
 				>
-				["at0029"] = <
-					text = <"T1b - tumour > 5 mm to ≤ 10 mm">
-					description = <"">
+				["at0111"] = <
+					text = <"pN1 - Micrometastases or metastases in 1-3 axillary/internal mammary nodes">
+					description = <"Micrometastases, or metastases in 1-3 axillary lymph nodes and/or in internal mammary nodes.">
 				>
-				["at0030"] = <
-					text = <"T1c - tumour > 10 mm to ≤ 20 mm">
-					description = <"">
+				["at0112"] = <
+					text = <"pN2 - Metastases in 4-9 axillary or internal mammary nodes">
+					description = <"Metastases in 4-9 axillary lymph nodes, or in clinically detected internal mammary lymph nodes in the absence of axillary lymph node metastases.">
 				>
-				["at0031"] = <
-					text = <"T2 - tumour > 20 mm to ≤ 50 mm">
-					description = <"">
+				["at0113"] = <
+					text = <"pN3 - Metastases in ≥10 nodes or supraclavicular nodes">
+					description = <"Metastases in 10 or more axillary lymph nodes, or in infraclavicular lymph nodes, or in clinically detected internal mammary lymph nodes with axillary node metastases, or in supraclavicular lymph nodes.">
 				>
-				["at0032"] = <
-					text = <"T3 - tumour > 50 mm">
-					description = <"">
+				["at0114"] = <
+					text = <"pN1 subcategory">
+					description = <"Subcategory for pN1 regional lymph node metastasis.">
 				>
-				["at0033"] = <
-					text = <"T4a - any size with extension to chest wall">
-					description = <"">
+				["at0115"] = <
+					text = <"pN2 subcategory">
+					description = <"Subcategory for pN2 regional lymph node metastasis.">
 				>
-				["at0034"] = <
-					text = <"T4b - any size with skin involvement (ulceration/ipsilateral skin nodules/oedema)">
-					description = <"">
-				>
-				["at0035"] = <
-					text = <"T4c - any size with both chest wall and skin involvement">
-					description = <"">
-				>
-				["at0036"] = <
-					text = <"T4d - any size, inflammatory carcinoma">
-					description = <"">
-				>
-				["at0037"] = <
-					text = <"N - Regional lymph nodes">
-					description = <"">
-				>
-				["at0038"] = <
-					text = <"NX - regional lymph nodes cannot be assessed">
-					description = <"">
-				>
-				["at0039"] = <
-					text = <"N0 - no regional lymph node metastasis">
-					description = <"">
-				>
-				["at0040"] = <
-					text = <"N1 - movable ipsilateral level I–II axillary node metastasis">
-					description = <"">
-				>
-				["at0041"] = <
-					text = <"N2a - ipsilateral level I–II axillary nodes fixed or matted">
-					description = <"">
-				>
-				["at0042"] = <
-					text = <"N2b - clinically detected internal mammary nodes, no clinically evident axillary nodes">
-					description = <"">
-				>
-				["at0043"] = <
-					text = <"N3a - ipsilateral infraclavicular (level III axillary) node(s)">
-					description = <"">
-				>
-				["at0044"] = <
-					text = <"N3b - internal mammary + axillary node metastasis">
-					description = <"">
-				>
-				["at0045"] = <
-					text = <"N3c - ipsilateral supraclavicular node(s)">
-					description = <"">
-				>
-				["at0046"] = <
-					text = <"M - Distant metastasis">
-					description = <"">
-				>
-				["at0047"] = <
-					text = <"M0 - no distant metastasis">
-					description = <"">
-				>
-				["at0048"] = <
-					text = <"M1 - distant metastasis present">
-					description = <"">
-				>
-				["at0049"] = <
-					text = <"Any regional node metastasis">
-					description = <"">
-				>
-				["at0050"] = <
-					text = <"Axillary level I, II nodes involved">
-					description = <"">
-				>
-				["at0051"] = <
-					text = <"Axillary node status">
-					description = <"">
-				>
-				["at0052"] = <
-					text = <"None">
-					description = <"">
-				>
-				["at0053"] = <
-					text = <"Movable">
-					description = <"">
-				>
-				["at0054"] = <
-					text = <"Fixed or Matted">
-					description = <"">
-				>
-				["at0055"] = <
-					text = <"Clinically detected internal mammary nodes">
-					description = <"">
-				>
-				["at0056"] = <
-					text = <"Clinically detected axillary nodes present">
-					description = <"">
-				>
-				["at0057"] = <
-					text = <"Infraclavicular nodes involved">
-					description = <"">
-				>
-				["at0058"] = <
-					text = <"Supraclavicular nodes involved">
-					description = <"">
-				>
-				["at0059"] = <
-					text = <"Primary tumour evaluable">
-					description = <"">
-				>
-				["at0060"] = <
-					text = <"Primary tumour present">
-					description = <"">
-				>
-				["at0061"] = <
-					text = <"N1mi - micrometastases only">
-					description = <"">
-				>
-				["at0062"] = <
-					text = <"Nodal micrometastases only">
-					description = <"">
+				["at0116"] = <
+					text = <"pN3 subcategory">
+					description = <"Subcategory for pN3 regional lymph node metastasis.">
 				>
 			>
 		>
