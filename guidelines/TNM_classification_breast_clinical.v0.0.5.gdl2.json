@@ -1,0 +1,1712 @@
+{
+  "id" : "TNM_classification_breast_clinical.v0.0.5",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Katja Mariko Wilde",
+      "email" : "katja-wilde@t-online.de",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-02-09"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To classify breast cancer using the TNM system by recording T, N, and M categories and to determine the corresponding AJCC/UICC stage group.",
+        "keywords" : [
+          "tnm",
+          "tumour",
+          "node",
+          "metastasis",
+          "breast",
+          "cancer",
+          "staging",
+          "classification"
+        ],
+        "use" : "Use this guideline to record clinical TNM (cT, cN, cM) for breast cancer and to derive a clinical stage group (0–IV) based on TNM combinations.\n\nInputs\n- cT Primary tumor (TX, T0, Tis, T1-T4) and optional cT subcategories (Tis subcategory, T1 subcategory, T4 subcategory)\n- cN Regional lymph nodes (N0-N3) and optional cN subcategories (N2 subcategory, N3 subcategory)\n- cM Distant metastasis (M0, M1)\n- Optional numeric tumor size (mm) can be used to support selection of T categories\n\nOutputs\n- Clinical stage group (0, IA, IIA, IIB, IIIA, IIIB, IIIC, IV) derived from cT/cN/cM\n- Clinical TNM assessment (e.g., T2N1M0 or “AnyTN3M0”) and, where applicable, an additional output including selected subcategories (e.g., T1cN2aM0).",
+        "misuse" : "Not to be used for recording TNM classification for cancers outside the breast.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Regionala cancercentrum i samverkan. Nationellt vårdprogram bröstcancer: Kapitel 10 Kategorisering av tumören. Kunskapsbanken, 2025. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/brostcancer/vardprogram/kvalitetsdokument-for-patologi/\n\nBrierley JD, Gospodarowicz MK, Wittekind C, editors. TNM classification of malignant tumours. 8th ed. Hoboken (NJ): Wiley Blackwell; 2017",
+      "en" : "A structured guideline used to determine the TNM (Tumour-Node-Metastasis) classification and stage grouping for breast cancer according to the UICC/AJCC TNM system."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.tnm_classification_breast.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.tnm_classification_breast.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]/items[at0086]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mm"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]/items[at0005]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0006",
+              "local::at0007",
+              "local::at0014",
+              "local::at0015",
+              "local::at0087",
+              "local::at0088",
+              "local::at0099"
+            ]
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]/items[at0100]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0008",
+              "local::at0009"
+            ]
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]/items[at0089]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0090",
+              "local::at0091",
+              "local::at0092",
+              "local::at0093"
+            ]
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]/items[at0094]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0095",
+              "local::at0096",
+              "local::at0097",
+              "local::at0098"
+            ]
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]/items[at0020]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0021",
+              "local::at0022",
+              "local::at0023",
+              "local::at0101",
+              "local::at0102"
+            ]
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]/items[at0103]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0024",
+              "local::at0025"
+            ]
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]/items[at0104]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0026",
+              "local::at0027",
+              "local::at0028"
+            ]
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]/items[at0029]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0030",
+              "local::at0031"
+            ]
+          }
+        }
+      },
+      "gt0012" : {
+        "id" : "gt0012",
+        "model_id" : "openEHR-EHR-EVALUATION.tnm_assessment_breast.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.tnm_assessment_breast.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0013" : {
+            "id" : "gt0013",
+            "path" : "/data[at0001]/items[at0002]/items[at0003]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "path" : "/data[at0001]/items[at0002]/items[at0004]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "path" : "/data[at0001]/items[at0002]/items[at0005]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0200" : {
+        "id" : "gt0200",
+        "priority" : 63,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0007|T0 - No evidence of primary tumor|"
+        ],
+        "then" : [
+          "$gt0201|Local variable: T|=$gt0197|T0|.term"
+        ]
+      },
+      "gt0206" : {
+        "id" : "gt0206",
+        "priority" : 62,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0087|T1 - Tumor ≤20 mm in greatest dimension|"
+        ],
+        "then" : [
+          "$gt0201|Local variable: T|=$gt0202|T1|.term"
+        ]
+      },
+      "gt0207" : {
+        "id" : "gt0207",
+        "priority" : 61,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0014|T2 - Tumor >20-50 mm|"
+        ],
+        "then" : [
+          "$gt0201|Local variable: T|=$gt0203|T2|.term"
+        ]
+      },
+      "gt0208" : {
+        "id" : "gt0208",
+        "priority" : 60,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0015|T3 - Tumor >50 mm|"
+        ],
+        "then" : [
+          "$gt0201|Local variable: T|=$gt0204|T3|.term"
+        ]
+      },
+      "gt0209" : {
+        "id" : "gt0209",
+        "priority" : 59,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0088|T4 - Tumor with extension to chest wall and/or skin|"
+        ],
+        "then" : [
+          "$gt0201|Local variable: T|=$gt0205|T4|.term"
+        ]
+      },
+      "gt0183" : {
+        "id" : "gt0183",
+        "priority" : 58,
+        "when" : [
+          "$gt0008|cN - Regional lymph nodes|==local::at0022|N0 - No regional lymph node metastasis|"
+        ],
+        "then" : [
+          "$gt0175|Local variable: N|=$gt0177|N0|.term"
+        ]
+      },
+      "gt0184" : {
+        "id" : "gt0184",
+        "priority" : 57,
+        "when" : [
+          "$gt0008|cN - Regional lymph nodes|==local::at0023|N1 - Metastasis to movable ipsilateral level I, II axillary lymph node(s)|"
+        ],
+        "then" : [
+          "$gt0175|Local variable: N|=$gt0178|N1|.term"
+        ]
+      },
+      "gt0185" : {
+        "id" : "gt0185",
+        "priority" : 56,
+        "when" : [
+          "$gt0008|cN - Regional lymph nodes|==local::at0101|N2 - Metastasis in fixed axillary or internal mammary nodes|",
+          "$gt0009|cN2 subcategory|==null"
+        ],
+        "then" : [
+          "$gt0175|Local variable: N|=$gt0179|N2|.term"
+        ]
+      },
+      "gt0186" : {
+        "id" : "gt0186",
+        "priority" : 55,
+        "when" : [
+          "$gt0008|cN - Regional lymph nodes|==local::at0102|N3 - Metastasis in infraclavicular, internal mammary/axillary, or supraclavicular nodes|",
+          "$gt0010|cN3 subcategory|==null"
+        ],
+        "then" : [
+          "$gt0175|Local variable: N|=$gt0180|N3|.term"
+        ]
+      },
+      "gt0187" : {
+        "id" : "gt0187",
+        "priority" : 54,
+        "when" : [
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0176|Local variable: M|=$gt0181|M0|.term"
+        ]
+      },
+      "gt0188" : {
+        "id" : "gt0188",
+        "priority" : 53,
+        "when" : [
+          "$gt0011|cM - Distant metastasis|==local::at0031|M1 - Distant metastasis|"
+        ],
+        "then" : [
+          "$gt0176|Local variable: M|=$gt0182|M1|.term"
+        ]
+      },
+      "gt0162" : {
+        "id" : "gt0162",
+        "priority" : 52,
+        "when" : [
+          "$gt0005|cTis subcategory|==local::at0008|Tis (DCIS) - Ductal carcinoma in situ|"
+        ],
+        "then" : [
+          "$gt0147|Local variable: Tis|=$gt0148|Tis(DCIS)|.term"
+        ]
+      },
+      "gt0163" : {
+        "id" : "gt0163",
+        "priority" : 51,
+        "when" : [
+          "$gt0005|cTis subcategory|==local::at0009|Tis (Paget) - Paget disease of nipple with no tumor|"
+        ],
+        "then" : [
+          "$gt0147|Local variable: Tis|=$gt0149|Tis(Paget)|.term"
+        ]
+      },
+      "gt0164" : {
+        "id" : "gt0164",
+        "priority" : 50,
+        "when" : [
+          "$gt0007|cT4 subcategory|==local::at0095|T4a - Extension to chest wall|"
+        ],
+        "then" : [
+          "$gt0150|Local variable: T4|=$gt0151|T4a|.term"
+        ]
+      },
+      "gt0165" : {
+        "id" : "gt0165",
+        "priority" : 49,
+        "when" : [
+          "$gt0007|cT4 subcategory|==local::at0096|T4b - Ulceration or satellite nodules or edema|"
+        ],
+        "then" : [
+          "$gt0150|Local variable: T4|=$gt0152|T4b|.term"
+        ]
+      },
+      "gt0166" : {
+        "id" : "gt0166",
+        "priority" : 48,
+        "when" : [
+          "$gt0007|cT4 subcategory|==local::at0097|T4c - Both T4a and T4b|"
+        ],
+        "then" : [
+          "$gt0150|Local variable: T4|=$gt0153|T4c|.term"
+        ]
+      },
+      "gt0167" : {
+        "id" : "gt0167",
+        "priority" : 47,
+        "when" : [
+          "$gt0007|cT4 subcategory|==local::at0098|T4d - Inflammatory carcinoma|"
+        ],
+        "then" : [
+          "$gt0150|Local variable: T4|=$gt0154|T4d|.term"
+        ]
+      },
+      "gt0168" : {
+        "id" : "gt0168",
+        "priority" : 46,
+        "when" : [
+          "$gt0009|cN2 subcategory|==local::at0024|N2a - Metastasis in ipsilateral level I, II axillary lymph nodes fixed to one another or other structures|"
+        ],
+        "then" : [
+          "$gt0155|Local variable: N2|=$gt0156|N2a|.term"
+        ]
+      },
+      "gt0169" : {
+        "id" : "gt0169",
+        "priority" : 45,
+        "when" : [
+          "$gt0009|cN2 subcategory|==local::at0025|N2b - Metastasis only in clinically detected ipsilateral internal mammary nodes|"
+        ],
+        "then" : [
+          "$gt0155|Local variable: N2|=$gt0157|N2b|.term"
+        ]
+      },
+      "gt0170" : {
+        "id" : "gt0170",
+        "priority" : 44,
+        "when" : [
+          "$gt0010|cN3 subcategory|==local::at0026|N3a - Metastasis in ipsilateral infraclavicular lymph node(s)|"
+        ],
+        "then" : [
+          "$gt0158|Local variable: N3|=$gt0159|N3a|.term"
+        ]
+      },
+      "gt0171" : {
+        "id" : "gt0171",
+        "priority" : 43,
+        "when" : [
+          "$gt0010|cN3 subcategory|==local::at0027|N3b - Metastasis in ipsilateral internal mammary and axillary lymph node(s)|"
+        ],
+        "then" : [
+          "$gt0158|Local variable: N3|=$gt0160|N3b|.term"
+        ]
+      },
+      "gt0172" : {
+        "id" : "gt0172",
+        "priority" : 42,
+        "when" : [
+          "$gt0010|cN3 subcategory|==local::at0028|N3c - Metastasis in ipsilateral supraclavicular lymph node(s)|"
+        ],
+        "then" : [
+          "$gt0158|Local variable: N3|=$gt0161|N3c|.term"
+        ]
+      },
+      "gt0137" : {
+        "id" : "gt0137",
+        "priority" : 41,
+        "when" : [
+          "$gt0006|cT1 subcategory|==local::at0091|T1a - Tumor >1-5 mm|"
+        ],
+        "then" : [
+          "$gt0139|Local variable: T1|=$gt0138|T1a|.term"
+        ]
+      },
+      "gt0140" : {
+        "id" : "gt0140",
+        "priority" : 40,
+        "when" : [
+          "$gt0006|cT1 subcategory|==local::at0092|T1b - Tumor >5-10 mm|"
+        ],
+        "then" : [
+          "$gt0139|Local variable: T1|=$gt0142|T1b|.term"
+        ]
+      },
+      "gt0143" : {
+        "id" : "gt0143",
+        "priority" : 39,
+        "when" : [
+          "$gt0006|cT1 subcategory|==local::at0093|T1c - Tumor >10-20 mm|"
+        ],
+        "then" : [
+          "$gt0139|Local variable: T1|=$gt0145|T1c|.term"
+        ]
+      },
+      "gt0198" : {
+        "id" : "gt0198",
+        "priority" : 38,
+        "when" : [
+          "$gt0006|cT1 subcategory|==local::at0090|T1mi - Tumor ≤1 mm (microinvasion)|"
+        ],
+        "then" : [
+          "$gt0139|Local variable: T1|=$gt0199|T1mi|.term"
+        ]
+      },
+      "gt0189" : {
+        "id" : "gt0189",
+        "priority" : 37,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0099|Tis - Carcinoma in situ|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0022|N0 - No regional lymph node metastasis|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0017|TisN0M0|.term",
+          "$gt0015|Clinical stage group|=local::at0006|Stage 0|"
+        ]
+      },
+      "gt0173" : {
+        "id" : "gt0173",
+        "priority" : 36,
+        "when" : [
+          "$gt0005|cTis subcategory|!=null",
+          "$gt0015|Clinical stage group|==local::at0006|Stage 0|"
+        ],
+        "then" : [
+          "$gt0014|Clinical TNM assessment with subcategory|=$gt0147|Local variable: Tis|+$gt0175|Local variable: N|+$gt0176|Local variable: M|"
+        ]
+      },
+      "gt0022" : {
+        "id" : "gt0022",
+        "priority" : 35,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0087|T1 - Tumor ≤20 mm in greatest dimension|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0022|N0 - No regional lymph node metastasis|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0024|T1N0M0|.term",
+          "$gt0015|Clinical stage group|=local::at0007|Stage IA|"
+        ]
+      },
+      "gt0136" : {
+        "id" : "gt0136",
+        "priority" : 34,
+        "when" : [
+          "$gt0006|cT1 subcategory|!=null",
+          "$gt0015|Clinical stage group|==local::at0007|Stage IA|"
+        ],
+        "then" : [
+          "$gt0014|Clinical TNM assessment with subcategory|=$gt0139|Local variable: T1|+$gt0175|Local variable: N|+$gt0176|Local variable: M|"
+        ]
+      },
+      "gt0032" : {
+        "id" : "gt0032",
+        "priority" : 33,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0007|T0 - No evidence of primary tumor|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0023|N1 - Metastasis to movable ipsilateral level I, II axillary lymph node(s)|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0034|T0N1M0|.term",
+          "$gt0015|Clinical stage group|=local::at0009|Stage IIA|"
+        ]
+      },
+      "gt0037" : {
+        "id" : "gt0037",
+        "priority" : 32,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0087|T1 - Tumor ≤20 mm in greatest dimension|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0023|N1 - Metastasis to movable ipsilateral level I, II axillary lymph node(s)|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0035|T1N1M0|.term",
+          "$gt0015|Clinical stage group|=local::at0009|Stage IIA|"
+        ]
+      },
+      "gt0191" : {
+        "id" : "gt0191",
+        "priority" : 31,
+        "when" : [
+          "$gt0006|cT1 subcategory|!=null",
+          "$gt0015|Clinical stage group|==local::at0009|Stage IIA|"
+        ],
+        "then" : [
+          "$gt0014|Clinical TNM assessment with subcategory|=$gt0139|Local variable: T1|+$gt0175|Local variable: N|+$gt0176|Local variable: M|"
+        ]
+      },
+      "gt0038" : {
+        "id" : "gt0038",
+        "priority" : 30,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0014|T2 - Tumor >20-50 mm|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0022|N0 - No regional lymph node metastasis|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0036|T2N0M0|.term",
+          "$gt0015|Clinical stage group|=local::at0009|Stage IIA|"
+        ]
+      },
+      "gt0046" : {
+        "id" : "gt0046",
+        "priority" : 29,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0014|T2 - Tumor >20-50 mm|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0023|N1 - Metastasis to movable ipsilateral level I, II axillary lymph node(s)|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0047|T2N1M0|.term",
+          "$gt0015|Clinical stage group|=local::at0010|Stage IIB|"
+        ]
+      },
+      "gt0049" : {
+        "id" : "gt0049",
+        "priority" : 28,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0015|T3 - Tumor >50 mm|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0022|N0 - No regional lymph node metastasis|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0048|T3N0M0|.term",
+          "$gt0015|Clinical stage group|=local::at0010|Stage IIB|"
+        ]
+      },
+      "gt0050" : {
+        "id" : "gt0050",
+        "priority" : 27,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0007|T0 - No evidence of primary tumor|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0101|N2 - Metastasis in fixed axillary or internal mammary nodes|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0051|T0N2M0|.term",
+          "$gt0015|Clinical stage group|=local::at0011|Stage IIIA|"
+        ]
+      },
+      "gt0196" : {
+        "id" : "gt0196",
+        "priority" : 26,
+        "when" : [
+          "$gt0015|Clinical stage group|==local::at0011|Stage IIIA|",
+          "$gt0004|cT - Primary tumor|==local::at0007|T0 - No evidence of primary tumor|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0101|N2 - Metastasis in fixed axillary or internal mammary nodes|"
+        ],
+        "then" : [
+          "$gt0014|Clinical TNM assessment with subcategory|=$gt0197|T0|.term+$gt0155|Local variable: N2|+$gt0176|Local variable: M|"
+        ]
+      },
+      "gt0054" : {
+        "id" : "gt0054",
+        "priority" : 25,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0087|T1 - Tumor ≤20 mm in greatest dimension|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0101|N2 - Metastasis in fixed axillary or internal mammary nodes|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0052|T1N2M0|.term",
+          "$gt0015|Clinical stage group|=local::at0011|Stage IIIA|"
+        ]
+      },
+      "gt0192" : {
+        "id" : "gt0192",
+        "priority" : 24,
+        "when" : [
+          "$gt0006|cT1 subcategory|!=null",
+          "$gt0015|Clinical stage group|==local::at0011|Stage IIIA|",
+          "$gt0004|cT - Primary tumor|==local::at0087|T1 - Tumor ≤20 mm in greatest dimension|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0101|N2 - Metastasis in fixed axillary or internal mammary nodes|"
+        ],
+        "then" : [
+          "$gt0014|Clinical TNM assessment with subcategory|=$gt0139|Local variable: T1|+$gt0155|Local variable: N2|+$gt0176|Local variable: M|"
+        ]
+      },
+      "gt0055" : {
+        "id" : "gt0055",
+        "priority" : 23,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0014|T2 - Tumor >20-50 mm|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0101|N2 - Metastasis in fixed axillary or internal mammary nodes|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0053|T2N2M0|.term",
+          "$gt0015|Clinical stage group|=local::at0011|Stage IIIA|"
+        ]
+      },
+      "gt0193" : {
+        "id" : "gt0193",
+        "priority" : 22,
+        "when" : [
+          "$gt0009|cN2 subcategory|!=null",
+          "$gt0015|Clinical stage group|==local::at0011|Stage IIIA|",
+          "$gt0004|cT - Primary tumor|==local::at0014|T2 - Tumor >20-50 mm|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0101|N2 - Metastasis in fixed axillary or internal mammary nodes|"
+        ],
+        "then" : [
+          "$gt0014|Clinical TNM assessment with subcategory|=$gt0201|Local variable: T|+$gt0155|Local variable: N2|+$gt0176|Local variable: M|"
+        ]
+      },
+      "gt0080" : {
+        "id" : "gt0080",
+        "priority" : 21,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0015|T3 - Tumor >50 mm|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0023|N1 - Metastasis to movable ipsilateral level I, II axillary lymph node(s)|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0081|T3N1M0|.term",
+          "$gt0015|Clinical stage group|=local::at0011|Stage IIIA|"
+        ]
+      },
+      "gt0194" : {
+        "id" : "gt0194",
+        "priority" : 20,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0015|T3 - Tumor >50 mm|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0101|N2 - Metastasis in fixed axillary or internal mammary nodes|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0082|T3N2M0|.term",
+          "$gt0015|Clinical stage group|=local::at0011|Stage IIIA|"
+        ]
+      },
+      "gt0195" : {
+        "id" : "gt0195",
+        "priority" : 19,
+        "when" : [
+          "$gt0009|cN2 subcategory|!=null",
+          "$gt0015|Clinical stage group|==local::at0011|Stage IIIA|",
+          "$gt0004|cT - Primary tumor|==local::at0015|T3 - Tumor >50 mm|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0101|N2 - Metastasis in fixed axillary or internal mammary nodes|"
+        ],
+        "then" : [
+          "$gt0014|Clinical TNM assessment with subcategory|=$gt0155|Local variable: N2|+$gt0176|Local variable: M|"
+        ]
+      },
+      "gt0087" : {
+        "id" : "gt0087",
+        "priority" : 18,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0088|T4 - Tumor with extension to chest wall and/or skin|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0022|N0 - No regional lymph node metastasis|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0088|T4N0M0|.term",
+          "$gt0015|Clinical stage group|=local::at0012|Stage IIIB|"
+        ]
+      },
+      "gt0093" : {
+        "id" : "gt0093",
+        "priority" : 17,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0088|T4 - Tumor with extension to chest wall and/or skin|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0022|N0 - No regional lymph node metastasis|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|",
+          "$gt0007|cT4 subcategory|!=null"
+        ],
+        "then" : [
+          "$gt0014|Clinical TNM assessment with subcategory|=$gt0150|Local variable: T4|",
+          "$gt0015|Clinical stage group|=local::at0012|Stage IIIB|"
+        ]
+      },
+      "gt0091" : {
+        "id" : "gt0091",
+        "priority" : 16,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0088|T4 - Tumor with extension to chest wall and/or skin|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0023|N1 - Metastasis to movable ipsilateral level I, II axillary lymph node(s)|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0089|T4N1M0|.term",
+          "$gt0015|Clinical stage group|=local::at0012|Stage IIIB|"
+        ]
+      },
+      "gt0101" : {
+        "id" : "gt0101",
+        "priority" : 15,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0088|T4 - Tumor with extension to chest wall and/or skin|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0023|N1 - Metastasis to movable ipsilateral level I, II axillary lymph node(s)|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|",
+          "$gt0007|cT4 subcategory|!=null"
+        ],
+        "then" : [
+          "$gt0014|Clinical TNM assessment with subcategory|=$gt0150|Local variable: T4|",
+          "$gt0015|Clinical stage group|=local::at0012|Stage IIIB|"
+        ]
+      },
+      "gt0092" : {
+        "id" : "gt0092",
+        "priority" : 14,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0088|T4 - Tumor with extension to chest wall and/or skin|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0101|N2 - Metastasis in fixed axillary or internal mammary nodes|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0090|T4N2M0|.term",
+          "$gt0015|Clinical stage group|=local::at0012|Stage IIIB|"
+        ]
+      },
+      "gt0109" : {
+        "id" : "gt0109",
+        "priority" : 13,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0088|T4 - Tumor with extension to chest wall and/or skin|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0101|N2 - Metastasis in fixed axillary or internal mammary nodes|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|",
+          "$gt0007|cT4 subcategory|==local::at0095|T4a - Extension to chest wall|",
+          "$gt0009|cN2 subcategory|==local::at0024|N2a - Metastasis in ipsilateral level I, II axillary lymph nodes fixed to one another or other structures|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0090|T4N2M0|.term",
+          "$gt0015|Clinical stage group|=local::at0012|Stage IIIB|",
+          "$gt0014|Clinical TNM assessment with subcategory|=$gt0110|T4aN2aM0|.term"
+        ]
+      },
+      "gt0118" : {
+        "id" : "gt0118",
+        "priority" : 12,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0088|T4 - Tumor with extension to chest wall and/or skin|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0101|N2 - Metastasis in fixed axillary or internal mammary nodes|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|",
+          "$gt0007|cT4 subcategory|==local::at0095|T4a - Extension to chest wall|",
+          "$gt0009|cN2 subcategory|==local::at0025|N2b - Metastasis only in clinically detected ipsilateral internal mammary nodes|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0090|T4N2M0|.term",
+          "$gt0015|Clinical stage group|=local::at0012|Stage IIIB|",
+          "$gt0014|Clinical TNM assessment with subcategory|=$gt0111|T4aN2bM0|.term"
+        ]
+      },
+      "gt0119" : {
+        "id" : "gt0119",
+        "priority" : 11,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0088|T4 - Tumor with extension to chest wall and/or skin|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0101|N2 - Metastasis in fixed axillary or internal mammary nodes|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|",
+          "$gt0007|cT4 subcategory|==local::at0096|T4b - Ulceration or satellite nodules or edema|",
+          "$gt0009|cN2 subcategory|==local::at0024|N2a - Metastasis in ipsilateral level I, II axillary lymph nodes fixed to one another or other structures|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0090|T4N2M0|.term",
+          "$gt0015|Clinical stage group|=local::at0012|Stage IIIB|",
+          "$gt0014|Clinical TNM assessment with subcategory|=$gt0112|T4bN2aM0|.term"
+        ]
+      },
+      "gt0120" : {
+        "id" : "gt0120",
+        "priority" : 10,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0088|T4 - Tumor with extension to chest wall and/or skin|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0101|N2 - Metastasis in fixed axillary or internal mammary nodes|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|",
+          "$gt0007|cT4 subcategory|==local::at0096|T4b - Ulceration or satellite nodules or edema|",
+          "$gt0009|cN2 subcategory|==local::at0025|N2b - Metastasis only in clinically detected ipsilateral internal mammary nodes|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0090|T4N2M0|.term",
+          "$gt0015|Clinical stage group|=local::at0012|Stage IIIB|",
+          "$gt0014|Clinical TNM assessment with subcategory|=$gt0113|T4bN2bM0|.term"
+        ]
+      },
+      "gt0121" : {
+        "id" : "gt0121",
+        "priority" : 9,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0088|T4 - Tumor with extension to chest wall and/or skin|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0101|N2 - Metastasis in fixed axillary or internal mammary nodes|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|",
+          "$gt0007|cT4 subcategory|==local::at0097|T4c - Both T4a and T4b|",
+          "$gt0009|cN2 subcategory|==local::at0024|N2a - Metastasis in ipsilateral level I, II axillary lymph nodes fixed to one another or other structures|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0090|T4N2M0|.term",
+          "$gt0015|Clinical stage group|=local::at0012|Stage IIIB|",
+          "$gt0014|Clinical TNM assessment with subcategory|=$gt0114|T4cN2aM0|.term"
+        ]
+      },
+      "gt0122" : {
+        "id" : "gt0122",
+        "priority" : 8,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0088|T4 - Tumor with extension to chest wall and/or skin|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0101|N2 - Metastasis in fixed axillary or internal mammary nodes|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|",
+          "$gt0007|cT4 subcategory|==local::at0097|T4c - Both T4a and T4b|",
+          "$gt0009|cN2 subcategory|==local::at0025|N2b - Metastasis only in clinically detected ipsilateral internal mammary nodes|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0090|T4N2M0|.term",
+          "$gt0015|Clinical stage group|=local::at0012|Stage IIIB|",
+          "$gt0014|Clinical TNM assessment with subcategory|=$gt0115|T4cN2bM0|.term"
+        ]
+      },
+      "gt0123" : {
+        "id" : "gt0123",
+        "priority" : 7,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0088|T4 - Tumor with extension to chest wall and/or skin|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0101|N2 - Metastasis in fixed axillary or internal mammary nodes|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|",
+          "$gt0007|cT4 subcategory|==local::at0098|T4d - Inflammatory carcinoma|",
+          "$gt0009|cN2 subcategory|==local::at0024|N2a - Metastasis in ipsilateral level I, II axillary lymph nodes fixed to one another or other structures|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0090|T4N2M0|.term",
+          "$gt0015|Clinical stage group|=local::at0012|Stage IIIB|",
+          "$gt0014|Clinical TNM assessment with subcategory|=$gt0116|T4dN2aM0|.term"
+        ]
+      },
+      "gt0133" : {
+        "id" : "gt0133",
+        "priority" : 6,
+        "when" : [
+          "$gt0004|cT - Primary tumor|!=null",
+          "$gt0008|cN - Regional lymph nodes|==local::at0102|N3 - Metastasis in infraclavicular, internal mammary/axillary, or supraclavicular nodes|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|",
+          "$gt0010|cN3 subcategory|==local::at0027|N3b - Metastasis in ipsilateral internal mammary and axillary lymph node(s)|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0126|AnyTN3M0|.term",
+          "$gt0015|Clinical stage group|=local::at0013|Stage IIIC|",
+          "$gt0014|Clinical TNM assessment with subcategory|=$gt0131|AnyTN3bM0|.term"
+        ]
+      },
+      "gt0124" : {
+        "id" : "gt0124",
+        "priority" : 5,
+        "when" : [
+          "$gt0004|cT - Primary tumor|==local::at0088|T4 - Tumor with extension to chest wall and/or skin|",
+          "$gt0008|cN - Regional lymph nodes|==local::at0101|N2 - Metastasis in fixed axillary or internal mammary nodes|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|",
+          "$gt0007|cT4 subcategory|==local::at0098|T4d - Inflammatory carcinoma|",
+          "$gt0009|cN2 subcategory|==local::at0025|N2b - Metastasis only in clinically detected ipsilateral internal mammary nodes|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0090|T4N2M0|.term",
+          "$gt0015|Clinical stage group|=local::at0012|Stage IIIB|",
+          "$gt0014|Clinical TNM assessment with subcategory|=$gt0117|T4dN2bM0|.term"
+        ]
+      },
+      "gt0134" : {
+        "id" : "gt0134",
+        "priority" : 4,
+        "when" : [
+          "$gt0004|cT - Primary tumor|!=null",
+          "$gt0008|cN - Regional lymph nodes|==local::at0102|N3 - Metastasis in infraclavicular, internal mammary/axillary, or supraclavicular nodes|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|",
+          "$gt0010|cN3 subcategory|==local::at0028|N3c - Metastasis in ipsilateral supraclavicular lymph node(s)|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0126|AnyTN3M0|.term",
+          "$gt0015|Clinical stage group|=local::at0013|Stage IIIC|",
+          "$gt0014|Clinical TNM assessment with subcategory|=$gt0132|AnyTN3cM0|.term"
+        ]
+      },
+      "gt0125" : {
+        "id" : "gt0125",
+        "priority" : 3,
+        "when" : [
+          "$gt0004|cT - Primary tumor|!=null",
+          "$gt0008|cN - Regional lymph nodes|==local::at0102|N3 - Metastasis in infraclavicular, internal mammary/axillary, or supraclavicular nodes|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0126|AnyTN3M0|.term",
+          "$gt0015|Clinical stage group|=local::at0013|Stage IIIC|"
+        ]
+      },
+      "gt0127" : {
+        "id" : "gt0127",
+        "priority" : 2,
+        "when" : [
+          "$gt0004|cT - Primary tumor|!=null",
+          "$gt0008|cN - Regional lymph nodes|!=null",
+          "$gt0011|cM - Distant metastasis|==local::at0031|M1 - Distant metastasis|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0128|AnyTAnyNM1|.term",
+          "$gt0015|Clinical stage group|=local::at0014|Stage IV|"
+        ]
+      },
+      "gt0129" : {
+        "id" : "gt0129",
+        "priority" : 1,
+        "when" : [
+          "$gt0004|cT - Primary tumor|!=null",
+          "$gt0008|cN - Regional lymph nodes|==local::at0102|N3 - Metastasis in infraclavicular, internal mammary/axillary, or supraclavicular nodes|",
+          "$gt0011|cM - Distant metastasis|==local::at0030|M0 - No distant metastasis|",
+          "$gt0010|cN3 subcategory|==local::at0026|N3a - Metastasis in ipsilateral infraclavicular lymph node(s)|"
+        ],
+        "then" : [
+          "$gt0013|Clinical TNM assessment|=$gt0126|AnyTN3M0|.term",
+          "$gt0015|Clinical stage group|=local::at0013|Stage IIIC|",
+          "$gt0014|Clinical TNM assessment with subcategory|=$gt0130|AnyTN3aM0|.term"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "TNM classification (clinical) - Breast",
+            "description" : "A structured guideline used to determine the TNM (Tumour-Node-Metastasis) classification and stage grouping for breast cancer according to the UICC/AJCC TNM system."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.tnm_classification_breast.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Tumor size"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "cT - Primary tumor"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "cTis subcategory"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "cT1 subcategory"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "cT4 subcategory"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "cN - Regional lymph nodes"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "cN2 subcategory"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "cN3 subcategory"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "cM - Distant metastasis"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "openEHR-EHR-EVALUATION.tnm_assessment_breast.v0"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Clinical TNM assessment"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Clinical TNM assessment with subcategory"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "Clinical stage group"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "Stage 0 - TisN0M0",
+            "description" : ""
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "TisN0M0"
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "Tis(DCIS)N0M0"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "Tis(Paget)N0M0"
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "Stage IA - T1N0M0",
+            "description" : ""
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "text" : "T1N0M0"
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "text" : "T1miN0M0"
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "text" : "T1aN0M0"
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "text" : "T1bN0M0"
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "text" : "T1cN0M0"
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "text" : "Stage IIA - T0N1M0",
+            "description" : ""
+          },
+          "gt0034" : {
+            "id" : "gt0034",
+            "text" : "T0N1M0"
+          },
+          "gt0035" : {
+            "id" : "gt0035",
+            "text" : "T1N1M0"
+          },
+          "gt0036" : {
+            "id" : "gt0036",
+            "text" : "T2N0M0"
+          },
+          "gt0037" : {
+            "id" : "gt0037",
+            "text" : "Stage IIA - T1N1M0",
+            "description" : ""
+          },
+          "gt0038" : {
+            "id" : "gt0038",
+            "text" : "Stage IIA - T2N0M0",
+            "description" : ""
+          },
+          "gt0039" : {
+            "id" : "gt0039",
+            "text" : "T1miN1M0"
+          },
+          "gt0040" : {
+            "id" : "gt0040",
+            "text" : "T1aN1M0"
+          },
+          "gt0041" : {
+            "id" : "gt0041",
+            "text" : "T1bN1M0"
+          },
+          "gt0042" : {
+            "id" : "gt0042",
+            "text" : "T1cN1M0"
+          },
+          "gt0046" : {
+            "id" : "gt0046",
+            "text" : "Stage IIB - T2N1M0",
+            "description" : ""
+          },
+          "gt0047" : {
+            "id" : "gt0047",
+            "text" : "T2N1M0"
+          },
+          "gt0048" : {
+            "id" : "gt0048",
+            "text" : "T3N0M0"
+          },
+          "gt0049" : {
+            "id" : "gt0049",
+            "text" : "Stage IIB - T3N0M0",
+            "description" : ""
+          },
+          "gt0050" : {
+            "id" : "gt0050",
+            "text" : "Stage IIIA - T0N2M0",
+            "description" : ""
+          },
+          "gt0051" : {
+            "id" : "gt0051",
+            "text" : "T0N2M0"
+          },
+          "gt0052" : {
+            "id" : "gt0052",
+            "text" : "T1N2M0"
+          },
+          "gt0053" : {
+            "id" : "gt0053",
+            "text" : "T2N2M0"
+          },
+          "gt0054" : {
+            "id" : "gt0054",
+            "text" : "Stage IIIA - T1N2M0",
+            "description" : ""
+          },
+          "gt0055" : {
+            "id" : "gt0055",
+            "text" : "Stage IIIA - T2N2M0",
+            "description" : ""
+          },
+          "gt0057" : {
+            "id" : "gt0057",
+            "text" : "T0N2aM0"
+          },
+          "gt0058" : {
+            "id" : "gt0058",
+            "text" : "T0N2bM0"
+          },
+          "gt0061" : {
+            "id" : "gt0061",
+            "text" : "T2N2aM0"
+          },
+          "gt0062" : {
+            "id" : "gt0062",
+            "text" : "T2N2bM0"
+          },
+          "gt0065" : {
+            "id" : "gt0065",
+            "text" : "T1miN2aM0"
+          },
+          "gt0066" : {
+            "id" : "gt0066",
+            "text" : "T1miN2bM0"
+          },
+          "gt0067" : {
+            "id" : "gt0067",
+            "text" : "T1aN2aM0"
+          },
+          "gt0068" : {
+            "id" : "gt0068",
+            "text" : "T1aN2bM0"
+          },
+          "gt0069" : {
+            "id" : "gt0069",
+            "text" : "T1bN2aM0"
+          },
+          "gt0070" : {
+            "id" : "gt0070",
+            "text" : "T1bN2bM0"
+          },
+          "gt0071" : {
+            "id" : "gt0071",
+            "text" : "T1cN2aM0"
+          },
+          "gt0072" : {
+            "id" : "gt0072",
+            "text" : "T1cN2bM0"
+          },
+          "gt0080" : {
+            "id" : "gt0080",
+            "text" : "Stage IIIA - T3N1M0",
+            "description" : ""
+          },
+          "gt0081" : {
+            "id" : "gt0081",
+            "text" : "T3N1M0"
+          },
+          "gt0082" : {
+            "id" : "gt0082",
+            "text" : "T3N2M0"
+          },
+          "gt0084" : {
+            "id" : "gt0084",
+            "text" : "T3N2aM0"
+          },
+          "gt0085" : {
+            "id" : "gt0085",
+            "text" : "T3N2bM0"
+          },
+          "gt0087" : {
+            "id" : "gt0087",
+            "text" : "Stage IIIB - T4N0M0",
+            "description" : ""
+          },
+          "gt0088" : {
+            "id" : "gt0088",
+            "text" : "T4N0M0"
+          },
+          "gt0089" : {
+            "id" : "gt0089",
+            "text" : "T4N1M0"
+          },
+          "gt0090" : {
+            "id" : "gt0090",
+            "text" : "T4N2M0"
+          },
+          "gt0091" : {
+            "id" : "gt0091",
+            "text" : "Stage IIIB - T4N1M0",
+            "description" : ""
+          },
+          "gt0092" : {
+            "id" : "gt0092",
+            "text" : "Stage IIIB - T4N2M0",
+            "description" : ""
+          },
+          "gt0093" : {
+            "id" : "gt0093",
+            "text" : "Stage IIIB - T4aN0M0 subcategory",
+            "description" : ""
+          },
+          "gt0094" : {
+            "id" : "gt0094",
+            "text" : "T4aN0M0"
+          },
+          "gt0095" : {
+            "id" : "gt0095",
+            "text" : "T4bN0M0"
+          },
+          "gt0096" : {
+            "id" : "gt0096",
+            "text" : "T4cN0M0"
+          },
+          "gt0097" : {
+            "id" : "gt0097",
+            "text" : "T4dN0M0"
+          },
+          "gt0101" : {
+            "id" : "gt0101",
+            "text" : "Stage IIIB - T4aN1M0 subcategory",
+            "description" : ""
+          },
+          "gt0102" : {
+            "id" : "gt0102",
+            "text" : "T4aN1M0"
+          },
+          "gt0103" : {
+            "id" : "gt0103",
+            "text" : "T4bN1M0"
+          },
+          "gt0104" : {
+            "id" : "gt0104",
+            "text" : "T4cN1M0"
+          },
+          "gt0105" : {
+            "id" : "gt0105",
+            "text" : "T4dN1M0"
+          },
+          "gt0109" : {
+            "id" : "gt0109",
+            "text" : "Stage IIIB - T4aN2aM0 subcategory",
+            "description" : ""
+          },
+          "gt0110" : {
+            "id" : "gt0110",
+            "text" : "T4aN2aM0"
+          },
+          "gt0111" : {
+            "id" : "gt0111",
+            "text" : "T4aN2bM0"
+          },
+          "gt0112" : {
+            "id" : "gt0112",
+            "text" : "T4bN2aM0"
+          },
+          "gt0113" : {
+            "id" : "gt0113",
+            "text" : "T4bN2bM0"
+          },
+          "gt0114" : {
+            "id" : "gt0114",
+            "text" : "T4cN2aM0"
+          },
+          "gt0115" : {
+            "id" : "gt0115",
+            "text" : "T4cN2bM0"
+          },
+          "gt0116" : {
+            "id" : "gt0116",
+            "text" : "T4dN2aM0"
+          },
+          "gt0117" : {
+            "id" : "gt0117",
+            "text" : "T4dN2bM0"
+          },
+          "gt0118" : {
+            "id" : "gt0118",
+            "text" : "Stage IIIB - T4aN2bM0 subcategory",
+            "description" : ""
+          },
+          "gt0119" : {
+            "id" : "gt0119",
+            "text" : "Stage IIIB - T4bN2aM0 subcategory",
+            "description" : ""
+          },
+          "gt0120" : {
+            "id" : "gt0120",
+            "text" : "Stage IIIB - T4bN2bM0 subcategory",
+            "description" : ""
+          },
+          "gt0121" : {
+            "id" : "gt0121",
+            "text" : "Stage IIIB - T4cN2aM0 subcategory",
+            "description" : ""
+          },
+          "gt0122" : {
+            "id" : "gt0122",
+            "text" : "Stage IIIB - T4cN2bM0 subcategory",
+            "description" : ""
+          },
+          "gt0123" : {
+            "id" : "gt0123",
+            "text" : "Stage IIIB - T4dN2aM0 subcategory",
+            "description" : ""
+          },
+          "gt0124" : {
+            "id" : "gt0124",
+            "text" : "Stage IIIB - T4dN2bM0 subcategory",
+            "description" : ""
+          },
+          "gt0125" : {
+            "id" : "gt0125",
+            "text" : "Stage IIIC - AnyTN3M0",
+            "description" : ""
+          },
+          "gt0126" : {
+            "id" : "gt0126",
+            "text" : "AnyTN3M0"
+          },
+          "gt0127" : {
+            "id" : "gt0127",
+            "text" : "Stage IV - AnyTAnyNM1",
+            "description" : ""
+          },
+          "gt0128" : {
+            "id" : "gt0128",
+            "text" : "AnyTAnyNM1"
+          },
+          "gt0129" : {
+            "id" : "gt0129",
+            "text" : "Stage IIIC - AnyTN3aM0 subcategory",
+            "description" : ""
+          },
+          "gt0130" : {
+            "id" : "gt0130",
+            "text" : "AnyTN3aM0"
+          },
+          "gt0131" : {
+            "id" : "gt0131",
+            "text" : "AnyTN3bM0"
+          },
+          "gt0132" : {
+            "id" : "gt0132",
+            "text" : "AnyTN3cM0"
+          },
+          "gt0133" : {
+            "id" : "gt0133",
+            "text" : "Stage IIIC - AnyTN3bM0 subcategory",
+            "description" : ""
+          },
+          "gt0134" : {
+            "id" : "gt0134",
+            "text" : "Stage IIIC - AnyTN3cM0 subcategory",
+            "description" : ""
+          },
+          "gt0136" : {
+            "id" : "gt0136",
+            "text" : "Stage IA  with T1N0M0 subcategory",
+            "description" : ""
+          },
+          "gt0137" : {
+            "id" : "gt0137",
+            "text" : "Set T1a term",
+            "description" : ""
+          },
+          "gt0138" : {
+            "id" : "gt0138",
+            "text" : "T1a"
+          },
+          "gt0139" : {
+            "id" : "gt0139",
+            "text" : "Local variable: T1"
+          },
+          "gt0140" : {
+            "id" : "gt0140",
+            "text" : "Set T1b term",
+            "description" : ""
+          },
+          "gt0141" : {
+            "id" : "gt0141",
+            "text" : "Local variable: T1b"
+          },
+          "gt0142" : {
+            "id" : "gt0142",
+            "text" : "T1b"
+          },
+          "gt0143" : {
+            "id" : "gt0143",
+            "text" : "Set T1c term",
+            "description" : ""
+          },
+          "gt0144" : {
+            "id" : "gt0144",
+            "text" : "Local variable: T1c"
+          },
+          "gt0145" : {
+            "id" : "gt0145",
+            "text" : "T1c"
+          },
+          "gt0147" : {
+            "id" : "gt0147",
+            "text" : "Local variable: Tis"
+          },
+          "gt0148" : {
+            "id" : "gt0148",
+            "text" : "Tis(DCIS)"
+          },
+          "gt0149" : {
+            "id" : "gt0149",
+            "text" : "Tis(Paget)"
+          },
+          "gt0150" : {
+            "id" : "gt0150",
+            "text" : "Local variable: T4"
+          },
+          "gt0151" : {
+            "id" : "gt0151",
+            "text" : "T4a"
+          },
+          "gt0152" : {
+            "id" : "gt0152",
+            "text" : "T4b"
+          },
+          "gt0153" : {
+            "id" : "gt0153",
+            "text" : "T4c"
+          },
+          "gt0154" : {
+            "id" : "gt0154",
+            "text" : "T4d"
+          },
+          "gt0155" : {
+            "id" : "gt0155",
+            "text" : "Local variable: N2"
+          },
+          "gt0156" : {
+            "id" : "gt0156",
+            "text" : "N2a"
+          },
+          "gt0157" : {
+            "id" : "gt0157",
+            "text" : "N2b"
+          },
+          "gt0158" : {
+            "id" : "gt0158",
+            "text" : "Local variable: N3"
+          },
+          "gt0159" : {
+            "id" : "gt0159",
+            "text" : "N3a"
+          },
+          "gt0160" : {
+            "id" : "gt0160",
+            "text" : "N3b"
+          },
+          "gt0161" : {
+            "id" : "gt0161",
+            "text" : "N3c"
+          },
+          "gt0162" : {
+            "id" : "gt0162",
+            "text" : "Set TisDCIS term",
+            "description" : ""
+          },
+          "gt0163" : {
+            "id" : "gt0163",
+            "text" : "Set TisPaget term",
+            "description" : ""
+          },
+          "gt0164" : {
+            "id" : "gt0164",
+            "text" : "Set T4a term",
+            "description" : ""
+          },
+          "gt0165" : {
+            "id" : "gt0165",
+            "text" : "Set T4b term",
+            "description" : ""
+          },
+          "gt0166" : {
+            "id" : "gt0166",
+            "text" : "Set T4c term",
+            "description" : ""
+          },
+          "gt0167" : {
+            "id" : "gt0167",
+            "text" : "Set T4d term",
+            "description" : ""
+          },
+          "gt0168" : {
+            "id" : "gt0168",
+            "text" : "Set N2a term",
+            "description" : ""
+          },
+          "gt0169" : {
+            "id" : "gt0169",
+            "text" : "Set N2b term",
+            "description" : ""
+          },
+          "gt0170" : {
+            "id" : "gt0170",
+            "text" : "Set N3a term",
+            "description" : ""
+          },
+          "gt0171" : {
+            "id" : "gt0171",
+            "text" : "Set N3b term",
+            "description" : ""
+          },
+          "gt0172" : {
+            "id" : "gt0172",
+            "text" : "Set N3c term",
+            "description" : ""
+          },
+          "gt0173" : {
+            "id" : "gt0173",
+            "text" : "Stage 0 with Tis subcategory",
+            "description" : ""
+          },
+          "gt0175" : {
+            "id" : "gt0175",
+            "text" : "Local variable: N"
+          },
+          "gt0176" : {
+            "id" : "gt0176",
+            "text" : "Local variable: M"
+          },
+          "gt0177" : {
+            "id" : "gt0177",
+            "text" : "N0"
+          },
+          "gt0178" : {
+            "id" : "gt0178",
+            "text" : "N1"
+          },
+          "gt0179" : {
+            "id" : "gt0179",
+            "text" : "N2"
+          },
+          "gt0180" : {
+            "id" : "gt0180",
+            "text" : "N3"
+          },
+          "gt0181" : {
+            "id" : "gt0181",
+            "text" : "M0"
+          },
+          "gt0182" : {
+            "id" : "gt0182",
+            "text" : "M1"
+          },
+          "gt0183" : {
+            "id" : "gt0183",
+            "text" : "Set N0 term",
+            "description" : ""
+          },
+          "gt0184" : {
+            "id" : "gt0184",
+            "text" : "Set N1 term",
+            "description" : ""
+          },
+          "gt0185" : {
+            "id" : "gt0185",
+            "text" : "Set N2 term",
+            "description" : ""
+          },
+          "gt0186" : {
+            "id" : "gt0186",
+            "text" : "Set N3 term",
+            "description" : ""
+          },
+          "gt0187" : {
+            "id" : "gt0187",
+            "text" : "Set M0 term",
+            "description" : ""
+          },
+          "gt0188" : {
+            "id" : "gt0188",
+            "text" : "Set M1 term",
+            "description" : ""
+          },
+          "gt0189" : {
+            "id" : "gt0189",
+            "text" : "Stage 0 - TisN0M0",
+            "description" : ""
+          },
+          "gt0191" : {
+            "id" : "gt0191",
+            "text" : "Stage IIA with T1N1M0 subcategory",
+            "description" : ""
+          },
+          "gt0192" : {
+            "id" : "gt0192",
+            "text" : "Stage IIIA with T1N2M0 subcategory",
+            "description" : ""
+          },
+          "gt0193" : {
+            "id" : "gt0193",
+            "text" : "Stage IIIA subcategory (T2N2M0)",
+            "description" : ""
+          },
+          "gt0194" : {
+            "id" : "gt0194",
+            "text" : "Stage IIIA - T3N2M0",
+            "description" : ""
+          },
+          "gt0195" : {
+            "id" : "gt0195",
+            "text" : "Stage IIIA subcategory (T3N2M0)",
+            "description" : ""
+          },
+          "gt0196" : {
+            "id" : "gt0196",
+            "text" : "Stage IIIA with T0N2M0 subcategory",
+            "description" : ""
+          },
+          "gt0197" : {
+            "id" : "gt0197",
+            "text" : "T0"
+          },
+          "gt0198" : {
+            "id" : "gt0198",
+            "text" : "Set T1mi term",
+            "description" : ""
+          },
+          "gt0199" : {
+            "id" : "gt0199",
+            "text" : "T1mi"
+          },
+          "gt0200" : {
+            "id" : "gt0200",
+            "text" : "Set T0 term",
+            "description" : ""
+          },
+          "gt0201" : {
+            "id" : "gt0201",
+            "text" : "Local variable: T"
+          },
+          "gt0202" : {
+            "id" : "gt0202",
+            "text" : "T1"
+          },
+          "gt0203" : {
+            "id" : "gt0203",
+            "text" : "T2"
+          },
+          "gt0204" : {
+            "id" : "gt0204",
+            "text" : "T3"
+          },
+          "gt0205" : {
+            "id" : "gt0205",
+            "text" : "T4"
+          },
+          "gt0206" : {
+            "id" : "gt0206",
+            "text" : "Set T1 term",
+            "description" : ""
+          },
+          "gt0207" : {
+            "id" : "gt0207",
+            "text" : "Set T2 term",
+            "description" : ""
+          },
+          "gt0208" : {
+            "id" : "gt0208",
+            "text" : "Set T3 term",
+            "description" : ""
+          },
+          "gt0209" : {
+            "id" : "gt0209",
+            "text" : "Set T4 term",
+            "description" : ""
+          }
+        }
+      }
+    }
+  }
+}
