@@ -1,8 +1,9 @@
-archetype (adl_version=1.4)
+archetype (adl_version=1.4; uid=7c4f3bdb-5515-3324-b068-fd1383487052)
 	openEHR-EHR-EVALUATION.anion_gap_delta_ratio_evaluation.v0
 
 concept
-	[at0000]	-- Anjongap - utvärdering
+	[at0000]
+
 language
 	original_language = <[ISO_639-1::en]>
 	translations = <
@@ -13,17 +14,21 @@ language
 			>
 		>
 	>
+
 description
 	original_author = <
-		["name"] = <"Syeeda S Farruque">
-		["email"] = <"models@cambiocds.com">
-		["organisation"] = <"Cambio Healthcare Systems">
 		["date"] = <"2017-08-13">
+		["name"] = <"Syeeda S Farruque">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"models@cambiocds.com">
 	>
+	lifecycle_state = <"AuthorDraft">
 	details = <
 		["sv"] = <
 			language = <[ISO_639-1::sv]>
 			purpose = <"Att utvärdera anjongap, korrigerat anjongap, och deltaratio vid acidos.">
+			keywords = <"anjongap","delta ratio","acidos">
+			copyright = <"© Cambio Healthcare Systems">
 			use = <"Anjongap och delta ratio kan användas för att differentiera mellan olika tillstånd som orsakar acidos. 
 
 Resultatet tolkas enligt:
@@ -42,15 +47,15 @@ AG = anjongap
 
 Tillägg: korrigerat anjongap >1 mEq/L (mmol/L) jämfört med icke korrigerat anjongap indikerar acidos till följd av högt anjongap.
 ">
-			keywords = <"anjongap", "delta ratio", "acidos">
 			misuse = <"Endast avsedd att utgöra understöd till klinisk bedömning.">
-			copyright = <"© Cambio Healthcare Systems">
 		>
 		["en"] = <
 			language = <[ISO_639-1::en]>
 			purpose = <"This tool evaluates the anion gap, both corrected for albumin and the resultant delta ratio.
 
 ">
+			keywords = <"anion gap","delta ratio","metabolic acidosis">
+			copyright = <"© Cambio Healthcare Systems">
 			use = <"There are many varying differential diagnoses based on the type of anion gap acidosis states. The delta ratio and corrected anion gap (for serum albumin) helps in this differentiation.
 
 The delta ratio helps to evaluate whether there is a mixed acid-base picture in the presence of an anion gap acidosis. The interpretation is shown below:
@@ -67,35 +72,32 @@ Delta Ratio... 	Suggests...
 
 Also a corrected Anion Gap that is higher than 1 mEq/L (mmol/L) in comparison to a non-corrected anion gap, is indicative of a high anion gap acidosis
 ">
-			keywords = <"anion gap", "delta ratio", "metabolic acidosis">
 			misuse = <"Always combine such tools with sound clinical judgment when evaluating the results.">
-			copyright = <"© Cambio Healthcare Systems">
 		>
 	>
-	lifecycle_state = <"AuthorDraft">
-	other_contributors = <>
 	other_details = <
 		["references"] = <"Ref. 1: Oh MS, Carroll HJ. The anion gap. N. Engl. J. Med. 1977; 297 (15): 814–7.doi:10.1056/NEJM197710132971507. PMID 895822">
 		["MD5-CAM-1.0.1"] = <"B8C0EB6D504F42FE8CAD5ABD31F6BF36">
+		["build_uid"] = <"07b16b0e-a9fa-3c6d-9981-1d2de6c6938a">
 	>
 
 definition
-	EVALUATION[at0000] matches {	-- Anjongap - utvärdering
+	EVALUATION[at0000] matches {    -- Anion gap delta ratio evaluation
 		data matches {
-			ITEM_TREE[at0001] matches {	-- *Tree(en)
+			ITEM_TREE[at0001] matches {    -- Tree
 				items cardinality matches {0..*; unordered} matches {
-					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Utvärdering - anjongap
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- Anion Gap evaluation
 						value matches {
-							0|[local::at0003], 	-- Acidos ej relaterad till förhöjt anjongap
-							1|[local::at0004]  	-- Acidos relaterad till förhöjt anjongap
+							0|[local::at0003],
+							1|[local::at0004]
 						}
 					}
-					ELEMENT[at0005] occurrences matches {0..1} matches {	-- Utvärdering - delta ratio
+					ELEMENT[at0005] occurrences matches {0..1} matches {    -- Delta ratio evaluation
 						value matches {
-							0|[local::at0006], 	-- Hyperkloremisk metabol acidos (normalt AG)
-							1|[local::at0007], 	-- Förhöjt AG & normal AG acidos
-							2|[local::at0008], 	-- Acidos pga AG/laktatacidos
-							3|[local::at0009]  	-- Högt AG och samtidig metabol alkalos eller sedan tidigare föreliggande kompenserad respiratorisk acidos.
+							0|[local::at0006],
+							1|[local::at0007],
+							2|[local::at0008],
+							3|[local::at0009]
 						}
 					}
 				}
@@ -120,7 +122,7 @@ ontology
 					description = <"If the corrected Anion Gap more than 1 mEq/L higher than the AG, there is a high anion gap acidosis">
 				>
 				["at0003"] = <
-					text = <"Non anion gap acidosis">
+					text = <"Normal anion gap acidosis">
 					description = <"*">
 				>
 				["at0004"] = <
@@ -132,19 +134,19 @@ ontology
 					description = <"The delta ratio helps to evaluate whether there is a mixed acid-base picture in the presence of an anion gap acidosis. ">
 				>
 				["at0006"] = <
-					text = <"Hyperchloremic normal anion gap acidosis">
+					text = <"Normal-AG (Hyperchloremic) acidosis">
 					description = <"Delta ratio of < 0.4">
 				>
 				["at0007"] = <
-					text = <"High AG & normal AG acidosis">
+					text = <"Mixed high-AG acidosis & normal-AG acidosis">
 					description = <"Delta ratio of < 1">
 				>
 				["at0008"] = <
-					text = <"Pure anion gap acidosis/Lactic acidosis (see text for more info)">
+					text = <"Pure high-AG acidosis">
 					description = <"Delta ratio of 1-2">
 				>
 				["at0009"] = <
-					text = <"High AG acidosis and metabolic alkalosis (see text for more info)">
+					text = <"High-AG acidosis and metabolic alkalosis or compensated chronic respiratory acidosis">
 					description = <"Delta ratio of > 2">
 				>
 			>
@@ -184,7 +186,7 @@ ontology
 					description = <"Delta ratio < 1">
 				>
 				["at0008"] = <
-					text = <"Acidos pga AG/laktatacidos">
+					text = <"Förhöjt AG acidos">
 					description = <"Delta ratio 1-2">
 				>
 				["at0009"] = <
