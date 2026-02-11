@@ -1,0 +1,119 @@
+archetype (adl_version=1.4; uid=9cb9fa0a-019a-494a-8a5a-27057dafb6ad)
+	openEHR-EHR-OBSERVATION.centor_score_strep_pharyngitis.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-02-09">
+		["name"] = <"Mahmoud Elachi">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"mel.achi@gmail.com">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To assess the likelihood of streptococcal pharyngitis and support diagnostic and treatment decisions based on a validated clinical prediction rule.">
+			keywords = <"strep throat, sore throat, McIsaac score, Centor score, pharyngitis, clinical decision support, antibiotics", ...>
+			copyright = <"Use © Cambio CDS">
+			use = <"Used in primary care or emergency settings for patients presenting with sore throat symptoms.">
+			misuse = <"Not to be used in patients with known immunosuppression or chronic tonsillar conditions. Should not replace clinical judgment.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"https://pubmed.ncbi.nlm.nih.gov/6763125/
+https://www.mdcalc.com/calc/104/centor-score-modified-mcisaac-strep-pharyngitis
+https://verktyg.internetmedicin.se/kalkylatorer/centorkriterierna
+McIsaac WJ, White D, Tannenbaum D, Low DE. CMAJ. 1998;158(1):75-83.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"ebfd6cf878d1a58e4fc89f759bed70af">
+		["build_uid"] = <"d836f5f9-7bbb-3610-af2f-983524e31084">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- centor_score_strep_pharyngitis
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Fever > 38 °C
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Cough
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Tender cervical lymph nodes
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Tonsillar swelling or exudates
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"centor_score_strep_pharyngitis">
+					description = <"A clinical decision guideline for estimating the probability of streptococcal pharyngitis in patients with sore throat symptoms using the Modified Centor Score (also known as McIsaac score). The score considers five criteria: fever, cough absence, cervical lymph nodes, tonsillar findings, and patient age. The total score ranges from -1 to 5 and helps guide decisions on testing and antibiotic treatment.">
+					comment = <"Original version, c 1981">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Cough">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Tender cervical lymph nodes">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Tonsillar swelling or exudates">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Fever > 38 °C">
+					description = <"">
+				>
+			>
+		>
+	>
