@@ -1,0 +1,912 @@
+guidelines:
+  "1": TNM_classification_breast_pathological.v0.0.1
+test_cases:
+  - id: 1. Stage 0 - pTispN0pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0105|pTis - Carcinoma in situ|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pTispN0pM0
+        gt0015|Pathological stage group: local::at0019|Stage 0|
+  - id: 2. Stage 0 - pTispN0pM0 with DCIS subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0105|pTis - Carcinoma in situ|
+        gt0005|pTis subcategory: local::at0046|pTis (DCIS) - Ductal carcinoma in situ|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pTispN0pM0
+        gt0014|Pathological TNM assessment with subcategory: pTis(DCIS)pN0pM0
+        gt0015|Pathological stage group: local::at0019|Stage 0|
+  - id: 3. Stage 0 - pTispN0pM0 with Paget subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0105|pTis - Carcinoma in situ|
+        gt0005|pTis subcategory: local::at0047|pTis (Paget) - Paget disease of nipple with no tumor|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pTispN0pM0
+        gt0014|Pathological TNM assessment with subcategory: pTis(Paget)pN0pM0
+        gt0015|Pathological stage group: local::at0019|Stage 0|
+  - id: 4. Stage 0 - pTispN0(i+)pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0105|pTis - Carcinoma in situ|
+        gt0008|pN - Regional lymph nodes: local::at0061|pN0(i+) - Malignant cells ≤0.2 mm (isolated tumor cells)|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pTispN0(i+)pM0
+        gt0015|Pathological stage group: local::at0019|Stage 0|
+  - id: 5. Stage IA - pT1pN0pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN0pM0
+        gt0015|Pathological stage group: local::at0020|Stage IA|
+  - id: 6. Stage IA - pT1pN0pM0 with pT1mi subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0006|pT1 subcategory: local::at0048|pT1mi - Tumor ≤1 mm|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN0pM0
+        gt0014|Pathological TNM assessment with subcategory: pT1mipN0pM0
+        gt0015|Pathological stage group: local::at0020|Stage IA|
+  - id: 7. Stage IA - pT1pN0pM0 with pT1a subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0006|pT1 subcategory: local::at0049|pT1a - Tumor >1-5 mm|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN0pM0
+        gt0014|Pathological TNM assessment with subcategory: pT1apN0pM0
+        gt0015|Pathological stage group: local::at0020|Stage IA|
+  - id: 8. Stage IA - pT1pN0pM0 with pT1b subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0006|pT1 subcategory: local::at0050|pT1b - Tumor >5-10 mm|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN0pM0
+        gt0014|Pathological TNM assessment with subcategory: pT1bpN0pM0
+        gt0015|Pathological stage group: local::at0020|Stage IA|
+  - id: 9. Stage IA - pT1pN0pM0 with pT1c subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0006|pT1 subcategory: local::at0051|pT1c - Tumor >10-20 mm|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN0pM0
+        gt0014|Pathological TNM assessment with subcategory: pT1cpN0pM0
+        gt0015|Pathological stage group: local::at0020|Stage IA|
+  - id: 10. Stage IA - pT1pN0(i+)pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0008|pN - Regional lymph nodes: local::at0061|pN0(i+) - Malignant cells ≤0.2 mm (isolated tumor cells)|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN0(i+)pM0
+        gt0015|Pathological stage group: local::at0020|Stage IA|
+  - id: 11. Stage IB - pT0pN1mipM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0045|pT0 - No evidence of primary tumor|
+        gt0008|pN - Regional lymph nodes: local::at0111|pN1 - Micrometastases or
+          metastases in 1-3 axillary/internal mammary nodes|
+        gt0018|pN1 subcategory: local::at0062|pN1mi - Micrometastases (>0.2 mm but ≤2.0 mm)|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT0pN1pM0
+        gt0014|Pathological TNM assessment with subcategory: pT0pN1mipM0
+        gt0015|Pathological stage group: local::at0021|Stage IB|
+  - id: 12. Stage IB - pT1pN1mipM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0008|pN - Regional lymph nodes: local::at0111|pN1 - Micrometastases or
+          metastases in 1-3 axillary/internal mammary nodes|
+        gt0018|pN1 subcategory: local::at0062|pN1mi - Micrometastases (>0.2 mm but ≤2.0 mm)|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN1pM0
+        gt0015|Pathological stage group: local::at0021|Stage IB|
+  - id: 13. Stage IB - pT1pN1mipM0 with pT1c subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0006|pT1 subcategory: local::at0051|pT1c - Tumor >10-20 mm|
+        gt0008|pN - Regional lymph nodes: local::at0111|pN1 - Micrometastases or
+          metastases in 1-3 axillary/internal mammary nodes|
+        gt0018|pN1 subcategory: local::at0062|pN1mi - Micrometastases (>0.2 mm but ≤2.0 mm)|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN1pM0
+        gt0014|Pathological TNM assessment with subcategory: pT1cpN1mipM0
+        gt0015|Pathological stage group: local::at0021|Stage IB|
+  - id: 14. Stage IIA - pT0pN1pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0045|pT0 - No evidence of primary tumor|
+        gt0008|pN - Regional lymph nodes: local::at0111|pN1 - Micrometastases or
+          metastases in 1-3 axillary/internal mammary nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT0pN1pM0
+        gt0015|Pathological stage group: local::at0022|Stage IIA|
+  - id: 15. Stage IIA - pT1pN1pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0008|pN - Regional lymph nodes: local::at0111|pN1 - Micrometastases or
+          metastases in 1-3 axillary/internal mammary nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN1pM0
+        gt0015|Pathological stage group: local::at0022|Stage IIA|
+  - id: 16. Stage IIA - pT1pN1pM0 with pT1c subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0006|pT1 subcategory: local::at0051|pT1c - Tumor >10-20 mm|
+        gt0008|pN - Regional lymph nodes: local::at0111|pN1 - Micrometastases or
+          metastases in 1-3 axillary/internal mammary nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN1pM0
+        gt0014|Pathological TNM assessment with subcategory: pT1cpN1pM0
+        gt0015|Pathological stage group: local::at0022|Stage IIA|
+  - id: 17. Stage IIA - pT2pN0pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0052|pT2 - Tumor >20-50 mm|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT2pN0pM0
+        gt0015|Pathological stage group: local::at0022|Stage IIA|
+  - id: 18. Stage IIA - pT2pN0(i+)pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0052|pT2 - Tumor >20-50 mm|
+        gt0008|pN - Regional lymph nodes: local::at0061|pN0(i+) - Malignant cells ≤0.2 mm (isolated tumor cells)|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT2pN0(i+)pM0
+        gt0015|Pathological stage group: local::at0022|Stage IIA|
+  - id: 19. Stage IIB - pT2pN1pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0052|pT2 - Tumor >20-50 mm|
+        gt0008|pN - Regional lymph nodes: local::at0111|pN1 - Micrometastases or
+          metastases in 1-3 axillary/internal mammary nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT2pN1pM0
+        gt0015|Pathological stage group: local::at0023|Stage IIB|
+  - id: 20. Stage IIB - pT3pN0pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0053|pT3 - Tumor >50 mm|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT3pN0pM0
+        gt0015|Pathological stage group: local::at0023|Stage IIB|
+  - id: 21. Stage IIB - pT3pN0(i+)pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0053|pT3 - Tumor >50 mm|
+        gt0008|pN - Regional lymph nodes: local::at0061|pN0(i+) - Malignant cells ≤0.2 mm (isolated tumor cells)|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT3pN0(i+)pM0
+        gt0015|Pathological stage group: local::at0023|Stage IIB|
+  - id: 22. Stage IIIA - pT0pN2pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0045|pT0 - No evidence of primary tumor|
+        gt0008|pN - Regional lymph nodes: local::at0112|pN2 - Metastases in 4-9 axillary
+          or internal mammary nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT0pN2pM0
+        gt0015|Pathological stage group: local::at0024|Stage IIIA|
+  - id: 23. Stage IIIA - pT0pN2pM0 with pN2a subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0045|pT0 - No evidence of primary tumor|
+        gt0008|pN - Regional lymph nodes: local::at0112|pN2 - Metastases in 4-9 axillary
+          or internal mammary nodes|
+        gt0009|pN2 subcategory: local::at0066|pN2a - Metastases in 4-9 axillary lymph nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT0pN2pM0
+        gt0014|Pathological TNM assessment with subcategory: pT0pN2apM0
+        gt0015|Pathological stage group: local::at0024|Stage IIIA|
+  - id: 24. Stage IIIA - pT0pN2pM0 with pN2b subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0045|pT0 - No evidence of primary tumor|
+        gt0008|pN - Regional lymph nodes: local::at0112|pN2 - Metastases in 4-9 axillary
+          or internal mammary nodes|
+        gt0009|pN2 subcategory: local::at0067|pN2b - Metastases in clinically detected
+          internal mammary nodes only|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT0pN2pM0
+        gt0014|Pathological TNM assessment with subcategory: pT0pN2bpM0
+        gt0015|Pathological stage group: local::at0024|Stage IIIA|
+  - id: 25. Stage IIIA - pT1pN2pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0008|pN - Regional lymph nodes: local::at0112|pN2 - Metastases in 4-9 axillary
+          or internal mammary nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN2pM0
+        gt0015|Pathological stage group: local::at0024|Stage IIIA|
+  - id: 26. Stage IIIA - pT1pN2pM0 with pT1c and pN2a subcategories
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0006|pT1 subcategory: local::at0051|pT1c - Tumor >10-20 mm|
+        gt0008|pN - Regional lymph nodes: local::at0112|pN2 - Metastases in 4-9 axillary
+          or internal mammary nodes|
+        gt0009|pN2 subcategory: local::at0066|pN2a - Metastases in 4-9 axillary lymph nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN2pM0
+        gt0014|Pathological TNM assessment with subcategory: pT1cpN2apM0
+        gt0015|Pathological stage group: local::at0024|Stage IIIA|
+  - id: 27. Stage IIIA - pT2pN2pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0052|pT2 - Tumor >20-50 mm|
+        gt0008|pN - Regional lymph nodes: local::at0112|pN2 - Metastases in 4-9 axillary
+          or internal mammary nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT2pN2pM0
+        gt0015|Pathological stage group: local::at0024|Stage IIIA|
+  - id: 28. Stage IIIA - pT2pN2pM0 with pN2b subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0052|pT2 - Tumor >20-50 mm|
+        gt0008|pN - Regional lymph nodes: local::at0112|pN2 - Metastases in 4-9 axillary
+          or internal mammary nodes|
+        gt0009|pN2 subcategory: local::at0067|pN2b - Metastases in clinically detected
+          internal mammary nodes only|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT2pN2pM0
+        gt0014|Pathological TNM assessment with subcategory: pT2pN2bpM0
+        gt0015|Pathological stage group: local::at0024|Stage IIIA|
+  - id: 29. Stage IIIA - pT3pN1pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0053|pT3 - Tumor >50 mm|
+        gt0008|pN - Regional lymph nodes: local::at0111|pN1 - Micrometastases or
+          metastases in 1-3 axillary/internal mammary nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT3pN1pM0
+        gt0015|Pathological stage group: local::at0024|Stage IIIA|
+  - id: 30. Stage IIIA - pT3pN2pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0053|pT3 - Tumor >50 mm|
+        gt0008|pN - Regional lymph nodes: local::at0112|pN2 - Metastases in 4-9 axillary
+          or internal mammary nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT3pN2pM0
+        gt0015|Pathological stage group: local::at0024|Stage IIIA|
+  - id: 31. Stage IIIA - pT3pN2pM0 with pN2a subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0053|pT3 - Tumor >50 mm|
+        gt0008|pN - Regional lymph nodes: local::at0112|pN2 - Metastases in 4-9 axillary
+          or internal mammary nodes|
+        gt0009|pN2 subcategory: local::at0066|pN2a - Metastases in 4-9 axillary lymph nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT3pN2pM0
+        gt0014|Pathological TNM assessment with subcategory: pT3pN2apM0
+        gt0015|Pathological stage group: local::at0024|Stage IIIA|
+  - id: 32. Stage IIIB - pT4pN0pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0107|pT4 - Tumor with extension to chest wall and/or skin|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT4pN0pM0
+        gt0015|Pathological stage group: local::at0025|Stage IIIB|
+  - id: 33. Stage IIIB - pT4pN0pM0 with pT4a subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0107|pT4 - Tumor with extension to chest wall and/or skin|
+        gt0007|pT4 subcategory: local::at0054|pT4a - Extension to chest wall|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT4pN0pM0
+        gt0014|Pathological TNM assessment with subcategory: pT4apN0pM0
+        gt0015|Pathological stage group: local::at0025|Stage IIIB|
+  - id: 34. Stage IIIB - pT4pN0pM0 with pT4b subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0107|pT4 - Tumor with extension to chest wall and/or skin|
+        gt0007|pT4 subcategory: local::at0055|pT4b - Ulceration or satellite nodules or edema|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT4pN0pM0
+        gt0014|Pathological TNM assessment with subcategory: pT4bpN0pM0
+        gt0015|Pathological stage group: local::at0025|Stage IIIB|
+  - id: 35. Stage IIIB - pT4pN0pM0 with pT4c subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0107|pT4 - Tumor with extension to chest wall and/or skin|
+        gt0007|pT4 subcategory: local::at0056|pT4c - Both pT4a and pT4b|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT4pN0pM0
+        gt0014|Pathological TNM assessment with subcategory: pT4cpN0pM0
+        gt0015|Pathological stage group: local::at0025|Stage IIIB|
+  - id: 36. Stage IIIB - pT4pN0pM0 with pT4d subcategory (inflammatory carcinoma)
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0107|pT4 - Tumor with extension to chest wall and/or skin|
+        gt0007|pT4 subcategory: local::at0057|pT4d - Inflammatory carcinoma|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT4pN0pM0
+        gt0014|Pathological TNM assessment with subcategory: pT4dpN0pM0
+        gt0015|Pathological stage group: local::at0025|Stage IIIB|
+  - id: 37. Stage IIIB - pT4pN0(i+)pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0107|pT4 - Tumor with extension to chest wall and/or skin|
+        gt0008|pN - Regional lymph nodes: local::at0061|pN0(i+) - Malignant cells ≤0.2 mm (isolated tumor cells)|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT4pN0(i+)pM0
+        gt0015|Pathological stage group: local::at0025|Stage IIIB|
+  - id: 38. Stage IIIB - pT4pN1pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0107|pT4 - Tumor with extension to chest wall and/or skin|
+        gt0008|pN - Regional lymph nodes: local::at0111|pN1 - Micrometastases or
+          metastases in 1-3 axillary/internal mammary nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT4pN1pM0
+        gt0015|Pathological stage group: local::at0025|Stage IIIB|
+  - id: 39. Stage IIIB - pT4pN1pM0 with pT4a subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0107|pT4 - Tumor with extension to chest wall and/or skin|
+        gt0007|pT4 subcategory: local::at0054|pT4a - Extension to chest wall|
+        gt0008|pN - Regional lymph nodes: local::at0111|pN1 - Micrometastases or
+          metastases in 1-3 axillary/internal mammary nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT4pN1pM0
+        gt0014|Pathological TNM assessment with subcategory: pT4apN1pM0
+        gt0015|Pathological stage group: local::at0025|Stage IIIB|
+  - id: 40. Stage IIIB - pT4pN2pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0107|pT4 - Tumor with extension to chest wall and/or skin|
+        gt0008|pN - Regional lymph nodes: local::at0112|pN2 - Metastases in 4-9 axillary
+          or internal mammary nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT4pN2pM0
+        gt0015|Pathological stage group: local::at0025|Stage IIIB|
+  - id: 41. Stage IIIB - pT4pN2pM0 with pT4b and pN2a subcategories
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0107|pT4 - Tumor with extension to chest wall and/or skin|
+        gt0007|pT4 subcategory: local::at0055|pT4b - Ulceration or satellite nodules or edema|
+        gt0008|pN - Regional lymph nodes: local::at0112|pN2 - Metastases in 4-9 axillary
+          or internal mammary nodes|
+        gt0009|pN2 subcategory: local::at0066|pN2a - Metastases in 4-9 axillary lymph nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT4pN2pM0
+        gt0014|Pathological TNM assessment with subcategory: pT4bpN2apM0
+        gt0015|Pathological stage group: local::at0025|Stage IIIB|
+  - id: 42. Stage IIIC - pT0pN3pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0045|pT0 - No evidence of primary tumor|
+        gt0008|pN - Regional lymph nodes: local::at0113|pN3 - Metastases in ≥10 nodes or supraclavicular nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT0pN3pM0
+        gt0015|Pathological stage group: local::at0026|Stage IIIC|
+  - id: 43. Stage IIIC - pT1pN3pM0 with pT1a and pN3a subcategories
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0006|pT1 subcategory: local::at0049|pT1a - Tumor >1-5 mm|
+        gt0008|pN - Regional lymph nodes: local::at0113|pN3 - Metastases in ≥10 nodes or supraclavicular nodes|
+        gt0010|pN3 subcategory: local::at0068|pN3a - Metastases in ≥10 axillary nodes or
+          infraclavicular nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN3pM0
+        gt0014|Pathological TNM assessment with subcategory: pT1apN3apM0
+        gt0015|Pathological stage group: local::at0026|Stage IIIC|
+  - id: 44. Stage IIIC - pT1pN3pM0 with pT1b and pN3b subcategories
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0006|pT1 subcategory: local::at0050|pT1b - Tumor >5-10 mm|
+        gt0008|pN - Regional lymph nodes: local::at0113|pN3 - Metastases in ≥10 nodes or supraclavicular nodes|
+        gt0010|pN3 subcategory: local::at0069|pN3b - Metastases in internal mammary and
+          axillary nodes (clinically detected)|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN3pM0
+        gt0014|Pathological TNM assessment with subcategory: pT1bpN3bpM0
+        gt0015|Pathological stage group: local::at0026|Stage IIIC|
+  - id: 45. Stage IIIC - pT1pN3pM0 with pT1c and pN3c subcategories
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0006|pT1 subcategory: local::at0051|pT1c - Tumor >10-20 mm|
+        gt0008|pN - Regional lymph nodes: local::at0113|pN3 - Metastases in ≥10 nodes or supraclavicular nodes|
+        gt0010|pN3 subcategory: local::at0070|pN3c - Metastases in ipsilateral
+          supraclavicular lymph nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN3pM0
+        gt0014|Pathological TNM assessment with subcategory: pT1cpN3cpM0
+        gt0015|Pathological stage group: local::at0026|Stage IIIC|
+  - id: 46. Stage IIIC - pT2pN3pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0052|pT2 - Tumor >20-50 mm|
+        gt0008|pN - Regional lymph nodes: local::at0113|pN3 - Metastases in ≥10 nodes or supraclavicular nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT2pN3pM0
+        gt0015|Pathological stage group: local::at0026|Stage IIIC|
+  - id: 47. Stage IIIC - pT2pN3pM0 with pN3b subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0052|pT2 - Tumor >20-50 mm|
+        gt0008|pN - Regional lymph nodes: local::at0113|pN3 - Metastases in ≥10 nodes or supraclavicular nodes|
+        gt0010|pN3 subcategory: local::at0069|pN3b - Metastases in internal mammary and
+          axillary nodes (clinically detected)|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT2pN3pM0
+        gt0014|Pathological TNM assessment with subcategory: pT2pN3bpM0
+        gt0015|Pathological stage group: local::at0026|Stage IIIC|
+  - id: 48. Stage IIIC - pT3pN3pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0053|pT3 - Tumor >50 mm|
+        gt0008|pN - Regional lymph nodes: local::at0113|pN3 - Metastases in ≥10 nodes or supraclavicular nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT3pN3pM0
+        gt0015|Pathological stage group: local::at0026|Stage IIIC|
+  - id: 49. Stage IIIC - pT4pN3pM0
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0107|pT4 - Tumor with extension to chest wall and/or skin|
+        gt0008|pN - Regional lymph nodes: local::at0113|pN3 - Metastases in ≥10 nodes or supraclavicular nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT4pN3pM0
+        gt0015|Pathological stage group: local::at0026|Stage IIIC|
+  - id: 50. Stage IIIC - pT4pN3pM0 with pT4c and pN3a subcategories
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0107|pT4 - Tumor with extension to chest wall and/or skin|
+        gt0007|pT4 subcategory: local::at0056|pT4c - Both pT4a and pT4b|
+        gt0008|pN - Regional lymph nodes: local::at0113|pN3 - Metastases in ≥10 nodes or supraclavicular nodes|
+        gt0010|pN3 subcategory: local::at0068|pN3a - Metastases in ≥10 axillary nodes or
+          infraclavicular nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT4pN3pM0
+        gt0014|Pathological TNM assessment with subcategory: pT4cpN3apM0
+        gt0015|Pathological stage group: local::at0026|Stage IIIC|
+  - id: 51. Stage IV - pT0pN0pM1 (distant metastasis)
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0045|pT0 - No evidence of primary tumor|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0073|pM1 - Distant metastasis confirmed microscopically|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT0pN0pM1
+        gt0015|Pathological stage group: local::at0027|Stage IV|
+  - id: 52. Stage IV - pT1pN1pM1
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0008|pN - Regional lymph nodes: local::at0111|pN1 - Micrometastases or
+          metastases in 1-3 axillary/internal mammary nodes|
+        gt0011|pM - Distant metastasis: local::at0073|pM1 - Distant metastasis confirmed microscopically|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN1pM1
+        gt0015|Pathological stage group: local::at0027|Stage IV|
+  - id: 53. Stage IV - pT2pN2pM1
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0052|pT2 - Tumor >20-50 mm|
+        gt0008|pN - Regional lymph nodes: local::at0112|pN2 - Metastases in 4-9 axillary
+          or internal mammary nodes|
+        gt0011|pM - Distant metastasis: local::at0073|pM1 - Distant metastasis confirmed microscopically|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT2pN2pM1
+        gt0015|Pathological stage group: local::at0027|Stage IV|
+  - id: 54. Stage IV - pT3pN3pM1
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0053|pT3 - Tumor >50 mm|
+        gt0008|pN - Regional lymph nodes: local::at0113|pN3 - Metastases in ≥10 nodes or supraclavicular nodes|
+        gt0011|pM - Distant metastasis: local::at0073|pM1 - Distant metastasis confirmed microscopically|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT3pN3pM1
+        gt0015|Pathological stage group: local::at0027|Stage IV|
+  - id: 55. Stage IV - pT4pN2pM1
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0107|pT4 - Tumor with extension to chest wall and/or skin|
+        gt0008|pN - Regional lymph nodes: local::at0112|pN2 - Metastases in 4-9 axillary
+          or internal mammary nodes|
+        gt0011|pM - Distant metastasis: local::at0073|pM1 - Distant metastasis confirmed microscopically|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT4pN2pM1
+        gt0015|Pathological stage group: local::at0027|Stage IV|
+  - id: 56. Stage IV - pT4pN3pM1 with pT4d and pN3c subcategories
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0107|pT4 - Tumor with extension to chest wall and/or skin|
+        gt0007|pT4 subcategory: local::at0057|pT4d - Inflammatory carcinoma|
+        gt0008|pN - Regional lymph nodes: local::at0113|pN3 - Metastases in ≥10 nodes or supraclavicular nodes|
+        gt0010|pN3 subcategory: local::at0070|pN3c - Metastases in ipsilateral
+          supraclavicular lymph nodes|
+        gt0011|pM - Distant metastasis: local::at0073|pM1 - Distant metastasis confirmed microscopically|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT4pN3pM1
+        gt0014|Pathological TNM assessment with subcategory: pT4dpN3cpM1
+        gt0015|Pathological stage group: local::at0027|Stage IV|
+  - id: 57. Stage IV - pT1pN0pM1 with pT1c subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0006|pT1 subcategory: local::at0051|pT1c - Tumor >10-20 mm|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0073|pM1 - Distant metastasis confirmed microscopically|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN0pM1
+        gt0014|Pathological TNM assessment with subcategory: pT1cpN0pM1
+        gt0015|Pathological stage group: local::at0027|Stage IV|
+  - id: 58. Stage IV - pT1pN1pM1 with pT1a subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0006|pT1 subcategory: local::at0049|pT1a - Tumor >1-5 mm|
+        gt0008|pN - Regional lymph nodes: local::at0111|pN1 - Micrometastases or
+          metastases in 1-3 axillary/internal mammary nodes|
+        gt0011|pM - Distant metastasis: local::at0073|pM1 - Distant metastasis confirmed microscopically|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN1pM1
+        gt0014|Pathological TNM assessment with subcategory: pT1apN1pM1
+        gt0015|Pathological stage group: local::at0027|Stage IV|
+  - id: 59. Stage IV - pT1pN2pM1 with pT1b and pN2a subcategories
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0006|pT1 subcategory: local::at0050|pT1b - Tumor >5-10 mm|
+        gt0008|pN - Regional lymph nodes: local::at0112|pN2 - Metastases in 4-9 axillary
+          or internal mammary nodes|
+        gt0009|pN2 subcategory: local::at0066|pN2a - Metastases in 4-9 axillary lymph nodes|
+        gt0011|pM - Distant metastasis: local::at0073|pM1 - Distant metastasis confirmed microscopically|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN2pM1
+        gt0014|Pathological TNM assessment with subcategory: pT1bpN2apM1
+        gt0015|Pathological stage group: local::at0027|Stage IV|
+  - id: 60. Stage IV - pT1pN3pM1 with pT1mi and pN3a subcategories
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0006|pT1 subcategory: local::at0048|pT1mi - Tumor ≤1 mm|
+        gt0008|pN - Regional lymph nodes: local::at0113|pN3 - Metastases in ≥10 nodes or supraclavicular nodes|
+        gt0010|pN3 subcategory: local::at0068|pN3a - Metastases in ≥10 axillary nodes or
+          infraclavicular nodes|
+        gt0011|pM - Distant metastasis: local::at0073|pM1 - Distant metastasis confirmed microscopically|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN3pM1
+        gt0014|Pathological TNM assessment with subcategory: pT1mipN3apM1
+        gt0015|Pathological stage group: local::at0027|Stage IV|
+  - id: 61. Stage IV - pT4pN0pM1 with pT4a subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0107|pT4 - Tumor with extension to chest wall and/or skin|
+        gt0007|pT4 subcategory: local::at0054|pT4a - Extension to chest wall|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0073|pM1 - Distant metastasis confirmed microscopically|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT4pN0pM1
+        gt0014|Pathological TNM assessment with subcategory: pT4apN0pM1
+        gt0015|Pathological stage group: local::at0027|Stage IV|
+  - id: 62. Stage IV - pT4pN1pM1 with pT4b subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0107|pT4 - Tumor with extension to chest wall and/or skin|
+        gt0007|pT4 subcategory: local::at0055|pT4b - Ulceration or satellite nodules or edema|
+        gt0008|pN - Regional lymph nodes: local::at0111|pN1 - Micrometastases or
+          metastases in 1-3 axillary/internal mammary nodes|
+        gt0011|pM - Distant metastasis: local::at0073|pM1 - Distant metastasis confirmed microscopically|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT4pN1pM1
+        gt0014|Pathological TNM assessment with subcategory: pT4bpN1pM1
+        gt0015|Pathological stage group: local::at0027|Stage IV|
+  - id: 63. Stage IV - pT4pN2pM1 with pT4c and pN2a subcategories
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0107|pT4 - Tumor with extension to chest wall and/or skin|
+        gt0007|pT4 subcategory: local::at0056|pT4c - Both pT4a and pT4b|
+        gt0008|pN - Regional lymph nodes: local::at0112|pN2 - Metastases in 4-9 axillary
+          or internal mammary nodes|
+        gt0009|pN2 subcategory: local::at0066|pN2a - Metastases in 4-9 axillary lymph nodes|
+        gt0011|pM - Distant metastasis: local::at0073|pM1 - Distant metastasis confirmed microscopically|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT4pN2pM1
+        gt0014|Pathological TNM assessment with subcategory: pT4cpN2apM1
+        gt0015|Pathological stage group: local::at0027|Stage IV|
+  - id: 64. Edge case - pTXpN0pM0 (tumor cannot be assessed)
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0044|pTX - Primary tumor cannot be assessed|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pTXpN0pM0
+  - id: 65. Edge case - pT1pNXpM0 (nodes cannot be assessed)
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0008|pN - Regional lymph nodes: local::at0059|pNX - Regional lymph nodes cannot be assessed|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pNXpM0
+  - id: 66. Negative - Missing pT (primary tumor) (negative test)
+    input:
+      "1":
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1": {}
+  - id: 67. Negative - Missing pN (regional lymph nodes) (negative test)
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1": {}
+  - id: 68. Negative - Missing pM (distant metastasis) (negative test)
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+    expected_output:
+      "1": {}
+  - id: 69. Negative - Missing all pTNM components (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 70. Negative - Only pT provided (negative test)
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+    expected_output:
+      "1": {}
+  - id: 71. Negative - pT1 subcategory without pT (negative test)
+    input:
+      "1":
+        gt0006|pT1 subcategory: local::at0051|pT1c - Tumor >10-20 mm|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1": {}
+  - id: 72. Negative - pT1 subcategory provided with non-pT1 primary tumor (negative
+      test)
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0052|pT2 - Tumor >20-50 mm|
+        gt0006|pT1 subcategory: local::at0051|pT1c - Tumor >10-20 mm|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT2pN0pM0
+        gt0015|Pathological stage group: local::at0022|Stage IIA|
+  - id: 73. Negative - pTis subcategory without pTis primary tumor (negative test)
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0005|pTis subcategory: local::at0046|pTis (DCIS) - Ductal carcinoma in situ|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN0pM0
+        gt0015|Pathological stage group: local::at0020|Stage IA|
+  - id: 74. Negative - pT4 subcategory without pT4 primary tumor (negative test)
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0053|pT3 - Tumor >50 mm|
+        gt0007|pT4 subcategory: local::at0054|pT4a - Extension to chest wall|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT3pN0pM0
+        gt0015|Pathological stage group: local::at0023|Stage IIB|
+  - id: 75. Negative - pN2 subcategory without pN2 lymph nodes (negative test)
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0008|pN - Regional lymph nodes: local::at0111|pN1 - Micrometastases or
+          metastases in 1-3 axillary/internal mammary nodes|
+        gt0009|pN2 subcategory: local::at0066|pN2a - Metastases in 4-9 axillary lymph nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN1pM0
+        gt0015|Pathological stage group: local::at0022|Stage IIA|
+  - id: 76. Negative - pN3 subcategory without pN3 lymph nodes (negative test)
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0010|pN3 subcategory: local::at0068|pN3a - Metastases in ≥10 axillary nodes or
+          infraclavicular nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN0pM0
+        gt0015|Pathological stage group: local::at0020|Stage IA|
+  - id: 77. Negative - pN1 subcategory without pN1 lymph nodes (negative test)
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0106|pT1 - Tumor ≤20 mm in greatest dimension|
+        gt0008|pN - Regional lymph nodes: local::at0060|pN0 - No regional lymph node metastasis histologically|
+        gt0018|pN1 subcategory: local::at0062|pN1mi - Micrometastases (>0.2 mm but ≤2.0 mm)|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT1pN0pM0
+        gt0015|Pathological stage group: local::at0020|Stage IA|
+  - id: 78. Stage IIA - pT0pN1pM0 with pN1a subcategory (not pN1mi, stays IIA)
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0045|pT0 - No evidence of primary tumor|
+        gt0008|pN - Regional lymph nodes: local::at0111|pN1 - Micrometastases or
+          metastases in 1-3 axillary/internal mammary nodes|
+        gt0018|pN1 subcategory: local::at0063|pN1a - Metastases in 1-3 axillary lymph nodes|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT0pN1pM0
+        gt0015|Pathological stage group: local::at0022|Stage IIA|
+  - id: 79. Stage IIB - pT2pN1pM0 with pN1mi subcategory (pN1mi does not override to
+      IB for pT2)
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0052|pT2 - Tumor >20-50 mm|
+        gt0008|pN - Regional lymph nodes: local::at0111|pN1 - Micrometastases or
+          metastases in 1-3 axillary/internal mammary nodes|
+        gt0018|pN1 subcategory: local::at0062|pN1mi - Micrometastases (>0.2 mm but ≤2.0 mm)|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pT2pN1pM0
+        gt0015|Pathological stage group: local::at0023|Stage IIB|
+  - id: 80. Stage 0 - pTispN0(i+)pM0 with DCIS subcategory
+    input:
+      "1":
+        gt0004|pT - Primary tumor: local::at0105|pTis - Carcinoma in situ|
+        gt0005|pTis subcategory: local::at0046|pTis (DCIS) - Ductal carcinoma in situ|
+        gt0008|pN - Regional lymph nodes: local::at0061|pN0(i+) - Malignant cells ≤0.2 mm (isolated tumor cells)|
+        gt0011|pM - Distant metastasis: local::at0072|pM0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0013|Pathological TNM assessment: pTispN0(i+)pM0
+        gt0014|Pathological TNM assessment with subcategory: pTis(DCIS)pN0(i+)pM0
+        gt0015|Pathological stage group: local::at0019|Stage 0|
