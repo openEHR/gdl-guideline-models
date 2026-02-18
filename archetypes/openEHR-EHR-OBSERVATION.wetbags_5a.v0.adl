@@ -1,0 +1,210 @@
+archetype (adl_version=1.4; uid=749f8656-7600-480a-aac2-567bd7936de9)
+	openEHR-EHR-OBSERVATION.wetbags_5a.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-02-17">
+		["name"] = <"Mahmoud Elachi">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"mel.achi@gmail.com">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To support standardized calculation of pediatric emergency drug dosing and equipment sizing during resuscitation scenarios, ensuring safe and reproducible weight-adjusted therapy.">
+			keywords = <"Emergency department, Prehospital care, Resuscitation scenarios, Simulation and training", ...>
+			copyright = <"Use © Cambio CDS ">
+			use = <"Used in: emergency department, prehospital care, resuscitation scenarios, simulation and training. and for patients: 0–12 years of age">
+			misuse = <"Not to be used for:  adolescents >12 years (actual weight should be used), chronic medication dosing, non-emergency prescribing.
+It should not replace clinical judgment.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"https://slf.se/swesem/app/uploads/2019/05/initialt-omhandertagande-190520.pdf
+https://verktyg.internetmedicin.se/kalkylatorer/wetbags-5a">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"50b5e134b3f04419c22cc57fc4886f0a">
+		["build_uid"] = <"c6a97474-76a3-3d1b-b2b0-78bf823615ea">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- WETBAGS_5A
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Defibrillation
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::370]>
+												list = <
+													["1"] = <
+														units = <"J/kg">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Cardioversion
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::370]>
+												list = <
+													["1"] = <
+														units = <"J/kg">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Tube size
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::122]>
+												list = <
+													["1"] = <
+														units = <"mm">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Bolus
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::122]>
+												list = <
+													["1"] = <
+														units = <"ml/kg">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Bolus trauma
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::122]>
+												list = <
+													["1"] = <
+														units = <"ml/kg">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Adrenaline
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::124]>
+												list = <
+													["1"] = <
+														units = <"mg iv/im">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Anaphylaxis
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::122]>
+												list = <
+													["1"] = <
+														units = <"mg iv/im">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Glucose
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::129]>
+												list = <
+													["1"] = <
+														units = <"mL">
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"WETBAGS_5A">
+					description = <"A structured observation archetype designed to calculate and document pediatric emergency medication doses, fluid boluses, defibrillation energy, and endotracheal tube size using age-based and weight-based formulas derived from the SWESEM WETBAG emergency framework.">
+					comment = <"Original version, c 2019">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Defibrillation">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Cardioversion">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Tube size">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Bolus">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Adrenaline">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Bolus trauma">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Anaphylaxis">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Glucose">
+					description = <"">
+				>
+			>
+		>
+	>
