@@ -1,0 +1,156 @@
+{
+  "uuid" : "2ef34544-b76a-4e11-ba03-49e942fa12a7",
+  "id" : "Goteborg_university_cirrhosis_index_GUCI.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Mahmoud Elachi",
+      "email" : "mel.achi@gmail.com",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-02-20"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To support identification of patients at low or high probability of cirrhosis and to assist in predicting likelihood of sustained virological response to antiviral therapy.",
+        "keywords" : [
+          "Chronic hepatitis C",
+          "liver cirrhosis",
+          "fibrosis assessment",
+          "GUCI",
+          "non-invasive index",
+          "antiviral response prediction"
+        ],
+        "use" : "Used in adult patients with chronic hepatitis C to non-invasively estimate the probability of liver cirrhosis and support risk stratification and treatment planning.",
+        "misuse" : "Not validated for other liver diseases, acute hepatic conditions, or pediatric patients, and must not replace clinical judgment, imaging, elastography, or biopsy when indicated.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "https://pubmed.ncbi.nlm.nih.gov/16109665/\nhttps://login.proxybibl.vgregion.se/login?qurl=https://pubmed.ncbi.nlm.nih.gov%2f18938750%2f",
+      "en" : "A laboratory-based clinical decision guideline that estimates the probability of established liver cirrhosis in adult patients with chronic hepatitis C. The index combines AST (ASAT), AST upper reference limit, INR, and platelet count into a composite score reflecting hepatic necroinflammatory activity and portal hypertension–related thrombocytopenia."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.guci_index.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.guci_index.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "U/L"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "U/L"
+            ]
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_QUANTITY"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "10⁹/L"
+            ]
+          }
+        }
+      },
+      "gt0007" : {
+        "id" : "gt0007",
+        "model_id" : "openEHR-EHR-OBSERVATION.guci_index.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.guci_index.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0008" : {
+            "id" : "gt0008",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type" : "DV_QUANTITY"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0009" : {
+        "id" : "gt0009",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|ASAT|!=null",
+          "$gt0004|Övre referens|!=null",
+          "$gt0005|PK-INR|!=null",
+          "$gt0006|TPK|!=null"
+        ],
+        "then" : [
+          "$gt0008|GUCI-score|.magnitude=$gt0003|ASAT|.magnitude*$gt0005|PK-INR|.magnitude*100",
+          "$gt0008|GUCI-score|.precision=2"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Göteborg University Cirrhosis Index (GUCI)",
+            "description" : "A laboratory-based clinical decision guideline that estimates the probability of established liver cirrhosis in adult patients with chronic hepatitis C. The index combines AST (ASAT), AST upper reference limit, INR, and platelet count into a composite score reflecting hepatic necroinflammatory activity and portal hypertension–related thrombocytopenia."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.guci_index.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "ASAT"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Övre referens"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "PK-INR"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "TPK"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "openEHR-EHR-OBSERVATION.guci_index.v0"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "GUCI-score"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Calculating the GUCI score",
+            "description" : "GUCI = (ASAT * PK-INR * 100) / (TPK * Ref); Ref = Övre referensvärdet för ASAT (analysberoende). ASAT och dess referensvärde anges med valfri (samma) enhet, TPK i 109 st/L."
+          }
+        }
+      }
+    }
+  }
+}
