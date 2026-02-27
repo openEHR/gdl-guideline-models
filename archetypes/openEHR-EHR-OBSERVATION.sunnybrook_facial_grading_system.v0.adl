@@ -1,0 +1,482 @@
+archetype (adl_version=1.4; uid=afbad328-2ae5-4b89-9935-6ebdaa42335e)
+	openEHR-EHR-OBSERVATION.sunnybrook_facial_grading_system.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-02-26">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the result for each component parameter: Resting symmetry, Voluntary movement, Synkinesis.">
+			keywords = <"facial, palsy, facial nerve, paralysis, sunnybrook, Bell", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to assess facial nerve function.">
+			misuse = <"Not intended for central facial palsy assessment.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Ross BG, Fradet G, Nedzelski JM. Development of a sensitive clinical facial grading system. Otolaryngol Head Neck Surg. 1996 Mar;114(3):380-6. doi: 10.1016/S0194-59989670206-1. PMID: 8649870.">
+		["build_uid"] = <"44e8894c-296a-38b2-9861-2ef94fac9be8">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Sunnybrook Facial Grading System
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Resting symmetry eye
+										value matches {
+											0|[local::at0007],
+											1|[local::at0008],
+											1|[local::at0009],
+											1|[local::at0010]
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Resting symmetry cheek
+										value matches {
+											0|[local::at0012],
+											2|[local::at0013],
+											1|[local::at0014],
+											1|[local::at0015]
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Resting symmetry mouth
+										value matches {
+											0|[local::at0017],
+											1|[local::at0018],
+											1|[local::at0019]
+										}
+									}
+									ELEMENT[at0026] occurrences matches {0..1} matches {    -- Voluntary movement forehead wrinkle
+										value matches {
+											1|[local::at0027],
+											2|[local::at0028],
+											3|[local::at0029],
+											4|[local::at0030],
+											5|[local::at0031]
+										}
+									}
+									ELEMENT[at0032] occurrences matches {0..1} matches {    -- Voluntary movement gentle eye closure
+										value matches {
+											1|[local::at0033],
+											2|[local::at0034],
+											3|[local::at0035],
+											4|[local::at0036],
+											5|[local::at0037]
+										}
+									}
+									ELEMENT[at0038] occurrences matches {0..1} matches {    -- Voluntary movement open mouth smile
+										value matches {
+											1|[local::at0039],
+											2|[local::at0040],
+											3|[local::at0041],
+											4|[local::at0042],
+											5|[local::at0043]
+										}
+									}
+									ELEMENT[at0044] occurrences matches {0..1} matches {    -- Voluntary movement snarl
+										value matches {
+											1|[local::at0045],
+											2|[local::at0046],
+											3|[local::at0047],
+											4|[local::at0048],
+											5|[local::at0049]
+										}
+									}
+									ELEMENT[at0050] occurrences matches {0..1} matches {    -- Voluntary movement lip pucker
+										value matches {
+											1|[local::at0051],
+											2|[local::at0052],
+											3|[local::at0053],
+											4|[local::at0054],
+											5|[local::at0055]
+										}
+									}
+									ELEMENT[at0056] occurrences matches {0..1} matches {    -- Synkinesis forehead wrinkle
+										value matches {
+											0|[local::at0057],
+											1|[local::at0058],
+											2|[local::at0059],
+											3|[local::at0060]
+										}
+									}
+									ELEMENT[at0062] occurrences matches {0..1} matches {    -- Synkinesis gentle eye closure
+										value matches {
+											0|[local::at0063],
+											1|[local::at0064],
+											2|[local::at0065],
+											3|[local::at0066]
+										}
+									}
+									ELEMENT[at0067] occurrences matches {0..1} matches {    -- Synkinesis open mouth smile
+										value matches {
+											0|[local::at0068],
+											1|[local::at0069],
+											2|[local::at0070],
+											3|[local::at0071]
+										}
+									}
+									ELEMENT[at0072] occurrences matches {0..1} matches {    -- Synkinesis snarl
+										value matches {
+											0|[local::at0073],
+											1|[local::at0074],
+											2|[local::at0075],
+											3|[local::at0076]
+										}
+									}
+									ELEMENT[at0077] occurrences matches {0..1} matches {    -- Synkinesis lip pucker
+										value matches {
+											0|[local::at0078],
+											1|[local::at0079],
+											2|[local::at0080],
+											3|[local::at0081]
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Sunnybrook Facial Grading System">
+					description = <"Scale used to grade facial paralysis and assess the severity of peripheral facial palsy.">
+					comment = <"Original version, c 1996.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Resting symmetry eye">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Normal">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Narrow">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Wide">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Eyelid surgery">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Resting symmetry cheek">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Normal">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Less pronounced">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"More pronounced">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Resting symmetry mouth">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Normal">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Corner drooped">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Corner pulled up/out">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Voluntary movement forehead wrinkle">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"No movement / Gross asymetry">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Initiates slight movement / Severe asymetry">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Initiates movement with mild excursion / Moderate asymetry">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Movement almost complete / Mild asymetry">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Movement complete / Normal symetry">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Voluntary movement gentle eye closure">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"No movement / Gross asymetry">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Initiates slight movement / Severe asymetry">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"Initiates movement with mild excursion / Moderate asymetry">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Movement almost complete / Mild asymetry">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"Movement complete / Normal symetry">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"Voluntary movement open mouth smile">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"No movement / Gross asymetry">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"Initiates slight movement / Severe asymetry">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"Initiates movement with mild excursion / Moderate asymetry">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"Movement almost complete / Mild asymetry">
+					description = <"">
+				>
+				["at0043"] = <
+					text = <"Movement complete / Normal symetry">
+					description = <"">
+				>
+				["at0044"] = <
+					text = <"Voluntary movement snarl">
+					description = <"">
+				>
+				["at0045"] = <
+					text = <"No movement / Gross asymetry">
+					description = <"">
+				>
+				["at0046"] = <
+					text = <"Initiates slight movement / Severe asymetry">
+					description = <"">
+				>
+				["at0047"] = <
+					text = <"Initiates movement with mild excursion / Moderate asymetry">
+					description = <"">
+				>
+				["at0048"] = <
+					text = <"Movement almost complete / Mild asymetry">
+					description = <"">
+				>
+				["at0049"] = <
+					text = <"Movement complete / Normal symetry">
+					description = <"">
+				>
+				["at0050"] = <
+					text = <"Voluntary movement lip pucker">
+					description = <"">
+				>
+				["at0051"] = <
+					text = <"No movement / Gross asymetry">
+					description = <"">
+				>
+				["at0052"] = <
+					text = <"Initiates slight movement / Severe asymetry">
+					description = <"">
+				>
+				["at0053"] = <
+					text = <"Initiates movement with mild excursion / Moderate asymetry">
+					description = <"">
+				>
+				["at0054"] = <
+					text = <"Movement almost complete / Mild asymetry">
+					description = <"">
+				>
+				["at0055"] = <
+					text = <"Movement complete / Normal symetry">
+					description = <"">
+				>
+				["at0056"] = <
+					text = <"Synkinesis forehead wrinkle">
+					description = <"">
+				>
+				["at0057"] = <
+					text = <"None: No synkinesis or mass movement">
+					description = <"">
+				>
+				["at0058"] = <
+					text = <"Mild: Slight synkinesis">
+					description = <"">
+				>
+				["at0059"] = <
+					text = <"Moderate: Obvious but not disfiguring synkinesis">
+					description = <"">
+				>
+				["at0060"] = <
+					text = <"Severe: Disfiguring synkinesis/ Gross mass movement of several muscles">
+					description = <"">
+				>
+				["at0062"] = <
+					text = <"Synkinesis gentle eye closure">
+					description = <"">
+				>
+				["at0063"] = <
+					text = <"None: No synkinesis or mass movement">
+					description = <"">
+				>
+				["at0064"] = <
+					text = <"Mild: Slight synkinesis">
+					description = <"">
+				>
+				["at0065"] = <
+					text = <"Moderate: Obvious but not disfiguring synkinesis">
+					description = <"">
+				>
+				["at0066"] = <
+					text = <"Severe: Disfiguring synkinesis/ Gross mass movement of several muscles">
+					description = <"">
+				>
+				["at0067"] = <
+					text = <"Synkinesis open mouth smile">
+					description = <"">
+				>
+				["at0068"] = <
+					text = <"None: No synkinesis or mass movement">
+					description = <"">
+				>
+				["at0069"] = <
+					text = <"Mild: Slight synkinesis">
+					description = <"">
+				>
+				["at0070"] = <
+					text = <"Moderate: Obvious but not disfiguring synkinesis">
+					description = <"">
+				>
+				["at0071"] = <
+					text = <"Severe: Disfiguring synkinesis/ Gross mass movement of several muscles">
+					description = <"">
+				>
+				["at0072"] = <
+					text = <"Synkinesis snarl">
+					description = <"">
+				>
+				["at0073"] = <
+					text = <"None: No synkinesis or mass movement">
+					description = <"">
+				>
+				["at0074"] = <
+					text = <"Mild: Slight synkinesis">
+					description = <"">
+				>
+				["at0075"] = <
+					text = <"Moderate: Obvious but not disfiguring synkinesis">
+					description = <"">
+				>
+				["at0076"] = <
+					text = <"Severe: Disfiguring synkinesis/ Gross mass movement of several muscles">
+					description = <"">
+				>
+				["at0077"] = <
+					text = <"Synkinesis lip pucker">
+					description = <"">
+				>
+				["at0078"] = <
+					text = <"None: No synkinesis or mass movement">
+					description = <"">
+				>
+				["at0079"] = <
+					text = <"Mild: Slight synkinesis">
+					description = <"">
+				>
+				["at0080"] = <
+					text = <"Moderate: Obvious but not disfiguring synkinesis">
+					description = <"">
+				>
+				["at0081"] = <
+					text = <"Severe: Disfiguring synkinesis/ Gross mass movement of several muscles">
+					description = <"">
+				>
+			>
+		>
+	>
