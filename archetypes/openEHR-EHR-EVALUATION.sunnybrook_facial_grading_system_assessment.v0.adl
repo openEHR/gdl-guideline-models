@@ -1,0 +1,118 @@
+archetype (adl_version=1.4; uid=4f636a92-ddd6-4f9d-a724-f37c5dfceabe)
+	openEHR-EHR-EVALUATION.sunnybrook_facial_grading_system_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-02-26">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the result for each component parameter (Resting symmetry, Voluntary movement, Synkinesis) and the composite score.">
+			keywords = <"facial, palsy, facial nerve, paralysis, sunnybrook, Bell", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to assess facial nerve function.">
+			misuse = <"Not intended for central facial palsy assessment.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Ross BG, Fradet G, Nedzelski JM. Development of a sensitive clinical facial grading system. Otolaryngol Head Neck Surg. 1996 Mar;114(3):380-6. doi: 10.1016/S0194-59989670206-1. PMID: 8649870.">
+		["build_uid"] = <"6730cdc5-2f96-35c5-a290-e9f25c4b802d">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Sunnybrook facial grading system assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Resting symmetry score
+						value matches {
+							DV_COUNT matches {*}
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {    -- Voluntary movement score
+						value matches {
+							DV_COUNT matches {*}
+						}
+					}
+					ELEMENT[at0006] occurrences matches {0..1} matches {    -- Synkinesis score
+						value matches {
+							DV_COUNT matches {*}
+						}
+					}
+					ELEMENT[at0007] occurrences matches {0..1} matches {    -- Composite score
+						value matches {
+							DV_COUNT matches {*}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Sunnybrook facial grading system assessment">
+					description = <"Scale used to grade facial paralysis and assess the severity of peripheral facial palsy.">
+					comment = <"Original version, c 1996.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Resting symmetry score">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Voluntary movement score">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Synkinesis score">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Composite score">
+					description = <"">
+				>
+			>
+		>
+	>
