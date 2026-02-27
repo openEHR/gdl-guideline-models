@@ -1,0 +1,258 @@
+guidelines:
+  "1": Sunnybrook_facial_grading_system_calculation.v0.0.1
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Resting symmetry eye missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 5|local::at0031|Movement complete / Normal symetry|
+        gt0007|Voluntary movement gentle eye closure: 5|local::at0037|Movement complete / Normal symetry|
+        gt0008|Voluntary movement open mouth smile: 5|local::at0043|Movement complete / Normal symetry|
+        gt0009|Voluntary movement snarl: 5|local::at0049|Movement complete / Normal symetry|
+        gt0010|Voluntary movement lip pucker: 5|local::at0055|Movement complete / Normal symetry|
+        gt0011|Synkinesis forehead wrinkle: "0|local::at0057|None: No synkinesis or mass movement|"
+        gt0012|Synkinesis gentle eye closure: "0|local::at0063|None: No synkinesis or mass movement|"
+        gt0013|Synkinesis open mouth smile: "0|local::at0068|None: No synkinesis or mass movement|"
+        gt0014|Synkinesis snarl: "0|local::at0073|None: No synkinesis or mass movement|"
+        gt0015|Synkinesis lip pucker: "0|local::at0078|None: No synkinesis or mass movement|"
+    expected_output:
+      "1":
+        gt0017|Resting symmetry score: "0"
+        gt0018|Voluntary movement score: "100"
+        gt0019|Synkinesis score: "0"
+        gt0020|Composite score: "100"
+  - id: 03. Resting symmetry cheek missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 5|local::at0031|Movement complete / Normal symetry|
+        gt0007|Voluntary movement gentle eye closure: 5|local::at0037|Movement complete / Normal symetry|
+        gt0008|Voluntary movement open mouth smile: 5|local::at0043|Movement complete / Normal symetry|
+        gt0009|Voluntary movement snarl: 5|local::at0049|Movement complete / Normal symetry|
+        gt0010|Voluntary movement lip pucker: 5|local::at0055|Movement complete / Normal symetry|
+        gt0011|Synkinesis forehead wrinkle: "0|local::at0057|None: No synkinesis or mass movement|"
+        gt0012|Synkinesis gentle eye closure: "0|local::at0063|None: No synkinesis or mass movement|"
+        gt0013|Synkinesis open mouth smile: "0|local::at0068|None: No synkinesis or mass movement|"
+        gt0014|Synkinesis snarl: "0|local::at0073|None: No synkinesis or mass movement|"
+        gt0015|Synkinesis lip pucker: "0|local::at0078|None: No synkinesis or mass movement|"
+    expected_output:
+      "1": {}
+  - id: 04. Resting symmetry mouth missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 5|local::at0031|Movement complete / Normal symetry|
+        gt0007|Voluntary movement gentle eye closure: 5|local::at0037|Movement complete / Normal symetry|
+        gt0008|Voluntary movement open mouth smile: 5|local::at0043|Movement complete / Normal symetry|
+        gt0009|Voluntary movement snarl: 5|local::at0049|Movement complete / Normal symetry|
+        gt0010|Voluntary movement lip pucker: 5|local::at0055|Movement complete / Normal symetry|
+        gt0011|Synkinesis forehead wrinkle: "0|local::at0057|None: No synkinesis or mass movement|"
+        gt0012|Synkinesis gentle eye closure: "0|local::at0063|None: No synkinesis or mass movement|"
+        gt0013|Synkinesis open mouth smile: "0|local::at0068|None: No synkinesis or mass movement|"
+        gt0014|Synkinesis snarl: "0|local::at0073|None: No synkinesis or mass movement|"
+        gt0015|Synkinesis lip pucker: "0|local::at0078|None: No synkinesis or mass movement|"
+    expected_output:
+      "1": {}
+  - id: 05. Voluntary movement forehead wrinkle missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0007|Voluntary movement gentle eye closure: 5|local::at0037|Movement complete / Normal symetry|
+        gt0008|Voluntary movement open mouth smile: 5|local::at0043|Movement complete / Normal symetry|
+        gt0009|Voluntary movement snarl: 5|local::at0049|Movement complete / Normal symetry|
+        gt0010|Voluntary movement lip pucker: 5|local::at0055|Movement complete / Normal symetry|
+        gt0011|Synkinesis forehead wrinkle: "0|local::at0057|None: No synkinesis or mass movement|"
+        gt0012|Synkinesis gentle eye closure: "0|local::at0063|None: No synkinesis or mass movement|"
+        gt0013|Synkinesis open mouth smile: "0|local::at0068|None: No synkinesis or mass movement|"
+        gt0014|Synkinesis snarl: "0|local::at0073|None: No synkinesis or mass movement|"
+        gt0015|Synkinesis lip pucker: "0|local::at0078|None: No synkinesis or mass movement|"
+    expected_output:
+      "1": {}
+  - id: 06. Voluntary movement gentle eye closure missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 5|local::at0031|Movement complete / Normal symetry|
+        gt0008|Voluntary movement open mouth smile: 5|local::at0043|Movement complete / Normal symetry|
+        gt0009|Voluntary movement snarl: 5|local::at0049|Movement complete / Normal symetry|
+        gt0010|Voluntary movement lip pucker: 5|local::at0055|Movement complete / Normal symetry|
+        gt0011|Synkinesis forehead wrinkle: "0|local::at0057|None: No synkinesis or mass movement|"
+        gt0012|Synkinesis gentle eye closure: "0|local::at0063|None: No synkinesis or mass movement|"
+        gt0013|Synkinesis open mouth smile: "0|local::at0068|None: No synkinesis or mass movement|"
+        gt0014|Synkinesis snarl: "0|local::at0073|None: No synkinesis or mass movement|"
+        gt0015|Synkinesis lip pucker: "0|local::at0078|None: No synkinesis or mass movement|"
+    expected_output:
+      "1": {}
+  - id: 07. Voluntary movement open mouth smile missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 5|local::at0031|Movement complete / Normal symetry|
+        gt0007|Voluntary movement gentle eye closure: 5|local::at0037|Movement complete / Normal symetry|
+        gt0009|Voluntary movement snarl: 5|local::at0049|Movement complete / Normal symetry|
+        gt0010|Voluntary movement lip pucker: 5|local::at0055|Movement complete / Normal symetry|
+        gt0011|Synkinesis forehead wrinkle: "0|local::at0057|None: No synkinesis or mass movement|"
+        gt0012|Synkinesis gentle eye closure: "0|local::at0063|None: No synkinesis or mass movement|"
+        gt0013|Synkinesis open mouth smile: "0|local::at0068|None: No synkinesis or mass movement|"
+        gt0014|Synkinesis snarl: "0|local::at0073|None: No synkinesis or mass movement|"
+        gt0015|Synkinesis lip pucker: "0|local::at0078|None: No synkinesis or mass movement|"
+    expected_output:
+      "1": {}
+  - id: 08. Voluntary movement snarl missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 5|local::at0031|Movement complete / Normal symetry|
+        gt0007|Voluntary movement gentle eye closure: 5|local::at0037|Movement complete / Normal symetry|
+        gt0008|Voluntary movement open mouth smile: 5|local::at0043|Movement complete / Normal symetry|
+        gt0010|Voluntary movement lip pucker: 5|local::at0055|Movement complete / Normal symetry|
+        gt0011|Synkinesis forehead wrinkle: "0|local::at0057|None: No synkinesis or mass movement|"
+        gt0012|Synkinesis gentle eye closure: "0|local::at0063|None: No synkinesis or mass movement|"
+        gt0013|Synkinesis open mouth smile: "0|local::at0068|None: No synkinesis or mass movement|"
+        gt0014|Synkinesis snarl: "0|local::at0073|None: No synkinesis or mass movement|"
+        gt0015|Synkinesis lip pucker: "0|local::at0078|None: No synkinesis or mass movement|"
+    expected_output:
+      "1": {}
+  - id: 09. Voluntary movement lip pucker missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 5|local::at0031|Movement complete / Normal symetry|
+        gt0007|Voluntary movement gentle eye closure: 5|local::at0037|Movement complete / Normal symetry|
+        gt0008|Voluntary movement open mouth smile: 5|local::at0043|Movement complete / Normal symetry|
+        gt0009|Voluntary movement snarl: 5|local::at0049|Movement complete / Normal symetry|
+        gt0011|Synkinesis forehead wrinkle: "0|local::at0057|None: No synkinesis or mass movement|"
+        gt0012|Synkinesis gentle eye closure: "0|local::at0063|None: No synkinesis or mass movement|"
+        gt0013|Synkinesis open mouth smile: "0|local::at0068|None: No synkinesis or mass movement|"
+        gt0014|Synkinesis snarl: "0|local::at0073|None: No synkinesis or mass movement|"
+        gt0015|Synkinesis lip pucker: "0|local::at0078|None: No synkinesis or mass movement|"
+    expected_output:
+      "1": {}
+  - id: 10. Synkinesis forehead wrinkle missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 5|local::at0031|Movement complete / Normal symetry|
+        gt0007|Voluntary movement gentle eye closure: 5|local::at0037|Movement complete / Normal symetry|
+        gt0008|Voluntary movement open mouth smile: 5|local::at0043|Movement complete / Normal symetry|
+        gt0009|Voluntary movement snarl: 5|local::at0049|Movement complete / Normal symetry|
+        gt0010|Voluntary movement lip pucker: 5|local::at0055|Movement complete / Normal symetry|
+        gt0012|Synkinesis gentle eye closure: "0|local::at0063|None: No synkinesis or mass movement|"
+        gt0013|Synkinesis open mouth smile: "0|local::at0068|None: No synkinesis or mass movement|"
+        gt0014|Synkinesis snarl: "0|local::at0073|None: No synkinesis or mass movement|"
+        gt0015|Synkinesis lip pucker: "0|local::at0078|None: No synkinesis or mass movement|"
+    expected_output:
+      "1": {}
+  - id: 11. Synkinesis gentle eye closure missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 5|local::at0031|Movement complete / Normal symetry|
+        gt0007|Voluntary movement gentle eye closure: 5|local::at0037|Movement complete / Normal symetry|
+        gt0008|Voluntary movement open mouth smile: 5|local::at0043|Movement complete / Normal symetry|
+        gt0009|Voluntary movement snarl: 5|local::at0049|Movement complete / Normal symetry|
+        gt0010|Voluntary movement lip pucker: 5|local::at0055|Movement complete / Normal symetry|
+        gt0011|Synkinesis forehead wrinkle: "0|local::at0057|None: No synkinesis or mass movement|"
+        gt0013|Synkinesis open mouth smile: "0|local::at0068|None: No synkinesis or mass movement|"
+        gt0014|Synkinesis snarl: "0|local::at0073|None: No synkinesis or mass movement|"
+        gt0015|Synkinesis lip pucker: "0|local::at0078|None: No synkinesis or mass movement|"
+    expected_output:
+      "1": {}
+  - id: 12. Synkinesis open mouth smile missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 5|local::at0031|Movement complete / Normal symetry|
+        gt0007|Voluntary movement gentle eye closure: 5|local::at0037|Movement complete / Normal symetry|
+        gt0008|Voluntary movement open mouth smile: 5|local::at0043|Movement complete / Normal symetry|
+        gt0009|Voluntary movement snarl: 5|local::at0049|Movement complete / Normal symetry|
+        gt0010|Voluntary movement lip pucker: 5|local::at0055|Movement complete / Normal symetry|
+        gt0011|Synkinesis forehead wrinkle: "0|local::at0057|None: No synkinesis or mass movement|"
+        gt0012|Synkinesis gentle eye closure: "0|local::at0063|None: No synkinesis or mass movement|"
+        gt0014|Synkinesis snarl: "0|local::at0073|None: No synkinesis or mass movement|"
+        gt0015|Synkinesis lip pucker: "0|local::at0078|None: No synkinesis or mass movement|"
+    expected_output:
+      "1": {}
+  - id: 13. Synkinesis snarl missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 5|local::at0031|Movement complete / Normal symetry|
+        gt0007|Voluntary movement gentle eye closure: 5|local::at0037|Movement complete / Normal symetry|
+        gt0008|Voluntary movement open mouth smile: 5|local::at0043|Movement complete / Normal symetry|
+        gt0009|Voluntary movement snarl: 5|local::at0049|Movement complete / Normal symetry|
+        gt0010|Voluntary movement lip pucker: 5|local::at0055|Movement complete / Normal symetry|
+        gt0011|Synkinesis forehead wrinkle: "0|local::at0057|None: No synkinesis or mass movement|"
+        gt0012|Synkinesis gentle eye closure: "0|local::at0063|None: No synkinesis or mass movement|"
+        gt0013|Synkinesis open mouth smile: "0|local::at0068|None: No synkinesis or mass movement|"
+        gt0015|Synkinesis lip pucker: "0|local::at0078|None: No synkinesis or mass movement|"
+    expected_output:
+      "1": {}
+  - id: 14. Synkinesis lip pucker missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 5|local::at0031|Movement complete / Normal symetry|
+        gt0007|Voluntary movement gentle eye closure: 5|local::at0037|Movement complete / Normal symetry|
+        gt0008|Voluntary movement open mouth smile: 5|local::at0043|Movement complete / Normal symetry|
+        gt0009|Voluntary movement snarl: 5|local::at0049|Movement complete / Normal symetry|
+        gt0010|Voluntary movement lip pucker: 5|local::at0055|Movement complete / Normal symetry|
+        gt0011|Synkinesis forehead wrinkle: "0|local::at0057|None: No synkinesis or mass movement|"
+        gt0012|Synkinesis gentle eye closure: "0|local::at0063|None: No synkinesis or mass movement|"
+        gt0013|Synkinesis open mouth smile: "0|local::at0068|None: No synkinesis or mass movement|"
+        gt0014|Synkinesis snarl: "0|local::at0073|None: No synkinesis or mass movement|"
+    expected_output:
+      "1": {}
+  - id: 15. Result 68.
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 3|local::at0029|Initiates movement
+          with mild excursion / Moderate asymetry|
+        gt0007|Voluntary movement gentle eye closure: 3|local::at0035|Initiates movement
+          with mild excursion / Moderate asymetry|
+        gt0008|Voluntary movement open mouth smile: 2|local::at0040|Initiates slight movement / Severe asymetry|
+        gt0009|Voluntary movement snarl: 4|local::at0048|Movement almost complete / Mild asymetry|
+        gt0010|Voluntary movement lip pucker: 5|local::at0055|Movement complete / Normal symetry|
+        gt0011|Synkinesis forehead wrinkle: "0|local::at0057|None: No synkinesis or mass movement|"
+        gt0012|Synkinesis gentle eye closure: "0|local::at0063|None: No synkinesis or mass movement|"
+        gt0013|Synkinesis open mouth smile: "0|local::at0068|None: No synkinesis or mass movement|"
+        gt0014|Synkinesis snarl: "0|local::at0073|None: No synkinesis or mass movement|"
+        gt0015|Synkinesis lip pucker: "0|local::at0078|None: No synkinesis or mass movement|"
+    expected_output:
+      "1":
+        gt0017|Resting symmetry score: "0"
+        gt0018|Voluntary movement score: "68"
+        gt0019|Synkinesis score: "0"
+        gt0020|Composite score: "68"
