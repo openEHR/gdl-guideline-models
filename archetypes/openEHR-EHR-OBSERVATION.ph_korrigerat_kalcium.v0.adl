@@ -1,0 +1,133 @@
+archetype (adl_version=1.4; uid=d4b16290-c756-4d78-8e14-8fc0706ee844)
+	openEHR-EHR-OBSERVATION.ph_korrigerat_kalcium.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-03-02">
+		["name"] = <"Mahmoud Elachi">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"mel.achi@gmail.com">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To standardise interpretation of ionized calcium values in patients with acid–base disturbances by correcting measured values to physiologic pH (7.40), thereby improving comparability and clinical assessment.">
+			keywords = <"ionized calcium, pH correction, acid-base balance, hypocalcemia, hypercalcemia, blood gas analysis, critical care", ...>
+			copyright = <"Use © Cambio CDS ">
+			use = <"Intended for use in adult patients undergoing blood gas analysis where ionised calcium and pH are measured from the same blood sample. Supports interpretation in emergency medicine, intensive care, perioperative care, and metabolic evaluation.">
+			misuse = <"Not intended for use with total serum calcium.
+Not validated in extreme pH values outside physiologic range (e.g., <6.8 or >7.8).
+Should not be used as a standalone diagnostic tool without clinical context.
+Not validated in severe protein-binding disorders or extreme hypoalbuminemia.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"https://verktyg.internetmedicin.se/kalkylatorer/ph-korrigerat-kalcium">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"693b4ab9034358c08dc08924223510f2">
+		["build_uid"] = <"7875e38d-88f4-365e-a02f-fc96094280d9">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- pH korrigerat kalcium
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Calciumjon
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::384]>
+												list = <
+													["1"] = <
+														units = <"mmol">
+														magnitude = <|0.5..2.0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- pH
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"1">
+														magnitude = <|6.8..7.8|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- output
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mmol/L">
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"pH korrigerat kalcium">
+					description = <"Adjusts measured ionized calcium concentration to a standardized pH of 7.40 to account for pH-dependent alterations in calcium–protein binding. Based on the established observation that ionized calcium changes approximately 5% for each 0.1 unit deviation in pH from 7.40.">
+					comment = <"Original version, c 1981">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Calciumjon">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"pH">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"output">
+					description = <"">
+				>
+			>
+		>
+	>
