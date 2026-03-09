@@ -1,4 +1,4 @@
-archetype (adl_version=1.4; uid=cdfc8831-8f7f-4fef-8698-7d9a61b8a4d8)
+archetype (adl_version=1.4; uid=04fd30c8-a0eb-4fb9-8f1f-e0ff30ccd1f2)
 	openEHR-EHR-OBSERVATION.guci_index_test.v0
 
 concept
@@ -33,7 +33,7 @@ https://pubmed-ncbi-nlm-nih-gov.proxybibl.vgregion.se/18938750/">
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"9af5ab55f4673d50ae9d27e5630dac8e">
+		["MD5-CAM-1.0.1"] = <"2e2377ad0f0f094f4d49567a0a33bf96">
 		["build_uid"] = <"8f6add28-a2c6-3f0b-bbef-0e417dac1f68">
 	>
 
@@ -46,34 +46,57 @@ definition
 						data matches {
 							ITEM_TREE[at0003] matches {    -- Tree
 								items cardinality matches {0..*; unordered} matches {
-									ELEMENT[at0010] occurrences matches {0..1} matches {    -- ASAT
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- ASAT
 										value matches {
-											DV_QUANTITY matches {*}
+											C_DV_QUANTITY <
+												property = <[openehr::384]>
+												list = <
+													["1"] = <
+														units = <"U/L">
+													>
+												>
+											>
 										}
 									}
-									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Over referense
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Övre referens
 										value matches {
-											DV_QUANTITY matches {*}
+											C_DV_QUANTITY <
+												property = <[openehr::445]>
+												list = <
+													["1"] = <
+														units = <"U/L">
+													>
+												>
+											>
 										}
 									}
-									ELEMENT[at0012] occurrences matches {0..1} matches {    -- PK-INR
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- PK-INR
 										value matches {
-											DV_QUANTITY matches {*}
+											C_DV_QUANTITY <
+												property = <[openehr::124]>
+												list = <
+													["1"] = <
+														units = <"Units">
+													>
+												>
+											>
 										}
 									}
-									ELEMENT[at0013] occurrences matches {0..1} matches {    -- TPK
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- TPK
 										value matches {
-											DV_QUANTITY matches {*}
+											C_DV_QUANTITY <
+												property = <[openehr::122]>
+												list = <
+													["1"] = <
+														units = <"10⁹/L">
+													>
+												>
+											>
 										}
 									}
-									ELEMENT[at0014] occurrences matches {0..1} matches {    -- GUCI-Score
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- GUCI-score
 										value matches {
 											DV_QUANTITY matches {*}
-										}
-									}
-									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Score
-										value matches {
-											DV_COUNT matches {*}
 										}
 									}
 								}
@@ -107,28 +130,24 @@ A clinical decision guideline for estimating the probability of liver cirrhosis 
 					text = <"Tree">
 					description = <"@ internal @">
 				>
-				["at0010"] = <
+				["at0004"] = <
 					text = <"ASAT">
 					description = <"">
 				>
-				["at0011"] = <
-					text = <"Over referense">
+				["at0005"] = <
+					text = <"Övre referens">
 					description = <"">
 				>
-				["at0012"] = <
-					text = <"PK-INR">
-					description = <"">
-				>
-				["at0013"] = <
+				["at0007"] = <
 					text = <"TPK">
 					description = <"">
 				>
-				["at0014"] = <
-					text = <"GUCI-Score">
+				["at0008"] = <
+					text = <"GUCI-score">
 					description = <"">
 				>
-				["at0015"] = <
-					text = <"Score">
+				["at0009"] = <
+					text = <"PK-INR">
 					description = <"">
 				>
 			>
