@@ -1,0 +1,127 @@
+archetype (adl_version=1.4; uid=cdfc8831-8f7f-4fef-8698-7d9a61b8a4d8)
+	openEHR-EHR-OBSERVATION.guci_index_test.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-02-20">
+		["name"] = <"Mahmoud Elachi">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"mel.achi@gmail.com">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To support non-invasive assessment of cirrhosis risk and to estimate likelihood of sustained virological response to antiviral therapy.">
+			keywords = <"Chronic hepatitis C, liver cirrhosis, fibrosis assessment, GUCI, non-invasive index, antiviral response prediction", ...>
+			copyright = <"Use © Cambio CDS ">
+			use = <"The GUCI is used in adult patients with chronic hepatitis C to estimate the probability of liver cirrhosis using routine laboratory parameters and to support risk stratification and prediction of sustained virological response prior to antiviral therapy.">
+			misuse = <"The GUCI is not validated for other causes of liver disease, acute liver conditions, or pediatric populations, and it should not replace liver biopsy, elastography, or comprehensive clinical assessment when indicated.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"https://pubmed.ncbi.nlm.nih.gov/16109665/
+https://pubmed-ncbi-nlm-nih-gov.proxybibl.vgregion.se/18938750/">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"9af5ab55f4673d50ae9d27e5630dac8e">
+		["build_uid"] = <"8f6add28-a2c6-3f0b-bbef-0e417dac1f68">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- guci_index_test
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- ASAT
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Over referense
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- PK-INR
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- TPK
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- GUCI-Score
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"guci_index_test">
+					description = <"Göteborg University Cirrhosis Index (GUCI)
+A clinical decision guideline for estimating the probability of liver cirrhosis in adult patients with chronic hepatitis C using a laboratory-based index derived from AST, AST upper reference limit, INR, and platelet count.">
+					comment = <"Original version, c 2005">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0010"] = <
+					text = <"ASAT">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Over referense">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"PK-INR">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"TPK">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"GUCI-Score">
+					description = <"">
+				>
+			>
+		>
+	>
