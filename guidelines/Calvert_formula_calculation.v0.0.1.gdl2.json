@@ -1,0 +1,299 @@
+{
+  "uuid" : "",
+  "id" : "Calvert_formula_calculation.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Kevin Arjona",
+      "email" : "kevin.arjona@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-03-13"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate the required Carboplatin dose to reach a target AUC based on the patient's renal function.",
+        "keywords" : [
+          "carboplatin",
+          "calvert",
+          "AUC",
+          "GFR",
+          "chemotherapy",
+          "oncology",
+          "dosing"
+        ],
+        "use" : "Use to calculate the dose of carboplatin  when Target AUC and GFR are known.\nFormula: \nChildren &lt; 20: clearance = 42.5 * height / serum creatinine * (weight / 70)⁰.⁷\n\nMen ≥ 20 years: clearance = 1.23 * (140 - age) * weight / serum creatinine\n\nWomen ≥ 20 years: clearance = 1.04 * (140 - age) * weight / serum creatinine\n\ndose = (clearance + 25) * AUC\n\nClearance in mL/min, height in cm, serum creatinine in µmol/L, weight in kg, age in years, AUC in mg/mL/min.\n",
+        "misuse" : "Not to be used for calculating doses of chemotherapy agents other than Carboplatin. ",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "van Warmerdam LJ, Rodenhuis S, ten Bokkel Huinink WW, Maes RA, Beijnen JH. The use of the Calvert formula to determine the optimal carboplatin dosage. J Cancer Res Clin Oncol. 1995;121(8):478-86. doi: 10.1007/BF01218365. PMID: 7642691; PMCID: PMC12200317.\n\nCalvert AH, Newell DR, Gumbrell LA, O'Reilly S, Burnell M, Boxall FE, Siddik ZH, Judson IR, Gore ME, Wiltshaw E. Carboplatin dosage: prospective evaluation of a simple formula based on renal function. J Clin Oncol. 1989 Nov;7(11):1748-56. doi: 10.1200/JCO.1989.7.11.1748. PMID: 2681557.",
+      "en" : "Calculation of the Carboplatin total dose using Calvert's formula."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0005",
+              "local::at0006"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "a"
+            ]
+          }
+        }
+      },
+      "gt0005" : {
+        "id" : "gt0005",
+        "model_id" : "openEHR-EHR-OBSERVATION.body_weight.v2",
+        "template_id" : "openEHR-EHR-OBSERVATION.body_weight.v2",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0002]/events[at0003]/data[at0001]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "kg"
+            ]
+          }
+        }
+      },
+      "gt0007" : {
+        "id" : "gt0007",
+        "model_id" : "openEHR-EHR-OBSERVATION.height.v2",
+        "template_id" : "openEHR-EHR-OBSERVATION.height.v2",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0008" : {
+            "id" : "gt0008",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "cm"
+            ]
+          }
+        }
+      },
+      "gt0009" : {
+        "id" : "gt0009",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0010" : {
+            "id" : "gt0010",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "µmol/L"
+            ]
+          }
+        }
+      },
+      "gt0011" : {
+        "id" : "gt0011",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0012" : {
+            "id" : "gt0012",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mg/ml/min"
+            ]
+          }
+        }
+      },
+      "gt0017" : {
+        "id" : "gt0017",
+        "model_id" : "openEHR-EHR-OBSERVATION.carboplatin_auc_calculator.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.carboplatin_auc_calculator.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0018" : {
+            "id" : "gt0018",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mg"
+            ]
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "ml/min"
+            ]
+          }
+        }
+      }
+    },
+    "pre_conditions" : [
+      "$gt0003|Gender|!=null",
+      "$gt0004|Age|!=null",
+      "$gt0006|Weight|!=null",
+      "$gt0008|Height/Length|!=null",
+      "$gt0010|Serum Creatinine|!=null",
+      "$gt0012|AUC|!=null"
+    ],
+    "rules" : {
+      "gt0016" : {
+        "id" : "gt0016",
+        "priority" : 4,
+        "when" : [
+          "$gt0004|Age|.magnitude<20"
+        ],
+        "then" : [
+          "$gt0021|Creatinine clearance|=42.5*($gt0008|Height/Length|.magnitude/$gt0010|Serum Creatinine|.magnitude)*($gt0006|Weight|.magnitude/70)^0.7"
+        ]
+      },
+      "gt0019" : {
+        "id" : "gt0019",
+        "priority" : 3,
+        "when" : [
+          "$gt0004|Age|.magnitude>=20",
+          "$gt0003|Gender|==local::at0005|Male|"
+        ],
+        "then" : [
+          "$gt0021|Creatinine clearance|.magnitude=1.23*(140-$gt0004|Age|.magnitude)*($gt0006|Weight|.magnitude/$gt0010|Serum Creatinine|.magnitude)"
+        ]
+      },
+      "gt0020" : {
+        "id" : "gt0020",
+        "priority" : 2,
+        "when" : [
+          "$gt0004|Age|.magnitude>=20",
+          "$gt0003|Gender|==local::at0006|Female|"
+        ],
+        "then" : [
+          "$gt0021|Creatinine clearance|=1.04*(140-$gt0004|Age|.magnitude)*($gt0006|Weight|.magnitude/$gt0010|Serum Creatinine|.magnitude)"
+        ]
+      },
+      "gt0015" : {
+        "id" : "gt0015",
+        "priority" : 1,
+        "when" : [
+          "$gt0021|Creatinine clearance|!=null"
+        ],
+        "then" : [
+          "$gt0018|Carboplatin dosage|=($gt0021|Creatinine clearance|+25)*$gt0012|AUC|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Calvert formula calculation",
+            "description" : "Calculation of the Carboplatin total dose using Calvert's formula."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.basic_demographic.v1"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Gender"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Age"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "openEHR-EHR-OBSERVATION.body_weight.v2"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "Weight"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "openEHR-EHR-OBSERVATION.height.v2"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Height/Length"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Serum Creatinine"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "AUC"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "Carboplatin dosage",
+            "description" : "Dose = (clearance + 25) * AUC"
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "openEHR-EHR-OBSERVATION.carboplatin_auc_calculator.v0"
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "Carboplatin dosage"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "Children < 20: clearance ",
+            "description" : "Children < 20: clearance = 42.5 * height / serum creatinine * (weight / 70)⁰⁷."
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "Men ≥ 20 years: clearance",
+            "description" : "Men ≥ 20 years: clearance = 1.23 * (140 - age) * weight / serum creatinine"
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "Women ≥ 20 years: clearance",
+            "description" : "Women ≥ 20 years: clearance = 1.04 * (140 - age) * weight / serum creatinine."
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "Creatinine clearance"
+          }
+        }
+      }
+    }
+  }
+}
