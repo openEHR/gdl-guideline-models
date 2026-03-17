@@ -1,0 +1,326 @@
+{
+  "uuid" : "724ab2b8-03fc-4021-ad03-0f188b45028d",
+  "id" : "MEWS.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Konstantinos Kalliamvakos",
+      "email" : "Konstantinos.Kalliamvakos@cambio.se",
+      "organisation" : "Cambio Healthcare Systems",
+      "date" : "2016-09-26"
+    },
+    "other_contributors" : [
+      "Dr Niklas Skyttberg",
+      "Dennis Forslund",
+      "Jimmy Axelsson",
+      "Daniel Keszthelyi",
+      "Kevin Arjona"
+    ],
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "sv" : {
+        "id" : "sv",
+        "purpose" : "Att baserat på kliniska parametrar identifiera patienter med hög risk att försämras och med hjälp av denna information vidta adekvata förebyggande åtgärder.\r\n",
+        "keywords" : [
+          "modified early warning score",
+          "MEWS",
+          "vitalparameter",
+          "vitala parametrar"
+        ],
+        "use" : "Använd för att baserat på kliniska parametrar identifiera patienter med hög risk att försämras och med hjälp av denna information vidta adekvata förebyggande åtgärder.\r\n\r\nModified Early Warning Score (MEWS) baseras på fem parametrar som enkelt kontrolleras genom klinisk undersökning:\r\n\r\n- Andningsfrekvens\r\n- Systoliskt blodtryck\r\n- Hjärtfrekvens\r\n- Medvetandegrad (AVPU)\r\n- Kroppstemperatur\r\n\r\nEn total poäng om ≥5p och/eller 3p för separat parameter bör föranleda skyndsam bedömning av läkare då det är förenligt med försämrande tillstånd och ökad risk för hjärtstopp och behov av intensivvård.\r\n\r\nFlertalet sjukhus använder lokalt anpassade versioner av MEWS där diures inkluderas - denna modell kan enkelt justeras för att tillmötesgå specifika önskemål.",
+        "misuse" : "Får ej användas för att registrera National Early Warning Score (NEWS). ",
+        "copyright" : "Cambio Healthcare Systems"
+      },
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate a score based on categorising physiological readings and observations, as a simple method to support objective assessment of the degree of illness in an unwell patient.",
+        "keywords" : [
+          "MEWS",
+          "pulse",
+          "urine",
+          "pressure",
+          "blood",
+          "signs",
+          "vital",
+          "early",
+          "warning",
+          "score",
+          "modified"
+        ],
+        "use" : "Use to record a composite score to support assessmennt of the degree of illness in an unwell patient.\r\n\r\nThe Modified Early Warning Score (MEWS) is based on five parameters easily controlled for through simple bedside examination:\r\n\r\n- Respiration rate\r\n- Systolic blood pressure\r\n- Heart rate\r\n- Level of consciousness (AVPU)\r\n- Body temperature\r\n\r\nA total score of ≥5p and/or 3p of one parameter should result in higher level of care as it is consistent with deteriorating state of the patient and increased risk of cardiac arrest and need for intensive care. \r\n\r\nSeveral hospitals use locally modified versions of the instrument including urine output - the model can be adjusted to accommodate specific requests.",
+        "misuse" : "Not to be used to record National Early Warning Score (NEWS). ",
+        "copyright" : "Cambio Healthcare Systems"
+      }
+    },
+    "other_details" : {
+      "references" : "Subbe CP, Kruger M, Rutherford P, Gemmel L. Validation of a modified Early Warning Score in medical admissions. QJM. 2001 Oct;94(10):521-6. doi: 10.1093/qjmed/94.10.521. PMID: 11588210.\n\nModified Early Warning Scale, MEWS. Capio S:t Görans Sjukhus. Version 4.0. 2011-09-05",
+      "en" : "MEWS acts as a 'track and trigger' system (reaction system) that is used to provide an objective indication of the degree of disease in a patient, so that actions can be put in at the right time. The MEWS score must always lead to a decision to continue treatment plan. With MEWS-measurements and clear action plans, the possibility increases of both detecting and treating failing patients in time."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0041" : {
+        "id" : "gt0041",
+        "model_id" : "openEHR-EHR-OBSERVATION.mews.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.mews.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0042" : {
+            "id" : "gt0042",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0005",
+              "1|local::at0006",
+              "2|local::at0007",
+              "3|local::at0008"
+            ]
+          },
+          "gt0043" : {
+            "id" : "gt0043",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0009]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0010",
+              "1|local::at0011",
+              "2|local::at0012",
+              "3|local::at0013"
+            ]
+          },
+          "gt0044" : {
+            "id" : "gt0044",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0014]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0015",
+              "1|local::at0016",
+              "2|local::at0017",
+              "3|local::at0018"
+            ]
+          },
+          "gt0045" : {
+            "id" : "gt0045",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0019]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0020",
+              "2|local::at0022"
+            ]
+          },
+          "gt0046" : {
+            "id" : "gt0046",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0023]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0024",
+              "1|local::at0025",
+              "2|local::at0026",
+              "3|local::at0027"
+            ]
+          },
+          "gt0047" : {
+            "id" : "gt0047",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0028]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0029",
+              "1|local::at0030",
+              "2|local::at0031",
+              "3|local::at0033"
+            ]
+          }
+        }
+      },
+      "gt0048" : {
+        "id" : "gt0048",
+        "model_id" : "openEHR-EHR-OBSERVATION.mews.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.mews.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0049" : {
+            "id" : "gt0049",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0032]",
+            "data_type" : "DV_COUNT"
+          }
+        }
+      }
+    },
+    "pre_conditions" : [
+      "$gt0042|Respiratory Rate|!=null",
+      "$gt0043|Heart Rate|!=null",
+      "$gt0044|Systolic Blood Pressure|!=null",
+      "$gt0045|Temperature|!=null",
+      "$gt0046|Level of consciousness|!=null",
+      "$gt0047|Urine output/24 hr|!=null"
+    ],
+    "rules" : {
+      "gt0040" : {
+        "id" : "gt0040",
+        "priority" : 1,
+        "when" : [
+          "$gt0042|Respiratory Rate|!=null",
+          "$gt0043|Heart Rate|!=null",
+          "$gt0044|Systolic Blood Pressure|!=null",
+          "$gt0045|Temperature|!=null",
+          "$gt0046|Level of consciousness|!=null",
+          "$gt0047|Urine output/24 hr|!=null"
+        ],
+        "then" : [
+          "$gt0049|Total score|=$gt0042|Respiratory Rate|.value+$gt0043|Heart Rate|.value+$gt0044|Systolic Blood Pressure|.value+$gt0045|Temperature|.value+$gt0046|Level of consciousness|.value+$gt0047|Urine output/24 hr|.value"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "sv" : {
+        "id" : "sv",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Modified Early Warning Score",
+            "description" : "Modified Early Warning Score (MEWS) används för att baserat på kliniska parametrar identifiera patienter med hög risk att försämras och med hjälp av denna information vidta adekvata förebyggande åtgärder."
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Urinproduktion /24 hr"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "Urinproduktion /24 hr"
+          },
+          "gt0037" : {
+            "id" : "gt0037",
+            "text" : "*(en) CDS urine output to 1"
+          },
+          "gt0038" : {
+            "id" : "gt0038",
+            "text" : "*(en) CDS urine output to 2"
+          },
+          "gt0039" : {
+            "id" : "gt0039",
+            "text" : "*(en) CDS urine output to 3"
+          },
+          "gt0040" : {
+            "id" : "gt0040",
+            "text" : "*(en) Calculate total score",
+            "description" : "*(en) calculate mews total score"
+          },
+          "gt0041" : {
+            "id" : "gt0041",
+            "text" : "*(en) openEHR-EHR-OBSERVATION.mews.v1"
+          },
+          "gt0042" : {
+            "id" : "gt0042",
+            "text" : "Andningsfrekvens (/min)"
+          },
+          "gt0043" : {
+            "id" : "gt0043",
+            "text" : "Puls (/min)"
+          },
+          "gt0044" : {
+            "id" : "gt0044",
+            "text" : "Systoliskt blodtryck (mmHg)"
+          },
+          "gt0045" : {
+            "id" : "gt0045",
+            "text" : "Temperatur (°C)"
+          },
+          "gt0046" : {
+            "id" : "gt0046",
+            "text" : "Medvetandegrad (AVPU)"
+          },
+          "gt0047" : {
+            "id" : "gt0047",
+            "text" : "Urinproduktion /24 hr"
+          },
+          "gt0048" : {
+            "id" : "gt0048",
+            "text" : "*(en) openEHR-EHR-OBSERVATION.mews.v0"
+          },
+          "gt0049" : {
+            "id" : "gt0049",
+            "text" : "Total poäng"
+          }
+        }
+      },
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Modified Early Warning Score",
+            "description" : "MEWS acts as a 'track and trigger' system (reaction system) that is used to provide an objective indication of the degree of disease in a patient, so that actions can be put in at the right time. The MEWS score must always lead to a decision to continue treatment plan. With MEWS-measurements and clear action plans, the possibility increases of both detecting and treating failing patients in time."
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Total urine output/24 hr",
+            "description" : "*"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "Urine output/24 hr",
+            "description" : "*"
+          },
+          "gt0037" : {
+            "id" : "gt0037",
+            "text" : "CDS urine output to 1"
+          },
+          "gt0038" : {
+            "id" : "gt0038",
+            "text" : "CDS urine output to 2"
+          },
+          "gt0039" : {
+            "id" : "gt0039",
+            "text" : "CDS urine output to 3"
+          },
+          "gt0040" : {
+            "id" : "gt0040",
+            "text" : "Total score",
+            "description" : "calculate mews total score"
+          },
+          "gt0041" : {
+            "id" : "gt0041",
+            "text" : "openEHR-EHR-OBSERVATION.mews.v1"
+          },
+          "gt0042" : {
+            "id" : "gt0042",
+            "text" : "Respiratory Rate"
+          },
+          "gt0043" : {
+            "id" : "gt0043",
+            "text" : "Heart Rate"
+          },
+          "gt0044" : {
+            "id" : "gt0044",
+            "text" : "Systolic Blood Pressure"
+          },
+          "gt0045" : {
+            "id" : "gt0045",
+            "text" : "Temperature"
+          },
+          "gt0046" : {
+            "id" : "gt0046",
+            "text" : "Level of consciousness"
+          },
+          "gt0047" : {
+            "id" : "gt0047",
+            "text" : "Urine output/24 hr"
+          },
+          "gt0048" : {
+            "id" : "gt0048",
+            "text" : "openEHR-EHR-OBSERVATION.mews.v0"
+          },
+          "gt0049" : {
+            "id" : "gt0049",
+            "text" : "Total score"
+          }
+        }
+      }
+    }
+  }
+}
