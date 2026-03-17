@@ -1,0 +1,107 @@
+guidelines:
+  "1": Calvert_formula_calculation.v0.0.1
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Gender missing (negative test).
+    input:
+      "1":
+        gt0004|Age: 21,a
+        gt0006|Weight: 70,kg
+        gt0008|Height/Length: 176,cm
+        gt0010|Serum Creatinine: 70,µmol/L
+        gt0012|AUC: 2,mg/ml/min
+    expected_output:
+      "1": {}
+  - id: 03. Age missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0006|Weight: 70,kg
+        gt0008|Height/Length: 176,cm
+        gt0010|Serum Creatinine: 70,µmol/L
+        gt0012|AUC: 2,mg/ml/min
+    expected_output:
+      "1": {}
+  - id: 04. Weight missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0004|Age: 21,a
+        gt0008|Height/Length: 176,cm
+        gt0010|Serum Creatinine: 70,µmol/L
+        gt0012|AUC: 2,mg/ml/min
+    expected_output:
+      "1": {}
+  - id: 05. Height/Length missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0004|Age: 21,a
+        gt0006|Weight: 70,kg
+        gt0010|Serum Creatinine: 70,µmol/L
+        gt0012|AUC: 2,mg/ml/min
+    expected_output:
+      "1": {}
+  - id: 06. Serum Creatinine missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0004|Age: 21,a
+        gt0006|Weight: 70,kg
+        gt0008|Height/Length: 176,cm
+        gt0012|AUC: 2,mg/ml/min
+    expected_output:
+      "1": {}
+  - id: 07. AUC missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0004|Age: 21,a
+        gt0006|Weight: 70,kg
+        gt0008|Height/Length: 176,cm
+        gt0010|Serum Creatinine: 70,µmol/L
+    expected_output:
+      "1": {}
+  - id: 08. Male 16 years old
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0004|Age: 16,a
+        gt0006|Weight: 70,kg
+        gt0008|Height/Length: 176,cm
+        gt0010|Serum Creatinine: 70,µmol/L
+        gt0012|AUC: 2,mg/ml/min
+    expected_output:
+      "1":
+        gt0018|Carboplatin dosage: "263.69"
+        gt0021|Creatinine clearance: "106.845"
+  - id: 09. Male 31 years old
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0004|Age: 31,a
+        gt0006|Weight: 70,kg
+        gt0008|Height/Length: 176,cm
+        gt0010|Serum Creatinine: 70,µmol/L
+        gt0012|AUC: 2,mg/ml/min
+    expected_output:
+      "1":
+        gt0018|Carboplatin dosage: "310.0"
+        gt0021|Creatinine clearance: "134"
+  - id: 10. Female 31 years old
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 31,a
+        gt0006|Weight: 70,kg
+        gt0008|Height/Length: 176,cm
+        gt0010|Serum Creatinine: 70,µmol/L
+        gt0012|AUC: 2,mg/ml/min
+    expected_output:
+      "1":
+        gt0018|Carboplatin dosage: "276.72"
+        gt0021|Creatinine clearance: "113.36"
