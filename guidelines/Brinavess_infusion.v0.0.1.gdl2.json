@@ -1,0 +1,158 @@
+{
+  "uuid" : "",
+  "id" : "Brinavess_infusion.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Kevin Arjona",
+      "email" : "kevin.arjona@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-03-17"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate and record the appropriate initial and, if needed, secondary dose of Brinavess for the rapid conversion of recent onset atrial fibrillation to sinus rhythm.",
+        "keywords" : [
+          "vernakalant",
+          "dosage",
+          "brinavess",
+          "atrial",
+          "fibrillation",
+          "dosing",
+          "antiarrhythmic",
+          "infusion"
+        ],
+        "use" : "Use to calculate the weight-based dosing for Brinavess.\n\nInitial dose: 3 mg/kg.\n\nSecond dose (if sinus rhythm is not restored 15 minutes after the first infusion): 2 mg/kg.\n",
+        "misuse" : "Not to be used for patients with severe aortic stenosis, systolic blood pressure &lt; 100 mmHg, or heart failure (NYHA III-IV). Not to be used for children (&lt; 18 years).",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "FASS Vårdpersonal [Internet]. Brinavess (Vernakalant); [cited 2026 Mar 17]. Available from: https://fass.se/health/product/20090911000033/fass-text\n\nInternetmedicin.se - Brinavessdos kalkylator. Available from: https://verktyg.internetmedicin.se/kalkylatorer/brinavessdos",
+      "en" : "Calculation of the recommended first and second infusion doses of Brinavess (vernakalant) based on patient body weight."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-CLUSTER.dosage.v2",
+        "template_id" : "openEHR-EHR-CLUSTER.dosage.v2",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/items[at0144]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "g",
+              "mg"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/items[at0181]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "g",
+              "mg"
+            ]
+          }
+        }
+      },
+      "gt0005" : {
+        "id" : "gt0005",
+        "model_id" : "openEHR-EHR-OBSERVATION.body_weight.v2",
+        "template_id" : "openEHR-EHR-OBSERVATION.body_weight.v2",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0002]/events[at0003]/data[at0001]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "kg"
+            ]
+          }
+        }
+      }
+    },
+    "pre_conditions" : [
+      "$gt0006|Weight|!=null"
+    ],
+    "rules" : {
+      "gt0007" : {
+        "id" : "gt0007",
+        "priority" : 2,
+        "when" : [
+          "$gt0006|Weight|.magnitude<113"
+        ],
+        "then" : [
+          "$gt0003|Infusion 1 (ml/h)|=(($gt0006|Weight|.magnitude*3)/4)*6",
+          "$gt0004|Infusion 2 (ml/h)|=(($gt0006|Weight|.magnitude*2)/4)*6"
+        ]
+      },
+      "gt0008" : {
+        "id" : "gt0008",
+        "priority" : 1,
+        "when" : [
+          "$gt0006|Weight|.magnitude>=113"
+        ],
+        "then" : [
+          "$gt0003|Infusion 1 (ml/h)|=(339/4)*6",
+          "$gt0004|Infusion 2 (ml/h)|=(226/4)*6"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Brinavess infusion",
+            "description" : "Calculation of the recommended first and second infusion doses of Brinavess (vernakalant) based on patient body weight."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-CLUSTER.dosage.v2"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Infusion 1 (ml/h)"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Infusion 2 (ml/h)"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "openEHR-EHR-OBSERVATION.body_weight.v2"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "Weight"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Infusion formula  <113 kg",
+            "description" : "The drug is diluted to a concentration of 4 mg/ml before infusion for 10 minutes"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Infusion formula > 113 kg",
+            "description" : "The drug is diluted to a concentration of 4 mg/ml before infusion for 10 minutes"
+          }
+        }
+      }
+    }
+  }
+}
