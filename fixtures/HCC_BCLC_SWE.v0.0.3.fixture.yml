@@ -1,0 +1,865 @@
+guidelines:
+  "1": HCC_BCLC_SWE.v0.0.3
+test_cases:
+  - id: 01. gt0021 - ECOG 3, not transplant candidate, Terminal / BSC
+    input:
+      "1":
+        gt0017|ECOG performance status: 3|local::at0008|Capable of only limited
+          selfcare; confined to bed or chair more than 50% of waking hours.|
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0008|Terminal|
+        gt0020|Treatment recommendation: local::at0016|Best supportive care|
+  - id: 02. gt0021 - ECOG 4, not transplant candidate, Terminal / BSC
+    input:
+      "1":
+        gt0017|ECOG performance status: 4|local::at0009|Completely disabled; cannot
+          carry on any selfcare; totally confined to bed or chair.|
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0008|Terminal|
+        gt0020|Treatment recommendation: local::at0016|Best supportive care|
+  - id: 03. gt0021 - ECOG 5 (dead), not transplant candidate, Terminal / BSC
+    input:
+      "1":
+        gt0017|ECOG performance status: 5|local::at0010|Dead|
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0008|Terminal|
+        gt0020|Treatment recommendation: local::at0016|Best supportive care|
+  - id: 04. gt0021 - Severe comorbidity + CP 8, ECOG 0, not transplant candidate,
+      Terminal / BSC
+    input:
+      "1":
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: true
+        gt0015|Child Pugh total score: 8
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0008|Terminal|
+        gt0020|Treatment recommendation: local::at0016|Best supportive care|
+  - id: 05. gt0021 - Severe comorbidity + CP 9, ECOG 1, not transplant candidate,
+      Terminal / BSC
+    input:
+      "1":
+        gt0017|ECOG performance status: 1|local::at0006|Restricted in physically
+          strenuous activity but ambulatory and able to carry out work of a
+          light or sedentary nature, e.g., light house work, office work.|
+        gt0009|Severe comorbidity limiting therapy: true
+        gt0015|Child Pugh total score: 9
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0008|Terminal|
+        gt0020|Treatment recommendation: local::at0016|Best supportive care|
+  - id: 06. gt0021 - Severe comorbidity + CP 8, ECOG 2, not transplant candidate,
+      Terminal / BSC
+    input:
+      "1":
+        gt0017|ECOG performance status: 2|local::at0007|Ambulatory and capable of all
+          selfcare but unable to carry out any work activities; up and about
+          more than 50% of waking hours.|
+        gt0009|Severe comorbidity limiting therapy: true
+        gt0015|Child Pugh total score: 8
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0008|Terminal|
+        gt0020|Treatment recommendation: local::at0016|Best supportive care|
+  - id: 07. gt0021 - ECOG 3 but transplant candidate, no output (negative test)
+    input:
+      "1":
+        gt0017|ECOG performance status: 3|local::at0008|Capable of only limited
+          selfcare; confined to bed or chair more than 50% of waking hours.|
+        gt0010|Transplant candidate: true
+    expected_output:
+      "1": {}
+  - id: 08. gt0021 - Severe comorbidity but CP 7 (below threshold), ECOG 0, not
+      transplant candidate, no output (negative test)
+    input:
+      "1":
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: true
+        gt0015|Child Pugh total score: 7
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1": {}
+  - id: 09. gt0025 - Diffuse growth, ECOG 0, CP 5, Advanced / Systemic therapy
+    input:
+      "1":
+        gt0007|Diffuse tumour growth present: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0015|Child Pugh total score: 5
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0007|Advanced|
+        gt0020|Treatment recommendation: local::at0015|Systemic therapy|
+  - id: 10. gt0025 - Extrahepatic metastasis, ECOG 1, CP 7, Advanced / Systemic
+      therapy
+    input:
+      "1":
+        gt0007|Diffuse tumour growth present: false
+        gt0006|Extrahepatic metastasis present: true
+        gt0017|ECOG performance status: 1|local::at0006|Restricted in physically
+          strenuous activity but ambulatory and able to carry out work of a
+          light or sedentary nature, e.g., light house work, office work.|
+        gt0015|Child Pugh total score: 7
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0007|Advanced|
+        gt0020|Treatment recommendation: local::at0015|Systemic therapy|
+  - id: 11. gt0025 - Diffuse growth + extrahepatic metastasis, ECOG 2, CP 6,
+      Advanced / Systemic therapy
+    input:
+      "1":
+        gt0007|Diffuse tumour growth present: true
+        gt0006|Extrahepatic metastasis present: true
+        gt0017|ECOG performance status: 2|local::at0007|Ambulatory and capable of all
+          selfcare but unable to carry out any work activities; up and about
+          more than 50% of waking hours.|
+        gt0015|Child Pugh total score: 6
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0007|Advanced|
+        gt0020|Treatment recommendation: local::at0015|Systemic therapy|
+  - id: 12. gt0025 - Diffuse growth, ECOG 0, CP 8 (above threshold), no output
+      (negative test)
+    input:
+      "1":
+        gt0007|Diffuse tumour growth present: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0015|Child Pugh total score: 8
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1": {}
+  - id: 13. gt0025 - Diffuse growth, ECOG 3, CP 5, gt0021 fires instead (Terminal /
+      BSC) (negative test)
+    input:
+      "1":
+        gt0007|Diffuse tumour growth present: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0017|ECOG performance status: 3|local::at0008|Capable of only limited
+          selfcare; confined to bed or chair more than 50% of waking hours.|
+        gt0015|Child Pugh total score: 5
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0008|Terminal|
+        gt0020|Treatment recommendation: local::at0016|Best supportive care|
+  - id: 14. gt0026 - Thrombus, no extrahepatic, no diffuse, ECOG 0, CP 5, Advanced /
+      SIRT
+    input:
+      "1":
+        gt0027|Macroscopic tumour thrombus present: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0007|Diffuse tumour growth present: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0015|Child Pugh total score: 5
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0007|Advanced|
+        gt0020|Treatment recommendation: local::at0014|SIRT|
+  - id: 15. gt0026 - Thrombus, no extrahepatic, no diffuse, ECOG 1, CP 7, Advanced /
+      SIRT
+    input:
+      "1":
+        gt0027|Macroscopic tumour thrombus present: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0007|Diffuse tumour growth present: false
+        gt0017|ECOG performance status: 1|local::at0006|Restricted in physically
+          strenuous activity but ambulatory and able to carry out work of a
+          light or sedentary nature, e.g., light house work, office work.|
+        gt0015|Child Pugh total score: 7
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0007|Advanced|
+        gt0020|Treatment recommendation: local::at0014|SIRT|
+  - id: 16. gt0026 - Thrombus, no extrahepatic, no diffuse, ECOG 2, CP 6, Advanced /
+      SIRT
+    input:
+      "1":
+        gt0027|Macroscopic tumour thrombus present: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0007|Diffuse tumour growth present: false
+        gt0017|ECOG performance status: 2|local::at0007|Ambulatory and capable of all
+          selfcare but unable to carry out any work activities; up and about
+          more than 50% of waking hours.|
+        gt0015|Child Pugh total score: 6
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0007|Advanced|
+        gt0020|Treatment recommendation: local::at0014|SIRT|
+  - id: 17. gt0026 - Thrombus + extrahepatic metastasis, gt0025 fires (Advanced /
+      Systemic) (negative test)
+    input:
+      "1":
+        gt0027|Macroscopic tumour thrombus present: true
+        gt0006|Extrahepatic metastasis present: true
+        gt0007|Diffuse tumour growth present: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0015|Child Pugh total score: 6
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0007|Advanced|
+        gt0020|Treatment recommendation: local::at0015|Systemic therapy|
+  - id: 18. gt0026 - Thrombus + diffuse growth, gt0025 fires (Advanced / Systemic)
+      (negative test)
+    input:
+      "1":
+        gt0027|Macroscopic tumour thrombus present: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0007|Diffuse tumour growth present: true
+        gt0017|ECOG performance status: 1|local::at0006|Restricted in physically
+          strenuous activity but ambulatory and able to carry out work of a
+          light or sedentary nature, e.g., light house work, office work.|
+        gt0015|Child Pugh total score: 5
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0007|Advanced|
+        gt0020|Treatment recommendation: local::at0015|Systemic therapy|
+  - id: 19. gt0026 - Thrombus, CP 8 (above threshold), no output (negative test)
+    input:
+      "1":
+        gt0027|Macroscopic tumour thrombus present: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0007|Diffuse tumour growth present: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0015|Child Pugh total score: 8
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1": {}
+  - id: 20. gt0024 - Multifocal, main trunk thrombosis, confined, ECOG 0, CP 6,
+      Intermediate / SIRT
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0011|Tumour burden within transplant criteria: false
+        gt0004|Number of tumours: local::at0010|multifocal (>3)|
+        gt0008|Portal vein status: local::at0017|main trunk thrombosis|
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 6
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0006|Intermediate|
+        gt0020|Treatment recommendation: local::at0014|SIRT|
+  - id: 21. gt0024 - Multifocal, main trunk thrombosis, confined, ECOG 1, CP 7,
+      Intermediate / SIRT
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0011|Tumour burden within transplant criteria: false
+        gt0004|Number of tumours: local::at0010|multifocal (>3)|
+        gt0008|Portal vein status: local::at0017|main trunk thrombosis|
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 1|local::at0006|Restricted in physically
+          strenuous activity but ambulatory and able to carry out work of a
+          light or sedentary nature, e.g., light house work, office work.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 7
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0006|Intermediate|
+        gt0020|Treatment recommendation: local::at0014|SIRT|
+  - id: 22. gt0024 - Multifocal, main trunk thrombosis, confined, ECOG 2, CP 5,
+      Intermediate / SIRT
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0011|Tumour burden within transplant criteria: false
+        gt0004|Number of tumours: local::at0010|multifocal (>3)|
+        gt0008|Portal vein status: local::at0017|main trunk thrombosis|
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 2|local::at0007|Ambulatory and capable of all
+          selfcare but unable to carry out any work activities; up and about
+          more than 50% of waking hours.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 5
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0006|Intermediate|
+        gt0020|Treatment recommendation: local::at0014|SIRT|
+  - id: 23. gt0024 - Peripheral thrombosis (not main trunk), gt0035 fires
+      (Intermediate / TACE) (negative test)
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0011|Tumour burden within transplant criteria: false
+        gt0004|Number of tumours: local::at0010|multifocal (>3)|
+        gt0008|Portal vein status: local::at0016|peripheral thrombosis|
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 6
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0006|Intermediate|
+        gt0020|Treatment recommendation: local::at0013|TACE|
+  - id: 24. gt0024 - Main trunk thrombosis but CP 8 (above threshold), no output
+      (negative test)
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0011|Tumour burden within transplant criteria: false
+        gt0004|Number of tumours: local::at0010|multifocal (>3)|
+        gt0008|Portal vein status: local::at0017|main trunk thrombosis|
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 8
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1": {}
+  - id: 25. gt0024 - Main trunk thrombosis but severe comorbidity, no output
+      (negative test)
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0011|Tumour burden within transplant criteria: false
+        gt0004|Number of tumours: local::at0010|multifocal (>3)|
+        gt0008|Portal vein status: local::at0017|main trunk thrombosis|
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: true
+        gt0015|Child Pugh total score: 6
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1": {}
+  - id: 26. gt0035 - Multifocal, no thrombosis, confined, ECOG 0, CP 6, Intermediate
+      / TACE
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0011|Tumour burden within transplant criteria: false
+        gt0004|Number of tumours: local::at0010|multifocal (>3)|
+        gt0008|Portal vein status: local::at0015|none|
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 6
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0006|Intermediate|
+        gt0020|Treatment recommendation: local::at0013|TACE|
+  - id: 27. gt0035 - Multifocal, peripheral thrombosis, confined, ECOG 1, CP 7,
+      Intermediate / TACE
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0011|Tumour burden within transplant criteria: false
+        gt0004|Number of tumours: local::at0010|multifocal (>3)|
+        gt0008|Portal vein status: local::at0016|peripheral thrombosis|
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 1|local::at0006|Restricted in physically
+          strenuous activity but ambulatory and able to carry out work of a
+          light or sedentary nature, e.g., light house work, office work.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 7
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0006|Intermediate|
+        gt0020|Treatment recommendation: local::at0013|TACE|
+  - id: 28. gt0035 - Multifocal, no thrombosis, confined, ECOG 2, CP 5, Intermediate
+      / TACE
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0011|Tumour burden within transplant criteria: false
+        gt0004|Number of tumours: local::at0010|multifocal (>3)|
+        gt0008|Portal vein status: local::at0015|none|
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 2|local::at0007|Ambulatory and capable of all
+          selfcare but unable to carry out any work activities; up and about
+          more than 50% of waking hours.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 5
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0006|Intermediate|
+        gt0020|Treatment recommendation: local::at0013|TACE|
+  - id: 29. gt0035 - Main trunk thrombosis, gt0024 fires (Intermediate / SIRT)
+      (negative test)
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0011|Tumour burden within transplant criteria: false
+        gt0004|Number of tumours: local::at0010|multifocal (>3)|
+        gt0008|Portal vein status: local::at0017|main trunk thrombosis|
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 6
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0006|Intermediate|
+        gt0020|Treatment recommendation: local::at0014|SIRT|
+  - id: 30. gt0035 - CP 8 (above threshold), no output (negative test)
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0011|Tumour burden within transplant criteria: false
+        gt0004|Number of tumours: local::at0010|multifocal (>3)|
+        gt0008|Portal vein status: local::at0015|none|
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 8
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1": {}
+  - id: 31. gt0035 - Severe comorbidity, no output (negative test)
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0011|Tumour burden within transplant criteria: false
+        gt0004|Number of tumours: local::at0010|multifocal (>3)|
+        gt0008|Portal vein status: local::at0015|none|
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: true
+        gt0015|Child Pugh total score: 6
+        gt0010|Transplant candidate: false
+    expected_output:
+      "1": {}
+  - id: 32. gt0036 - Multifocal, within criteria, downstaged, confined, ECOG 0, CP
+      6, Intermediate / Transplantation
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0011|Tumour burden within transplant criteria: true
+        gt0004|Number of tumours: local::at0010|multifocal (>3)|
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0012|Downstaging successful: true
+        gt0010|Transplant candidate: true
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 6
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0006|Intermediate|
+        gt0020|Treatment recommendation: local::at0012|Transplantation|
+  - id: 33. gt0036 - Multifocal, within criteria, downstaged, confined, ECOG 2, CP
+      5, Intermediate / Transplantation
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0011|Tumour burden within transplant criteria: true
+        gt0004|Number of tumours: local::at0010|multifocal (>3)|
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0012|Downstaging successful: true
+        gt0010|Transplant candidate: true
+        gt0017|ECOG performance status: 2|local::at0007|Ambulatory and capable of all
+          selfcare but unable to carry out any work activities; up and about
+          more than 50% of waking hours.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 5
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0006|Intermediate|
+        gt0020|Treatment recommendation: local::at0012|Transplantation|
+  - id: 34. gt0036 - Downstaging not successful, no output (negative test)
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0011|Tumour burden within transplant criteria: true
+        gt0004|Number of tumours: local::at0010|multifocal (>3)|
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0012|Downstaging successful: false
+        gt0010|Transplant candidate: true
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 6
+    expected_output:
+      "1": {}
+  - id: 35. gt0036 - Not a transplant candidate, no output
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0011|Tumour burden within transplant criteria: true
+        gt0004|Number of tumours: local::at0010|multifocal (>3)|
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0012|Downstaging successful: true
+        gt0010|Transplant candidate: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 6
+    expected_output:
+      "1": {}
+  - id: 36. gt0036 - Macroscopic thrombus present, no output (negative test)
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0011|Tumour burden within transplant criteria: true
+        gt0004|Number of tumours: local::at0010|multifocal (>3)|
+        gt0027|Macroscopic tumour thrombus present: true
+        gt0012|Downstaging successful: true
+        gt0010|Transplant candidate: true
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 6
+    expected_output:
+      "1": {}
+  - id: 37. gt0038 - Single tumour, CP 6, ECOG 0, Early / Resection (branch A)
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0004|Number of tumours: local::at0008|single|
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 6
+        gt0013|Cirrhosis present: true
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0005|Early|
+        gt0020|Treatment recommendation: local::at0011|Resection|
+  - id: 38. gt0038 - Few (2-3) tumours, CP 5, ECOG 1, Early / Resection
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0004|Number of tumours: local::at0009|few (2-3)|
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 1|local::at0006|Restricted in physically
+          strenuous activity but ambulatory and able to carry out work of a
+          light or sedentary nature, e.g., light house work, office work.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 5
+        gt0013|Cirrhosis present: true
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0005|Early|
+        gt0020|Treatment recommendation: local::at0011|Resection|
+  - id: 39. gt0038 - Single tumour, CP 6, ECOG 2, Early / Resection
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0004|Number of tumours: local::at0008|single|
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 2|local::at0007|Ambulatory and capable of all
+          selfcare but unable to carry out any work activities; up and about
+          more than 50% of waking hours.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 6
+        gt0013|Cirrhosis present: true
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0005|Early|
+        gt0020|Treatment recommendation: local::at0011|Resection|
+  - id: 40. gt0038 - Tumour <3cm, no cirrhosis, ECOG 0, Early / Resection
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0003|Largest tumour diameter: 2,cm
+        gt0013|Cirrhosis present: false
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 9
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0005|Early|
+        gt0020|Treatment recommendation: local::at0011|Resection|
+  - id: 41. gt0038 - CP 7 (above threshold), single tumour (negative test)
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0003|Largest tumour diameter: 4,cm
+        gt0004|Number of tumours: local::at0008|single|
+        gt0013|Cirrhosis present: true
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 7
+    expected_output:
+      "1": {}
+  - id: 42. gt0038 - cirrhosis present + CP 7 (above resection threshold), gt0023
+      fires (Early / Ablation) (negative test)
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0003|Largest tumour diameter: 2,cm
+        gt0004|Number of tumours: local::at0008|single|
+        gt0013|Cirrhosis present: true
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 7
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0005|Early|
+        gt0020|Treatment recommendation: local::at0010|Ablation|
+  - id: 43. gt0023 - Tumour <3cm, CP 5, confined, ECOG 0, cirrhosis present, Early /
+      Ablation
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0003|Largest tumour diameter: 2,cm
+        gt0013|Cirrhosis present: true
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 5
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0005|Early|
+        gt0020|Treatment recommendation: local::at0010|Ablation|
+  - id: 44. gt0023 - Tumour <3cm, CP 7, confined, ECOG 1, Early / Ablation
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0003|Largest tumour diameter: 2.5,cm
+        gt0013|Cirrhosis present: true
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 1|local::at0006|Restricted in physically
+          strenuous activity but ambulatory and able to carry out work of a
+          light or sedentary nature, e.g., light house work, office work.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 7
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0005|Early|
+        gt0020|Treatment recommendation: local::at0010|Ablation|
+  - id: 45. gt0023 - Tumour <3cm, CP 6, confined, ECOG 2, Early / Ablation
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0003|Largest tumour diameter: 1,cm
+        gt0013|Cirrhosis present: true
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 2|local::at0007|Ambulatory and capable of all
+          selfcare but unable to carry out any work activities; up and about
+          more than 50% of waking hours.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 6
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0005|Early|
+        gt0020|Treatment recommendation: local::at0010|Ablation|
+  - id: 46. gt0023 - Tumour ≥3cm, no output (negative test)
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0003|Largest tumour diameter: 3.5,cm
+        gt0013|Cirrhosis present: true
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 6
+    expected_output:
+      "1": {}
+  - id: 47. gt0023 - CP 8 (above threshold), no output (negative test)
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0003|Largest tumour diameter: 2,cm
+        gt0013|Cirrhosis present: true
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 8
+    expected_output:
+      "1": {}
+  - id: 48. gt0037 - Within criteria, CP 7, confined, ECOG 0, transplant candidate,
+      Early / Transplantation
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0004|Number of tumours: local::at0008|single|
+        gt0011|Tumour burden within transplant criteria: true
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0010|Transplant candidate: true
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 7
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0005|Early|
+        gt0020|Treatment recommendation: local::at0012|Transplantation|
+  - id: 49. gt0037 - Within criteria, CP 9, confined, ECOG 1, transplant candidate,
+      Early / Transplantation
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0004|Number of tumours: local::at0009|few (2-3)|
+        gt0011|Tumour burden within transplant criteria: true
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0010|Transplant candidate: true
+        gt0017|ECOG performance status: 1|local::at0006|Restricted in physically
+          strenuous activity but ambulatory and able to carry out work of a
+          light or sedentary nature, e.g., light house work, office work.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 9
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0005|Early|
+        gt0020|Treatment recommendation: local::at0012|Transplantation|
+  - id: 50. gt0037 - Within criteria, CP 8, confined, ECOG 2, transplant candidate,
+      Early / Transplantation
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0004|Number of tumours: local::at0008|single|
+        gt0011|Tumour burden within transplant criteria: true
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0010|Transplant candidate: true
+        gt0017|ECOG performance status: 2|local::at0007|Ambulatory and capable of all
+          selfcare but unable to carry out any work activities; up and about
+          more than 50% of waking hours.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 8
+    expected_output:
+      "1":
+        gt0019|Stage: local::at0005|Early|
+        gt0020|Treatment recommendation: local::at0012|Transplantation|
+  - id: 51. gt0037 - Not a transplant candidate, no output (negative test)
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0004|Number of tumours: local::at0008|single|
+        gt0011|Tumour burden within transplant criteria: true
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0010|Transplant candidate: false
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 7
+    expected_output:
+      "1": {}
+  - id: 52. gt0037 - Tumour burden outside transplant criteria, no output (negative
+      test)
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0004|Number of tumours: local::at0008|single|
+        gt0011|Tumour burden within transplant criteria: false
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0010|Transplant candidate: true
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 7
+    expected_output:
+      "1": {}
+  - id: 53. gt0037 - CP 6 (below threshold), no output (negative test)
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0011|Tumour burden within transplant criteria: true
+        gt0027|Macroscopic tumour thrombus present: false
+        gt0010|Transplant candidate: true
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 6
+    expected_output:
+      "1": {}
+  - id: 54. gt0037 - Macroscopic thrombus present, no output (negative test)
+    input:
+      "1":
+        gt0005|Tumour confined to liver: true
+        gt0006|Extrahepatic metastasis present: false
+        gt0004|Number of tumours: local::at0008|single|
+        gt0011|Tumour burden within transplant criteria: true
+        gt0027|Macroscopic tumour thrombus present: true
+        gt0010|Transplant candidate: true
+        gt0017|ECOG performance status: 0|local::at0005|Fully active, able to carry on
+          all pre-disease performance without restriction.|
+        gt0009|Severe comorbidity limiting therapy: false
+        gt0015|Child Pugh total score: 7
+    expected_output:
+      "1": {}
