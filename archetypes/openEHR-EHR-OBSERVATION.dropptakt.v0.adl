@@ -1,0 +1,112 @@
+archetype (adl_version=1.4; uid=4b52f69a-a1b5-4935-baa8-ab55411a0945)
+	openEHR-EHR-OBSERVATION.dropptakt.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-03-24">
+		["name"] = <"Mahmoud Elachi">
+		["email"] = <"mel.achi@gmail.com">
+		["organisation"] = <"Cambio CDS">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To support healthcare professionals in determining correct drip rate for IV infusions when using gravity-based administration sets.">
+			keywords = <"infusion, drip rate, IV therapy, calculation, drops per minute, dropptakt", ...>
+			copyright = <"Use © Cambio CDS">
+			use = <"Used in hospital or clinical settings where infusion pumps are not used and drip rate  must be manually calculated.">
+			misuse = <"Not intended for automated infusion pumps or critical care scenarios where precise infusion devices are required. Incorrect inputs may lead to unsafe infusion rates.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Morris, G. (2021). Clinical Calculations: With Applications to General and Specialty Areas (9th ed.). Elsevier.
+">
+		["build_uid"] = <"db4eda74-e5d7-357f-9da0-368c354289ee">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Dropptakt
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Time
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"h">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Dropptakt
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"min">
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Dropptakt">
+					description = <"Calculates intravenous drip rate (drops per minute) based on total infusion volume,  infusion duration, and drip factor. Intended for clinical support in manual IV administration.">
+					comment = <"Original version, c 2026">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Time">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Dropptakt">
+					description = <"">
+				>
+			>
+		>
+	>
