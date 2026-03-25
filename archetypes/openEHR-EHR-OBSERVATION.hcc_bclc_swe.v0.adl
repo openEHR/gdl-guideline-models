@@ -56,36 +56,60 @@ definition
 											>
 										}
 									}
-									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Number of tumours
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Tumour number
 										value matches {
 											DV_CODED_TEXT matches {
 												defining_code matches {
 													[local::
-													at0008,    -- single
-													at0009,    -- few (2-3)
-													at0010]    -- multifocal (>3)
+													at0008,    -- Single
+													at0009,    -- Few (2-3)
+													at0010]    -- Multiple
 												}
 											}
 										}
 									}
-									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Tumour confined to liver
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Confined to liver
 										value matches {
-											DV_BOOLEAN matches {*}
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0024,    -- Yes
+													at0025]    -- No
+												}
+											}
 										}
 									}
-									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Extrahepatic metastasis present
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Extrahepatic spread
 										value matches {
-											DV_BOOLEAN matches {*}
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0026,    -- Absent
+													at0027]    -- Present
+												}
+											}
 										}
 									}
-									ELEMENT[at0013] occurrences matches {0..1} matches {    -- Diffuse tumour growth present
+									ELEMENT[at0023] occurrences matches {0..1} matches {    -- Macroscopic tumour thrombus
 										value matches {
-											DV_BOOLEAN matches {*}
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0028,    -- Absent
+													at0029]    -- Present
+												}
+											}
 										}
 									}
-									ELEMENT[at0023] occurrences matches {0..1} matches {    -- Macroscopic tumour thrombus present
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- Tumour growth pattern
 										value matches {
-											DV_BOOLEAN matches {*}
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0030,    -- Multifocal
+													at0031]    -- Diffuse growth
+												}
+											}
 										}
 									}
 									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Portal vein status
@@ -93,36 +117,66 @@ definition
 											DV_CODED_TEXT matches {
 												defining_code matches {
 													[local::
-													at0015,    -- none
-													at0016,    -- peripheral thrombosis
-													at0017]    -- main trunk thrombosis
+													at0015,    -- None
+													at0016,    -- Peripheral thrombosis
+													at0017]    -- Main trunk thrombosis
 												}
 											}
 										}
 									}
-									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Severe comorbidity limiting therapy
+									ELEMENT[at0020] occurrences matches {0..1} matches {    -- Tumour burden
 										value matches {
-											DV_BOOLEAN matches {*}
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0032,    -- Within transplant criteria
+													at0033]    -- Initially outside transplant criteria
+												}
+											}
 										}
 									}
 									ELEMENT[at0019] occurrences matches {0..1} matches {    -- Transplant candidate
 										value matches {
-											DV_BOOLEAN matches {*}
-										}
-									}
-									ELEMENT[at0020] occurrences matches {0..1} matches {    -- Tumour burden within transplant criteria
-										value matches {
-											DV_BOOLEAN matches {*}
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0034,    -- Yes
+													at0035]    -- No
+												}
+											}
 										}
 									}
 									ELEMENT[at0021] occurrences matches {0..1} matches {    -- Downstaging successful
 										value matches {
-											DV_BOOLEAN matches {*}
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0036,    -- Yes
+													at0037]    -- No
+												}
+											}
 										}
 									}
-									ELEMENT[at0022] occurrences matches {0..1} matches {    -- Cirrhosis present
+									ELEMENT[at0022] occurrences matches {0..1} matches {    -- Cirrhosis
 										value matches {
-											DV_BOOLEAN matches {*}
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0038,    -- Absent
+													at0039]    -- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Severe comorbidity
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0040,    -- Absent
+													at0041]    -- Present
+												}
+											}
 										}
 									}
 								}
@@ -177,75 +231,147 @@ ontology
 				>
 				["at0006"] = <
 					text = <"Largest tumour diameter">
-					description = <"">
+					description = <"Largest tumour diameter in centimetres.">
 				>
 				["at0007"] = <
-					text = <"Number of tumours">
-					description = <"">
+					text = <"Tumour number">
+					description = <"Number of hepatocellular carcinoma tumour lesions present.">
 				>
 				["at0008"] = <
-					text = <"single">
-					description = <"">
+					text = <"Single">
+					description = <"One tumour lesion.">
 				>
 				["at0009"] = <
-					text = <"few (2-3)">
-					description = <"">
+					text = <"Few (2-3)">
+					description = <"Two or three tumour lesions.">
 				>
 				["at0010"] = <
-					text = <"multifocal (>3)">
-					description = <"">
+					text = <"Multiple">
+					description = <"More than three tumour lesions.">
 				>
 				["at0011"] = <
-					text = <"Tumour confined to liver">
-					description = <"">
+					text = <"Confined to liver">
+					description = <"Whether the tumour is confined to the liver with no extrahepatic spread.">
 				>
 				["at0012"] = <
-					text = <"Extrahepatic metastasis present">
-					description = <"">
+					text = <"Extrahepatic spread">
+					description = <"Presence or absence of extrahepatic metastasis.">
 				>
 				["at0013"] = <
-					text = <"Diffuse tumour growth present">
-					description = <"">
+					text = <"Tumour growth pattern">
+					description = <"Growth pattern of the hepatocellular carcinoma.">
 				>
 				["at0014"] = <
 					text = <"Portal vein status">
-					description = <"">
+					description = <"Status of the portal vein with respect to tumour thrombosis.">
 				>
 				["at0015"] = <
-					text = <"none">
-					description = <"">
+					text = <"None">
+					description = <"No portal vein thrombosis.">
 				>
 				["at0016"] = <
-					text = <"peripheral thrombosis">
-					description = <"">
+					text = <"Peripheral thrombosis">
+					description = <"Tumour thrombosis in peripheral (segmental or lobar) portal vein branches.">
 				>
 				["at0017"] = <
-					text = <"main trunk thrombosis">
-					description = <"">
+					text = <"Main trunk thrombosis">
+					description = <"Tumour thrombosis involving the main portal vein trunk.">
 				>
 				["at0018"] = <
-					text = <"Severe comorbidity limiting therapy">
-					description = <"">
+					text = <"Severe comorbidity">
+					description = <"Presence or absence of severe comorbidity limiting therapy options.">
 				>
 				["at0019"] = <
 					text = <"Transplant candidate">
-					description = <"">
+					description = <"Whether the patient is considered a candidate for liver transplantation.">
 				>
 				["at0020"] = <
-					text = <"Tumour burden within transplant criteria">
-					description = <"">
+					text = <"Tumour burden">
+					description = <"Tumour burden relative to transplant selection criteria (Metroticket 2.0).">
 				>
 				["at0021"] = <
 					text = <"Downstaging successful">
-					description = <"">
+					description = <"Whether downstaging treatment successfully reduced tumour burden to within transplant criteria.">
 				>
 				["at0022"] = <
-					text = <"Cirrhosis present">
-					description = <"">
+					text = <"Cirrhosis">
+					description = <"Presence or absence of liver cirrhosis.">
 				>
 				["at0023"] = <
-					text = <"Macroscopic tumour thrombus present">
-					description = <"">
+					text = <"Macroscopic tumour thrombus">
+					description = <"Presence or absence of macroscopic tumour thrombus in a major vessel.">
+				>
+				["at0024"] = <
+					text = <"Yes">
+					description = <"Tumour is confined to the liver.">
+				>
+				["at0025"] = <
+					text = <"No">
+					description = <"Tumour is not confined to the liver.">
+				>
+				["at0026"] = <
+					text = <"Absent">
+					description = <"No extrahepatic spread detected.">
+				>
+				["at0027"] = <
+					text = <"Present">
+					description = <"Extrahepatic spread is present.">
+				>
+				["at0028"] = <
+					text = <"Absent">
+					description = <"No macroscopic tumour thrombus detected.">
+				>
+				["at0029"] = <
+					text = <"Present">
+					description = <"Macroscopic tumour thrombus is present.">
+				>
+				["at0030"] = <
+					text = <"Multifocal">
+					description = <"Multiple discrete nodular tumour lesions.">
+				>
+				["at0031"] = <
+					text = <"Diffuse growth">
+					description = <"Diffuse infiltrative tumour growth pattern.">
+				>
+				["at0032"] = <
+					text = <"Within transplant criteria">
+					description = <"Tumour burden is within Metroticket 2.0 transplant selection criteria.">
+				>
+				["at0033"] = <
+					text = <"Initially outside transplant criteria">
+					description = <"Tumour burden initially exceeds Metroticket 2.0 transplant selection criteria.">
+				>
+				["at0034"] = <
+					text = <"Yes">
+					description = <"Patient is a transplant candidate.">
+				>
+				["at0035"] = <
+					text = <"No">
+					description = <"Patient is not a transplant candidate.">
+				>
+				["at0036"] = <
+					text = <"Yes">
+					description = <"Downstaging treatment was successful.">
+				>
+				["at0037"] = <
+					text = <"No">
+					description = <"Downstaging treatment was not successful.">
+				>
+				["at0038"] = <
+					text = <"Absent">
+					description = <"No cirrhosis detected.">
+				>
+				["at0039"] = <
+					text = <"Present">
+					description = <"Cirrhosis is present.">
+				>
+				["at0040"] = <
+					text = <"Absent">
+					description = <"No severe comorbidity limiting therapy.">
+				>
+				["at0041"] = <
+					text = <"Present">
+					description = <"Severe comorbidity is present, limiting therapy options.">
 				>
 			>
 		>
