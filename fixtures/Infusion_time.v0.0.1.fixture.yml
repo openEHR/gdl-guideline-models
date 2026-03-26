@@ -1,0 +1,23 @@
+guidelines:
+  "1": Infusion_time.v0.0.1
+test_cases:
+  - id: testing values
+    input:
+      "1":
+        gt0003|Infusion volume: 12,l
+        gt0004|Calculated drop rate: 5,drops/min
+    expected_output:
+      "1":
+        gt0006|Infusion time: "800"
+  - id: testing missing values
+    input:
+      "1":
+        gt0004|Calculated drop rate: 5,drops/min
+    expected_output:
+      "1": {}
+  - id: testing missing values 2
+    input:
+      "1":
+        gt0003|Infusion volume: 1,l
+    expected_output:
+      "1": {}
