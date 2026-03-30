@@ -1,0 +1,114 @@
+archetype (adl_version=1.4; uid=71d8babe-f7f1-4fab-b3f9-b05847ec16f0)
+	openEHR-EHR-EVALUATION.canadian_ct_head_rule_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-03-26">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the recommendation for a CT head scan based on the Canadian CT Head Rule.">
+			keywords = <"minor, head, injury, ct, trauma, concussion, skull, fracture, glasgow, coma, scale, GCS, radiology, assessment.", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the recommendations and the associated risk level based on the criteria recorded in the openEHR-EHR-OBSERVATION.canadian_ct_head_rule.v0 archetype.">
+			misuse = <"Do not use to evaluate other criteria; instead, use the appropriate archetypes.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Stiell IG, Clement CM, Rowe BH, Schull MJ, Brison R, Cass D, Eisenhauer MA, McKnight RD, Bandiera G, Holroyd B, Lee JS, Dreyer J, Worthington JR, Reardon M, Greenberg G, Lesiuk H, MacPhail I, Wells GA. Comparison of the Canadian CT Head Rule and the New Orleans Criteria in patients with minor head injury. JAMA. 2005 Sep 28;294(12):1511-8. doi: 10.1001/jama.294.12.1511. PMID: 16189364.
+
+Smits M, Dippel DW, de Haan GG, Dekker HM, Vos PE, Kool DR, Nederkoorn PJ, Hofman PA, Twijnstra A, Tanghe HL, Hunink MG. External validation of the Canadian CT Head Rule and the New Orleans Criteria for CT scanning in patients with minor head injury. JAMA. 2005 Sep 28;294(12):1519-25. doi: 10.1001/jama.294.12.1519. PMID: 16189365.
+
+Stiell IG, Wells GA, Vandemheen K, Clement C, Lesiuk H, Laupacis A, McKnight RD, Verbeek R, Brison R, Cass D, Eisenhauer ME, Greenberg G, Worthington J. The Canadian CT Head Rule for patients with minor head injury. Lancet. 2001 May 5;357(9266):1391-6. doi: 10.1016/s0140-6736(00)04561-x. PMID: 11356436.">
+		["build_uid"] = <"e5dbc145-cb47-340a-9397-ad3d8a66bcc2">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Canadian ct head rule assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Recommendation
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- CT head not required
+									at0006,    -- CT head recommended: Medium risk for clinically important brain injury.
+									at0007]    -- CT head recommended: High risk for neurological intervention.
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Canadian ct head rule assessment">
+					description = <"The clinical interpretation and recommendation based on the Canadian CT Head Rule criteria.">
+					comment = <"Original version, c 2001.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Recommendation">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"CT head not required">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"CT head recommended: Medium risk for clinically important brain injury.">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"CT head recommended: High risk for neurological intervention.">
+					description = <"">
+				>
+			>
+		>
+	>
