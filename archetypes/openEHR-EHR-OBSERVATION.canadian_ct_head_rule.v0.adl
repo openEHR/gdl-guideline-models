@@ -1,0 +1,263 @@
+archetype (adl_version=1.4; uid=c6981f6b-b947-4b36-88d9-55f7d5099b31)
+	openEHR-EHR-OBSERVATION.canadian_ct_head_rule.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-03-26">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@Cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the clinical criteria used in the Canadian CT Head Rule.">
+			keywords = <"minor, head, injury, ct, trauma, concussion, skull, fracture, glasgow, coma, scale, GCS, radiology", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the presence or absence of specific high and medium-risk factors in patients presenting with minor head injury (Glasgow Coma Scale score of 13-15).">
+			misuse = <"Not to be used for patients under 16 years of age, patients with bleeding disorders or on oral anticoagulants, patients with an obvious open skull fracture, or patients who are pregnant. Not to be used if the patient's GCS is < 13.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"ab5180dc-e54b-3965-9b2f-8ec89e33e0e1">
+		["references"] = <"Stiell IG, Clement CM, Rowe BH, Schull MJ, Brison R, Cass D, Eisenhauer MA, McKnight RD, Bandiera G, Holroyd B, Lee JS, Dreyer J, Worthington JR, Reardon M, Greenberg G, Lesiuk H, MacPhail I, Wells GA. Comparison of the Canadian CT Head Rule and the New Orleans Criteria in patients with minor head injury. JAMA. 2005 Sep 28;294(12):1511-8. doi: 10.1001/jama.294.12.1511. PMID: 16189364.
+
+Smits M, Dippel DW, de Haan GG, Dekker HM, Vos PE, Kool DR, Nederkoorn PJ, Hofman PA, Twijnstra A, Tanghe HL, Hunink MG. External validation of the Canadian CT Head Rule and the New Orleans Criteria for CT scanning in patients with minor head injury. JAMA. 2005 Sep 28;294(12):1519-25. doi: 10.1001/jama.294.12.1519. PMID: 16189365.
+
+Stiell IG, Wells GA, Vandemheen K, Clement C, Lesiuk H, Laupacis A, McKnight RD, Verbeek R, Brison R, Cass D, Eisenhauer ME, Greenberg G, Worthington J. The Canadian CT Head Rule for patients with minor head injury. Lancet. 2001 May 5;357(9266):1391-6. doi: 10.1016/s0140-6736(00)04561-x. PMID: 11356436.">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Canadian CT Head Rule
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Glasgow Coma Scale score lower than 15 at 2 hours after injury
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0008,    -- Yes
+													at0009]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Suspected open or depressed skull fracture
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0013,    -- Yes
+													at0014]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Any sign of basal skull fracture
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0016,    -- Yes
+													at0017]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0027] occurrences matches {0..1} matches {    -- Two or more episodes of vomiting
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0028,    -- Yes
+													at0029]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0030] occurrences matches {0..1} matches {    -- 65 years or older
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0031,    -- Yes
+													at0032]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0033] occurrences matches {0..1} matches {    -- Amnesia before impact of 30 or more minutes
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0035,    -- Yes
+													at0036]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0034] occurrences matches {0..1} matches {    -- Dangerous mechanism
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0037,    -- Yes
+													at0038]    -- No
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Canadian CT Head Rule">
+					description = <"The Canadian CT Head Rule is a clinical decision rule to determine the need for a computed tomography (CT) head scan in patients with minor head injury.">
+					comment = <"Original version, c 2001.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Glasgow Coma Scale score lower than 15 at 2 hours after injury">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Suspected open or depressed skull fracture">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Any sign of basal skull fracture">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Two or more episodes of vomiting">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"65 years or older">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Amnesia before impact of 30 or more minutes">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Dangerous mechanism">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"No">
+					description = <"">
+				>
+			>
+		>
+	>
