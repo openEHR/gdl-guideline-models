@@ -1,0 +1,901 @@
+{
+  "uuid" : "b07e7924-f5b6-44e6-aa6e-c6e8fba8c032",
+  "id" : "GBS.v1.0.3",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Eneimi Allwell-Brown",
+      "email" : "models@cambiocds.com",
+      "organisation" : "Cambio CDS",
+      "date" : "2017-01-03"
+    },
+    "other_contributors" : [
+      "Dennis Forslund",
+      "Jimmy Axelsson",
+      "Daniel Keszthelyi"
+    ],
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "sv" : {
+        "id" : "sv",
+        "purpose" : "Att uppskatta risk med avseende på behandlingsbehov, re-blödning och mortalitet hos patienter med övre GI-blödning.\r\n",
+        "keywords" : [
+          "GI-blödning",
+          "blödning",
+          "Rockall score",
+          "gastrointestinal blödning",
+          "gastrointestinal blödning, övre"
+        ],
+        "use" : "Att registrera data och resultat i enlighet med Glasgow-Blatchford bleeding score i syfte att uppskatta risk med avseende på behandlingsbehov (blodtransfusion, endoskopi, kirurgi), re-blödning och mortalitet hos patienter med övre GI-blödning.\r\n\r\nInstrumentet baseras på följande faktorer, registrerade vid ankomst:\r\n\r\n- Urea (0-6p)\r\n- Hemoglobin (0-6p)\r\n- Hjärtfrekvens (0-1p)\r\n- Systoliskt blodtryck (0-3p)\r\n- Synkope vid ankomst (0-2p)\r\n- Melena (0-1p)\r\n- Tecken på leversjukdom (0-2p)\r\n- Tecken på hjärtsjukdom (0-2p)\r\n\r\nMaximal poäng uppgår till 23p. 0p indikerar låg komplikationsrisk (0,5%). Ju högre poäng, desto högre risk. ",
+        "misuse" : "Endast avsedd för bruk vid initial bedömning.",
+        "copyright" : "© Cambio Healthcare Systems"
+      },
+      "en" : {
+        "id" : "en",
+        "purpose" : "To stratify patients with acute UGIB into low or high risk groups for needing treatment, rebleeding or mortality.",
+        "keywords" : [
+          "nonvariceal bleeding",
+          "upper GI bleeding",
+          "upper GI haemorrhage",
+          "Rockall score"
+        ],
+        "use" : "To calculate the Glasgow-Blatchford bleeding score and stratify patients with acute UGIB as low or high risk of needing treatment (blood transfusion, endoscopy or surgery), rebleeding, or dying. Points are assigned for patients' admission haemoglobin (0 - 6), blood urea (0 - 6), pulse rate (0 -1), and systolic blood pressure (0 -3), as well as presentation with syncope (0 - 2) or melaena (0 - 1), and evidence of hepatic disease (0 - 2) or cardiac failure (0 - 2). The points are summed to give a total score (Glasgow-Blatchford bleeding score) between 0 - 23, with score of 0 (zero) suggesting a low risk of complications (0.5%) and higher scores corresponding to increasing acuity, need for treatment, duration of hospital stay, and mortality.\nBlood urea concentration is given as mg/dl (divide by 0.3571 to convert from mmol/L to mg/dl), while haemoglobin concentration is given as g/dl (divide by 10 to convert from g/L to g/dl).",
+        "misuse" : "Should only be used with clinical and laboratory values obtained at initial patient assessment.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Blatchford O, Murray WR, Blatchford M. A risk score to predict need for treatment for upper-gastrointestinal haemorrhage. Lancet. 2000 Oct 14;356(9238):1318-21. doi: 10.1016/S0140-6736(00)02816-6. PMID: 11073021.\n\nChen IC, Hung MS, Chiu TF, Chen JC, Hsiao CT. Risk scoring systems to predict need for clinical intervention for patients with nonvariceal upper gastrointestinal tract bleeding. Am J Emerg Med. 2007 Sep;25(7):774-9. doi: 10.1016/j.ajem.2006.12.024. PMID: 17870480.\n\nStanley AJ, Ashley D, Dalton HR, Mowat C, Gaya DR, Thompson E, Warshow U, Groome M, Cahill A, Benson G, Blatchford O, Murray W. Outpatient management of patients with low-risk upper-gastrointestinal haemorrhage: multicentre validation and prospective evaluation. Lancet. 2009 Jan 3;373(9657):42-7. doi: 10.1016/S0140-6736(08)61769-9. Epub 2008 Dec 16. PMID: 19091393.",
+      "en" : "The Glasgow-Blatchford score (GBS) is a risk stratification tool used to assess patients with suspected acute upper gastrointestinal bleeding (UGIB). It uses clinical and laboratory variables at admission (hemoglobin, blood urea, systolic blood pressure, pulse, melena, syncope, liver disease, and heart failure) to calculate a score from 0–23."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.lab_test-full_blood_count.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.lab_test-full_blood_count.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0078.4]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "gm/l",
+              "gm/dl",
+              "mg/dl"
+            ]
+          }
+        }
+      },
+      "gt0004" : {
+        "id" : "gt0004",
+        "model_id" : "openEHR-EHR-OBSERVATION.lab_test-urea_and_electrolytes.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.lab_test-urea_and_electrolytes.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0078.1]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mmol/l",
+              "mg/dl"
+            ]
+          }
+        }
+      },
+      "gt0010" : {
+        "id" : "gt0010",
+        "model_id" : "openEHR-EHR-OBSERVATION.pulse.v2",
+        "template_id" : "openEHR-EHR-OBSERVATION.pulse.v2",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0011" : {
+            "id" : "gt0011",
+            "path" : "/data[at0002]/events[at0003]/data[at0001]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "/min"
+            ]
+          }
+        }
+      },
+      "gt0012" : {
+        "id" : "gt0012",
+        "model_id" : "openEHR-EHR-OBSERVATION.glasgow_blatchford_bleeding_score.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.glasgow_blatchford_bleeding_score.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0077" : {
+            "id" : "gt0077",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0014]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0015",
+              "1|local::at0016"
+            ]
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0017",
+              "1|local::at0018"
+            ]
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0009]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0019",
+              "2|local::at0020"
+            ]
+          },
+          "gt0078" : {
+            "id" : "gt0078",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0010]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0021",
+              "2|local::at0022"
+            ]
+          },
+          "gt0079" : {
+            "id" : "gt0079",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0011]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0023",
+              "2|local::at0024"
+            ]
+          }
+        }
+      },
+      "gt0031" : {
+        "id" : "gt0031",
+        "model_id" : "openEHR-EHR-OBSERVATION.glasgow_blatchford_bleeding_score.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.glasgow_blatchford_bleeding_score.v1",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0032" : {
+            "id" : "gt0032",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]"
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0005]"
+          },
+          "gt0034" : {
+            "id" : "gt0034",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0014]"
+          },
+          "gt0035" : {
+            "id" : "gt0035",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]"
+          },
+          "gt0036" : {
+            "id" : "gt0036",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]"
+          },
+          "gt0037" : {
+            "id" : "gt0037",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0008]"
+          },
+          "gt0038" : {
+            "id" : "gt0038",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0009]"
+          },
+          "gt0039" : {
+            "id" : "gt0039",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0010]"
+          },
+          "gt0040" : {
+            "id" : "gt0040",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0011]"
+          },
+          "gt0041" : {
+            "id" : "gt0041",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0012]"
+          }
+        }
+      },
+      "gt0067" : {
+        "id" : "gt0067",
+        "model_id" : "openEHR-EHR-EVALUATION.glasgow_blatchford_bleeding_score_assessment.v1",
+        "template_id" : "openEHR-EHR-EVALUATION.glasgow_blatchford_bleeding_score_assessment.v1",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0068" : {
+            "id" : "gt0068",
+            "path" : "/data[at0001]/items[at0002]"
+          },
+          "gt0069" : {
+            "id" : "gt0069",
+            "path" : "/data[at0001]/items[at0005]"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0080" : {
+        "id" : "gt0080",
+        "priority" : 18,
+        "when" : [
+          "$gt0003|Haemoglobin|!=null",
+          "$gt0003|Haemoglobin|.magnitude>=130",
+          "$gt0077|Sex|!=null&&$gt0077|Sex|==1|local::at0016|Male|"
+        ],
+        "then" : [
+          "$gt0033|Haemoglobin (Hb)|.value=0|local::at0036|Hb >13 g/dl in men (or >12 g/dl in women)|"
+        ]
+      },
+      "gt0081" : {
+        "id" : "gt0081",
+        "priority" : 17,
+        "when" : [
+          "$gt0003|Haemoglobin|!=null",
+          "$gt0003|Haemoglobin|.magnitude>=120&&$gt0003|Haemoglobin|.magnitude<=129",
+          "$gt0077|Sex|!=null&&$gt0077|Sex|==1|local::at0016|Male|"
+        ],
+        "then" : [
+          "$gt0033|Haemoglobin (Hb)|.value=1|local::at0037|Hb 12 - 13 g/dl in men (or 10 - 12 g/dl in women)|"
+        ]
+      },
+      "gt0082" : {
+        "id" : "gt0082",
+        "priority" : 16,
+        "when" : [
+          "$gt0003|Haemoglobin|!=null",
+          "$gt0003|Haemoglobin|.magnitude>=100&&$gt0003|Haemoglobin|.magnitude<=119",
+          "$gt0077|Sex|!=null&&$gt0077|Sex|==1|local::at0016|Male|"
+        ],
+        "then" : [
+          "$gt0033|Haemoglobin (Hb)|.value=3|local::at0038|Hb 10 - 12 g/dl in men|"
+        ]
+      },
+      "gt0083" : {
+        "id" : "gt0083",
+        "priority" : 15,
+        "when" : [
+          "$gt0003|Haemoglobin|!=null",
+          "$gt0003|Haemoglobin|.magnitude<100",
+          "$gt0077|Sex|!=null&&$gt0077|Sex|==1|local::at0016|Male|"
+        ],
+        "then" : [
+          "$gt0033|Haemoglobin (Hb)|.value=6|local::at0039|Hb <10 g/dl in men or women|"
+        ]
+      },
+      "gt0084" : {
+        "id" : "gt0084",
+        "priority" : 14,
+        "when" : [
+          "$gt0077|Sex|!=null&&$gt0077|Sex|==0|local::at0015|Female|",
+          "$gt0003|Haemoglobin|.magnitude>=120"
+        ],
+        "then" : [
+          "$gt0033|Haemoglobin (Hb)|=0|local::at0036|Hb >13 g/dl in men (or >12 g/dl in women)|"
+        ]
+      },
+      "gt0085" : {
+        "id" : "gt0085",
+        "priority" : 13,
+        "when" : [
+          "$gt0077|Sex|!=null&&$gt0077|Sex|==0|local::at0015|Female|",
+          "$gt0003|Haemoglobin|.magnitude>=100&&$gt0003|Haemoglobin|.magnitude<=119"
+        ],
+        "then" : [
+          "$gt0033|Haemoglobin (Hb)|=1|local::at0037|Hb 12 - 13 g/dl in men (or 10 - 12 g/dl in women)|"
+        ]
+      },
+      "gt0086" : {
+        "id" : "gt0086",
+        "priority" : 12,
+        "when" : [
+          "$gt0077|Sex|!=null&&$gt0077|Sex|==0|local::at0015|Female|",
+          "$gt0003|Haemoglobin|.magnitude<100"
+        ],
+        "then" : [
+          "$gt0033|Haemoglobin (Hb)|=6|local::at0039|Hb <10 g/dl in men or women|"
+        ]
+      },
+      "gt0087" : {
+        "id" : "gt0087",
+        "priority" : 11,
+        "when" : [
+          "$gt0005|Urea|!=null",
+          "$gt0005|Urea|.magnitude<6.5"
+        ],
+        "then" : [
+          "$gt0032|Blood Urea Nitrogen (BUN)|.value=0|local::at0031|BUN <18.2 mg/dl|"
+        ]
+      },
+      "gt0088" : {
+        "id" : "gt0088",
+        "priority" : 10,
+        "when" : [
+          "$gt0005|Urea|!=null",
+          "$gt0005|Urea|.magnitude>=6.5&&$gt0005|Urea|.magnitude<8"
+        ],
+        "then" : [
+          "$gt0032|Blood Urea Nitrogen (BUN)|.value=2|local::at0032|BUN = 18.2 - <22.4 mg/dl|"
+        ]
+      },
+      "gt0089" : {
+        "id" : "gt0089",
+        "priority" : 9,
+        "when" : [
+          "$gt0005|Urea|!=null",
+          "$gt0005|Urea|.magnitude>=8&&$gt0005|Urea|.magnitude<10"
+        ],
+        "then" : [
+          "$gt0032|Blood Urea Nitrogen (BUN)|.value=3|local::at0033|BUN = 22.4 - <28 mg/dl|"
+        ]
+      },
+      "gt0090" : {
+        "id" : "gt0090",
+        "priority" : 8,
+        "when" : [
+          "$gt0005|Urea|!=null",
+          "$gt0005|Urea|.magnitude>=10&&$gt0005|Urea|.magnitude<=25"
+        ],
+        "then" : [
+          "$gt0032|Blood Urea Nitrogen (BUN)|.value=4|local::at0034|BUN = 28 - <70.01 mg/dl|"
+        ]
+      },
+      "gt0091" : {
+        "id" : "gt0091",
+        "priority" : 7,
+        "when" : [
+          "$gt0005|Urea|!=null",
+          "$gt0005|Urea|.magnitude>25"
+        ],
+        "then" : [
+          "$gt0032|Blood Urea Nitrogen (BUN)|.value=6|local::at0035|BUN >=70.01 mg/dl|"
+        ]
+      },
+      "gt0092" : {
+        "id" : "gt0092",
+        "priority" : 6,
+        "when" : [
+          "$gt0011|Rate|!=null",
+          "$gt0011|Rate|.magnitude>=110"
+        ],
+        "then" : [
+          "$gt0035|Systolic blood pressure (SBP)|.value=0|local::at0027|SBP >=110 mmHg|"
+        ]
+      },
+      "gt0093" : {
+        "id" : "gt0093",
+        "priority" : 5,
+        "when" : [
+          "$gt0011|Rate|!=null",
+          "$gt0011|Rate|.magnitude>=100&&$gt0011|Rate|.magnitude<=109"
+        ],
+        "then" : [
+          "$gt0035|Systolic blood pressure (SBP)|.value=1|local::at0028|SBP = 100 - 109 mmHg|"
+        ]
+      },
+      "gt0094" : {
+        "id" : "gt0094",
+        "priority" : 4,
+        "when" : [
+          "$gt0011|Rate|!=null",
+          "$gt0011|Rate|.magnitude>=90&&$gt0011|Rate|.magnitude<=99"
+        ],
+        "then" : [
+          "$gt0035|Systolic blood pressure (SBP)|.value=2|local::at0029|SBP = 90 - 99 mmHg|"
+        ]
+      },
+      "gt0095" : {
+        "id" : "gt0095",
+        "priority" : 3,
+        "when" : [
+          "$gt0011|Rate|!=null",
+          "$gt0011|Rate|.magnitude<90"
+        ],
+        "then" : [
+          "$gt0035|Systolic blood pressure (SBP)|.value=3|local::at0030|SBP <90 mmHg|"
+        ]
+      },
+      "gt0096" : {
+        "id" : "gt0096",
+        "priority" : 2,
+        "when" : [
+          "$gt0098|Pulse|!=null"
+        ]
+      },
+      "gt0097" : {
+        "id" : "gt0097",
+        "priority" : 1
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "sv" : {
+        "id" : "sv",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Glasgow-Blatchford Bleeding Score (GBS) Calculator",
+            "description" : "Glasgow-Blatchford bleeding score används för att i initialt skede uppskatta risk med avseende på behandlingsbehov, re-blödning och mortalitet hos patienter med övre GI-blödning. Instrumentet baseras på åtta faktorer, och maximal poäng uppgår till 23p. Noll poäng indikerar låg komplikationsrisk (0,5%). Ju högre poäng, desto högre risk. Instrumentet har visats ha högre sensitivitet än Rockall score, och korrelerar väl med vårdtid och behov av blodtransfusion."
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Hemoglobin (Hb)",
+            "description" : "The mass concentration of haemoglobin"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Urea",
+            "description" : "Urea level in this specimen."
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Hjärtfrekvens",
+            "description" : "The rate, measured in beats per minute."
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Melena",
+            "description" : "Score assigned for presence or absence of melena at admission."
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Synkope",
+            "description" : "Score assigned for presence or absence of syncope at admission."
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "Hjärtfrekvens",
+            "description" : "The rate, measured in beats per minute."
+          },
+          "gt0023" : {
+            "id" : "gt0023",
+            "text" : "Hemoglobin (Hb)",
+            "description" : "The mass concentration of haemoglobin"
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "text" : "Urea",
+            "description" : "Urea level in this specimen."
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "text" : "Systoliskt blodtryck",
+            "description" : "Peak systemic arterial blood pressure  - measured in systolic or contraction phase of the heart cycle."
+          },
+          "gt0029" : {
+            "id" : "gt0029",
+            "text" : "Hjärtsvikt (ospecificerad)",
+            "description" : "Has the individual ever been diagnosed with heart failure?"
+          },
+          "gt0030" : {
+            "id" : "gt0030",
+            "text" : "Leversjukdom",
+            "description" : "Has the individual ever been diagnosed with any kind of liver disease?"
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "text" : "Urea",
+            "description" : "Score assigned for concentration of blood urea nitrogen (BUN) at admission."
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "text" : "Hemoglobin (Hb)",
+            "description" : "Score assigned for haemogloin concentration at admission (male and female)."
+          },
+          "gt0034" : {
+            "id" : "gt0034",
+            "text" : "Kön",
+            "description" : "The patient's gender."
+          },
+          "gt0035" : {
+            "id" : "gt0035",
+            "text" : "Systoliskt blodtryck",
+            "description" : "Score assigned for systolic blood pressure at admission."
+          },
+          "gt0036" : {
+            "id" : "gt0036",
+            "text" : "Hjärtfrekvens",
+            "description" : "Score assigned for pulse rate at admission."
+          },
+          "gt0037" : {
+            "id" : "gt0037",
+            "text" : "Melena",
+            "description" : "Score assigned for presence or absence of melena at admission."
+          },
+          "gt0038" : {
+            "id" : "gt0038",
+            "text" : "Synkope",
+            "description" : "Score assigned for presence or absence of syncope at admission."
+          },
+          "gt0039" : {
+            "id" : "gt0039",
+            "text" : "Leversjukdom",
+            "description" : "Score assigned for any evidence of liver disease."
+          },
+          "gt0040" : {
+            "id" : "gt0040",
+            "text" : "Hjärtsvikt (ospecificerad)",
+            "description" : "Score assigned for any evidence of heart failure."
+          },
+          "gt0041" : {
+            "id" : "gt0041",
+            "text" : "Total poäng",
+            "description" : "Sum of the individual scores assigned for each of the contributing variables."
+          },
+          "gt0068" : {
+            "id" : "gt0068",
+            "text" : "Resultat",
+            "description" : "A score of 0 (zero) suggesting a low risk of complications (0.5%) and higher scores corresponding to increasing acuity, need for treatment, and mortality.\r\n"
+          },
+          "gt0069" : {
+            "id" : "gt0069",
+            "text" : "Rekommendation",
+            "description" : "A score of 0 (zero) suggesting a low risk of complications (0.5%) and higher scores corresponding to increasing acuity, need for treatment, and mortality."
+          },
+          "gt0077" : {
+            "id" : "gt0077",
+            "text" : "*(en) Sex"
+          },
+          "gt0078" : {
+            "id" : "gt0078",
+            "text" : "*(en) Liver disease"
+          },
+          "gt0079" : {
+            "id" : "gt0079",
+            "text" : "*(en) Heart failure"
+          },
+          "gt0080" : {
+            "id" : "gt0080",
+            "text" : "*(en) Men HB",
+            "description" : "*(en) ≥130 = 0, 120–129 = 1, 100–119 = 3, <100 = 6."
+          },
+          "gt0081" : {
+            "id" : "gt0081",
+            "text" : "*(en) (copy) Men HB >= 130",
+            "description" : "*(en) ≥130 = 0, 120–129 = 1, 100–119 = 3, <100 = 6."
+          },
+          "gt0082" : {
+            "id" : "gt0082",
+            "text" : "*(en) (copy) Men HB = 120-129",
+            "description" : "*(en) =120–129 = 1, 100–119 = 3, <100 = 6."
+          },
+          "gt0083" : {
+            "id" : "gt0083",
+            "text" : "*(en) (copy) Men HB = 100-119",
+            "description" : "*(en) 100–119 = 3, <100 = 6."
+          },
+          "gt0084" : {
+            "id" : "gt0084",
+            "text" : "*(en) Women HB",
+            "description" : "*(en) ≥120 = 0, 100–119 = 1, <100 = 6."
+          },
+          "gt0085" : {
+            "id" : "gt0085",
+            "text" : "*(en) (copy) Women HB",
+            "description" : "*(en) ≥120 = 0, 100–119 = 1, <100 = 6."
+          },
+          "gt0086" : {
+            "id" : "gt0086",
+            "text" : "*(en) (copy) Women HB 100-119",
+            "description" : "*(en) 100–119 = 1, <100 = 6."
+          },
+          "gt0087" : {
+            "id" : "gt0087",
+            "text" : "*(en) Urea",
+            "description" : "*(en) <6.5 = 0, 6.5–<8 = 2, 8–<10 = 3, 10–25 = 4, >25 = 6."
+          },
+          "gt0088" : {
+            "id" : "gt0088",
+            "text" : "*(en) (copy) Urea",
+            "description" : "*(en) <6.5 = 0, 6.5–<8 = 2, 8–<10 = 3, 10–25 = 4, >25 = 6."
+          },
+          "gt0089" : {
+            "id" : "gt0089",
+            "text" : "*(en) (copy) Urea 6.5 - < 8",
+            "description" : "*(en) 6.5–<8 = 2, 8–<10 = 3, 10–25 = 4, >25 = 6."
+          },
+          "gt0090" : {
+            "id" : "gt0090",
+            "text" : "*(en) (copy) (copy) Urea 8 - < 10",
+            "description" : "*(en)  8–<10 = 3, 10–25 = 4, >25 = 6."
+          },
+          "gt0091" : {
+            "id" : "gt0091",
+            "text" : "*(en) (copy)  Urea 10 - 25",
+            "description" : "*(en) 10–25 = 4, >25 = 6."
+          },
+          "gt0092" : {
+            "id" : "gt0092",
+            "text" : "*(en) Systolic",
+            "description" : "*(en) ≥110 = 0, 100–109 = 1, 90–99 = 2, <90 = 3."
+          },
+          "gt0093" : {
+            "id" : "gt0093",
+            "text" : "*(en) (copy) Systolic",
+            "description" : "*(en) ≥110 = 0, 100–109 = 1, 90–99 = 2, <90 = 3."
+          },
+          "gt0094" : {
+            "id" : "gt0094",
+            "text" : "*(en) (copy) Systolic 100-109",
+            "description" : "*(en) ≥110 = 0, 100–109 = 1, 90–99 = 2, <90 = 3."
+          },
+          "gt0095" : {
+            "id" : "gt0095",
+            "text" : "*(en) (copy) Systolic 90 - 99",
+            "description" : "*(en) 90–99 = 2, <90 = 3."
+          },
+          "gt0096" : {
+            "id" : "gt0096",
+            "text" : "*(en) Heart rate",
+            "description" : "*(en) <100 = 0, ≥100 = 1."
+          },
+          "gt0097" : {
+            "id" : "gt0097",
+            "text" : "*(en) (copy) Heart rate",
+            "description" : "*(en) <100 = 0, ≥100 = 1."
+          }
+        }
+      },
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Glasgow-Blatchford Bleeding Score (GBS) Calculator",
+            "description" : "A risk-stratification system for patients with acute upper-gastrointestinal bleeding (UGIB), to discriminate between patients at high or low risk of dying or rebleeding. The score is calculated based on clinical and laboratory variables only: patients' admission haemoglobin, blood urea, pulse, and systolic blood pressure, as well as presentation with syncope or melaena, and evidence of hepatic disease or cardiac failure. Component points assigned for presence, absence, or value of each variable are summed to give the Glasgow-Blatchford bleeding score (GBS) with value between 0 - 23. A score above 0 (zero) implies the patient is at high risk of needing clinical intervention (transfusion, endoscopy or surgery), and correlates well with length of hospital stay and number of units of blood transfused. GBS is more sensitive than clinical and complete Rockall scores for identifying high-risk patients with acute UGIB."
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Haemoglobin",
+            "description" : "The mass concentration of haemoglobin"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Urea",
+            "description" : "Urea level in this specimen."
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Rate",
+            "description" : "The rate, measured in beats per minute."
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Melaena"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Syncope"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "Rate",
+            "description" : "The rate, measured in beats per minute."
+          },
+          "gt0023" : {
+            "id" : "gt0023",
+            "text" : "Haemoglobin",
+            "description" : "The mass concentration of haemoglobin"
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "text" : "Urea",
+            "description" : "Urea level in this specimen."
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "text" : "Systolic",
+            "description" : "Peak systemic arterial blood pressure  - measured in systolic or contraction phase of the heart cycle."
+          },
+          "gt0029" : {
+            "id" : "gt0029",
+            "text" : "Heart failure (unspecified)",
+            "description" : "Has the individual ever been diagnosed with heart failure?"
+          },
+          "gt0030" : {
+            "id" : "gt0030",
+            "text" : "Liver disease",
+            "description" : "Has the individual ever been diagnosed with any kind of liver disease?"
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "text" : "Blood Urea Nitrogen (BUN)",
+            "description" : "Score assigned for concentration of blood urea nitrogen (BUN) at admission."
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "text" : "Haemoglobin (Hb)",
+            "description" : "Score assigned for haemogloin concentration at admission (male and female)."
+          },
+          "gt0034" : {
+            "id" : "gt0034",
+            "text" : "Sex",
+            "description" : "The patient's gender."
+          },
+          "gt0035" : {
+            "id" : "gt0035",
+            "text" : "Systolic blood pressure (SBP)",
+            "description" : "Score assigned for systolic blood pressure at admission."
+          },
+          "gt0036" : {
+            "id" : "gt0036",
+            "text" : "Pulse",
+            "description" : "Score assigned for pulse rate at admission."
+          },
+          "gt0037" : {
+            "id" : "gt0037",
+            "text" : "Melaena",
+            "description" : "Score assigned for presence or absence of melena at admission."
+          },
+          "gt0038" : {
+            "id" : "gt0038",
+            "text" : "Syncope",
+            "description" : "Score assigned for presence or absence of syncope at admission."
+          },
+          "gt0039" : {
+            "id" : "gt0039",
+            "text" : "Liver disease",
+            "description" : "Score assigned for any evidence of liver disease."
+          },
+          "gt0040" : {
+            "id" : "gt0040",
+            "text" : "Heart failure",
+            "description" : "Score assigned for any evidence of heart failure."
+          },
+          "gt0041" : {
+            "id" : "gt0041",
+            "text" : "Total score",
+            "description" : "Sum of the individual scores assigned for each of the contributing variables."
+          },
+          "gt0068" : {
+            "id" : "gt0068",
+            "text" : "Score interpretation",
+            "description" : "A score of 0 (zero) suggesting a low risk of complications (0.5%) and higher scores corresponding to increasing acuity, need for treatment, and mortality.\r\n"
+          },
+          "gt0069" : {
+            "id" : "gt0069",
+            "text" : "Recommendation",
+            "description" : "A score of 0 (zero) suggesting a low risk of complications (0.5%) and higher scores corresponding to increasing acuity, need for treatment, and mortality."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.lab_test-full_blood_count.v1"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "openEHR-EHR-OBSERVATION.lab_test-urea_and_electrolytes.v1"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "openEHR-EHR-OBSERVATION.pulse.v2"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "openEHR-EHR-OBSERVATION.glasgow_blatchford_bleeding_score.v1"
+          },
+          "gt0031" : {
+            "id" : "gt0031",
+            "text" : "openEHR-EHR-OBSERVATION.glasgow_blatchford_bleeding_score.v1"
+          },
+          "gt0067" : {
+            "id" : "gt0067",
+            "text" : "openEHR-EHR-EVALUATION.glasgow_blatchford_bleeding_score_assessment.v1"
+          },
+          "gt0077" : {
+            "id" : "gt0077",
+            "text" : "Sex"
+          },
+          "gt0078" : {
+            "id" : "gt0078",
+            "text" : "Liver disease"
+          },
+          "gt0079" : {
+            "id" : "gt0079",
+            "text" : "Heart failure"
+          },
+          "gt0080" : {
+            "id" : "gt0080",
+            "text" : "Men HB >= 130",
+            "description" : "≥130 = 0"
+          },
+          "gt0081" : {
+            "id" : "gt0081",
+            "text" : "Men HB = 120-129",
+            "description" : "=120–129 = 1"
+          },
+          "gt0082" : {
+            "id" : "gt0082",
+            "text" : "Men HB = 100-119",
+            "description" : "100–119 = 3"
+          },
+          "gt0083" : {
+            "id" : "gt0083",
+            "text" : "Men HB = < 100",
+            "description" : "<100 = 6."
+          },
+          "gt0084" : {
+            "id" : "gt0084",
+            "text" : "Women HB >= 120",
+            "description" : "≥120 = 0"
+          },
+          "gt0085" : {
+            "id" : "gt0085",
+            "text" : "Women HB 100-119",
+            "description" : "100–119 = 1"
+          },
+          "gt0086" : {
+            "id" : "gt0086",
+            "text" : "Women HB <100",
+            "description" : "<100 = 6."
+          },
+          "gt0087" : {
+            "id" : "gt0087",
+            "text" : "Urea < 6.5",
+            "description" : "<6.5 = 0"
+          },
+          "gt0088" : {
+            "id" : "gt0088",
+            "text" : "Urea 6.5 - < 8",
+            "description" : "6.5–<8 = 2"
+          },
+          "gt0089" : {
+            "id" : "gt0089",
+            "text" : "Urea 8 - < 10",
+            "description" : " 8–<10 = 3"
+          },
+          "gt0090" : {
+            "id" : "gt0090",
+            "text" : " Urea 10 - 25",
+            "description" : "10–25 = 4, >25 = 6."
+          },
+          "gt0091" : {
+            "id" : "gt0091",
+            "text" : "Urea > 25",
+            "description" : ">25 = 6."
+          },
+          "gt0092" : {
+            "id" : "gt0092",
+            "text" : "Systolic",
+            "description" : "≥110 = 0"
+          },
+          "gt0093" : {
+            "id" : "gt0093",
+            "text" : "Systolic 100-109",
+            "description" : "100–109 = 1"
+          },
+          "gt0094" : {
+            "id" : "gt0094",
+            "text" : "Systolic 90 - 99",
+            "description" : "90–99 = 2"
+          },
+          "gt0095" : {
+            "id" : "gt0095",
+            "text" : "Systolic < 90",
+            "description" : "<90 = 3."
+          },
+          "gt0096" : {
+            "id" : "gt0096",
+            "text" : "Heart rate",
+            "description" : "<100 = 0"
+          },
+          "gt0097" : {
+            "id" : "gt0097",
+            "text" : "(copy) Heart rate",
+            "description" : "<100 = 0, ≥100 = 1."
+          }
+        }
+      }
+    }
+  }
+}
