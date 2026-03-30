@@ -1,0 +1,115 @@
+guidelines:
+  "1": Canadian_CT_head_rule.v0.0.1
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Glasgow Coma Scale score lower than 15 at 2 hours after injury missing
+      (negative test).
+    input:
+      "1":
+        gt0016|Suspected open or depressed skull fracture: local::at0013|Yes|
+        gt0017|Any sign of basal skull fracture: local::at0017|No|
+        gt0018|Two or more episodes of vomiting: local::at0029|No|
+        gt0019|65 years or older: local::at0032|No|
+        gt0020|Amnesia before impact of 30 or more minutes: local::at0036|No|
+        gt0021|Dangerous mechanism: local::at0038|No|
+    expected_output:
+      "1": {}
+  - id: 03. Suspected open or depressed skull fracture missing (negative test).
+    input:
+      "1":
+        gt0015|Glasgow Coma Scale score lower than 15 at 2 hours after injury: local::at0009|No|
+        gt0017|Any sign of basal skull fracture: local::at0017|No|
+        gt0018|Two or more episodes of vomiting: local::at0029|No|
+        gt0019|65 years or older: local::at0032|No|
+        gt0020|Amnesia before impact of 30 or more minutes: local::at0036|No|
+        gt0021|Dangerous mechanism: local::at0038|No|
+    expected_output:
+      "1": {}
+  - id: 04. Any sign of basal skull fracture missing (negative test).
+    input:
+      "1":
+        gt0015|Glasgow Coma Scale score lower than 15 at 2 hours after injury: local::at0009|No|
+        gt0016|Suspected open or depressed skull fracture: local::at0014|No|
+        gt0018|Two or more episodes of vomiting: local::at0029|No|
+        gt0019|65 years or older: local::at0032|No|
+        gt0020|Amnesia before impact of 30 or more minutes: local::at0036|No|
+        gt0021|Dangerous mechanism: local::at0038|No|
+    expected_output:
+      "1": {}
+  - id: 05. Two or more episodes of vomiting missing (negative test).
+    input:
+      "1":
+        gt0015|Glasgow Coma Scale score lower than 15 at 2 hours after injury: local::at0009|No|
+        gt0016|Suspected open or depressed skull fracture: local::at0014|No|
+        gt0017|Any sign of basal skull fracture: local::at0016|Yes|
+        gt0019|65 years or older: local::at0032|No|
+        gt0020|Amnesia before impact of 30 or more minutes: local::at0036|No|
+        gt0021|Dangerous mechanism: local::at0038|No|
+    expected_output:
+      "1": {}
+  - id: 06. 65 years or older missing (negative test).
+    input:
+      "1":
+        gt0015|Glasgow Coma Scale score lower than 15 at 2 hours after injury: local::at0009|No|
+        gt0016|Suspected open or depressed skull fracture: local::at0014|No|
+        gt0017|Any sign of basal skull fracture: local::at0016|Yes|
+        gt0018|Two or more episodes of vomiting: local::at0028|Yes|
+        gt0020|Amnesia before impact of 30 or more minutes: local::at0036|No|
+        gt0021|Dangerous mechanism: local::at0038|No|
+    expected_output:
+      "1": {}
+  - id: 07. Amnesia before impact of 30 or more minutes missing (negative test).
+    input:
+      "1":
+        gt0015|Glasgow Coma Scale score lower than 15 at 2 hours after injury: local::at0009|No|
+        gt0016|Suspected open or depressed skull fracture: local::at0014|No|
+        gt0017|Any sign of basal skull fracture: local::at0016|Yes|
+        gt0018|Two or more episodes of vomiting: local::at0028|Yes|
+        gt0019|65 years or older: local::at0032|No|
+        gt0021|Dangerous mechanism: local::at0038|No|
+    expected_output:
+      "1": {}
+  - id: 08. Dangerous mechanism missing (negative test).
+    input:
+      "1":
+        gt0015|Glasgow Coma Scale score lower than 15 at 2 hours after injury: local::at0009|No|
+        gt0016|Suspected open or depressed skull fracture: local::at0014|No|
+        gt0017|Any sign of basal skull fracture: local::at0016|Yes|
+        gt0018|Two or more episodes of vomiting: local::at0028|Yes|
+        gt0019|65 years or older: local::at0032|No|
+        gt0020|Amnesia before impact of 30 or more minutes: local::at0036|No|
+    expected_output:
+      "1": {}
+  - id: "09. CT head recommended: Medium risk for clinically important brain
+      injury."
+    input:
+      "1":
+        gt0015|Glasgow Coma Scale score lower than 15 at 2 hours after injury: local::at0009|No|
+        gt0016|Suspected open or depressed skull fracture: local::at0014|No|
+        gt0017|Any sign of basal skull fracture: local::at0017|No|
+        gt0018|Two or more episodes of vomiting: local::at0029|No|
+        gt0019|65 years or older: local::at0032|No|
+        gt0020|Amnesia before impact of 30 or more minutes: local::at0035|Yes|
+        gt0021|Dangerous mechanism: local::at0038|No|
+    expected_output:
+      "1":
+        gt0023|Recommendation: "local::at0006|CT head recommended: Medium risk for
+          clinically important brain injury.|"
+  - id: "10. CT head recommended: High risk for neurological intervention."
+    input:
+      "1":
+        gt0015|Glasgow Coma Scale score lower than 15 at 2 hours after injury: local::at0009|No|
+        gt0016|Suspected open or depressed skull fracture: local::at0014|No|
+        gt0017|Any sign of basal skull fracture: local::at0016|Yes|
+        gt0018|Two or more episodes of vomiting: local::at0029|No|
+        gt0019|65 years or older: local::at0032|No|
+        gt0020|Amnesia before impact of 30 or more minutes: local::at0035|Yes|
+        gt0021|Dangerous mechanism: local::at0038|No|
+    expected_output:
+      "1":
+        gt0023|Recommendation: "local::at0007|CT head recommended: High risk for
+          neurological intervention.|"
