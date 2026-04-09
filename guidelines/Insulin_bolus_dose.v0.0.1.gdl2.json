@@ -1,0 +1,137 @@
+{
+  "uuid" : "a0d91f03-de33-4820-acb2-bca9a8c8cf4f",
+  "id" : "Insulin_bolus_dose.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Mahmoud Elachi",
+      "email" : "mel.achi@gmail.com",
+      "organisation" : "Cambio CDS"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To support healthcare professionals in determining an appropriate insulin correction dose based on current blood glucose and total daily insulin dose.",
+        "keywords" : [
+          "insulin",
+          "bolus",
+          "correction dose",
+          "blood glucose",
+          "diabetes",
+          "hyperglycaemia",
+          "total daily dose"
+        ],
+        "use" : "Use to record input parameters (blood glucose and total daily insulin dose) and the calculated correction bolus dose as part of clinical decision support for diabetes management.",
+        "misuse" : "Not to be used as a substitute for clinical judgment, for insulin prescribing without clinician evaluation, or in complex clinical situations requiring individualized dosing (e.g., diabetic ketoacidosis, pregnancy, or severe illness).",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "en" : "A clinical calculation used to estimate a correction bolus insulin dose in insulin-treated patients presenting with elevated blood glucose levels.",
+      "references" : "ISPAD Clinical Practice Consensus Guidelines 2022. Chapter 8.\nhttps://www.ispad.org/resources/ispad-clinical-practice-consensus-guidelines/2022-ispad-clinical-practice-consensus-guidelines/ispad-cpcg-2022-english.html"
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.insulin_bolus_dose.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.insulin_bolus_dose.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mmol"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "u"
+            ]
+          }
+        }
+      },
+      "gt0005" : {
+        "id" : "gt0005",
+        "model_id" : "openEHR-EHR-OBSERVATION.insulin_bolus_dose.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.insulin_bolus_dose.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "u"
+            ]
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0007" : {
+        "id" : "gt0007",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|P-glukos|!=null",
+          "$gt0004|Dygnsdos insulin|!=null",
+          "$gt0003|P-glukos|.magnitude>=8&&$gt0003|P-glukos|.magnitude<=100",
+          "$gt0004|Dygnsdos insulin|>=0.5&&$gt0004|Dygnsdos insulin|.magnitude<=700"
+        ],
+        "then" : [
+          "$gt0006|Bolus dose|.magnitude=(($gt0003|P-glukos|.magnitude-8)*$gt0004|Dygnsdos insulin|.magnitude)/100"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Insulin bolus dose",
+            "description" : "A clinical calculation used to estimate a correction bolus insulin dose in insulin-treated patients presenting with elevated blood glucose levels."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.insulin_bolus_dose.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "P-glukos"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Dygnsdos insulin"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "openEHR-EHR-OBSERVATION.insulin_bolus_dose.v0"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "Bolus dose"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Default rule",
+            "description" : "correction_dose = ((blood_glucose - 8) * total_daily_insulin_dose) / 100"
+          }
+        }
+      }
+    }
+  }
+}
