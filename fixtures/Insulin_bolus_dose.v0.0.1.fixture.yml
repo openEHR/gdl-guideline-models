@@ -1,0 +1,50 @@
+guidelines:
+  "1": Insulin_bolus_dose.v0.0.1
+test_cases:
+  - id: testing 1 with values
+    input:
+      "1":
+        gt0003|P-glukos: 10,mmol
+        gt0004|Dygnsdos insulin: 200,u
+    expected_output:
+      "1":
+        gt0006|Bolus dose: "4"
+  - id: testing 2 with 0 glukos
+    input:
+      "1":
+        gt0003|P-glukos: 0,mmol
+        gt0004|Dygnsdos insulin: 200,u
+    expected_output:
+      "1": {}
+  - id: testing 2 with 0 dygnsdos
+    input:
+      "1":
+        gt0003|P-glukos: 9,mmol
+        gt0004|Dygnsdos insulin: 0,u
+    expected_output:
+      "1": {}
+  - id: testing 2 with -1 dygnsdos
+    input:
+      "1":
+        gt0003|P-glukos: 9,mmol
+        gt0004|Dygnsdos insulin: -1,u
+    expected_output:
+      "1": {}
+  - id: testing 3 with no value dygnsdos
+    input:
+      "1":
+        gt0003|P-glukos: 9,mmol
+    expected_output:
+      "1": {}
+  - id: testing 3 with no value for both input
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: testing 2 with -1 glukos
+    input:
+      "1":
+        gt0003|P-glukos: -1,mmol
+        gt0004|Dygnsdos insulin: 100,u
+    expected_output:
+      "1": {}
