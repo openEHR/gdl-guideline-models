@@ -1,0 +1,168 @@
+{
+  "uuid" : "1fc0c388-e10c-4d06-a4cb-010ce2b132b4",
+  "id" : "Goteborg_university_cirrhosis_index_GUCI.v0.0.2",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Mahmoud Elachi",
+      "email" : "mel.achi@gmail.com",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-02-20"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate the GUCI from structured laboratory results and present the calculated result in a reproducible way.",
+        "keywords" : [
+          "guci",
+          "göteborg",
+          "cirrhosis",
+          "index",
+          "hepatitis c",
+          "aspartate aminotransferase",
+          "asat",
+          "international normalised ratio",
+          "platelet count",
+          "thrombocytes",
+          "liver fibrosis"
+        ],
+        "use" : "Use to calculate the Göteborg University Cirrhosis Index from:\n\naspartate aminotransferase;\nupper reference limit for aspartate aminotransferase;\ninternational normalized ratio; and\nplatelet count.",
+        "misuse" : "Not to be used for calculating fibrosis scores other than GUCI, such as APRI or FIB-4. Not to be used when the required laboratory values are unavailable or not comparable in unit and scale.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "https://pubmed.ncbi.nlm.nih.gov/16109665/\nhttps://login.proxybibl.vgregion.se/login?qurl=https://pubmed.ncbi.nlm.nih.gov%2f18938750%2f",
+      "en" : "A clinical decision support guideline used to calculate the Göteborg University Cirrhosis Index from laboratory data in adults with chronic hepatitis C."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0010" : {
+        "id" : "gt0010",
+        "model_id" : "openEHR-EHR-OBSERVATION.guci_index.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.guci_index.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0011" : {
+            "id" : "gt0011",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "U/L"
+            ]
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "U/L"
+            ]
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0009]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "Units"
+            ]
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "10⁹/L"
+            ]
+          }
+        }
+      },
+      "gt0015" : {
+        "id" : "gt0015",
+        "model_id" : "openEHR-EHR-OBSERVATION.guci_index.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.guci_index.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0016" : {
+            "id" : "gt0016",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type" : "DV_QUANTITY"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0017" : {
+        "id" : "gt0017",
+        "priority" : 1,
+        "when" : [
+          "$gt0011|ASAT|!=null",
+          "$gt0012|Övre referens|!=null",
+          "$gt0013|PK-INR|!=null",
+          "$gt0014|TPK|!=null",
+          "$gt0011|ASAT|.magnitude>=0",
+          "$gt0012|Övre referens|.magnitude>=0.5",
+          "$gt0013|PK-INR|.magnitude>=0.5",
+          "$gt0014|TPK|.magnitude>=0.5"
+        ],
+        "then" : [
+          "$gt0016|GUCI-score|.magnitude=($gt0011|ASAT|.magnitude*$gt0013|PK-INR|.magnitude*100)/($gt0014|TPK|.magnitude*$gt0012|Övre referens|.magnitude)",
+          "$gt0016|GUCI-score|.precision=2"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Göteborg University Cirrhosis Index (GUCI)",
+            "description" : "A clinical decision support guideline used to calculate the Göteborg University Cirrhosis Index from laboratory data in adults with chronic hepatitis C."
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "openEHR-EHR-OBSERVATION.guci_index.v0"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "ASAT"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Övre referens"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "PK-INR"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "TPK"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "openEHR-EHR-OBSERVATION.guci_index.v0"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "GUCI-score"
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "Calculator",
+            "description" : "GUCI = (ASAT * PK-INR * 100) / (TPK * Ref); Ref = Övre referensvärdet för ASAT (analysberoende). ASAT och dess referensvärde anges med valfri (samma) enhet, TPK i 109 st/L."
+          }
+        }
+      }
+    }
+  }
+}
