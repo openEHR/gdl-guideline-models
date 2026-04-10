@@ -1,0 +1,443 @@
+archetype (adl_version=1.4; uid=78957aef-f0ca-4917-a470-0672be60b661)
+	openEHR-EHR-OBSERVATION.euroscore_2.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-04-02">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the patient, cardiac, and operative parameters and the resulting predicted mortality risk.">
+			keywords = <"euroscore, score, euro, cardiac, surgery, mortality, prediction, risk, CABG, valve, cardiology", ...>
+			copyright = <"© Cambio CDS">
+			use = <"To record patient, cardiac-specific and procedural factors according to the EuroSCORE II.">
+			misuse = <"Not inteded for recording of the factors apart from when used in EuroSCORE II. ">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Noyez L, Kievit PC, van Swieten HA, de Boer MJ. Cardiac operative risk evaluation: The EuroSCORE II, does it make a real difference? Neth Heart J. 2012 Dec;20(12):494-8. doi: 10.1007/s12471-012-0327-1. PMID: 23055057; PMCID: PMC3515725.
+
+Nashef SAM, Roques F, Sharples LD, Nilsson J, Smith C, Goldstone AR, Lockowandt U. EuroSCORE II. Eur J Cardiothorac Surg. 2012 Apr;41(4):734-44; discussion 744-5. doi: 10.1093/ejcts/ezs043. PMID: 22378855.">
+		["build_uid"] = <"5303b4d9-3b5c-3ec7-aa93-dfd53fb1c9ca">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Euroscore II
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Renal impairment
+										value matches {
+											0|[local::at0007],
+											1|[local::at0008],
+											2|[local::at0009],
+											3|[local::at0010]
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {    -- Chronic lung disease
+										value matches {
+											0|[local::at0021],
+											1|[local::at0022]
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Extracardiac arteriopathy
+										value matches {
+											0|[local::at0012],
+											1|[local::at0013]
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Neurological or musculoskeletal dysfunction that severely affects mobility
+										value matches {
+											0|[local::at0015],
+											1|[local::at0016]
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Previous cardiac surgery
+										value matches {
+											0|[local::at0018],
+											1|[local::at0019]
+										}
+									}
+									ELEMENT[at0023] occurrences matches {0..1} matches {    -- Active endocarditis
+										value matches {
+											0|[local::at0024],
+											1|[local::at0025]
+										}
+									}
+									ELEMENT[at0026] occurrences matches {0..1} matches {    -- Critical preoperative state
+										value matches {
+											0|[local::at0027],
+											1|[local::at0028]
+										}
+									}
+									ELEMENT[at0029] occurrences matches {0..1} matches {    -- Insulin-dependent diabetes mellitus
+										value matches {
+											0|[local::at0030],
+											1|[local::at0031]
+										}
+									}
+									ELEMENT[at0040] occurrences matches {0..1} matches {    -- LV function
+										value matches {
+											0|[local::at0041],
+											1|[local::at0042],
+											2|[local::at0043],
+											3|[local::at0044]
+										}
+									}
+									ELEMENT[at0048] occurrences matches {0..1} matches {    -- Pulmonary hypertension
+										value matches {
+											0|[local::at0049],
+											1|[local::at0050],
+											2|[local::at0051]
+										}
+									}
+									ELEMENT[at0032] occurrences matches {0..1} matches {    -- NYHA
+										value matches {
+											0|[local::at0033],
+											1|[local::at0034],
+											2|[local::at0035],
+											3|[local::at0036]
+										}
+									}
+									ELEMENT[at0037] occurrences matches {0..1} matches {    -- CCS angina class 4
+										value matches {
+											0|[local::at0038],
+											1|[local::at0039]
+										}
+									}
+									ELEMENT[at0045] occurrences matches {0..1} matches {    -- Myocardial infarct in previous 90 days
+										value matches {
+											0|[local::at0046],
+											1|[local::at0047]
+										}
+									}
+									ELEMENT[at0052] occurrences matches {0..1} matches {    -- Urgency for operation
+										value matches {
+											0|[local::at0053],
+											1|[local::at0054],
+											2|[local::at0055],
+											3|[local::at0056]
+										}
+									}
+									ELEMENT[at0057] occurrences matches {0..1} matches {    -- Weight of the intervention
+										value matches {
+											0|[local::at0058],
+											1|[local::at0059],
+											2|[local::at0060],
+											3|[local::at0061]
+										}
+									}
+									ELEMENT[at0062] occurrences matches {0..1} matches {    -- Surgery on Thoracic Aorta
+										value matches {
+											0|[local::at0063],
+											1|[local::at0064]
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Euroscore II">
+					description = <"European System for Cardiac Operative Risk Evaluation (EuroSCORE) II predicts risk of in-hospital mortality after major cardiac surgery.">
+					comment = <"Original version, c 2012.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Renal impairment">
+					description = <"Creatinine clearance by Cockcroft-Gault formula">
+				>
+				["at0007"] = <
+					text = <"> 85 ml/min">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"50-85 ml/min">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"≤ 50 ml/min">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"On dialysis (regardless of creatinine clearance)">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Extracardiac arteriopathy">
+					description = <"≥1 of the following: claudication; carotid occlusion or >50% stenosis (NASCET criteria); amputation for arterial disease; previous or planned intervention on abdominal aorta, limb arteries, or carotids">
+				>
+				["at0012"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Neurological or musculoskeletal dysfunction that severely affects mobility">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Previous cardiac surgery">
+					description = <"≥1 previous major cardiac operation involving opening the pericardium">
+				>
+				["at0018"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"Chronic lung disease">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"Active endocarditis">
+					description = <"i.e., on antibiotics for endocarditis at time of surgery">
+				>
+				["at0024"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"Critical preoperative state">
+					description = <"≥1 of the following in the same hospital admission as the operation: ventricular tachycardia or fibrillation or aborted sudden death; cardiac massage; ventilation before arrival to OR; inotropes; IABP or VAD before arrival to OR; acute renal failure, defined as anuria or oliguria <10 mL/hr">
+				>
+				["at0027"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"Insulin-dependent diabetes mellitus">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"NYHA">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Class I">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"Class II">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"Class III">
+					description = <"*">
+				>
+				["at0036"] = <
+					text = <"Class IV">
+					description = <"*">
+				>
+				["at0037"] = <
+					text = <"CCS angina class 4">
+					description = <"Inability to perform any activity without angina or angina at rest">
+				>
+				["at0038"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0039"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <"LV function">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"> 50 %">
+					description = <"*">
+				>
+				["at0042"] = <
+					text = <"31-50 %">
+					description = <"*">
+				>
+				["at0043"] = <
+					text = <"21-30 %">
+					description = <"*">
+				>
+				["at0044"] = <
+					text = <"≤ 20 %">
+					description = <"*">
+				>
+				["at0045"] = <
+					text = <"Myocardial infarct in previous 90 days">
+					description = <"≤90 days before operation">
+				>
+				["at0046"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0047"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0048"] = <
+					text = <"Pulmonary hypertension">
+					description = <"">
+				>
+				["at0049"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0050"] = <
+					text = <"Moderate (PA systolic 31-55 mmHg)">
+					description = <"*">
+				>
+				["at0051"] = <
+					text = <"Severe (PA systolic ≥ 55 mmHg)">
+					description = <"*">
+				>
+				["at0052"] = <
+					text = <"Urgency for operation">
+					description = <"">
+				>
+				["at0053"] = <
+					text = <"Elective">
+					description = <"Routine admission for operation">
+				>
+				["at0054"] = <
+					text = <"Urgent">
+					description = <"Not electively admitted for operation but require surgery on current admission for medical reasons and cannot be discharged without definitive procedure">
+				>
+				["at0055"] = <
+					text = <"Emergency">
+					description = <"Operation before the beginning of the next working day after the decision to operate">
+				>
+				["at0056"] = <
+					text = <"Salvage">
+					description = <"Patients requiring CPR (external) en route to the OR or before induction of anesthesia (excludes CPR after induction of anesthesia)">
+				>
+				["at0057"] = <
+					text = <"Weight of the intervention">
+					description = <"i.e., extent of intervention">
+				>
+				["at0058"] = <
+					text = <"Isolated CABG">
+					description = <"*">
+				>
+				["at0059"] = <
+					text = <"Single non-CABG">
+					description = <"(e.g. single valve procedure, replacement of ascending aorta, correction of septal defect, etc)">
+				>
+				["at0060"] = <
+					text = <"2 procedures">
+					description = <"(e.g. CABG and AVR), or CABG and mitral valve repair (MVR), or AVR and replacement of ascending aorta, or CABG and maze procedure, or AVR and MVR, etc">
+				>
+				["at0061"] = <
+					text = <"3 procedures">
+					description = <"(e.g. AVR, MVR, and CABG, or MVR, CABG, and tricuspid annuloplasty, etc), or aortic root replacement when it includes AVR or repair, coronary reimplantation, and root and ascending replacement">
+				>
+				["at0062"] = <
+					text = <"Surgery on Thoracic Aorta">
+					description = <"">
+				>
+				["at0063"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0064"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+			>
+		>
+	>
