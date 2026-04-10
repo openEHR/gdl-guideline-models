@@ -1,0 +1,68 @@
+guidelines:
+  "1": Goteborg_university_cirrhosis_index_GUCI.v0.0.2
+test_cases:
+  - id: Testing 1
+    input:
+      "1":
+        gt0011|ASAT: 1,U/L
+        gt0012|Övre referens: 1,U/L
+        gt0013|PK-INR: 2,Units
+        gt0014|TPK: 4,10⁹/L
+    expected_output:
+      "1":
+        gt0016|GUCI-score: "50.00"
+  - id: Testing (missing value)
+    input:
+      "1":
+        gt0011|ASAT: 1,U/L
+        gt0012|Övre referens: 1,U/L
+        gt0014|TPK: 4,10⁹/L
+    expected_output:
+      "1": {}
+  - id: Testing 2
+    input:
+      "1":
+        gt0011|ASAT: 1,U/L
+        gt0012|Övre referens: 1,U/L
+        gt0013|PK-INR: 8,Units
+        gt0014|TPK: 4,10⁹/L
+    expected_output:
+      "1":
+        gt0016|GUCI-score: "200.00"
+  - id: Testing 3 (-1 ASAT)
+    input:
+      "1":
+        gt0011|ASAT: -1,U/L
+        gt0012|Övre referens: 1,U/L
+        gt0013|PK-INR: 8,Units
+        gt0014|TPK: 4,10⁹/L
+    expected_output:
+      "1": {}
+  - id: Testing 4 (-1 PK-INR)
+    input:
+      "1":
+        gt0011|ASAT: 1,U/L
+        gt0012|Övre referens: 0.5,U/L
+        gt0013|PK-INR: -5,Units
+        gt0014|TPK: 4,10⁹/L
+    expected_output:
+      "1": {}
+  - id: Testing 5 (-4 TPK)
+    input:
+      "1":
+        gt0011|ASAT: 1,U/L
+        gt0012|Övre referens: 0.5,U/L
+        gt0013|PK-INR: 0.5,Units
+        gt0014|TPK: -4,10⁹/L
+    expected_output:
+      "1": {}
+  - id: Testing 6
+    input:
+      "1":
+        gt0011|ASAT: 2,U/L
+        gt0012|Övre referens: 0.5,U/L
+        gt0013|PK-INR: 0.5,Units
+        gt0014|TPK: 7,10⁹/L
+    expected_output:
+      "1":
+        gt0016|GUCI-score: "28.57"
