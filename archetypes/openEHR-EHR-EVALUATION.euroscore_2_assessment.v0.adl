@@ -1,0 +1,101 @@
+archetype (adl_version=1.4; uid=39723a40-9de2-4de6-9b85-d36bff80ca62)
+	openEHR-EHR-EVALUATION.euroscore_2_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-04-02">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the predicted mortality value based on the EuroSCORE II criteria">
+			keywords = <"euroscore, score, euro, cardiac, surgery, mortality, prediction, risk, CABG, valve, cardiology", ...>
+			copyright = <"© Cambio CDS">
+			use = <"To assess the information recorded in the openEHR-EHR-OBSERVATION.euroscore_2.v0 archetype">
+			misuse = <"Not inteded for recording of the factors apart from when used in EuroSCORE II. ">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Noyez L, Kievit PC, van Swieten HA, de Boer MJ. Cardiac operative risk evaluation: The EuroSCORE II, does it make a real difference? Neth Heart J. 2012 Dec;20(12):494-8. doi: 10.1007/s12471-012-0327-1. PMID: 23055057; PMCID: PMC3515725.
+
+Nashef SAM, Roques F, Sharples LD, Nilsson J, Smith C, Goldstone AR, Lockowandt U. EuroSCORE II. Eur J Cardiothorac Surg. 2012 Apr;41(4):734-44; discussion 744-5. doi: 10.1093/ejcts/ezs043. PMID: 22378855.">
+		["build_uid"] = <"49a51cda-d8b2-3853-8501-230fe3ce3a9a">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- euroscore 2 assessment
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- Predicted mortality
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::507]>
+								list = <
+									["1"] = <
+										units = <"%">
+										precision = <|3|>
+									>
+								>
+							>
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"euroscore 2 assessment">
+					description = <"European System for Cardiac Operative Risk Evaluation (EuroSCORE) II predicts risk of in-hospital mortality after major cardiac surgery.">
+					comment = <"Original version, c 2012.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Predicted mortality">
+					description = <"">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>
