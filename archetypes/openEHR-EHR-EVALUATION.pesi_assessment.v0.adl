@@ -1,0 +1,263 @@
+archetype (adl_version=1.4; uid=f29a86d2-9670-475c-96ef-27dda1ee779f)
+	openEHR-EHR-EVALUATION.pesi_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"Dennis Forslund">
+				["organisation"] = <"Cambio CDS">
+			>
+		>
+	>
+
+description
+	original_author = <
+		["date"] = <"2017-02-13">
+		["name"] = <"Eneimi Allwell-Brown">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"models@cambiocds.com">
+	>
+	lifecycle_state = <"in_development">
+	other_contributors = <"Katja Mariko Wilde", ...>
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"*To record the interpreted risk classification and associated mortality estimate derived from the Pulmonary Embolism Severity Index (PESI). (en)">
+			keywords = <"*pesi (en)","*pulmonary (en)","*embolism (en)","*severity (en)","*index (en)","*thromboembolism (en)","*mortality (en)","*risk (en)","*stratification (en)">
+			copyright = <"*© Cambio CDS (en)">
+			use = <"*Use to record the interpreted risk classification and associated mortality estimate derived from the Pulmonary Embolism Severity Index (PESI). (en)">
+			misuse = <"Ej avsedd att användas som stöd i diagnosticering av lungemboli utan enbart riskstratifiering efter bekräftad diagnos.">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the interpreted risk classification and associated mortality estimate derived from the Pulmonary Embolism Severity Index (PESI).">
+			keywords = <"pesi","pulmonary","embolism","severity","index","thromboembolism","mortality","risk","stratification">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the interpreted risk classification and associated mortality estimate derived from the Pulmonary Embolism Severity Index (PESI).">
+			misuse = <"Not to be used to make a diagnosis of pulmonary embolism, as PESI is only meant for risk stratification of pulmonary embolism after the diagnosis has been made.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Aujesky D, Obrosky DS, Stone RA, Auble TE, Perrier A, Cornuz J, Roy PM, Fine MJ. Derivation and validation of a prognostic model for pulmonary embolism. American journal of respiratory and critical care medicine. 2005 Oct 15;172(8):1041-6.
+
+Donzé J, Le Gal G, Fine MJ, Roy PM, Sanchez O, Verschuren F, Cornuz J, Meyer G, Perrier A, Righini M, Aujesky D. Prospective validation of the Pulmonary Embolism Severity Index-A clinical prognostic model for pulmonary embolism. Thrombosis and haemostasis. 2008;100(5):943-8.
+
+Fraga M, Taffé P, Méan M, Hugli O, Witzig S, Waeber G, Aujesky D. The inter-rater reliability of the Pulmonary Embolism Severity Index. Thrombosis & Haemostasis. 2010 Dec 10;104(6):1258.">
+		["original_namespace"] = <"org.openehr">
+		["custodian_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["MD5-CAM-1.0.1"] = <"3487d0534ad97b72ee78de5191de4cee">
+		["build_uid"] = <"11896e96-cab0-374c-b658-c64939e4bc22">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Pulmonary Embolism Severity Index (PESI)
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- Risk class
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0003,    -- Class I (very low risk)
+									at0004,    -- Class II (low risk)
+									at0005,    -- Class III (intermediate risk)
+									at0006,    -- Class IV (high risk)
+									at0007]    -- Class V (very high risk)
+								}
+							}
+						}
+					}
+					ELEMENT[at0008] occurrences matches {0..1} matches {    -- 30-day mortality
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0009,    -- 0.0 - 1.6%
+									at0010,    -- 1.7 - 3.5%
+									at0011,    -- 3.2 - 7.1%
+									at0012,    -- 4.0 - 11.4%
+									at0013]    -- 10.0 - 24.5%
+								}
+							}
+						}
+					}
+					ELEMENT[at0014] occurrences matches {0..1} matches {    -- Comment
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0015] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0016] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Pulmonary Embolism Severity Index (PESI)">
+					description = <"A clinical assessment representing the interpretation of the Pulmonary Embolism Severity Index (PESI), including risk classification and associated 30-day mortality.">
+					comment = <"Original version, c 2005">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Risk class">
+					description = <"Assessed risk class based on calculated PESI score.">
+				>
+				["at0003"] = <
+					text = <"Class I (very low risk)">
+					description = <"≤ 65">
+				>
+				["at0004"] = <
+					text = <"Class II (low risk)">
+					description = <"66 - 85">
+				>
+				["at0005"] = <
+					text = <"Class III (intermediate risk)">
+					description = <"86 - 105">
+				>
+				["at0006"] = <
+					text = <"Class IV (high risk)">
+					description = <"106 - 125">
+				>
+				["at0007"] = <
+					text = <"Class V (very high risk)">
+					description = <"> 125">
+				>
+				["at0008"] = <
+					text = <"30-day mortality">
+					description = <"Assessed 30-day mortality based on calculated PESI score.">
+				>
+				["at0009"] = <
+					text = <"0.0 - 1.6%">
+					description = <"very low risk">
+				>
+				["at0010"] = <
+					text = <"1.7 - 3.5%">
+					description = <"low risk">
+				>
+				["at0011"] = <
+					text = <"3.2 - 7.1%">
+					description = <"intermediate risk">
+				>
+				["at0012"] = <
+					text = <"4.0 - 11.4%">
+					description = <"high risk">
+				>
+				["at0013"] = <
+					text = <"10.0 - 24.5%">
+					description = <"very high risk">
+				>
+				["at0014"] = <
+					text = <"Comment">
+					description = <"Any additional information about this recording.">
+				>
+				["at0015"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0016"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Pulmonary Embolism Severity Index (PESI) (en)">
+					description = <"*A clinical assessment representing the interpretation of the Pulmonary Embolism Severity Index (PESI), including risk classification and associated 30-day mortality. (en)">
+					comment = <"*Original version, c 2005 (en)">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Riskklassificering">
+					description = <"Riskklassificering i enlighet med PESI.">
+				>
+				["at0003"] = <
+					text = <"Klass I - mycket låg risk">
+					description = <"≤ 65p">
+				>
+				["at0004"] = <
+					text = <"Klass II - låg risk">
+					description = <"66 - 85p">
+				>
+				["at0005"] = <
+					text = <"Klass III - mellanrisk">
+					description = <"86 - 105p">
+				>
+				["at0006"] = <
+					text = <"Klass IV - hög risk">
+					description = <"106 - 125p">
+				>
+				["at0007"] = <
+					text = <"Klass V - mycket hög risk">
+					description = <"> 125p">
+				>
+				["at0008"] = <
+					text = <"30-dagarsmortalitet">
+					description = <"30-dagarsmortalitet i enlighet med PESI.">
+				>
+				["at0009"] = <
+					text = <"0.0 - 1.6%">
+					description = <"Mycket låg risk">
+				>
+				["at0010"] = <
+					text = <"1.7 - 3.5%">
+					description = <"Låg risk">
+				>
+				["at0011"] = <
+					text = <"3.2 - 7.1%">
+					description = <"Mellanrisk">
+				>
+				["at0012"] = <
+					text = <"4.0 - 11.4%">
+					description = <"Hög risk">
+				>
+				["at0013"] = <
+					text = <"10.0 - 24.5%">
+					description = <"Mycket hög risk">
+				>
+				["at0014"] = <
+					text = <"Kommentar">
+					description = <"Ev. tillägg.">
+				>
+				["at0015"] = <
+					text = <"*Item tree (en)">
+					description = <"@ internal @">
+				>
+				["at0016"] = <
+					text = <"*Extension (en)">
+					description = <"*Additional information required to extend the model with local content or to align with other reference models or formalisms. (en)">
+					comment = <"*For example: local information requirements; or additional metadata to align with FHIR. (en)">
+				>
+			>
+		>
+	>
