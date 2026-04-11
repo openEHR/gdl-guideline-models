@@ -1,0 +1,459 @@
+guidelines:
+  "1": pesi.v0.0.2
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Gender input missing (negative test)
+    input:
+      "1":
+        gt0004|Age: 18,a
+        gt0006|Cancer (unspecified): 0|local::at0051|No|
+        gt0007|Heart failure (unspecified): 0|local::at0044|No|
+        gt0008|Chronic lung disease: 0|local::at0048|No|
+        gt0010|Systolic: 100,mm[Hg]
+        gt0012|Respiration rate: 28,/min
+        gt0014|Temperature: 36,Cel
+        gt0016|spO2: 90,%
+        gt0018|Altered mental status: 0|local::at0031|Absent|
+        gt0034|Pulse rate: 80,/min
+    expected_output:
+      "1":
+        gt0021|Cancer (comorbidity): 0|local::at0017|Absent|
+        gt0022|Heart failure (comorbidity): 0|local::at0019|Absent|
+        gt0023|Chronic lung disease (comorbidity): 0|local::at0021|Absent|
+        gt0024|Pulse ≥ 110/min: 0|local::at0023|Absent|
+        gt0025|Systolic blood pressure < 100 mmHg: 0|local::at0025|Absent|
+        gt0026|Respiratory rate ≥ 30/min: 0|local::at0027|Absent|
+        gt0027|Temperature < 36°C: 0|local::at0029|Absent|
+        gt0028|Arterial oxygen saturation < 90%: 0|local::at0033|Absent|
+  - id: 3. Age input missing (negative test)
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0006|Cancer (unspecified): 0|local::at0051|No|
+        gt0007|Heart failure (unspecified): 0|local::at0044|No|
+        gt0008|Chronic lung disease: 0|local::at0048|No|
+        gt0010|Systolic: 100,mm[Hg]
+        gt0012|Respiration rate: 28,/min
+        gt0014|Temperature: 36,Cel
+        gt0016|spO2: 90,%
+        gt0018|Altered mental status: 0|local::at0031|Absent|
+        gt0034|Pulse rate: 80,/min
+    expected_output:
+      "1":
+        gt0020|Male sex: 0|local::at0015|Absent|
+        gt0021|Cancer (comorbidity): 0|local::at0017|Absent|
+        gt0022|Heart failure (comorbidity): 0|local::at0019|Absent|
+        gt0023|Chronic lung disease (comorbidity): 0|local::at0021|Absent|
+        gt0024|Pulse ≥ 110/min: 0|local::at0023|Absent|
+        gt0025|Systolic blood pressure < 100 mmHg: 0|local::at0025|Absent|
+        gt0026|Respiratory rate ≥ 30/min: 0|local::at0027|Absent|
+        gt0027|Temperature < 36°C: 0|local::at0029|Absent|
+        gt0028|Arterial oxygen saturation < 90%: 0|local::at0033|Absent|
+  - id: 4. Cancer input missing (negative test)
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 18,a
+        gt0007|Heart failure (unspecified): 0|local::at0044|No|
+        gt0008|Chronic lung disease: 0|local::at0048|No|
+        gt0010|Systolic: 100,mm[Hg]
+        gt0012|Respiration rate: 28,/min
+        gt0014|Temperature: 36,Cel
+        gt0016|spO2: 90,%
+        gt0018|Altered mental status: 0|local::at0031|Absent|
+        gt0034|Pulse rate: 80,/min
+    expected_output:
+      "1":
+        gt0020|Male sex: 0|local::at0015|Absent|
+        gt0022|Heart failure (comorbidity): 0|local::at0019|Absent|
+        gt0023|Chronic lung disease (comorbidity): 0|local::at0021|Absent|
+        gt0024|Pulse ≥ 110/min: 0|local::at0023|Absent|
+        gt0025|Systolic blood pressure < 100 mmHg: 0|local::at0025|Absent|
+        gt0026|Respiratory rate ≥ 30/min: 0|local::at0027|Absent|
+        gt0027|Temperature < 36°C: 0|local::at0029|Absent|
+        gt0028|Arterial oxygen saturation < 90%: 0|local::at0033|Absent|
+  - id: 5. Heart failure input missing (negative test)
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 18,a
+        gt0006|Cancer (unspecified): 0|local::at0051|No|
+        gt0008|Chronic lung disease: 0|local::at0048|No|
+        gt0010|Systolic: 100,mm[Hg]
+        gt0012|Respiration rate: 28,/min
+        gt0014|Temperature: 36,Cel
+        gt0016|spO2: 90,%
+        gt0018|Altered mental status: 0|local::at0031|Absent|
+        gt0034|Pulse rate: 80,/min
+    expected_output:
+      "1":
+        gt0020|Male sex: 0|local::at0015|Absent|
+        gt0021|Cancer (comorbidity): 0|local::at0017|Absent|
+        gt0023|Chronic lung disease (comorbidity): 0|local::at0021|Absent|
+        gt0024|Pulse ≥ 110/min: 0|local::at0023|Absent|
+        gt0025|Systolic blood pressure < 100 mmHg: 0|local::at0025|Absent|
+        gt0026|Respiratory rate ≥ 30/min: 0|local::at0027|Absent|
+        gt0027|Temperature < 36°C: 0|local::at0029|Absent|
+        gt0028|Arterial oxygen saturation < 90%: 0|local::at0033|Absent|
+  - id: 6. Chronic lung disease input missing (negative test)
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 18,a
+        gt0006|Cancer (unspecified): 0|local::at0051|No|
+        gt0007|Heart failure (unspecified): 0|local::at0044|No|
+        gt0010|Systolic: 100,mm[Hg]
+        gt0012|Respiration rate: 28,/min
+        gt0014|Temperature: 36,Cel
+        gt0016|spO2: 90,%
+        gt0018|Altered mental status: 0|local::at0031|Absent|
+        gt0034|Pulse rate: 80,/min
+    expected_output:
+      "1":
+        gt0020|Male sex: 0|local::at0015|Absent|
+        gt0021|Cancer (comorbidity): 0|local::at0017|Absent|
+        gt0022|Heart failure (comorbidity): 0|local::at0019|Absent|
+        gt0024|Pulse ≥ 110/min: 0|local::at0023|Absent|
+        gt0025|Systolic blood pressure < 100 mmHg: 0|local::at0025|Absent|
+        gt0026|Respiratory rate ≥ 30/min: 0|local::at0027|Absent|
+        gt0027|Temperature < 36°C: 0|local::at0029|Absent|
+        gt0028|Arterial oxygen saturation < 90%: 0|local::at0033|Absent|
+  - id: 7. Systolic input missing (negative test)
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 18,a
+        gt0006|Cancer (unspecified): 0|local::at0051|No|
+        gt0007|Heart failure (unspecified): 0|local::at0044|No|
+        gt0008|Chronic lung disease: 0|local::at0048|No|
+        gt0012|Respiration rate: 28,/min
+        gt0014|Temperature: 36,Cel
+        gt0016|spO2: 90,%
+        gt0018|Altered mental status: 0|local::at0031|Absent|
+        gt0034|Pulse rate: 80,/min
+    expected_output:
+      "1":
+        gt0020|Male sex: 0|local::at0015|Absent|
+        gt0021|Cancer (comorbidity): 0|local::at0017|Absent|
+        gt0022|Heart failure (comorbidity): 0|local::at0019|Absent|
+        gt0023|Chronic lung disease (comorbidity): 0|local::at0021|Absent|
+        gt0024|Pulse ≥ 110/min: 0|local::at0023|Absent|
+        gt0026|Respiratory rate ≥ 30/min: 0|local::at0027|Absent|
+        gt0027|Temperature < 36°C: 0|local::at0029|Absent|
+        gt0028|Arterial oxygen saturation < 90%: 0|local::at0033|Absent|
+  - id: 8. Respiration rate input missing (negative test)
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 18,a
+        gt0006|Cancer (unspecified): 0|local::at0051|No|
+        gt0007|Heart failure (unspecified): 0|local::at0044|No|
+        gt0008|Chronic lung disease: 0|local::at0048|No|
+        gt0010|Systolic: 100,mm[Hg]
+        gt0014|Temperature: 36,Cel
+        gt0016|spO2: 90,%
+        gt0018|Altered mental status: 0|local::at0031|Absent|
+        gt0034|Pulse rate: 80,/min
+    expected_output:
+      "1":
+        gt0020|Male sex: 0|local::at0015|Absent|
+        gt0021|Cancer (comorbidity): 0|local::at0017|Absent|
+        gt0022|Heart failure (comorbidity): 0|local::at0019|Absent|
+        gt0023|Chronic lung disease (comorbidity): 0|local::at0021|Absent|
+        gt0024|Pulse ≥ 110/min: 0|local::at0023|Absent|
+        gt0025|Systolic blood pressure < 100 mmHg: 0|local::at0025|Absent|
+        gt0027|Temperature < 36°C: 0|local::at0029|Absent|
+        gt0028|Arterial oxygen saturation < 90%: 0|local::at0033|Absent|
+  - id: 9. Temperature input missing (negative test)
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 18,a
+        gt0006|Cancer (unspecified): 0|local::at0051|No|
+        gt0007|Heart failure (unspecified): 0|local::at0044|No|
+        gt0008|Chronic lung disease: 0|local::at0048|No|
+        gt0010|Systolic: 100,mm[Hg]
+        gt0012|Respiration rate: 28,/min
+        gt0016|spO2: 90,%
+        gt0018|Altered mental status: 0|local::at0031|Absent|
+        gt0034|Pulse rate: 80,/min
+    expected_output:
+      "1":
+        gt0020|Male sex: 0|local::at0015|Absent|
+        gt0021|Cancer (comorbidity): 0|local::at0017|Absent|
+        gt0022|Heart failure (comorbidity): 0|local::at0019|Absent|
+        gt0023|Chronic lung disease (comorbidity): 0|local::at0021|Absent|
+        gt0024|Pulse ≥ 110/min: 0|local::at0023|Absent|
+        gt0025|Systolic blood pressure < 100 mmHg: 0|local::at0025|Absent|
+        gt0026|Respiratory rate ≥ 30/min: 0|local::at0027|Absent|
+        gt0028|Arterial oxygen saturation < 90%: 0|local::at0033|Absent|
+  - id: 10. SpO2 input missing (negative test)
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 18,a
+        gt0006|Cancer (unspecified): 0|local::at0051|No|
+        gt0007|Heart failure (unspecified): 0|local::at0044|No|
+        gt0008|Chronic lung disease: 0|local::at0048|No|
+        gt0010|Systolic: 100,mm[Hg]
+        gt0012|Respiration rate: 28,/min
+        gt0014|Temperature: 37,Cel
+        gt0018|Altered mental status: 0|local::at0031|Absent|
+        gt0034|Pulse rate: 80,/min
+    expected_output:
+      "1":
+        gt0020|Male sex: 0|local::at0015|Absent|
+        gt0021|Cancer (comorbidity): 0|local::at0017|Absent|
+        gt0022|Heart failure (comorbidity): 0|local::at0019|Absent|
+        gt0023|Chronic lung disease (comorbidity): 0|local::at0021|Absent|
+        gt0024|Pulse ≥ 110/min: 0|local::at0023|Absent|
+        gt0025|Systolic blood pressure < 100 mmHg: 0|local::at0025|Absent|
+        gt0026|Respiratory rate ≥ 30/min: 0|local::at0027|Absent|
+        gt0027|Temperature < 36°C: 0|local::at0029|Absent|
+  - id: 11. Altered mental status input missing (negative test)
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 18,a
+        gt0006|Cancer (unspecified): 0|local::at0051|No|
+        gt0007|Heart failure (unspecified): 0|local::at0044|No|
+        gt0008|Chronic lung disease: 0|local::at0048|No|
+        gt0010|Systolic: 100,mm[Hg]
+        gt0012|Respiration rate: 28,/min
+        gt0014|Temperature: 37,Cel
+        gt0016|spO2: 95,%
+        gt0034|Pulse rate: 80,/min
+    expected_output:
+      "1":
+        gt0020|Male sex: 0|local::at0015|Absent|
+        gt0021|Cancer (comorbidity): 0|local::at0017|Absent|
+        gt0022|Heart failure (comorbidity): 0|local::at0019|Absent|
+        gt0023|Chronic lung disease (comorbidity): 0|local::at0021|Absent|
+        gt0024|Pulse ≥ 110/min: 0|local::at0023|Absent|
+        gt0025|Systolic blood pressure < 100 mmHg: 0|local::at0025|Absent|
+        gt0026|Respiratory rate ≥ 30/min: 0|local::at0027|Absent|
+        gt0027|Temperature < 36°C: 0|local::at0029|Absent|
+        gt0028|Arterial oxygen saturation < 90%: 0|local::at0033|Absent|
+  - id: 12. Pulse rate input missing (negative test)
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 18,a
+        gt0006|Cancer (unspecified): 0|local::at0051|No|
+        gt0007|Heart failure (unspecified): 0|local::at0044|No|
+        gt0008|Chronic lung disease: 0|local::at0048|No|
+        gt0010|Systolic: 100,mm[Hg]
+        gt0012|Respiration rate: 28,/min
+        gt0014|Temperature: 37,Cel
+        gt0016|spO2: 95,%
+        gt0018|Altered mental status: 0|local::at0031|Absent|
+    expected_output:
+      "1":
+        gt0020|Male sex: 0|local::at0015|Absent|
+        gt0021|Cancer (comorbidity): 0|local::at0017|Absent|
+        gt0022|Heart failure (comorbidity): 0|local::at0019|Absent|
+        gt0023|Chronic lung disease (comorbidity): 0|local::at0021|Absent|
+        gt0025|Systolic blood pressure < 100 mmHg: 0|local::at0025|Absent|
+        gt0026|Respiratory rate ≥ 30/min: 0|local::at0027|Absent|
+        gt0027|Temperature < 36°C: 0|local::at0029|Absent|
+        gt0028|Arterial oxygen saturation < 90%: 0|local::at0033|Absent|
+  - id: 13. All inputs - default values (absent)
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 18,a
+        gt0006|Cancer (unspecified): 0|local::at0051|No|
+        gt0007|Heart failure (unspecified): 0|local::at0044|No|
+        gt0008|Chronic lung disease: 0|local::at0048|No|
+        gt0010|Systolic: 100,mm[Hg]
+        gt0012|Respiration rate: 28,/min
+        gt0014|Temperature: 37,Cel
+        gt0016|spO2: 95,%
+        gt0018|Altered mental status: 0|local::at0031|Absent|
+        gt0034|Pulse rate: 80,/min
+    expected_output:
+      "1":
+        gt0020|Male sex: 0|local::at0015|Absent|
+        gt0021|Cancer (comorbidity): 0|local::at0017|Absent|
+        gt0022|Heart failure (comorbidity): 0|local::at0019|Absent|
+        gt0023|Chronic lung disease (comorbidity): 0|local::at0021|Absent|
+        gt0024|Pulse ≥ 110/min: 0|local::at0023|Absent|
+        gt0025|Systolic blood pressure < 100 mmHg: 0|local::at0025|Absent|
+        gt0026|Respiratory rate ≥ 30/min: 0|local::at0027|Absent|
+        gt0027|Temperature < 36°C: 0|local::at0029|Absent|
+        gt0028|Arterial oxygen saturation < 90%: 0|local::at0033|Absent|
+        gt0029|Total score: "18"
+        gt0031|Risk class: local::at0003|Class I (very low risk)|
+        gt0032|30-day mortality: local::at0009|0.0 - 1.6%|
+  - id: 14. All inputs - set all points for input features
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0004|Age: 18,a
+        gt0006|Cancer (unspecified): 1|local::at0052|Yes|
+        gt0007|Heart failure (unspecified): 1|local::at0045|Yes|
+        gt0008|Chronic lung disease: 1|local::at0049|Yes|
+        gt0010|Systolic: 90,mm[Hg]
+        gt0012|Respiration rate: 30,/min
+        gt0014|Temperature: 35,Cel
+        gt0016|spO2: 89,%
+        gt0018|Altered mental status: 60|local::at0032|Present|
+        gt0034|Pulse rate: 110,/min
+    expected_output:
+      "1":
+        gt0020|Male sex: 10|local::at0016|Present|
+        gt0021|Cancer (comorbidity): 30|local::at0018|Present|
+        gt0022|Heart failure (comorbidity): 10|local::at0020|Present|
+        gt0023|Chronic lung disease (comorbidity): 10|local::at0022|Present|
+        gt0024|Pulse ≥ 110/min: 20|local::at0024|Present|
+        gt0025|Systolic blood pressure < 100 mmHg: 30|local::at0026|Present|
+        gt0026|Respiratory rate ≥ 30/min: 20|local::at0028|Present|
+        gt0027|Temperature < 36°C: 20|local::at0030|Present|
+        gt0028|Arterial oxygen saturation < 90%: 20|local::at0034|Present|
+        gt0029|Total score: "248"
+        gt0031|Risk class: local::at0007|Class V (very high risk)|
+        gt0032|30-day mortality: local::at0013|10.0 - 24.5%|
+  - id: 15. All inputs - Risk class I
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0004|Age: 25,a
+        gt0006|Cancer (unspecified): 1|local::at0052|Yes|
+        gt0007|Heart failure (unspecified): 0|local::at0044|No|
+        gt0008|Chronic lung disease: 0|local::at0048|No|
+        gt0010|Systolic: 100,mm[Hg]
+        gt0012|Respiration rate: 28,/min
+        gt0014|Temperature: 37,Cel
+        gt0016|spO2: 90,%
+        gt0018|Altered mental status: 0|local::at0031|Absent|
+        gt0034|Pulse rate: 90,/min
+    expected_output:
+      "1":
+        gt0020|Male sex: 10|local::at0016|Present|
+        gt0021|Cancer (comorbidity): 30|local::at0018|Present|
+        gt0022|Heart failure (comorbidity): 0|local::at0019|Absent|
+        gt0023|Chronic lung disease (comorbidity): 0|local::at0021|Absent|
+        gt0024|Pulse ≥ 110/min: 0|local::at0023|Absent|
+        gt0025|Systolic blood pressure < 100 mmHg: 0|local::at0025|Absent|
+        gt0026|Respiratory rate ≥ 30/min: 0|local::at0027|Absent|
+        gt0027|Temperature < 36°C: 0|local::at0029|Absent|
+        gt0028|Arterial oxygen saturation < 90%: 0|local::at0033|Absent|
+        gt0029|Total score: "65"
+        gt0031|Risk class: local::at0003|Class I (very low risk)|
+        gt0032|30-day mortality: local::at0009|0.0 - 1.6%|
+  - id: 16. All inputs - Risk class II
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 25,a
+        gt0006|Cancer (unspecified): 1|local::at0052|Yes|
+        gt0007|Heart failure (unspecified): 0|local::at0044|No|
+        gt0008|Chronic lung disease: 0|local::at0048|No|
+        gt0010|Systolic: 90,mm[Hg]
+        gt0012|Respiration rate: 28,/min
+        gt0014|Temperature: 37,Cel
+        gt0016|spO2: 90,%
+        gt0018|Altered mental status: 0|local::at0031|Absent|
+        gt0034|Pulse rate: 90,/min
+    expected_output:
+      "1":
+        gt0020|Male sex: 0|local::at0015|Absent|
+        gt0021|Cancer (comorbidity): 30|local::at0018|Present|
+        gt0022|Heart failure (comorbidity): 0|local::at0019|Absent|
+        gt0023|Chronic lung disease (comorbidity): 0|local::at0021|Absent|
+        gt0024|Pulse ≥ 110/min: 0|local::at0023|Absent|
+        gt0025|Systolic blood pressure < 100 mmHg: 30|local::at0026|Present|
+        gt0026|Respiratory rate ≥ 30/min: 0|local::at0027|Absent|
+        gt0027|Temperature < 36°C: 0|local::at0029|Absent|
+        gt0028|Arterial oxygen saturation < 90%: 0|local::at0033|Absent|
+        gt0029|Total score: "85"
+        gt0031|Risk class: local::at0004|Class II (low risk)|
+        gt0032|30-day mortality: local::at0010|1.7 - 3.5%|
+  - id: 17. All inputs - Risk class III
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 25,a
+        gt0006|Cancer (unspecified): 1|local::at0052|Yes|
+        gt0007|Heart failure (unspecified): 0|local::at0044|No|
+        gt0008|Chronic lung disease: 0|local::at0048|No|
+        gt0010|Systolic: 90,mm[Hg]
+        gt0012|Respiration rate: 30,/min
+        gt0014|Temperature: 37,Cel
+        gt0016|spO2: 90,%
+        gt0018|Altered mental status: 0|local::at0031|Absent|
+        gt0034|Pulse rate: 90,/min
+    expected_output:
+      "1":
+        gt0020|Male sex: 0|local::at0015|Absent|
+        gt0021|Cancer (comorbidity): 30|local::at0018|Present|
+        gt0022|Heart failure (comorbidity): 0|local::at0019|Absent|
+        gt0023|Chronic lung disease (comorbidity): 0|local::at0021|Absent|
+        gt0024|Pulse ≥ 110/min: 0|local::at0023|Absent|
+        gt0025|Systolic blood pressure < 100 mmHg: 30|local::at0026|Present|
+        gt0026|Respiratory rate ≥ 30/min: 20|local::at0028|Present|
+        gt0027|Temperature < 36°C: 0|local::at0029|Absent|
+        gt0028|Arterial oxygen saturation < 90%: 0|local::at0033|Absent|
+        gt0029|Total score: "105"
+        gt0031|Risk class: local::at0005|Class III (intermediate risk)|
+        gt0032|30-day mortality: local::at0011|3.2 - 7.1%|
+  - id: 18. All inputs - Risk class IV
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0004|Age: 25,a
+        gt0006|Cancer (unspecified): 1|local::at0052|Yes|
+        gt0007|Heart failure (unspecified): 0|local::at0044|No|
+        gt0008|Chronic lung disease: 0|local::at0048|No|
+        gt0010|Systolic: 90,mm[Hg]
+        gt0012|Respiration rate: 30,/min
+        gt0014|Temperature: 37,Cel
+        gt0016|spO2: 90,%
+        gt0018|Altered mental status: 0|local::at0031|Absent|
+        gt0034|Pulse rate: 90,/min
+    expected_output:
+      "1":
+        gt0020|Male sex: 10|local::at0016|Present|
+        gt0021|Cancer (comorbidity): 30|local::at0018|Present|
+        gt0022|Heart failure (comorbidity): 0|local::at0019|Absent|
+        gt0023|Chronic lung disease (comorbidity): 0|local::at0021|Absent|
+        gt0024|Pulse ≥ 110/min: 0|local::at0023|Absent|
+        gt0025|Systolic blood pressure < 100 mmHg: 30|local::at0026|Present|
+        gt0026|Respiratory rate ≥ 30/min: 20|local::at0028|Present|
+        gt0027|Temperature < 36°C: 0|local::at0029|Absent|
+        gt0028|Arterial oxygen saturation < 90%: 0|local::at0033|Absent|
+        gt0029|Total score: "115"
+        gt0031|Risk class: local::at0006|Class IV (high risk)|
+        gt0032|30-day mortality: local::at0012|4.0 - 11.4%|
+  - id: 19. All inputs - Risk class V
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0004|Age: 25,a
+        gt0006|Cancer (unspecified): 1|local::at0052|Yes|
+        gt0007|Heart failure (unspecified): 0|local::at0044|No|
+        gt0008|Chronic lung disease: 0|local::at0048|No|
+        gt0010|Systolic: 90,mm[Hg]
+        gt0012|Respiration rate: 30,/min
+        gt0014|Temperature: 37,Cel
+        gt0016|spO2: 90,%
+        gt0018|Altered mental status: 60|local::at0032|Present|
+        gt0034|Pulse rate: 90,/min
+    expected_output:
+      "1":
+        gt0020|Male sex: 10|local::at0016|Present|
+        gt0021|Cancer (comorbidity): 30|local::at0018|Present|
+        gt0022|Heart failure (comorbidity): 0|local::at0019|Absent|
+        gt0023|Chronic lung disease (comorbidity): 0|local::at0021|Absent|
+        gt0024|Pulse ≥ 110/min: 0|local::at0023|Absent|
+        gt0025|Systolic blood pressure < 100 mmHg: 30|local::at0026|Present|
+        gt0026|Respiratory rate ≥ 30/min: 20|local::at0028|Present|
+        gt0027|Temperature < 36°C: 0|local::at0029|Absent|
+        gt0028|Arterial oxygen saturation < 90%: 0|local::at0033|Absent|
+        gt0029|Total score: "175"
+        gt0031|Risk class: local::at0007|Class V (very high risk)|
+        gt0032|30-day mortality: local::at0013|10.0 - 24.5%|
