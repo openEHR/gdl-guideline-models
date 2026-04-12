@@ -1,0 +1,92 @@
+guidelines:
+  "1": MEWS.v0.0.2
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Respiratory Rate missing (negative test).
+    input:
+      "1":
+        gt0052|Heart Rate: 0|local::at0012|51 - 100 /min|
+        gt0053|Systolic Blood Pressure: 0|local::at0019|101 - 199 mmHg|
+        gt0054|Temperature: 0|local::at0025|36,1-38 °C|
+        gt0055|Level of consciousness: 1|local::at0032|New confusion|
+        gt0056|Urine output: 0|local::at0037|Normal|
+    expected_output:
+      "1": {}
+  - id: 03. Heart Rate missing (negative test).
+    input:
+      "1":
+        gt0051|Respiratory Rate: 1|local::at0007|15 - 20 /min|
+        gt0053|Systolic Blood Pressure: 0|local::at0019|101 - 199 mmHg|
+        gt0054|Temperature: 0|local::at0025|36,1-38 °C|
+        gt0055|Level of consciousness: 1|local::at0032|New confusion|
+        gt0056|Urine output: 0|local::at0037|Normal|
+    expected_output:
+      "1": {}
+  - id: 04. Systolic Blood Pressure missing (negative test).
+    input:
+      "1":
+        gt0051|Respiratory Rate: 1|local::at0007|15 - 20 /min|
+        gt0052|Heart Rate: 0|local::at0012|51 - 100 /min|
+        gt0054|Temperature: 0|local::at0025|36,1-38 °C|
+        gt0055|Level of consciousness: 1|local::at0032|New confusion|
+        gt0056|Urine output: 0|local::at0037|Normal|
+    expected_output:
+      "1": {}
+  - id: 05. Temperature missing (negative test).
+    input:
+      "1":
+        gt0051|Respiratory Rate: 1|local::at0007|15 - 20 /min|
+        gt0052|Heart Rate: 0|local::at0012|51 - 100 /min|
+        gt0053|Systolic Blood Pressure: 0|local::at0019|101 - 199 mmHg|
+        gt0055|Level of consciousness: 1|local::at0032|New confusion|
+        gt0056|Urine output: 0|local::at0037|Normal|
+    expected_output:
+      "1": {}
+  - id: 06. Level of consciousness missing (negative test).
+    input:
+      "1":
+        gt0051|Respiratory Rate: 1|local::at0007|15 - 20 /min|
+        gt0052|Heart Rate: 0|local::at0012|51 - 100 /min|
+        gt0053|Systolic Blood Pressure: 0|local::at0019|101 - 199 mmHg|
+        gt0054|Temperature: 1|local::at0027|38,1-38,5 °C|
+        gt0056|Urine output: 0|local::at0037|Normal|
+    expected_output:
+      "1": {}
+  - id: 07. Urine output missing (negative test).
+    input:
+      "1":
+        gt0051|Respiratory Rate: 1|local::at0007|15 - 20 /min|
+        gt0052|Heart Rate: 0|local::at0012|51 - 100 /min|
+        gt0053|Systolic Blood Pressure: 0|local::at0019|101 - 199 mmHg|
+        gt0054|Temperature: 1|local::at0027|38,1-38,5 °C|
+        gt0055|Level of consciousness: 1|local::at0032|New confusion|
+    expected_output:
+      "1": {}
+  - id: 08. Total score 3
+    input:
+      "1":
+        gt0051|Respiratory Rate: 1|local::at0007|15 - 20 /min|
+        gt0052|Heart Rate: 0|local::at0012|51 - 100 /min|
+        gt0053|Systolic Blood Pressure: 0|local::at0019|101 - 199 mmHg|
+        gt0054|Temperature: 1|local::at0027|38,1-38,5 °C|
+        gt0055|Level of consciousness: 1|local::at0032|New confusion|
+        gt0056|Urine output: 0|local::at0037|Normal|
+    expected_output:
+      "1":
+        gt0058|Total score: "3"
+  - id: 09. Total score 9
+    input:
+      "1":
+        gt0051|Respiratory Rate: 1|local::at0007|15 - 20 /min|
+        gt0052|Heart Rate: 0|local::at0012|51 - 100 /min|
+        gt0053|Systolic Blood Pressure: 0|local::at0019|101 - 199 mmHg|
+        gt0054|Temperature: 2|local::at0029|≥ 38.5 °C|
+        gt0055|Level of consciousness: 3|local::at0035|Unresponsive|
+        gt0056|Urine output: 3|local::at0041|0 mL/h|
+    expected_output:
+      "1":
+        gt0058|Total score: "9"
