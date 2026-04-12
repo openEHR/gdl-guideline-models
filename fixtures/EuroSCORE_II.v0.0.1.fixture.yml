@@ -1,0 +1,526 @@
+current_datetime: 2020-01-01T00:00:00+01:00
+guidelines:
+  "1": EuroSCORE_II.v0.0.1
+test_cases:
+  - id: 01.- No input
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Gender missing (negative test).
+    input:
+      "1":
+        gt0085|Age: 60,a
+        gt0091|Renal impairment: 3|local::at0010|On dialysis (regardless of creatinine clearance)|
+        gt0092|Chronic lung disease: 0|local::at0021|No|
+        gt0093|Extracardiac arteriopathy: 0|local::at0012|No|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 0|local::at0015|No|
+        gt0095|Previous cardiac surgery: 1|local::at0019|Yes|
+        gt0096|Active endocarditis: 1|local::at0025|Yes|
+        gt0097|Critical preoperative state: 1|local::at0028|Yes|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0099|LV function: 0|local::at0041|> 50 %|
+        gt0100|Pulmonary hypertension: 0|local::at0049|No|
+        gt0101|NYHA: 0|local::at0033|Class I|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0104|Urgency of operation: 0|local::at0053|Elective|
+        gt0105|Weight of the intervention: 0|local::at0058|Isolated CABG|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1": {}
+  - id: 03. Age missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0091|Renal impairment: 3|local::at0010|On dialysis (regardless of creatinine clearance)|
+        gt0092|Chronic lung disease: 0|local::at0021|No|
+        gt0093|Extracardiac arteriopathy: 0|local::at0012|No|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 0|local::at0015|No|
+        gt0095|Previous cardiac surgery: 1|local::at0019|Yes|
+        gt0096|Active endocarditis: 1|local::at0025|Yes|
+        gt0097|Critical preoperative state: 1|local::at0028|Yes|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0099|LV function: 0|local::at0041|> 50 %|
+        gt0100|Pulmonary hypertension: 0|local::at0049|No|
+        gt0101|NYHA: 0|local::at0033|Class I|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0104|Urgency of operation: 0|local::at0053|Elective|
+        gt0105|Weight of the intervention: 0|local::at0058|Isolated CABG|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1": {}
+  - id: 04. Renal impairment missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0085|Age: 60,a
+        gt0092|Chronic lung disease: 0|local::at0021|No|
+        gt0093|Extracardiac arteriopathy: 0|local::at0012|No|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 0|local::at0015|No|
+        gt0095|Previous cardiac surgery: 1|local::at0019|Yes|
+        gt0096|Active endocarditis: 1|local::at0025|Yes|
+        gt0097|Critical preoperative state: 1|local::at0028|Yes|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0099|LV function: 0|local::at0041|> 50 %|
+        gt0100|Pulmonary hypertension: 0|local::at0049|No|
+        gt0101|NYHA: 0|local::at0033|Class I|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0104|Urgency of operation: 0|local::at0053|Elective|
+        gt0105|Weight of the intervention: 0|local::at0058|Isolated CABG|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1": {}
+  - id: 05. Extracardiac arteriopathy missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0085|Age: 60,a
+        gt0091|Renal impairment: 0|local::at0007|> 85 ml/min|
+        gt0092|Chronic lung disease: 0|local::at0021|No|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 0|local::at0015|No|
+        gt0095|Previous cardiac surgery: 1|local::at0019|Yes|
+        gt0096|Active endocarditis: 1|local::at0025|Yes|
+        gt0097|Critical preoperative state: 1|local::at0028|Yes|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0099|LV function: 0|local::at0041|> 50 %|
+        gt0100|Pulmonary hypertension: 0|local::at0049|No|
+        gt0101|NYHA: 0|local::at0033|Class I|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0104|Urgency of operation: 0|local::at0053|Elective|
+        gt0105|Weight of the intervention: 0|local::at0058|Isolated CABG|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1": {}
+  - id: 06. Neurological or musculoskeletal dysfunction that severely affects
+      mobility missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0085|Age: 60,a
+        gt0091|Renal impairment: 0|local::at0007|> 85 ml/min|
+        gt0092|Chronic lung disease: 0|local::at0021|No|
+        gt0093|Extracardiac arteriopathy: 0|local::at0012|No|
+        gt0095|Previous cardiac surgery: 1|local::at0019|Yes|
+        gt0096|Active endocarditis: 1|local::at0025|Yes|
+        gt0097|Critical preoperative state: 1|local::at0028|Yes|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0099|LV function: 0|local::at0041|> 50 %|
+        gt0100|Pulmonary hypertension: 0|local::at0049|No|
+        gt0101|NYHA: 0|local::at0033|Class I|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0104|Urgency of operation: 0|local::at0053|Elective|
+        gt0105|Weight of the intervention: 0|local::at0058|Isolated CABG|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1": {}
+  - id: 07. Previous cardiac surgery missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0085|Age: 60,a
+        gt0091|Renal impairment: 0|local::at0007|> 85 ml/min|
+        gt0092|Chronic lung disease: 0|local::at0021|No|
+        gt0093|Extracardiac arteriopathy: 0|local::at0012|No|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 0|local::at0015|No|
+        gt0096|Active endocarditis: 1|local::at0025|Yes|
+        gt0097|Critical preoperative state: 1|local::at0028|Yes|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0099|LV function: 0|local::at0041|> 50 %|
+        gt0100|Pulmonary hypertension: 0|local::at0049|No|
+        gt0101|NYHA: 0|local::at0033|Class I|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0104|Urgency of operation: 0|local::at0053|Elective|
+        gt0105|Weight of the intervention: 0|local::at0058|Isolated CABG|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1": {}
+  - id: 08. Chronic lung disease missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0085|Age: 60,a
+        gt0091|Renal impairment: 0|local::at0007|> 85 ml/min|
+        gt0093|Extracardiac arteriopathy: 0|local::at0012|No|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 0|local::at0015|No|
+        gt0095|Previous cardiac surgery: 0|local::at0018|No|
+        gt0096|Active endocarditis: 1|local::at0025|Yes|
+        gt0097|Critical preoperative state: 1|local::at0028|Yes|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0099|LV function: 0|local::at0041|> 50 %|
+        gt0100|Pulmonary hypertension: 0|local::at0049|No|
+        gt0101|NYHA: 0|local::at0033|Class I|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0104|Urgency of operation: 0|local::at0053|Elective|
+        gt0105|Weight of the intervention: 0|local::at0058|Isolated CABG|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1": {}
+  - id: 09. Active endocarditis missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0085|Age: 60,a
+        gt0091|Renal impairment: 0|local::at0007|> 85 ml/min|
+        gt0092|Chronic lung disease: 0|local::at0021|No|
+        gt0093|Extracardiac arteriopathy: 0|local::at0012|No|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 0|local::at0015|No|
+        gt0095|Previous cardiac surgery: 0|local::at0018|No|
+        gt0097|Critical preoperative state: 1|local::at0028|Yes|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0099|LV function: 0|local::at0041|> 50 %|
+        gt0100|Pulmonary hypertension: 0|local::at0049|No|
+        gt0101|NYHA: 0|local::at0033|Class I|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0104|Urgency of operation: 0|local::at0053|Elective|
+        gt0105|Weight of the intervention: 0|local::at0058|Isolated CABG|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1": {}
+  - id: 10. Critical preoperative state missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0085|Age: 60,a
+        gt0091|Renal impairment: 0|local::at0007|> 85 ml/min|
+        gt0092|Chronic lung disease: 0|local::at0021|No|
+        gt0093|Extracardiac arteriopathy: 0|local::at0012|No|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 0|local::at0015|No|
+        gt0095|Previous cardiac surgery: 0|local::at0018|No|
+        gt0096|Active endocarditis: 0|local::at0024|No|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0099|LV function: 0|local::at0041|> 50 %|
+        gt0100|Pulmonary hypertension: 0|local::at0049|No|
+        gt0101|NYHA: 0|local::at0033|Class I|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0104|Urgency of operation: 0|local::at0053|Elective|
+        gt0105|Weight of the intervention: 0|local::at0058|Isolated CABG|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1": {}
+  - id: 11. Insulin-dependent diabetes mellitus missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0085|Age: 60,a
+        gt0091|Renal impairment: 0|local::at0007|> 85 ml/min|
+        gt0092|Chronic lung disease: 0|local::at0021|No|
+        gt0093|Extracardiac arteriopathy: 0|local::at0012|No|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 0|local::at0015|No|
+        gt0095|Previous cardiac surgery: 0|local::at0018|No|
+        gt0096|Active endocarditis: 0|local::at0024|No|
+        gt0097|Critical preoperative state: 0|local::at0027|No|
+        gt0099|LV function: 0|local::at0041|> 50 %|
+        gt0100|Pulmonary hypertension: 0|local::at0049|No|
+        gt0101|NYHA: 0|local::at0033|Class I|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0104|Urgency of operation: 0|local::at0053|Elective|
+        gt0105|Weight of the intervention: 0|local::at0058|Isolated CABG|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1": {}
+  - id: 12. NYHA Class missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0085|Age: 60,a
+        gt0091|Renal impairment: 0|local::at0007|> 85 ml/min|
+        gt0092|Chronic lung disease: 0|local::at0021|No|
+        gt0093|Extracardiac arteriopathy: 0|local::at0012|No|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 0|local::at0015|No|
+        gt0095|Previous cardiac surgery: 0|local::at0018|No|
+        gt0096|Active endocarditis: 0|local::at0024|No|
+        gt0097|Critical preoperative state: 0|local::at0027|No|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0099|LV function: 0|local::at0041|> 50 %|
+        gt0100|Pulmonary hypertension: 0|local::at0049|No|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0104|Urgency of operation: 0|local::at0053|Elective|
+        gt0105|Weight of the intervention: 0|local::at0058|Isolated CABG|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1": {}
+  - id: 13. CCS angina class 4 missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0085|Age: 60,a
+        gt0091|Renal impairment: 0|local::at0007|> 85 ml/min|
+        gt0092|Chronic lung disease: 0|local::at0021|No|
+        gt0093|Extracardiac arteriopathy: 0|local::at0012|No|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 0|local::at0015|No|
+        gt0095|Previous cardiac surgery: 0|local::at0018|No|
+        gt0096|Active endocarditis: 0|local::at0024|No|
+        gt0097|Critical preoperative state: 0|local::at0027|No|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0099|LV function: 0|local::at0041|> 50 %|
+        gt0100|Pulmonary hypertension: 0|local::at0049|No|
+        gt0101|NYHA: 0|local::at0033|Class I|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0104|Urgency of operation: 0|local::at0053|Elective|
+        gt0105|Weight of the intervention: 0|local::at0058|Isolated CABG|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1": {}
+  - id: 14. LV function missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0085|Age: 60,a
+        gt0091|Renal impairment: 0|local::at0007|> 85 ml/min|
+        gt0092|Chronic lung disease: 0|local::at0021|No|
+        gt0093|Extracardiac arteriopathy: 0|local::at0012|No|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 0|local::at0015|No|
+        gt0095|Previous cardiac surgery: 0|local::at0018|No|
+        gt0096|Active endocarditis: 0|local::at0024|No|
+        gt0097|Critical preoperative state: 0|local::at0027|No|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0100|Pulmonary hypertension: 0|local::at0049|No|
+        gt0101|NYHA: 0|local::at0033|Class I|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0104|Urgency of operation: 0|local::at0053|Elective|
+        gt0105|Weight of the intervention: 0|local::at0058|Isolated CABG|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1": {}
+  - id: 15. Myocardial infarct in previous 90 days missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0085|Age: 60,a
+        gt0091|Renal impairment: 0|local::at0007|> 85 ml/min|
+        gt0092|Chronic lung disease: 0|local::at0021|No|
+        gt0093|Extracardiac arteriopathy: 0|local::at0012|No|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 0|local::at0015|No|
+        gt0095|Previous cardiac surgery: 0|local::at0018|No|
+        gt0096|Active endocarditis: 0|local::at0024|No|
+        gt0097|Critical preoperative state: 0|local::at0027|No|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0099|LV function: 0|local::at0041|> 50 %|
+        gt0100|Pulmonary hypertension: 0|local::at0049|No|
+        gt0101|NYHA: 0|local::at0033|Class I|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0104|Urgency of operation: 0|local::at0053|Elective|
+        gt0105|Weight of the intervention: 0|local::at0058|Isolated CABG|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1": {}
+  - id: 16. Pulmonary hypertension missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0085|Age: 60,a
+        gt0091|Renal impairment: 0|local::at0007|> 85 ml/min|
+        gt0092|Chronic lung disease: 0|local::at0021|No|
+        gt0093|Extracardiac arteriopathy: 0|local::at0012|No|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 0|local::at0015|No|
+        gt0095|Previous cardiac surgery: 0|local::at0018|No|
+        gt0096|Active endocarditis: 0|local::at0024|No|
+        gt0097|Critical preoperative state: 0|local::at0027|No|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0099|LV function: 0|local::at0041|> 50 %|
+        gt0101|NYHA: 0|local::at0033|Class I|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0104|Urgency of operation: 0|local::at0053|Elective|
+        gt0105|Weight of the intervention: 0|local::at0058|Isolated CABG|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1": {}
+  - id: 17. Urgency of operation missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0085|Age: 60,a
+        gt0091|Renal impairment: 0|local::at0007|> 85 ml/min|
+        gt0092|Chronic lung disease: 0|local::at0021|No|
+        gt0093|Extracardiac arteriopathy: 0|local::at0012|No|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 0|local::at0015|No|
+        gt0095|Previous cardiac surgery: 0|local::at0018|No|
+        gt0096|Active endocarditis: 0|local::at0024|No|
+        gt0097|Critical preoperative state: 0|local::at0027|No|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0099|LV function: 0|local::at0041|> 50 %|
+        gt0100|Pulmonary hypertension: 0|local::at0049|No|
+        gt0101|NYHA: 0|local::at0033|Class I|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0105|Weight of the intervention: 0|local::at0058|Isolated CABG|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1": {}
+  - id: 18. Weight of the intervention missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0085|Age: 60,a
+        gt0091|Renal impairment: 0|local::at0007|> 85 ml/min|
+        gt0092|Chronic lung disease: 0|local::at0021|No|
+        gt0093|Extracardiac arteriopathy: 0|local::at0012|No|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 0|local::at0015|No|
+        gt0095|Previous cardiac surgery: 0|local::at0018|No|
+        gt0096|Active endocarditis: 0|local::at0024|No|
+        gt0097|Critical preoperative state: 0|local::at0027|No|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0099|LV function: 0|local::at0041|> 50 %|
+        gt0100|Pulmonary hypertension: 0|local::at0049|No|
+        gt0101|NYHA: 0|local::at0033|Class I|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0104|Urgency of operation: 0|local::at0053|Elective|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1": {}
+  - id: 19. Surgery on Thoracic Aorta missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0085|Age: 60,a
+        gt0091|Renal impairment: 0|local::at0007|> 85 ml/min|
+        gt0092|Chronic lung disease: 0|local::at0021|No|
+        gt0093|Extracardiac arteriopathy: 0|local::at0012|No|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 0|local::at0015|No|
+        gt0095|Previous cardiac surgery: 0|local::at0018|No|
+        gt0096|Active endocarditis: 0|local::at0024|No|
+        gt0097|Critical preoperative state: 0|local::at0027|No|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0099|LV function: 0|local::at0041|> 50 %|
+        gt0100|Pulmonary hypertension: 0|local::at0049|No|
+        gt0101|NYHA: 0|local::at0033|Class I|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0104|Urgency of operation: 0|local::at0053|Elective|
+        gt0105|Weight of the intervention: 0|local::at0058|Isolated CABG|
+    expected_output:
+      "1": {}
+  - id: 20. Male 55 years old no risk factors
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0085|Age: 55,a
+        gt0091|Renal impairment: 0|local::at0007|> 85 ml/min|
+        gt0092|Chronic lung disease: 0|local::at0021|No|
+        gt0093|Extracardiac arteriopathy: 0|local::at0012|No|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 0|local::at0015|No|
+        gt0095|Previous cardiac surgery: 0|local::at0018|No|
+        gt0096|Active endocarditis: 0|local::at0024|No|
+        gt0097|Critical preoperative state: 0|local::at0027|No|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0099|LV function: 0|local::at0041|> 50 %|
+        gt0100|Pulmonary hypertension: 0|local::at0049|No|
+        gt0101|NYHA: 0|local::at0033|Class I|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0104|Urgency of operation: 0|local::at0053|Elective|
+        gt0105|Weight of the intervention: 0|local::at0058|Isolated CABG|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1":
+        gt0089|Predicted mortality: 0.50,%
+  - id: 21. Female 2 %
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0085|Age: 65,a
+        gt0091|Renal impairment: 1|local::at0008|50-85 ml/min|
+        gt0092|Chronic lung disease: 0|local::at0021|No|
+        gt0093|Extracardiac arteriopathy: 0|local::at0012|No|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 0|local::at0015|No|
+        gt0095|Previous cardiac surgery: 0|local::at0018|No|
+        gt0096|Active endocarditis: 0|local::at0024|No|
+        gt0097|Critical preoperative state: 0|local::at0027|No|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0099|LV function: 1|local::at0042|31-50 %|
+        gt0100|Pulmonary hypertension: 0|local::at0049|No|
+        gt0101|NYHA: 1|local::at0034|Class II|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0104|Urgency of operation: 1|local::at0054|Urgent|
+        gt0105|Weight of the intervention: 1|local::at0059|Single non-CABG|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1":
+        gt0089|Predicted mortality: 2.00,%
+  - id: 22. Male 12.6 %
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0085|Age: 65,a
+        gt0091|Renal impairment: 2|local::at0009|≤ 50 ml/min|
+        gt0092|Chronic lung disease: 0|local::at0021|No|
+        gt0093|Extracardiac arteriopathy: 0|local::at0012|No|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 0|local::at0015|No|
+        gt0095|Previous cardiac surgery: 0|local::at0018|No|
+        gt0096|Active endocarditis: 0|local::at0024|No|
+        gt0097|Critical preoperative state: 0|local::at0027|No|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0099|LV function: 2|local::at0043|21-30 %|
+        gt0100|Pulmonary hypertension: 0|local::at0049|No|
+        gt0101|NYHA: 2|local::at0035|Class III|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0104|Urgency of operation: 2|local::at0055|Emergency|
+        gt0105|Weight of the intervention: 2|local::at0060|2 procedures|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1":
+        gt0089|Predicted mortality: 12.60,%
+  - id: 23. Female 43 %
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0085|Age: 65,a
+        gt0091|Renal impairment: 3|local::at0010|On dialysis (regardless of creatinine clearance)|
+        gt0092|Chronic lung disease: 0|local::at0021|No|
+        gt0093|Extracardiac arteriopathy: 0|local::at0012|No|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 0|local::at0015|No|
+        gt0095|Previous cardiac surgery: 0|local::at0018|No|
+        gt0096|Active endocarditis: 0|local::at0024|No|
+        gt0097|Critical preoperative state: 0|local::at0027|No|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0099|LV function: 3|local::at0044|≤ 20 %|
+        gt0100|Pulmonary hypertension: 1|local::at0050|Moderate (PA systolic 31-55 mmHg)|
+        gt0101|NYHA: 3|local::at0036|Class IV|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0104|Urgency of operation: 3|local::at0056|Salvage|
+        gt0105|Weight of the intervention: 3|local::at0061|3 procedures|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1":
+        gt0089|Predicted mortality: 43.00,%
+  - id: 24. Male 91.5 %
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0085|Age: 65,a
+        gt0091|Renal impairment: 3|local::at0010|On dialysis (regardless of creatinine clearance)|
+        gt0092|Chronic lung disease: 1|local::at0022|Yes|
+        gt0093|Extracardiac arteriopathy: 1|local::at0013|Yes|
+        gt0094|Neurological or musculoskeletal dysfunction that severely affects mobility: 1|local::at0016|Yes|
+        gt0095|Previous cardiac surgery: 1|local::at0019|Yes|
+        gt0096|Active endocarditis: 1|local::at0025|Yes|
+        gt0097|Critical preoperative state: 0|local::at0027|No|
+        gt0098|Insulin-dependent diabetes mellitus: 0|local::at0030|No|
+        gt0099|LV function: 3|local::at0044|≤ 20 %|
+        gt0100|Pulmonary hypertension: 2|local::at0051|Severe (PA systolic ≥ 55 mmHg)|
+        gt0101|NYHA: 3|local::at0036|Class IV|
+        gt0102|CCS angina class 4: 0|local::at0038|No|
+        gt0103|Myocardial infarct in previous 90 days: 0|local::at0046|No|
+        gt0104|Urgency of operation: 3|local::at0056|Salvage|
+        gt0105|Weight of the intervention: 3|local::at0061|3 procedures|
+        gt0106|Surgery on Thoracic Aorta: 0|local::at0063|No|
+    expected_output:
+      "1":
+        gt0089|Predicted mortality: 91.50,%
