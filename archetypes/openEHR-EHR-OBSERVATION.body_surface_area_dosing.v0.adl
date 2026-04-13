@@ -1,0 +1,150 @@
+archetype (adl_version=1.4; uid=53b4a9ca-6a80-4348-a349-ecd93152c1f6)
+	openEHR-EHR-OBSERVATION.body_surface_area_dosing.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-04-13">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the target dose and the formula used for BSA calculation.">
+			keywords = <"bsa, body, surface, area, dubois, mosteller, haycock, dosing, chemotherapy, oncology, pharmacology", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the targeted pharmacological dose and the formula to calculate the patient's BSA.">
+			misuse = <"Not to be used for calculating weight-based (mg/kg) dosing. 
+
+Not to be used for calculating the BSA value itself use the standard openEHR-EHR-OBSERVATION.body_surface_area.v1 archetype instead.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Du Bois D, Du Bois EF. A formula to estimate the approximate surface area if height and weight be known. 1916. Nutrition. 1989 Sep-Oct;5(5):303-11; discussion 312-3. PMID: 2520314.
+
+Mosteller RD. Simplified calculation of body-surface area. N Engl J Med. 1987 Oct 22;317(17):1098. doi: 10.1056/NEJM198710223171717. PMID: 3657876.
+
+Wu Q, Zhou Y, Fan X, Ma H, Gu W, Sun F. Evaluation of nine formulas for estimating the body surface area of children with hematological malignancies. Front Pediatr. 2022 Sep 7;10:989049. doi: 10.3389/fped.2022.989049. PMID: 36160791; PMCID: PMC9489993.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"aa6460622b7b90a745d1814c1b716ca9">
+		["build_uid"] = <"bc27a599-cb17-3436-a13a-088de8462d19">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Body surface area dosing
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Formula
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0008,    -- Du Bois
+													at0009,    -- Mosteller
+													at0010]    -- Haycock
+												}
+											}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Dosage
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::124]>
+												list = <
+													["1"] = <
+														units = <"mg">
+														precision = <|3|>
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Body surface area dosing">
+					description = <"Calculation of a total drug dose based on a target dose per square meter of Body Surface Area (BSA).">
+					comment = <"Original version, c 1916. ">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Formula">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Dosage">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Du Bois">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Mosteller">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Haycock">
+					description = <"">
+				>
+			>
+		>
+	>
