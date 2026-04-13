@@ -1,0 +1,53 @@
+guidelines:
+  "1": pH_korrigerat_kalcium.v0.0.2
+test_cases:
+  - id: test 1
+    input:
+      "1":
+        gt0003|Calciumjon: 1,mmol
+        gt0004|pH: 6.5,1
+    expected_output:
+      "1":
+        gt0006|output: "0.52"
+  - id: test 2 (pH < 6.4)
+    input:
+      "1":
+        gt0003|Calciumjon: 1,mmol
+        gt0004|pH: 6,1
+    expected_output:
+      "1": {}
+  - id: test 3 (pH > 8.5)
+    input:
+      "1":
+        gt0003|Calciumjon: 1,mmol
+        gt0004|pH: 9,1
+    expected_output:
+      "1": {}
+  - id: test 4 (missing input)
+    input:
+      "1":
+        gt0004|pH: 9,1
+    expected_output:
+      "1": {}
+  - id: test 5
+    input:
+      "1":
+        gt0003|Calciumjon: 2,mmol
+        gt0004|pH: 7,1
+    expected_output:
+      "1":
+        gt0006|output: "1.58"
+  - id: test 6 (C < 0.5)
+    input:
+      "1":
+        gt0003|Calciumjon: 0,mmol
+        gt0004|pH: 7,1
+    expected_output:
+      "1": {}
+  - id: test 7 (C > 2.5)
+    input:
+      "1":
+        gt0003|Calciumjon: 8,mmol
+        gt0004|pH: 7,1
+    expected_output:
+      "1": {}
