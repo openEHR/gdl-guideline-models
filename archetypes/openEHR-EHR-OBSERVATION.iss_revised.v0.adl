@@ -1,0 +1,256 @@
+archetype (adl_version=1.4; uid=33b753ef-a671-41f4-84fa-34210a6e8cc9)
+	openEHR-EHR-OBSERVATION.iss_revised.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-04-16">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	other_contributors = <"Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)","Heather Leslie, Atomica Informatics, Australia (openEHR Editor)","Maryam Razavi">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and the resulting ISS stage.">
+			keywords = <"albumin","multiple","myeloma","staging","system">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and the resulting ISS stage.">
+			misuse = <"Not to be used to record the results for the Revised Multiple Myeloma International Staging System (R-ISS) - use the specialisation of this archetype for this purpose.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Durie BG, Salmon SE. A clinical staging system for multiple myeloma. Correlation of measured myeloma cell mass with presenting clinical features, response to treatment, and survival. Cancer. 1975 Sep;36(3):842-54. doi: 10.1002/1097-0142(197509)36:3<842::aid-cncr2820360303>3.0.co;2-u. PMID: 1182674.
+
+Greipp PR, San Miguel J, Durie BG, Crowley JJ, Barlogie B, Bladé J, Boccadoro M, Child JA, Avet-Loiseau H, Kyle RA, Lahuerta JJ, Ludwig H, Morgan G, Powles R, Shimizu K, Shustik C, Sonneveld P, Tosi P, Turesson I, Westin J. International staging system for multiple myeloma. J Clin Oncol. 2005 May 20;23(15):3412-20. doi: 10.1200/JCO.2005.04.242. Epub 2005 Apr 4. Erratum in: J Clin Oncol. 2005 Sep 1;23(25):6281. Harousseau, Jean-Luc [corrected to Avet-Loiseau, Herve]. PMID: 15809451.
+
+Palumbo A, Avet-Loiseau H, Oliva S, Lokhorst HM, Goldschmidt H, Rosinol L, Richardson P, Caltagirone S, Lahuerta JJ, Facon T, Bringhen S, Gay F, Attal M, Passera R, Spencer A, Offidani M, Kumar S, Musto P, Lonial S, Petrucci MT, Orlowski RZ, Zamagni E, Morgan G, Dimopoulos MA, Durie BG, Anderson KC, Sonneveld P, San Miguel J, Cavo M, Rajkumar SV, Moreau P. Revised International Staging System for Multiple Myeloma: A Report From International Myeloma Working Group. J Clin Oncol. 2015 Sep 10;33(26):2863-9. doi: 10.1200/JCO.2015.61.2267. Epub 2015 Aug 3. PMID: 26240224; PMCID: PMC4846284.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"3dfe23434cd3c802707b6377b53479b0">
+		["build_uid"] = <"b17746b0-b22f-40bb-827e-194f357b3740">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Revised International Staging System for Multiple Myeloma (R-ISS)
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Serum β2 microglobulin
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- <3.5 mg/L
+													at0008,    -- 3.5-5.4 mg/L
+													at0009]    -- >5.4 mg/L
+												}
+											}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Serum albumin
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0011,    -- <3.5 g/dL
+													at0012]    -- ≥3.5 g/dL
+												}
+											}
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- ISS stage
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0014,    -- ISS I
+													at0015,    -- ISS II
+													at0016]    -- ISS III
+												}
+											}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- CA by iFISH
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Standard risk
+													at0019]    -- High risk
+												}
+											}
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {    -- Serum LDH
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0021,    -- Normal
+													at0022]    -- High
+												}
+											}
+										}
+									}
+									ELEMENT[at0023] occurrences matches {0..1} matches {    -- Revised ISS stage
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0024,    -- R-ISS I
+													at0025,    -- R-ISS II
+													at0026]    -- R-ISS III
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Revised International Staging System for Multiple Myeloma (R-ISS)">
+					description = <"A staging system for classifying and stratifying patients with multiple myeloma.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Serum β2 microglobulin">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"<3.5 mg/L">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"3.5-5.4 mg/L">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <">5.4 mg/L">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Serum albumin">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"<3.5 g/dL">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"≥3.5 g/dL">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"ISS stage">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"ISS I">
+					description = <"Serum β2-microglobulin <3.5 mg/L and serum albumin ≥3.5 g/dL.">
+				>
+				["at0015"] = <
+					text = <"ISS II">
+					description = <"Not stage I or III.">
+				>
+				["at0016"] = <
+					text = <"ISS III">
+					description = <"Serum β2-microglobulin ≥5.5 mg/L.">
+				>
+				["at0017"] = <
+					text = <"CA by iFISH">
+					description = <"Chromosomal abnormalities (CA) detected by
+interphase fluorescent in situ hybridization (iFISH).">
+				>
+				["at0018"] = <
+					text = <"Standard risk">
+					description = <"No high risk CA.">
+				>
+				["at0019"] = <
+					text = <"High risk">
+					description = <"Presence of del(17p) and/or translocation t(4;14) and/or translocation t(14;16).">
+				>
+				["at0020"] = <
+					text = <"Serum LDH">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Normal">
+					description = <"Serum LDH < the upper limit of normal.">
+				>
+				["at0022"] = <
+					text = <"High">
+					description = <"Serum LDH > the upper limit of normal.">
+				>
+				["at0023"] = <
+					text = <"Revised ISS stage">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"R-ISS I">
+					description = <"ISS stage I and standard-risk CA by iFISH and normal LDH.">
+				>
+				["at0025"] = <
+					text = <"R-ISS II">
+					description = <"Not R-ISS stage I or III.">
+				>
+				["at0026"] = <
+					text = <"R-ISS III">
+					description = <"ISS stage III and either high-risk CA by iFISH or high LDH.">
+				>
+			>
+		>
+	>
