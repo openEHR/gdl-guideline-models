@@ -1,0 +1,29 @@
+current_datetime: 2025-02-13T12:00:00+01:00
+guidelines:
+  "1": Adjusted_body_weight.v0.1.0
+test_cases:
+  - id: 01. Weights in kg
+    input:
+      "1":
+        gt0005|Actual body weight: 79,kg
+        gt0017|Ideal Body Weight: 65,kg
+    expected_output:
+      "1":
+        gt0008|Adjusted Body Weight: 71,kg
+        gt0011|Actual body weight > IBW: 122,%
+  - id: 02. Units mismatch
+    input:
+      "1":
+        gt0005|Actual body weight: 79,kg
+        gt0017|Ideal Body Weight: 65,lb
+    expected_output:
+      "1": {}
+  - id: 03. Weights in lb
+    input:
+      "1":
+        gt0005|Actual body weight: 150,[lb_av]
+        gt0017|Ideal body weight: 130,[lb_av]
+    expected_output:
+      "1":
+        gt0008|Adjusted Body Weight: 138,[lb_av]
+        gt0011|Actual body weight > IBW: 115,%
