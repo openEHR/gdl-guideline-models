@@ -1,0 +1,262 @@
+archetype (adl_version=1.4; uid=c13a7ef9-0d2b-4c62-a105-910858437ab6)
+	openEHR-EHR-OBSERVATION.hba1c_converter.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-04-20">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and their converted equivalents for HbA1c reporting systems and average glucose units.">
+			keywords = <"hba1c","haemoglobin","glucose","conversion","ifcc","mono-s","dcct","jds">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and their converted equivalents for HbA1c reporting systems and average glucose units.">
+			misuse = <"Not to be used for recording a directly measured laboratory HbA1c result or a directly measured blood glucose result as a routine clinical observation.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Björn A. HbA1c according to different standards. Linköping University, Department of Mathematics; 2016 Mar 9.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"e8c15920ace9a9c4e3f770750247ad83">
+		["build_uid"] = <"cd3a4368-c51b-3448-97ae-c8e8a02b5dbe">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Haemoglobin A1c (HbA1c) unit converter
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Source value
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mmol/L">
+													>
+													["2"] = <
+														units = <"mg/dL">
+													>
+													["3"] = <
+														units = <"mmol/mol">
+													>
+													["4"] = <
+														units = <"%">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Convert from
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0008,    -- Average glucose (mmol/L)
+													at0009,    -- Average glucose (mg/dL)
+													at0010,    -- IFCC (mmol/mol)
+													at0011,    -- Mono-S (%)
+													at0012,    -- DCCT (%)
+													at0013]    -- JDS (%)
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Average glucose (mmol/L)
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mmol/L">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Average glucose (mg/dL)
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mg/dL">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- IFCC (mmol/mol)
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mmol/mol">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Mono-S (%)
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::507]>
+												list = <
+													["1"] = <
+														units = <"%">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- DCCT (%)
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::507]>
+												list = <
+													["1"] = <
+														units = <"%">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {    -- JDS (%)
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::507]>
+												list = <
+													["1"] = <
+														units = <"%">
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Haemoglobin A1c (HbA1c) unit converter">
+					description = <"A record of a source HbA1c-related or average glucose value and its converted equivalents across commonly used HbA1c reporting systems and glucose units.">
+					comment = <"Original version, c 2016">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Source value">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Convert from">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Average glucose (mmol/L)">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Average glucose (mg/dL)">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"IFCC (mmol/mol)">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Mono-S (%)">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"DCCT (%)">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"JDS (%)">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Average glucose (mmol/L)">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Average glucose (mg/dL)">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"IFCC (mmol/mol)">
+					description = <"IFCC is an international standard.">
+				>
+				["at0017"] = <
+					text = <"Mono-S (%)">
+					description = <"Mono-S is a Swedish standard.">
+				>
+				["at0018"] = <
+					text = <"DCCT (%)">
+					description = <"DCCT is an American standard also called NGSP.">
+				>
+				["at0019"] = <
+					text = <"JDS (%)">
+					description = <" JDS is a Japanese standard also called JSCC.">
+				>
+			>
+		>
+	>
