@@ -1,0 +1,192 @@
+guidelines:
+  "1": Modified_Minnesota_Detoxification_Scale_mMINDS_Calculation.v0.1.0
+test_cases:
+  - id: 01 - Test no input
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02 - Pulse input missing (negative test)
+    input:
+      "1":
+        gt0004|Diastolic Blood Pressure: 0|local::at0011|<90 mmHg|
+        gt0005|Sweating: 0|local::at0015|No sweat visible|
+        gt0006|Hallucinations: 0|local::at0020|None|
+        gt0007|Agitation: 0|local::at0025|Normal activity, RASS score 0 or less|
+        gt0008|Delusions: 0|local::at0030|Absent|
+        gt0009|Tremor: 0|local::at0033|None|
+        gt0010|Seizures: 0|local::at0038|Absent|
+        gt0011|Orientation: 0|local::at0041|Oriented x3 (time, place, person)|
+    expected_output:
+      "1": {}
+  - id: 03 - Diastolic Blood Pressure input missing (negative test)
+    input:
+      "1":
+        gt0003|Pulse: 0|local::at0007|<90 bpm|
+        gt0005|Sweating: 0|local::at0015|No sweat visible|
+        gt0006|Hallucinations: 0|local::at0020|None|
+        gt0007|Agitation: 0|local::at0025|Normal activity, RASS score 0 or less|
+        gt0008|Delusions: 0|local::at0030|Absent|
+        gt0009|Tremor: 0|local::at0033|None|
+        gt0010|Seizures: 0|local::at0038|Absent|
+        gt0011|Orientation: 0|local::at0041|Oriented x3 (time, place, person)|
+    expected_output:
+      "1": {}
+  - id: 04 - Sweating input missing (negative test)
+    input:
+      "1":
+        gt0003|Pulse: 0|local::at0007|<90 bpm|
+        gt0004|Diastolic Blood Pressure: 0|local::at0011|<90 mmHg|
+        gt0006|Hallucinations: 0|local::at0020|None|
+        gt0007|Agitation: 0|local::at0025|Normal activity, RASS score 0 or less|
+        gt0008|Delusions: 0|local::at0030|Absent|
+        gt0009|Tremor: 0|local::at0033|None|
+        gt0010|Seizures: 0|local::at0038|Absent|
+        gt0011|Orientation: 0|local::at0041|Oriented x3 (time, place, person)|
+    expected_output:
+      "1": {}
+  - id: 05 - Hallucinations input missing (negative test)
+    input:
+      "1":
+        gt0003|Pulse: 0|local::at0007|<90 bpm|
+        gt0004|Diastolic Blood Pressure: 0|local::at0011|<90 mmHg|
+        gt0005|Sweating: 0|local::at0015|No sweat visible|
+        gt0007|Agitation: 0|local::at0025|Normal activity, RASS score 0 or less|
+        gt0008|Delusions: 0|local::at0030|Absent|
+        gt0009|Tremor: 0|local::at0033|None|
+        gt0010|Seizures: 0|local::at0038|Absent|
+        gt0011|Orientation: 0|local::at0041|Oriented x3 (time, place, person)|
+    expected_output:
+      "1": {}
+  - id: 06 - Agitation input missing (negative test)
+    input:
+      "1":
+        gt0003|Pulse: 0|local::at0007|<90 bpm|
+        gt0004|Diastolic Blood Pressure: 0|local::at0011|<90 mmHg|
+        gt0005|Sweating: 0|local::at0015|No sweat visible|
+        gt0006|Hallucinations: 0|local::at0020|None|
+        gt0008|Delusions: 0|local::at0030|Absent|
+        gt0009|Tremor: 0|local::at0033|None|
+        gt0010|Seizures: 0|local::at0038|Absent|
+        gt0011|Orientation: 0|local::at0041|Oriented x3 (time, place, person)|
+    expected_output:
+      "1": {}
+  - id: 07 - Delusions input missing (negative test)
+    input:
+      "1":
+        gt0003|Pulse: 0|local::at0007|<90 bpm|
+        gt0004|Diastolic Blood Pressure: 0|local::at0011|<90 mmHg|
+        gt0005|Sweating: 0|local::at0015|No sweat visible|
+        gt0006|Hallucinations: 0|local::at0020|None|
+        gt0007|Agitation: 0|local::at0025|Normal activity, RASS score 0 or less|
+        gt0009|Tremor: 0|local::at0033|None|
+        gt0010|Seizures: 0|local::at0038|Absent|
+        gt0011|Orientation: 0|local::at0041|Oriented x3 (time, place, person)|
+    expected_output:
+      "1": {}
+  - id: 08 - Tremor input missing (negative test)
+    input:
+      "1":
+        gt0003|Pulse: 0|local::at0007|<90 bpm|
+        gt0004|Diastolic Blood Pressure: 0|local::at0011|<90 mmHg|
+        gt0005|Sweating: 0|local::at0015|No sweat visible|
+        gt0006|Hallucinations: 0|local::at0020|None|
+        gt0007|Agitation: 0|local::at0025|Normal activity, RASS score 0 or less|
+        gt0008|Delusions: 0|local::at0030|Absent|
+        gt0010|Seizures: 0|local::at0038|Absent|
+        gt0011|Orientation: 0|local::at0041|Oriented x3 (time, place, person)|
+    expected_output:
+      "1": {}
+  - id: 09 - Seizures input missing (negative test)
+    input:
+      "1":
+        gt0003|Pulse: 0|local::at0007|<90 bpm|
+        gt0004|Diastolic Blood Pressure: 0|local::at0011|<90 mmHg|
+        gt0005|Sweating: 0|local::at0015|No sweat visible|
+        gt0006|Hallucinations: 0|local::at0020|None|
+        gt0007|Agitation: 0|local::at0025|Normal activity, RASS score 0 or less|
+        gt0008|Delusions: 0|local::at0030|Absent|
+        gt0009|Tremor: 0|local::at0033|None|
+        gt0011|Orientation: 0|local::at0041|Oriented x3 (time, place, person)|
+    expected_output:
+      "1": {}
+  - id: 10 - Orientation input missing (negative test)
+    input:
+      "1":
+        gt0003|Pulse: 0|local::at0007|<90 bpm|
+        gt0004|Diastolic Blood Pressure: 0|local::at0011|<90 mmHg|
+        gt0005|Sweating: 0|local::at0015|No sweat visible|
+        gt0006|Hallucinations: 0|local::at0020|None|
+        gt0007|Agitation: 0|local::at0025|Normal activity, RASS score 0 or less|
+        gt0008|Delusions: 0|local::at0030|Absent|
+        gt0009|Tremor: 0|local::at0033|None|
+        gt0010|Seizures: 0|local::at0038|Absent|
+    expected_output:
+      "1": {}
+  - id: 11 - All inputs 0 points
+    input:
+      "1":
+        gt0003|Pulse: 0|local::at0007|<90 bpm|
+        gt0004|Diastolic Blood Pressure: 0|local::at0011|<90 mmHg|
+        gt0005|Sweating: 0|local::at0015|No sweat visible|
+        gt0006|Hallucinations: 0|local::at0020|None|
+        gt0007|Agitation: 0|local::at0025|Normal activity, RASS score 0 or less|
+        gt0008|Delusions: 0|local::at0030|Absent|
+        gt0009|Tremor: 0|local::at0033|None|
+        gt0010|Seizures: 0|local::at0038|Absent|
+        gt0011|Orientation: 0|local::at0041|Oriented x3 (time, place, person)|
+    expected_output:
+      "1":
+        gt0013|Total score: "0"
+  - id: 12 - Pulse 90-100 bpm, diastolic BP 90-100 mmHg, sweating barely,
+      hallucinations mild, agitation somewhat more than normal, delusions
+      present, tremor slightly variable, seizures present, orientation oriented
+      x2
+    input:
+      "1":
+        gt0003|Pulse: 1|local::at0008|90-110 bpm|
+        gt0004|Diastolic Blood Pressure: 1|local::at0012|90-110 mmHg|
+        gt0005|Sweating: 2|local::at0016|Barely, moist palms|
+        gt0006|Hallucinations: 1|local::at0021|Mild—mostly lucid, sporadic/rare hallucinations|
+        gt0007|Agitation: 3|local::at0026|Somewhat more than normal, RASS score +1|
+        gt0008|Delusions: 6|local::at0031|Present|
+        gt0009|Tremor: 2|local::at0034|Slightly variable or can be felt fingertip to
+          fingertip|
+        gt0010|Seizures: 6|local::at0039|Present|
+        gt0011|Orientation: 2|local::at0042|Oriented x2|
+    expected_output:
+      "1":
+        gt0013|Total score: "24"
+  - id: 13 - Pulse >110 bpm, diastolic BP >110 mmHg, sweating beads of sweat
+      visible, hallucinations moderate/intermittent, agitation moderately
+      fidgety, tremor visible with arms extended, orientation oriented x1
+    input:
+      "1":
+        gt0003|Pulse: 2|local::at0009|>110 bpm|
+        gt0004|Diastolic Blood Pressure: 2|local::at0013|>110 mmHg|
+        gt0005|Sweating: 4|local::at0017|Beads of sweat visible|
+        gt0006|Hallucinations: 2|local::at0022|Moderate/intermittent—hallucinating at times|
+        gt0007|Agitation: 6|local::at0027|Moderately fidgety, RASS score +2|
+        gt0008|Delusions: 6|local::at0031|Present|
+        gt0009|Tremor: 4|local::at0035|Visible with arms extended|
+        gt0010|Seizures: 6|local::at0039|Present|
+        gt0011|Orientation: 4|local::at0043|Oriented x1|
+    expected_output:
+      "1":
+        gt0013|Total score: "36"
+  - id: 14 - Sweating drenching, hallucinations severe, agitation pacing thrashing,
+      tremor severe, orientation disoriented
+    input:
+      "1":
+        gt0003|Pulse: 2|local::at0009|>110 bpm|
+        gt0004|Diastolic Blood Pressure: 2|local::at0013|>110 mmHg|
+        gt0005|Sweating: 6|local::at0018|Drenching|
+        gt0006|Hallucinations: 3|local::at0023|Severe, continuous while awake|
+        gt0007|Agitation: 9|local::at0028|Pacing, thrashing, RASS score +3 or greater|
+        gt0008|Delusions: 6|local::at0031|Present|
+        gt0009|Tremor: 6|local::at0036|Severe, noticeable even without arms extended|
+        gt0010|Seizures: 6|local::at0039|Present|
+        gt0011|Orientation: 6|local::at0044|Disoriented|
+    expected_output:
+      "1":
+        gt0013|Total score: "46"
