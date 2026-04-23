@@ -15,6 +15,7 @@ description
 		["email"] = <"aurelia.maria.ozora@cambio.se">
 	>
 	lifecycle_state = <"in_development">
+	other_contributors = <"Katja Mariko Wilde", ...>
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
@@ -22,25 +23,25 @@ description
 			keywords = <"Berg, balance, scale, functional, stroke, Parkinson, multiple, sclerosis, traumatic, brain, injury, neurology, lower, extremity, amputation, rehabilitation", ...>
 			copyright = <"© Cambio CDS">
 			use = <"Use to record the results for each component parameter and their total sum for the Berg Balance Scale.">
+			misuse = <"Not to be used for recording falls risk interpretation.">
 		>
 	>
 	other_details = <
-		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
 		["custodian_organisation"] = <"openEHR Foundation">
-		["original_namespace"] = <"org.openehr">
-		["original_publisher"] = <"openEHR Foundation">
-		["custodian_namespace"] = <"org.openehr">
 		["references"] = <"Bogle Thorbahn LD, Newton RA. Use of the Berg Balance Test to predict falls in elderly persons. Phys Ther. 1996 Jun;76(6):576-83; discussion 584-5. doi: 10.1093/ptj/76.6.576. PMID: 8650273.
 
 Berg KO, Wood-Dauphinee SL, Williams JI, Maki B. Measuring balance in the elderly: validation of an instrument. Can J Public Health. 1992 Jul-Aug;83 Suppl 2:S7-11. PMID: 1468055.
 
 Miranda N, Tiu TK. Berg Balance Testing. 2023 Feb 17. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2025 Jan–. PMID: 34662032.">
-		["revision"] = <"0">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"61cced324159e6c16da0807c9aeb2796">
 		["build_uid"] = <"5faa5cde-3b1d-3469-97bd-b1fe1b8bd57b">
 	>
 
 definition
-	OBSERVATION[at0000] matches {    -- Berg Balance Scale
+	OBSERVATION[at0000] matches {    -- Berg Balance Scale (BBS)
 		data matches {
 			HISTORY[at0001] matches {    -- History
 				events cardinality matches {1..*; unordered} matches {
@@ -84,7 +85,7 @@ definition
 											4|[local::at0029]
 										}
 									}
-									ELEMENT[at0030] occurrences matches {0..1} matches {    -- Standing on one foot
+									ELEMENT[at0030] occurrences matches {0..1} matches {    -- Standing on one leg
 										value matches {
 											0|[local::at0031],
 											1|[local::at0032],
@@ -205,7 +206,7 @@ ontology
 		["en"] = <
 			items = <
 				["at0000"] = <
-					text = <"Berg Balance Scale">
+					text = <"Berg Balance Scale (BBS)">
 					description = <"The Berg Balance Scale is a test used to assess functional balance. It can be used to assess patients with stroke or various neurological conditions, such as Parkinson’s disease, multiple sclerosis, traumatic brain injury, as well as acquired conditions like lower extremity amputation.">
 					comment = <"Original version, c 1989.">
 				>
@@ -235,7 +236,7 @@ ontology
 					description = <"">
 				>
 				["at0007"] = <
-					text = <"Unable to sit  without support 10 seconds">
+					text = <"Unable to sit without support 10 seconds">
 					description = <"">
 				>
 				["at0008"] = <
@@ -307,15 +308,15 @@ ontology
 					description = <"">
 				>
 				["at0025"] = <
-					text = <"Needs help to attain position and is unable to hold for 15 seconds">
+					text = <"Needs help to attain position and unable to hold 15 seconds">
 					description = <"">
 				>
 				["at0026"] = <
-					text = <"Needs help to attain position but is able to stand 15 seconds feet together">
+					text = <"Needs help to attain position but able to stand 15 seconds feet together">
 					description = <"">
 				>
 				["at0027"] = <
-					text = <"Able to place feet together independently but unable to hold for 30 seconds">
+					text = <"Able to place feet together independently but unable to hold 30 seconds">
 					description = <"">
 				>
 				["at0028"] = <
@@ -327,15 +328,15 @@ ontology
 					description = <"">
 				>
 				["at0030"] = <
-					text = <"Standing on one foot">
+					text = <"Standing on one leg">
 					description = <"">
 				>
 				["at0031"] = <
-					text = <"Unable to try of needs assist to prevent fall">
+					text = <"Unable to try or needs assist to prevent fall">
 					description = <"">
 				>
 				["at0032"] = <
-					text = <"Tries to lift a leg, unable to hold 3 seconds but remains standing independently.">
+					text = <"Tries to lift a leg, unable to hold 3 seconds but remains standing independently">
 					description = <"">
 				>
 				["at0033"] = <
@@ -343,11 +344,11 @@ ontology
 					description = <"">
 				>
 				["at0034"] = <
-					text = <"Able to lift leg independently and hold  5-10 seconds">
+					text = <"Able to lift leg independently and hold 5-10 seconds">
 					description = <"">
 				>
 				["at0035"] = <
-					text = <"Able to lift leg independently and hold > 10 seconds">
+					text = <"Able to lift leg independently and hold >10 seconds">
 					description = <"">
 				>
 				["at0036"] = <
@@ -367,7 +368,7 @@ ontology
 					description = <"">
 				>
 				["at0040"] = <
-					text = <"Looks behind one side only other side shows less weight shift">
+					text = <"Looks behind one side only, other side shows less weight shift">
 					description = <"">
 				>
 				["at0041"] = <
@@ -387,7 +388,7 @@ ontology
 					description = <"">
 				>
 				["at0045"] = <
-					text = <"Unable to pick up but reaches 1-2 inches from slipper and keeps balance independently">
+					text = <"Unable to pick up but reaches 2-5 cm (1-2 inches) from slipper and keeps balance independently">
 					description = <"">
 				>
 				["at0046"] = <
@@ -411,15 +412,15 @@ ontology
 					description = <"">
 				>
 				["at0051"] = <
-					text = <"Can reach forward 2 inches">
+					text = <"Can reach forward 5 cm (2 inches) safely">
 					description = <"">
 				>
 				["at0052"] = <
-					text = <"Can reach forward 5 inches">
+					text = <"Can reach forward 12 cm (5 inches) safely">
 					description = <"">
 				>
 				["at0053"] = <
-					text = <"Can reach forward confidently 10 inches">
+					text = <"Can reach forward confidently 25 cm (10 inches)">
 					description = <"">
 				>
 				["at0054"] = <
@@ -440,7 +441,7 @@ ontology
 				>
 				["at0058"] = <
 					text = <"Able to place foot ahead independently and hold 30 seconds">
-					description = <"">
+					description = <"Foot must completely pass the other foot. Step width should be no wider than shoulders.">
 				>
 				["at0059"] = <
 					text = <"Able to place foot tandem independently and hold 30 seconds">
@@ -483,7 +484,7 @@ ontology
 					description = <"">
 				>
 				["at0069"] = <
-					text = <"Uses the back of their legs against the chair to control their descent">
+					text = <"Uses back of legs against chair to control descent">
 					description = <"">
 				>
 				["at0070"] = <
@@ -511,7 +512,7 @@ ontology
 					description = <"">
 				>
 				["at0076"] = <
-					text = <"Able to transfer safely definite need of hands">
+					text = <"Able to transfer safely with definite need of hands">
 					description = <"">
 				>
 				["at0077"] = <
@@ -535,7 +536,7 @@ ontology
 					description = <"">
 				>
 				["at0082"] = <
-					text = <"Able to turn 360 degrees safely one side only 4 seconds or less">
+					text = <"Able to turn 360 degrees safely one side only in 4 seconds or less">
 					description = <"">
 				>
 				["at0083"] = <
@@ -551,11 +552,11 @@ ontology
 					description = <"">
 				>
 				["at0086"] = <
-					text = <"Able to complete > 2 steps needs minimal assist">
+					text = <"Able to complete > 2 steps, needs minimal assist">
 					description = <"">
 				>
 				["at0087"] = <
-					text = <"Able to complete 4 steps without aid with supervision">
+					text = <"Able to complete 4 steps without aid, with supervision">
 					description = <"">
 				>
 				["at0088"] = <
