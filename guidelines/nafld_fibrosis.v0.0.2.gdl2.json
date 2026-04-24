@@ -1,0 +1,424 @@
+{
+  "id" : "nafld_fibrosis.v0.0.2",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Katja Mariko Wilde",
+      "email" : "katja-wilde@t-online.de",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-02-23"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate the NAFLD Fibrosis Score using routinely available clinical and laboratory parameters in order to estimate the probability of significant or advanced liver fibrosis in patients with non-alcoholic fatty liver disease.",
+        "keywords" : [
+          "fibrosis",
+          "nonalcoholic",
+          "fatty",
+          "liver",
+          "disease",
+          "assessment",
+          "NAFLD"
+        ],
+        "use" : "Use to estimate the risk of advanced liver fibrosis in patients with confirmed NAFLD.\n\nThe score is calculated using the following variables:\n- age (years)\n- body mass index (BMI)\n- impaired fasting glucose or diabetes (no = 0, yes = 1)\n- AST/ALT ratio\n- platelet count\n- albumin\n\nFormula:\nNAFLD Score = -1.675 + (0.037 x age [years]) + (0.094 x BMI [kg/m2]) + (1.13 x IFG/diabetes [yes = 1, no = 0]) + (0.99 x AST/ALT ratio) – (0.013 x platelet count [×109/L]) – (0.66 x albumin [g/dl])\n\nThe calculated NAFLD Fibrosis Score stratifies patients into fibrosis risk categories:\n- score &lt; -1.455 → low probability of advanced fibrosis (F0-F2)\n- score -1.455 to 0.675 → indeterminate probability\n- score &gt; 0.675 → high probability of advanced fibrosis (F3-F4)\n\nFibrosis Severity Scale\n- F0 = no fibrosis\n- F1 = mild fibrosis\n- F2 = moderate fibrosis\n- F3 = severe fibrosis\n- F4 = cirrhosis",
+        "misuse" : "Not to be used for patients without confirmed NAFLD.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "en" : "A clinical prediction score used to estimate the likelihood of advanced liver fibrosis in patients with non-alcoholic fatty liver disease.",
+      "references" : "Angulo P, Hui JM, Marchesini G, Bugianesi E, George J, Farrell GC, Enders F, Saksena S, Burt AD, Bida JP, Lindor K, Sanderson SO, Lenzi M, Adams LA, Kench J, Therneau TM, Day CP. The NAFLD fibrosis score: a noninvasive system that identifies liver fibrosis in patients with NAFLD. Hepatology. 2007 Apr;45(4):846-54. doi: 10.1002/hep.21496. PMID: 17393509.\n\nTreeprasertsuk S, Björnsson E, Enders F, Suwanwalaikorn S, Lindor KD. NAFLD fibrosis score: A prognostic predictor for mortality and liver complications among NAFLD patients. World Journal of Gastroenterology. 2013;19(8):1219-1229. doi:10.3748/wjg.v19.i8.1219."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.nafld_fibrosis.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.nafld_fibrosis.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0009]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "a"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0007",
+              "1|local::at0008"
+            ]
+          }
+        }
+      },
+      "gt0005" : {
+        "id" : "gt0005",
+        "model_id" : "openEHR-EHR-OBSERVATION.body_mass_index.v2",
+        "template_id" : "openEHR-EHR-OBSERVATION.body_mass_index.v2",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "kg/m2"
+            ]
+          }
+        }
+      },
+      "gt0007" : {
+        "id" : "gt0007",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0008" : {
+            "id" : "gt0008",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "U/L"
+            ]
+          }
+        },
+        "predicates" : [
+          "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024] is_a local::gt0010|Aspartate aminotransferase code|"
+        ]
+      },
+      "gt0014" : {
+        "id" : "gt0014",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0015" : {
+            "id" : "gt0015",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "U/L"
+            ]
+          }
+        },
+        "predicates" : [
+          "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024] is_a local::gt0011|Alanine aminotransferase code|"
+        ]
+      },
+      "gt0017" : {
+        "id" : "gt0017",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0018" : {
+            "id" : "gt0018",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "10^9/L"
+            ]
+          }
+        },
+        "predicates" : [
+          "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024] is_a local::gt0012|Platelet count code|"
+        ]
+      },
+      "gt0020" : {
+        "id" : "gt0020",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0021" : {
+            "id" : "gt0021",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "g/L"
+            ]
+          }
+        },
+        "predicates" : [
+          "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024] is_a local::gt0013|Albumin code|"
+        ]
+      },
+      "gt0023" : {
+        "id" : "gt0023",
+        "model_id" : "openEHR-EHR-OBSERVATION.nafld_fibrosis.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.nafld_fibrosis.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0024" : {
+            "id" : "gt0024",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0010]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "1"
+            ]
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0011]",
+            "data_type" : "DV_TEXT"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0025" : {
+        "id" : "gt0025",
+        "priority" : 4,
+        "when" : [
+          "$gt0003|Age|!=null",
+          "$gt0004|Impaired fasting glucose/diabetes|!=null",
+          "$gt0006|Body mass index|!=null",
+          "$gt0009|Aspartate aminotransferase result|!=null",
+          "$gt0016|Alanine aminotransferase result|!=null",
+          "$gt0019|Platelet count result|!=null",
+          "$gt0022|Albumin result|!=null"
+        ],
+        "then" : [
+          "$gt0024|Total score|.magnitude=0-1.675+(0.037*$gt0003|Age|.magnitude)+(0.094*$gt0006|Body mass index|.magnitude)+(1.13*$gt0004|Impaired fasting glucose/diabetes|.value)+(0.99*($gt0009|Aspartate aminotransferase result|.magnitude/$gt0016|Alanine aminotransferase result|.magnitude))-(0.013*$gt0019|Platelet count result|.magnitude)-(0.66*$gt0022|Albumin result|.magnitude/10)",
+          "$gt0024|Total score|.unit='1'",
+          "$gt0024|Total score|.precision=3"
+        ]
+      },
+      "gt0030" : {
+        "id" : "gt0030",
+        "priority" : 3,
+        "when" : [
+          "$gt0024|Total score|!=null",
+          "$gt0024|Total score|<(0-1.455)"
+        ],
+        "then" : [
+          "$gt0026|Correlated Fibrosis Severity|=$gt0027|F0-F2|.term"
+        ]
+      },
+      "gt0031" : {
+        "id" : "gt0031",
+        "priority" : 2,
+        "when" : [
+          "$gt0024|Total score|!=null",
+          "$gt0024|Total score|>=(0-1.455)",
+          "$gt0024|Total score|<=0.675"
+        ],
+        "then" : [
+          "$gt0026|Correlated Fibrosis Severity|=$gt0028|Indeterminant score|.term"
+        ]
+      },
+      "gt0032" : {
+        "id" : "gt0032",
+        "priority" : 1,
+        "when" : [
+          "$gt0024|Total score|!=null",
+          "$gt0024|Total score|>0.675"
+        ],
+        "then" : [
+          "$gt0026|Correlated Fibrosis Severity|=$gt0029|F3-F4|.term"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "NAFLD (Non-Alcoholic Fatty Liver Disease) Fibrosis Score",
+            "description" : "A clinical prediction score used to estimate the likelihood of advanced liver fibrosis in patients with non-alcoholic fatty liver disease."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.nafld_fibrosis.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Age"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Impaired fasting glucose/diabetes"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "openEHR-EHR-OBSERVATION.body_mass_index.v2"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "Body mass index"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Aspartate aminotransferase"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Aspartate aminotransferase result"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Aspartate aminotransferase code"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Alanine aminotransferase code"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Platelet count code"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Albumin code"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "Alanine aminotransferase"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "Alanine aminotransferase result"
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "Platelet count"
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "Platelet count result"
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "Albumin"
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "Albumin result"
+          },
+          "gt0023" : {
+            "id" : "gt0023",
+            "text" : "openEHR-EHR-OBSERVATION.nafld_fibrosis.v0"
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "text" : "Total score"
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "text" : "NAFLD Score",
+            "description" : ""
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "text" : "Correlated Fibrosis Severity"
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "text" : "F0-F2"
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "text" : "Indeterminant score"
+          },
+          "gt0029" : {
+            "id" : "gt0029",
+            "text" : "F3-F4"
+          },
+          "gt0030" : {
+            "id" : "gt0030",
+            "text" : "Fibrosis Severity F0-F2",
+            "description" : ""
+          },
+          "gt0031" : {
+            "id" : "gt0031",
+            "text" : "Fibrosis Severity Indeterminant score",
+            "description" : ""
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "text" : "Fibrosis Severity F3-F4",
+            "description" : ""
+          }
+        }
+      }
+    },
+    "term_bindings" : {
+      "LOINC" : {
+        "id" : "LOINC",
+        "bindings" : {
+          "gt0010" : {
+            "codes" : [
+              "LOINC::1920-8"
+            ]
+          },
+          "gt0011" : {
+            "codes" : [
+              "LOINC::1742-6"
+            ]
+          },
+          "gt0012" : {
+            "codes" : [
+              "LOINC::777-3 "
+            ]
+          },
+          "gt0013" : {
+            "codes" : [
+              "LOINC::1751-7"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
