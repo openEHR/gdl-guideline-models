@@ -1,0 +1,245 @@
+guidelines:
+  "1": Kidney_Failure_Risk_Equation_KFRE.v0.0.3
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Age input missing (negative test)
+    input:
+      "1":
+        gt0004|Sex: local::at0010|Female|
+        gt0005|Region: local::at0013|North America|
+        gt0007|Relative eGFR: 90,mL/min/{1.73_m2}
+        gt0009|Urine albumin to creatinine ratio: LOINC::13705-9|Urine albumin to creatinine ratio code|
+        gt0010|Urine albumin to creatinine ratio result: 20,mg/g
+        gt0012|Albumin: LOINC::1751-7|Albumin code|
+        gt0013|Albumin result: 5,g/dL
+        gt0015|Phosphorous: LOINC::2777-1|Phosphorous code|
+        gt0016|Phosphorous result: 20,mg/dL
+        gt0018|Bicarbonate: LOINC::1963-8|Bicarbonate code|
+        gt0019|Bicarbonate result: 20,mmol/L
+        gt0021|Calcium: LOINC::17861-6|Calcium code|
+        gt0022|Calcium result: 10,mg/dL
+    expected_output:
+      "1": {}
+  - id: 3. Sex input missing (negative test)
+    input:
+      "1":
+        gt0003|Age: 50,a
+        gt0005|Region: local::at0013|North America|
+        gt0007|Relative eGFR: 90,mL/min/{1.73_m2}
+        gt0009|Urine albumin to creatinine ratio: LOINC::13705-9|Urine albumin to creatinine ratio code|
+        gt0010|Urine albumin to creatinine ratio result: 20,mg/g
+        gt0012|Albumin: LOINC::1751-7|Albumin code|
+        gt0013|Albumin result: 5,g/dL
+        gt0015|Phosphorous: LOINC::2777-1|Phosphorous code|
+        gt0016|Phosphorous result: 20,mg/dL
+        gt0018|Bicarbonate: LOINC::1963-8|Bicarbonate code|
+        gt0019|Bicarbonate result: 20,mmol/L
+        gt0021|Calcium: LOINC::17861-6|Calcium code|
+        gt0022|Calcium result: 10,mg/dL
+    expected_output:
+      "1": {}
+  - id: 4. Region input missing (negative test)
+    input:
+      "1":
+        gt0003|Age: 50,a
+        gt0004|Sex: local::at0010|Female|
+        gt0007|Relative eGFR: 90,mL/min/{1.73_m2}
+        gt0009|Urine albumin to creatinine ratio: LOINC::13705-9|Urine albumin to creatinine ratio code|
+        gt0010|Urine albumin to creatinine ratio result: 20,mg/g
+        gt0012|Albumin: LOINC::1751-7|Albumin code|
+        gt0013|Albumin result: 5,g/dL
+        gt0015|Phosphorous: LOINC::2777-1|Phosphorous code|
+        gt0016|Phosphorous result: 20,mg/dL
+        gt0018|Bicarbonate: LOINC::1963-8|Bicarbonate code|
+        gt0019|Bicarbonate result: 20,mmol/L
+        gt0021|Calcium: LOINC::17861-6|Calcium code|
+        gt0022|Calcium result: 10,mg/dL
+    expected_output:
+      "1": {}
+  - id: 5. Relative eGFR input missing (negative test)
+    input:
+      "1":
+        gt0003|Age: 50,a
+        gt0004|Sex: local::at0010|Female|
+        gt0005|Region: local::at0013|North America|
+        gt0009|Urine albumin to creatinine ratio: LOINC::13705-9|Urine albumin to creatinine ratio code|
+        gt0010|Urine albumin to creatinine ratio result: 20,mg/g
+        gt0012|Albumin: LOINC::1751-7|Albumin code|
+        gt0013|Albumin result: 5,g/dL
+        gt0015|Phosphorous: LOINC::2777-1|Phosphorous code|
+        gt0016|Phosphorous result: 20,mg/dL
+        gt0018|Bicarbonate: LOINC::1963-8|Bicarbonate code|
+        gt0019|Bicarbonate result: 20,mmol/L
+        gt0021|Calcium: LOINC::17861-6|Calcium code|
+        gt0022|Calcium result: 10,mg/dL
+    expected_output:
+      "1": {}
+  - id: 6. Urine albumin to creatinine ratio result input missing (negative test)
+    input:
+      "1":
+        gt0003|Age: 50,a
+        gt0004|Sex: local::at0010|Female|
+        gt0005|Region: local::at0013|North America|
+        gt0007|Relative eGFR: 90,mL/min/{1.73_m2}
+        gt0012|Albumin: LOINC::1751-7|Albumin code|
+        gt0013|Albumin result: 5,g/dL
+        gt0015|Phosphorous: LOINC::2777-1|Phosphorous code|
+        gt0016|Phosphorous result: 20,mg/dL
+        gt0018|Bicarbonate: LOINC::1963-8|Bicarbonate code|
+        gt0019|Bicarbonate result: 20,mmol/L
+        gt0021|Calcium: LOINC::17861-6|Calcium code|
+        gt0022|Calcium result: 10,mg/dL
+    expected_output:
+      "1": {}
+  - id: 7. Albumin result input missing (negative test)
+    input:
+      "1":
+        gt0003|Age: 50,a
+        gt0004|Sex: local::at0010|Female|
+        gt0005|Region: local::at0013|North America|
+        gt0007|Relative eGFR: 90,mL/min/{1.73_m2}
+        gt0009|Urine albumin to creatinine ratio: LOINC::13705-9|Urine albumin to creatinine ratio code|
+        gt0010|Urine albumin to creatinine ratio result: 20,mg/g
+        gt0015|Phosphorous: LOINC::2777-1|Phosphorous code|
+        gt0016|Phosphorous result: 20,mg/dL
+        gt0018|Bicarbonate: LOINC::1963-8|Bicarbonate code|
+        gt0019|Bicarbonate result: 20,mmol/L
+        gt0021|Calcium: LOINC::17861-6|Calcium code|
+        gt0022|Calcium result: 10,mg/dL
+    expected_output:
+      "1": {}
+  - id: 8. Phosphorous result input missing (negative test)
+    input:
+      "1":
+        gt0003|Age: 50,a
+        gt0004|Sex: local::at0010|Female|
+        gt0005|Region: local::at0013|North America|
+        gt0007|Relative eGFR: 90,mL/min/{1.73_m2}
+        gt0009|Urine albumin to creatinine ratio: LOINC::13705-9|Urine albumin to creatinine ratio code|
+        gt0010|Urine albumin to creatinine ratio result: 20,mg/g
+        gt0012|Albumin: LOINC::1751-7|Albumin code|
+        gt0013|Albumin result: 5,g/dL
+        gt0018|Bicarbonate: LOINC::1963-8|Bicarbonate code|
+        gt0019|Bicarbonate result: 20,mmol/L
+        gt0021|Calcium: LOINC::17861-6|Calcium code|
+        gt0022|Calcium result: 10,mg/dL
+    expected_output:
+      "1": {}
+  - id: 9. Bicarbonate result input missing (negative test)
+    input:
+      "1":
+        gt0003|Age: 50,a
+        gt0004|Sex: local::at0010|Female|
+        gt0005|Region: local::at0013|North America|
+        gt0007|Relative eGFR: 90,mL/min/{1.73_m2}
+        gt0009|Urine albumin to creatinine ratio: LOINC::13705-9|Urine albumin to creatinine ratio code|
+        gt0010|Urine albumin to creatinine ratio result: 20,mg/g
+        gt0012|Albumin: LOINC::1751-7|Albumin code|
+        gt0013|Albumin result: 5,g/dL
+        gt0015|Phosphorous: LOINC::2777-1|Phosphorous code|
+        gt0016|Phosphorous result: 20,mg/dL
+        gt0021|Calcium: LOINC::17861-6|Calcium code|
+        gt0022|Calcium result: 10,mg/dL
+    expected_output:
+      "1": {}
+  - id: 10. Calcium result input missing (negative test)
+    input:
+      "1":
+        gt0003|Age: 50,a
+        gt0004|Sex: local::at0010|Female|
+        gt0005|Region: local::at0013|North America|
+        gt0007|Relative eGFR: 90,mL/min/{1.73_m2}
+        gt0009|Urine albumin to creatinine ratio: LOINC::13705-9|Urine albumin to creatinine ratio code|
+        gt0010|Urine albumin to creatinine ratio result: 20,mg/g
+        gt0012|Albumin: LOINC::1751-7|Albumin code|
+        gt0013|Albumin result: 5,g/dL
+        gt0015|Phosphorous: LOINC::2777-1|Phosphorous code|
+        gt0016|Phosphorous result: 20,mg/dL
+        gt0018|Bicarbonate: LOINC::1963-8|Bicarbonate code|
+        gt0019|Bicarbonate result: 20,mmol/L
+    expected_output:
+      "1": {}
+  - id: 11. All input - Rule Female and North America
+    input:
+      "1":
+        gt0003|Age: 50,a
+        gt0004|Sex: local::at0010|Female|
+        gt0005|Region: local::at0013|North America|
+        gt0007|Relative eGFR: 60,mL/min/{1.73_m2}
+        gt0009|Urine albumin to creatinine ratio: LOINC::13705-9|Urine albumin to creatinine ratio code|
+        gt0010|Urine albumin to creatinine ratio result: 20,mg/g
+        gt0012|Albumin: LOINC::1751-7|Albumin code|
+        gt0013|Albumin result: 5,g/dL
+        gt0015|Phosphorous: LOINC::2777-1|Phosphorous code|
+        gt0016|Phosphorous result: 20,mg/dL
+        gt0018|Bicarbonate: LOINC::1963-8|Bicarbonate code|
+        gt0019|Bicarbonate result: 20,mmol/L
+        gt0021|Calcium: LOINC::17861-6|Calcium code|
+        gt0022|Calcium result: 10,mg/dL
+    expected_output:
+      "1":
+        gt0024|5-year risk of kidney failure: 30.71,%
+  - id: 12. All input - Rule Male and North America
+    input:
+      "1":
+        gt0003|Age: 50,a
+        gt0004|Sex: local::at0011|Male|
+        gt0005|Region: local::at0013|North America|
+        gt0007|Relative eGFR: 60,mL/min/{1.73_m2}
+        gt0009|Urine albumin to creatinine ratio: LOINC::13705-9|Urine albumin to creatinine ratio code|
+        gt0010|Urine albumin to creatinine ratio result: 20,mg/g
+        gt0012|Albumin: LOINC::1751-7|Albumin code|
+        gt0013|Albumin result: 5,g/dL
+        gt0015|Phosphorous: LOINC::2777-1|Phosphorous code|
+        gt0016|Phosphorous result: 20,mg/dL
+        gt0018|Bicarbonate: LOINC::1963-8|Bicarbonate code|
+        gt0019|Bicarbonate result: 20,mmol/L
+        gt0021|Calcium: LOINC::17861-6|Calcium code|
+        gt0022|Calcium result: 10,mg/dL
+    expected_output:
+      "1":
+        gt0024|5-year risk of kidney failure: 34.98,%
+  - id: 13. All input - Rule Male and Non-North America
+    input:
+      "1":
+        gt0003|Age: 50,a
+        gt0004|Sex: local::at0011|Male|
+        gt0005|Region: local::at0014|Non-North America|
+        gt0007|Relative eGFR: 60,mL/min/{1.73_m2}
+        gt0009|Urine albumin to creatinine ratio: LOINC::13705-9|Urine albumin to creatinine ratio code|
+        gt0010|Urine albumin to creatinine ratio result: 20,mg/g
+        gt0012|Albumin: LOINC::1751-7|Albumin code|
+        gt0013|Albumin result: 5,g/dL
+        gt0015|Phosphorous: LOINC::2777-1|Phosphorous code|
+        gt0016|Phosphorous result: 20,mg/dL
+        gt0018|Bicarbonate: LOINC::1963-8|Bicarbonate code|
+        gt0019|Bicarbonate result: 20,mmol/L
+        gt0021|Calcium: LOINC::17861-6|Calcium code|
+        gt0022|Calcium result: 10,mg/dL
+    expected_output:
+      "1":
+        gt0024|5-year risk of kidney failure: 30.00,%
+  - id: 14. All input - Rule Female and Non-North America
+    input:
+      "1":
+        gt0003|Age: 50,a
+        gt0004|Sex: local::at0010|Female|
+        gt0005|Region: local::at0014|Non-North America|
+        gt0007|Relative eGFR: 60,mL/min/{1.73_m2}
+        gt0009|Urine albumin to creatinine ratio: LOINC::13705-9|Urine albumin to creatinine ratio code|
+        gt0010|Urine albumin to creatinine ratio result: 20,mg/g
+        gt0012|Albumin: LOINC::1751-7|Albumin code|
+        gt0013|Albumin result: 5,g/dL
+        gt0015|Phosphorous: LOINC::2777-1|Phosphorous code|
+        gt0016|Phosphorous result: 20,mg/dL
+        gt0018|Bicarbonate: LOINC::1963-8|Bicarbonate code|
+        gt0019|Bicarbonate result: 20,mmol/L
+        gt0021|Calcium: LOINC::17861-6|Calcium code|
+        gt0022|Calcium result: 10,mg/dL
+    expected_output:
+      "1":
+        gt0024|5-year risk of kidney failure: 26.21,%
