@@ -1,0 +1,69 @@
+guidelines:
+  "1": ips_e.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Unmutated IGHV genes input missing (negative test)
+    input:
+      "1":
+        gt0036|Absolute lymphocyte count >15×10^9/L: 0|local::at0024|Absent|
+        gt0037|Palpable lymph nodes: 0|local::at0026|Absent|
+    expected_output:
+      "1": {}
+  - id: 3. Absolute lymphocyte count >15×10^9/L input missing (negative test)
+    input:
+      "1":
+        gt0035|Unmutated IGHV genes: 0|local::at0022|Absent|
+        gt0037|Palpable lymph nodes: 0|local::at0026|Absent|
+    expected_output:
+      "1": {}
+  - id: 4. Palpable lymph nodes input missing (negative test)
+    input:
+      "1":
+        gt0035|Unmutated IGHV genes: 0|local::at0022|Absent|
+        gt0036|Absolute lymphocyte count >15×10^9/L: 0|local::at0024|Absent|
+    expected_output:
+      "1": {}
+  - id: 5. All inputs - Total score 0, low risk
+    input:
+      "1":
+        gt0035|Unmutated IGHV genes: 0|local::at0022|Absent|
+        gt0036|Absolute lymphocyte count >15×10^9/L: 0|local::at0024|Absent|
+        gt0037|Palpable lymph nodes: 0|local::at0026|Absent|
+    expected_output:
+      "1":
+        gt0012|Risk for Treatment Need: Low risk
+        gt0039|Total score: "0"
+  - id: 6. All inputs - Total score 1, intermediate risk
+    input:
+      "1":
+        gt0035|Unmutated IGHV genes: 1|local::at0023|Present|
+        gt0036|Absolute lymphocyte count >15×10^9/L: 0|local::at0024|Absent|
+        gt0037|Palpable lymph nodes: 0|local::at0026|Absent|
+    expected_output:
+      "1":
+        gt0012|Risk for Treatment Need: Intermediate risk
+        gt0039|Total score: "1"
+  - id: 7. All inputs - Total score 2, high risk
+    input:
+      "1":
+        gt0035|Unmutated IGHV genes: 1|local::at0023|Present|
+        gt0036|Absolute lymphocyte count >15×10^9/L: 1|local::at0025|Present|
+        gt0037|Palpable lymph nodes: 0|local::at0026|Absent|
+    expected_output:
+      "1":
+        gt0012|Risk for Treatment Need: High risk
+        gt0039|Total score: "2"
+  - id: 8. All inputs - Total score 3, high risk
+    input:
+      "1":
+        gt0035|Unmutated IGHV genes: 1|local::at0023|Present|
+        gt0036|Absolute lymphocyte count >15×10^9/L: 1|local::at0025|Present|
+        gt0037|Palpable lymph nodes: 1|local::at0027|Present|
+    expected_output:
+      "1":
+        gt0012|Risk for Treatment Need: High risk
+        gt0039|Total score: "3"
