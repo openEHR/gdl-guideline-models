@@ -1,0 +1,121 @@
+archetype (adl_version=1.4; uid=d65f3ca9-7e3a-4c08-b6af-57a9900c6613)
+	openEHR-EHR-EVALUATION.rockall_score_for_gi_bleeding_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-04-24">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"Kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To assess the data recorded on the openEHR-EHR-OBSERVATION.rockall_score_for_gi_bleeding.v0 archetype">
+			keywords = <"GI, bleeding, upper, endoscopy, gastrointestinal, score, prognosis, assessment", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to assess the data recorded for the Rockall Score for Upper GI Bleeding in patients with clinical upper GI bleeding.">
+			misuse = <"Do not use in patients who have not completed an endoscopy. 
+Do not use to record endoscopy diagnoses, use the proper archetype instead">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Rockall TA, Logan RF, Devlin HB, Northfield TC. Risk assessment after acute upper gastrointestinal haemorrhage. Gut. 1996 Mar;38(3):316-21. doi: 10.1136/gut.38.3.316. PMID: 8675081; PMCID: PMC1383057.
+
+Tham TC, James C, Kelly M. Predicting outcome of acute non-variceal upper gastrointestinal haemorrhage without endoscopy using the clinical Rockall Score. Postgrad Med J. 2006 Nov;82(973):757-9. doi: 10.1136/pmj.2006.048462. PMID: 17099097; PMCID: PMC2660506.
+
+Sanders DS, Perry MJ, Jones SG, McFarlane E, Johnson AG, Gleeson DC, Lobo AJ. Effectiveness of an upper-gastrointestinal haemorrhage unit: a prospective analysis of 900 consecutive cases using the Rockall score as a method of risk standardisation. Eur J Gastroenterol Hepatol. 2004 May;16(5):487-94. doi: 10.1097/00042737-200405000-00009. PMID: 15097042.
+
+Vreeburg EM, Terwee CB, Snel P, Rauws EA, Bartelsman JF, Meulen JH, Tytgat GN. Validation of the Rockall risk scoring system in upper gastrointestinal bleeding. Gut. 1999 Mar;44(3):331-5. doi: 10.1136/gut.44.3.331. PMID: 10026316; PMCID: PMC1727413.">
+		["build_uid"] = <"c08e5a0e-b6ad-358b-8f31-6d1635492921">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Rockall score for GI bleeding assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Rockall score
+						value matches {
+							DV_COUNT matches {*}
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {    -- Risk of upper GI bleeding
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0006,    -- Good prognosis.
+									at0007]    -- High risk of death.
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Rockall score for GI bleeding assessment">
+					description = <"The Rockall score for Upper GI Bleeding determines severity of GI bleeding.">
+					comment = <"Original version, c 1996. ">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Rockall score">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Risk of upper GI bleeding">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Good prognosis.">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"High risk of death.">
+					description = <"">
+				>
+			>
+		>
+	>
