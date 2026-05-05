@@ -1,0 +1,551 @@
+{
+  "uuid" : "343e33c6-048c-417f-8fe6-fe4099fcd20d",
+  "id" : "Kidney_Failure_Risk_Equation_KFRE.v0.1.0",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Katja Mariko Wilde",
+      "email" : "katja-wilde@t-online.de",
+      "organisation" : "Cambio CDS",
+      "date" : "2025-10-09"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate the predicted 5-year probability of kidney failure in adults with chronic kidney disease using the Kidney Failure Risk Calculator (KFRE).",
+        "keywords" : [
+          "kidney",
+          "failure",
+          "risk",
+          "equation",
+          "kfre",
+          "calculator",
+          "chronic",
+          "disease",
+          "ckd"
+        ],
+        "use" : "Use to predict the 5-year risk of progression to kidney failure in adult patients with chronic kidney disease (CKD).\nThe prediction is calculated using the following variables:\n- Age (years)\n- Sex (male/female)\n- Region (North America / Non–North America)\n- eGFR (mL/min/1.73 m²)\n- Urine albumin to creatinine ratio (mg/g)\n- Albumin (g/dL)\n- Phosphorus (mg/dL)\n- Bicarbonate (mEq/L)\n- Calcium (mg/dL)",
+        "misuse" : "Not to be used for recording information related to other chronic kidney disease risk prediction models or renal outcome calculators.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Tangri N, Stevens LA, Griffith J, et al. A Predictive Model for Progression of Chronic Kidney Disease to Kidney Failure. JAMA. 2011;305(15):1553–1559. doi:10.1001/jama.2011.451",
+      "en" : "A calculation model used to estimate the 5-year probability of kidney failure in adults (≥18 years) with chronic kidney disease (CKD)."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0034" : {
+        "id" : "gt0034",
+        "model_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0035" : {
+            "id" : "gt0035",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "a"
+            ]
+          },
+          "gt0036" : {
+            "id" : "gt0036",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0005",
+              "local::at0006"
+            ]
+          }
+        }
+      },
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.kfre.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.kfre.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0012]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0013",
+              "local::at0014"
+            ]
+          }
+        }
+      },
+      "gt0006" : {
+        "id" : "gt0006",
+        "model_id" : "openEHR-EHR-OBSERVATION.estimated_glomerular_filtration_rate.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.estimated_glomerular_filtration_rate.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mL/min/{1.73_m2}"
+            ]
+          }
+        }
+      },
+      "gt0008" : {
+        "id" : "gt0008",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0009" : {
+            "id" : "gt0009",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mg/g"
+            ]
+          }
+        },
+        "predicates" : [
+          "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024] is_a local::gt0025|Urine albumin to creatinine ratio code|"
+        ]
+      },
+      "gt0011" : {
+        "id" : "gt0011",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0012" : {
+            "id" : "gt0012",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "g/dL"
+            ]
+          }
+        },
+        "predicates" : [
+          "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024] is_a local::gt0026|Albumin code|"
+        ]
+      },
+      "gt0014" : {
+        "id" : "gt0014",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0015" : {
+            "id" : "gt0015",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mg/dL"
+            ]
+          }
+        },
+        "predicates" : [
+          "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024] is_a local::gt0027|Phosphorous code|"
+        ]
+      },
+      "gt0017" : {
+        "id" : "gt0017",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0018" : {
+            "id" : "gt0018",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mmol/L"
+            ]
+          }
+        },
+        "predicates" : [
+          "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024] is_a local::gt0028|Bicarbonate code|"
+        ]
+      },
+      "gt0020" : {
+        "id" : "gt0020",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0021" : {
+            "id" : "gt0021",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mg/dL"
+            ]
+          }
+        },
+        "predicates" : [
+          "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024] is_a local::gt0029|Calcium code|"
+        ]
+      },
+      "gt0023" : {
+        "id" : "gt0023",
+        "model_id" : "openEHR-EHR-OBSERVATION.kfre.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.kfre.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0024" : {
+            "id" : "gt0024",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0017]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "%"
+            ]
+          }
+        }
+      }
+    },
+    "pre_conditions" : [
+      "$gt0035|Age|.magnitude>=18&&$gt0035|Age|.magnitude<=110",
+      "$gt0007|Relative eGFR|.magnitude>=0&&$gt0007|Relative eGFR|.magnitude<=200",
+      "$gt0010|Urine albumin to creatinine ratio result|.magnitude>0&&$gt0010|Urine albumin to creatinine ratio result|.magnitude<=25000",
+      "$gt0013|Albumin result|.magnitude>=0&&$gt0013|Albumin result|.magnitude<=7",
+      "$gt0016|Phosphorous result|.magnitude>=0&&$gt0016|Phosphorous result|.magnitude<=100",
+      "$gt0019|Bicarbonate result|.magnitude>0&&$gt0019|Bicarbonate result|.magnitude<=100",
+      "$gt0022|Calcium result|.magnitude>=4&&$gt0022|Calcium result|.magnitude<=18"
+    ],
+    "rules" : {
+      "gt0030" : {
+        "id" : "gt0030",
+        "priority" : 4,
+        "when" : [
+          "$gt0035|Age|!=null",
+          "$gt0036|Gender|!=null",
+          "$gt0005|Region|!=null",
+          "$gt0007|Relative eGFR|!=null",
+          "$gt0010|Urine albumin to creatinine ratio result|!=null",
+          "$gt0013|Albumin result|!=null",
+          "$gt0016|Phosphorous result|!=null",
+          "$gt0019|Bicarbonate result|!=null",
+          "$gt0022|Calcium result|!=null",
+          "$gt0036|Gender|==local::at0005|Male|",
+          "$gt0005|Region|==local::at0013|North America|"
+        ],
+        "then" : [
+          "$gt0024|5-year risk of kidney failure|.magnitude=(1-0.9096^exp(0-0.1992*(($gt0035|Age|.magnitude/10)-7.036)+0.1602*(1-0.5642)-0.4919*(($gt0007|Relative eGFR|.magnitude/5)-7.222)+0.3364*(log($gt0010|Urine albumin to creatinine ratio result|.magnitude)-5.137)-0.3441*($gt0013|Albumin result|.magnitude-3.997)+0.2604*($gt0016|Phosphorous result|.magnitude-3.916)-0.07354*($gt0019|Bicarbonate result|.magnitude-25.57)-0.2228*($gt0022|Calcium result|.magnitude-9.355)))*100",
+          "$gt0024|5-year risk of kidney failure|.precision=2",
+          "$gt0024|5-year risk of kidney failure|.unit='%'"
+        ]
+      },
+      "gt0031" : {
+        "id" : "gt0031",
+        "priority" : 3,
+        "when" : [
+          "$gt0035|Age|!=null",
+          "$gt0036|Gender|!=null",
+          "$gt0005|Region|!=null",
+          "$gt0007|Relative eGFR|!=null",
+          "$gt0010|Urine albumin to creatinine ratio result|!=null",
+          "$gt0013|Albumin result|!=null",
+          "$gt0016|Phosphorous result|!=null",
+          "$gt0019|Bicarbonate result|!=null",
+          "$gt0022|Calcium result|!=null",
+          "$gt0036|Gender|==local::at0006|Female|",
+          "$gt0005|Region|==local::at0013|North America|"
+        ],
+        "then" : [
+          "$gt0024|5-year risk of kidney failure|.magnitude=(1-0.9096^exp(0-0.1992*(($gt0035|Age|.magnitude/10)-7.036)+0.1602*(0-0.5642)-0.4919*(($gt0007|Relative eGFR|.magnitude/5)-7.222)+0.3364*(log($gt0010|Urine albumin to creatinine ratio result|.magnitude)-5.137)-0.3441*($gt0013|Albumin result|.magnitude-3.997)+0.2604*($gt0016|Phosphorous result|.magnitude-3.916)-0.07354*($gt0019|Bicarbonate result|.magnitude-25.57)-0.2228*($gt0022|Calcium result|.magnitude-9.355)))*100",
+          "$gt0024|5-year risk of kidney failure|.precision=2",
+          "$gt0024|5-year risk of kidney failure|.unit='%'"
+        ]
+      },
+      "gt0033" : {
+        "id" : "gt0033",
+        "priority" : 2,
+        "when" : [
+          "$gt0035|Age|!=null",
+          "$gt0036|Gender|!=null",
+          "$gt0005|Region|!=null",
+          "$gt0007|Relative eGFR|!=null",
+          "$gt0010|Urine albumin to creatinine ratio result|!=null",
+          "$gt0013|Albumin result|!=null",
+          "$gt0016|Phosphorous result|!=null",
+          "$gt0019|Bicarbonate result|!=null",
+          "$gt0022|Calcium result|!=null",
+          "$gt0036|Gender|==local::at0005|Male|",
+          "$gt0005|Region|==local::at0014|Non-North America|"
+        ],
+        "then" : [
+          "$gt0024|5-year risk of kidney failure|.magnitude=(1-0.9245^exp(0-0.1992*(($gt0035|Age|.magnitude/10)-7.036)+0.1602*(1-0.5642)-0.4919*(($gt0007|Relative eGFR|.magnitude/5)-7.222)+0.3364*(log($gt0010|Urine albumin to creatinine ratio result|.magnitude)-5.137)-0.3441*($gt0013|Albumin result|.magnitude-3.997)+0.2604*($gt0016|Phosphorous result|.magnitude-3.916)-0.07354*($gt0019|Bicarbonate result|.magnitude-25.57)-0.2228*($gt0022|Calcium result|.magnitude-9.355)))*100",
+          "$gt0024|5-year risk of kidney failure|.precision=2",
+          "$gt0024|5-year risk of kidney failure|.unit='%'"
+        ]
+      },
+      "gt0032" : {
+        "id" : "gt0032",
+        "priority" : 1,
+        "when" : [
+          "$gt0035|Age|!=null",
+          "$gt0036|Gender|!=null",
+          "$gt0005|Region|!=null",
+          "$gt0007|Relative eGFR|!=null",
+          "$gt0010|Urine albumin to creatinine ratio result|!=null",
+          "$gt0013|Albumin result|!=null",
+          "$gt0016|Phosphorous result|!=null",
+          "$gt0019|Bicarbonate result|!=null",
+          "$gt0022|Calcium result|!=null",
+          "$gt0036|Gender|==local::at0006|Female|",
+          "$gt0005|Region|==local::at0014|Non-North America|"
+        ],
+        "then" : [
+          "$gt0024|5-year risk of kidney failure|.magnitude=(1-0.9245^exp(0-0.1992*(($gt0035|Age|.magnitude/10)-7.036)+0.1602*(0-0.5642)-0.4919*(($gt0007|Relative eGFR|.magnitude/5)-7.222)+0.3364*(log($gt0010|Urine albumin to creatinine ratio result|.magnitude)-5.137)-0.3441*($gt0013|Albumin result|.magnitude-3.997)+0.2604*($gt0016|Phosphorous result|.magnitude-3.916)-0.07354*($gt0019|Bicarbonate result|.magnitude-25.57)-0.2228*($gt0022|Calcium result|.magnitude-9.355)))*100",
+          "$gt0024|5-year risk of kidney failure|.precision=2",
+          "$gt0024|5-year risk of kidney failure|.unit='%'"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Kidney Failure Risk Equation (KFRE)",
+            "description" : "A calculation model used to estimate the 5-year probability of kidney failure in adults (≥18 years) with chronic kidney disease (CKD)."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.kfre.v0"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Region"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "openEHR-EHR-OBSERVATION.estimated_glomerular_filtration_rate.v0"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Relative eGFR"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Urine albumin to creatinine ratio"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Urine albumin to creatinine ratio result"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Albumin"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Albumin result"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "Phosphorous"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "Phosphorous result"
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "Bicarbonate"
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "Bicarbonate result"
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "Calcium"
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "Calcium result"
+          },
+          "gt0023" : {
+            "id" : "gt0023",
+            "text" : "openEHR-EHR-OBSERVATION.kfre.v0"
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "text" : "5-year risk of kidney failure"
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "text" : "Urine albumin to creatinine ratio code"
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "text" : "Albumin code"
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "text" : "Phosphorous code"
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "text" : "Bicarbonate code"
+          },
+          "gt0029" : {
+            "id" : "gt0029",
+            "text" : "Calcium code"
+          },
+          "gt0030" : {
+            "id" : "gt0030",
+            "text" : "Male and North America",
+            "description" : ""
+          },
+          "gt0031" : {
+            "id" : "gt0031",
+            "text" : "Female and North America",
+            "description" : ""
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "text" : "Female and Non-North America",
+            "description" : ""
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "text" : "Male and Non-North America",
+            "description" : ""
+          },
+          "gt0034" : {
+            "id" : "gt0034",
+            "text" : "openEHR-EHR-OBSERVATION.basic_demographic.v1"
+          },
+          "gt0035" : {
+            "id" : "gt0035",
+            "text" : "Age"
+          },
+          "gt0036" : {
+            "id" : "gt0036",
+            "text" : "Gender"
+          }
+        }
+      }
+    },
+    "term_bindings" : {
+      "LOINC" : {
+        "id" : "LOINC",
+        "bindings" : {
+          "gt0025" : {
+            "codes" : [
+              "LOINC::13705-9"
+            ]
+          },
+          "gt0026" : {
+            "codes" : [
+              "LOINC::1751-7"
+            ]
+          },
+          "gt0027" : {
+            "codes" : [
+              "LOINC::2777-1"
+            ]
+          },
+          "gt0028" : {
+            "codes" : [
+              "LOINC::1963-8"
+            ]
+          },
+          "gt0029" : {
+            "codes" : [
+              "LOINC::17861-6"
+            ]
+          }
+        }
+      },
+      "NPU" : {
+        "id" : "NPU",
+        "bindings" : {
+          "gt0026" : {
+            "codes" : [
+              "NPU::NPU19673"
+            ]
+          },
+          "gt0029" : {
+            "codes" : [
+              "NPU::NPU03230"
+            ]
+          },
+          "gt0027" : {
+            "codes" : [
+              "NPU::NPU03955"
+            ]
+          },
+          "gt0025" : {
+            "codes" : [
+              "NPU::NPU03918"
+            ]
+          },
+          "gt0028" : {
+            "codes" : [
+              "NPU::NPU02410"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
