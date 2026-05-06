@@ -1,0 +1,80 @@
+guidelines:
+  "1": Fuhrman_Nuclear_Grade_for_Clear_Cell_Renal_Carcinoma.v0.0.4
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Nuclear size missing (negative test)
+    input:
+      "1":
+        gt0012|Nuclear shape: local::at0013|Obvious irregular outline|
+        gt0013|Nucleoli: local::at0017|Prominent at x100|
+        gt0022|Bizarre often multilobed nuclei and/or spindle cells: local::at0019|Yes|
+    expected_output:
+      "1": {}
+  - id: 3. Nuclear shape input missing (negative test)
+    input:
+      "1":
+        gt0011|Nuclear diameter: local::at0007|Small (~10µm)|
+        gt0013|Nucleoli: local::at0015|Absent, inconspicuous|
+        gt0022|Bizarre often multilobed nuclei and/or spindle cells: local::at0020|No|
+    expected_output:
+      "1": {}
+  - id: 4. Nucleoli input missing (negative test)
+    input:
+      "1":
+        gt0011|Nuclear diameter: local::at0007|Small (~10µm)|
+        gt0012|Nuclear shape: local::at0011|Round, uniform|
+        gt0022|Bizarre often multilobed nuclei and/or spindle cells: local::at0020|No|
+    expected_output:
+      "1": {}
+  - id: 5. Bizarre /or spindle input missing (negative test)
+    input:
+      "1":
+        gt0011|Nuclear diameter: local::at0007|Small (~10µm)|
+        gt0012|Nuclear shape: local::at0011|Round, uniform|
+        gt0013|Nucleoli: local::at0015|Absent, inconspicuous|
+    expected_output:
+      "1": {}
+  - id: 6. Nuclear grade 1
+    input:
+      "1":
+        gt0011|Nuclear diameter: local::at0007|Small (~10µm)|
+        gt0012|Nuclear shape: local::at0011|Round, uniform|
+        gt0013|Nucleoli: local::at0015|Absent, inconspicuous|
+        gt0022|Bizarre often multilobed nuclei and/or spindle cells: local::at0020|No|
+    expected_output:
+      "1":
+        gt0021|Nuclear grade: local::at0022|Grade 1|
+  - id: 7. Nuclear grade 2
+    input:
+      "1":
+        gt0011|Nuclear diameter: local::at0008|Larger (~15µm)|
+        gt0012|Nuclear shape: local::at0012|Irregularities in outline|
+        gt0013|Nucleoli: local::at0016|Visible at x400|
+        gt0022|Bizarre often multilobed nuclei and/or spindle cells: local::at0020|No|
+    expected_output:
+      "1":
+        gt0021|Nuclear grade: local::at0023|Grade 2|
+  - id: 8. Nuclear grade 3
+    input:
+      "1":
+        gt0011|Nuclear diameter: local::at0009|Even larger (~20µm)|
+        gt0012|Nuclear shape: local::at0013|Obvious irregular outline|
+        gt0013|Nucleoli: local::at0017|Prominent at x100|
+        gt0022|Bizarre often multilobed nuclei and/or spindle cells: local::at0020|No|
+    expected_output:
+      "1":
+        gt0021|Nuclear grade: local::at0024|Grade 3|
+  - id: 9. Nuclear grade 4
+    input:
+      "1":
+        gt0011|Nuclear diameter: local::at0009|Even larger (~20µm)|
+        gt0012|Nuclear shape: local::at0013|Obvious irregular outline|
+        gt0013|Nucleoli: local::at0017|Prominent at x100|
+        gt0022|Bizarre often multilobed nuclei and/or spindle cells: local::at0019|Yes|
+    expected_output:
+      "1":
+        gt0021|Nuclear grade: local::at0025|Grade 4|
