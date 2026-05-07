@@ -10,34 +10,34 @@ language
 description
 	original_author = <
 		["date"] = <"2025-10-22">
-		["organisation"] = <"Cambio CDS">
 		["name"] = <"Mahmoud Elachi">
+		["organisation"] = <"Cambio CDS">
 		["email"] = <"mel.achi@gmail.com">
 	>
 	lifecycle_state = <"unmanaged">
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"To standardise the classification of ulcerative colitis severity using clinically validated criteria. Supports clinical decision-making by categorising disease activity into mild, moderate, or severe.">
-			keywords = <"ulcerative colitis","severity","classification","IBD","Truelove","Witts">
+			purpose = <"To record the component clinical criteria used in the Truelove and Witts assessment of ulcerative colitis severity.">
+			keywords = <"ulcerative colitis","Witts","cortisone","Truelove">
 			copyright = <"Use © Cambio CDS">
-			use = <"Intended for use in adult patients diagnosed with ulcerative colitis to support severity-based assessment, triage, and treatment planning in gastroenterology settings.">
-			misuse = <"Not intended for diagnosing ulcerative colitis or for use in pediatric patients, Crohn’s disease, or indeterminate colitis. Should not be used as a standalone tool without clinical interpretation.">
+			use = <"Use to record bowel movement frequency, rectal bleeding, pyrexia, pulse status, anemia status, erythrocyte sedimentation rate, and severity classification related to ulcerative colitis.">
+			misuse = <"Not to be used to diagnose ulcerative colitis or independently determine treatment decisions without clinical interpretation.">
 		>
 	>
 	other_details = <
 		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
 		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"TRUELOVE S. C., WITTS L. J. Cortisone in ulcerative colitis; preliminary report on a therapeutic trial. Br Med J. 1954 Aug 14;2(4884):375–378. doi: 10.1136/bmj.2.4884.375.">
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"d3e773b2c9b281dc6020737039266196">
+		["MD5-CAM-1.0.1"] = <"00177ad8767394f7e80a0a7f9f158208">
 		["build_uid"] = <"4ac7dbeb-7b8f-3982-8b24-ca6d63284ce7">
-		["references"] = <"TRUELOVE SC, WITTS LJ. Cortisone in ulcerative colitis; final report on a therapeutic trial. Br Med J. 1955 Oct 29;2(4947):1041-8. doi: 10.1136/bmj.2.4947.1041. PMID: 13260656; PMCID: PMC1981500.">
 	>
 
 definition
-	OBSERVATION[at0000] matches {    -- Truelove and Witts Severity
+	OBSERVATION[at0000] matches {    -- Truelove and Witts Severity Criteria
 		data matches {
 			HISTORY[at0001] matches {    -- History
 				events cardinality matches {1..*; unordered} matches {
@@ -146,8 +146,8 @@ ontology
 		["en"] = <
 			items = <
 				["at0000"] = <
-					text = <"Truelove and Witts Severity">
-					description = <"Classifies the severity of ulcerative colitis into Mild, Moderate, or Severe based on six clinical criteria described by Truelove and Witts in 1955. These include stool frequency, rectal bleeding, fever, pulse, hemoglobin level, and ESR.">
+					text = <"Truelove and Witts Severity Criteria">
+					description = <"A structured representation of the clinical criteria used to assess the severity of ulcerative colitis according to the Truelove and Witts classification system.">
 					comment = <"Original version, c 1954">
 				>
 				["at0001"] = <
