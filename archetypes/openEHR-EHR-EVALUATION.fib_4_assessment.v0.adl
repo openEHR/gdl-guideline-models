@@ -1,0 +1,151 @@
+archetype (adl_version=1.4; uid=ee6054bf-d8b1-4517-8f63-dfdd0f0e670e)
+	openEHR-EHR-EVALUATION.fib_4_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2020-10-07">
+		["name"] = <"Maryam Razavi">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"maryam.razavi@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	other_contributors = <"Katja Mariko Wilde", ...>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the calculated FIB-4 score and related fibrosis assessment.">
+			keywords = <"FIB-4","fibrosis","liver","HCV","hepatitis C virus","PLT","platelet","AST","aspartate aminotransferase","ALT">
+			copyright = <"@ Cambio CDS">
+			use = <"Use to record the calculated FIB-4 score and related fibrosis assessment.">
+			misuse = <"Not to be used for recording the source clinical or laboratory input values used to calculate the FIB-4 index.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Sterling RK, Lissen E, Clumeck N, et. al. Development of a simple noninvasive index to predict significant fibrosis patients with HIV/HCV co-infection. Hepatology 2006;43:1317-1325.
+
+Kim BK, et. al. Validation of FIB-4 and comparison with other simple noninvasive indices for predicting liver fibrosis and cirrhosis in hepatitis B virus-infected patients. Liver Int. 2010 Apr;30(4):546-53. doi: 10.1111/j.1478-3231.2009.02192.x. Epub 2010 Jan 13.
+
+Mcpherson S, Hardy T, Dufour JF, et al. Age as a Confounding Factor for the Accurate Non-Invasive Diagnosis of Advanced NAFLD Fibrosis. Am J Gastroenterol. 2017;112(5):740-751.
+
+Shah AG, Lydecker A, Murray K, et al. Comparison of noninvasive markers of fibrosis in patients with nonalcoholic fatty liver disease. Clin Gastroenterol Hepatol. 2009;7(10):1104-12.
+
+Tapper EB, Lok AS. Use of Liver Imaging and Biopsy in Clinical Practice. N Engl J Med. 2017;377(8):756-768.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"152974b81b96f454c63075d7e29056fd">
+		["build_uid"] = <"9fc19fc9-3af5-3671-824b-ef7459e97d0b">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Fibrosis-4 (FIB-4) Index for Liver Fibrosis
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- FIB-4 score
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::380]>
+								list = <
+									["1"] = <
+										units = <"1">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0003] occurrences matches {0..1} matches {    -- Approximate fibrosis stage
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Advanced fibrosis
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {    -- Warning Plt
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0006] occurrences matches {0..1} matches {    -- Warning ALT
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0007] occurrences matches {0..1} matches {    -- Warning AST
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0008] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0009] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Fibrosis-4 (FIB-4) Index for Liver Fibrosis">
+					description = <"A clinical assessment used to estimate the likelihood of liver fibrosis using the Fibrosis-4 (FIB-4) score.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"FIB-4 score">
+					description = <"">
+				>
+				["at0003"] = <
+					text = <"Approximate fibrosis stage">
+					description = <"">
+				>
+				["at0004"] = <
+					text = <"Advanced fibrosis">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Warning Plt">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Warning ALT">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Warning AST">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0009"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>
