@@ -1,0 +1,277 @@
+guidelines:
+  "1": fib_4.v0.1.3
+test_cases:
+  - id: 01 - Test no input
+    input:
+      "1":
+        gt0046|AST: NPU::NPU01324|AST code|
+        gt0049|ALT: NPU::NPU01121|ALT code|
+        gt0056|Platelet count: NPU::NPU03568|Platelet code|
+    expected_output:
+      "1": {}
+  - id: 02 - Age input missing (negative test)
+    input:
+      "1":
+        gt0046|AST: NPU::NPU01324|AST code|
+        gt0047|AST value: 15,U/l
+        gt0049|ALT: NPU::NPU01121|ALT code|
+        gt0050|ALT value: 32,U/l
+        gt0056|Platelet count: NPU::NPU03568|Platelet code|
+        gt0057|Platelet count value: 150,10*9/l
+    expected_output:
+      "1": {}
+  - id: 03- AST input missing (negative test)
+    input:
+      "1":
+        gt0003|Age: 35,a
+        gt0046|AST: NPU::NPU01324|AST code|
+        gt0049|ALT: NPU::NPU01121|ALT code|
+        gt0050|ALT value: 32,U/l
+        gt0056|Platelet count: NPU::NPU03568|Platelet code|
+        gt0057|Platelet count value: 150,10*9/l
+    expected_output:
+      "1":
+        gt0013|Diagnose advanced fibrosis: Use alternative fibrosis assessment
+  - id: 04- ALT input missing (negative test)
+    input:
+      "1":
+        gt0003|Age: 35,a
+        gt0046|AST: NPU::NPU01324|AST code|
+        gt0047|AST value: 15,U/l
+        gt0049|ALT: NPU::NPU01121|ALT code|
+        gt0056|Platelet count: NPU::NPU03568|Platelet code|
+        gt0057|Platelet count value: 150,10*9/l
+    expected_output:
+      "1":
+        gt0013|Diagnose advanced fibrosis: Use alternative fibrosis assessment
+  - id: 05- Platelet count input missing (negative test)
+    input:
+      "1":
+        gt0003|Age: 35,a
+        gt0046|AST: NPU::NPU01324|AST code|
+        gt0047|AST value: 15,U/l
+        gt0049|ALT: NPU::NPU01121|ALT code|
+        gt0050|ALT value: 35,U/l
+        gt0056|Platelet count: NPU::NPU03568|Platelet code|
+    expected_output:
+      "1":
+        gt0013|Diagnose advanced fibrosis: Use alternative fibrosis assessment
+  - id: 06- FIB-4 score <1.45 to fibrosis stage 0-1
+    input:
+      "1":
+        gt0003|Age: 35,a
+        gt0046|AST: NPU::NPU01324|AST code|
+        gt0047|AST value: 15,U/l
+        gt0049|ALT: NPU::NPU01121|ALT code|
+        gt0050|ALT value: 35,U/l
+        gt0056|Platelet count: NPU::NPU03568|Platelet code|
+        gt0057|Platelet count value: 150,10*9/l
+    expected_output:
+      "1":
+        gt0011|FIB-4 Score: 0.59,1
+        gt0012|Approximate fibrosis stage: Ishak 0-1
+        gt0013|Diagnose advanced fibrosis: Use alternative fibrosis assessment
+  - id: 07- FIB-4 score 1.45-3.25 to fibrosis stage 2-3
+    input:
+      "1":
+        gt0003|Age: 55,a
+        gt0046|AST: NPU::NPU01324|AST code|
+        gt0047|AST value: 35,U/l
+        gt0049|ALT: NPU::NPU01121|ALT code|
+        gt0050|ALT value: 45,U/l
+        gt0056|Platelet count: NPU::NPU03568|Platelet code|
+        gt0057|Platelet count value: 150,10*9/l
+    expected_output:
+      "1":
+        gt0011|FIB-4 Score: 1.91,1
+        gt0012|Approximate fibrosis stage: Ishak 2-3
+        gt0013|Diagnose advanced fibrosis: Further investigation
+  - id: 08- FIB-4 score >3.25 to fibrosis stage 4-6
+    input:
+      "1":
+        gt0003|Age: 60,a
+        gt0046|AST: NPU::NPU01324|AST code|
+        gt0047|AST value: 50,U/l
+        gt0049|ALT: NPU::NPU01121|ALT code|
+        gt0050|ALT value: 59,U/l
+        gt0056|Platelet count: NPU::NPU03568|Platelet code|
+        gt0057|Platelet count value: 115,10*9/l
+    expected_output:
+      "1":
+        gt0011|FIB-4 Score: 3.40,1
+        gt0012|Approximate fibrosis stage: Ishak 4-6
+        gt0013|Diagnose advanced fibrosis: Advanced fibrosis (METAVIR stage F3-F4) likely
+  - id: 09-Platelet count < 1 returns 'Too low please change to proceed'
+    input:
+      "1":
+        gt0003|Age: 60,a
+        gt0046|AST: NPU::NPU01324|AST code|
+        gt0047|AST value: 50,U/l
+        gt0049|ALT: NPU::NPU01121|ALT code|
+        gt0050|ALT value: 59,U/l
+        gt0056|Platelet count: NPU::NPU03568|Platelet code|
+        gt0057|Platelet count value: 0,10*9/l
+    expected_output:
+      "1":
+        gt0025|Warning Plt: Too low please change to proceed.
+  - id: 10-Platelet count >=1 and <10 returns 'Very low double-check'
+    input:
+      "1":
+        gt0003|Age: 60,a
+        gt0046|AST: NPU::NPU01324|AST code|
+        gt0047|AST value: 50,U/l
+        gt0049|ALT: NPU::NPU01121|ALT code|
+        gt0050|ALT value: 59,U/l
+        gt0056|Platelet count: NPU::NPU03568|Platelet code|
+        gt0057|Platelet count value: 1,10*9/l
+    expected_output:
+      "1":
+        gt0011|FIB-4 Score: 390.57,1
+        gt0012|Approximate fibrosis stage: Ishak 4-6
+        gt0013|Diagnose advanced fibrosis: Advanced fibrosis (METAVIR stage F3-F4) likely
+        gt0025|Warning Plt: Very low double-check.
+  - id: 11-Platelet count >750 and <=3200 returns 'Very high double-check'
+    input:
+      "1":
+        gt0003|Age: 60,a
+        gt0046|AST: NPU::NPU01324|AST code|
+        gt0047|AST value: 50,U/l
+        gt0049|ALT: NPU::NPU01121|ALT code|
+        gt0050|ALT value: 59,U/l
+        gt0056|Platelet count: NPU::NPU03568|Platelet code|
+        gt0057|Platelet count value: 850,10*9/l
+    expected_output:
+      "1":
+        gt0011|FIB-4 Score: 0.46,1
+        gt0012|Approximate fibrosis stage: Ishak 0-1
+        gt0013|Diagnose advanced fibrosis: Advanced fibrosis excluded
+        gt0025|Warning Plt: Very high double-check.
+  - id: 12-Platelet count >3200 returns 'Too high please change to proceed'
+    input:
+      "1":
+        gt0003|Age: 60,a
+        gt0046|AST: NPU::NPU01324|AST code|
+        gt0047|AST value: 50,U/l
+        gt0049|ALT: NPU::NPU01121|ALT code|
+        gt0050|ALT value: 59,U/l
+        gt0056|Platelet count: NPU::NPU03568|Platelet code|
+        gt0057|Platelet count value: 4500,10*9/l
+    expected_output:
+      "1":
+        gt0025|Warning Plt: Too high please change to proceed.
+  - id: 13-AST value  <1 returns 'Too low please change to proceed'
+    input:
+      "1":
+        gt0003|Age: 60,a
+        gt0046|AST: NPU::NPU01324|AST code|
+        gt0047|AST value: 0,U/l
+        gt0049|ALT: NPU::NPU01121|ALT code|
+        gt0050|ALT value: 59,U/l
+        gt0056|Platelet count: NPU::NPU03568|Platelet code|
+        gt0057|Platelet count value: 160,10*9/l
+    expected_output:
+      "1":
+        gt0027|Warning AST: Too low please change to proceed.
+  - id: 14-AST value  >=1 and <4 returns 'Very low double-check'
+    input:
+      "1":
+        gt0003|Age: 60,a
+        gt0046|AST: NPU::NPU01324|AST code|
+        gt0047|AST value: 3,U/l
+        gt0049|ALT: NPU::NPU01121|ALT code|
+        gt0050|ALT value: 59,U/l
+        gt0056|Platelet count: NPU::NPU03568|Platelet code|
+        gt0057|Platelet count value: 160,10*9/l
+    expected_output:
+      "1":
+        gt0011|FIB-4 Score: 0.15,1
+        gt0012|Approximate fibrosis stage: Ishak 0-1
+        gt0013|Diagnose advanced fibrosis: Advanced fibrosis excluded
+        gt0027|Warning AST: Very low double-check.
+  - id: 15-AST value  >4000 and <=10000 returns 'Very high double-check'
+    input:
+      "1":
+        gt0003|Age: 60,a
+        gt0046|AST: NPU::NPU01324|AST code|
+        gt0047|AST value: 8000,U/l
+        gt0049|ALT: NPU::NPU01121|ALT code|
+        gt0050|ALT value: 59,U/l
+        gt0056|Platelet count: NPU::NPU03568|Platelet code|
+        gt0057|Platelet count value: 160,10*9/l
+    expected_output:
+      "1":
+        gt0011|FIB-4 Score: 390.57,1
+        gt0012|Approximate fibrosis stage: Ishak 4-6
+        gt0013|Diagnose advanced fibrosis: Advanced fibrosis (METAVIR stage F3-F4) likely
+        gt0027|Warning AST: Very high double-check.
+  - id: 16-AST value  >10000 returns 'Too high please change to proceed'
+    input:
+      "1":
+        gt0003|Age: 60,a
+        gt0046|AST: NPU::NPU01324|AST code|
+        gt0047|AST value: 15000,U/l
+        gt0049|ALT: NPU::NPU01121|ALT code|
+        gt0050|ALT value: 59,U/l
+        gt0056|Platelet count: NPU::NPU03568|Platelet code|
+        gt0057|Platelet count value: 160,10*9/l
+    expected_output:
+      "1":
+        gt0027|Warning AST: Too high please change to proceed.
+  - id: 17-ALT value  <1 returns 'Too low please change to proceed'
+    input:
+      "1":
+        gt0003|Age: 60,a
+        gt0046|AST: NPU::NPU01324|AST code|
+        gt0047|AST value: 45,U/l
+        gt0049|ALT: NPU::NPU01121|ALT code|
+        gt0050|ALT value: 0,U/l
+        gt0056|Platelet count: NPU::NPU03568|Platelet code|
+        gt0057|Platelet count value: 160,10*9/l
+    expected_output:
+      "1":
+        gt0026|Warning ALT: Too low please change to proceed.
+  - id: 18-ALT value >=1 and <4 returns 'Very low double-check'
+    input:
+      "1":
+        gt0003|Age: 60,a
+        gt0046|AST: NPU::NPU01324|AST code|
+        gt0047|AST value: 45,U/l
+        gt0049|ALT: NPU::NPU01121|ALT code|
+        gt0050|ALT value: 2,U/l
+        gt0056|Platelet count: NPU::NPU03568|Platelet code|
+        gt0057|Platelet count value: 160,10*9/l
+    expected_output:
+      "1":
+        gt0011|FIB-4 Score: 11.93,1
+        gt0012|Approximate fibrosis stage: Ishak 4-6
+        gt0013|Diagnose advanced fibrosis: Advanced fibrosis (METAVIR stage F3-F4) likely
+        gt0026|Warning ALT: Very low double-check.
+  - id: 19-ALT value >4000 and <=10000 returns 'Very high double-check'
+    input:
+      "1":
+        gt0003|Age: 60,a
+        gt0046|AST: NPU::NPU01324|AST code|
+        gt0047|AST value: 45,U/l
+        gt0049|ALT: NPU::NPU01121|ALT code|
+        gt0050|ALT value: 6000,U/l
+        gt0056|Platelet count: NPU::NPU03568|Platelet code|
+        gt0057|Platelet count value: 160,10*9/l
+    expected_output:
+      "1":
+        gt0011|FIB-4 Score: 0.22,1
+        gt0012|Approximate fibrosis stage: Ishak 0-1
+        gt0013|Diagnose advanced fibrosis: Advanced fibrosis excluded
+        gt0026|Warning ALT: Very high double-check.
+  - id: 20-ALT value >10000 returns 'Too high please change to proceed'
+    input:
+      "1":
+        gt0003|Age: 60,a
+        gt0046|AST: NPU::NPU01324|AST code|
+        gt0047|AST value: 45,U/l
+        gt0049|ALT: NPU::NPU01121|ALT code|
+        gt0050|ALT value: 11000,U/l
+        gt0056|Platelet count: NPU::NPU03568|Platelet code|
+        gt0057|Platelet count value: 160,10*9/l
+    expected_output:
+      "1":
+        gt0026|Warning ALT: Too high please change to proceed.
