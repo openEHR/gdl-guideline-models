@@ -1,0 +1,87 @@
+guidelines:
+  "1": APRI_AST_to_platelet_ratio_index.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. AST upper limit of normal input missing (negative test)
+    input:
+      "1":
+        gt0021|AST: 30,IU/L
+        gt0024|AST test: NPU::NPU01324|ASAT code|
+        gt0023|Platelet count: 170,10*9/L
+        gt0025|Platelet count test: NPU::NPU03568|Platelet count code|
+    expected_output:
+      "1": {}
+  - id: 3. AST input missing (negative test)
+    input:
+      "1":
+        gt0005|AST upper limit of normal: 40,IU/l
+        gt0023|Platelet count: 170,10*9/L
+        gt0025|Platelet count test: NPU::NPU03568|Platelet count code|
+    expected_output:
+      "1": {}
+  - id: 4. Platelet count input missing (negative test)
+    input:
+      "1":
+        gt0005|AST upper limit of normal: 40,IU/l
+        gt0021|AST: 30,IU/L
+        gt0024|AST test: NPU::NPU01324|ASAT code|
+    expected_output:
+      "1": {}
+  - id: 5. All inputs - APRI score < 0.7
+    input:
+      "1":
+        gt0005|AST upper limit of normal: 40,IU/l
+        gt0021|AST: 30,IU/L
+        gt0024|AST test: NPU::NPU01324|ASAT code|
+        gt0023|Platelet count: 170,10*9/L
+        gt0025|Platelet count test: NPU::NPU03568|Platelet count code|
+    expected_output:
+      "1":
+        gt0015|APRI: 0.44,1
+        gt0011|APRI interpretation: 0|local::at0003|Scores < 0.7 were not sensitive or
+          specific enough to determine level of fibrosis or cirrhosis|
+  - id: 6. All inputs - APRI score >= 0.7
+    input:
+      "1":
+        gt0005|AST upper limit of normal: 40,IU/l
+        gt0021|AST: 32,IU/L
+        gt0024|AST test: NPU::NPU01324|ASAT code|
+        gt0023|Platelet count: 110,10*9/L
+        gt0025|Platelet count test: NPU::NPU03568|Platelet count code|
+    expected_output:
+      "1":
+        gt0015|APRI: 0.73,1
+        gt0011|APRI interpretation: 1|local::at0004|Scores ≥ 0.7 were 77% sensitive and
+          72% specific for significant fibrosis|
+  - id: 7. All inputs - APRI score >= 1
+    input:
+      "1":
+        gt0005|AST upper limit of normal: 40,IU/l
+        gt0021|AST: 44,IU/L
+        gt0024|AST test: NPU::NPU01324|ASAT code|
+        gt0023|Platelet count: 110,10*9/L
+        gt0025|Platelet count test: NPU::NPU03568|Platelet count code|
+    expected_output:
+      "1":
+        gt0015|APRI: 1.00,1
+        gt0011|APRI interpretation: 2|local::at0005|Scores ≥1 were 61% sensitive and 64%
+          specific for severe fibrosis and 76% sensitive and 72% specific for
+          cirrhosis|
+  - id: 8. All inputs - APRI score >= 2
+    input:
+      "1":
+        gt0005|AST upper limit of normal: 40,IU/l
+        gt0021|AST: 65,IU/L
+        gt0024|AST test: NPU::NPU01324|ASAT code|
+        gt0023|Platelet count: 80,10*9/L
+        gt0025|Platelet count test: NPU::NPU03568|Platelet count code|
+    expected_output:
+      "1":
+        gt0015|APRI: 2.03,1
+        gt0011|APRI interpretation: 3|local::at0006|Scores ≥2 were 36% sensitive and 93%
+          specific for severe fibrosis and 46% sensitive and 91% specific for
+          cirrhosis|
