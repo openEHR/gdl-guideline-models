@@ -1,0 +1,294 @@
+{
+  "uuid" : "fab25e41-b8fb-49dd-9a0a-fbe0428114ff",
+  "id" : "R_ISS.v0.1.0",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Maryam Razavi",
+      "email" : "maryam.razavi@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2021-01-04"
+    },
+    "other_contributors" : [
+      "Konstantinos Kalliamvakos",
+      "Katja Wilde"
+    ],
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To stratify prognosis in patients with newly diagnosed multiple myeloma using clinical, laboratory, and cytogenetic variables.",
+        "keywords" : [
+          "multiple",
+          "staging",
+          "albumin",
+          "LDH",
+          "iFISH",
+          "myeloma",
+          "revised",
+          "system"
+        ],
+        "use" : "Use in patients with newly diagnosed multiple myeloma to assign ISS stage and Revised ISS (R-ISS) stage based on serum β2-microglobulin, serum albumin, LDH, and cytogenetic risk (iFISH).\n\nStep 1: Assign ISS stage\n- ISS I: serum β2-microglobulin &lt;3.5 mg/L and serum albumin ≥3.5 g/dL\n- ISS II: serum β2-microglobulin 3.5–5.4 mg/L irrespective of serum albumin, or serum β2-microglobulin &lt;3.5 mg/L with serum albumin &lt;3.5 g/dL\n- ISS III: serum β2-microglobulin ≥5.5 mg/L\n\nStep 2: Assign R-ISS stage\n- R-ISS I: ISS I, standard-risk cytogenetics by iFISH, and normal LDH\n- R-ISS II: Not R-ISS stage I or III\n- R-ISS III: ISS III and either high-risk cytogenetics by iFISH or high LDH\n\n\nHigh-risk cytogenetics are defined as presence of del(17p) and/or t(4;14) and/or t(14;16).\nLDH should be interpreted relative to the local laboratory upper limit of normal.\n\nMedian progression-free survival by R-ISS stage:\n- R-ISS I: 66 months\n- R-ISS II: 42 months\n- R-ISS III: 29 months",
+        "misuse" : "Not to be used in patients with relapsed myeloma, smoldering myeloma or MGUS.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Palumbo A, Avet-Loiseau H, Oliva S, Lokhorst HM, Goldschmidt H, Rosinol L, Richardson P, Caltagirone S, Lahuerta JJ, Facon T, Bringhen S, Gay F, Attal M, Passera R, Spencer A, Offidani M, Kumar S, Musto P, Lonial S, Petrucci MT, Orlowski RZ, Zamagni E, Morgan G, Dimopoulos MA, Durie BG, Anderson KC, Sonneveld P, San Miguel J, Cavo M, Rajkumar SV, Moreau P. Revised International Staging System for Multiple Myeloma: A Report From International Myeloma Working Group. J Clin Oncol. 2015 Sep 10;33(26):2863-9. doi: 10.1200/JCO.2015.61.2267. Epub 2015 Aug 3. PMID: 26240224; PMCID: PMC4846284.\n\nGreipp PR, San Miguel J, Durie BG, Crowley JJ, Barlogie B, Bladé J, Boccadoro M, Child JA, Avet-Loiseau H, Kyle RA, Lahuerta JJ, Ludwig H, Morgan G, Powles R, Shimizu K, Shustik C, Sonneveld P, Tosi P, Turesson I, Westin J. International staging system for multiple myeloma. J Clin Oncol. 2005 May 20;23(15):3412-20. doi: 10.1200/JCO.2005.04.242. Epub 2005 Apr 4. Erratum in: J Clin Oncol. 2005 Sep 1;23(25):6281. Harousseau, Jean-Luc [corrected to Avet-Loiseau, Herve]. PMID: 15809451.",
+      "en" : "Revised multiple myeloma international staging system (R-ISS) is a prognostication tool for myeloma patients based on the genetics and other routinely used lab values in conjunction with the original ISS Staging System."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0010" : {
+        "id" : "gt0010",
+        "model_id" : "openEHR-EHR-EVALUATION.r_iss_assessment.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.r_iss_assessment.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0011" : {
+            "id" : "gt0011",
+            "path" : "/data[at0001]/items[at0002]",
+            "data_type" : "DV_TEXT"
+          }
+        }
+      },
+      "gt0024" : {
+        "id" : "gt0024",
+        "model_id" : "openEHR-EHR-OBSERVATION.iss_revised.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.iss_revised.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0025" : {
+            "id" : "gt0025",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0007",
+              "local::at0008",
+              "local::at0009"
+            ]
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0010]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0011",
+              "local::at0012"
+            ]
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0017]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0018",
+              "local::at0019"
+            ]
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0020]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0021",
+              "local::at0022"
+            ]
+          }
+        }
+      },
+      "gt0029" : {
+        "id" : "gt0029",
+        "model_id" : "openEHR-EHR-OBSERVATION.iss_revised.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.iss_revised.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0030" : {
+            "id" : "gt0030",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type" : "DV_CODED_TEXT"
+          },
+          "gt0031" : {
+            "id" : "gt0031",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0023]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0012" : {
+        "id" : "gt0012",
+        "priority" : 6,
+        "when" : [
+          "$gt0025|Serum β2 microglobulin|==local::at0007|<3.5 mg/L|",
+          "$gt0026|Serum albumin|==local::at0012|≥3.5 g/dL|"
+        ],
+        "then" : [
+          "$gt0030|ISS stage|=local::at0014|ISS I|"
+        ]
+      },
+      "gt0014" : {
+        "id" : "gt0014",
+        "priority" : 5,
+        "when" : [
+          "($gt0025|Serum β2 microglobulin|==local::at0008|3.5-5.4 mg/L|&&$gt0026|Serum albumin|!=null)||($gt0025|Serum β2 microglobulin|==local::at0007|<3.5 mg/L|&&$gt0026|Serum albumin|==local::at0011|<3.5 g/dL|)"
+        ],
+        "then" : [
+          "$gt0030|ISS stage|=local::at0015|ISS II|"
+        ]
+      },
+      "gt0013" : {
+        "id" : "gt0013",
+        "priority" : 4,
+        "when" : [
+          "$gt0025|Serum β2 microglobulin|==local::at0009|>5.4 mg/L|"
+        ],
+        "then" : [
+          "$gt0030|ISS stage|=local::at0016|ISS III|"
+        ]
+      },
+      "gt0015" : {
+        "id" : "gt0015",
+        "priority" : 3,
+        "when" : [
+          "$gt0030|ISS stage|==local::at0014|ISS I|",
+          "$gt0027|CA by iFISH|==local::at0018|Standard risk|",
+          "$gt0028|Serum LDH|==local::at0021|Normal|"
+        ],
+        "then" : [
+          "$gt0031|Revised ISS stage|=local::at0024|R-ISS I|",
+          "$gt0011|Median progression-free survival|=$gt0016|66 months median progression-free survival|.term"
+        ]
+      },
+      "gt0019" : {
+        "id" : "gt0019",
+        "priority" : 2,
+        "when" : [
+          "$gt0030|ISS stage|==local::at0016|ISS III|",
+          "($gt0027|CA by iFISH|==local::at0019|High risk|&&$gt0028|Serum LDH|!=null)||($gt0027|CA by iFISH|==local::at0018|Standard risk|&&$gt0028|Serum LDH|==local::at0022|High|)"
+        ],
+        "then" : [
+          "$gt0031|Revised ISS stage|=local::at0026|R-ISS III|",
+          "$gt0011|Median progression-free survival|=$gt0018|29 months median progression-free survival|.term"
+        ]
+      },
+      "gt0020" : {
+        "id" : "gt0020",
+        "priority" : 1,
+        "when" : [
+          "!fired($gt0015|R-ISS Stage I|)",
+          "!fired($gt0019|R-ISS Stage III|)",
+          "$gt0027|CA by iFISH|!=null",
+          "$gt0028|Serum LDH|!=null",
+          "$gt0030|ISS stage|!=null"
+        ],
+        "then" : [
+          "$gt0031|Revised ISS stage|=local::at0025|R-ISS II|",
+          "$gt0011|Median progression-free survival|=$gt0017|42 months median progression-free survival|.term"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Revised Multiple Myeloma International Staging System (R-ISS)",
+            "description" : "Revised multiple myeloma international staging system (R-ISS) is a prognostication tool for myeloma patients based on the genetics and other routinely used lab values in conjunction with the original ISS Staging System."
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "openEHR-EHR-EVALUATION.r_iss_assessment.v0"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Median progression-free survival"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "ISS I",
+            "description" : ""
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "ISS III",
+            "description" : ""
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "ISS II",
+            "description" : ""
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "R-ISS Stage I",
+            "description" : ""
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "66 months median progression-free survival"
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "42 months median progression-free survival"
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "29 months median progression-free survival"
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "R-ISS Stage III",
+            "description" : ""
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "R-ISS Stage II",
+            "description" : ""
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "text" : "openEHR-EHR-OBSERVATION.iss_revised.v0"
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "text" : "Serum β2 microglobulin"
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "text" : "Serum albumin"
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "text" : "CA by iFISH"
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "text" : "Serum LDH"
+          },
+          "gt0029" : {
+            "id" : "gt0029",
+            "text" : "openEHR-EHR-OBSERVATION.iss_revised.v0"
+          },
+          "gt0030" : {
+            "id" : "gt0030",
+            "text" : "ISS stage"
+          },
+          "gt0031" : {
+            "id" : "gt0031",
+            "text" : "Revised ISS stage"
+          }
+        }
+      }
+    }
+  }
+}
