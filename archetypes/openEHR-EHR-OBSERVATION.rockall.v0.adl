@@ -1,0 +1,223 @@
+archetype (adl_version=1.4; uid=0575f0e8-750f-4ecc-b4fd-9d862e56ac1e)
+	openEHR-EHR-OBSERVATION.rockall.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-04-24">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and their total sum for the Rockall score.">
+			keywords = <"rockall","gi","bleeding","upper","endoscopy","gastrointestinal","score","prognosis">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the component parameters and the total score for the Rockall score.">
+			misuse = <"Not to be used for patients with lower gastrointestinal bleeding.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Rockall TA, Logan RF, Devlin HB, Northfield TC. Risk assessment after acute upper gastrointestinal haemorrhage. Gut. 1996 Mar;38(3):316-21. doi: 10.1136/gut.38.3.316. PMID: 8675081; PMCID: PMC1383057.
+
+Tham TC, James C, Kelly M. Predicting outcome of acute non-variceal upper gastrointestinal haemorrhage without endoscopy using the clinical Rockall Score. Postgrad Med J. 2006 Nov;82(973):757-9. doi: 10.1136/pmj.2006.048462. PMID: 17099097; PMCID: PMC2660506.
+
+Sanders DS, Perry MJ, Jones SG, McFarlane E, Johnson AG, Gleeson DC, Lobo AJ. Effectiveness of an upper-gastrointestinal haemorrhage unit: a prospective analysis of 900 consecutive cases using the Rockall score as a method of risk standardisation. Eur J Gastroenterol Hepatol. 2004 May;16(5):487-94. doi: 10.1097/00042737-200405000-00009. PMID: 15097042.
+
+Vreeburg EM, Terwee CB, Snel P, Rauws EA, Bartelsman JF, Meulen JH, Tytgat GN. Validation of the Rockall risk scoring system in upper gastrointestinal bleeding. Gut. 1999 Mar;44(3):331-5. doi: 10.1136/gut.44.3.331. PMID: 10026316; PMCID: PMC1727413.">
+		["build_uid"] = <"4ad87c2d-9f13-3f87-9f49-8972677e44d7">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Rockall Score for Upper GI Bleeding.
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Age
+										value matches {
+											0|[local::at0007],
+											1|[local::at0008],
+											2|[local::at0009]
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Comorbidities
+										value matches {
+											0|[local::at0011],
+											2|[local::at0012],
+											3|[local::at0013]
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Shock signs
+										value matches {
+											0|[local::at0015],
+											1|[local::at0016],
+											2|[local::at0017]
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Stigmata
+										value matches {
+											0|[local::at0019],
+											2|[local::at0020]
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- Endoscopy findings
+										value matches {
+											0|[local::at0022],
+											1|[local::at0023],
+											2|[local::at0024]
+										}
+									}
+									ELEMENT[at0025] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Rockall Score for Upper GI Bleeding.">
+					description = <"An assessment score used to identify patients at risk of adverse outcomes, such as rebleeding or death, following acute upper gastrointestinal bleeding.">
+					comment = <"Original version, c 1996. ">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Age">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"< 60 years">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"60-79 years">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"≥80 years">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Comorbidities">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"No major comorbidity">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Heart failure, ischemic heart disease, other significant comorbidity">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Renal failure, liver failure, and/or disseminated malignancy">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Shock signs">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"No shock, systolic blood pressure ≥ 100 mmHg, Heart Rate < 100/ min">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Tachycardia, systolic blood pressure ≥ 100 mmHg, Heart Rate > 100/ min">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Hypotension, systolic blood pressure  < 100 mmHg">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Stigmata">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"None or dark spot">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Blood in the upper GI tract, adherent clot, visible or spurting vessel">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Endoscopy findings">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Mallory-Weiss tear, no lesion, no signs of recent bleeding">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"All other diagnoses">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Malignancy of upper GI tract">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Total score">
+					description = <"The total sum of each component parameter for the Rockall score.">
+				>
+			>
+		>
+	>
