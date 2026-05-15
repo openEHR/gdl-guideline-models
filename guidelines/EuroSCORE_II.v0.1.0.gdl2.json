@@ -1,0 +1,1059 @@
+{
+  "uuid" : "d174ebd3-69d2-44a0-8a59-270dcb9a3fa1",
+  "id" : "EuroSCORE_II.v0.1.0",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Isabelle Jensen",
+      "email" : "isabelle.jensen@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2020-01-17"
+    },
+    "other_contributors" : [
+      "Kevin Arjona"
+    ],
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To predict risk of in-hospital mortality after major cardiac surgery.",
+        "keywords" : [
+          "EuroSCORE II",
+          "euroscore",
+          "II",
+          "mortality",
+          "risk",
+          "cardiac",
+          "surgery"
+        ],
+        "use" : "The European System for Cardiac Operative Risk Evaluation (EuroSCORE) II predicts risk of in-hospital mortality after major cardiac surgery using the formula: \n\nPredicted mortality = e^y / (1 + e^y), \nwhere y = -5.324537 + sum(beta_i*x_i),\nbeta_i are factor-specific coefficients,\nx_i is 0 for absent factors, 1 for present factors, 1 for age ≤ 60 and increases by 1 for each year after 60 (x_i=2 for age 61, 3 for age 62 etc.). \n\nThe factors used in EuroSCORE II are:\n\n* Age \n*Gender\n* Renal impairment (creatinine clearance)\n* Extracardiac arteriopathy \t\n* Neurological or musculoskeletal dysfunction \n* Previous cardiac surgery \n* Pulmonary disease \n* Active endocarditis\n* Critical preoperative state\n* Diabetes on insulin\n* NYHA\n* CCS angina class = 4 \n* LV function \n* Myocardial infarct in previous 4–91 days\n* Pulmonary hypertension\n* Urgent operation \n* Weight of the intervention\n* Thoracic aortic surgery* ",
+        "misuse" : "Use with caution for patients over 95 years as the EuroSCORE II is not validated in patients over this age.",
+        "copyright" : "@CambioCDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Noyez L, Kievit PC, van Swieten HA, de Boer MJ. Cardiac operative risk evaluation: The EuroSCORE II, does it make a real difference? Neth Heart J. 2012 Dec;20(12):494-8. doi: 10.1007/s12471-012-0327-1. PMID: 23055057; PMCID: PMC3515725.\n\nNashef SAM, Roques F, Sharples LD, Nilsson J, Smith C, Goldstone AR, Lockowandt U. EuroSCORE II. Eur J Cardiothorac Surg. 2012 Apr;41(4):734-44; discussion 744-5. doi: 10.1093/ejcts/ezs043. PMID: 22378855.",
+      "en" : "The European System for Cardiac Operative Risk Evaluation\n(EuroSCORE) is a cardiac risk model for predicting mortality after\ncardiac surgery."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0005",
+              "local::at0006"
+            ]
+          },
+          "gt0085" : {
+            "id" : "gt0085",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "a"
+            ]
+          }
+        }
+      },
+      "gt0086" : {
+        "id" : "gt0086",
+        "model_id" : "openEHR-EHR-OBSERVATION.euroscore_2.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.euroscore_2.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0087" : {
+            "id" : "gt0087",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0007",
+              "1|local::at0008",
+              "2|local::at0009",
+              "3|local::at0010"
+            ]
+          },
+          "gt0088" : {
+            "id" : "gt0088",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0020]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0021",
+              "1|local::at0022"
+            ]
+          },
+          "gt0089" : {
+            "id" : "gt0089",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0011]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0012",
+              "1|local::at0013"
+            ]
+          },
+          "gt0090" : {
+            "id" : "gt0090",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0014]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0015",
+              "1|local::at0016"
+            ]
+          },
+          "gt0091" : {
+            "id" : "gt0091",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0017]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0018",
+              "1|local::at0019"
+            ]
+          },
+          "gt0092" : {
+            "id" : "gt0092",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0023]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0024",
+              "1|local::at0025"
+            ]
+          },
+          "gt0093" : {
+            "id" : "gt0093",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0026]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0027",
+              "1|local::at0028"
+            ]
+          },
+          "gt0094" : {
+            "id" : "gt0094",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0029]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0030",
+              "1|local::at0031"
+            ]
+          },
+          "gt0095" : {
+            "id" : "gt0095",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0040]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0041",
+              "1|local::at0042",
+              "2|local::at0043",
+              "3|local::at0044"
+            ]
+          },
+          "gt0096" : {
+            "id" : "gt0096",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0048]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0049",
+              "1|local::at0050",
+              "2|local::at0051"
+            ]
+          },
+          "gt0097" : {
+            "id" : "gt0097",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0032]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0033",
+              "1|local::at0034",
+              "2|local::at0035",
+              "3|local::at0036"
+            ]
+          },
+          "gt0098" : {
+            "id" : "gt0098",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0037]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0038",
+              "1|local::at0039"
+            ]
+          },
+          "gt0099" : {
+            "id" : "gt0099",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0045]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0046",
+              "1|local::at0047"
+            ]
+          },
+          "gt0100" : {
+            "id" : "gt0100",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0052]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0053",
+              "1|local::at0054",
+              "2|local::at0055",
+              "3|local::at0056"
+            ]
+          },
+          "gt0101" : {
+            "id" : "gt0101",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0057]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0058",
+              "1|local::at0059",
+              "2|local::at0060",
+              "3|local::at0061"
+            ]
+          },
+          "gt0102" : {
+            "id" : "gt0102",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0062]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0063",
+              "1|local::at0064"
+            ]
+          }
+        }
+      },
+      "gt0103" : {
+        "id" : "gt0103",
+        "model_id" : "openEHR-EHR-OBSERVATION.euroscore_2.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.euroscore_2.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0104" : {
+            "id" : "gt0104",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0065]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "%"
+            ]
+          }
+        }
+      }
+    },
+    "pre_conditions" : [
+      "$gt0003|Gender|!=null",
+      "$gt0085|Age|!=null",
+      "$gt0087|Renal impairment|!=null",
+      "$gt0088|Chronic lung disease|!=null",
+      "$gt0089|Extracardiac arteriopathy|!=null",
+      "$gt0090|Neurological or musculoskeletal dysfunction that severely affects mobility|!=null",
+      "$gt0091|Previous cardiac surgery|!=null",
+      "$gt0092|Active endocarditis|!=null",
+      "$gt0093|Critical preoperative state|!=null",
+      "$gt0094|Insulin-dependent diabetes mellitus|!=null",
+      "$gt0095|LV function|!=null",
+      "$gt0096|Pulmonary hypertension|!=null",
+      "$gt0097|NYHA|!=null",
+      "$gt0098|CCS angina class 4|!=null",
+      "$gt0099|Myocardial infarct in previous 90 days|!=null",
+      "$gt0100|Urgency of operation|!=null",
+      "$gt0101|Weight of the intervention|!=null",
+      "$gt0102|Surgery on Thoracic Aorta|!=null"
+    ],
+    "rules" : {
+      "gt0045" : {
+        "id" : "gt0045",
+        "priority" : 39,
+        "when" : [
+          "$gt0085|Age|!=null",
+          "$gt0085|Age|.magnitude>=60"
+        ],
+        "then" : [
+          "$gt0026|Age Coefficient|=($gt0085|Age|.magnitude-59)*0.0285181"
+        ]
+      },
+      "gt0046" : {
+        "id" : "gt0046",
+        "priority" : 38,
+        "when" : [
+          "$gt0085|Age|!=null",
+          "$gt0085|Age|.magnitude<60"
+        ],
+        "then" : [
+          "$gt0026|Age Coefficient|=0.0285181"
+        ]
+      },
+      "gt0047" : {
+        "id" : "gt0047",
+        "priority" : 37,
+        "when" : [
+          "$gt0003|Gender|==local::at0005|Male|"
+        ],
+        "then" : [
+          "$gt0027|Gender Coefficient|=0"
+        ]
+      },
+      "gt0048" : {
+        "id" : "gt0048",
+        "priority" : 36,
+        "when" : [
+          "$gt0003|Gender|==local::at0006|Female|"
+        ],
+        "then" : [
+          "$gt0027|Gender Coefficient|=0.2196434"
+        ]
+      },
+      "gt0049" : {
+        "id" : "gt0049",
+        "priority" : 35,
+        "when" : [
+          "$gt0094|Insulin-dependent diabetes mellitus|!=null"
+        ],
+        "then" : [
+          "$gt0028|Diabetes Coefficient|=$gt0094|Insulin-dependent diabetes mellitus|.value*0.3542749"
+        ]
+      },
+      "gt0062" : {
+        "id" : "gt0062",
+        "priority" : 34,
+        "when" : [
+          "$gt0089|Extracardiac arteriopathy|!=null"
+        ],
+        "then" : [
+          "$gt0035|Extracardiac arteriopathy Coefficient|=$gt0089|Extracardiac arteriopathy|.value*0.5360268"
+        ]
+      },
+      "gt0050" : {
+        "id" : "gt0050",
+        "priority" : 33,
+        "when" : [
+          "$gt0088|Chronic lung disease|!=null"
+        ],
+        "then" : [
+          "$gt0029|Pulmonary dysfunction Coefficient|=$gt0088|Chronic lung disease|.value*0.1886564"
+        ]
+      },
+      "gt0051" : {
+        "id" : "gt0051",
+        "priority" : 32,
+        "when" : [
+          "$gt0090|Neurological or musculoskeletal dysfunction that severely affects mobility|!=null"
+        ],
+        "then" : [
+          "$gt0030|Mobility Coefficient|=$gt0090|Neurological or musculoskeletal dysfunction that severely affects mobility|.value*0.2407181"
+        ]
+      },
+      "gt0063" : {
+        "id" : "gt0063",
+        "priority" : 31,
+        "when" : [
+          "$gt0091|Previous cardiac surgery|!=null"
+        ],
+        "then" : [
+          "$gt0036|Cardiac surgery Coefficient|=$gt0091|Previous cardiac surgery|.value*1.118599"
+        ]
+      },
+      "gt0052" : {
+        "id" : "gt0052",
+        "priority" : 30,
+        "when" : [
+          "$gt0087|Renal impairment|==0|local::at0007|> 85 ml/min|"
+        ],
+        "then" : [
+          "$gt0031|Renal dysfunction Coefficient|=0"
+        ]
+      },
+      "gt0053" : {
+        "id" : "gt0053",
+        "priority" : 29,
+        "when" : [
+          "$gt0087|Renal impairment|==1|local::at0008|50-85 ml/min|"
+        ],
+        "then" : [
+          "$gt0031|Renal dysfunction Coefficient|=0.303553"
+        ]
+      },
+      "gt0054" : {
+        "id" : "gt0054",
+        "priority" : 28,
+        "when" : [
+          "$gt0087|Renal impairment|==2|local::at0009|≤ 50 ml/min|"
+        ],
+        "then" : [
+          "$gt0031|Renal dysfunction Coefficient|=0.8592256"
+        ]
+      },
+      "gt0055" : {
+        "id" : "gt0055",
+        "priority" : 27,
+        "when" : [
+          "$gt0087|Renal impairment|==3|local::at0010|On dialysis (regardless of creatinine clearance)|"
+        ],
+        "then" : [
+          "$gt0031|Renal dysfunction Coefficient|=0.6421508"
+        ]
+      },
+      "gt0064" : {
+        "id" : "gt0064",
+        "priority" : 26,
+        "when" : [
+          "$gt0092|Active endocarditis|!=null"
+        ],
+        "then" : [
+          "$gt0037|Endocarditis Coefficient|=$gt0092|Active endocarditis|.value*0.6194522"
+        ]
+      },
+      "gt0056" : {
+        "id" : "gt0056",
+        "priority" : 25,
+        "when" : [
+          "$gt0093|Critical preoperative state|!=null"
+        ],
+        "then" : [
+          "$gt0032|Critical preop state Coefficient|=$gt0093|Critical preoperative state|.value*1.086517"
+        ]
+      },
+      "gt0061" : {
+        "id" : "gt0061",
+        "priority" : 24,
+        "when" : [
+          "$gt0098|CCS angina class 4|!=null"
+        ],
+        "then" : [
+          "$gt0034|CCS Coefficient|=$gt0098|CCS angina class 4|.value*0.2226147"
+        ]
+      },
+      "gt0057" : {
+        "id" : "gt0057",
+        "priority" : 23,
+        "when" : [
+          "$gt0097|NYHA|==0|local::at0033|Class I|"
+        ],
+        "then" : [
+          "$gt0033|NYHA Coefficient|=0"
+        ]
+      },
+      "gt0058" : {
+        "id" : "gt0058",
+        "priority" : 22,
+        "when" : [
+          "$gt0097|NYHA|==1|local::at0034|Class II|"
+        ],
+        "then" : [
+          "$gt0033|NYHA Coefficient|=0.1070545"
+        ]
+      },
+      "gt0059" : {
+        "id" : "gt0059",
+        "priority" : 21,
+        "when" : [
+          "$gt0097|NYHA|==2|local::at0035|Class III|"
+        ],
+        "then" : [
+          "$gt0033|NYHA Coefficient|=0.2958358"
+        ]
+      },
+      "gt0060" : {
+        "id" : "gt0060",
+        "priority" : 20,
+        "when" : [
+          "$gt0097|NYHA|==3|local::at0036|Class IV|"
+        ],
+        "then" : [
+          "$gt0033|NYHA Coefficient|=0.5597929"
+        ]
+      },
+      "gt0065" : {
+        "id" : "gt0065",
+        "priority" : 19,
+        "when" : [
+          "$gt0095|LV function|==0|local::at0041|> 50 %|"
+        ],
+        "then" : [
+          "$gt0038|LV Coefficient|=0"
+        ]
+      },
+      "gt0066" : {
+        "id" : "gt0066",
+        "priority" : 18,
+        "when" : [
+          "$gt0095|LV function|==1|local::at0042|31-50 %|"
+        ],
+        "then" : [
+          "$gt0038|LV Coefficient|=0.3150652"
+        ]
+      },
+      "gt0067" : {
+        "id" : "gt0067",
+        "priority" : 17,
+        "when" : [
+          "$gt0095|LV function|==2|local::at0043|21-30 %|"
+        ],
+        "then" : [
+          "$gt0038|LV Coefficient|=0.8084096"
+        ]
+      },
+      "gt0068" : {
+        "id" : "gt0068",
+        "priority" : 16,
+        "when" : [
+          "$gt0095|LV function|==3|local::at0044|≤ 20 %|"
+        ],
+        "then" : [
+          "$gt0038|LV Coefficient|=0.9346919"
+        ]
+      },
+      "gt0069" : {
+        "id" : "gt0069",
+        "priority" : 15,
+        "when" : [
+          "$gt0099|Myocardial infarct in previous 90 days|!=null"
+        ],
+        "then" : [
+          "$gt0039|MI Coefficient|=$gt0099|Myocardial infarct in previous 90 days|.value*0.1528943"
+        ]
+      },
+      "gt0070" : {
+        "id" : "gt0070",
+        "priority" : 14,
+        "when" : [
+          "$gt0096|Pulmonary hypertension|==0|local::at0049|No|"
+        ],
+        "then" : [
+          "$gt0040|Pulmonary artery SP Coefficient|=0"
+        ]
+      },
+      "gt0071" : {
+        "id" : "gt0071",
+        "priority" : 13,
+        "when" : [
+          "$gt0096|Pulmonary hypertension|==1|local::at0050|Moderate (PA systolic 31-55 mmHg)|"
+        ],
+        "then" : [
+          "$gt0040|Pulmonary artery SP Coefficient|=0.1788899"
+        ]
+      },
+      "gt0072" : {
+        "id" : "gt0072",
+        "priority" : 12,
+        "when" : [
+          "$gt0096|Pulmonary hypertension|==2|local::at0051|Severe (PA systolic ≥ 55 mmHg)|"
+        ],
+        "then" : [
+          "$gt0040|Pulmonary artery SP Coefficient|=0.3491475"
+        ]
+      },
+      "gt0073" : {
+        "id" : "gt0073",
+        "priority" : 11,
+        "when" : [
+          "$gt0100|Urgency of operation|==0|local::at0053|Elective|"
+        ],
+        "then" : [
+          "$gt0041|Urgency Coefficient|=0"
+        ]
+      },
+      "gt0074" : {
+        "id" : "gt0074",
+        "priority" : 10,
+        "when" : [
+          "$gt0100|Urgency of operation|==1|local::at0054|Urgent|"
+        ],
+        "then" : [
+          "$gt0041|Urgency Coefficient|=0.3174673"
+        ]
+      },
+      "gt0075" : {
+        "id" : "gt0075",
+        "priority" : 9,
+        "when" : [
+          "$gt0100|Urgency of operation|==2|local::at0055|Emergency|"
+        ],
+        "then" : [
+          "$gt0041|Urgency Coefficient|=0.7039121"
+        ]
+      },
+      "gt0076" : {
+        "id" : "gt0076",
+        "priority" : 8,
+        "when" : [
+          "$gt0100|Urgency of operation|==3|local::at0056|Salvage|"
+        ],
+        "then" : [
+          "$gt0041|Urgency Coefficient|=1.362947"
+        ]
+      },
+      "gt0077" : {
+        "id" : "gt0077",
+        "priority" : 7,
+        "when" : [
+          "$gt0101|Weight of the intervention|==0|local::at0058|Isolated CABG|"
+        ],
+        "then" : [
+          "$gt0042|Weight of procedure Coefficient|=0"
+        ]
+      },
+      "gt0078" : {
+        "id" : "gt0078",
+        "priority" : 6,
+        "when" : [
+          "$gt0101|Weight of the intervention|==1|local::at0059|Single non-CABG|"
+        ],
+        "then" : [
+          "$gt0042|Weight of procedure Coefficient|=0.0062118"
+        ]
+      },
+      "gt0079" : {
+        "id" : "gt0079",
+        "priority" : 5,
+        "when" : [
+          "$gt0101|Weight of the intervention|==2|local::at0060|2 procedures|"
+        ],
+        "then" : [
+          "$gt0042|Weight of procedure Coefficient|=0.5521478"
+        ]
+      },
+      "gt0080" : {
+        "id" : "gt0080",
+        "priority" : 4,
+        "when" : [
+          "$gt0101|Weight of the intervention|==3|local::at0061|3 procedures|"
+        ],
+        "then" : [
+          "$gt0042|Weight of procedure Coefficient|=0.9724533"
+        ]
+      },
+      "gt0081" : {
+        "id" : "gt0081",
+        "priority" : 3,
+        "when" : [
+          "$gt0102|Surgery on Thoracic Aorta|!=null"
+        ],
+        "then" : [
+          "$gt0043|Thoracic aorta surgery Coefficient|=$gt0102|Surgery on Thoracic Aorta|.value*0.6527205"
+        ]
+      },
+      "gt0083" : {
+        "id" : "gt0083",
+        "priority" : 2,
+        "when" : [
+          "$gt0003|Gender|!=null"
+        ],
+        "then" : [
+          "$gt0082|y|=($gt0026+$gt0027+$gt0028+$gt0029+$gt0030+$gt0031+$gt0032+$gt0033+$gt0034+$gt0035+$gt0036+$gt0037+$gt0038+$gt0039+$gt0040+$gt0041+$gt0042+$gt0043)-5.324537"
+        ]
+      },
+      "gt0084" : {
+        "id" : "gt0084",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|Gender|!=null"
+        ],
+        "then" : [
+          "$gt0104|Predicted mortality|.magnitude=((2.71828^$gt0082)/(1+2.71828^$gt0082))*100",
+          "$gt0104|Predicted mortality|.precision=2",
+          "$gt0104|Predicted mortality|.unit='%'"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "EuroSCORE II",
+            "description" : "The European System for Cardiac Operative Risk Evaluation (EuroSCORE) II was developed based on a patient database and predicts risk of in-hospital mortality after major cardiac surgery. "
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Gender"
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "text" : "Age Coefficient",
+            "description" : ""
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "text" : "Gender Coefficient",
+            "description" : ""
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "text" : "Diabetes Coefficient",
+            "description" : ""
+          },
+          "gt0029" : {
+            "id" : "gt0029",
+            "text" : "Pulmonary dysfunction Coefficient",
+            "description" : ""
+          },
+          "gt0030" : {
+            "id" : "gt0030",
+            "text" : "Mobility Coefficient",
+            "description" : ""
+          },
+          "gt0031" : {
+            "id" : "gt0031",
+            "text" : "Renal dysfunction Coefficient",
+            "description" : ""
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "text" : "Critical preop state Coefficient",
+            "description" : ""
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "text" : "NYHA Coefficient",
+            "description" : ""
+          },
+          "gt0034" : {
+            "id" : "gt0034",
+            "text" : "CCS Coefficient",
+            "description" : ""
+          },
+          "gt0035" : {
+            "id" : "gt0035",
+            "text" : "Extracardiac arteriopathy Coefficient",
+            "description" : ""
+          },
+          "gt0036" : {
+            "id" : "gt0036",
+            "text" : "Cardiac surgery Coefficient",
+            "description" : ""
+          },
+          "gt0037" : {
+            "id" : "gt0037",
+            "text" : "Endocarditis Coefficient",
+            "description" : ""
+          },
+          "gt0038" : {
+            "id" : "gt0038",
+            "text" : "LV Coefficient",
+            "description" : ""
+          },
+          "gt0039" : {
+            "id" : "gt0039",
+            "text" : "MI Coefficient",
+            "description" : ""
+          },
+          "gt0040" : {
+            "id" : "gt0040",
+            "text" : "Pulmonary artery SP Coefficient",
+            "description" : ""
+          },
+          "gt0041" : {
+            "id" : "gt0041",
+            "text" : "Urgency Coefficient",
+            "description" : ""
+          },
+          "gt0042" : {
+            "id" : "gt0042",
+            "text" : "Weight of procedure Coefficient",
+            "description" : ""
+          },
+          "gt0043" : {
+            "id" : "gt0043",
+            "text" : "Thoracic aorta surgery Coefficient",
+            "description" : ""
+          },
+          "gt0045" : {
+            "id" : "gt0045",
+            "text" : "Set Age Coefficient, age >= 60 y",
+            "description" : ""
+          },
+          "gt0046" : {
+            "id" : "gt0046",
+            "text" : "Set Age Coefficient, age < 60 y",
+            "description" : ""
+          },
+          "gt0047" : {
+            "id" : "gt0047",
+            "text" : "Set Gender Coefficient, male",
+            "description" : ""
+          },
+          "gt0048" : {
+            "id" : "gt0048",
+            "text" : "Set Gender Coefficient, female",
+            "description" : ""
+          },
+          "gt0049" : {
+            "id" : "gt0049",
+            "text" : "Set Diabetes Coefficient",
+            "description" : ""
+          },
+          "gt0050" : {
+            "id" : "gt0050",
+            "text" : "Set Pulmonary dysfunction Coefficient",
+            "description" : ""
+          },
+          "gt0051" : {
+            "id" : "gt0051",
+            "text" : "Set Mobility Coefficient",
+            "description" : ""
+          },
+          "gt0052" : {
+            "id" : "gt0052",
+            "text" : "Set Renal dysfunction Coefficient, > 85",
+            "description" : ""
+          },
+          "gt0053" : {
+            "id" : "gt0053",
+            "text" : "Set Renal dysfunction Coefficient, 51-85",
+            "description" : ""
+          },
+          "gt0054" : {
+            "id" : "gt0054",
+            "text" : "Set Renal dysfunction Coefficient, <= 50",
+            "description" : ""
+          },
+          "gt0055" : {
+            "id" : "gt0055",
+            "text" : "Set Renal dysfunction Coefficient, dialysis",
+            "description" : ""
+          },
+          "gt0056" : {
+            "id" : "gt0056",
+            "text" : "Set Critical preoperative state Coefficient",
+            "description" : ""
+          },
+          "gt0057" : {
+            "id" : "gt0057",
+            "text" : "Set NYHA Coefficient, class I",
+            "description" : ""
+          },
+          "gt0058" : {
+            "id" : "gt0058",
+            "text" : "Set NYHA Coefficient, class II",
+            "description" : ""
+          },
+          "gt0059" : {
+            "id" : "gt0059",
+            "text" : "Set NYHA Coefficient, class III",
+            "description" : ""
+          },
+          "gt0060" : {
+            "id" : "gt0060",
+            "text" : "Set NYHA Coefficient, class IV",
+            "description" : ""
+          },
+          "gt0061" : {
+            "id" : "gt0061",
+            "text" : "Set CCS Coefficient",
+            "description" : ""
+          },
+          "gt0062" : {
+            "id" : "gt0062",
+            "text" : "Set Extracardiac arteriopathy Coefficient",
+            "description" : ""
+          },
+          "gt0063" : {
+            "id" : "gt0063",
+            "text" : "Set Cardiac surgery Coefficient",
+            "description" : ""
+          },
+          "gt0064" : {
+            "id" : "gt0064",
+            "text" : "Set Endocarditis Coefficient",
+            "description" : ""
+          },
+          "gt0065" : {
+            "id" : "gt0065",
+            "text" : "Set LV Coefficient, Good",
+            "description" : ""
+          },
+          "gt0066" : {
+            "id" : "gt0066",
+            "text" : "Set LV Coefficient, Moderate",
+            "description" : ""
+          },
+          "gt0067" : {
+            "id" : "gt0067",
+            "text" : "Set LV Coefficient, Poor",
+            "description" : ""
+          },
+          "gt0068" : {
+            "id" : "gt0068",
+            "text" : "Set LV Coefficient, Very poor",
+            "description" : ""
+          },
+          "gt0069" : {
+            "id" : "gt0069",
+            "text" : "Set MI Coefficient",
+            "description" : ""
+          },
+          "gt0070" : {
+            "id" : "gt0070",
+            "text" : "Set Pulmonary artery SP Coefficient, < 31",
+            "description" : ""
+          },
+          "gt0071" : {
+            "id" : "gt0071",
+            "text" : "Set Pulmonary artery SP Coefficient, 31-54",
+            "description" : ""
+          },
+          "gt0072" : {
+            "id" : "gt0072",
+            "text" : "Set Pulmonary artery SP Coefficient, >= 55",
+            "description" : ""
+          },
+          "gt0073" : {
+            "id" : "gt0073",
+            "text" : "Set Urgency Coefficient, Elective",
+            "description" : ""
+          },
+          "gt0074" : {
+            "id" : "gt0074",
+            "text" : "Set Urgency Coefficient, Urgent",
+            "description" : ""
+          },
+          "gt0075" : {
+            "id" : "gt0075",
+            "text" : "Set Urgency Coefficient, Emergency",
+            "description" : ""
+          },
+          "gt0076" : {
+            "id" : "gt0076",
+            "text" : "Set Urgency Coefficient, Salvage",
+            "description" : ""
+          },
+          "gt0077" : {
+            "id" : "gt0077",
+            "text" : "Set Weight of procedure Coefficient, Isolated CABG",
+            "description" : ""
+          },
+          "gt0078" : {
+            "id" : "gt0078",
+            "text" : "Set Weight of procedure Coefficient, Isolated non-CABG",
+            "description" : ""
+          },
+          "gt0079" : {
+            "id" : "gt0079",
+            "text" : "Set Weight of procedure Coefficient, 2 procedures",
+            "description" : ""
+          },
+          "gt0080" : {
+            "id" : "gt0080",
+            "text" : "Set Weight of procedure Coefficient, 3 procedures",
+            "description" : ""
+          },
+          "gt0081" : {
+            "id" : "gt0081",
+            "text" : "Set Thoracic aorta surgery Coefficient",
+            "description" : ""
+          },
+          "gt0082" : {
+            "id" : "gt0082",
+            "text" : "y",
+            "description" : ""
+          },
+          "gt0083" : {
+            "id" : "gt0083",
+            "text" : "Calculate y",
+            "description" : ""
+          },
+          "gt0084" : {
+            "id" : "gt0084",
+            "text" : "Calculate Predicted mortality",
+            "description" : ""
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.basic_demographic.v1"
+          },
+          "gt0085" : {
+            "id" : "gt0085",
+            "text" : "Age"
+          },
+          "gt0086" : {
+            "id" : "gt0086",
+            "text" : "openEHR-EHR-OBSERVATION.euroscore_2.v0"
+          },
+          "gt0087" : {
+            "id" : "gt0087",
+            "text" : "Renal impairment"
+          },
+          "gt0088" : {
+            "id" : "gt0088",
+            "text" : "Chronic lung disease"
+          },
+          "gt0089" : {
+            "id" : "gt0089",
+            "text" : "Extracardiac arteriopathy"
+          },
+          "gt0090" : {
+            "id" : "gt0090",
+            "text" : "Neurological or musculoskeletal dysfunction that severely affects mobility"
+          },
+          "gt0091" : {
+            "id" : "gt0091",
+            "text" : "Previous cardiac surgery"
+          },
+          "gt0092" : {
+            "id" : "gt0092",
+            "text" : "Active endocarditis"
+          },
+          "gt0093" : {
+            "id" : "gt0093",
+            "text" : "Critical preoperative state"
+          },
+          "gt0094" : {
+            "id" : "gt0094",
+            "text" : "Insulin-dependent diabetes mellitus"
+          },
+          "gt0095" : {
+            "id" : "gt0095",
+            "text" : "LV function"
+          },
+          "gt0096" : {
+            "id" : "gt0096",
+            "text" : "Pulmonary hypertension"
+          },
+          "gt0097" : {
+            "id" : "gt0097",
+            "text" : "NYHA"
+          },
+          "gt0098" : {
+            "id" : "gt0098",
+            "text" : "CCS angina class 4"
+          },
+          "gt0099" : {
+            "id" : "gt0099",
+            "text" : "Myocardial infarct in previous 90 days"
+          },
+          "gt0100" : {
+            "id" : "gt0100",
+            "text" : "Urgency of operation"
+          },
+          "gt0101" : {
+            "id" : "gt0101",
+            "text" : "Weight of the intervention"
+          },
+          "gt0102" : {
+            "id" : "gt0102",
+            "text" : "Surgery on Thoracic Aorta"
+          },
+          "gt0103" : {
+            "id" : "gt0103",
+            "text" : "openEHR-EHR-OBSERVATION.euroscore_2.v0"
+          },
+          "gt0104" : {
+            "id" : "gt0104",
+            "text" : "Predicted mortality"
+          }
+        }
+      }
+    }
+  }
+}
