@@ -1,0 +1,160 @@
+{
+  "uuid" : "c4f1edd0-9b4f-41da-977b-fbe27cf21644",
+  "id" : "Centor_Score_for_Strep_Pharyngitis.v0.0.2",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Mahmoud Elachi",
+      "email" : "mel.achi@gmail.com",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-02-12"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate the total Centor score based on clinical findings in patients with suspected streptococcal pharyngitis.",
+        "keywords" : [
+          "strep throat",
+          "sore throat",
+          "McIsaac score",
+          "Centor score",
+          "pharyngitis",
+          "tonsillitis",
+          "GAS"
+        ],
+        "use" : "Use to evaluate patients presenting with symptoms of acute sore throat or pharyngotonsillitis. The score is calculated by assigning one point for each of the following clinical criteria:\n\nFever ≥38°C = 1 point\nTonsillar exudates or tonsillar swelling = 1 point\nTender anterior cervical lymphadenopathy = 1 point\nAbsence of cough = 1 point\n\nTotal score interpretation:\n\n0–1 points: Low probability of GAS pharyngitis; neither rapid testing nor antibiotic treatment is usually indicated.\n2–3 points: Intermediate probability; consider rapid antigen detection testing.\n4 points: High probability of GAS pharyngitis; microbiological testing and/or antibiotic treatment may be considered depending on clinical assessment and local guidelines.\n\nThe score is intended for use in primary care, urgent care, and emergency department settings.",
+        "misuse" : "Not to be used as the sole basis for diagnosis or antibiotic treatment without clinical judgment.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Centor RM, Witherspoon JM, Dalton HP, Brody CE, Link K. The diagnosis of strep throat in adults in the emergency room. Med Decis Making. 1981;1(3):239-46. doi: 10.1177/0272989X8100100304. PMID: 6763125.\n\nMcIsaac WJ, White D, Tannenbaum D, Low DE. A clinical score to reduce unnecessary antibiotic use in patients with sore throat. CMAJ. 1998 Jan 13;158(1):75-83. PMID: 9475915; PMCID: PMC1228750.\n\nMcIsaac WJ, White D, Tannenbaum D, Low DE. A clinical score to reduce unnecessary antibiotic use in patients with sore throat. CMAJ. 1998 Jan 13;158(1):75-83. PMID: 9475915; PMCID: PMC1228750.",
+      "en" : "A clinical decision support guideline for assessing the likelihood of group A β-hemolytic streptococcal (GAS) pharyngitis in patients presenting with acute sore throat, based on the Modified Centor Score (McIsaac score)."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "a"
+            ]
+          }
+        }
+      },
+      "gt0004" : {
+        "id" : "gt0004",
+        "model_id" : "openEHR-EHR-OBSERVATION.centor_score_strep_pharyngitis.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.centor_score_strep_pharyngitis.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type" : "DV_QUANTITY"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type" : "DV_QUANTITY"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_QUANTITY"
+          }
+        }
+      },
+      "gt0010" : {
+        "id" : "gt0010",
+        "model_id" : "openEHR-EHR-OBSERVATION.centor_score_strep_pharyngitis.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.centor_score_strep_pharyngitis.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0035" : {
+            "id" : "gt0035",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0014]",
+            "data_type" : "DV_COUNT"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Centor Score for Strep Pharyngitis",
+            "description" : "A clinical prediction score used to assess the probability of group A β-hemolytic streptococcal (GAS) pharyngitis in patients presenting with acute sore throat or pharyngotonsillitis. The Centor criteria evaluate four clinical findings: history of fever, tonsillar exudates or swelling, tender anterior cervical lymphadenopathy, and absence of cough."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.basic_demographic.v1"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Age"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "openEHR-EHR-OBSERVATION.centor_score_strep_pharyngitis.v0"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Fever > 38 °C"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "Cough"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Tender cervical lymph nodes"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Tonsillar swelling or exudates"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "openEHR-EHR-OBSERVATION.centor_score_strep_pharyngitis.v0"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Results"
+          },
+          "gt0035" : {
+            "id" : "gt0035",
+            "text" : "Total score"
+          }
+        }
+      }
+    }
+  }
+}
