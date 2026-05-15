@@ -18,22 +18,23 @@ description
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"To record the patient, cardiac, and operative parameters and the resulting predicted mortality risk.">
-			keywords = <"euroscore, score, euro, cardiac, surgery, mortality, prediction, risk, CABG, valve, cardiology", ...>
+			purpose = <"To record the results for each component parameter and their total sum for the EuroSCORE II.">
+			keywords = <"euroscore","score","euro","cardiac","surgery","mortality","prediction","risk","CABG","valve","cardiology">
 			copyright = <"© Cambio CDS">
-			use = <"To record patient, cardiac-specific and procedural factors according to the EuroSCORE II.">
-			misuse = <"Not inteded for recording of the factors apart from when used in EuroSCORE II. ">
+			use = <"Use to record the component parameters and the total score for the EuroSCORE II.">
+			misuse = <"Not to be used for the older EuroSCORE model.">
 		>
 	>
 	other_details = <
 		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
 		["custodian_organisation"] = <"openEHR Foundation">
-		["original_namespace"] = <"org.openehr">
-		["original_publisher"] = <"openEHR Foundation">
-		["custodian_namespace"] = <"org.openehr">
 		["references"] = <"Noyez L, Kievit PC, van Swieten HA, de Boer MJ. Cardiac operative risk evaluation: The EuroSCORE II, does it make a real difference? Neth Heart J. 2012 Dec;20(12):494-8. doi: 10.1007/s12471-012-0327-1. PMID: 23055057; PMCID: PMC3515725.
 
 Nashef SAM, Roques F, Sharples LD, Nilsson J, Smith C, Goldstone AR, Lockowandt U. EuroSCORE II. Eur J Cardiothorac Surg. 2012 Apr;41(4):734-44; discussion 744-5. doi: 10.1093/ejcts/ezs043. PMID: 22378855.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"2ffee6567edd6b12a2df7187587efdfb">
 		["build_uid"] = <"5303b4d9-3b5c-3ec7-aa93-dfd53fb1c9ca">
 	>
 
@@ -131,7 +132,7 @@ definition
 											1|[local::at0047]
 										}
 									}
-									ELEMENT[at0052] occurrences matches {0..1} matches {    -- Urgency for operation
+									ELEMENT[at0052] occurrences matches {0..1} matches {    -- Urgency of operation
 										value matches {
 											0|[local::at0053],
 											1|[local::at0054],
@@ -151,6 +152,19 @@ definition
 										value matches {
 											0|[local::at0063],
 											1|[local::at0064]
+										}
+									}
+									ELEMENT[at0065] occurrences matches {0..1} matches {    -- Predicted mortality
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::507]>
+												list = <
+													["1"] = <
+														units = <"%">
+														precision = <|3|>
+													>
+												>
+											>
 										}
 									}
 								}
@@ -178,7 +192,7 @@ ontology
 			items = <
 				["at0000"] = <
 					text = <"Euroscore II">
-					description = <"European System for Cardiac Operative Risk Evaluation (EuroSCORE) II predicts risk of in-hospital mortality after major cardiac surgery.">
+					description = <"An assessment score used to predict the risk of in-hospital mortality after cardiac surgery.">
 					comment = <"Original version, c 2012.">
 				>
 				["at0001"] = <
@@ -387,7 +401,7 @@ ontology
 					description = <"*">
 				>
 				["at0052"] = <
-					text = <"Urgency for operation">
+					text = <"Urgency of operation">
 					description = <"">
 				>
 				["at0053"] = <
@@ -437,6 +451,10 @@ ontology
 				["at0064"] = <
 					text = <"Yes">
 					description = <"*">
+				>
+				["at0065"] = <
+					text = <"Predicted mortality">
+					description = <"">
 				>
 			>
 		>
