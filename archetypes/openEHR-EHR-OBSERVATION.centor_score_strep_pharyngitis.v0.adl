@@ -18,29 +18,33 @@ description
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"To assess the likelihood of streptococcal pharyngitis and support diagnostic and treatment decisions based on a validated clinical prediction rule.">
-			keywords = <"strep throat, sore throat, McIsaac score, Centor score, pharyngitis, clinical decision support, antibiotics", ...>
+			purpose = <"To record the results of each Centor criterion and their total score in patients with suspected acute tonsillitis or pharyngotonsillitis.
+">
+			keywords = <"criteria, tonsillitis, strep throat, sore throat, centor score, pharyngitis", ...>
 			copyright = <"Use © Cambio CDS">
-			use = <"Used in primary care or emergency settings for patients presenting with sore throat symptoms.">
-			misuse = <"Not to be used in patients with known immunosuppression or chronic tonsillar conditions. Should not replace clinical judgment.">
+			use = <"Use to document the presence or absence of the Centor criteria and the calculated total score. The score may support clinical decisions about symptomatic treatment and whether rapid testing for group A streptococcus is indicated.
+">
+			misuse = <"Not to be used to diagnose streptococcal infection on its own or to replace clinical assessment. Should not be used outside the intended patient group, such as children under 3 years, or in cases where special clinical factors require individual medical judgment.
+">
 		>
 	>
 	other_details = <
 		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
 		["custodian_organisation"] = <"openEHR Foundation">
-		["references"] = <"https://pubmed.ncbi.nlm.nih.gov/6763125/
-https://www.mdcalc.com/calc/104/centor-score-modified-mcisaac-strep-pharyngitis
-https://verktyg.internetmedicin.se/kalkylatorer/centorkriterierna
-McIsaac WJ, White D, Tannenbaum D, Low DE. CMAJ. 1998;158(1):75-83.">
+		["references"] = <"Centor RM, Witherspoon JM, Dalton HP, Brody CE, Link K. The diagnosis of strep throat in adults in the emergency room. Med Decis Making. 1981;1(3):239-46. doi: 10.1177/0272989X8100100304. PMID: 6763125.
+
+McIsaac WJ, White D, Tannenbaum D, Low DE. A clinical score to reduce unnecessary antibiotic use in patients with sore throat. CMAJ. 1998 Jan 13;158(1):75-83. PMID: 9475915; PMCID: PMC1228750.
+
+McIsaac WJ, White D, Tannenbaum D, Low DE. A clinical score to reduce unnecessary antibiotic use in patients with sore throat. CMAJ. 1998 Jan 13;158(1):75-83. PMID: 9475915; PMCID: PMC1228750.">
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"ebfd6cf878d1a58e4fc89f759bed70af">
+		["MD5-CAM-1.0.1"] = <"3bb97873eb7acfd20ed4a4f0f401b829">
 		["build_uid"] = <"d836f5f9-7bbb-3610-af2f-983524e31084">
 	>
 
 definition
-	OBSERVATION[at0000] matches {    -- centor_score_strep_pharyngitis
+	OBSERVATION[at0000] matches {    -- Centor criteria
 		data matches {
 			HISTORY[at0001] matches {    -- History
 				events cardinality matches {1..*; unordered} matches {
@@ -50,22 +54,27 @@ definition
 								items cardinality matches {0..*; unordered} matches {
 									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Fever > 38 °C
 										value matches {
-											DV_BOOLEAN matches {*}
+											DV_ORDINAL matches {*}
 										}
 									}
 									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Cough
 										value matches {
-											DV_BOOLEAN matches {*}
+											DV_ORDINAL matches {*}
 										}
 									}
 									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Tender cervical lymph nodes
 										value matches {
-											DV_BOOLEAN matches {*}
+											DV_ORDINAL matches {*}
 										}
 									}
 									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Tonsillar swelling or exudates
 										value matches {
-											DV_BOOLEAN matches {*}
+											DV_ORDINAL matches {*}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											DV_COUNT matches {*}
 										}
 									}
 									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Results
@@ -96,8 +105,8 @@ ontology
 		["en"] = <
 			items = <
 				["at0000"] = <
-					text = <"centor_score_strep_pharyngitis">
-					description = <"A clinical decision guideline for estimating the probability of streptococcal pharyngitis in patients with sore throat symptoms using the Modified Centor Score (also known as McIsaac score). The score considers five criteria: fever, cough absence, cervical lymph nodes, tonsillar findings, and patient age. The total score ranges from -1 to 5 and helps guide decisions on testing and antibiotic treatment.">
+					text = <"Centor criteria">
+					description = <"A clinical assessment score used to support the evaluation of suspected acute tonsillitis or pharyngotonsillitis and estimate the likelihood of group A streptococcal infection. The score records four clinical criteria: fever, tonsillar findings, tender cervical lymph nodes, and absence of cough.">
 					comment = <"Original version, c 1981">
 				>
 				["at0001"] = <
@@ -151,6 +160,10 @@ ontology
 				["at0013"] = <
 					text = <"51-53%">
 					description = <"Consider rapid strep testing and/or culture. Empiric antibiotics may be appropriate depending on the specific scenario">
+				>
+				["at0014"] = <
+					text = <"Total score">
+					description = <"">
 				>
 			>
 		>
