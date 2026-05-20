@@ -1,0 +1,203 @@
+archetype (adl_version=1.4; uid=458a5768-8faf-4aa1-9012-72e902755615)
+	openEHR-EHR-OBSERVATION.parkland_formula_for_burns.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"Dennis Forslund">
+				["organisation"] = <"Cambio CDS">
+			>
+		>
+	>
+
+description
+	original_author = <
+		["date"] = <"2016-11-20">
+		["name"] = <"Dennis Forslund">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"models@cambiocds.com">
+	>
+	lifecycle_state = <"in_development">
+	other_contributors = <"Katja Mariko Wilde", ...>
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"*To record the estimated percentage total body surface area burned and the estimated fluid requirement for the first 24 hours after burn injury using the Parkland formula. (en)">
+			keywords = <"*parkland (en)","*formula (en)","*burns (en)","*fluid (en)","*resuscitation (en)","*total (en)","*body (en)","*surface (en)","*area (en)","*tbsa (en)","*body (en)","*weight (en)">
+			copyright = <"*© Cambio CDS (en)">
+			use = <"*Use to record the estimated percentage total body surface area burned and the estimated fluid requirement for the first 24 hours after burn injury using the Parkland formula. (en)">
+			misuse = <"*Not to be used as the sole basis for fluid resuscitation or burn management. Clinical assessment and monitoring are required. (en)">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the estimated percentage total body surface area burned and the estimated fluid requirement for the first 24 hours after burn injury using the Parkland formula.">
+			keywords = <"parkland","formula","burns","fluid","resuscitation","total","body","surface","area","tbsa","body","weight">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the estimated percentage total body surface area burned and the estimated fluid requirement for the first 24 hours after burn injury using the Parkland formula.">
+			misuse = <"Not to be used as the sole basis for fluid resuscitation or burn management. Clinical assessment and monitoring are required.">
+		>
+	>
+	other_details = <
+		["references"] = <"Baxter CR. Fluid volume and electrolyte changes of the early postburn period. Clin Plast Surg. 1974 Oct;1(4):693-703. PMID: 4609676.
+
+Cartotto RC, Innes M, Musgrave MA, Gomez M, Cooper AB. How well does the Parkland formula estimate actual fluid resuscitation volumes? J Burn Care Rehabil. 2002 Jul-Aug;23(4):258-65. doi: 10.1097/00004630-200207000-00006. PMID: 12142578.">
+		["MD5-CAM-1.0.1"] = <"dc0e402e1e5b1261780748297bd3a5ef">
+		["build_uid"] = <"a93b7331-fb0d-3ef4-9a12-6bc558348ab5">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Parkland formula for burns
+		data matches {
+			HISTORY[at0001] matches {    -- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Fluid requirement
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::129]>
+												list = <
+													["1"] = <
+														units = <"l">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Estimated body burn
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::507]>
+												list = <
+													["1"] = <
+														units = <"%">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- Comment
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0011] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0012] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Parkland formula for burns">
+					description = <"A clinical assessment used to estimate fluid requirements during the first 24 hours in adult patients with burns.
+">
+					comment = <"Original version, c 1974">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0009"] = <
+					text = <"Fluid requirement">
+					description = <"Estimated fluid requirement, in liters.">
+				>
+				["at0010"] = <
+					text = <"Estimated body burn">
+					description = <"Estimation of percentage body burn. Estimation may be performed using Wallace rule of nine.">
+				>
+				["at0011"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0012"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0013"] = <
+					text = <"Comment">
+					description = <"">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Parkland formula for burns (en)">
+					description = <"*A clinical assessment used to estimate fluid requirements during the first 24 hours in adult patients with burns.
+ (en)">
+					comment = <"*Original version, c 1974 (en)">
+				>
+				["at0001"] = <
+					text = <"*Event Series(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"*Any event(en)">
+					description = <"*Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time. (en)">
+				>
+				["at0003"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0009"] = <
+					text = <"Vätskebehov">
+					description = <"Uppskattat vätskebehov, angivet i liter.">
+				>
+				["at0010"] = <
+					text = <"Brännskadeutbredning">
+					description = <"Uppskattning av brännskadad yta gentemot kroppsyta, anges i procent. Kan utföras med hjälp av Wallace rule of nine.">
+				>
+				["at0011"] = <
+					text = <"*Item tree (en)">
+					description = <"@ internal @">
+				>
+				["at0012"] = <
+					text = <"*Extension (en)">
+					description = <"*Additional information required to extend the model with local content or to align with other reference models or formalisms. (en)">
+					comment = <"*For example: local information requirements; or additional metadata to align with FHIR. (en)">
+				>
+				["at0013"] = <
+					text = <"*Comment (en)">
+					description = <"">
+				>
+			>
+		>
+	>
