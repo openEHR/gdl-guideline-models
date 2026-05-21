@@ -1,0 +1,50 @@
+guidelines:
+  "1": Infusionsmangd_Calculation.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Drop rate missing (negative test)
+    input:
+      "1":
+        gt0003|Drop time: 7,h
+    expected_output:
+      "1": {}
+  - id: 3. Drop time missing (negative test)
+    input:
+      "1":
+        gt0004|Drop rate: 40,drops/min
+    expected_output:
+      "1": {}
+  - id: 4. Negative input drop rate (negative test)
+    input:
+      "1":
+        gt0003|Drop time: 4,h
+        gt0004|Drop rate: -10,drops/min
+    expected_output:
+      "1": {}
+  - id: 5. Negative input drop time  (negative test)
+    input:
+      "1":
+        gt0003|Drop time: -5,h
+        gt0004|Drop rate: 70,drops/min
+    expected_output:
+      "1": {}
+  - id: 6. Calculated infusion amount 630 ml
+    input:
+      "1":
+        gt0003|Drop time: 7,h
+        gt0004|Drop rate: 30,drops/min
+    expected_output:
+      "1":
+        gt0009|Infusion amount: 630.0,mL
+  - id: 7. Calculated infusion amount 1200 ml
+    input:
+      "1":
+        gt0003|Drop time: 5,h
+        gt0004|Drop rate: 80,drops/min
+    expected_output:
+      "1":
+        gt0009|Infusion amount: 1200.0,mL
