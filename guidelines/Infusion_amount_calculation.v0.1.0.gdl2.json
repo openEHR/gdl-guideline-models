@@ -1,0 +1,141 @@
+{
+  "uuid" : "83a92e7a-97fa-4f3c-bfb2-02cb94b05ce2",
+  "id" : "Infusion_amount_calculation.v0.1.0",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Mahmoud Elachi",
+      "email" : "mel.achi@gmail.com",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-05-13"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate the infused volume based on the drop rate and infusion time.",
+        "keywords" : [
+          "infusion",
+          "IV therapy",
+          "fluid calculation",
+          "dosage",
+          "intravenous",
+          "drip",
+          "drop"
+        ],
+        "use" : "Use to calculate Infusion volume for an intravenous infusion. This guideline can support implementations where infusion volume needs to be estimated from manually counted drops over time.\n\nInfusion volume = Drop rate * Drop time * 60 / 20",
+        "misuse" : "Not to be used for recording infusion pump settings, medication dose calculations, or other intravenous prescribing information.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "en" : "Calculates the total volume of fluid to be infused based on infusion rate and duration.",
+      "references" : "Internetmedicin AB. Infusionsmängd [Internet]. [cited 2026 May 20]. Available from: https://verktyg.internetmedicin.se/kalkylatorer/infusionsmangd\n"
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.infusion_factors.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.infusion_factors.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "h"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "drops/min"
+            ]
+          }
+        }
+      },
+      "gt0008" : {
+        "id" : "gt0008",
+        "model_id" : "openEHR-EHR-OBSERVATION.infusion_factors.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.infusion_factors.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0009" : {
+            "id" : "gt0009",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mL",
+              "L"
+            ]
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0007" : {
+        "id" : "gt0007",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|Drop time|!=null",
+          "$gt0004|Drop rate|!=null",
+          "$gt0003|Drop time|.magnitude>0",
+          "$gt0004|Drop rate|.magnitude>0"
+        ],
+        "then" : [
+          "$gt0009|Infusion amount|.magnitude=($gt0004|Drop rate|.magnitude*$gt0003|Drop time|.magnitude*60)/20",
+          "$gt0009|Infusion amount|.unit='mL'",
+          "$gt0009|Infusion amount|.precision=1"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Infusion amount calculation",
+            "description" : "A calculation used to estimate the infusion volume administered from the drop rate and infusion time."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.infusion_factors.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Drop time"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Drop rate"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Calculating Infusion amount",
+            "description" : "Amount = (time * rate * 60) / 20"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "openEHR-EHR-OBSERVATION.infusion_factors.v0"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Infusion amount"
+          }
+        }
+      }
+    }
+  }
+}
