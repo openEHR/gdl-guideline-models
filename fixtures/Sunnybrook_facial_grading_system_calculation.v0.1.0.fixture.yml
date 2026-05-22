@@ -1,0 +1,454 @@
+guidelines:
+  "1": Sunnybrook_facial_grading_system_calculation.v0.1.0
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Resting symmetry eye missing (negative test).
+    input:
+      "1":
+        gt0004|Resting symmetry cheek: 2|local::at0013|Absent|
+        gt0005|Resting symmetry mouth: 1|local::at0019|Corner pulled up/out|
+        gt0006|Voluntary movement forehead wrinkle: 1|local::at0027|No movement / Gross asymmetry|
+        gt0007|Voluntary movement gentle eye closure: 1|local::at0033|No movement / Gross asymmetry|
+        gt0008|Voluntary movement open mouth smile: 1|local::at0039|No movement / Gross asymmetry|
+        gt0009|Voluntary movement snarl: 1|local::at0045|No movement / Gross asymmetry|
+        gt0010|Voluntary movement lip pucker: 1|local::at0051|No movement / Gross asymmetry|
+        gt0011|Synkinesis forehead wrinkle: "3|local::at0060|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0012|Synkinesis gentle eye closure: "3|local::at0066|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0013|Synkinesis open mouth smile: "3|local::at0071|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0014|Synkinesis snarl: "3|local::at0076|Severe: Disfiguring synkinesis/ Gross
+          mass movement of several muscles|"
+        gt0015|Synkinesis lip pucker: "3|local::at0081|Severe: Disfiguring synkinesis/
+          Gross mass movement of several muscles|"
+    expected_output:
+      "1":
+        gt0032|Voluntary movement score: "20"
+        gt0033|Synkinesis score: "15"
+  - id: 03. Resting symmetry cheek missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0005|Resting symmetry mouth: 1|local::at0019|Corner pulled up/out|
+        gt0006|Voluntary movement forehead wrinkle: 1|local::at0027|No movement / Gross asymmetry|
+        gt0007|Voluntary movement gentle eye closure: 1|local::at0033|No movement / Gross asymmetry|
+        gt0008|Voluntary movement open mouth smile: 1|local::at0039|No movement / Gross asymmetry|
+        gt0009|Voluntary movement snarl: 1|local::at0045|No movement / Gross asymmetry|
+        gt0010|Voluntary movement lip pucker: 1|local::at0051|No movement / Gross asymmetry|
+        gt0011|Synkinesis forehead wrinkle: "3|local::at0060|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0012|Synkinesis gentle eye closure: "3|local::at0066|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0013|Synkinesis open mouth smile: "3|local::at0071|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0014|Synkinesis snarl: "3|local::at0076|Severe: Disfiguring synkinesis/ Gross
+          mass movement of several muscles|"
+        gt0015|Synkinesis lip pucker: "3|local::at0081|Severe: Disfiguring synkinesis/
+          Gross mass movement of several muscles|"
+    expected_output:
+      "1":
+        gt0032|Voluntary movement score: "20"
+        gt0033|Synkinesis score: "15"
+  - id: 04. Resting symmetry mouth missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 1|local::at0027|No movement / Gross asymmetry|
+        gt0007|Voluntary movement gentle eye closure: 1|local::at0033|No movement / Gross asymmetry|
+        gt0008|Voluntary movement open mouth smile: 1|local::at0039|No movement / Gross asymmetry|
+        gt0009|Voluntary movement snarl: 1|local::at0045|No movement / Gross asymmetry|
+        gt0010|Voluntary movement lip pucker: 1|local::at0051|No movement / Gross asymmetry|
+        gt0011|Synkinesis forehead wrinkle: "3|local::at0060|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0012|Synkinesis gentle eye closure: "3|local::at0066|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0013|Synkinesis open mouth smile: "3|local::at0071|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0014|Synkinesis snarl: "3|local::at0076|Severe: Disfiguring synkinesis/ Gross
+          mass movement of several muscles|"
+        gt0015|Synkinesis lip pucker: "3|local::at0081|Severe: Disfiguring synkinesis/
+          Gross mass movement of several muscles|"
+    expected_output:
+      "1":
+        gt0032|Voluntary movement score: "20"
+        gt0033|Synkinesis score: "15"
+  - id: 05. Voluntary movement forehead wrinkle missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0007|Voluntary movement gentle eye closure: 1|local::at0033|No movement / Gross asymmetry|
+        gt0008|Voluntary movement open mouth smile: 1|local::at0039|No movement / Gross asymmetry|
+        gt0009|Voluntary movement snarl: 1|local::at0045|No movement / Gross asymmetry|
+        gt0010|Voluntary movement lip pucker: 1|local::at0051|No movement / Gross asymmetry|
+        gt0011|Synkinesis forehead wrinkle: "3|local::at0060|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0012|Synkinesis gentle eye closure: "3|local::at0066|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0013|Synkinesis open mouth smile: "3|local::at0071|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0014|Synkinesis snarl: "3|local::at0076|Severe: Disfiguring synkinesis/ Gross
+          mass movement of several muscles|"
+        gt0015|Synkinesis lip pucker: "3|local::at0081|Severe: Disfiguring synkinesis/
+          Gross mass movement of several muscles|"
+    expected_output:
+      "1":
+        gt0031|Resting symmetry score: "0"
+        gt0033|Synkinesis score: "15"
+  - id: 06. Voluntary movement gentle eye closure missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 1|local::at0027|No movement / Gross asymmetry|
+        gt0008|Voluntary movement open mouth smile: 1|local::at0039|No movement / Gross asymmetry|
+        gt0009|Voluntary movement snarl: 1|local::at0045|No movement / Gross asymmetry|
+        gt0010|Voluntary movement lip pucker: 1|local::at0051|No movement / Gross asymmetry|
+        gt0011|Synkinesis forehead wrinkle: "3|local::at0060|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0012|Synkinesis gentle eye closure: "3|local::at0066|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0013|Synkinesis open mouth smile: "3|local::at0071|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0014|Synkinesis snarl: "3|local::at0076|Severe: Disfiguring synkinesis/ Gross
+          mass movement of several muscles|"
+        gt0015|Synkinesis lip pucker: "3|local::at0081|Severe: Disfiguring synkinesis/
+          Gross mass movement of several muscles|"
+    expected_output:
+      "1":
+        gt0031|Resting symmetry score: "0"
+        gt0033|Synkinesis score: "15"
+  - id: 07. Voluntary movement open mouth smile missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 1|local::at0027|No movement / Gross asymmetry|
+        gt0007|Voluntary movement gentle eye closure: 1|local::at0033|No movement / Gross asymmetry|
+        gt0009|Voluntary movement snarl: 1|local::at0045|No movement / Gross asymmetry|
+        gt0010|Voluntary movement lip pucker: 1|local::at0051|No movement / Gross asymmetry|
+        gt0011|Synkinesis forehead wrinkle: "3|local::at0060|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0012|Synkinesis gentle eye closure: "3|local::at0066|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0013|Synkinesis open mouth smile: "3|local::at0071|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0014|Synkinesis snarl: "3|local::at0076|Severe: Disfiguring synkinesis/ Gross
+          mass movement of several muscles|"
+        gt0015|Synkinesis lip pucker: "3|local::at0081|Severe: Disfiguring synkinesis/
+          Gross mass movement of several muscles|"
+    expected_output:
+      "1":
+        gt0031|Resting symmetry score: "0"
+        gt0033|Synkinesis score: "15"
+  - id: 08. Voluntary movement snarl missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 1|local::at0027|No movement / Gross asymmetry|
+        gt0007|Voluntary movement gentle eye closure: 1|local::at0033|No movement / Gross asymmetry|
+        gt0008|Voluntary movement open mouth smile: 1|local::at0039|No movement / Gross asymmetry|
+        gt0010|Voluntary movement lip pucker: 1|local::at0051|No movement / Gross asymmetry|
+        gt0011|Synkinesis forehead wrinkle: "3|local::at0060|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0012|Synkinesis gentle eye closure: "3|local::at0066|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0013|Synkinesis open mouth smile: "3|local::at0071|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0014|Synkinesis snarl: "3|local::at0076|Severe: Disfiguring synkinesis/ Gross
+          mass movement of several muscles|"
+        gt0015|Synkinesis lip pucker: "3|local::at0081|Severe: Disfiguring synkinesis/
+          Gross mass movement of several muscles|"
+    expected_output:
+      "1":
+        gt0031|Resting symmetry score: "0"
+        gt0033|Synkinesis score: "15"
+  - id: 09. Voluntary movement lip pucker missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 1|local::at0027|No movement / Gross asymmetry|
+        gt0007|Voluntary movement gentle eye closure: 1|local::at0033|No movement / Gross asymmetry|
+        gt0008|Voluntary movement open mouth smile: 1|local::at0039|No movement / Gross asymmetry|
+        gt0009|Voluntary movement snarl: 1|local::at0045|No movement / Gross asymmetry|
+        gt0011|Synkinesis forehead wrinkle: "3|local::at0060|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0012|Synkinesis gentle eye closure: "3|local::at0066|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0013|Synkinesis open mouth smile: "3|local::at0071|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0014|Synkinesis snarl: "3|local::at0076|Severe: Disfiguring synkinesis/ Gross
+          mass movement of several muscles|"
+        gt0015|Synkinesis lip pucker: "3|local::at0081|Severe: Disfiguring synkinesis/
+          Gross mass movement of several muscles|"
+    expected_output:
+      "1":
+        gt0031|Resting symmetry score: "0"
+        gt0033|Synkinesis score: "15"
+  - id: 10. Synkinesis forehead wrinkle missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 1|local::at0027|No movement / Gross asymmetry|
+        gt0007|Voluntary movement gentle eye closure: 1|local::at0033|No movement / Gross asymmetry|
+        gt0008|Voluntary movement open mouth smile: 1|local::at0039|No movement / Gross asymmetry|
+        gt0009|Voluntary movement snarl: 1|local::at0045|No movement / Gross asymmetry|
+        gt0010|Voluntary movement lip pucker: 1|local::at0051|No movement / Gross asymmetry|
+        gt0012|Synkinesis gentle eye closure: "3|local::at0066|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0013|Synkinesis open mouth smile: "3|local::at0071|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0014|Synkinesis snarl: "3|local::at0076|Severe: Disfiguring synkinesis/ Gross
+          mass movement of several muscles|"
+        gt0015|Synkinesis lip pucker: "3|local::at0081|Severe: Disfiguring synkinesis/
+          Gross mass movement of several muscles|"
+    expected_output:
+      "1":
+        gt0031|Resting symmetry score: "0"
+        gt0032|Voluntary movement score: "20"
+  - id: 11. Synkinesis gentle eye closure missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 1|local::at0027|No movement / Gross asymmetry|
+        gt0007|Voluntary movement gentle eye closure: 1|local::at0033|No movement / Gross asymmetry|
+        gt0008|Voluntary movement open mouth smile: 1|local::at0039|No movement / Gross asymmetry|
+        gt0009|Voluntary movement snarl: 1|local::at0045|No movement / Gross asymmetry|
+        gt0010|Voluntary movement lip pucker: 1|local::at0051|No movement / Gross asymmetry|
+        gt0011|Synkinesis forehead wrinkle: "1|local::at0058|Mild: Slight synkinesis|"
+        gt0013|Synkinesis open mouth smile: "3|local::at0071|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0014|Synkinesis snarl: "3|local::at0076|Severe: Disfiguring synkinesis/ Gross
+          mass movement of several muscles|"
+        gt0015|Synkinesis lip pucker: "3|local::at0081|Severe: Disfiguring synkinesis/
+          Gross mass movement of several muscles|"
+    expected_output:
+      "1":
+        gt0031|Resting symmetry score: "0"
+        gt0032|Voluntary movement score: "20"
+  - id: 12. Synkinesis open mouth smile missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 1|local::at0027|No movement / Gross asymmetry|
+        gt0007|Voluntary movement gentle eye closure: 1|local::at0033|No movement / Gross asymmetry|
+        gt0008|Voluntary movement open mouth smile: 1|local::at0039|No movement / Gross asymmetry|
+        gt0009|Voluntary movement snarl: 1|local::at0045|No movement / Gross asymmetry|
+        gt0010|Voluntary movement lip pucker: 1|local::at0051|No movement / Gross asymmetry|
+        gt0011|Synkinesis forehead wrinkle: "1|local::at0058|Mild: Slight synkinesis|"
+        gt0012|Synkinesis gentle eye closure: "0|local::at0063|None: No synkinesis or mass movement|"
+        gt0014|Synkinesis snarl: "3|local::at0076|Severe: Disfiguring synkinesis/ Gross
+          mass movement of several muscles|"
+        gt0015|Synkinesis lip pucker: "3|local::at0081|Severe: Disfiguring synkinesis/
+          Gross mass movement of several muscles|"
+    expected_output:
+      "1":
+        gt0031|Resting symmetry score: "0"
+        gt0032|Voluntary movement score: "20"
+  - id: 13. Synkinesis snarl missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 1|local::at0027|No movement / Gross asymmetry|
+        gt0007|Voluntary movement gentle eye closure: 1|local::at0033|No movement / Gross asymmetry|
+        gt0008|Voluntary movement open mouth smile: 1|local::at0039|No movement / Gross asymmetry|
+        gt0009|Voluntary movement snarl: 1|local::at0045|No movement / Gross asymmetry|
+        gt0010|Voluntary movement lip pucker: 1|local::at0051|No movement / Gross asymmetry|
+        gt0011|Synkinesis forehead wrinkle: "1|local::at0058|Mild: Slight synkinesis|"
+        gt0012|Synkinesis gentle eye closure: "3|local::at0066|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0013|Synkinesis open mouth smile: "3|local::at0071|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0015|Synkinesis lip pucker: "3|local::at0081|Severe: Disfiguring synkinesis/
+          Gross mass movement of several muscles|"
+    expected_output:
+      "1":
+        gt0031|Resting symmetry score: "0"
+        gt0032|Voluntary movement score: "20"
+  - id: 14. Synkinesis lip pucker missing (negative test).
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 1|local::at0027|No movement / Gross asymmetry|
+        gt0007|Voluntary movement gentle eye closure: 1|local::at0033|No movement / Gross asymmetry|
+        gt0008|Voluntary movement open mouth smile: 1|local::at0039|No movement / Gross asymmetry|
+        gt0009|Voluntary movement snarl: 1|local::at0045|No movement / Gross asymmetry|
+        gt0010|Voluntary movement lip pucker: 1|local::at0051|No movement / Gross asymmetry|
+        gt0011|Synkinesis forehead wrinkle: "1|local::at0058|Mild: Slight synkinesis|"
+        gt0012|Synkinesis gentle eye closure: "3|local::at0066|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0013|Synkinesis open mouth smile: "3|local::at0071|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0014|Synkinesis snarl: "3|local::at0076|Severe: Disfiguring synkinesis/ Gross
+          mass movement of several muscles|"
+    expected_output:
+      "1":
+        gt0031|Resting symmetry score: "0"
+        gt0032|Voluntary movement score: "20"
+  - id: 15. Composite score -15.
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 1|local::at0010|Eyelid surgery|
+        gt0004|Resting symmetry cheek: 2|local::at0013|Absent|
+        gt0005|Resting symmetry mouth: 1|local::at0019|Corner pulled up/out|
+        gt0006|Voluntary movement forehead wrinkle: 1|local::at0027|No movement / Gross asymmetry|
+        gt0007|Voluntary movement gentle eye closure: 1|local::at0033|No movement / Gross asymmetry|
+        gt0008|Voluntary movement open mouth smile: 1|local::at0039|No movement / Gross asymmetry|
+        gt0009|Voluntary movement snarl: 1|local::at0045|No movement / Gross asymmetry|
+        gt0010|Voluntary movement lip pucker: 1|local::at0051|No movement / Gross asymmetry|
+        gt0011|Synkinesis forehead wrinkle: "3|local::at0060|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0012|Synkinesis gentle eye closure: "3|local::at0066|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0013|Synkinesis open mouth smile: "3|local::at0071|Severe: Disfiguring
+          synkinesis/ Gross mass movement of several muscles|"
+        gt0014|Synkinesis snarl: "3|local::at0076|Severe: Disfiguring synkinesis/ Gross
+          mass movement of several muscles|"
+        gt0015|Synkinesis lip pucker: "3|local::at0081|Severe: Disfiguring synkinesis/
+          Gross mass movement of several muscles|"
+    expected_output:
+      "1":
+        gt0031|Resting symmetry score: "20"
+        gt0032|Voluntary movement score: "20"
+        gt0033|Synkinesis score: "15"
+        gt0034|Composite score: "-15"
+  - id: 16. Composite score 100.
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 0|local::at0007|Normal|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 5|local::at0031|Movement complete / Normal symmetry|
+        gt0007|Voluntary movement gentle eye closure: 5|local::at0037|Movement complete / Normal symmetry|
+        gt0008|Voluntary movement open mouth smile: 5|local::at0043|Movement complete / Normal symmetry|
+        gt0009|Voluntary movement snarl: 5|local::at0049|Movement complete / Normal symmetry|
+        gt0010|Voluntary movement lip pucker: 5|local::at0055|Movement complete / Normal symmetry|
+        gt0011|Synkinesis forehead wrinkle: "0|local::at0057|None: No synkinesis or mass movement|"
+        gt0012|Synkinesis gentle eye closure: "0|local::at0063|None: No synkinesis or mass movement|"
+        gt0013|Synkinesis open mouth smile: "0|local::at0068|None: No synkinesis or mass movement|"
+        gt0014|Synkinesis snarl: "0|local::at0073|None: No synkinesis or mass movement|"
+        gt0015|Synkinesis lip pucker: "0|local::at0078|None: No synkinesis or mass movement|"
+    expected_output:
+      "1":
+        gt0031|Resting symmetry score: "0"
+        gt0032|Voluntary movement score: "100"
+        gt0033|Synkinesis score: "0"
+        gt0034|Composite score: "100"
+  - id: 18. Composite score 56.
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 1|local::at0009|Wide|
+        gt0004|Resting symmetry cheek: 1|local::at0015|More pronounced|
+        gt0005|Resting symmetry mouth: 0|local::at0017|Normal|
+        gt0006|Voluntary movement forehead wrinkle: 5|local::at0031|Movement complete / Normal symmetry|
+        gt0007|Voluntary movement gentle eye closure: 3|local::at0035|Initiates movement
+          with mild excursion / Moderate asymmetry|
+        gt0008|Voluntary movement open mouth smile: 4|local::at0042|Movement almost complete / Mild asymmetry|
+        gt0009|Voluntary movement snarl: 2|local::at0046|Initiates slight movement / Severe asymmetry|
+        gt0010|Voluntary movement lip pucker: 4|local::at0054|Movement almost complete / Mild asymmetry|
+        gt0011|Synkinesis forehead wrinkle: "0|local::at0057|None: No synkinesis or mass movement|"
+        gt0012|Synkinesis gentle eye closure: "1|local::at0064|Mild: Slight synkinesis|"
+        gt0013|Synkinesis open mouth smile: "2|local::at0070|Moderate: Obvious but not disfiguring synkinesis|"
+        gt0014|Synkinesis snarl: "3|local::at0076|Severe: Disfiguring synkinesis/ Gross
+          mass movement of several muscles|"
+        gt0015|Synkinesis lip pucker: "0|local::at0078|None: No synkinesis or mass movement|"
+    expected_output:
+      "1":
+        gt0031|Resting symmetry score: "10"
+        gt0032|Voluntary movement score: "72"
+        gt0033|Synkinesis score: "6"
+        gt0034|Composite score: "56"
+  - id: 19. Resting symmetry score 15.
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 1|local::at0008|Narrow|
+        gt0004|Resting symmetry cheek: 1|local::at0014|Less pronounced|
+        gt0005|Resting symmetry mouth: 1|local::at0018|Corner drooped|
+        gt0006|Voluntary movement forehead wrinkle: 5|local::at0031|Movement complete / Normal symmetry|
+        gt0007|Voluntary movement gentle eye closure: 3|local::at0035|Initiates movement
+          with mild excursion / Moderate asymmetry|
+        gt0008|Voluntary movement open mouth smile: 4|local::at0042|Movement almost complete / Mild asymmetry|
+        gt0009|Voluntary movement snarl: 2|local::at0046|Initiates slight movement / Severe asymmetry|
+        gt0010|Voluntary movement lip pucker: 4|local::at0054|Movement almost complete / Mild asymmetry|
+        gt0011|Synkinesis forehead wrinkle: "0|local::at0057|None: No synkinesis or mass movement|"
+        gt0012|Synkinesis gentle eye closure: "1|local::at0064|Mild: Slight synkinesis|"
+        gt0013|Synkinesis open mouth smile: "2|local::at0070|Moderate: Obvious but not disfiguring synkinesis|"
+        gt0014|Synkinesis snarl: "3|local::at0076|Severe: Disfiguring synkinesis/ Gross
+          mass movement of several muscles|"
+        gt0015|Synkinesis lip pucker: "0|local::at0078|None: No synkinesis or mass movement|"
+    expected_output:
+      "1":
+        gt0031|Resting symmetry score: "15"
+        gt0032|Voluntary movement score: "72"
+        gt0033|Synkinesis score: "6"
+        gt0034|Composite score: "51"
+  - id: 20. Voluntary movement score 60.
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 1|local::at0010|Eyelid surgery|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 1|local::at0019|Corner pulled up/out|
+        gt0006|Voluntary movement forehead wrinkle: 5|local::at0031|Movement complete / Normal symmetry|
+        gt0007|Voluntary movement gentle eye closure: 4|local::at0036|Movement almost complete / Mild asymmetry|
+        gt0008|Voluntary movement open mouth smile: 3|local::at0041|Initiates movement
+          with mild excursion / Moderate asymmetry|
+        gt0009|Voluntary movement snarl: 2|local::at0046|Initiates slight movement / Severe asymmetry|
+        gt0010|Voluntary movement lip pucker: 1|local::at0051|No movement / Gross asymmetry|
+        gt0011|Synkinesis forehead wrinkle: "0|local::at0057|None: No synkinesis or mass movement|"
+        gt0012|Synkinesis gentle eye closure: "1|local::at0064|Mild: Slight synkinesis|"
+        gt0013|Synkinesis open mouth smile: "2|local::at0070|Moderate: Obvious but not disfiguring synkinesis|"
+        gt0014|Synkinesis snarl: "3|local::at0076|Severe: Disfiguring synkinesis/ Gross
+          mass movement of several muscles|"
+        gt0015|Synkinesis lip pucker: "0|local::at0078|None: No synkinesis or mass movement|"
+    expected_output:
+      "1":
+        gt0031|Resting symmetry score: "10"
+        gt0032|Voluntary movement score: "60"
+        gt0033|Synkinesis score: "6"
+        gt0034|Composite score: "44"
+  - id: 21. Synkinesis score 05.
+    input:
+      "1":
+        gt0003|Resting symmetry eye: 1|local::at0010|Eyelid surgery|
+        gt0004|Resting symmetry cheek: 0|local::at0012|Normal|
+        gt0005|Resting symmetry mouth: 1|local::at0019|Corner pulled up/out|
+        gt0006|Voluntary movement forehead wrinkle: 5|local::at0031|Movement complete / Normal symmetry|
+        gt0007|Voluntary movement gentle eye closure: 4|local::at0036|Movement almost complete / Mild asymmetry|
+        gt0008|Voluntary movement open mouth smile: 3|local::at0041|Initiates movement
+          with mild excursion / Moderate asymmetry|
+        gt0009|Voluntary movement snarl: 2|local::at0046|Initiates slight movement / Severe asymmetry|
+        gt0010|Voluntary movement lip pucker: 1|local::at0051|No movement / Gross asymmetry|
+        gt0011|Synkinesis forehead wrinkle: "2|local::at0059|Moderate: Obvious but not disfiguring synkinesis|"
+        gt0012|Synkinesis gentle eye closure: "2|local::at0065|Moderate: Obvious but not disfiguring synkinesis|"
+        gt0013|Synkinesis open mouth smile: "0|local::at0068|None: No synkinesis or mass movement|"
+        gt0014|Synkinesis snarl: "1|local::at0074|Mild: Slight synkinesis|"
+        gt0015|Synkinesis lip pucker: "0|local::at0078|None: No synkinesis or mass movement|"
+    expected_output:
+      "1":
+        gt0031|Resting symmetry score: "10"
+        gt0032|Voluntary movement score: "60"
+        gt0033|Synkinesis score: "5"
+        gt0034|Composite score: "45"
