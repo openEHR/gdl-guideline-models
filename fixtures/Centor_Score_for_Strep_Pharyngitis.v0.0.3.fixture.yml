@@ -1,0 +1,164 @@
+guidelines:
+  "1": Centor_Score_for_Strep_Pharyngitis.v0.0.3
+test_cases:
+  - id: No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: Only Age as input (negative test)
+    input:
+      "1":
+        gt0003|Age: 38,a
+    expected_output:
+      "1": {}
+  - id: Cough is missing (negative test)
+    input:
+      "1":
+        gt0003|Age: 6,a
+        gt0039|Fever > 38 °C: 0|local::at0015|No|
+        gt0041|Tender cervical lymph nodes: 0|local::at0019|No|
+        gt0042|Tonsillar swelling or exudates: 0|local::at0021|No|
+    expected_output:
+      "1": {}
+  - id: Tonsillar swelling or exudates is missing (negative test)
+    input:
+      "1":
+        gt0003|Age: 6,a
+        gt0039|Fever > 38 °C: 1|local::at0016|Yes|
+        gt0040|Cough: 0|local::at0017|No|
+        gt0041|Tender cervical lymph nodes: 0|local::at0019|No|
+    expected_output:
+      "1": {}
+  - id: Negative input
+    input:
+      "1":
+        gt0003|Age: 6,a
+        gt0039|Fever > 38 °C: 0|local::at0015|No|
+        gt0040|Cough: 0|local::at0017|No|
+        gt0041|Tender cervical lymph nodes: 0|local::at0019|No|
+        gt0042|Tonsillar swelling or exudates: 0|local::at0021|No|
+    expected_output:
+      "1":
+        gt0035|Total score: "0"
+        gt0011|Results: local::at0009|1-2.5%|
+  - id: Rule 1 - Fever is positive
+    input:
+      "1":
+        gt0003|Age: 6,a
+        gt0039|Fever > 38 °C: 1|local::at0016|Yes|
+        gt0040|Cough: 0|local::at0017|No|
+        gt0041|Tender cervical lymph nodes: 0|local::at0019|No|
+        gt0042|Tonsillar swelling or exudates: 0|local::at0021|No|
+    expected_output:
+      "1":
+        gt0035|Total score: "1"
+        gt0011|Results: local::at0010|5-10%|
+  - id: Rule 2 - Cough is positive
+    input:
+      "1":
+        gt0003|Age: 6,a
+        gt0039|Fever > 38 °C: 0|local::at0015|No|
+        gt0040|Cough: 1|local::at0018|Yes|
+        gt0041|Tender cervical lymph nodes: 0|local::at0019|No|
+        gt0042|Tonsillar swelling or exudates: 0|local::at0021|No|
+    expected_output:
+      "1":
+        gt0035|Total score: "1"
+        gt0011|Results: local::at0010|5-10%|
+  - id: Rule 3- lymph nodes is positive
+    input:
+      "1":
+        gt0003|Age: 6,a
+        gt0039|Fever > 38 °C: 0|local::at0015|No|
+        gt0040|Cough: 0|local::at0017|No|
+        gt0041|Tender cervical lymph nodes: 1|local::at0020|Yes|
+        gt0042|Tonsillar swelling or exudates: 0|local::at0021|No|
+    expected_output:
+      "1":
+        gt0035|Total score: "1"
+        gt0011|Results: local::at0010|5-10%|
+  - id: Rule 4- Tonsillar criterion is positive
+    input:
+      "1":
+        gt0003|Age: 6,a
+        gt0039|Fever > 38 °C: 0|local::at0015|No|
+        gt0040|Cough: 0|local::at0017|No|
+        gt0041|Tender cervical lymph nodes: 0|local::at0019|No|
+        gt0042|Tonsillar swelling or exudates: 1|local::at0022|Yes|
+    expected_output:
+      "1":
+        gt0035|Total score: "1"
+        gt0011|Results: local::at0010|5-10%|
+  - id: Tonsillar criterion & lymph nodes are positive
+    input:
+      "1":
+        gt0003|Age: 6,a
+        gt0039|Fever > 38 °C: 0|local::at0015|No|
+        gt0040|Cough: 0|local::at0017|No|
+        gt0041|Tender cervical lymph nodes: 1|local::at0020|Yes|
+        gt0042|Tonsillar swelling or exudates: 1|local::at0022|Yes|
+    expected_output:
+      "1":
+        gt0035|Total score: "2"
+        gt0011|Results: local::at0011|11-17%|
+  - id: Tonsillar criterion & fever are positive
+    input:
+      "1":
+        gt0003|Age: 6,a
+        gt0039|Fever > 38 °C: 1|local::at0016|Yes|
+        gt0040|Cough: 0|local::at0017|No|
+        gt0041|Tender cervical lymph nodes: 0|local::at0019|No|
+        gt0042|Tonsillar swelling or exudates: 1|local::at0022|Yes|
+    expected_output:
+      "1":
+        gt0035|Total score: "2"
+        gt0011|Results: local::at0011|11-17%|
+  - id: Tonsillar criterion & fever & Cough are positive
+    input:
+      "1":
+        gt0003|Age: 6,a
+        gt0039|Fever > 38 °C: 1|local::at0016|Yes|
+        gt0040|Cough: 1|local::at0018|Yes|
+        gt0041|Tender cervical lymph nodes: 0|local::at0019|No|
+        gt0042|Tonsillar swelling or exudates: 1|local::at0022|Yes|
+    expected_output:
+      "1":
+        gt0035|Total score: "3"
+        gt0011|Results: local::at0012|28-35%|
+  - id: All inputs are positive
+    input:
+      "1":
+        gt0003|Age: 6,a
+        gt0039|Fever > 38 °C: 1|local::at0016|Yes|
+        gt0040|Cough: 1|local::at0018|Yes|
+        gt0041|Tender cervical lymph nodes: 1|local::at0020|Yes|
+        gt0042|Tonsillar swelling or exudates: 1|local::at0022|Yes|
+    expected_output:
+      "1":
+        gt0035|Total score: "4"
+        gt0011|Results: local::at0013|51-53%|
+  - id: Cough & Tonsillar swelling or exudates are positive
+    input:
+      "1":
+        gt0003|Age: 25,a
+        gt0039|Fever > 38 °C: 0|local::at0015|No|
+        gt0040|Cough: 1|local::at0018|Yes|
+        gt0041|Tender cervical lymph nodes: 0|local::at0019|No|
+        gt0042|Tonsillar swelling or exudates: 1|local::at0022|Yes|
+    expected_output:
+      "1":
+        gt0035|Total score: "2"
+        gt0011|Results: local::at0011|11-17%|
+  - id: Fever & lymph nodes are positive
+    input:
+      "1":
+        gt0003|Age: 29,a
+        gt0039|Fever > 38 °C: 1|local::at0016|Yes|
+        gt0040|Cough: 0|local::at0017|No|
+        gt0041|Tender cervical lymph nodes: 1|local::at0020|Yes|
+        gt0042|Tonsillar swelling or exudates: 0|local::at0021|No|
+    expected_output:
+      "1":
+        gt0035|Total score: "2"
+        gt0011|Results: local::at0011|11-17%|
