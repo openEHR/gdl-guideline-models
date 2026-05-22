@@ -1,0 +1,103 @@
+archetype (adl_version=1.4; uid=c7855eba-7b3b-4396-bfa3-9464112721e0)
+	openEHR-EHR-OBSERVATION.centor_score_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-02-09">
+		["name"] = <"Mahmoud Elachi">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"mel.achi@gmail.com">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the clinical recommendation based on the Centor total score">
+			keywords = <"criteria, tonsillitis, strep throat, sore throat, centor score, pharyngitis", ...>
+			copyright = <"Use © Cambio CDS">
+			use = <"Use to record the recommendation based on the calculated Centor score, in patients aged over 3 years with suspected pharyngotonsillitis">
+			misuse = <"Not to be used as a standalone diagnostic tool. Not applicable for patients aged 3 years or younger">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Internetmedicin AB. Centorkriterierna [Internet]. Stockholm: Internetmedicin AB; [cited 2026 May 22].  Available from: https://verktyg.internetmedicin.se/kalkylatorer/centorkriterierna">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"860c8f6bbf76c7ba0bc234cf66b6ccdd">
+		["build_uid"] = <"d836f5f9-7bbb-3610-af2f-983524e31084">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- centor_score_assessment
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Results
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0009,    -- 0-2
+													at0010]    -- 3-4
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"centor_score_assessment">
+					description = <"Assessment of the Centor score to provide a clinical recommendation for suspected pharyngotonsillitis">
+					comment = <"Original version, c 1981">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0008"] = <
+					text = <"Results">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"0-2">
+					description = <"Symptomatic treatment; no rapid GAS test indicated">
+				>
+				["at0010"] = <
+					text = <"3-4">
+					description = <"Rapid GAS test recommended; antibiotic treatment if positive">
+				>
+			>
+		>
+	>
