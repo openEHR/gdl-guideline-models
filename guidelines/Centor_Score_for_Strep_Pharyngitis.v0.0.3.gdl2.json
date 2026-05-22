@@ -1,0 +1,214 @@
+{
+  "uuid" : "91e889b7-388d-4339-bb03-3734dc35555f",
+  "id" : "Centor_Score_for_Strep_Pharyngitis.v0.0.3",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Mahmoud Elachi",
+      "email" : "mel.achi@gmail.com",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-05-20"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate the total Centor score based on clinical findings in patients with suspected streptococcal pharyngitis.",
+        "keywords" : [
+          "strep throat",
+          "sore throat",
+          "McIsaac score",
+          "Centor score",
+          "pharyngitis",
+          "tonsillitis",
+          "GAS"
+        ],
+        "use" : "Use to evaluate patients presenting with symptoms of acute sore throat or pharyngotonsillitis. The score is calculated by assigning one point for each of the following clinical criteria:\n* Fever ≥38°C = 1 point\n* Tonsillar exudates or tonsillar swelling = 1 point\n* Tender anterior cervical lymphadenopathy = 1 point\n* Absence of cough = 1 point\n\nTotal score interpretation:\n* 0–1 points: Low probability of GAS pharyngitis; neither rapid testing nor antibiotic treatment is usually indicated.\n* 2–3 points: Intermediate probability; consider rapid antigen detection testing.\n* 4 points: High probability of GAS pharyngitis; microbiological testing and/or antibiotic treatment may be considered depending on clinical assessment and local guidelines.\n\nThe score is intended for use in primary care, urgent care, and emergency department settings.",
+        "misuse" : "Not to be used as the sole basis for diagnosis or antibiotic treatment without clinical judgment.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Centor RM, Witherspoon JM, Dalton HP, Brody CE, Link K. The diagnosis of strep throat in adults in the emergency room. Med Decis Making. 1981;1(3):239-46. doi: 10.1177/0272989X8100100304. PMID: 6763125.\n\nMcIsaac WJ, White D, Tannenbaum D, Low DE. A clinical score to reduce unnecessary antibiotic use in patients with sore throat. CMAJ. 1998 Jan 13;158(1):75-83. PMID: 9475915; PMCID: PMC1228750.\n\nSwedish Medical Products Agency (Läkemedelsverket). Läkemedel vid faryngotonsillit – behandlingsrekommendation [Internet]. Uppsala (Sweden): Läkemedelsverket; 2024 Aug 27 [updated 2025 Jun 19; cited 2026 May 15]. Available from: https://www.lakemedelsverket.se/globalassets/dokument/behandling-och-forskrivning/behandlingsrekommendationer/behandlingsrekommendation/behandlingsrekommendation-faryngotonsillit-3.pdf",
+      "en" : "A clinical decision support guideline for assessing the likelihood of group A β-hemolytic streptococcal (GAS) pharyngitis in patients presenting with acute sore throat, based on the Modified Centor Score (McIsaac score)."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0010" : {
+        "id" : "gt0010",
+        "model_id" : "openEHR-EHR-OBSERVATION.centor_score_strep_pharyngitis.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.centor_score_strep_pharyngitis.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0035" : {
+            "id" : "gt0035",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0014]",
+            "data_type" : "DV_COUNT"
+          }
+        }
+      },
+      "gt0038" : {
+        "id" : "gt0038",
+        "model_id" : "openEHR-EHR-OBSERVATION.centor_score_strep_pharyngitis.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.centor_score_strep_pharyngitis.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0039" : {
+            "id" : "gt0039",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0015",
+              "1|local::at0016"
+            ]
+          },
+          "gt0040" : {
+            "id" : "gt0040",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0017",
+              "1|local::at0018"
+            ]
+          },
+          "gt0041" : {
+            "id" : "gt0041",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0019",
+              "1|local::at0020"
+            ]
+          },
+          "gt0042" : {
+            "id" : "gt0042",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0021",
+              "1|local::at0022"
+            ]
+          }
+        }
+      },
+      "gt0056" : {
+        "id" : "gt0056",
+        "model_id" : "openEHR-EHR-OBSERVATION.centor_score_assessment.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.centor_score_assessment.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0057" : {
+            "id" : "gt0057",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0058" : {
+        "id" : "gt0058",
+        "priority" : 3,
+        "when" : [
+          "$gt0039|Fever > 38 °C|!=null",
+          "$gt0040|Cough|!=null",
+          "$gt0041|Tender cervical lymph nodes|!=null",
+          "$gt0042|Tonsillar swelling or exudates|!=null"
+        ],
+        "then" : [
+          "$gt0035|Total score|=$gt0039|Fever > 38 °C|.value+$gt0040|Cough|.value+$gt0041|Tender cervical lymph nodes|.value+$gt0042|Tonsillar swelling or exudates|.value"
+        ]
+      },
+      "gt0059" : {
+        "id" : "gt0059",
+        "priority" : 2,
+        "when" : [
+          "$gt0035|Total score|<=2"
+        ],
+        "then" : [
+          "$gt0057|Results|=local::at0009|0-2|"
+        ]
+      },
+      "gt0060" : {
+        "id" : "gt0060",
+        "priority" : 1,
+        "when" : [
+          "$gt0035|Total score|<=4&&$gt0035|Total score|>=3"
+        ],
+        "then" : [
+          "$gt0057|Results|=local::at0010|3-4|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Centor Score for Strep Pharyngitis",
+            "description" : "A clinical prediction score used to assess the probability of group A β-hemolytic streptococcal (GAS) pharyngitis in patients presenting with acute sore throat or pharyngotonsillitis. The Centor criteria evaluate four clinical findings: history of fever, tonsillar exudates or swelling, tender anterior cervical lymphadenopathy, and absence of cough."
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "openEHR-EHR-OBSERVATION.centor_score_strep_pharyngitis.v0"
+          },
+          "gt0035" : {
+            "id" : "gt0035",
+            "text" : "Total score"
+          },
+          "gt0038" : {
+            "id" : "gt0038",
+            "text" : "openEHR-EHR-OBSERVATION.centor_score_strep_pharyngitis.v0"
+          },
+          "gt0039" : {
+            "id" : "gt0039",
+            "text" : "Fever > 38 °C"
+          },
+          "gt0040" : {
+            "id" : "gt0040",
+            "text" : "Cough"
+          },
+          "gt0041" : {
+            "id" : "gt0041",
+            "text" : "Tender cervical lymph nodes"
+          },
+          "gt0042" : {
+            "id" : "gt0042",
+            "text" : "Tonsillar swelling or exudates"
+          },
+          "gt0056" : {
+            "id" : "gt0056",
+            "text" : "openEHR-EHR-OBSERVATION.centor_score_assessment.v0"
+          },
+          "gt0057" : {
+            "id" : "gt0057",
+            "text" : "Results"
+          },
+          "gt0058" : {
+            "id" : "gt0058",
+            "text" : "Calculating total score",
+            "description" : ""
+          },
+          "gt0059" : {
+            "id" : "gt0059",
+            "text" : "Recommendation score 0-2",
+            "description" : ""
+          },
+          "gt0060" : {
+            "id" : "gt0060",
+            "text" : "Recommendation score 3-4",
+            "description" : ""
+          }
+        }
+      }
+    }
+  }
+}
