@@ -22,10 +22,8 @@ description
 ">
 			keywords = <"criteria, tonsillitis, strep throat, sore throat, centor score, pharyngitis", ...>
 			copyright = <"Use © Cambio CDS">
-			use = <"Use to document the presence or absence of the Centor criteria and the calculated total score. The score may support clinical decisions about symptomatic treatment and whether rapid testing for group A streptococcus is indicated.
-">
-			misuse = <"Not to be used to diagnose streptococcal infection on its own or to replace clinical assessment. Should not be used outside the intended patient group, such as children under 3 years, or in cases where special clinical factors require individual medical judgment.
-">
+			use = <"Use to document the presence or absence of the Centor criteria and the calculated total score.">
+			misuse = <"Not to be used to diagnose streptococcal infection on its own or to replace clinical assessment. Should not be used outside the intended patient group, such as children under 3 years, or in cases where special clinical factors require individual medical judgment.">
 		>
 	>
 	other_details = <
@@ -33,13 +31,11 @@ description
 		["custodian_organisation"] = <"openEHR Foundation">
 		["references"] = <"Centor RM, Witherspoon JM, Dalton HP, Brody CE, Link K. The diagnosis of strep throat in adults in the emergency room. Med Decis Making. 1981;1(3):239-46. doi: 10.1177/0272989X8100100304. PMID: 6763125.
 
-McIsaac WJ, White D, Tannenbaum D, Low DE. A clinical score to reduce unnecessary antibiotic use in patients with sore throat. CMAJ. 1998 Jan 13;158(1):75-83. PMID: 9475915; PMCID: PMC1228750.
-
 McIsaac WJ, White D, Tannenbaum D, Low DE. A clinical score to reduce unnecessary antibiotic use in patients with sore throat. CMAJ. 1998 Jan 13;158(1):75-83. PMID: 9475915; PMCID: PMC1228750.">
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"3bb97873eb7acfd20ed4a4f0f401b829">
+		["MD5-CAM-1.0.1"] = <"0e25d6ca77780331d66a810f4539b461">
 		["build_uid"] = <"d836f5f9-7bbb-3610-af2f-983524e31084">
 	>
 
@@ -52,7 +48,7 @@ definition
 						data matches {
 							ITEM_TREE[at0003] matches {    -- Tree
 								items cardinality matches {0..*; unordered} matches {
-									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Fever > 38 °C
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Fever >= 38 °C
 										value matches {
 											0|[local::at0015],
 											1|[local::at0016]
@@ -138,7 +134,7 @@ ontology
 					description = <"">
 				>
 				["at0007"] = <
-					text = <"Fever > 38 °C">
+					text = <"Fever >= 38 °C">
 					description = <"">
 				>
 				["at0008"] = <
