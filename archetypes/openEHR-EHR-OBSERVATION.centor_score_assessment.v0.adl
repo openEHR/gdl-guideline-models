@@ -32,7 +32,7 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"860c8f6bbf76c7ba0bc234cf66b6ccdd">
+		["MD5-CAM-1.0.1"] = <"52346a97db728121f5c4449238f9a1ce">
 		["build_uid"] = <"d836f5f9-7bbb-3610-af2f-983524e31084">
 	>
 
@@ -60,6 +60,13 @@ definition
 							}
 						}
 					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0011] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					CLUSTER[at0012] occurrences matches {0..1} matches {*}    -- Extension
 				}
 			}
 		}
@@ -97,6 +104,15 @@ ontology
 				["at0010"] = <
 					text = <"3-4">
 					description = <"Rapid GAS test recommended; antibiotic treatment if positive">
+				>
+				["at0011"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0012"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
 				>
 			>
 		>
