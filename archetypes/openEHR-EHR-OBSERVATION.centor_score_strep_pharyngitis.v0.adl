@@ -35,7 +35,7 @@ McIsaac WJ, White D, Tannenbaum D, Low DE. A clinical score to reduce unnecessar
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"ed9242c9ff0e57bffce26f90ee69b9f2">
+		["MD5-CAM-1.0.1"] = <"cb10442fdf7904e339a36d129e36df3b">
 		["build_uid"] = <"d836f5f9-7bbb-3610-af2f-983524e31084">
 	>
 
@@ -95,6 +95,13 @@ definition
 							}
 						}
 					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0023] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					CLUSTER[at0024] occurrences matches {0..1} matches {*}    -- Extension
 				}
 			}
 		}
@@ -196,6 +203,15 @@ ontology
 				["at0022"] = <
 					text = <"Present">
 					description = <"">
+				>
+				["at0023"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0024"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
 				>
 			>
 		>
