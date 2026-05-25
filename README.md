@@ -17,16 +17,16 @@ If you would like to test an app, simply click on "ENG" to access the English ve
 
 ### Latest added
 
-1. GLOBE score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/GLOBE_Score_Final/0.0.1?language=en))
-2. GUSS Test - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/THE_GUSS_TEST/0.1?language=en)) 
-3. METS IR - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/METS_IR/2?language=en)) 
-4. NICE NG143 Traffic Light - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/NICE_NG143_Traffic_Light_Assessment/0?language=en))
-5. SCORE2 - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/SCORE2/0.1?language=en))
-6. International Consensus Classification (ICC) Diagnostic Criteria for Primary Myelofibrosis (PMF) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ICC_Primary_Myelofibrosis_Diagnostic_Criteria/0.1.0?language=en))
-7. Rome IV Diagnostic Criteria for Rumination Syndrome - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rome_IV_Diagnostic_Criteria_for_Rumination_Syndrome/0.1.0?language=en))
-8. LV Mass Index Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Left_ventricle_Mass_Index_LVMI/0.1.0?language=en))
-9. Mutation-Enhanced International Prognostic Score System (MIPSS70/MIPSS70+) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MIPSS70/0.1.0?language=en))
-10. Wisconsin Criteria - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Wisconsin_criteria/0.1.0?language=en))
+1. GLOBE score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/GLOBE_Score_Final/0.0.1?language=en))
+2. GUSS Test - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/THE_GUSS_TEST/0.1?language=en)) 
+3. METS IR - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/METS_IR/2?language=en)) 
+4. NICE NG143 Traffic Light - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/NICE_NG143_Traffic_Light_Assessment/0?language=en))
+5. SCORE2 - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/SCORE2/0.1?language=en))
+6. International Consensus Classification (ICC) Diagnostic Criteria for Primary Myelofibrosis (PMF) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/ICC_Primary_Myelofibrosis_Diagnostic_Criteria/0.1.0?language=en))
+7. Rome IV Diagnostic Criteria for Rumination Syndrome - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Rome_IV_Diagnostic_Criteria_for_Rumination_Syndrome/0.1.0?language=en))
+8. LV Mass Index Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Left_ventricle_Mass_Index_LVMI/0.1.0?language=en))
+9. Mutation-Enhanced International Prognostic Score System (MIPSS70/MIPSS70+) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/MIPSS70/0.1.0?language=en))
+10. Wisconsin Criteria - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Wisconsin_criteria/0.1.0?language=en))
 
 ----------
 
