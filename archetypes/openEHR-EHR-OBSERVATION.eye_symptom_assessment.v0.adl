@@ -1,0 +1,353 @@
+archetype (adl_version=1.4; uid=3377f32d-44f5-4212-8f60-236f56f9eff6)
+	openEHR-EHR-OBSERVATION.eye_symptom_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-05-25">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"Kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component symptom parameter for the eye symptom assessment.">
+			keywords = <"eye","ophthalmology","vision","conjunctivitis","iritis","glaucoma","keratitis","retinal","detachment">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the presence or absence of specific eye symptoms to match against a diagnostic matrix.">
+			misuse = <"Not to be used for the diagnosis of an eye condition, use the proper archetype instead.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Ögonbesvär, lathund. Praktisk Medicin [Internet]. 2025 [cited 2026 May 23]. Available from: https://www.praktiskmedicin.se/sjukdomar/ogonbesvar-lathund/
+
+Ögonsjukdomar kalkylator. Internetmedicin [Internet]. 2025 [cited 2026 May 23]. Available from: https://verktyg.internetmedicin.se/kalkylatorer/ogonsjukdomar">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"4894a523-1b1b-37b7-9bd5-2b24d3465a38">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Eye symptom assessment
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Red eye
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0011,    -- Absent
+													at0012]    -- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- Foreign body sensation
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0014,    -- Absent
+													at0015]    -- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Photophobia
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0017,    -- Absent
+													at0018]    -- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {    -- Burning or itching
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0020,    -- Absent
+													at0021]    -- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0022] occurrences matches {0..1} matches {    -- Pus
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0023,    -- Absent
+													at0024]    -- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0025] occurrences matches {0..1} matches {    -- Eye pain
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0026,    -- Absent
+													at0027]    -- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0028] occurrences matches {0..1} matches {    -- Floaters in visual field
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0029,    -- Absent
+													at0030]    -- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0034] occurrences matches {0..1} matches {    -- Flashes of light
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0035,    -- Absent
+													at0036]    -- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0031] occurrences matches {0..1} matches {    -- Dark shadow in visual field
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0032,    -- Absent
+													at0033]    -- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0037] occurrences matches {0..1} matches {    -- Metamorphopsia
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0038,    -- Absent
+													at0039]    -- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0040] occurrences matches {0..1} matches {    -- Halos around lights
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0041,    -- Absent
+													at0042]    -- Present
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Eye symptom assessment">
+					description = <"An assessment tool used to record the presence of specific eye symptoms to aid in the differential diagnosis of common eye diseases.">
+					comment = <"Original version, c 2025.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0010"] = <
+					text = <"Red eye">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Foreign body sensation">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Photophobia">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Burning or itching">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Pus">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Eye pain">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Floaters in visual field">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Dark shadow in visual field">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Flashes of light">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"Metamorphopsia">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"Halos around lights">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"Present">
+					description = <"">
+				>
+			>
+		>
+	>
