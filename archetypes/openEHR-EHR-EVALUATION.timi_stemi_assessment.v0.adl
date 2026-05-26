@@ -1,0 +1,224 @@
+archetype (adl_version=1.4; uid=b8bf4379-a8a1-4cc6-a5e9-53d6e13e6491)
+	openEHR-EHR-EVALUATION.timi_stemi_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"Dennis Forslund">
+				["organisation"] = <"Cambio Healthcare Systems">
+			>
+		>
+	>
+
+description
+	original_author = <
+		["date"] = <"2017-03-04">
+		["name"] = <"Syeeda S Farruque">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"models@cambiocds.com">
+	>
+	lifecycle_state = <"in_development">
+	other_contributors = <"Katja Mariko Wilde", ...>
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"*To record the interpreted 30-day mortality risk associated with the TIMI risk score for STEMI. (en)">
+			keywords = <"*TIMI (en)","*STEMI (en)","*myocardial infarction (en)","*st-elevation (en)","*mortality (en)","*30-day mortality (en)","*risk (en)","*assessment (en)">
+			copyright = <"*© Cambio CDS (en)">
+			use = <"*Use to record the interpreted 30-day mortality risk associated with the TIMI risk score for STEMI. (en)">
+			misuse = <"*Not to be used for calculating the TIMI risk score for STEMI. Use instead openEHR-EHR-OBSERVATION.timi_stemi.v0. (en)">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the interpreted 30-day mortality risk associated with the TIMI risk score for STEMI.">
+			keywords = <"TIMI","STEMI","myocardial infarction","st-elevation","mortality","30-day mortality","risk","assessment">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the interpreted 30-day mortality risk associated with the TIMI risk score for STEMI.">
+			misuse = <"Not to be used for calculating the TIMI risk score for STEMI. Use instead openEHR-EHR-OBSERVATION.timi_stemi.v0.">
+		>
+	>
+	other_details = <
+		["references"] = <"Morrow DA, Antman EM, Charlesworth A, Cairns R, Murphy SA, de Lemos JA, Giugliano RP, McCabe CH, Braunwald E. TIMI risk score for ST-elevation myocardial infarction: A convenient, bedside, clinical score for risk assessment at presentation: An intravenous nPA for treatment of infarcting myocardium early II trial substudy. Circulation. 2000 Oct 24;102(17):2031-7. doi: 10.1161/01.cir.102.17.2031. PMID: 11044416.">
+		["MD5-CAM-1.0.1"] = <"4a2318d854032493bf89b2d011c84512">
+		["build_uid"] = <"14a74a11-dd18-33fa-ac5e-55d9966909ce">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- TIMI risk score for STEMI assessment
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- 30-day mortality risk
+						value matches {
+							0|[local::at0003],
+							1|[local::at0004],
+							2|[local::at0005],
+							3|[local::at0006],
+							4|[local::at0007],
+							5|[local::at0008],
+							6|[local::at0009],
+							7|[local::at0010],
+							8|[local::at0011],
+							9|[local::at0012]
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0013] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0014] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"TIMI risk score for STEMI assessment">
+					description = <"An assessment used to record the estimated 30-day mortality risk associated with the TIMI risk score for ST-elevation myocardial infarction.">
+					comment = <"Original version, c 2000">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"30-day mortality risk">
+					description = <"Estimated risk of death within 30 days associated with the TIMI risk score for STEMI.">
+				>
+				["at0003"] = <
+					text = <"0.8 % Risk of death at 30 days">
+					description = <"Score 0">
+				>
+				["at0004"] = <
+					text = <"1.6 % Risk of death at 30 days">
+					description = <"Score 1">
+				>
+				["at0005"] = <
+					text = <"2.2 % Risk of death at 30 days">
+					description = <"Score 2">
+				>
+				["at0006"] = <
+					text = <"4.4 % Risk of death at 30 days">
+					description = <"Score 3">
+				>
+				["at0007"] = <
+					text = <"7.3 % Risk of death at 30 days">
+					description = <"Score 4">
+				>
+				["at0008"] = <
+					text = <"12.4 % Risk of death at 30 days">
+					description = <"Score 5">
+				>
+				["at0009"] = <
+					text = <"16.1 % Risk of death at 30 days">
+					description = <"Score 6">
+				>
+				["at0010"] = <
+					text = <"23.4 % Risk of death at 30 days">
+					description = <"Score 7">
+				>
+				["at0011"] = <
+					text = <"26.8 % Risk of death at 30 days">
+					description = <"Score 8">
+				>
+				["at0012"] = <
+					text = <"35.9 % Risk of death at 30 days">
+					description = <"Score ≥ 9">
+				>
+				["at0013"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0014"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"*TIMI risk score for STEMI assessment (en)">
+					description = <"*An assessment used to record the estimated 30-day mortality risk associated with the TIMI risk score for ST-elevation myocardial infarction. (en)">
+					comment = <"*Original version, c 2000 (en)">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"*30-day mortality risk (en)">
+					description = <"*Estimated risk of death within 30 days associated with the TIMI risk score for STEMI. (en)">
+				>
+				["at0003"] = <
+					text = <"0.8 %">
+					description = <"0p">
+				>
+				["at0004"] = <
+					text = <"1.6 %">
+					description = <"1p">
+				>
+				["at0005"] = <
+					text = <"2.2 %">
+					description = <"2p">
+				>
+				["at0006"] = <
+					text = <"4.4 %">
+					description = <"3p">
+				>
+				["at0007"] = <
+					text = <"7.3 %">
+					description = <"4p">
+				>
+				["at0008"] = <
+					text = <"12.4 %">
+					description = <"5p">
+				>
+				["at0009"] = <
+					text = <"16.1 %">
+					description = <"6p">
+				>
+				["at0010"] = <
+					text = <"23.4 %">
+					description = <"7p">
+				>
+				["at0011"] = <
+					text = <"26.8 %">
+					description = <"8p">
+				>
+				["at0012"] = <
+					text = <"35.9 %">
+					description = <"≥ 9p">
+				>
+				["at0013"] = <
+					text = <"*Item tree (en)">
+					description = <"@ internal @">
+				>
+				["at0014"] = <
+					text = <"*Extension (en)">
+					description = <"*Additional information required to extend the model with local content or to align with other reference models or formalisms. (en)">
+					comment = <"*For example: local information requirements; or additional metadata to align with FHIR. (en)">
+				>
+			>
+		>
+	>
