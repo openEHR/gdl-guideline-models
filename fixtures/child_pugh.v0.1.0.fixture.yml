@@ -1,0 +1,100 @@
+guidelines:
+  "1": child_pugh.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Ascites input missing (negative test)
+    input:
+      "1":
+        gt0016|Hepatic encephalopathy: 1|local::at0021|None|
+        gt0034|INR: 1|local::at0013|Less than 1.7|
+        gt0038|Bilirubin without PBC: 1|local::at0005|Less than 34|
+        gt0040|Serum albumin: 1|local::at0009|Greater than 35|
+    expected_output:
+      "1": {}
+  - id: 3. Hepatic encephalopathy input missing (negative test)
+    input:
+      "1":
+        gt0015|Ascites: 1|local::at0017|None|
+        gt0034|INR: 1|local::at0013|Less than 1.7|
+        gt0038|Bilirubin without PBC: 1|local::at0005|Less than 34|
+        gt0040|Serum albumin: 1|local::at0009|Greater than 35|
+    expected_output:
+      "1": {}
+  - id: 4. INR input missing (negative test)
+    input:
+      "1":
+        gt0015|Ascites: 1|local::at0017|None|
+        gt0016|Hepatic encephalopathy: 1|local::at0021|None|
+        gt0038|Bilirubin without PBC: 1|local::at0005|Less than 34|
+        gt0040|Serum albumin: 1|local::at0009|Greater than 35|
+    expected_output:
+      "1": {}
+  - id: 5. Bilirubin input missing (negative test)
+    input:
+      "1":
+        gt0015|Ascites: 1|local::at0017|None|
+        gt0016|Hepatic encephalopathy: 1|local::at0021|None|
+        gt0034|INR: 1|local::at0013|Less than 1.7|
+        gt0040|Serum albumin: 1|local::at0009|Greater than 35|
+    expected_output:
+      "1": {}
+  - id: 6. Serum albumin input missing (negative test)
+    input:
+      "1":
+        gt0015|Ascites: 1|local::at0017|None|
+        gt0016|Hepatic encephalopathy: 1|local::at0021|None|
+        gt0034|INR: 1|local::at0013|Less than 1.7|
+        gt0038|Bilirubin without PBC: 1|local::at0005|Less than 34|
+    expected_output:
+      "1": {}
+  - id: 7. All inputs (Bilirubin without PBC) - Class A
+    input:
+      "1":
+        gt0015|Ascites: 1|local::at0017|None|
+        gt0016|Hepatic encephalopathy: 1|local::at0021|None|
+        gt0034|INR: 1|local::at0013|Less than 1.7|
+        gt0038|Bilirubin without PBC: 1|local::at0005|Less than 34|
+        gt0040|Serum albumin: 1|local::at0009|Greater than 35|
+    expected_output:
+      "1":
+        gt0018|Total score: "5"
+        gt0019|Grade: local::at0030|Class A 5 to 6 points|
+  - id: 8. All inputs (Bilirubin in PBC) - Class B
+    input:
+      "1":
+        gt0015|Ascites: 1|local::at0017|None|
+        gt0016|Hepatic encephalopathy: 1|local::at0021|None|
+        gt0034|INR: 1|local::at0013|Less than 1.7|
+        gt0039|Bilirubin in PBC: 3|local::at0027|Greater than 170|
+        gt0040|Serum albumin: 1|local::at0009|Greater than 35|
+    expected_output:
+      "1":
+        gt0018|Total score: "7"
+        gt0019|Grade: local::at0031|Class B 7 to 9 points|
+  - id: 9. All inputs (Bilirubin in PBC) - Class C
+    input:
+      "1":
+        gt0015|Ascites: 2|local::at0018|Mild|
+        gt0016|Hepatic encephalopathy: 3|local::at0023|Grade III to IV or refractory|
+        gt0034|INR: 1|local::at0013|Less than 1.7|
+        gt0039|Bilirubin in PBC: 3|local::at0027|Greater than 170|
+        gt0040|Serum albumin: 1|local::at0009|Greater than 35|
+    expected_output:
+      "1":
+        gt0018|Total score: "10"
+        gt0019|Grade: local::at0032|Class C 10 to 15 points|
+  - id: 10. All inputs (Bilirubin in PBC and Bilirubin in PBC) (negative test)
+    input:
+      "1":
+        gt0015|Ascites: 2|local::at0018|Mild|
+        gt0016|Hepatic encephalopathy: 3|local::at0023|Grade III to IV or refractory|
+        gt0034|INR: 1|local::at0013|Less than 1.7|
+        gt0038|Bilirubin without PBC: 1|local::at0005|Less than 34|
+        gt0039|Bilirubin in PBC: 3|local::at0027|Greater than 170|
+        gt0040|Serum albumin: 1|local::at0009|Greater than 35|
+    expected_output:
+      "1": {}
