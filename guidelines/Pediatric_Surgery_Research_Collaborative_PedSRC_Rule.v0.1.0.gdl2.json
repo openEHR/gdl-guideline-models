@@ -1,0 +1,329 @@
+{
+  "uuid" : "57600f18-56ba-4bb8-b796-5e40f33850b8",
+  "id" : "Pediatric_Surgery_Research_Collaborative_PedSRC_Rule.v0.1.0",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Katja Mariko Wilde",
+      "email" : "katja-wilde@t-online.de",
+      "organisation" : "Cambio CDS",
+      "date" : "2025-10-24"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate the total sum for the Pediatric Surgery Research Collaborative (PedSRC) rule to estimate risk of intra-abdominal injury after blunt abdominal trauma in pediatric patients.",
+        "keywords" : [
+          "PedSRC",
+          "pediatric",
+          "surgery",
+          "research",
+          "collaborative",
+          "rule",
+          "blunt",
+          "abdominal",
+          "trauma"
+        ],
+        "use" : "Use to assess pediatric patients (&lt;16 years) presenting within 6 hours of blunt abdominal trauma who have not yet undergone abdominal CT.\nThe score is calculated by adding the points of the individual variables:\nAST &gt;200 U/L: No 0 points, Yes 1 point\nAbdominal wall trauma, distension, or tenderness on exam: No 0 points, Yes 1 point\nAbnormal chest X-ray: No 0 points, Yes 1 point\nComplaint of abdominal pain: No 0 points, Yes 1 point\nAbnormal amylase or lipase: No 0 points, Yes 1 point\nThe total PedSRC score (0–5) can then be used to display predicted risks for any IAI and IAI requiring acute intervention (IAI-I) and to guide imaging decisions.\n",
+        "misuse" : "Not to be used for recording information related to other pediatric blunt abdominal trauma rules.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Streck CJ, Vogel AM, Zhang J, Huang EY, Santore MT, Tsao K, Falcone RA, Dassinger MS, Russell RT, Blakely ML; Pediatric Surgery Research Collaborative. Identifying Children at Very Low Risk for Blunt Intra-Abdominal Injury in Whom CT of the Abdomen Can Be Avoided Safely. J Am Coll Surg. 2017 Apr;224(4):449-458.e3. doi: 10.1016/j.jamcollsurg.2016.12.041. Epub 2017 Jan 24. PMID: 28130170.",
+      "en" : "An assessment score used to identify pediatric patients (&lt;16 years) at very low risk of intra-abdominal injury after blunt abdominal trauma."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.pedsrc.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.pedsrc.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0007",
+              "1|local::at0008"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0009]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0010",
+              "1|local::at0011"
+            ]
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0012]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0013",
+              "1|local::at0014"
+            ]
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0015]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0016",
+              "1|local::at0017"
+            ]
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0018]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0019",
+              "1|local::at0020"
+            ]
+          }
+        }
+      },
+      "gt0008" : {
+        "id" : "gt0008",
+        "model_id" : "openEHR-EHR-OBSERVATION.pedsrc.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.pedsrc.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0009" : {
+            "id" : "gt0009",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0021]",
+            "data_type" : "DV_COUNT"
+          }
+        }
+      },
+      "gt0010" : {
+        "id" : "gt0010",
+        "model_id" : "openEHR-EHR-EVALUATION.health_risk.v1",
+        "template_id" : "openEHR-EHR-EVALUATION.health_risk.v1",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0011" : {
+            "id" : "gt0011",
+            "path" : "/data[at0001]/items[at0003]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "path" : "/data[at0001]/items[at0015]",
+            "data_type" : "DV_TEXT"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0013" : {
+        "id" : "gt0013",
+        "priority" : 6,
+        "when" : [
+          "$gt0003|AST >200 U/L|!=null",
+          "$gt0004|Abdominal wall trauma, distension, or tenderness on exam|!=null",
+          "$gt0005|Abnormal chest X-ray|!=null",
+          "$gt0006|Complaint of abdominal pain|!=null",
+          "$gt0007|Abnormal amylase or lipase|!=null"
+        ],
+        "then" : [
+          "$gt0009|Total score|.magnitude=$gt0003|AST >200 U/L|.value+$gt0004|Abdominal wall trauma, distension, or tenderness on exam|.value+$gt0005|Abnormal chest X-ray|.value+$gt0006|Complaint of abdominal pain|.value+$gt0007|Abnormal amylase or lipase|.value"
+        ]
+      },
+      "gt0024" : {
+        "id" : "gt0024",
+        "priority" : 5,
+        "when" : [
+          "$gt0009|Total score|==0"
+        ],
+        "then" : [
+          "$gt0011|Risk of intra-abdominal injury|=$gt0014|0.7%|.term",
+          "$gt0012|Risk of intra-abdominal injury requiring acute intervention|=$gt0015|0%|.term"
+        ]
+      },
+      "gt0025" : {
+        "id" : "gt0025",
+        "priority" : 4,
+        "when" : [
+          "$gt0009|Total score|==1"
+        ],
+        "then" : [
+          "$gt0011|Risk of intra-abdominal injury|=$gt0016|4.5%|.term",
+          "$gt0012|Risk of intra-abdominal injury requiring acute intervention|=$gt0017|0.6%|.term"
+        ]
+      },
+      "gt0026" : {
+        "id" : "gt0026",
+        "priority" : 3,
+        "when" : [
+          "$gt0009|Total score|==2"
+        ],
+        "then" : [
+          "$gt0011|Risk of intra-abdominal injury|=$gt0018|16.8%|.term",
+          "$gt0012|Risk of intra-abdominal injury requiring acute intervention|=$gt0019|4.8%|.term"
+        ]
+      },
+      "gt0027" : {
+        "id" : "gt0027",
+        "priority" : 2,
+        "when" : [
+          "$gt0009|Total score|==3"
+        ],
+        "then" : [
+          "$gt0011|Risk of intra-abdominal injury|=$gt0020|37.8%|.term",
+          "$gt0012|Risk of intra-abdominal injury requiring acute intervention|=$gt0021|8.9%|.term"
+        ]
+      },
+      "gt0028" : {
+        "id" : "gt0028",
+        "priority" : 1,
+        "when" : [
+          "$gt0009|Total score|>=4"
+        ],
+        "then" : [
+          "$gt0011|Risk of intra-abdominal injury|=$gt0022|62.6%|.term",
+          "$gt0012|Risk of intra-abdominal injury requiring acute intervention|=$gt0023|15.2%|.term"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Pediatric Surgery Research Collaborative (PedSRC) Rule for Blunt Abdominal Trauma",
+            "description" : "An assessment score used to identify pediatric patients (&lt;16 years) at very low risk of intra-abdominal injury after blunt abdominal trauma."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.pedsrc.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "AST >200 U/L"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Abdominal wall trauma, distension, or tenderness on exam"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Abnormal chest X-ray"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "Complaint of abdominal pain"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Abnormal amylase or lipase"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "openEHR-EHR-OBSERVATION.pedsrc.v0"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Total score"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "openEHR-EHR-EVALUATION.health_risk.v1"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Risk of intra-abdominal injury"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Risk of intra-abdominal injury requiring acute intervention"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Calculate total score",
+            "description" : ""
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "0.7%"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "0%"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "4.5%"
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "0.6%"
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "16.8%"
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "4.8%"
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "37.8%"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "8.9%"
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "62.6%"
+          },
+          "gt0023" : {
+            "id" : "gt0023",
+            "text" : "15.2%"
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "text" : "Set interpretation for score = 0",
+            "description" : ""
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "text" : "Set interpretation for score = 1",
+            "description" : ""
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "text" : "Set interpretation for score = 2",
+            "description" : ""
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "text" : "Set interpretation for score = 3",
+            "description" : ""
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "text" : "Set interpretation for score >= 4",
+            "description" : ""
+          }
+        }
+      }
+    }
+  }
+}
