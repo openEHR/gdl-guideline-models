@@ -1,0 +1,106 @@
+guidelines:
+  "1": hba1c_converter.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Source value input (negative test)
+    input:
+      "1":
+        gt0004|Convert from: local::at0008|Average glucose (mmol/L)|
+    expected_output:
+      "1": {}
+  - id: 3. Convert from input (negative test)
+    input:
+      "1":
+        gt0003|Source value: 20,mmol/L
+    expected_output:
+      "1": {}
+  - id: 4. All input, source value unit and convert from unit do not match (negative
+      test)
+    input:
+      "1":
+        gt0003|Source value: 20,mg/dL
+        gt0004|Convert from: local::at0008|Average glucose (mmol/L)|
+    expected_output:
+      "1": {}
+  - id: 5. All input - convert from Average glucose (mmol/L)
+    input:
+      "1":
+        gt0003|Source value: 7,mmol/L
+        gt0004|Convert from: local::at0008|Average glucose (mmol/L)|
+    expected_output:
+      "1":
+        gt0006|Average glucose (mmol/L): 7.00,mmol/L
+        gt0007|Average glucose (mg/dL): 126.04,mg/dL
+        gt0008|IFCC (mmol/mol): 42.27,mmol/mol
+        gt0009|Mono-S (%): 5.06,%
+        gt0010|DCCT (%): 6.02,%
+        gt0011|JDS (%): 5.64,%
+  - id: 6. All input - convert from Average glucose (mg/dL)
+    input:
+      "1":
+        gt0003|Source value: 125,mg/dL
+        gt0004|Convert from: local::at0009|Average glucose (mg/dL)|
+    expected_output:
+      "1":
+        gt0006|Average glucose (mmol/L): 6.95,mmol/L
+        gt0007|Average glucose (mg/dL): 125.04,mg/dL
+        gt0008|IFCC (mmol/mol): 41.89,mmol/mol
+        gt0009|Mono-S (%): 5.02,%
+        gt0010|DCCT (%): 5.98,%
+        gt0011|JDS (%): 5.61,%
+  - id: 7. All input - convert from IFCC (mmol/mol)
+    input:
+      "1":
+        gt0003|Source value: 42,mmol/mol
+        gt0004|Convert from: local::at0010|IFCC (mmol/mol)|
+    expected_output:
+      "1":
+        gt0006|Average glucose (mmol/L): 6.96,mmol/L
+        gt0007|Average glucose (mg/dL): 125.33,mg/dL
+        gt0008|IFCC (mmol/mol): 42.00,mmol/mol
+        gt0009|Mono-S (%): 5.04,%
+        gt0010|DCCT (%): 5.99,%
+        gt0011|JDS (%): 5.62,%
+  - id: 8. All input - convert from Mono-S (%)
+    input:
+      "1":
+        gt0003|Source value: 5,%
+        gt0004|Convert from: local::at0011|Mono-S (%)|
+    expected_output:
+      "1":
+        gt0006|Average glucose (mmol/L): 6.91,mmol/L
+        gt0007|Average glucose (mg/dL): 124.36,mg/dL
+        gt0008|IFCC (mmol/mol): 41.63,mmol/mol
+        gt0009|Mono-S (%): 5.00,%
+        gt0010|DCCT (%): 5.96,%
+        gt0011|JDS (%): 5.58,%
+  - id: 9. All input - convert from DCCT (%)
+    input:
+      "1":
+        gt0003|Source value: 6,%
+        gt0004|Convert from: local::at0012|DCCT (%)|
+    expected_output:
+      "1":
+        gt0006|Average glucose (mmol/L): 6.97,mmol/L
+        gt0007|Average glucose (mg/dL): 125.54,mg/dL
+        gt0008|IFCC (mmol/mol): 42.08,mmol/mol
+        gt0009|Mono-S (%): 5.04,%
+        gt0010|DCCT (%): 6.00,%
+        gt0011|JDS (%): 5.63,%
+  - id: 10. All input - convert from JDS (%)
+    input:
+      "1":
+        gt0003|Source value: 6,%
+        gt0004|Convert from: local::at0013|JDS (%)|
+    expected_output:
+      "1":
+        gt0006|Average glucose (mmol/L): 7.56,mmol/L
+        gt0007|Average glucose (mg/dL): 136.07,mg/dL
+        gt0008|IFCC (mmol/mol): 46.09,mmol/mol
+        gt0009|Mono-S (%): 5.43,%
+        gt0010|DCCT (%): 6.37,%
+        gt0011|JDS (%): 6.00,%
