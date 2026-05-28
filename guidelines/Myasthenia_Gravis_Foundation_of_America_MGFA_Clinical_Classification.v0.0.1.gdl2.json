@@ -1,0 +1,282 @@
+{
+  "uuid" : "4f2acbec-5e4a-43a0-bdc9-61161beb6e78",
+  "id" : "Myasthenia_Gravis_Foundation_of_America_MGFA_Clinical_Classification.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Katja Mariko Wilde",
+      "email" : "katja-wilde@t-online.de",
+      "organisation" : "Cambio CDS",
+      "date" : "2025-10-10"
+    },
+    "lifecycle_state" : "REVIEWED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To document the clinical severity of myasthenia gravis based on the Myasthenia Gravis Foundation of America (MGFA) Clinical Classification, including both class and subclass, to support standardized disease staging and facilitate treatment decisions and clinical trial eligibility assessments.",
+        "keywords" : [
+          "mgfa",
+          "myasthenia",
+          "gravis",
+          "foundation",
+          "america",
+          "clinical",
+          "classification",
+          "muscle",
+          "weakness",
+          "severity"
+        ],
+        "use" : "Use to classify adult patients with myasthenia gravis at initial diagnosis and at follow-up visits to document disease severity. The classification is based on the distribution and severity of muscle weakness:\nClass input: Describes the overall severity of muscle weakness (e.g., ocular only, mild, moderate, severe, or requiring intubation).\nSubclass input: Further specifies the predominant muscle groups involved (a = limb/axial; b = oropharyngeal/respiratory).\nBoth inputs are recorded as text descriptions, and based on these, the final MGFA class (I, IIa, IIb, IIIa, IIIb, IVa, IVb, V) is assigned.",
+        "misuse" : "Not to be used for recording information related to other neuromuscular severity grading systems or outcome measures.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Jaretzki A 3rd, Barohn RJ, Ernstoff RM, Kaminski HJ, Keesey JC, Penn AS, Sanders DB. Myasthenia gravis: recommendations for clinical research standards. Task Force of the Medical Scientific Advisory Board of the Myasthenia Gravis Foundation of America. Neurology. 2000 Jul 12;55(1):16-23. doi: 10.1212/wnl.55.1.16. PMID: 10891897.",
+      "en" : "A classification system used to stage the severity of myasthenia gravis based on the distribution and intensity of muscle weakness."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.mgfa.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.mgfa.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0007",
+              "local::at0008",
+              "local::at0009",
+              "local::at0010",
+              "local::at0011"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0012]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0014",
+              "local::at0015"
+            ]
+          }
+        }
+      },
+      "gt0005" : {
+        "id" : "gt0005",
+        "model_id" : "openEHR-EHR-OBSERVATION.mgfa.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.mgfa.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0018]",
+            "data_type" : "DV_CODED_TEXT"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0027]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0008" : {
+        "id" : "gt0008",
+        "priority" : 8,
+        "when" : [
+          "$gt0003|Class|!=null",
+          "$gt0003|Class|==local::at0007|Any ocular muscle weakness. All other muscle strength is normal.|"
+        ],
+        "then" : [
+          "$gt0006|MGFA Clinical Classification|=local::at0019|Class I|",
+          "$gt0007|Description|=local::at0028|Any ocular muscle weakness. May have weakness of eye closure. All other muscle strength is normal.|"
+        ]
+      },
+      "gt0009" : {
+        "id" : "gt0009",
+        "priority" : 7,
+        "when" : [
+          "$gt0003|Class|!=null",
+          "$gt0003|Class|==local::at0008|Mild non-ocular muscle weakness.|",
+          "$gt0004|Subclass|!=null",
+          "$gt0004|Subclass|==local::at0014|Predominantly affecting limb, axial muscles, or both. May also have lesser involvement of oropharyngeal muscles.|"
+        ],
+        "then" : [
+          "$gt0006|MGFA Clinical Classification|=local::at0020|Class IIa|",
+          "$gt0007|Description|=local::at0029|Mild non-ocular muscle weakness predominantly affecting limb, axial muscles, or both. May also have lesser involvement of oropharyngeal muscles and ocular muscle weakness of any severity.|"
+        ]
+      },
+      "gt0010" : {
+        "id" : "gt0010",
+        "priority" : 6,
+        "when" : [
+          "$gt0003|Class|!=null",
+          "$gt0003|Class|==local::at0008|Mild non-ocular muscle weakness.|",
+          "$gt0004|Subclass|!=null",
+          "$gt0004|Subclass|==local::at0015|Predominantly affecting oropharyngeal, respiratory muscles, or both. May also have lesser or equal involvement of limb, axial muscles, or both.|"
+        ],
+        "then" : [
+          "$gt0006|MGFA Clinical Classification|=local::at0021|Class IIb|",
+          "$gt0007|Description|=local::at0030|Mild non-ocular muscle weakness predominantly affecting oropharyngeal, respiratory muscles, or both. May also have lesser or equal involvement of limb, axial muscles, or both, and ocular muscle weakness of any severity.|"
+        ]
+      },
+      "gt0011" : {
+        "id" : "gt0011",
+        "priority" : 5,
+        "when" : [
+          "$gt0003|Class|!=null",
+          "$gt0003|Class|==local::at0009|Moderate non-ocular muscle weakness.|",
+          "$gt0004|Subclass|!=null",
+          "$gt0004|Subclass|==local::at0014|Predominantly affecting limb, axial muscles, or both. May also have lesser involvement of oropharyngeal muscles.|"
+        ],
+        "then" : [
+          "$gt0006|MGFA Clinical Classification|=local::at0022|Class IIIa|",
+          "$gt0007|Description|=local::at0031|Moderate non-ocular muscle weakness predominantly affecting limb, axial muscles, or both. May also have lesser involvement of oropharyngeal muscles and ocular muscle weakness of any severity.|"
+        ]
+      },
+      "gt0012" : {
+        "id" : "gt0012",
+        "priority" : 4,
+        "when" : [
+          "$gt0003|Class|!=null",
+          "$gt0003|Class|==local::at0009|Moderate non-ocular muscle weakness.|",
+          "$gt0004|Subclass|!=null",
+          "$gt0004|Subclass|==local::at0015|Predominantly affecting oropharyngeal, respiratory muscles, or both. May also have lesser or equal involvement of limb, axial muscles, or both.|"
+        ],
+        "then" : [
+          "$gt0006|MGFA Clinical Classification|=local::at0023|Class IIIb|",
+          "$gt0007|Description|=local::at0032|Moderate non-ocular muscle weakness predominantly affecting oropharyngeal, respiratory muscles, or both. May also have lesser or equal involvement of limb, axial muscles, or both, and ocular muscle weakness of any severity.|"
+        ]
+      },
+      "gt0013" : {
+        "id" : "gt0013",
+        "priority" : 3,
+        "when" : [
+          "$gt0003|Class|!=null",
+          "$gt0003|Class|==local::at0010|Severe non-ocular muscle weakness.|",
+          "$gt0004|Subclass|!=null",
+          "$gt0004|Subclass|==local::at0014|Predominantly affecting limb, axial muscles, or both. May also have lesser involvement of oropharyngeal muscles.|"
+        ],
+        "then" : [
+          "$gt0006|MGFA Clinical Classification|=local::at0024|Class IVa|",
+          "$gt0007|Description|=local::at0033|Severe non-ocular muscle weakness predominantly affecting limb and/or axial muscles. May also have lesser involvement of oropharyngeal muscles and ocular muscle weakness of any severity.|"
+        ]
+      },
+      "gt0014" : {
+        "id" : "gt0014",
+        "priority" : 2,
+        "when" : [
+          "$gt0003|Class|!=null",
+          "$gt0003|Class|==local::at0010|Severe non-ocular muscle weakness.|",
+          "$gt0004|Subclass|!=null",
+          "$gt0004|Subclass|==local::at0015|Predominantly affecting oropharyngeal, respiratory muscles, or both. May also have lesser or equal involvement of limb, axial muscles, or both.|"
+        ],
+        "then" : [
+          "$gt0006|MGFA Clinical Classification|=local::at0025|Class IVb|",
+          "$gt0007|Description|=local::at0034|Severe non-ocular muscle weakness predominantly affecting oropharyngeal, respiratory muscles, or both. May also have lesser or equal involvement of limb, axial muscles, or both, and ocular muscle weakness of any severity.|"
+        ]
+      },
+      "gt0015" : {
+        "id" : "gt0015",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|Class|!=null",
+          "$gt0003|Class|==local::at0011|Defined by intubation, with or without mechanical ventilation.|"
+        ],
+        "then" : [
+          "$gt0006|MGFA Clinical Classification|=local::at0026|Class V|",
+          "$gt0007|Description|=local::at0035|Defined by intubation, with or without mechanical ventilation (except when used in routine postoperative management). Feeding tube without intubation = Class IVb.|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Myasthenia Gravis Foundation of America (MGFA) Clinical Classification",
+            "description" : "A classification system used to stage the severity of myasthenia gravis based on the distribution and intensity of muscle weakness."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.mgfa.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Class"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Subclass"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "openEHR-EHR-OBSERVATION.mgfa.v0"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "MGFA Clinical Classification"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Description"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Class I",
+            "description" : ""
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Class IIa",
+            "description" : ""
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Class IIb",
+            "description" : ""
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Class IIIa",
+            "description" : ""
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Class IIIb",
+            "description" : ""
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Class IVa",
+            "description" : ""
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Class IVb",
+            "description" : ""
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "Class V",
+            "description" : ""
+          }
+        }
+      }
+    }
+  }
+}
