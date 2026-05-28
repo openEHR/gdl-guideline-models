@@ -1,0 +1,105 @@
+guidelines:
+  "1": Glasgow_Modified_Alcohol_Withdrawal_Scale_GMAWS.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Tremor input missing (negative test)
+    input:
+      "1":
+        gt0004|Sweating: 0|local::at0011|None|
+        gt0005|Hallucinations: 0|local::at0015|None|
+        gt0006|Orientation: 0|local::at0019|Orientated|
+        gt0007|Agitation: 0|local::at0023|None|
+    expected_output:
+      "1": {}
+  - id: 3. Sweating input missing (negative test)
+    input:
+      "1":
+        gt0003|Tremor: 0|local::at0007|None|
+        gt0005|Hallucinations: 0|local::at0015|None|
+        gt0006|Orientation: 0|local::at0019|Orientated|
+        gt0007|Agitation: 0|local::at0023|None|
+    expected_output:
+      "1": {}
+  - id: 4. Hallucinations input missing (negative test)
+    input:
+      "1":
+        gt0003|Tremor: 0|local::at0007|None|
+        gt0004|Sweating: 0|local::at0011|None|
+        gt0006|Orientation: 0|local::at0019|Orientated|
+        gt0007|Agitation: 0|local::at0023|None|
+    expected_output:
+      "1": {}
+  - id: 5. Orientation input missing (negative test)
+    input:
+      "1":
+        gt0003|Tremor: 0|local::at0007|None|
+        gt0004|Sweating: 0|local::at0011|None|
+        gt0005|Hallucinations: 0|local::at0015|None|
+        gt0007|Agitation: 0|local::at0023|None|
+    expected_output:
+      "1": {}
+  - id: 6. Agitation input missing (negative test)
+    input:
+      "1":
+        gt0003|Tremor: 0|local::at0007|None|
+        gt0004|Sweating: 0|local::at0011|None|
+        gt0005|Hallucinations: 0|local::at0015|None|
+        gt0006|Orientation: 0|local::at0019|Orientated|
+    expected_output:
+      "1": {}
+  - id: 7. All inputs, total score = 0
+    input:
+      "1":
+        gt0003|Tremor: 0|local::at0007|None|
+        gt0004|Sweating: 0|local::at0011|None|
+        gt0005|Hallucinations: 0|local::at0015|None|
+        gt0006|Orientation: 0|local::at0019|Orientated|
+        gt0007|Agitation: 0|local::at0023|None|
+    expected_output:
+      "1":
+        gt0009|Total score: "0"
+        gt0025|Recommended medication: local::at0005|No benzodiazepine|
+        gt0026|Reassessment interval: local::at0009|Reassess in 2 hours|
+  - id: 8. All inputs, total score = 3 (score 1-3)
+    input:
+      "1":
+        gt0003|Tremor: 2|local::at0009|Present with arms at rest|
+        gt0004|Sweating: 1|local::at0012|Moist skin|
+        gt0005|Hallucinations: 0|local::at0015|None|
+        gt0006|Orientation: 0|local::at0019|Orientated|
+        gt0007|Agitation: 0|local::at0023|None|
+    expected_output:
+      "1":
+        gt0009|Total score: "3"
+        gt0025|Recommended medication: "local::at0006|Diazepam 10 mg PO/IV ×1; alternative: Lorazepam 2 mg|"
+        gt0026|Reassessment interval: local::at0009|Reassess in 2 hours|
+  - id: 9. All inputs, total score = 5 (score 4-8)
+    input:
+      "1":
+        gt0003|Tremor: 2|local::at0009|Present with arms at rest|
+        gt0004|Sweating: 1|local::at0012|Moist skin|
+        gt0005|Hallucinations: 2|local::at0017|Present and distressed|
+        gt0006|Orientation: 0|local::at0019|Orientated|
+        gt0007|Agitation: 0|local::at0023|None|
+    expected_output:
+      "1":
+        gt0009|Total score: "5"
+        gt0025|Recommended medication: "local::at0007|Diazepam 20 mg PO/IV ×1; alternative: Lorazepam 4 mg|"
+        gt0026|Reassessment interval: local::at0010|Reassess in 1 hour|
+  - id: 10. All inputs, total score = 9 (score 9-10)
+    input:
+      "1":
+        gt0003|Tremor: 2|local::at0009|Present with arms at rest|
+        gt0004|Sweating: 1|local::at0012|Moist skin|
+        gt0005|Hallucinations: 2|local::at0017|Present and distressed|
+        gt0006|Orientation: 2|local::at0021|Disoriented in ≥2 domains|
+        gt0007|Agitation: 2|local::at0025|Distressed or pacing|
+    expected_output:
+      "1":
+        gt0009|Total score: "9"
+        gt0025|Recommended medication: "local::at0007|Diazepam 20 mg PO/IV ×1; alternative: Lorazepam 4 mg|"
+        gt0026|Reassessment interval: local::at0010|Reassess in 1 hour|
