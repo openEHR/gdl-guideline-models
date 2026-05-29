@@ -23,7 +23,7 @@ description
 			keywords = <"criteria, tonsillitis, strep throat, sore throat, centor score, pharyngitis", ...>
 			copyright = <"Use © Cambio CDS">
 			use = <"Use to document the presence or absence of the Centor criteria and the calculated total score.">
-			misuse = <"Not to be used to diagnose streptococcal infection on its own or to replace clinical assessment. Should not be used outside the intended patient group, such as children under 3 years, or in cases where special clinical factors require individual medical judgment.">
+			misuse = <"Not to be used to record data for patients aged 3 years or younger.">
 		>
 	>
 	other_details = <
@@ -35,7 +35,7 @@ McIsaac WJ, White D, Tannenbaum D, Low DE. A clinical score to reduce unnecessar
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"cb10442fdf7904e339a36d129e36df3b">
+		["MD5-CAM-1.0.1"] = <"2c691acad2ea75e9120678544e1f3894">
 		["build_uid"] = <"d836f5f9-7bbb-3610-af2f-983524e31084">
 	>
 
@@ -74,21 +74,7 @@ definition
 									}
 									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Total score
 										value matches {
-											DV_COUNT matches {*}
-										}
-									}
-									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Results
-										value matches {
-											DV_CODED_TEXT matches {
-												defining_code matches {
-													[local::
-													at0009,    -- 1-2.5%
-													at0010,    -- 5-10%
-													at0011,    -- 11-17%
-													at0012,    -- 28-35%
-													at0013]    -- 51-53%
-												}
-											}
+											DV_QUANTITY matches {*}
 										}
 									}
 								}
@@ -143,30 +129,6 @@ ontology
 				["at0007"] = <
 					text = <"Fever >= 38 °C">
 					description = <"">
-				>
-				["at0008"] = <
-					text = <"Results">
-					description = <"">
-				>
-				["at0009"] = <
-					text = <"1-2.5%">
-					description = <"No further testing or antibiotics.">
-				>
-				["at0010"] = <
-					text = <"5-10%">
-					description = <"No further testing or antibiotics.">
-				>
-				["at0011"] = <
-					text = <"11-17%">
-					description = <"Optional rapid strep testing and/or culture.">
-				>
-				["at0012"] = <
-					text = <"28-35%">
-					description = <"Consider rapid strep testing and/or culture.">
-				>
-				["at0013"] = <
-					text = <"51-53%">
-					description = <"Consider rapid strep testing and/or culture. Empiric antibiotics may be appropriate depending on the specific scenario">
 				>
 				["at0014"] = <
 					text = <"Total score">
