@@ -1,0 +1,140 @@
+guidelines:
+  "1": Natriuretic_Response_Prediction_Equation_NRPE.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1":
+        gt0009|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0015|Urine creatinine: NPU::NPU01808|Urine creatinine code|
+        gt0018|Urine sodium concentration: NPU::NPU03431|Urine sodium concentration code|
+    expected_output:
+      "1": {}
+  - id: 2. Relative eGFR input missing (negative test)
+    input:
+      "1":
+        gt0005|Height/Length: 160,cm
+        gt0007|Weight: 60,kg
+        gt0009|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0010|Serum creatinine result: 80,umol/L
+        gt0015|Urine creatinine: NPU::NPU01808|Urine creatinine code|
+        gt0016|Urine creatinine result: 2000,umol/L
+        gt0018|Urine sodium concentration: NPU::NPU03431|Urine sodium concentration code|
+        gt0019|Urine sodium concentration result: 150,mmol/L
+    expected_output:
+      "1": {}
+  - id: 3. Height/Length input missing (negative test)
+    input:
+      "1":
+        gt0003|Relative eGFR: 100,mL/min/{1.73_m2}
+        gt0007|Weight: 60,kg
+        gt0009|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0010|Serum creatinine result: 80,umol/L
+        gt0015|Urine creatinine: NPU::NPU01808|Urine creatinine code|
+        gt0016|Urine creatinine result: 2000,umol/L
+        gt0018|Urine sodium concentration: NPU::NPU03431|Urine sodium concentration code|
+        gt0019|Urine sodium concentration result: 150,mmol/L
+    expected_output:
+      "1": {}
+  - id: 4. Weight input missing (negative test)
+    input:
+      "1":
+        gt0003|Relative eGFR: 100,mL/min/{1.73_m2}
+        gt0005|Height/Length: 160,cm
+        gt0009|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0010|Serum creatinine result: 80,umol/L
+        gt0015|Urine creatinine: NPU::NPU01808|Urine creatinine code|
+        gt0016|Urine creatinine result: 2000,umol/L
+        gt0018|Urine sodium concentration: NPU::NPU03431|Urine sodium concentration code|
+        gt0019|Urine sodium concentration result: 150,mmol/L
+    expected_output:
+      "1": {}
+  - id: 5. Serum creatinine result input missing (negative test)
+    input:
+      "1":
+        gt0003|Relative eGFR: 100,mL/min/{1.73_m2}
+        gt0005|Height/Length: 160,cm
+        gt0007|Weight: 60,kg
+        gt0009|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0015|Urine creatinine: NPU::NPU01808|Urine creatinine code|
+        gt0016|Urine creatinine result: 2000,umol/L
+        gt0018|Urine sodium concentration: NPU::NPU03431|Urine sodium concentration code|
+        gt0019|Urine sodium concentration result: 150,mmol/L
+    expected_output:
+      "1": {}
+  - id: 6. Urine creatinine result input missing (negative test)
+    input:
+      "1":
+        gt0003|Relative eGFR: 100,mL/min/{1.73_m2}
+        gt0005|Height/Length: 160,cm
+        gt0007|Weight: 60,kg
+        gt0009|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0010|Serum creatinine result: 80,umol/L
+        gt0015|Urine creatinine: NPU::NPU01808|Urine creatinine code|
+        gt0018|Urine sodium concentration: NPU::NPU03431|Urine sodium concentration code|
+        gt0019|Urine sodium concentration result: 150,mmol/L
+    expected_output:
+      "1": {}
+  - id: 7. Urine sodium concentration result input missing (negative test)
+    input:
+      "1":
+        gt0003|Relative eGFR: 100,mL/min/{1.73_m2}
+        gt0005|Height/Length: 160,cm
+        gt0007|Weight: 60,kg
+        gt0009|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0010|Serum creatinine result: 80,umol/L
+        gt0015|Urine creatinine: NPU::NPU01808|Urine creatinine code|
+        gt0016|Urine creatinine result: 2000,umol/L
+        gt0018|Urine sodium concentration: NPU::NPU03431|Urine sodium concentration code|
+    expected_output:
+      "1": {}
+  - id: 8. All inputs, 6 Hour Sodium Output >100 mmol Na
+    input:
+      "1":
+        gt0003|Relative eGFR: 100,mL/min/{1.73_m2}
+        gt0005|Height/Length: 160,cm
+        gt0007|Weight: 60,kg
+        gt0009|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0010|Serum creatinine result: 80,umol/L
+        gt0015|Urine creatinine: NPU::NPU01808|Urine creatinine code|
+        gt0016|Urine creatinine result: 2000,umol/L
+        gt0018|Urine sodium concentration: NPU::NPU03431|Urine sodium concentration code|
+        gt0019|Urine sodium concentration result: 150,mmol/L
+    expected_output:
+      "1":
+        gt0021|Predicted 6-hour sodium (Na) output: 109.7,mmol
+        gt0022|Predicted 6-hour urine output: 732,mL
+        gt0023|Response Category: Excellent natriuretic response (>100 mmol Na)
+  - id: 9. All inputs, 6 Hour Sodium Output >50 to ≤100 mmol Na
+    input:
+      "1":
+        gt0003|Relative eGFR: 100,mL/min/{1.73_m2}
+        gt0005|Height/Length: 190,cm
+        gt0007|Weight: 90,kg
+        gt0009|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0010|Serum creatinine result: 50,umol/L
+        gt0015|Urine creatinine: NPU::NPU01808|Urine creatinine code|
+        gt0016|Urine creatinine result: 4000,umol/L
+        gt0018|Urine sodium concentration: NPU::NPU03431|Urine sodium concentration code|
+        gt0019|Urine sodium concentration result: 260,mmol/L
+    expected_output:
+      "1":
+        gt0021|Predicted 6-hour sodium (Na) output: 80.0,mmol
+        gt0022|Predicted 6-hour urine output: 308,mL
+        gt0023|Response Category: Suboptimal natriuretic response (>50 to ≤100 mmol Na)
+  - id: 10. All inputs, 6 Hour Sodium Output ≤50 mmol Na
+    input:
+      "1":
+        gt0003|Relative eGFR: 100,mL/min/{1.73_m2}
+        gt0005|Height/Length: 160,cm
+        gt0007|Weight: 60,kg
+        gt0009|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0010|Serum creatinine result: 80,umol/L
+        gt0015|Urine creatinine: NPU::NPU01808|Urine creatinine code|
+        gt0016|Urine creatinine result: 15000,umol/L
+        gt0018|Urine sodium concentration: NPU::NPU03431|Urine sodium concentration code|
+        gt0019|Urine sodium concentration result: 150,mmol/L
+    expected_output:
+      "1":
+        gt0021|Predicted 6-hour sodium (Na) output: 13.7,mmol
+        gt0022|Predicted 6-hour urine output: 91,mL
+        gt0023|Response Category: Poor natriuretic response (≤50 mmol Na)
