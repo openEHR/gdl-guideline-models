@@ -1,0 +1,53 @@
+guidelines:
+  "1": Parkland.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. TBSA input missing (negative test)
+    input:
+      "1":
+        gt0005|Weight: 60,kg
+    expected_output:
+      "1": {}
+  - id: 3. Weight input missing (negative test)
+    input:
+      "1":
+        gt0003|Estimated body burn: 30,%
+    expected_output:
+      "1": {}
+  - id: 4. All inputs - fluid requirement 6l
+    input:
+      "1":
+        gt0003|Estimated body burn: 30,%
+        gt0005|Weight: 50,kg
+    expected_output:
+      "1":
+        gt0007|Fluid requirement: 6.0,L
+        gt0008|Comment: It is recommended that half the volume be administered during
+          the first 8 hours, and the remaining half during the following 16
+          hours.
+  - id: 5. All inputs - fluid requirement 23.8l
+    input:
+      "1":
+        gt0003|Estimated body burn: 60,%
+        gt0005|Weight: 99,kg
+    expected_output:
+      "1":
+        gt0007|Fluid requirement: 23.8,L
+        gt0008|Comment: It is recommended that half the volume be administered during
+          the first 8 hours, and the remaining half during the following 16
+          hours.
+  - id: 6. All inputs - weight conversion, fluid requirement 11.2l
+    input:
+      "1":
+        gt0003|Estimated body burn: 40,%
+        gt0005|Weight: 154,[lb_av]
+    expected_output:
+      "1":
+        gt0007|Fluid requirement: 11.2,L
+        gt0008|Comment: It is recommended that half the volume be administered during
+          the first 8 hours, and the remaining half during the following 16
+          hours.
