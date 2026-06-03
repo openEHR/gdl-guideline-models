@@ -1,0 +1,159 @@
+guidelines:
+  "1": Centor_Score_for_Strep_Pharyngitis.v0.0.4
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Only Age as input (negative test)
+    input:
+      "1":
+        gt0062|Age: 5,a
+    expected_output:
+      "1": {}
+  - id: 3. Cough & swelling or exudates are missing (negative test)
+    input:
+      "1":
+        gt0062|Age: 5,a
+        gt0065|Fever >= 38 °C: 0|local::at0015|Absent|
+        gt0067|Tender cervical lymph nodes: 0|local::at0019|Absent|
+    expected_output:
+      "1": {}
+  - id: 4. Tonsillar swelling or exudates is missing (negative test)
+    input:
+      "1":
+        gt0062|Age: 7,a
+        gt0065|Fever >= 38 °C: 0|local::at0015|Absent|
+        gt0066|Cough: 0|local::at0017|Absent|
+        gt0067|Tender cervical lymph nodes: 0|local::at0019|Absent|
+    expected_output:
+      "1": {}
+  - id: 5. Age below the minimum age (negative test)
+    input:
+      "1":
+        gt0062|Age: 2,a
+        gt0065|Fever >= 38 °C: 0|local::at0015|Absent|
+        gt0066|Cough: 0|local::at0017|Absent|
+        gt0067|Tender cervical lymph nodes: 0|local::at0019|Absent|
+        gt0068|Tonsillar swelling or exudates: 0|local::at0021|Absent|
+    expected_output:
+      "1": {}
+  - id: 6. Age is negative (negative test)
+    input:
+      "1":
+        gt0062|Age: -2,a
+        gt0065|Fever >= 38 °C: 0|local::at0015|Absent|
+        gt0066|Cough: 0|local::at0017|Absent|
+        gt0067|Tender cervical lymph nodes: 0|local::at0019|Absent|
+        gt0068|Tonsillar swelling or exudates: 0|local::at0021|Absent|
+    expected_output:
+      "1": {}
+  - id: 7. Score test 1 (between 0-2) no rapid GAS test
+    input:
+      "1":
+        gt0062|Age: 5,a
+        gt0065|Fever >= 38 °C: 0|local::at0015|Absent|
+        gt0066|Cough: 0|local::at0017|Absent|
+        gt0067|Tender cervical lymph nodes: 0|local::at0019|Absent|
+        gt0068|Tonsillar swelling or exudates: 0|local::at0021|Absent|
+    expected_output:
+      "1":
+        gt0035|Total score: "0"
+        gt0057|Recommendation: local::at0009|0-2|
+  - id: 8. Score test 2 (between 0-2) no rapid GAS test
+    input:
+      "1":
+        gt0062|Age: 5,a
+        gt0065|Fever >= 38 °C: 1|local::at0016|Present|
+        gt0066|Cough: 0|local::at0017|Absent|
+        gt0067|Tender cervical lymph nodes: 0|local::at0019|Absent|
+        gt0068|Tonsillar swelling or exudates: 0|local::at0021|Absent|
+    expected_output:
+      "1":
+        gt0035|Total score: "1"
+        gt0057|Recommendation: local::at0009|0-2|
+  - id: 9. Score test 3 (between 0-2) no rapid GAS test
+    input:
+      "1":
+        gt0062|Age: 5,a
+        gt0065|Fever >= 38 °C: 1|local::at0016|Present|
+        gt0066|Cough: 0|local::at0017|Absent|
+        gt0067|Tender cervical lymph nodes: 1|local::at0020|Present|
+        gt0068|Tonsillar swelling or exudates: 0|local::at0021|Absent|
+    expected_output:
+      "1":
+        gt0035|Total score: "2"
+        gt0057|Recommendation: local::at0009|0-2|
+  - id: 10. Score test 4 (between 3-4) rapid GAS test
+    input:
+      "1":
+        gt0062|Age: 20,a
+        gt0065|Fever >= 38 °C: 1|local::at0016|Present|
+        gt0066|Cough: 0|local::at0017|Absent|
+        gt0067|Tender cervical lymph nodes: 1|local::at0020|Present|
+        gt0068|Tonsillar swelling or exudates: 1|local::at0022|Present|
+    expected_output:
+      "1":
+        gt0035|Total score: "3"
+        gt0057|Recommendation: local::at0010|3-4|
+  - id: 11. Score test 5 (between 3-4) rapid GAS test
+    input:
+      "1":
+        gt0062|Age: 20,a
+        gt0065|Fever >= 38 °C: 1|local::at0016|Present|
+        gt0066|Cough: 1|local::at0018|Present|
+        gt0067|Tender cervical lymph nodes: 1|local::at0020|Present|
+        gt0068|Tonsillar swelling or exudates: 1|local::at0022|Present|
+    expected_output:
+      "1":
+        gt0035|Total score: "4"
+        gt0057|Recommendation: local::at0010|3-4|
+  - id: 12. Score test 6 (between 3-4) rapid GAS test
+    input:
+      "1":
+        gt0062|Age: 50,a
+        gt0065|Fever >= 38 °C: 0|local::at0015|Absent|
+        gt0066|Cough: 1|local::at0018|Present|
+        gt0067|Tender cervical lymph nodes: 1|local::at0020|Present|
+        gt0068|Tonsillar swelling or exudates: 1|local::at0022|Present|
+    expected_output:
+      "1":
+        gt0035|Total score: "3"
+        gt0057|Recommendation: local::at0010|3-4|
+  - id: 13. Score test 7 (between 3-4) rapid GAS test
+    input:
+      "1":
+        gt0062|Age: 35,a
+        gt0065|Fever >= 38 °C: 1|local::at0016|Present|
+        gt0066|Cough: 0|local::at0017|Absent|
+        gt0067|Tender cervical lymph nodes: 1|local::at0020|Present|
+        gt0068|Tonsillar swelling or exudates: 1|local::at0022|Present|
+    expected_output:
+      "1":
+        gt0035|Total score: "3"
+        gt0057|Recommendation: local::at0010|3-4|
+  - id: 14. Score test 8 (between 0-2) no rapid GAS test
+    input:
+      "1":
+        gt0062|Age: 29,a
+        gt0065|Fever >= 38 °C: 0|local::at0015|Absent|
+        gt0066|Cough: 1|local::at0018|Present|
+        gt0067|Tender cervical lymph nodes: 0|local::at0019|Absent|
+        gt0068|Tonsillar swelling or exudates: 1|local::at0022|Present|
+    expected_output:
+      "1":
+        gt0035|Total score: "2"
+        gt0057|Recommendation: local::at0009|0-2|
+  - id: 15. Score test 9 (between 0-2) no rapid GAS test
+    input:
+      "1":
+        gt0062|Age: 22,a
+        gt0065|Fever >= 38 °C: 0|local::at0015|Absent|
+        gt0066|Cough: 0|local::at0017|Absent|
+        gt0067|Tender cervical lymph nodes: 0|local::at0019|Absent|
+        gt0068|Tonsillar swelling or exudates: 1|local::at0022|Present|
+    expected_output:
+      "1":
+        gt0035|Total score: "1"
+        gt0057|Recommendation: local::at0009|0-2|
