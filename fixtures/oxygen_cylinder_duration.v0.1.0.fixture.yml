@@ -1,0 +1,56 @@
+guidelines:
+  "1": oxygen_cylinder_duration.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Cylinder volume input missing (negative test)
+    input:
+      "1":
+        gt0004|Cylinder pressure: 200,bar
+        gt0005|Oxygen flow rate: 5,L/min
+    expected_output:
+      "1": {}
+  - id: 3. Cylinder pressure input missing (negative test)
+    input:
+      "1":
+        gt0003|Cylinder volume: 10,L
+        gt0005|Oxygen flow rate: 5,L/min
+    expected_output:
+      "1": {}
+  - id: 4. Oxygen flow rate input missing (negative test)
+    input:
+      "1":
+        gt0003|Cylinder volume: 10,L
+        gt0004|Cylinder pressure: 200,bar
+    expected_output:
+      "1": {}
+  - id: 5. All inputs - volume 10L, pressure 200bar, flow rate 5L/min
+    input:
+      "1":
+        gt0003|Cylinder volume: 10,L
+        gt0004|Cylinder pressure: 200,bar
+        gt0005|Oxygen flow rate: 5,L/min
+    expected_output:
+      "1":
+        gt0007|Oxygen cylinder duration: 400,min
+  - id: 6. All inputs - small cylinder
+    input:
+      "1":
+        gt0003|Cylinder volume: 2.5,L
+        gt0004|Cylinder pressure: 200,bar
+        gt0005|Oxygen flow rate: 2,L/min
+    expected_output:
+      "1":
+        gt0007|Oxygen cylinder duration: 250,min
+  - id: 7. All inputs - high flow
+    input:
+      "1":
+        gt0003|Cylinder volume: 5,L
+        gt0004|Cylinder pressure: 150,bar
+        gt0005|Oxygen flow rate: 15,L/min
+    expected_output:
+      "1":
+        gt0007|Oxygen cylinder duration: 50,min
