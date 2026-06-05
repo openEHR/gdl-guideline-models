@@ -1,0 +1,89 @@
+guidelines:
+  "1": QTc_Calculation.v0.1.0
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. QT interval missing (negative test).
+    input:
+      "1":
+        gt0010|QTc calculation method: local::at0083|Bazett’s formula|
+        gt0008|Heart Rate: 65,/min
+    expected_output:
+      "1": {}
+  - id: 03. Heart Rate missing (negative test).
+    input:
+      "1":
+        gt0006|QT interval: 12,millisec
+        gt0010|QTc calculation method: local::at0084|Fredericia’s formula|
+    expected_output:
+      "1": {}
+  - id: 04. Bazett’s formula calculation.
+    input:
+      "1":
+        gt0006|QT interval: 420,millisec
+        gt0010|QTc calculation method: local::at0083|Bazett’s formula|
+        gt0008|Heart Rate: 65,/min
+    expected_output:
+      "1":
+        gt0004|QTc interval: 437,millisec
+        gt0014|QTc calculation method: local::at0083|Bazett’s formula|
+  - id: 05. Fredericia’s formula calculation.
+    input:
+      "1":
+        gt0006|QT interval: 440,millisec
+        gt0010|QTc calculation method: local::at0084|Fredericia’s formula|
+        gt0008|Heart Rate: 60,/min
+    expected_output:
+      "1":
+        gt0004|QTc interval: 440,millisec
+        gt0014|QTc calculation method: local::at0084|Fredericia’s formula|
+  - id: 06. Framingham formula calculation.
+    input:
+      "1":
+        gt0006|QT interval: 460,millisec
+        gt0010|QTc calculation method: local::at0085|Framingham formula|
+        gt0008|Heart Rate: 80,/min
+    expected_output:
+      "1":
+        gt0004|QTc interval: 460,millisec
+        gt0014|QTc calculation method: local::at0085|Framingham formula|
+  - id: 07. Hodges formula calculation.
+    input:
+      "1":
+        gt0006|QT interval: 410,millisec
+        gt0010|QTc calculation method: local::at0086|Hodges formula|
+        gt0008|Heart Rate: 70,/min
+    expected_output:
+      "1":
+        gt0004|QTc interval: 428,millisec
+        gt0014|QTc calculation method: local::at0086|Hodges formula|
+  - id: 08. Bazett´s formula calculation bradycardia.
+    input:
+      "1":
+        gt0006|QT interval: 420,millisec
+        gt0010|QTc calculation method: local::at0083|Bazett’s formula|
+        gt0008|Heart Rate: 50,/min
+    expected_output:
+      "1":
+        gt0004|QTc interval: 383,millisec
+        gt0014|QTc calculation method: local::at0083|Bazett’s formula|
+  - id: 09. QTc calculation method missing (negative test).
+    input:
+      "1":
+        gt0006|QT interval: 420,millisec
+        gt0008|Heart Rate: 65,/min
+    expected_output:
+      "1": {}
+  - id: 10. Bazett's formula calculation — tachycardia (HR 120 bpm)
+    input:
+      "1":
+        gt0006|QT interval: 350,millisec
+        gt0010|QTc calculation method: local::at0083|Bazett’s formula|
+        gt0008|Heart Rate: 120,/min
+    expected_output:
+      "1":
+        gt0004|QTc interval: 495,millisec
+        gt0014|QTc calculation method: local::at0083|Bazett’s formula|
