@@ -1,0 +1,134 @@
+guidelines:
+  "1": NIVO_Score.v0.1.0
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Chest radiograph consolidation missing (negative test).
+    input:
+      "1":
+        gt0036|Glasgow Coma Scale: 0|local::at0014|15|
+        gt0037|Atrial fibrillation: 0|local::at0016|No|
+        gt0038|pH: 0|local::at0018|≥ 7.25|
+        gt0039|Time to acidemia: 0|local::at0020|≤ 12 h|
+        gt0040|Extended MRC dyspnea scale (eMRCD): 0|local::at0022|Not too dyspneic to leave house (eMRCD 1-4)|
+    expected_output:
+      "1": {}
+  - id: 03. Glasgow Coma Scale missing (negative test).
+    input:
+      "1":
+        gt0035|Chest radiograph consolidation: 0|local::at0012|No|
+        gt0037|Atrial fibrillation: 0|local::at0016|No|
+        gt0038|pH: 0|local::at0018|≥ 7.25|
+        gt0039|Time to acidemia: 0|local::at0020|≤ 12 h|
+        gt0040|Extended MRC dyspnea scale (eMRCD): 0|local::at0022|Not too dyspneic to leave house (eMRCD 1-4)|
+    expected_output:
+      "1": {}
+  - id: 04. Atrial fibrillation missing (negative test).
+    input:
+      "1":
+        gt0035|Chest radiograph consolidation: 0|local::at0012|No|
+        gt0036|Glasgow Coma Scale: 0|local::at0014|15|
+        gt0038|pH: 0|local::at0018|≥ 7.25|
+        gt0039|Time to acidemia: 0|local::at0020|≤ 12 h|
+        gt0040|Extended MRC dyspnea scale (eMRCD): 0|local::at0022|Not too dyspneic to leave house (eMRCD 1-4)|
+    expected_output:
+      "1": {}
+  - id: 05. pH missing (negative test).
+    input:
+      "1":
+        gt0035|Chest radiograph consolidation: 0|local::at0012|No|
+        gt0036|Glasgow Coma Scale: 0|local::at0014|15|
+        gt0037|Atrial fibrillation: 0|local::at0016|No|
+        gt0039|Time to acidemia: 0|local::at0020|≤ 12 h|
+        gt0040|Extended MRC dyspnea scale (eMRCD): 0|local::at0022|Not too dyspneic to leave house (eMRCD 1-4)|
+    expected_output:
+      "1": {}
+  - id: 06. Time to acidemia missing  (negative test).
+    input:
+      "1":
+        gt0035|Chest radiograph consolidation: 0|local::at0012|No|
+        gt0036|Glasgow Coma Scale: 0|local::at0014|15|
+        gt0037|Atrial fibrillation: 0|local::at0016|No|
+        gt0038|pH: 0|local::at0018|≥ 7.25|
+        gt0040|Extended MRC dyspnea scale (eMRCD): 0|local::at0022|Not too dyspneic to leave house (eMRCD 1-4)|
+    expected_output:
+      "1": {}
+  - id: 07. Extended MRC dyspnea scale (eMRCD) missing (negative test).
+    input:
+      "1":
+        gt0035|Chest radiograph consolidation: 0|local::at0012|No|
+        gt0036|Glasgow Coma Scale: 0|local::at0014|15|
+        gt0037|Atrial fibrillation: 0|local::at0016|No|
+        gt0038|pH: 0|local::at0018|≥ 7.25|
+        gt0039|Time to acidemia: 0|local::at0020|≤ 12 h|
+    expected_output:
+      "1": {}
+  - id: 08.Total score 0, Low risk, 5.0% In-hospital mortality and 15.8% 90-day
+      mortality.
+    input:
+      "1":
+        gt0035|Chest radiograph consolidation: 0|local::at0012|No|
+        gt0036|Glasgow Coma Scale: 0|local::at0014|15|
+        gt0037|Atrial fibrillation: 0|local::at0016|No|
+        gt0038|pH: 0|local::at0018|≥ 7.25|
+        gt0039|Time to acidemia: 0|local::at0020|≤ 12 h|
+        gt0040|Extended MRC dyspnea scale (eMRCD): 0|local::at0022|Not too dyspneic to leave house (eMRCD 1-4)|
+    expected_output:
+      "1":
+        gt0042|Total score: "0"
+  - id: 09.Total score 3, Medium risk, 16.8% In-hospital mortality and 32.5%  90-day
+      mortality.
+    input:
+      "1":
+        gt0035|Chest radiograph consolidation: 1|local::at0013|Yes|
+        gt0036|Glasgow Coma Scale: 0|local::at0014|15|
+        gt0037|Atrial fibrillation: 0|local::at0016|No|
+        gt0038|pH: 0|local::at0018|≥ 7.25|
+        gt0039|Time to acidemia: 0|local::at0020|≤ 12 h|
+        gt0040|Extended MRC dyspnea scale (eMRCD): 2|local::at0023|Too dyspneic to leave
+          house but independent with washing/dressing (eMRCD 5a)|
+    expected_output:
+      "1":
+        gt0042|Total score: "3"
+  - id: 10.Total score 5, High risk, 41.2% In-hospital mortality and 50.1%  90-day
+      mortality.
+    input:
+      "1":
+        gt0035|Chest radiograph consolidation: 0|local::at0012|No|
+        gt0036|Glasgow Coma Scale: 1|local::at0015|≤ 14|
+        gt0037|Atrial fibrillation: 1|local::at0017|Yes|
+        gt0038|pH: 0|local::at0018|≥ 7.25|
+        gt0039|Time to acidemia: 0|local::at0020|≤ 12 h|
+        gt0040|Extended MRC dyspnea scale (eMRCD): 3|local::at0024|Too dyspneic to leave house and wash/dress (eMRCD 5b)|
+    expected_output:
+      "1":
+        gt0042|Total score: "5"
+  - id: 11.Total score 8 Very High risk, 71.4% In-hospital mortality and
+      80.0%  90-day mortality.
+    input:
+      "1":
+        gt0035|Chest radiograph consolidation: 1|local::at0013|Yes|
+        gt0036|Glasgow Coma Scale: 0|local::at0014|15|
+        gt0037|Atrial fibrillation: 1|local::at0017|Yes|
+        gt0038|pH: 1|local::at0019|< 7.25|
+        gt0039|Time to acidemia: 2|local::at0021|> 12 h|
+        gt0040|Extended MRC dyspnea scale (eMRCD): 3|local::at0024|Too dyspneic to leave house and wash/dress (eMRCD 5b)|
+    expected_output:
+      "1":
+        gt0042|Total score: "8"
+  - id: 12.Total score 10 Very High risk, 71.4% In-hospital mortality and
+      80.0%  90-day mortality.
+    input:
+      "1":
+        gt0035|Chest radiograph consolidation: 1|local::at0013|Yes|
+        gt0036|Glasgow Coma Scale: 1|local::at0015|≤ 14|
+        gt0037|Atrial fibrillation: 1|local::at0017|Yes|
+        gt0038|pH: 1|local::at0019|< 7.25|
+        gt0039|Time to acidemia: 2|local::at0021|> 12 h|
+        gt0040|Extended MRC dyspnea scale (eMRCD): 3|local::at0024|Too dyspneic to leave house and wash/dress (eMRCD 5b)|
+    expected_output:
+      "1":
+        gt0042|Total score: "9"
