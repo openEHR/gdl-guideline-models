@@ -1,85 +1,90 @@
-archetype (adl_version=1.4)
+archetype (adl_version=1.4; uid=303d7cbb-d88d-3a80-9f12-50ad267a1568)
 	openEHR-EHR-OBSERVATION.rope.v0
 
 concept
-	[at0000]	-- Risk of Paradoxical Embolism (RoPE) score
+	[at0000]
+
 language
 	original_language = <[ISO_639-1::en]>
+
 description
 	original_author = <
-		["name"] = <"Maryam Razavi">
-		["email"] = <"maryam.razavi@cambio.se">
-		["organisation"] = <"Cambio CDS">
 		["date"] = <"2021-03-17">
+		["name"] = <"Maryam Razavi">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"maryam.razavi@cambio.se">
 	>
+	lifecycle_state = <"Initial">
+	other_contributors = <"Kevin Arjona,  kevin.arjona@cambio.se", ...>
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
 			purpose = <"To record the results for each component parameter and their total sum for the RoPE score.">
-			use = <"Use to record the results for each component parameter and their total sum for the RoPE score.">
-			keywords = <"stroke", "PFO ", "stroke", "cryptogenic", "CS", "patent", "foramen", "ovale">
-			misuse = <"">
+			keywords = <"PFO","stroke","cryptogenic","CS","patent","foramen","ovale","rope","score","embolism","neurology","cardiology">
 			copyright = <"© Cambio CDS">
+			use = <"Use to record the clinical parameters required to calculate the RoPE score.">
+			misuse = <"Not to be used for diagnosing a PFO or a stroke. Do not use this archetype as the primary repository for patient history or diagnoses; use dedicated archetypes such as openEHR-EHR-EVALUATION.problem_diagnosis.v1 to record diagnoses.">
 		>
 	>
-	lifecycle_state = <"Initial">
-	other_contributors = <>
 	other_details = <
-		["references"] = <"Kent DM, Ruthazer R, Weimar C, Mas JL, Serena J, Homma S, Di Angelantonio E, Di Tullio MR, Lutz JS, Elkind MS, Griffith J, Jaigobin C, Mattle HP, Michel P, Mono ML, Nedeltchev K, Papetti F, Thaler DE. An index to identify stroke-related vs incidental patent foramen ovale in cryptogenic stroke. Neurology. 2013 Aug 13;81(7):619-25. doi: 10.1212/WNL.0b013e3182a08d59. Epub 2013 Jul 17. PMID: 23864310; PMCID: PMC3775694.">
+		["references"] = <"Kent DM, Ruthazer R, Weimar C, Mas JL, Serena J, Homma S, Di Angelantonio E, Di Tullio MR, Lutz JS, Elkind MS, Griffith J, Jaigobin C, Mattle HP, Michel P, Mono ML, Nedeltchev K, Papetti F, Thaler DE. An index to identify stroke-related vs incidental patent foramen ovale in cryptogenic stroke. Neurology. 2013 Aug 13;81(7):619-25. doi: 10.1212/WNL.0b013e3182a08d59. Epub 2013 Jul 17. PMID: 23864310; PMCID: PMC3775694.
+
+Prefasi D, Martínez-Sánchez P, Fuentes B, Díez-Tejedor E. The utility of the RoPE score in cryptogenic stroke patients ≤50 years in predicting a stroke-related patent foramen ovale. Int J Stroke. 2016 Jan;11(1):NP7-8. doi: 10.1177/1747493015607505. PMID: 26763040.">
 		["current_contact"] = <"maryam.razavi@cambio.se">
 		["MD5-CAM-1.0.1"] = <"DAE6C15E615466441922A5071292FC3D">
+		["build_uid"] = <"13ae11ac-eca7-382a-8d83-35ab851fd039">
 	>
 
 definition
-	OBSERVATION[at0000] matches {	-- Risk of Paradoxical Embolism (RoPE) score
+	OBSERVATION[at0000] matches {    -- Risk of Paradoxical Embolism (RoPE) score
 		data matches {
-			HISTORY[at0001] matches {	-- Event Series
+			HISTORY[at0001] matches {    -- Event Series
 				events cardinality matches {1..*; unordered} matches {
-					EVENT[at0002] occurrences matches {0..*} matches {	-- Any event
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
 						data matches {
-							ITEM_TREE[at0003] matches {	-- Tree
+							ITEM_TREE[at0003] matches {    -- Tree
 								items cardinality matches {0..*; unordered} matches {
-									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Age
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Age
 										value matches {
-											0|[local::at0005], 	-- ≥70 years
-											1|[local::at0006], 	-- 60-69 years
-											2|[local::at0007], 	-- 50-59 years
-											3|[local::at0008], 	-- 40-49 years
-											4|[local::at0009], 	-- 30-39 years
-											5|[local::at0010]  	-- 18-29 years
+											0|[local::at0005],
+											1|[local::at0006],
+											2|[local::at0007],
+											3|[local::at0008],
+											4|[local::at0009],
+											5|[local::at0010]
 										}
 									}
-									ELEMENT[at0011] occurrences matches {0..1} matches {	-- History of hypertension
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- History of hypertension
 										value matches {
-											0|[local::at0012], 	-- Yes
-											1|[local::at0013]  	-- No
+											0|[local::at0012],
+											1|[local::at0013]
 										}
 									}
-									ELEMENT[at0014] occurrences matches {0..1} matches {	-- History of diabetes
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- History of diabetes
 										value matches {
-											0|[local::at0012], 	-- Yes
-											1|[local::at0013]  	-- No
+											0|[local::at0012],
+											1|[local::at0013]
 										}
 									}
-									ELEMENT[at0017] occurrences matches {0..1} matches {	-- History of stroke or TIA
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- History of stroke or TIA
 										value matches {
-											0|[local::at0012], 	-- Yes
-											1|[local::at0013]  	-- No
+											0|[local::at0012],
+											1|[local::at0013]
 										}
 									}
-									ELEMENT[at0020] occurrences matches {0..1} matches {	-- Smoker
+									ELEMENT[at0020] occurrences matches {0..1} matches {    -- Smoker
 										value matches {
-											0|[local::at0012], 	-- Yes
-											1|[local::at0013]  	-- No
+											0|[local::at0012],
+											1|[local::at0013]
 										}
 									}
-									ELEMENT[at0023] occurrences matches {0..1} matches {	-- Cortical infarct on imaging
+									ELEMENT[at0023] occurrences matches {0..1} matches {    -- Cortical infarct on imaging
 										value matches {
-											0|[local::at0012], 	-- Yes
-											1|[local::at0013]  	-- No
+											0|[local::at0012],
+											1|[local::at0013]
 										}
 									}
-									ELEMENT[at0026] occurrences matches {0..1} matches {	-- Total score
+									ELEMENT[at0026] occurrences matches {0..1} matches {    -- Total score
 										value matches {
 											DV_COUNT matches {
 												magnitude matches {|0..10|}
@@ -94,9 +99,9 @@ definition
 			}
 		}
 		protocol matches {
-			ITEM_TREE[at0027] matches {	-- Tree
+			ITEM_TREE[at0027] matches {    -- Tree
 				items cardinality matches {0..*; unordered} matches {
-					allow_archetype CLUSTER[at0028] occurrences matches {0..*} matches {	-- Extension
+					allow_archetype CLUSTER[at0028] occurrences matches {0..*} matches {    -- Extension
 						include
 							archetype_id/value matches {/.*/}
 					}
@@ -159,11 +164,11 @@ ontology
 					description = <"">
 				>
 				["at0012"] = <
-					text = <"Yes">
+					text = <"No">
 					description = <"">
 				>
 				["at0013"] = <
-					text = <"No">
+					text = <"Yes">
 					description = <"">
 				>
 				["at0014"] = <
