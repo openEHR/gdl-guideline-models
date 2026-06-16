@@ -1,0 +1,90 @@
+guidelines:
+  "1": BALL_Score.v0.1.0
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. β2-microglobulin missing (negative test).
+    input:
+      "1":
+        gt0024|Anemia: 0|local::at0010|No|
+        gt0025|LDH: 0|local::at0013|≤ Upper limit of normal|
+        gt0026|Last therapy: 0|local::at0016|≥ 24 months|
+    expected_output:
+      "1": {}
+  - id: 03. Anemia missing (negative test).
+    input:
+      "1":
+        gt0023|β2-microglobulin: 0|local::at0007|< 5 mg/dL|
+        gt0025|LDH: 0|local::at0013|≤ Upper limit of normal|
+        gt0026|Last therapy: 0|local::at0016|≥ 24 months|
+    expected_output:
+      "1": {}
+  - id: 04. LDH missing (negative test).
+    input:
+      "1":
+        gt0023|β2-microglobulin: 0|local::at0007|< 5 mg/dL|
+        gt0024|Anemia: 0|local::at0010|No|
+        gt0026|Last therapy: 0|local::at0016|≥ 24 months|
+    expected_output:
+      "1": {}
+  - id: 05. Last therapy missing (negative test).
+    input:
+      "1":
+        gt0023|β2-microglobulin: 0|local::at0007|< 5 mg/dL|
+        gt0024|Anemia: 0|local::at0010|No|
+        gt0025|LDH: 0|local::at0013|≤ Upper limit of normal|
+    expected_output:
+      "1": {}
+  - id: 06. Total score 0, Low risk, 89.7% 24-month overall survival.
+    input:
+      "1":
+        gt0023|β2-microglobulin: 0|local::at0007|< 5 mg/dL|
+        gt0024|Anemia: 0|local::at0010|No|
+        gt0025|LDH: 0|local::at0013|≤ Upper limit of normal|
+        gt0026|Last therapy: 0|local::at0016|≥ 24 months|
+    expected_output:
+      "1":
+        gt0028|Total score: "0"
+  - id: 07. Total score 1, Low risk, 89.7% 24-month overall survival.
+    input:
+      "1":
+        gt0023|β2-microglobulin: 1|local::at0008|≥ 5 mg/dL|
+        gt0024|Anemia: 0|local::at0010|No|
+        gt0025|LDH: 0|local::at0013|≤ Upper limit of normal|
+        gt0026|Last therapy: 0|local::at0016|≥ 24 months|
+    expected_output:
+      "1":
+        gt0028|Total score: "1"
+  - id: 08. Total score 2, Intermediate risk, 79.5% 24-month overall survival.
+    input:
+      "1":
+        gt0023|β2-microglobulin: 1|local::at0008|≥ 5 mg/dL|
+        gt0024|Anemia: 1|local::at0011|Yes|
+        gt0025|LDH: 0|local::at0013|≤ Upper limit of normal|
+        gt0026|Last therapy: 0|local::at0016|≥ 24 months|
+    expected_output:
+      "1":
+        gt0028|Total score: "2"
+  - id: 09. Total score 3, Intermediate risk, 79.5% 24-month overall survival.
+    input:
+      "1":
+        gt0023|β2-microglobulin: 1|local::at0008|≥ 5 mg/dL|
+        gt0024|Anemia: 1|local::at0011|Yes|
+        gt0025|LDH: 1|local::at0014|> Upper limit of normal|
+        gt0026|Last therapy: 0|local::at0016|≥ 24 months|
+    expected_output:
+      "1":
+        gt0028|Total score: "3"
+  - id: 10. Total score 4, High risk, 55.8% 24-month overall survival.
+    input:
+      "1":
+        gt0023|β2-microglobulin: 1|local::at0008|≥ 5 mg/dL|
+        gt0024|Anemia: 1|local::at0011|Yes|
+        gt0025|LDH: 1|local::at0014|> Upper limit of normal|
+        gt0026|Last therapy: 1|local::at0017|< 24 months|
+    expected_output:
+      "1":
+        gt0028|Total score: "4"
