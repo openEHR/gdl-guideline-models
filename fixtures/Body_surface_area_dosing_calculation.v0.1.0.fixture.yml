@@ -1,0 +1,106 @@
+guidelines:
+  "1": Body_surface_area_dosing_calculation.v0.1.0
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Weight missing (negative test).
+    input:
+      "1":
+        gt0005|Height/Length: 160,cm
+        gt0022|Formula: local::at0008|Du Bois|
+        gt0025|Dosage (mg/m2): 10,mg
+    expected_output:
+      "1": {}
+  - id: 03. Height/Length missing (negative test).
+    input:
+      "1":
+        gt0003|Weight: 70,kg
+        gt0022|Formula: local::at0008|Du Bois|
+        gt0025|Dosage (mg/m2): 10,mg
+    expected_output:
+      "1": {}
+  - id: 04. Dosage (mg/m2) missing (negative test).
+    input:
+      "1":
+        gt0003|Weight: 70,kg
+        gt0005|Height/Length: 160,cm
+        gt0022|Formula: local::at0008|Du Bois|
+    expected_output:
+      "1": {}
+  - id: 05. Formula missing (negative test).
+    input:
+      "1":
+        gt0003|Weight: 70,kg
+        gt0005|Height/Length: 160,cm
+        gt0025|Dosage (mg/m2): 10,mg
+    expected_output:
+      "1": {}
+  - id: "06. Du Bois formula: 160 cm ,70 kg, 10 mg"
+    input:
+      "1":
+        gt0003|Weight: 70,kg
+        gt0005|Height/Length: 160,cm
+        gt0022|Formula: local::at0008|Du Bois|
+        gt0025|Dosage (mg/m2): 10,mg
+    expected_output:
+      "1":
+        gt0007|Body Surface Area: 1.73,m2
+        gt0028|Dosage /m2: 17.30,mg
+  - id: "07. Mosteller formula: 160 cm, 70 kg, 10 mg"
+    input:
+      "1":
+        gt0003|Weight: 70,kg
+        gt0005|Height/Length: 160,cm
+        gt0022|Formula: local::at0009|Mosteller|
+        gt0025|Dosage (mg/m2): 10,mg
+    expected_output:
+      "1":
+        gt0007|Body Surface Area: 1.76,m2
+        gt0028|Dosage /m2: 17.60,mg
+  - id: "08. Haycock formula: 160 cm 70 kg, 10 mg"
+    input:
+      "1":
+        gt0003|Weight: 70,kg
+        gt0005|Height/Length: 160,cm
+        gt0022|Formula: local::at0010|Haycock|
+        gt0025|Dosage (mg/m2): 10,mg
+    expected_output:
+      "1":
+        gt0007|Body Surface Area: 1.78,m2
+        gt0028|Dosage /m2: 17.80,mg
+  - id: 09. BSA 1.75 m2, Dosage/m2 18.36 mg
+    input:
+      "1":
+        gt0003|Weight: 62,kg
+        gt0005|Height/Length: 180,cm
+        gt0022|Formula: local::at0010|Haycock|
+        gt0025|Dosage (mg/m2): 12,mg
+    expected_output:
+      "1":
+        gt0007|Body Surface Area: 1.75,m2
+        gt0028|Dosage /m2: 21.00,mg
+  - id: 10. BSA 2.04 m2, Dosage/m2 18.36 mg
+    input:
+      "1":
+        gt0003|Weight: 88,kg
+        gt0005|Height/Length: 171,cm
+        gt0022|Formula: local::at0009|Mosteller|
+        gt0025|Dosage (mg/m2): 9,mg
+    expected_output:
+      "1":
+        gt0007|Body Surface Area: 2.04,m2
+        gt0028|Dosage /m2: 18.36,mg
+  - id: 11. BSA 1.76 m2, Dosage/m2 17.6 mg
+    input:
+      "1":
+        gt0003|Weight: 68,kg
+        gt0005|Height/Length: 167,cm
+        gt0022|Formula: local::at0008|Du Bois|
+        gt0025|Dosage (mg/m2): 10,mg
+    expected_output:
+      "1":
+        gt0007|Body Surface Area: 1.76,m2
+        gt0028|Dosage /m2: 17.60,mg
