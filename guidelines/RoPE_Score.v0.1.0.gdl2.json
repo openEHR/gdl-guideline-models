@@ -1,0 +1,354 @@
+{
+  "uuid" : "8ffcc36e-7e77-4296-bcaa-1abbf48545bb",
+  "id" : "RoPE_Score.v0.1.0",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Maryam Razavi",
+      "email" : "maryam.razavi@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2021-01-29"
+    },
+    "other_contributors" : [
+      "Kevin Arjona"
+    ],
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate the RoPE score and assess the PFO Attributable Fraction.",
+        "keywords" : [
+          "stroke",
+          "cryptogenic",
+          "patent",
+          "foramen",
+          "ovale",
+          "rope",
+          "score",
+          "pfo",
+          "embolism",
+          "neurology",
+          "cardiology"
+        ],
+        "use" : "Use to Identify stroke-related PFO in patients with cryptogenic stroke.\n\nVariables and assigned points:\n\nNo history of hypertension    +1\nNo history of diabetes           +1\nNo history of stroke or TIA    +1\nNonsmoker                           +1\nCortical infarct on imaging    +1\n\nAge in years\n18-29         +5\n30-39\t  +4\n40-49\t  +3\n50-59\t  +2\n60-69\t  +1\n≥70             0\n\nFormula: Addition of selected points\n\n\nScore interpretation:\n\nRoPE score\tPFO-attributable fraction (95% CI)\tEstimated stroke/TIA recurrence at 2 years\n0-3\t                   0% (0–4)\t                                                         20% (12–28)\n4\t                   38% (25–48)\t                                      12% (6–18)\n5\t                    34% (21–45)\t                                       7% (3–11)\n6\t                    62% (54–68)\t                                      8% (4–12)\n7\t                    72% (66–76)\t                                      6% (2–10)\n8\t                    84% (79–87)\t                                      6% (2–10)\n9-10\t                    88% (83–91)\t                                      2% (0–4)",
+        "misuse" : "Not to be used in other compelling cause for stroke. ",
+        "copyright" : "Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Kent DM, Ruthazer R, Weimar C, Mas JL, Serena J, Homma S, Di Angelantonio E, Di Tullio MR, Lutz JS, Elkind MS, Griffith J, Jaigobin C, Mattle HP, Michel P, Mono ML, Nedeltchev K, Papetti F, Thaler DE. An index to identify stroke-related vs incidental patent foramen ovale in cryptogenic stroke. Neurology. 2013 Aug 13;81(7):619-25. doi: 10.1212/WNL.0b013e3182a08d59. Epub 2013 Jul 17. PMID: 23864310; PMCID: PMC3775694.\n\nPrefasi D, Martínez-Sánchez P, Fuentes B, Díez-Tejedor E. The utility of the RoPE score in cryptogenic stroke patients ≤50 years in predicting a stroke-related patent foramen ovale. Int J Stroke. 2016 Jan;11(1):NP7-8. doi: 10.1177/1747493015607505. PMID: 26763040.\n\nKent DM, Saver JL, Ruthazer R, Furlan AJ, Reisman M, Carroll JD, Smalling RW, Jüni P, Mattle HP, Meier B, Thaler DE. Risk of Paradoxical Embolism (RoPE)-Estimated Attributable Fraction Correlates With the Benefit of Patent Foramen Ovale Closure: An Analysis of 3 Trials. Stroke. 2020 Oct;51(10):3119-3123. doi: 10.1161/STROKEAHA.120.029350. Epub 2020 Sep 14. PMID: 32921262; PMCID: PMC7831886.",
+      "en" : "Calculates the RoPE score and the corresponding PFO Attributable Fraction based on clinical risk factors."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0031" : {
+        "id" : "gt0031",
+        "model_id" : "openEHR-EHR-EVALUATION.rope_assessment.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.rope_assessment.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0032" : {
+            "id" : "gt0032",
+            "path" : "/data[at0001]/items[at0002]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "path" : "/data[at0001]/items[at0003]",
+            "data_type" : "DV_TEXT"
+          }
+        }
+      },
+      "gt0034" : {
+        "id" : "gt0034",
+        "model_id" : "openEHR-EHR-OBSERVATION.rope.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.rope.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0035" : {
+            "id" : "gt0035",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0005",
+              "1|local::at0006",
+              "2|local::at0007",
+              "3|local::at0008",
+              "4|local::at0009",
+              "5|local::at0010"
+            ]
+          },
+          "gt0036" : {
+            "id" : "gt0036",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0011]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0013",
+              "1|local::at0012"
+            ]
+          },
+          "gt0037" : {
+            "id" : "gt0037",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0014]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0013",
+              "1|local::at0012"
+            ]
+          },
+          "gt0038" : {
+            "id" : "gt0038",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0017]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0013",
+              "1|local::at0012"
+            ]
+          },
+          "gt0039" : {
+            "id" : "gt0039",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0020]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0013",
+              "1|local::at0012"
+            ]
+          },
+          "gt0040" : {
+            "id" : "gt0040",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0023]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0012",
+              "1|local::at0013"
+            ]
+          }
+        }
+      },
+      "gt0041" : {
+        "id" : "gt0041",
+        "model_id" : "openEHR-EHR-OBSERVATION.rope.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.rope.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0042" : {
+            "id" : "gt0042",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0026]",
+            "data_type" : "DV_COUNT"
+          }
+        }
+      }
+    },
+    "pre_conditions" : [
+      "$gt0036|History of hypertension|!=null",
+      "$gt0037|History of diabetes|!=null",
+      "$gt0038|History of stroke or TIA|!=null",
+      "$gt0039|Smoker|!=null",
+      "$gt0040|Cortical infarct on imaging|!=null",
+      "$gt0035|Age|!=null"
+    ],
+    "rules" : {
+      "gt0014" : {
+        "id" : "gt0014",
+        "priority" : 8,
+        "when" : [
+          "$gt0036|History of hypertension|!=null",
+          "$gt0037|History of diabetes|!=null",
+          "$gt0038|History of stroke or TIA|!=null",
+          "$gt0039|Smoker|!=null",
+          "$gt0040|Cortical infarct on imaging|!=null",
+          "$gt0035|Age|!=null"
+        ],
+        "then" : [
+          "$gt0042|Total score|.magnitude=$gt0035.value+$gt0036.value+$gt0037.value+$gt0038.value+$gt0039.value+$gt0040.value"
+        ]
+      },
+      "gt0015" : {
+        "id" : "gt0015",
+        "priority" : 7,
+        "when" : [
+          "$gt0042|Total score|>=0",
+          "$gt0042|Total score|<4"
+        ],
+        "then" : [
+          "$gt0032|PFO-attributable fraction (95% CI) %|='0%'",
+          "$gt0033|Estimated stroke/TIA recurrence at 2 years %|='20%'"
+        ]
+      },
+      "gt0016" : {
+        "id" : "gt0016",
+        "priority" : 6,
+        "when" : [
+          "$gt0042|Total score|==4"
+        ],
+        "then" : [
+          "$gt0032|PFO-attributable fraction (95% CI) %|='38%'",
+          "$gt0033|Estimated stroke/TIA recurrence at 2 years %|='12%'"
+        ]
+      },
+      "gt0017" : {
+        "id" : "gt0017",
+        "priority" : 5,
+        "when" : [
+          "$gt0042|Total score|==5"
+        ],
+        "then" : [
+          "$gt0032|PFO-attributable fraction (95% CI) %|='34%'",
+          "$gt0033|Estimated stroke/TIA recurrence at 2 years %|='7%'"
+        ]
+      },
+      "gt0018" : {
+        "id" : "gt0018",
+        "priority" : 4,
+        "when" : [
+          "$gt0042|Total score|==6"
+        ],
+        "then" : [
+          "$gt0032|PFO-attributable fraction (95% CI) %|='62%'",
+          "$gt0033|Estimated stroke/TIA recurrence at 2 years %|='8%'"
+        ]
+      },
+      "gt0019" : {
+        "id" : "gt0019",
+        "priority" : 3,
+        "when" : [
+          "$gt0042|Total score|==7"
+        ],
+        "then" : [
+          "$gt0032|PFO-attributable fraction (95% CI) %|='72%'",
+          "$gt0033|Estimated stroke/TIA recurrence at 2 years %|='6%'"
+        ]
+      },
+      "gt0020" : {
+        "id" : "gt0020",
+        "priority" : 2,
+        "when" : [
+          "$gt0042|Total score|==8"
+        ],
+        "then" : [
+          "$gt0032|PFO-attributable fraction (95% CI) %|='84% '",
+          "$gt0033|Estimated stroke/TIA recurrence at 2 years %|='6% '"
+        ]
+      },
+      "gt0021" : {
+        "id" : "gt0021",
+        "priority" : 1,
+        "when" : [
+          "$gt0042|Total score|>8",
+          "$gt0042|Total score|<=10"
+        ],
+        "then" : [
+          "$gt0032|PFO-attributable fraction (95% CI) %|='88% '",
+          "$gt0033|Estimated stroke/TIA recurrence at 2 years %|='2% '"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "RoPE Score",
+            "description" : "Risk of Paradoxical Embolism (RoPE) Score identifies stroke-related PFO in patients with cryptogenic stroke."
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "RoPE Score",
+            "description" : ""
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "RoPE Score 0-3 interpretation",
+            "description" : ""
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "RoPE Score 4 interpretation",
+            "description" : ""
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "RoPE Score 5 interpretation",
+            "description" : ""
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "RoPE Score 6 interpretation",
+            "description" : ""
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "RoPE Score 7 interpretation",
+            "description" : ""
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "RoPE Score 8 interpretation",
+            "description" : ""
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "RoPE Score 9-10 interpretation",
+            "description" : ""
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "text" : "PFO-attributable fraction (95% CI) %"
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "text" : "Estimated stroke/TIA recurrence at 2 years %"
+          },
+          "gt0031" : {
+            "id" : "gt0031",
+            "text" : "openEHR-EHR-EVALUATION.rope_assessment.v0"
+          },
+          "gt0034" : {
+            "id" : "gt0034",
+            "text" : "openEHR-EHR-OBSERVATION.rope.v0"
+          },
+          "gt0035" : {
+            "id" : "gt0035",
+            "text" : "Age"
+          },
+          "gt0036" : {
+            "id" : "gt0036",
+            "text" : "History of hypertension"
+          },
+          "gt0037" : {
+            "id" : "gt0037",
+            "text" : "History of diabetes"
+          },
+          "gt0038" : {
+            "id" : "gt0038",
+            "text" : "History of stroke or TIA"
+          },
+          "gt0039" : {
+            "id" : "gt0039",
+            "text" : "Smoker"
+          },
+          "gt0040" : {
+            "id" : "gt0040",
+            "text" : "Cortical infarct on imaging"
+          },
+          "gt0041" : {
+            "id" : "gt0041",
+            "text" : "openEHR-EHR-OBSERVATION.rope.v0"
+          },
+          "gt0042" : {
+            "id" : "gt0042",
+            "text" : "Total score"
+          }
+        }
+      }
+    }
+  }
+}
