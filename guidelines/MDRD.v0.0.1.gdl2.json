@@ -1,0 +1,199 @@
+{
+  "uuid" : "725e6d77-1a51-4d29-bcf8-9a3556c1baa3",
+  "id" : "MDRD.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Winner Ng",
+      "email" : "dokter.winner@gmail.com",
+      "organisation" : "Cambio CDS",
+      "date" : "2020-03-03"
+    },
+    "other_contributors" : [
+      "Kevin Arjona"
+    ],
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate the estimated glomerular filtration rate using the MDRD formula.",
+        "keywords" : [
+          "GFR",
+          "MDRD",
+          "equation",
+          "formula",
+          "CKD",
+          "glomerular",
+          "filtration",
+          "rate",
+          "chronic",
+          "kidney",
+          "disease",
+          "creatinine",
+          "nephrology",
+          "egfr",
+          "function",
+          "renal"
+        ],
+        "use" : "Use to calculate the eGFR for adults. The formula used to calculate the eGFR is:\n\nGFR = 186.3 × (Serum Cr/88.4 ^-1.154) × (age^-0.203)  × 0.742 (if female)\n\nThe serum Cr should be in µmol/L.",
+        "misuse" : "Not to be used for calculation of the eGFR in pediatric patients.\n\nNot to be used in acute kidney failure condition.",
+        "copyright" : "@CambioCDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Levey AS, Bosch JP, Lewis JB, Greene T, Rogers N, Roth D. A more accurate method to estimate glomerular filtration rate from serum creatinine: a new prediction equation. Modification of Diet in Renal Disease Study Group. Ann Intern Med. 1999 Mar 16;130(6):461-70. doi: 10.7326/0003-4819-130-6-199903160-00002. PMID: 10075613.\n\nLevey AS, Coresh J, Greene T, Stevens LA, Zhang YL, Hendriksen S, Kusek JW, Van Lente F; Chronic Kidney Disease Epidemiology Collaboration. Using standardized serum creatinine values in the modification of diet in renal disease study equation for estimating glomerular filtration rate. Ann Intern Med. 2006 Aug 15;145(4):247-54. doi: 10.7326/0003-4819-145-4-200608150-00004. Erratum in: Ann Intern Med. 2008 Oct 7;149(7):519. Erratum in: Ann Intern Med. 2021 Apr;174(4):584. doi: 10.7326/L21-0010. PMID: 16908915.\n\nRule AD, Larson TS, Bergstralh EJ, Slezak JM, Jacobsen SJ, Cosio FG. Using serum creatinine to estimate glomerular filtration rate: accuracy in good health and in chronic kidney disease. Ann Intern Med. 2004 Dec 21;141(12):929-37. doi: 10.7326/0003-4819-141-12-200412210-00009. PMID: 15611490.",
+      "en" : "A calculation tool used to estimate the glomerular filtration rate (eGFR) using the MDRD formula."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0005|Male|",
+              "local::at0006|Female|"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "a",
+              "mo",
+              "wk",
+              "d"
+            ]
+          }
+        }
+      },
+      "gt0005" : {
+        "id" : "gt0005",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "µmol/L"
+            ]
+          }
+        }
+      },
+      "gt0007" : {
+        "id" : "gt0007",
+        "model_id" : "openEHR-EHR-OBSERVATION.estimated_glomerular_filtration_rate.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.estimated_glomerular_filtration_rate.v1",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0008" : {
+            "id" : "gt0008",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "ml/min"
+            ]
+          }
+        }
+      }
+    },
+    "pre_conditions" : [
+      "$gt0003|Gender|!=null",
+      "$gt0004|Age|!=null",
+      "$gt0006|Creatinine|!=null"
+    ],
+    "rules" : {
+      "gt0009" : {
+        "id" : "gt0009",
+        "priority" : 2,
+        "when" : [
+          "$gt0003|Gender|==local::at0006|Female|"
+        ],
+        "then" : [
+          "$gt0008|Estimated Glomerular Filtration Rate|.magnitude=186.3*(1/($gt0006|Creatinine|.magnitude/88.4)^1.154)*(1/($gt0004|Age|.magnitude^0.203))*0.742",
+          "$gt0008|Estimated Glomerular Filtration Rate|.precision=2",
+          "$gt0008|Estimated Glomerular Filtration Rate|.unit='ml/min'"
+        ]
+      },
+      "gt0010" : {
+        "id" : "gt0010",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|Gender|==local::at0005|Male|"
+        ],
+        "then" : [
+          "$gt0008|Estimated Glomerular Filtration Rate|.magnitude=186.3*(1/($gt0006|Creatinine|.magnitude/88.4)^1.154)*(1/($gt0004|Age|.magnitude^0.203))",
+          "$gt0008|Estimated Glomerular Filtration Rate|.precision=2",
+          "$gt0008|Estimated Glomerular Filtration Rate|.unit='ml/min'"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "MDRD GFR Equation",
+            "description" : "A calculation tool used to estimate the glomerular filtration rate (eGFR) using the MDRD formula."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.basic_demographic.v1"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Gender"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Age"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "Creatinine"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "openEHR-EHR-OBSERVATION.estimated_glomerular_filtration_rate.v1"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Estimated Glomerular Filtration Rate"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Calculate clearance for women",
+            "description" : "clearance = 186,3 * (S-creatinine / 88,4)-1,154 * age-0,203 (* 0,742 om kvinna) Clearance i ml/min/1,73 m2, S-creatinine i µmol/L, age i yr."
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Calculate clearance for men",
+            "description" : "clearance = 186,3 * (S-creatinine / 88,4)-1,154 * age-0,203 (* 0,742 om kvinna) Clearance i ml/min/1,73 m2, S-creatinine i µmol/L, age i yr."
+          }
+        }
+      }
+    }
+  }
+}
