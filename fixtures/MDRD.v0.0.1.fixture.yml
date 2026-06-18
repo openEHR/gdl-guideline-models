@@ -1,0 +1,48 @@
+current_datetime: 2019-09-01T00:00:00+01:00
+guidelines:
+  "1": MDRD.v0.0.1
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Gender missing (negative test).
+    input:
+      "1":
+        gt0004|Age: 65,a
+        gt0006|Creatinine: 150,µmol/L
+    expected_output:
+      "1": {}
+  - id: 03. Age missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0006|Creatinine: 150,µmol/L
+    expected_output:
+      "1": {}
+  - id: 04. Creatinine missing (negative test).
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0004|Age: 65,a
+    expected_output:
+      "1": {}
+  - id: 05. Male 65 years old, creatinine 150 µmol/L.
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0004|Age: 65,a
+        gt0006|Creatinine: 150,µmol/L
+    expected_output:
+      "1":
+        gt0008|Estimated Glomerular Filtration Rate: 43.40,ml/min
+  - id: 06. Female 71 years old, creatinine 132 µmol/L.
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 71,a
+        gt0006|Creatinine: 132,µmol/L
+    expected_output:
+      "1":
+        gt0008|Estimated Glomerular Filtration Rate: 36.66,ml/min
