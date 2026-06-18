@@ -1,0 +1,183 @@
+{
+  "uuid" : "9b86b1a2-5503-42b6-835c-995fc6d6bd8a",
+  "id" : "Dropptakt.v0.0.2",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Mahmoud Elachi",
+      "email" : "mel.achi@gmail.com",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-03-24"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To support healthcare professionals in determining correct drip rate for IV infusions when using gravity-based administration sets.",
+        "keywords" : [
+          "infusion",
+          "drip rate",
+          "IV therapy",
+          "calculation",
+          "drops per minute",
+          "dropptakt"
+        ],
+        "use" : "Used in hospital or clinical settings where infusion pumps are not used and drip rate  must be manually calculated.",
+        "misuse" : "Not intended for automated infusion pumps or critical care scenarios where precise infusion devices are required. Incorrect inputs may lead to unsafe infusion rates.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "en" : "Calculates intravenous drip rate (drops per minute) based on total infusion volume,  infusion duration, and drip factor. Intended for clinical support in manual IV administration.",
+      "references" : "Morris, G. (2021). Clinical Calculations: With Applications to General and Specialty Areas (9th ed.). Elsevier.\nhttps://verktyg.internetmedicin.se/kalkylatorer/dropptakt"
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.fluid_input.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.fluid_input.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0035]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "l"
+            ]
+          }
+        }
+      },
+      "gt0006" : {
+        "id" : "gt0006",
+        "model_id" : "openEHR-EHR-OBSERVATION.fluid_balance.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.fluid_balance.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "h"
+            ]
+          }
+        }
+      },
+      "gt0009" : {
+        "id" : "gt0009",
+        "model_id" : "openEHR-EHR-OBSERVATION.iv_drip_rate_calculator.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.iv_drip_rate_calculator.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0010" : {
+            "id" : "gt0010",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "gtts/min"
+            ]
+          }
+        }
+      },
+      "gt0011" : {
+        "id" : "gt0011",
+        "model_id" : "openEHR-EHR-OBSERVATION.infusion_factors.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.infusion_factors.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0012" : {
+            "id" : "gt0012",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "L"
+            ]
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "h"
+            ]
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0008" : {
+        "id" : "gt0008",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|Volume|!=null",
+          "$gt0007|Time|!=null"
+        ],
+        "then" : [
+          "$gt0010|droppar / minut|.magnitude=20*$gt0003|Volume|.magnitude*1000/60/$gt0007|Time|.magnitude"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Drip rate",
+            "description" : "Calculates intravenous drip rate (drops per minute) based on total infusion volume,  infusion duration, and drip factor. Intended for clinical support in manual IV administration."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.fluid_input.v1"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Volume"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "openEHR-EHR-OBSERVATION.fluid_balance.v1"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Time"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Input exist and default rule ",
+            "description" : "20 * amount * 1000 / 60 / time"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "openEHR-EHR-OBSERVATION.iv_drip_rate_calculator.v0"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "droppar / minut"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "openEHR-EHR-OBSERVATION.infusion_factors.v0"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Infusion volume"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Drop time"
+          }
+        }
+      }
+    }
+  }
+}
