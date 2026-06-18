@@ -1,0 +1,73 @@
+guidelines:
+  "1": Anion_gap.v0.0.2
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1":
+        gt0003|Sodium test: NPU::NPU03429|sodium code|
+        gt0006|Bicarbonate (HCO3-) test: NPU::NPU02409|Bicarbonate code|
+        gt0028|Chloride (Cl-) test: NPU::NPU01536|Chloride code|
+        gt0029|Potassium (K+) test: NPU::NPU03230|Potassium code|
+    expected_output:
+      "1": {}
+  - id: 02. Sodium (Na+) missing (negative test).
+    input:
+      "1":
+        gt0003|Sodium test: NPU::NPU03429|sodium code|
+        gt0006|Bicarbonate (HCO3-) test: NPU::NPU02409|Bicarbonate code|
+        gt0007|Bicarbonate (HCO3-): 26,mmol/L
+        gt0010|Chloride (Cl-): 105,mmol/L
+        gt0028|Chloride (Cl-) test: NPU::NPU01536|Chloride code|
+        gt0013|Potassium (K+): 4,mmol/L
+        gt0029|Potassium (K+) test: NPU::NPU03230|Potassium code|
+    expected_output:
+      "1": {}
+  - id: 03.  Bicarbonate (HCO3-) missing (negative test).
+    input:
+      "1":
+        gt0003|Sodium test: NPU::NPU03429|sodium code|
+        gt0004|Sodium (Na+): 140,mmol/L
+        gt0006|Bicarbonate (HCO3-) test: NPU::NPU02409|Bicarbonate code|
+        gt0010|Chloride (Cl-): 105,mmol/L
+        gt0028|Chloride (Cl-) test: NPU::NPU01536|Chloride code|
+        gt0013|Potassium (K+): 4,mmol/L
+        gt0029|Potassium (K+) test: NPU::NPU03230|Potassium code|
+    expected_output:
+      "1": {}
+  - id: 04.  Chloride (Cl-) missing (negative test).
+    input:
+      "1":
+        gt0003|Sodium test: NPU::NPU03429|sodium code|
+        gt0004|Sodium (Na+): 140,mmol/L
+        gt0006|Bicarbonate (HCO3-) test: NPU::NPU02409|Bicarbonate code|
+        gt0007|Bicarbonate (HCO3-): 26,mmol/L
+        gt0028|Chloride (Cl-) test: NPU::NPU01536|Chloride code|
+        gt0013|Potassium (K+): 4,mmol/L
+        gt0029|Potassium (K+) test: NPU::NPU03230|Potassium code|
+    expected_output:
+      "1": {}
+  - id: 05.  Potassium (K+) missing (negative test).
+    input:
+      "1":
+        gt0003|Sodium test: NPU::NPU03429|sodium code|
+        gt0004|Sodium (Na+): 140,mmol/L
+        gt0006|Bicarbonate (HCO3-) test: NPU::NPU02409|Bicarbonate code|
+        gt0007|Bicarbonate (HCO3-): 26,mmol/L
+        gt0010|Chloride (Cl-): 105,mmol/L
+        gt0028|Chloride (Cl-) test: NPU::NPU01536|Chloride code|
+        gt0029|Potassium (K+) test: NPU::NPU03230|Potassium code|
+    expected_output:
+      "1": {}
+  - id: 06.  Anion GAP 13 mmol/L
+    input:
+      "1":
+        gt0003|Sodium test: NPU::NPU03429|sodium code|
+        gt0004|Sodium (Na+): 140,mmol/L
+        gt0006|Bicarbonate (HCO3-) test: NPU::NPU02409|Bicarbonate code|
+        gt0007|Bicarbonate (HCO3-): 26,mmol/L
+        gt0010|Chloride (Cl-): 105,mmol/L
+        gt0028|Chloride (Cl-) test: NPU::NPU01536|Chloride code|
+        gt0013|Potassium (K+): 4,mmol/L
+        gt0029|Potassium (K+) test: NPU::NPU03230|Potassium code|
+    expected_output:
+      "1": {}
