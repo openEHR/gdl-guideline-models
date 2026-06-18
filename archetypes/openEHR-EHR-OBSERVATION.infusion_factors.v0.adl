@@ -1,60 +1,67 @@
-archetype (adl_version=1.4)
+archetype (adl_version=1.4; uid=0acab400-7e2a-32ba-b8e3-92fe5cde81c9)
 	openEHR-EHR-OBSERVATION.infusion_factors.v0
 
 concept
-	[at0000]	-- Infusion factors
+	[at0000]
+
 language
 	original_language = <[ISO_639-1::en]>
+
 description
 	original_author = <
-		["name"] = <"Isabelle Jensen">
-		["email"] = <"isabelle.jensen@cambio.se">
-		["organisation"] = <"Cambio CDS">
 		["date"] = <"2020-01-15">
+		["name"] = <"Isabelle Jensen">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"isabelle.jensen@cambio.se">
 	>
+	lifecycle_state = <"AuthorDraft">
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"To record drop rate, fluid volume and drop time">
-			use = <"Use to record drop rate, fluid volume and drop time">
-			keywords = <"drop rate", "drop factor", "drop time", "fluid volume">
-			misuse = <"Not to record rate, volume or time other than for infusion fluids.">
+			purpose = <"Used to record drop rate, fluid volume and drop time">
+			keywords = <"drop rate","drop factor","drop time","fluid volume">
 			copyright = <"@Cambio CDS">
+			use = <"Drop rate = Drop factor x Volume (ml)/60 x Time (hours)
+
+Drop factor = the number of drops it takes to make up one ml of fluid:
+20 drops per ml (typically for clear fluids)">
+			misuse = <"Not to record rate, volume or time other than for infusion fluids. ">
 		>
 	>
-	lifecycle_state = <"AuthorDraft">
-	other_contributors = <>
 	other_details = <
-		["references"] = <"Internetmedicin AB. Infusionsmängd [Internet]. Stockholm: Internetmedicin; 2025 [cited 2026 May 20]. Available from: https://verktyg.internetmedicin.se/kalkylatorer/infusionsmangd">
+		["references"] = <"Ref. 1: http://icd.internetmedicin.se/dropptakt
+
+Ref. 2: https://www.rcn.org.uk/clinical-topics/safety-in-numbers/flow-rate-and-iv-drugs">
 		["MD5-CAM-1.0.1"] = <"30A3081F2A55A512F7131B3D817AB0A2">
+		["build_uid"] = <"4f7a4bd0-14d0-3779-bd22-6fc477f9e268">
 	>
 
 definition
-	OBSERVATION[at0000] matches {	-- Infusion factors
+	OBSERVATION[at0000] matches {    -- Infusion factors
 		data matches {
-			HISTORY[at0001] matches {	-- Event Series
+			HISTORY[at0001] matches {    -- Event Series
 				events cardinality matches {1..*; unordered} matches {
-					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+					EVENT[at0002] occurrences matches {0..1} matches {    -- Any event
 						data matches {
-							ITEM_TREE[at0003] matches {	-- Tree
+							ITEM_TREE[at0003] matches {    -- Tree
 								items cardinality matches {0..*; unordered} matches {
-									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Infusion volume
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Infusion volume
 										value matches {
 											C_DV_QUANTITY <
 												property = <[openehr::129]>
 												list = <
 													["1"] = <
-														units = <"mL">
+														units = <"ml">
 														magnitude = <|>=0.0|>
 													>
 													["2"] = <
-														units = <"L">
+														units = <"l">
 													>
 												>
 											>
 										}
 									}
-									ELEMENT[at0005] occurrences matches {0..1} matches {	-- Drop time
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Drop time
 										value matches {
 											C_DV_QUANTITY <
 												property = <[openehr::128]>
@@ -67,7 +74,7 @@ definition
 											>
 										}
 									}
-									ELEMENT[at0006] occurrences matches {0..1} matches {	-- Drop rate
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Drop rate
 										value matches {
 											C_DV_QUANTITY <
 												property = <[openehr::126]>
@@ -80,24 +87,24 @@ definition
 											>
 										}
 									}
-									ELEMENT[at0007] occurrences matches {0..1} matches {	-- Calculated Infusion volume
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Calculated Infusion volume
 										value matches {
 											C_DV_QUANTITY <
 												property = <[openehr::129]>
 												list = <
 													["1"] = <
-														units = <"mL">
+														units = <"ml">
 														magnitude = <|>=0.0|>
 													>
 													["2"] = <
-														units = <"L">
+														units = <"l">
 														magnitude = <|>=0.0|>
 													>
 												>
 											>
 										}
 									}
-									ELEMENT[at0008] occurrences matches {0..1} matches {	-- Calculated drop time
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Calculated drop time
 										value matches {
 											C_DV_QUANTITY <
 												property = <[openehr::128]>
@@ -106,11 +113,14 @@ definition
 														units = <"h">
 														magnitude = <|>=0.0|>
 													>
+													["2"] = <
+														units = <"min">
+													>
 												>
 											>
 										}
 									}
-									ELEMENT[at0009] occurrences matches {0..1} matches {	-- Calculated drop rate
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Calculated drop rate
 										value matches {
 											C_DV_QUANTITY <
 												property = <[openehr::126]>
