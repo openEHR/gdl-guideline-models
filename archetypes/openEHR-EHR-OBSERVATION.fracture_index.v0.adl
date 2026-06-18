@@ -1,0 +1,288 @@
+archetype (adl_version=1.4; uid=235e22b5-e281-4b45-b3b1-8bb0b9f7f602)
+	openEHR-EHR-OBSERVATION.fracture_index.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-06-15">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"Kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and their total sum for the Fracture index.">
+			keywords = <"fracture","index","osteoporosis","hip","fracture","ris","prediction","postmenopausal","rheumatology">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the component parameters and the total score for the Fracture index.">
+			misuse = <"Not to be used for male patients or premenopausal women.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Black DM, Steinbuch M, Palermo L, Dargent-Molina P, Lindsay R, Hoseyni MS, Johnell O. An assessment tool for predicting fracture risk in postmenopausal women. Osteoporos Int. 2001;12(7):519-28. doi: 10.1007/s001980170072. PMID: 11527048.">
+		["build_uid"] = <"487f90e3-24ad-30e0-9ed9-95604347c766">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Fracture index
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0040] occurrences matches {0..1} matches {    -- Bone Mineral Density test results available
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0041,    -- Yes
+													at0042]    -- No
+												}
+											}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Age
+										value matches {
+											0|[local::at0008],
+											1|[local::at0009],
+											2|[local::at0010],
+											3|[local::at0011],
+											4|[local::at0012],
+											5|[local::at0013]
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {    -- History of any fracture after age 50
+										value matches {
+											0|[local::at0021],
+											1|[local::at0022]
+										}
+									}
+									ELEMENT[at0023] occurrences matches {0..1} matches {    -- Mother's history of a hip fracture after age 50
+										value matches {
+											0|[local::at0024],
+											1|[local::at0025]
+										}
+									}
+									ELEMENT[at0026] occurrences matches {0..1} matches {    -- Weight
+										value matches {
+											0|[local::at0027],
+											1|[local::at0028]
+										}
+									}
+									ELEMENT[at0029] occurrences matches {0..1} matches {    -- Current smoker
+										value matches {
+											0|[local::at0030],
+											1|[local::at0031]
+										}
+									}
+									ELEMENT[at0032] occurrences matches {0..1} matches {    -- Need to use arms to assist themself in standing up from a chair
+										value matches {
+											0|[local::at0033],
+											2|[local::at0034]
+										}
+									}
+									ELEMENT[at0035] occurrences matches {0..1} matches {    -- BMD results: total hip T-score
+										value matches {
+											0|[local::at0036],
+											2|[local::at0037],
+											3|[local::at0038],
+											4|[local::at0039]
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											DV_COUNT matches {
+												magnitude matches {|0..15|}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Fracture index">
+					description = <"An assessment score used to predict the 5-year risk of hip fractures in postmenopausal women.">
+					comment = <"Original version, c 2001">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Total score">
+					description = <"The total sum of each component parameter for the fracture index score.">
+				>
+				["at0007"] = <
+					text = <"Age">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"<65">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"65-69">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"70-74">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"75-79">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"80-84">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"≥85">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"History of any fracture after age 50">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"No/don’t know">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Mother's history of a hip fracture after age 50">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"No/don’t know">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Weight">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <">125 lb (>56.7 kg)">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"≤125 lb (≤56.7 kg)">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Current smoker">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Need to use arms to assist themself in standing up from a chair">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"No/don’t know">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"BMD results: total hip T-score">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"≥-1">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"Between -1 and -2">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"Between -2 and -2.5">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"<-2.5">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"Bone Mineral Density test results available">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"No">
+					description = <"">
+				>
+			>
+		>
+	>
