@@ -1,0 +1,345 @@
+guidelines:
+  "1": Fracture_index.v0.0.1
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Bone Mineral Density test results available missing (negative test).
+    input:
+      "1":
+        gt0004|Age: 0|local::at0008|<65|
+        gt0005|History of any fracture after age 50: 0|local::at0021|No/don’t know|
+        gt0006|Mother's history of a hip fracture after age 50: 0|local::at0024|No/don’t know|
+        gt0007|Weight: 0|local::at0027|>125 lb (>56.7 kg)|
+        gt0008|Current smoker: 0|local::at0030|No|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 0|local::at0033|No/don’t know|
+        "gt0010|BMD results: total hip T-score": 0|local::at0036|≥-1|
+    expected_output:
+      "1": {}
+  - id: 03. Age missing (negative test).
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0041|Yes|
+        gt0005|History of any fracture after age 50: 0|local::at0021|No/don’t know|
+        gt0006|Mother's history of a hip fracture after age 50: 0|local::at0024|No/don’t know|
+        gt0007|Weight: 0|local::at0027|>125 lb (>56.7 kg)|
+        gt0008|Current smoker: 0|local::at0030|No|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 0|local::at0033|No/don’t know|
+        "gt0010|BMD results: total hip T-score": 0|local::at0036|≥-1|
+    expected_output:
+      "1": {}
+  - id: 04. History of any fracture after age 50 missing (negative test).
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0041|Yes|
+        gt0004|Age: 0|local::at0008|<65|
+        gt0006|Mother's history of a hip fracture after age 50: 0|local::at0024|No/don’t know|
+        gt0007|Weight: 0|local::at0027|>125 lb (>56.7 kg)|
+        gt0008|Current smoker: 0|local::at0030|No|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 0|local::at0033|No/don’t know|
+        "gt0010|BMD results: total hip T-score": 0|local::at0036|≥-1|
+    expected_output:
+      "1": {}
+  - id: 05. Mother's history of a hip fracture after age 50 missing (negative test).
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0041|Yes|
+        gt0004|Age: 0|local::at0008|<65|
+        gt0005|History of any fracture after age 50: 0|local::at0021|No/don’t know|
+        gt0007|Weight: 0|local::at0027|>125 lb (>56.7 kg)|
+        gt0008|Current smoker: 0|local::at0030|No|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 0|local::at0033|No/don’t know|
+        "gt0010|BMD results: total hip T-score": 0|local::at0036|≥-1|
+    expected_output:
+      "1": {}
+  - id: 06. Weight missing (negative test).
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0041|Yes|
+        gt0004|Age: 0|local::at0008|<65|
+        gt0005|History of any fracture after age 50: 0|local::at0021|No/don’t know|
+        gt0006|Mother's history of a hip fracture after age 50: 0|local::at0024|No/don’t know|
+        gt0008|Current smoker: 0|local::at0030|No|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 0|local::at0033|No/don’t know|
+        "gt0010|BMD results: total hip T-score": 0|local::at0036|≥-1|
+    expected_output:
+      "1": {}
+  - id: 07. Current smoker missing (negative test).
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0041|Yes|
+        gt0004|Age: 0|local::at0008|<65|
+        gt0005|History of any fracture after age 50: 0|local::at0021|No/don’t know|
+        gt0006|Mother's history of a hip fracture after age 50: 0|local::at0024|No/don’t know|
+        gt0007|Weight: 0|local::at0027|>125 lb (>56.7 kg)|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 0|local::at0033|No/don’t know|
+        "gt0010|BMD results: total hip T-score": 0|local::at0036|≥-1|
+    expected_output:
+      "1": {}
+  - id: 08. Need to use arms to assist themself in standing up from a chair missing
+      (negative test).
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0041|Yes|
+        gt0004|Age: 0|local::at0008|<65|
+        gt0005|History of any fracture after age 50: 0|local::at0021|No/don’t know|
+        gt0006|Mother's history of a hip fracture after age 50: 0|local::at0024|No/don’t know|
+        gt0007|Weight: 0|local::at0027|>125 lb (>56.7 kg)|
+        gt0008|Current smoker: 0|local::at0030|No|
+        "gt0010|BMD results: total hip T-score": 0|local::at0036|≥-1|
+    expected_output:
+      "1": {}
+  - id: "09. BMD results: total hip T-score missing (negative test)."
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0041|Yes|
+        gt0004|Age: 0|local::at0008|<65|
+        gt0005|History of any fracture after age 50: 0|local::at0021|No/don’t know|
+        gt0006|Mother's history of a hip fracture after age 50: 0|local::at0024|No/don’t know|
+        gt0007|Weight: 0|local::at0027|>125 lb (>56.7 kg)|
+        gt0008|Current smoker: 0|local::at0030|No|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 0|local::at0033|No/don’t know|
+    expected_output:
+      "1": {}
+  - id: 10. BMD available total score 0.
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0041|Yes|
+        gt0004|Age: 0|local::at0008|<65|
+        gt0005|History of any fracture after age 50: 0|local::at0021|No/don’t know|
+        gt0006|Mother's history of a hip fracture after age 50: 0|local::at0024|No/don’t know|
+        gt0007|Weight: 0|local::at0027|>125 lb (>56.7 kg)|
+        gt0008|Current smoker: 0|local::at0030|No|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 0|local::at0033|No/don’t know|
+        "gt0010|BMD results: total hip T-score": 0|local::at0036|≥-1|
+    expected_output:
+      "1":
+        gt0012|Total score: "0"
+        gt0014|5-year risk of hip fracture: <0.4%
+  - id: 11. BMD available total score 2.
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0041|Yes|
+        gt0004|Age: 0|local::at0008|<65|
+        gt0005|History of any fracture after age 50: 0|local::at0021|No/don’t know|
+        gt0006|Mother's history of a hip fracture after age 50: 0|local::at0024|No/don’t know|
+        gt0007|Weight: 0|local::at0027|>125 lb (>56.7 kg)|
+        gt0008|Current smoker: 0|local::at0030|No|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 0|local::at0033|No/don’t know|
+        "gt0010|BMD results: total hip T-score": 2|local::at0037|Between -1 and -2|
+    expected_output:
+      "1":
+        gt0012|Total score: "2"
+        gt0014|5-year risk of hip fracture: 0.4%
+  - id: 12. BMD available total score 3.
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0041|Yes|
+        gt0004|Age: 1|local::at0009|65-69|
+        gt0005|History of any fracture after age 50: 0|local::at0021|No/don’t know|
+        gt0006|Mother's history of a hip fracture after age 50: 0|local::at0024|No/don’t know|
+        gt0007|Weight: 0|local::at0027|>125 lb (>56.7 kg)|
+        gt0008|Current smoker: 0|local::at0030|No|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 0|local::at0033|No/don’t know|
+        "gt0010|BMD results: total hip T-score": 2|local::at0037|Between -1 and -2|
+    expected_output:
+      "1":
+        gt0012|Total score: "3"
+        gt0014|5-year risk of hip fracture: 0.9%
+  - id: 13. BMD available total score 4.
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0041|Yes|
+        gt0004|Age: 1|local::at0009|65-69|
+        gt0005|History of any fracture after age 50: 1|local::at0022|Yes|
+        gt0006|Mother's history of a hip fracture after age 50: 0|local::at0024|No/don’t know|
+        gt0007|Weight: 0|local::at0027|>125 lb (>56.7 kg)|
+        gt0008|Current smoker: 0|local::at0030|No|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 0|local::at0033|No/don’t know|
+        "gt0010|BMD results: total hip T-score": 2|local::at0037|Between -1 and -2|
+    expected_output:
+      "1":
+        gt0012|Total score: "4"
+        gt0014|5-year risk of hip fracture: 0.9%
+  - id: 14. BMD available total score 5.
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0041|Yes|
+        gt0004|Age: 1|local::at0009|65-69|
+        gt0005|History of any fracture after age 50: 1|local::at0022|Yes|
+        gt0006|Mother's history of a hip fracture after age 50: 1|local::at0025|Yes|
+        gt0007|Weight: 0|local::at0027|>125 lb (>56.7 kg)|
+        gt0008|Current smoker: 0|local::at0030|No|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 0|local::at0033|No/don’t know|
+        "gt0010|BMD results: total hip T-score": 2|local::at0037|Between -1 and -2|
+    expected_output:
+      "1":
+        gt0012|Total score: "5"
+        gt0014|5-year risk of hip fracture: 1.9%
+  - id: 15. BMD available total score 6.
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0041|Yes|
+        gt0004|Age: 1|local::at0009|65-69|
+        gt0005|History of any fracture after age 50: 1|local::at0022|Yes|
+        gt0006|Mother's history of a hip fracture after age 50: 1|local::at0025|Yes|
+        gt0007|Weight: 1|local::at0028|≤125 lb (≤56.7 kg)|
+        gt0008|Current smoker: 0|local::at0030|No|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 0|local::at0033|No/don’t know|
+        "gt0010|BMD results: total hip T-score": 2|local::at0037|Between -1 and -2|
+    expected_output:
+      "1":
+        gt0012|Total score: "6"
+        gt0014|5-year risk of hip fracture: 3.9%
+  - id: 16. BMD available total score 7.
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0041|Yes|
+        gt0004|Age: 1|local::at0009|65-69|
+        gt0005|History of any fracture after age 50: 1|local::at0022|Yes|
+        gt0006|Mother's history of a hip fracture after age 50: 1|local::at0025|Yes|
+        gt0007|Weight: 1|local::at0028|≤125 lb (≤56.7 kg)|
+        gt0008|Current smoker: 1|local::at0031|Yes|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 0|local::at0033|No/don’t know|
+        "gt0010|BMD results: total hip T-score": 2|local::at0037|Between -1 and -2|
+    expected_output:
+      "1":
+        gt0012|Total score: "7"
+        gt0014|5-year risk of hip fracture: 3.9%
+  - id: 17. BMD available total score 8.
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0041|Yes|
+        gt0004|Age: 1|local::at0009|65-69|
+        gt0005|History of any fracture after age 50: 0|local::at0021|No/don’t know|
+        gt0006|Mother's history of a hip fracture after age 50: 1|local::at0025|Yes|
+        gt0007|Weight: 1|local::at0028|≤125 lb (≤56.7 kg)|
+        gt0008|Current smoker: 1|local::at0031|Yes|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 2|local::at0034|Yes|
+        "gt0010|BMD results: total hip T-score": 2|local::at0037|Between -1 and -2|
+    expected_output:
+      "1":
+        gt0012|Total score: "8"
+        gt0014|5-year risk of hip fracture: 8.7%
+  - id: 18. BMD available total score 15.
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0041|Yes|
+        gt0004|Age: 5|local::at0013|≥85|
+        gt0005|History of any fracture after age 50: 1|local::at0022|Yes|
+        gt0006|Mother's history of a hip fracture after age 50: 1|local::at0025|Yes|
+        gt0007|Weight: 1|local::at0028|≤125 lb (≤56.7 kg)|
+        gt0008|Current smoker: 1|local::at0031|Yes|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 2|local::at0034|Yes|
+        "gt0010|BMD results: total hip T-score": 4|local::at0039|<-2.5|
+    expected_output:
+      "1":
+        gt0012|Total score: "15"
+        gt0014|5-year risk of hip fracture: 8.7%
+  - id: 19. BMD not available total score 11.
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0042|No|
+        gt0004|Age: 5|local::at0013|≥85|
+        gt0005|History of any fracture after age 50: 1|local::at0022|Yes|
+        gt0006|Mother's history of a hip fracture after age 50: 1|local::at0025|Yes|
+        gt0007|Weight: 1|local::at0028|≤125 lb (≤56.7 kg)|
+        gt0008|Current smoker: 1|local::at0031|Yes|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 2|local::at0034|Yes|
+        "gt0010|BMD results: total hip T-score": 0|local::at0036|≥-1|
+    expected_output:
+      "1":
+        gt0012|Total score: "11"
+        gt0014|5-year risk of hip fracture: 8.2%
+  - id: 20. BMD not available total score 5.
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0042|No|
+        gt0004|Age: 3|local::at0011|75-79|
+        gt0005|History of any fracture after age 50: 0|local::at0021|No/don’t know|
+        gt0006|Mother's history of a hip fracture after age 50: 0|local::at0024|No/don’t know|
+        gt0007|Weight: 0|local::at0027|>125 lb (>56.7 kg)|
+        gt0008|Current smoker: 0|local::at0030|No|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 2|local::at0034|Yes|
+        "gt0010|BMD results: total hip T-score": 0|local::at0036|≥-1|
+    expected_output:
+      "1":
+        gt0012|Total score: "5"
+        gt0014|5-year risk of hip fracture: 8.2%
+  - id: 21. BMD not available total score 4.
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0042|No|
+        gt0004|Age: 1|local::at0009|65-69|
+        gt0005|History of any fracture after age 50: 1|local::at0022|Yes|
+        gt0006|Mother's history of a hip fracture after age 50: 0|local::at0024|No/don’t know|
+        gt0007|Weight: 0|local::at0027|>125 lb (>56.7 kg)|
+        gt0008|Current smoker: 0|local::at0030|No|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 2|local::at0034|Yes|
+        "gt0010|BMD results: total hip T-score": 0|local::at0036|≥-1|
+    expected_output:
+      "1":
+        gt0012|Total score: "4"
+        gt0014|5-year risk of hip fracture: 3.2%
+  - id: 22. BMD not available total score 3.
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0042|No|
+        gt0004|Age: 2|local::at0010|70-74|
+        gt0005|History of any fracture after age 50: 0|local::at0021|No/don’t know|
+        gt0006|Mother's history of a hip fracture after age 50: 0|local::at0024|No/don’t know|
+        gt0007|Weight: 1|local::at0028|≤125 lb (≤56.7 kg)|
+        gt0008|Current smoker: 0|local::at0030|No|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 0|local::at0033|No/don’t know|
+        "gt0010|BMD results: total hip T-score": 0|local::at0036|≥-1|
+    expected_output:
+      "1":
+        gt0012|Total score: "3"
+        gt0014|5-year risk of hip fracture: 2.1%
+  - id: 23. BMD not available total score 2.
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0042|No|
+        gt0004|Age: 0|local::at0008|<65|
+        gt0005|History of any fracture after age 50: 1|local::at0022|Yes|
+        gt0006|Mother's history of a hip fracture after age 50: 0|local::at0024|No/don’t know|
+        gt0007|Weight: 0|local::at0027|>125 lb (>56.7 kg)|
+        gt0008|Current smoker: 1|local::at0031|Yes|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 0|local::at0033|No/don’t know|
+        "gt0010|BMD results: total hip T-score": 0|local::at0036|≥-1|
+    expected_output:
+      "1":
+        gt0012|Total score: "2"
+        gt0014|5-year risk of hip fracture: 1.4%
+  - id: 24. BMD not available total score 1.
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0042|No|
+        gt0004|Age: 0|local::at0008|<65|
+        gt0005|History of any fracture after age 50: 0|local::at0021|No/don’t know|
+        gt0006|Mother's history of a hip fracture after age 50: 0|local::at0024|No/don’t know|
+        gt0007|Weight: 1|local::at0028|≤125 lb (≤56.7 kg)|
+        gt0008|Current smoker: 0|local::at0030|No|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 0|local::at0033|No/don’t know|
+        "gt0010|BMD results: total hip T-score": 0|local::at0036|≥-1|
+    expected_output:
+      "1":
+        gt0012|Total score: "1"
+        gt0014|5-year risk of hip fracture: 0.6%
+  - id: 25. BMD not available total score 0.
+    input:
+      "1":
+        gt0003|Bone Mineral Density test results available: local::at0042|No|
+        gt0004|Age: 0|local::at0008|<65|
+        gt0005|History of any fracture after age 50: 0|local::at0021|No/don’t know|
+        gt0006|Mother's history of a hip fracture after age 50: 0|local::at0024|No/don’t know|
+        gt0007|Weight: 0|local::at0027|>125 lb (>56.7 kg)|
+        gt0008|Current smoker: 0|local::at0030|No|
+        gt0009|Need to use arms to assist themself in standing up from a chair: 0|local::at0033|No/don’t know|
+        "gt0010|BMD results: total hip T-score": 0|local::at0036|≥-1|
+    expected_output:
+      "1":
+        gt0012|Total score: "0"
+        gt0014|5-year risk of hip fracture: <0.6%
