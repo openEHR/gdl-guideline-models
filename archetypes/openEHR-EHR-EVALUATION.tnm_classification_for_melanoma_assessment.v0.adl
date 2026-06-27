@@ -1,0 +1,184 @@
+archetype (adl_version=1.4; uid=0a4c13c4-09e5-43dd-9c8d-4caea425cafe)
+	openEHR-EHR-EVALUATION.tnm_classification_for_melanoma_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-06-22">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the prognostic stage group for melanoma.">
+			keywords = <"tnm","melanoma","skin","cancer","oncology","uicc","ajcc","staging","metastasis","tumor","stage","assessment">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the prognostic stage group (from stage 0 to stage IV) for melanoma based on the T, N, and M categories.">
+			misuse = <"Not to be used for staging other types of cancer.
+
+Not to be used for non-melanoma skin cancers.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Keung EZ, Gershenwald JE. The eighth edition American Joint Committee on Cancer (AJCC) melanoma staging system: implications for melanoma treatment and care. Expert Rev Anticancer Ther. 2018 Aug;18(8):775-784. doi: 10.1080/14737140.2018.1489246. PMID: 29923435; PMCID: PMC7652033.
+
+Gershenwald JE, Scolyer RA, Hess KR, Sondak VK, Long GV, Ross MI, Lazar AJ, Faries MB, Kirkwood JM, McArthur GA, Haydu LE, Eggermont AMM, Flaherty KT, Balch CM, Thompson JF; for members of the American Joint Committee on Cancer Melanoma Expert Panel and the International Melanoma Database and Discovery Platform. Melanoma staging: Evidence-based changes in the American Joint Committee on Cancer eighth edition cancer staging manual. CA Cancer J Clin. 2017 Nov;67(6):472-492. doi: 10.3322/caac.21409. Epub 2017 Oct 13. PMID: 29028110; PMCID: PMC5978683.
+
+Nationellt vårdprogram melanom [Internet]. Regionala cancercentrum i samverkan; 2024 [cited 2026 Jun 22]. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/melanom/vardprogram/kategorisering-av-tumoren/">
+		["build_uid"] = <"303e52ea-49c1-39ba-8deb-c4610bcc08f7">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- TNM classification for melanoma assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Staging
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- Clinical staging
+									at0006]    -- Pathological staging
+								}
+							}
+						}
+					}
+					ELEMENT[at0007] occurrences matches {0..1} matches {    -- Stage group
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0008,    -- 0
+									at0009,    -- IA
+									at0010,    -- IB
+									at0011,    -- IIA
+									at0012,    -- IIB
+									at0013,    -- IIC
+									at0014,    -- III
+									at0015,    -- IIIA
+									at0016,    -- IIIB
+									at0017,    -- IIIC
+									at0018,    -- IIID
+									at0019]    -- IV
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"TNM classification for melanoma assessment">
+					description = <"The clinical or pathological stage group for melanoma based on the UICC 8 and AJCC 8 TNM classification.">
+					comment = <"Original version, c 2017.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Staging">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Clinical staging">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Pathological staging">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Stage group">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"0">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"IA">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"IB">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"IIA">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"IIB">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"IIC">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"III">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"IIIA">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"IIIB">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"IIIC">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"IIID">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"IV">
+					description = <"">
+				>
+			>
+		>
+	>
