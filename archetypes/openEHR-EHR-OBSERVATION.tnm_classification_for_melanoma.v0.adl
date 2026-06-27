@@ -1,0 +1,278 @@
+archetype (adl_version=1.4; uid=b710035c-4687-4d43-be35-fc67e683206b)
+	openEHR-EHR-OBSERVATION.tnm_classification_for_melanoma.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-06-22">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the T, N, and M categories for the melanoma TNM classification.">
+			keywords = <"tnm","melanoma","skin","cancer","oncology","uicc","ajcc","staging","metastasis","tumor">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the T, N, and M categories for the melanoma TNM classification.">
+			misuse = <"Not to be used for staging other types of cancer.
+
+Not to be used for non-melanoma skin cancers.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Keung EZ, Gershenwald JE. The eighth edition American Joint Committee on Cancer (AJCC) melanoma staging system: implications for melanoma treatment and care. Expert Rev Anticancer Ther. 2018 Aug;18(8):775-784. doi: 10.1080/14737140.2018.1489246. PMID: 29923435; PMCID: PMC7652033.
+
+Gershenwald JE, Scolyer RA, Hess KR, Sondak VK, Long GV, Ross MI, Lazar AJ, Faries MB, Kirkwood JM, McArthur GA, Haydu LE, Eggermont AMM, Flaherty KT, Balch CM, Thompson JF; for members of the American Joint Committee on Cancer Melanoma Expert Panel and the International Melanoma Database and Discovery Platform. Melanoma staging: Evidence-based changes in the American Joint Committee on Cancer eighth edition cancer staging manual. CA Cancer J Clin. 2017 Nov;67(6):472-492. doi: 10.3322/caac.21409. Epub 2017 Oct 13. PMID: 29028110; PMCID: PMC5978683.
+
+Nationellt vårdprogram melanom [Internet]. Regionala cancercentrum i samverkan; 2024 [cited 2026 Jun 22]. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/melanom/vardprogram/kategorisering-av-tumoren/">
+		["build_uid"] = <"f8bd0cd4-f29b-3088-afec-956b75496482">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- TNM classification for melanoma
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- T - Primary tumour
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- Tx - Tissue sample insufficient for tumor thickness measurement
+													at0008,    -- T0 - Unknown primary tumor, melanoma in complete regression
+													at0009,    -- Tis - In situ
+													at0010,    -- T1a - < 0.8 mm, no ulceration
+													at0011,    -- T1b - < 0.8 mm with ulceration, or 0.8–1.0 mm with/without ulceration
+													at0012,    -- T2a - > 1.0–2.0 mm, no ulceration
+													at0013,    -- T2b - > 1.0–2.0 mm, with ulceration
+													at0014,    -- T3a - > 2.0–4.0 mm, no ulceration
+													at0015,    -- T3b - > 2.0–4.0 mm, with ulceration
+													at0016,    -- T4a - > 4.0 mm, no ulceration
+													at0017]    -- T4b - > 4.0 mm, with ulceration
+												}
+											}
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- N - Lymph nodes
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0019,    -- Nx - Not examined/No sentinel node biopsy performed. T1 melanomas excluded
+													at0020,    -- N0 - No lymph node metastases
+													at0021,    -- N1a - 1 lymph node with metastasis
+													at0022,    -- N1b - 1 lymph node with clinical metastasis
+													at0023,    -- N1c - No lymph node metastasis, but in transit, satellite and/or microsatellite metastases present
+													at0024,    -- N2a - 2–3 lymph nodes with metastases
+													at0025,    -- N2b - 2–3 lymph nodes with metastases and at least 1 clinical metastasis
+													at0026,    -- N2c - 1 lymph node with metastasis and in transit, satellite and/or microsatellite metastases present
+													at0027,    -- N3a - ≥ 4 lymph nodes with metastases
+													at0028,    -- N3b - ≥ 4 lymph nodes with metastases and at least 1 clinical metastasis or conglomerate
+													at0029]    -- N3c - ≥ 2 lymph nodes with metastases and in transit, satellite and/or microsatellite metastases present
+												}
+											}
+										}
+									}
+									ELEMENT[at0030] occurrences matches {0..1} matches {    -- M - Distant metastasis
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0031,    -- M0 - No distant metastases
+													at0032,    -- M1a - Distant metastasis to skin or muscle
+													at0033,    -- M1b - Distant metastasis to lung
+													at0034,    -- M1c - Distant metastasis to visceral organs
+													at0035]    -- M1d - CNS metastases
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"TNM classification for melanoma">
+					description = <"TNM classification for melanoma according to the UICC 8 and AJCC 8 classification systems.">
+					comment = <"Original version, c 2017.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"T - Primary tumour">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Tx - Tissue sample insufficient for tumor thickness measurement">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"T0 - Unknown primary tumor, melanoma in complete regression">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Tis - In situ">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"T1a - < 0.8 mm, no ulceration">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"T1b - < 0.8 mm with ulceration, or 0.8–1.0 mm with/without ulceration">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"T2a - > 1.0–2.0 mm, no ulceration">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"T2b - > 1.0–2.0 mm, with ulceration">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"T3a - > 2.0–4.0 mm, no ulceration">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"T3b - > 2.0–4.0 mm, with ulceration">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"T4a - > 4.0 mm, no ulceration">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"T4b - > 4.0 mm, with ulceration">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"N - Lymph nodes">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Nx - Not examined/No sentinel node biopsy performed. T1 melanomas excluded">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"N0 - No lymph node metastases">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"N1a - 1 lymph node with metastasis">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"N1b - 1 lymph node with clinical metastasis">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"N1c - No lymph node metastasis, but in transit, satellite and/or microsatellite metastases present">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"N2a - 2–3 lymph nodes with metastases">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"N2b - 2–3 lymph nodes with metastases and at least 1 clinical metastasis">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"N2c - 1 lymph node with metastasis and in transit, satellite and/or microsatellite metastases present">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"N3a - ≥ 4 lymph nodes with metastases">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"N3b - ≥ 4 lymph nodes with metastases and at least 1 clinical metastasis or conglomerate">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"N3c - ≥ 2 lymph nodes with metastases and in transit, satellite and/or microsatellite metastases present">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"M - Distant metastasis">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"M0 - No distant metastases">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"M1a - Distant metastasis to skin or muscle">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"M1b - Distant metastasis to lung">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"M1c - Distant metastasis to visceral organs">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"M1d - CNS metastases">
+					description = <"">
+				>
+			>
+		>
+	>
