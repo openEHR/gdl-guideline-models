@@ -1,0 +1,498 @@
+guidelines:
+  "1": TNM_for_melanoma_staging.v0.0.1
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. T - Primary tumour missing (negative test).
+    input:
+      "1":
+        gt0004|N - Lymph nodes: local::at0019|Nx - Not examined/No sentinel node biopsy
+          performed. T1 melanomas excluded|
+        gt0005|M - Distant metastasis: local::at0032|M1a - Distant metastasis to skin or muscle|
+        gt0010|Staging: local::at0005|Clinical staging|
+    expected_output:
+      "1": {}
+  - id: 03. N - Lymph nodes missing (negative test).
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0010|T1a - < 0.8 mm, no ulceration|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0005|Clinical staging|
+    expected_output:
+      "1": {}
+  - id: 04. M - Distant metastasis missing (negative test).
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0010|T1a - < 0.8 mm, no ulceration|
+        gt0004|N - Lymph nodes: local::at0021|N1a - 1 lymph node with metastasis|
+        gt0010|Staging: local::at0005|Clinical staging|
+    expected_output:
+      "1": {}
+  - id: 05. Staging missing (negative test).
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0010|T1a - < 0.8 mm, no ulceration|
+        gt0004|N - Lymph nodes: local::at0021|N1a - 1 lymph node with metastasis|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+    expected_output:
+      "1": {}
+  - id: "06. stage 0: Tis, N0, M0; clinical staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0009|Tis - In situ|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No lymph node metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0005|Clinical staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0005|Clinical staging|
+        gt0008|Stage group: local::at0008|0|
+  - id: "07. stage 0: Tis, N0, M0; pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0009|Tis - In situ|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No lymph node metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0008|0|
+  - id: "08. stage IA: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0010|T1a - < 0.8 mm, no ulceration|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No lymph node metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0009|IA|
+  - id: "10. stage IA: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0011|T1b - < 0.8 mm with ulceration, or
+          0.8–1.0 mm with/without ulceration|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No lymph node metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0009|IA|
+  - id: "09. stage IA: clinical staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0010|T1a - < 0.8 mm, no ulceration|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No lymph node metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0005|Clinical staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0005|Clinical staging|
+        gt0008|Stage group: local::at0009|IA|
+  - id: "11. stage IB: clinical staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0011|T1b - < 0.8 mm with ulceration, or
+          0.8–1.0 mm with/without ulceration|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No lymph node metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0005|Clinical staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0005|Clinical staging|
+        gt0008|Stage group: local::at0010|IB|
+  - id: "12. stage IB: clinical staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0012|T2a - > 1.0–2.0 mm, no ulceration|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No lymph node metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0005|Clinical staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0005|Clinical staging|
+        gt0008|Stage group: local::at0010|IB|
+  - id: "13. stage IB: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0012|T2a - > 1.0–2.0 mm, no ulceration|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No lymph node metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0010|IB|
+  - id: "14. stage IIA: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0013|T2b - > 1.0–2.0 mm, with ulceration|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No lymph node metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0011|IIA|
+  - id: "15. stage IIA: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0014|T3a - > 2.0–4.0 mm, no ulceration|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No lymph node metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0011|IIA|
+  - id: "16. stage IIA: clinical staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0014|T3a - > 2.0–4.0 mm, no ulceration|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No lymph node metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0005|Clinical staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0005|Clinical staging|
+        gt0008|Stage group: local::at0011|IIA|
+  - id: "17. stage IIA: clinical staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0013|T2b - > 1.0–2.0 mm, with ulceration|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No lymph node metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0005|Clinical staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0005|Clinical staging|
+        gt0008|Stage group: local::at0011|IIA|
+  - id: "18. stage IIB: clinical staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0015|T3b - > 2.0–4.0 mm, with ulceration|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No lymph node metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0005|Clinical staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0005|Clinical staging|
+        gt0008|Stage group: local::at0012|IIB|
+  - id: "19. stage IIB: clinical staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0016|T4a - > 4.0 mm, no ulceration|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No lymph node metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0005|Clinical staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0005|Clinical staging|
+        gt0008|Stage group: local::at0012|IIB|
+  - id: "20. stage IIB: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0016|T4a - > 4.0 mm, no ulceration|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No lymph node metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0012|IIB|
+  - id: "21. stage IIB: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0015|T3b - > 2.0–4.0 mm, with ulceration|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No lymph node metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0012|IIB|
+  - id: "22. stage IIC: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0017|T4b - > 4.0 mm, with ulceration|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No lymph node metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0013|IIC|
+  - id: "23. stage IIC: clinical staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0017|T4b - > 4.0 mm, with ulceration|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No lymph node metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0005|Clinical staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0005|Clinical staging|
+        gt0008|Stage group: local::at0013|IIC|
+  - id: "24. stage III: clinical staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0017|T4b - > 4.0 mm, with ulceration|
+        gt0004|N - Lymph nodes: local::at0022|N1b - 1 lymph node with clinical metastasis|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0005|Clinical staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0005|Clinical staging|
+        gt0008|Stage group: local::at0014|III|
+  - id: "25. stage III: clinical staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0014|T3a - > 2.0–4.0 mm, no ulceration|
+        gt0004|N - Lymph nodes: local::at0026|N2c - 1 lymph node with metastasis and in
+          transit, satellite and/or microsatellite metastases present|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0005|Clinical staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0005|Clinical staging|
+        gt0008|Stage group: local::at0014|III|
+  - id: "26. stage III: clinical staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0014|T3a - > 2.0–4.0 mm, no ulceration|
+        gt0004|N - Lymph nodes: local::at0025|N2b - 2–3 lymph nodes with metastases and
+          at least 1 clinical metastasis|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0005|Clinical staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0005|Clinical staging|
+        gt0008|Stage group: local::at0014|III|
+  - id: "27. stage III: clinical staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0011|T1b - < 0.8 mm with ulceration, or
+          0.8–1.0 mm with/without ulceration|
+        gt0004|N - Lymph nodes: local::at0029|N3c - ≥ 2 lymph nodes with metastases and
+          in transit, satellite and/or microsatellite metastases present|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0005|Clinical staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0005|Clinical staging|
+        gt0008|Stage group: local::at0014|III|
+  - id: "28. stage IIIA: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0010|T1a - < 0.8 mm, no ulceration|
+        gt0004|N - Lymph nodes: local::at0021|N1a - 1 lymph node with metastasis|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0015|IIIA|
+  - id: "29. stage IIIA: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0012|T2a - > 1.0–2.0 mm, no ulceration|
+        gt0004|N - Lymph nodes: local::at0024|N2a - 2–3 lymph nodes with metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0015|IIIA|
+  - id: "30. stage IIIB: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0008|T0 - Unknown primary tumor, melanoma in
+          complete regression|
+        gt0004|N - Lymph nodes: local::at0022|N1b - 1 lymph node with clinical metastasis|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0016|IIIB|
+  - id: "31. stage IIIB: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0010|T1a - < 0.8 mm, no ulceration|
+        gt0004|N - Lymph nodes: local::at0025|N2b - 2–3 lymph nodes with metastases and
+          at least 1 clinical metastasis|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0016|IIIB|
+  - id: "32. stage IIIB: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0013|T2b - > 1.0–2.0 mm, with ulceration|
+        gt0004|N - Lymph nodes: local::at0023|N1c - No lymph node metastasis, but in
+          transit, satellite and/or microsatellite metastases present|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0016|IIIB|
+  - id: "33. stage IIIC: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0008|T0 - Unknown primary tumor, melanoma in
+          complete regression|
+        gt0004|N - Lymph nodes: local::at0025|N2b - 2–3 lymph nodes with metastases and
+          at least 1 clinical metastasis|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0017|IIIC|
+  - id: "34. stage IIIC: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0010|T1a - < 0.8 mm, no ulceration|
+        gt0004|N - Lymph nodes: local::at0026|N2c - 1 lymph node with metastasis and in
+          transit, satellite and/or microsatellite metastases present|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0017|IIIC|
+  - id: "35. stage IIIC: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0013|T2b - > 1.0–2.0 mm, with ulceration|
+        gt0004|N - Lymph nodes: local::at0027|N3a - ≥ 4 lymph nodes with metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0017|IIIC|
+  - id: "36. stage IIIC: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0015|T3b - > 2.0–4.0 mm, with ulceration|
+        gt0004|N - Lymph nodes: local::at0024|N2a - 2–3 lymph nodes with metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0017|IIIC|
+  - id: "37. stage IIIC: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0017|T4b - > 4.0 mm, with ulceration|
+        gt0004|N - Lymph nodes: local::at0021|N1a - 1 lymph node with metastasis|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0017|IIIC|
+  - id: "38. stage IIIC: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0017|T4b - > 4.0 mm, with ulceration|
+        gt0004|N - Lymph nodes: local::at0026|N2c - 1 lymph node with metastasis and in
+          transit, satellite and/or microsatellite metastases present|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0017|IIIC|
+  - id: "39. stage IIID: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0017|T4b - > 4.0 mm, with ulceration|
+        gt0004|N - Lymph nodes: local::at0027|N3a - ≥ 4 lymph nodes with metastases|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0018|IIID|
+  - id: "40. stage IIID: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0017|T4b - > 4.0 mm, with ulceration|
+        gt0004|N - Lymph nodes: local::at0029|N3c - ≥ 2 lymph nodes with metastases and
+          in transit, satellite and/or microsatellite metastases present|
+        gt0005|M - Distant metastasis: local::at0031|M0 - No distant metastases|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0018|IIID|
+  - id: "41. stage IV: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0010|T1a - < 0.8 mm, no ulceration|
+        gt0004|N - Lymph nodes: local::at0023|N1c - No lymph node metastasis, but in
+          transit, satellite and/or microsatellite metastases present|
+        gt0005|M - Distant metastasis: local::at0032|M1a - Distant metastasis to skin or muscle|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0019|IV|
+  - id: "42. stage IV: pathological staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0014|T3a - > 2.0–4.0 mm, no ulceration|
+        gt0004|N - Lymph nodes: local::at0025|N2b - 2–3 lymph nodes with metastases and
+          at least 1 clinical metastasis|
+        gt0005|M - Distant metastasis: local::at0033|M1b - Distant metastasis to lung|
+        gt0010|Staging: local::at0006|Pathological staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0006|Pathological staging|
+        gt0008|Stage group: local::at0019|IV|
+  - id: "43. stage IV: clinical staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0016|T4a - > 4.0 mm, no ulceration|
+        gt0004|N - Lymph nodes: local::at0027|N3a - ≥ 4 lymph nodes with metastases|
+        gt0005|M - Distant metastasis: local::at0034|M1c - Distant metastasis to visceral organs|
+        gt0010|Staging: local::at0005|Clinical staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0005|Clinical staging|
+        gt0008|Stage group: local::at0019|IV|
+  - id: "44. stage IV: clinical staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0015|T3b - > 2.0–4.0 mm, with ulceration|
+        gt0004|N - Lymph nodes: local::at0028|N3b - ≥ 4 lymph nodes with metastases and
+          at least 1 clinical metastasis or conglomerate|
+        gt0005|M - Distant metastasis: local::at0035|M1d - CNS metastases|
+        gt0010|Staging: local::at0005|Clinical staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0005|Clinical staging|
+        gt0008|Stage group: local::at0019|IV|
+  - id: "45. stage IV: clinical staging"
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0009|Tis - In situ|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No lymph node metastases|
+        gt0005|M - Distant metastasis: local::at0032|M1a - Distant metastasis to skin or muscle|
+        gt0010|Staging: local::at0005|Clinical staging|
+    expected_output:
+      "1":
+        gt0007|Staging: local::at0005|Clinical staging|
+        gt0008|Stage group: local::at0019|IV|
