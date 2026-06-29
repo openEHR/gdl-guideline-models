@@ -1,0 +1,226 @@
+archetype (adl_version=1.4; uid=6bf1086e-7419-44af-8db7-c596551d5d55)
+	openEHR-EHR-OBSERVATION.tnm_kidney_cancer.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-06-29">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the T, N, and M categories for the kidney cancer TNM classification.">
+			keywords = <"tnm","kidney","cancer","renal","cell","carcinoma","rcc","oncology","uicc","staging","metastasis","tumor">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the T, N, and M categories for the kidney cancer TNM classification.">
+			misuse = <"Not to be used for staging other types of cancer. 
+
+Not to be used for non-renal cell carcinomas of the kidney.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"O'Sullivan B, Brierley J, Byrd D, Bosman F, Kehoe S, Kossary C, Piñeros M, Van Eycken E, Weir HK, Gospodarowicz M. The TNM classification of malignant tumours-towards common understanding and reasonable expectations. Lancet Oncol. 2017 Jul;18(7):849-851. doi: 10.1016/S1470-2045(17)30438-2. PMID: 28677562; PMCID: PMC5851445.
+
+Nationellt vårdprogram njurcancer [Internet]. Regionala cancercentrum i samverkan; 2023 [cited 2026 Jun 29]. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/njurcancer/vardprogram/kategorisering-av-tumoren/">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"522c757b-dcf6-31ba-9f8b-c77fcdd8350b">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- TNM classification for kidney cancer
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- T - Primary tumor
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0009,    -- TX - primary tumor cannot be assessed
+													at0010,    -- T0 - no evidence of primary tumor
+													at0011,    -- T1 - tumor ≤ 7 cm, limited to the kidney
+													at0012,    -- T1a - tumor ≤ 4 cm
+													at0013,    -- T1b - tumor > 4 cm but ≤ 7 cm
+													at0014,    -- T2 - tumor > 7 cm, limited to the kidney
+													at0015,    -- T2a - tumor > 7 cm but ≤ 10 cm
+													at0016,    -- T2b - tumor > 10 cm, limited to the kidney
+													at0017,    -- T3 - tumor extends into major veins or perinephric tissues but not into the ipsilateral adrenal gland and not beyond Gerota fascia
+													at0018,    -- T3a - tumor grossly extends into the renal vein or its segmental branches, or invades perirenal/renal sinus fat but not beyond Gerota fascia
+													at0019,    -- T3b - tumor grossly extends into the vena cava below the diaphragm
+													at0020,    -- T3c - tumor grossly extends into the vena cava above the diaphragm or invades the wall of the vena cava
+													at0021]    -- T4 - tumor invades beyond Gerota fascia (including contiguous extension into the ipsilateral adrenal gland)
+												}
+											}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- N - Lymph nodes
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0023,    -- N0 - no regional lymph node metastasis
+													at0024]    -- N1 - metastasis in regional lymph node(s)
+												}
+											}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- M - Distant metastasis
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0025,    -- M0 - no distant metastasis
+													at0026]    -- M1 - distant metastasis
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"TNM classification for kidney cancer">
+					description = <"TNM classification for kidney cancer according to the UICC 8th edition classification system.">
+					comment = <"Original version, c 2017.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"T - Primary tumor">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"N - Lymph nodes">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"M - Distant metastasis">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"TX - primary tumor cannot be assessed">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"T0 - no evidence of primary tumor">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"T1 - tumor ≤ 7 cm, limited to the kidney">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"T1a - tumor ≤ 4 cm">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"T1b - tumor > 4 cm but ≤ 7 cm">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"T2 - tumor > 7 cm, limited to the kidney">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"T2a - tumor > 7 cm but ≤ 10 cm">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"T2b - tumor > 10 cm, limited to the kidney">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"T3 - tumor extends into major veins or perinephric tissues but not into the ipsilateral adrenal gland and not beyond Gerota fascia">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"T3a - tumor grossly extends into the renal vein or its segmental branches, or invades perirenal/renal sinus fat but not beyond Gerota fascia">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"T3b - tumor grossly extends into the vena cava below the diaphragm">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"T3c - tumor grossly extends into the vena cava above the diaphragm or invades the wall of the vena cava">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"T4 - tumor invades beyond Gerota fascia (including contiguous extension into the ipsilateral adrenal gland)">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"N0 - no regional lymph node metastasis">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"N1 - metastasis in regional lymph node(s)">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"M0 - no distant metastasis">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"M1 - distant metastasis">
+					description = <"">
+				>
+			>
+		>
+	>
