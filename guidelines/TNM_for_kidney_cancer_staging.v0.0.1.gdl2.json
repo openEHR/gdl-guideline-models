@@ -1,0 +1,220 @@
+{
+  "uuid" : "084c7ca4-f08f-465d-a541-efb0df5de0ba",
+  "id" : "TNM_for_kidney_cancer_staging.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Kevin Arjona",
+      "email" : "kevin.arjona@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-06-29"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate the prognostic stage group for kidney cancer based on the TNM classification.",
+        "keywords" : [
+          "tnm",
+          "kidney",
+          "cancer",
+          "renal",
+          "cell",
+          "carcinoma",
+          "rcc",
+          "oncology",
+          "uicc",
+          "staging",
+          "metastasis",
+          "tumor",
+          "assessment",
+          "stage"
+        ],
+        "use" : "Use to assess the stage group for kidney cancer based on the T, N, and M categories. \n\nThe guideline maps the individual TNM components to the overall prognostic stage;\n\nstage I: T1, N0, M0;\n\nstage II: T2, N0, M0;\n\nstage III:T3, N0, M0  OR T1-3, N1, M0;\n\nstage IV: Any T, Any N, M1 OR T4, Any N, M0.",
+        "misuse" : "Not to be used for staging other types of cancer.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "en" : "An assessment tool used to assign the stage group for kidney cancer tumors based on the UICC 8 TNM classification.",
+      "references" : "O'Sullivan B, Brierley J, Byrd D, Bosman F, Kehoe S, Kossary C, Piñeros M, Van Eycken E, Weir HK, Gospodarowicz M. The TNM classification of malignant tumours-towards common understanding and reasonable expectations. Lancet Oncol. 2017 Jul;18(7):849-851. doi: 10.1016/S1470-2045(17)30438-2. PMID: 28677562; PMCID: PMC5851445.\n\nNationellt vårdprogram njurcancer [Internet]. Regionala cancercentrum i samverkan; 2023 [cited 2026 Jun 29]. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/njurcancer/vardprogram/kategorisering-av-tumoren/"
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.tnm_kidney_cancer.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.tnm_kidney_cancer.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0009",
+              "local::at0010",
+              "local::at0011",
+              "local::at0012",
+              "local::at0013",
+              "local::at0014",
+              "local::at0015",
+              "local::at0016",
+              "local::at0017",
+              "local::at0018",
+              "local::at0019",
+              "local::at0020",
+              "local::at0021"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0023",
+              "local::at0024"
+            ]
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0025",
+              "local::at0026"
+            ]
+          }
+        }
+      },
+      "gt0006" : {
+        "id" : "gt0006",
+        "model_id" : "openEHR-EHR-EVALUATION.tnm_kidney_cancer_assessment.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.tnm_kidney_cancer_assessment.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0003]/items[at0004]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      }
+    },
+    "pre_conditions" : [
+      "$gt0003|T - Primary tumor|!=null",
+      "$gt0004|N - Lymph nodes|!=null",
+      "$gt0005|M - Distant metastasis|!=null"
+    ],
+    "rules" : {
+      "gt0008" : {
+        "id" : "gt0008",
+        "priority" : 4,
+        "when" : [
+          "$gt0003|T - Primary tumor|==local::at0011|T1 - tumor ≤ 7 cm, limited to the kidney|||$gt0003|T - Primary tumor|==local::at0012|T1a - tumor ≤ 4 cm|||$gt0003|T - Primary tumor|==local::at0013|T1b - tumor > 4 cm but ≤ 7 cm|",
+          "$gt0004|N - Lymph nodes|==local::at0023|N0 - no regional lymph node metastasis|",
+          "$gt0005|M - Distant metastasis|==local::at0025|M0 - no distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0005|I|"
+        ]
+      },
+      "gt0009" : {
+        "id" : "gt0009",
+        "priority" : 3,
+        "when" : [
+          "$gt0003|T - Primary tumor|==local::at0014|T2 - tumor > 7 cm, limited to the kidney|||$gt0003|T - Primary tumor|==local::at0015|T2a - tumor > 7 cm but ≤ 10 cm|||$gt0003|T - Primary tumor|==local::at0016|T2b - tumor > 10 cm, limited to the kidney|",
+          "$gt0004|N - Lymph nodes|==local::at0023|N0 - no regional lymph node metastasis|",
+          "$gt0005|M - Distant metastasis|==local::at0025|M0 - no distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0006|II|"
+        ]
+      },
+      "gt0010" : {
+        "id" : "gt0010",
+        "priority" : 2,
+        "when" : [
+          "(($gt0003|T - Primary tumor|==local::at0017|T3 - tumor extends into major veins or perinephric tissues but not into the ipsilateral adrenal gland and not beyond Gerota fascia|||$gt0003|T - Primary tumor|==local::at0018|T3a - tumor grossly extends into the renal vein or its segmental branches, or invades perirenal/renal sinus fat but not beyond Gerota fascia|||$gt0003|T - Primary tumor|==local::at0019|T3b - tumor grossly extends into the vena cava below the diaphragm|||$gt0003|T - Primary tumor|==local::at0020|T3c - tumor grossly extends into the vena cava above the diaphragm or invades the wall of the vena cava|)&&$gt0004|N - Lymph nodes|==local::at0023|N0 - no regional lymph node metastasis|)||(($gt0003|T - Primary tumor|!=local::at0009|TX - primary tumor cannot be assessed|&&$gt0003|T - Primary tumor|!=local::at0010|T0 - no evidence of primary tumor|&&$gt0003|T - Primary tumor|!=local::at0021|T4 - tumor invades beyond Gerota fascia (including contiguous extension into the ipsilateral adrenal gland)|)&&$gt0004|N - Lymph nodes|==local::at0024|N1 - metastasis in regional lymph node(s)|)",
+          "$gt0005|M - Distant metastasis|==local::at0025|M0 - no distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0007|III|"
+        ]
+      },
+      "gt0011" : {
+        "id" : "gt0011",
+        "priority" : 1,
+        "when" : [
+          "($gt0003|T - Primary tumor|!=null&&$gt0004|N - Lymph nodes|!=null&&$gt0005|M - Distant metastasis|==local::at0026|M1 - distant metastasis|)||($gt0003|T - Primary tumor|==local::at0021|T4 - tumor invades beyond Gerota fascia (including contiguous extension into the ipsilateral adrenal gland)|&&$gt0004|N - Lymph nodes|!=null&&$gt0005|M - Distant metastasis|==local::at0025|M0 - no distant metastasis|)"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0008|IV|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "TNM for kidney cancer staging",
+            "description" : "An assessment tool used to assign the stage group for kidney cancer tumors based on the UICC 8 TNM classification."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.tnm_kidney_cancer.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "T - Primary tumor"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "N - Lymph nodes"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "M - Distant metastasis"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "openEHR-EHR-EVALUATION.tnm_kidney_cancer_assessment.v0"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Stage group"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Set stage to I",
+            "description" : "stage I: T1, N0, M0;"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Set stage to II",
+            "description" : "stage II: T2, N0, M0;"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Set stage to III",
+            "description" : "stage III:T3, N0, M0  OR T1-3, N1, M0;"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Set stage to IV",
+            "description" : "stage IV: Any T, Any N, M1 OR T4, Any N, M0."
+          }
+        }
+      }
+    }
+  }
+}
