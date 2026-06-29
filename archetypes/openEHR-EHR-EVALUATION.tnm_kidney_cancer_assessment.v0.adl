@@ -1,0 +1,119 @@
+archetype (adl_version=1.4; uid=8386c70d-b16b-44b8-8f91-bb09d9b0877f)
+	openEHR-EHR-EVALUATION.tnm_kidney_cancer_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-06-29">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the prognostic stage group for kidney cancer.">
+			keywords = <"tnm","kidney","cancer","renal","cell","carcinoma","rcc","oncology","uicc","staging","metastasis","tumor","stage","assessment">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the prognostic stage group (from stage I to stage IV) for kidney cancer based on the T, N, and M categories.">
+			misuse = <"Not to be used for staging other types of cancer. 
+
+Not to be used for non-renal cell carcinomas of the kidney.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"O'Sullivan B, Brierley J, Byrd D, Bosman F, Kehoe S, Kossary C, Piñeros M, Van Eycken E, Weir HK, Gospodarowicz M. The TNM classification of malignant tumours-towards common understanding and reasonable expectations. Lancet Oncol. 2017 Jul;18(7):849-851. doi: 10.1016/S1470-2045(17)30438-2. PMID: 28677562; PMCID: PMC5851445.
+
+Nationellt vårdprogram njurcancer [Internet]. Regionala cancercentrum i samverkan; 2023 [cited 2026 Jun 29]. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/njurcancer/vardprogram/kategorisering-av-tumoren/">
+		["build_uid"] = <"6a82cfc2-a567-3e28-82cf-7afd5095bee9">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- TNM classification for kidney cancer assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Stage group
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- I
+									at0006,    -- II
+									at0007,    -- III
+									at0008]    -- IV
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"TNM classification for kidney cancer assessment">
+					description = <"The stage group for kidney cancer based on the UICC 8 TNM classification.">
+					comment = <"Original version, c 2017.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Stage group">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"I">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"II">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"III">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"IV">
+					description = <"">
+				>
+			>
+		>
+	>
