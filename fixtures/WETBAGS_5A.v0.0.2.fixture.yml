@@ -1,0 +1,127 @@
+guidelines:
+  "1": WETBAGS_5A.v0.0.2
+test_cases:
+  - id: age = 1 year
+    input:
+      "1":
+        gt0003|Age: 1,a
+    expected_output:
+      "1":
+        gt0005|Weight: 10.00,kg
+        gt0010|Defibrillation: 40.00,J
+        gt0011|Cardioversion: 10.00,J
+        gt0012|Tube size: 4.25,mm
+        gt0013|Bolus: 200,mL
+        gt0014|Bolus trauma: 100,mL
+        gt0015|Adrenaline: 0.10,mg iv/im
+        gt0017|Glucose: 20,mL 10%
+        gt0024|Stesolid IV: 2.50,mg
+        gt0025|Stesolid PR: 5.00,mg
+        gt0026|Adrenalin (inh): 5,ml (1 mg/ml)
+        gt0027|Albuterol (inh): 2.50,mg
+        gt0028|Atrovent: 0.25,mg
+        gt0029|Atropin: 0.20,mg iv
+        gt0030|Amiodaron: 50.00,mg i 5% glukos
+  - id: age = 9 months
+    input:
+      "1":
+        gt0003|Age: 9,mo
+    expected_output:
+      "1":
+        gt0005|Weight: 8.50,kg
+        gt0010|Defibrillation: 34.00,J
+        gt0011|Cardioversion: 8.50,J
+        gt0012|Tube size: 4.19,mm
+        gt0013|Bolus: 170,mL
+        gt0014|Bolus trauma: 85,mL
+        gt0015|Adrenaline: 0.09,mg iv/im
+        gt0017|Glucose: 17,mL 10%
+        gt0024|Stesolid IV: 2.12,mg
+        gt0025|Stesolid PR: 4.25,mg
+        gt0026|Adrenalin (inh): 5,ml (1 mg/ml)
+        gt0027|Albuterol (inh): 5,mg
+        gt0028|Atrovent: 0.25,mg
+        gt0029|Atropin: 0.17,mg iv
+        gt0030|Amiodaron: 42.50,mg i 5% glukos
+  - id: age = 10 years
+    input:
+      "1":
+        gt0003|Age: 10,a
+    expected_output:
+      "1":
+        gt0005|Weight: 37.00,kg
+        gt0010|Defibrillation: 148.00,J
+        gt0011|Cardioversion: 37.00,J
+        gt0012|Tube size: 6.50,mm
+        gt0013|Bolus: 740,mL
+        gt0014|Bolus trauma: 370,mL
+        gt0015|Adrenaline: 0.37,mg iv/im
+        gt0017|Glucose: 74,mL 10%
+        gt0024|Stesolid IV: 9.25,mg
+        gt0025|Stesolid PR: 18.50,mg
+        gt0026|Adrenalin (inh): 5,ml (1 mg/ml)
+        gt0027|Albuterol (inh): 5,mg
+        gt0028|Atrovent: 0.25,mg
+        gt0029|Atropin: 0.74,mg iv
+        gt0030|Amiodaron: 185.00,mg i 5% glukos
+  - id: age = 0 years
+    input:
+      "1":
+        gt0003|Age: 0,a
+    expected_output:
+      "1": {}
+  - id: age above 12
+    input:
+      "1":
+        gt0003|Age: 15,a
+    expected_output:
+      "1": {}
+  - id: no input
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 12 months
+    input:
+      "1":
+        gt0003|Age: 12,mo
+    expected_output:
+      "1":
+        gt0005|Weight: 10.00,kg
+        gt0013|Bolus: 200,mL
+        gt0014|Bolus trauma: 100,mL
+        gt0015|Adrenaline: 0.10,mg iv/im
+        gt0017|Glucose: 20,mL 10%
+        gt0024|Stesolid IV: 2.50,mg
+        gt0025|Stesolid PR: 5.00,mg
+        gt0026|Adrenalin (inh): 5,ml (1 mg/ml)
+        gt0027|Albuterol (inh): 5,mg
+        gt0028|Atrovent: 0.25,mg
+        gt0029|Atropin: 0.20,mg iv
+        gt0030|Amiodaron: 50.00,mg i 5% glukos
+        gt0010|Defibrillation: 40.00,J
+        gt0011|Cardioversion: 10.00,J
+  - id: testing with age in months 55 months
+    input:
+      "1":
+        gt0003|Age: 50,mo
+    expected_output:
+      "1":
+        gt0005|Weight: 29.00,kg
+        gt0013|Bolus: 580,mL
+        gt0014|Bolus trauma: 290,mL
+        gt0015|Adrenaline: 0.29,mg iv/im
+        gt0017|Glucose: 58,mL 10%
+        gt0024|Stesolid IV: 7.25,mg
+        gt0025|Stesolid PR: 14.50,mg
+        gt0026|Adrenalin (inh): 5,ml (1 mg/ml)
+        gt0029|Atropin: 0.58,mg iv
+        gt0030|Amiodaron: 145.00,mg i 5% glukos
+        gt0010|Defibrillation: 116.00,J
+        gt0011|Cardioversion: 29.00,J
+  - id: testing negative value
+    input:
+      "1":
+        gt0003|Age: -1,mo
+    expected_output:
+      "1": {}
