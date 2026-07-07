@@ -1,0 +1,611 @@
+{
+  "uuid" : "df8a53c5-f1bb-46b9-8bae-b0aab0fbb4ed",
+  "id" : "WETBAGS_5A.v0.1.0",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Mahmoud Elachi",
+      "email" : "mel.achi@gmail.com",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-02-18"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To recommend weight-based emergency drug doses, fluid boluses, defibrillation energy, and equipment sizes for pediatric patients, using the WETBAGS-5A framework.",
+        "keywords" : [
+          "WETBAG",
+          "weight estimation",
+          "drug dosing",
+          "fluid bolus",
+          "defibrillation energy",
+          "airway equipment",
+          "paediatric resuscitation",
+          "WETBAGS-5A"
+        ],
+        "use" : "Use to calculate weight-based emergency drug doses, fluid boluses, defibrillation energy, and endotracheal tube size in children aged 0–12 years, using the WETBAGS-5A framework.",
+        "misuse" : "Not to be used for patients older than 12 years. Not to be used for chronic medication dosing or non-emergency prescribing. Not a substitute for clinical judgment.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "en" : "A clinical decision support guideline for calculating estimated body weight, weight-based medication dosages, defibrillation energy, airway equipment size, and fluid resuscitation volumes in paediatric emergency scenarios, based on the WETBAG mnemonic.",
+      "references" : "Svenska Sällskapet för Akutmedicin (SWESEM). Initialt omhändertagande. 2019 [cited 2026]. Available from: https://slf.se/swesem/app/uploads/2019/05/initialt-omhandertagande-190520.pdf\n\nhttps://verktyg.internetmedicin.se/kalkylatorer/wetbags-5a"
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "a",
+              "mo"
+            ]
+          }
+        }
+      },
+      "gt0004" : {
+        "id" : "gt0004",
+        "model_id" : "openEHR-EHR-OBSERVATION.body_weight.v2",
+        "template_id" : "openEHR-EHR-OBSERVATION.body_weight.v2",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0002]/events[at0003]/data[at0001]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "kg",
+              "[lb_av]",
+              "g"
+            ]
+          }
+        }
+      },
+      "gt0039" : {
+        "id" : "gt0039",
+        "model_id" : "openEHR-EHR-OBSERVATION.wetbags_5a.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.wetbags_5a.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0040" : {
+            "id" : "gt0040",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "J"
+            ]
+          },
+          "gt0041" : {
+            "id" : "gt0041",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "J"
+            ]
+          },
+          "gt0042" : {
+            "id" : "gt0042",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mm"
+            ]
+          },
+          "gt0043" : {
+            "id" : "gt0043",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mL"
+            ]
+          },
+          "gt0044" : {
+            "id" : "gt0044",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0010]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mL"
+            ]
+          },
+          "gt0045" : {
+            "id" : "gt0045",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mg"
+            ]
+          },
+          "gt0046" : {
+            "id" : "gt0046",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0011]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mg"
+            ]
+          },
+          "gt0047" : {
+            "id" : "gt0047",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0012]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mL"
+            ]
+          },
+          "gt0048" : {
+            "id" : "gt0048",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mg"
+            ]
+          },
+          "gt0049" : {
+            "id" : "gt0049",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0014]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mg"
+            ]
+          },
+          "gt0050" : {
+            "id" : "gt0050",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0015]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mL"
+            ]
+          },
+          "gt0051" : {
+            "id" : "gt0051",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0016]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mg"
+            ]
+          },
+          "gt0052" : {
+            "id" : "gt0052",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0017]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mg"
+            ]
+          },
+          "gt0053" : {
+            "id" : "gt0053",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0018]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mg"
+            ]
+          },
+          "gt0054" : {
+            "id" : "gt0054",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0019]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mg"
+            ]
+          }
+        }
+      }
+    },
+    "pre_conditions" : [
+      "$gt0003|Age|.magnitude<=144&&$gt0003|Age|.unit=='mo'||$gt0003|Age|.magnitude<=12&&$gt0003|Age|.unit=='a'"
+    ],
+    "rules" : {
+      "gt0006" : {
+        "id" : "gt0006",
+        "priority" : 17,
+        "when" : [
+          "$gt0003|Age|!=null",
+          "$gt0003|Age|.magnitude>=0",
+          "$gt0003|Age|.magnitude<=11",
+          "$gt0003|Age|.unit=='mo'"
+        ],
+        "then" : [
+          "$gt0005|Weight|.magnitude=($gt0003|Age|.magnitude/2)+4",
+          "$gt0005|Weight|.unit='kg'",
+          "$gt0005|Weight|.precision=2"
+        ]
+      },
+      "gt0007" : {
+        "id" : "gt0007",
+        "priority" : 16,
+        "when" : [
+          "$gt0003|Age|!=null",
+          "$gt0003|Age|.unit=='a'",
+          "$gt0003|Age|.magnitude>=1",
+          "$gt0003|Age|.magnitude<=5"
+        ],
+        "then" : [
+          "$gt0005|Weight|.magnitude=($gt0003|Age|.magnitude*2)+8",
+          "$gt0005|Weight|.unit='kg'",
+          "$gt0005|Weight|.precision=2"
+        ]
+      },
+      "gt0008" : {
+        "id" : "gt0008",
+        "priority" : 15,
+        "when" : [
+          "$gt0003|Age|!=null",
+          "$gt0003|Age|.unit=='a'",
+          "$gt0003|Age|.magnitude>=6",
+          "$gt0003|Age|.magnitude<=12"
+        ],
+        "then" : [
+          "$gt0005|Weight|.magnitude=($gt0003|Age|.magnitude*3)+7",
+          "$gt0005|Weight|.unit='kg'",
+          "$gt0005|Weight|.precision=2"
+        ]
+      },
+      "gt0018" : {
+        "id" : "gt0018",
+        "priority" : 14,
+        "when" : [
+          "$gt0005|Weight|!=null"
+        ],
+        "then" : [
+          "$gt0040|Defibrillation|.magnitude=$gt0005|Weight|.magnitude*4",
+          "$gt0040|Defibrillation|.unit='J'",
+          "$gt0040|Defibrillation|.precision=2",
+          "$gt0041|Cardioversion|.magnitude=$gt0005|Weight|.magnitude*1",
+          "$gt0041|Cardioversion|.unit='J'",
+          "$gt0041|Cardioversion|.precision=2"
+        ]
+      },
+      "gt0019" : {
+        "id" : "gt0019",
+        "priority" : 13,
+        "when" : [
+          "$gt0005|Weight|!=null",
+          "$gt0003|Age|!=null&&$gt0003|Age|.unit=='a'&&$gt0003|Age|.magnitude>=0&&$gt0003|Age|.magnitude<=12"
+        ],
+        "then" : [
+          "$gt0042|Tube size|.magnitude=($gt0003|Age|.magnitude/4)+4",
+          "$gt0042|Tube size|.unit='mm'",
+          "$gt0042|Tube size|.precision=2"
+        ]
+      },
+      "gt0020" : {
+        "id" : "gt0020",
+        "priority" : 12,
+        "when" : [
+          "$gt0005|Weight|!=null",
+          "$gt0003|Age|!=null&&$gt0003|Age|.unit=='mo'&&$gt0003|Age|.magnitude<12&&$gt0003|Age|.magnitude>=0"
+        ],
+        "then" : [
+          "$gt0042|Tube size|.magnitude=($gt0003|Age|.magnitude/48)+4",
+          "$gt0042|Tube size|.unit='mm'",
+          "$gt0042|Tube size|.precision=2"
+        ]
+      },
+      "gt0021" : {
+        "id" : "gt0021",
+        "priority" : 11,
+        "when" : [
+          "$gt0005|Weight|!=null"
+        ],
+        "then" : [
+          "$gt0043|Bolus|.magnitude=$gt0005|Weight|.magnitude*20",
+          "$gt0044|Bolus trauma|.magnitude=$gt0005|Weight|.magnitude*10",
+          "$gt0043|Bolus|.unit='mL'",
+          "$gt0044|Bolus trauma|.unit='mL'"
+        ]
+      },
+      "gt0022" : {
+        "id" : "gt0022",
+        "priority" : 10,
+        "when" : [
+          "$gt0005|Weight|!=null"
+        ],
+        "then" : [
+          "$gt0045|Adrenaline, iv/im|.magnitude=($gt0005|Weight|.magnitude*10)/1000",
+          "$gt0045|Adrenaline, iv/im|.unit='mg'",
+          "$gt0045|Adrenaline, iv/im|.precision=2"
+        ]
+      },
+      "gt0023" : {
+        "id" : "gt0023",
+        "priority" : 9,
+        "when" : [
+          "$gt0005|Weight|!=null"
+        ],
+        "then" : [
+          "$gt0047|Glucose, 10%|.magnitude=$gt0005|Weight|.magnitude*2",
+          "$gt0047|Glucose, 10%|.unit='mL'"
+        ]
+      },
+      "gt0031" : {
+        "id" : "gt0031",
+        "priority" : 8,
+        "when" : [
+          "$gt0005|Weight|!=null"
+        ],
+        "then" : [
+          "$gt0048|Stesolid IV|.magnitude=$gt0005|Weight|.magnitude*0.25",
+          "$gt0048|Stesolid IV|.unit='mg'",
+          "$gt0048|Stesolid IV|.precision=2"
+        ]
+      },
+      "gt0032" : {
+        "id" : "gt0032",
+        "priority" : 7,
+        "when" : [
+          "$gt0005|Weight|!=null"
+        ],
+        "then" : [
+          "$gt0049|Stesolid PR|.magnitude=$gt0005|Weight|.magnitude*0.5",
+          "$gt0049|Stesolid PR|.unit='mg'",
+          "$gt0049|Stesolid PR|.precision=2"
+        ]
+      },
+      "gt0033" : {
+        "id" : "gt0033",
+        "priority" : 6,
+        "when" : [
+          "$gt0005|Weight|!=null"
+        ],
+        "then" : [
+          "$gt0050|Adrenalin (inh) (1 mg/ml)|.magnitude=5",
+          "$gt0050|Adrenalin (inh) (1 mg/ml)|.unit='mL'"
+        ]
+      },
+      "gt0034" : {
+        "id" : "gt0034",
+        "priority" : 5,
+        "when" : [
+          "$gt0005|Weight|!=null",
+          "$gt0003|Age|!=null&&$gt0003|Age|.magnitude<5&&$gt0003|Age|.magnitude>0"
+        ],
+        "then" : [
+          "$gt0050|Adrenalin (inh) (1 mg/ml)|.magnitude=2.5",
+          "$gt0050|Adrenalin (inh) (1 mg/ml)|.unit='mg'",
+          "$gt0050|Adrenalin (inh) (1 mg/ml)|.precision=2"
+        ]
+      },
+      "gt0035" : {
+        "id" : "gt0035",
+        "priority" : 4,
+        "when" : [
+          "$gt0005|Weight|!=null",
+          "$gt0003|Age|!=null&&$gt0003|Age|.magnitude>=5&&$gt0003|Age|.magnitude<=12"
+        ],
+        "then" : [
+          "$gt0050|Adrenalin (inh) (1 mg/ml)|.magnitude=5",
+          "$gt0050|Adrenalin (inh) (1 mg/ml)|.unit='mg'"
+        ]
+      },
+      "gt0036" : {
+        "id" : "gt0036",
+        "priority" : 3,
+        "when" : [
+          "$gt0005|Weight|!=null",
+          "$gt0003|Age|!=null&&$gt0003|Age|.magnitude!=0&&$gt0003|Age|.magnitude<=12&&$gt0003|Age|.magnitude>=0"
+        ],
+        "then" : [
+          "$gt0052|Atrovent|.magnitude=0.25",
+          "$gt0052|Atrovent|.unit='mg'",
+          "$gt0052|Atrovent|.precision=2"
+        ]
+      },
+      "gt0037" : {
+        "id" : "gt0037",
+        "priority" : 2,
+        "when" : [
+          "$gt0005|Weight|!=null"
+        ],
+        "then" : [
+          "$gt0053|Atropin, iv|.magnitude=$gt0005|Weight|.magnitude*0.02",
+          "$gt0053|Atropin, iv|.unit='mg'",
+          "$gt0053|Atropin, iv|.precision=2"
+        ]
+      },
+      "gt0038" : {
+        "id" : "gt0038",
+        "priority" : 1,
+        "when" : [
+          "$gt0005|Weight|!=null"
+        ],
+        "then" : [
+          "$gt0054|Amiodaron, mg in 5% glucose|.magnitude=$gt0005|Weight|.magnitude*5",
+          "$gt0054|Amiodaron, mg in 5% glucose|.unit='mg'",
+          "$gt0054|Amiodaron, mg in 5% glucose|.precision=2"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "WETBAGS-5A",
+            "description" : "A clinical decision support guideline for calculating estimated body weight, weight-based medication dosages, defibrillation energy, airway equipment size, and fluid resuscitation volumes in paediatric emergency scenarios, based on the WETBAG mnemonic."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.basic_demographic.v1"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Age"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "openEHR-EHR-OBSERVATION.body_weight.v2"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Weight"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "Calculating weight (months)",
+            "description" : "< 1 year: (months / 2) + 4"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Calculating weight (years 1-5) ",
+            "description" : "1–5 year: (year × 2) + 8"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Calculating weight (years 6-12)",
+            "description" : "6–12 year: (year × 3) + 7"
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "Energy",
+            "description" : ""
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "Tube size (age in years)",
+            "description" : "(age / 4) + 4"
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "Tube size (age in months)",
+            "description" : "(age / 48) + 4"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "Bolus",
+            "description" : ""
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "Adrenaline",
+            "description" : ""
+          },
+          "gt0023" : {
+            "id" : "gt0023",
+            "text" : "Glukos",
+            "description" : ""
+          },
+          "gt0031" : {
+            "id" : "gt0031",
+            "text" : "Stesolid IV",
+            "description" : ""
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "text" : "Stesolid PR",
+            "description" : ""
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "text" : "Adrenalin (Inhalation)",
+            "description" : ""
+          },
+          "gt0034" : {
+            "id" : "gt0034",
+            "text" : "Albuterol (Inhalation) < 5",
+            "description" : "when age is < 5 år"
+          },
+          "gt0035" : {
+            "id" : "gt0035",
+            "text" : "Albuterol (Inhalation) >= 5",
+            "description" : "when age is > 5 år"
+          },
+          "gt0036" : {
+            "id" : "gt0036",
+            "text" : "Atrovent",
+            "description" : ""
+          },
+          "gt0037" : {
+            "id" : "gt0037",
+            "text" : "Atropin",
+            "description" : ""
+          },
+          "gt0038" : {
+            "id" : "gt0038",
+            "text" : "Amiodaron",
+            "description" : ""
+          },
+          "gt0039" : {
+            "id" : "gt0039",
+            "text" : "openEHR-EHR-OBSERVATION.wetbags_5a.v0"
+          },
+          "gt0040" : {
+            "id" : "gt0040",
+            "text" : "Defibrillation"
+          },
+          "gt0041" : {
+            "id" : "gt0041",
+            "text" : "Cardioversion"
+          },
+          "gt0042" : {
+            "id" : "gt0042",
+            "text" : "Tube size"
+          },
+          "gt0043" : {
+            "id" : "gt0043",
+            "text" : "Bolus"
+          },
+          "gt0044" : {
+            "id" : "gt0044",
+            "text" : "Bolus trauma"
+          },
+          "gt0045" : {
+            "id" : "gt0045",
+            "text" : "Adrenaline, iv/im"
+          },
+          "gt0046" : {
+            "id" : "gt0046",
+            "text" : "Anaphylaxis"
+          },
+          "gt0047" : {
+            "id" : "gt0047",
+            "text" : "Glucose, 10%"
+          },
+          "gt0048" : {
+            "id" : "gt0048",
+            "text" : "Stesolid IV"
+          },
+          "gt0049" : {
+            "id" : "gt0049",
+            "text" : "Stesolid PR"
+          },
+          "gt0050" : {
+            "id" : "gt0050",
+            "text" : "Adrenalin (inh) (1 mg/ml)"
+          },
+          "gt0051" : {
+            "id" : "gt0051",
+            "text" : "Albuterol (inh)"
+          },
+          "gt0052" : {
+            "id" : "gt0052",
+            "text" : "Atrovent"
+          },
+          "gt0053" : {
+            "id" : "gt0053",
+            "text" : "Atropin, iv"
+          },
+          "gt0054" : {
+            "id" : "gt0054",
+            "text" : "Amiodaron, mg in 5% glucose"
+          }
+        }
+      }
+    }
+  }
+}
