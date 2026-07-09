@@ -1,0 +1,125 @@
+archetype (adl_version=1.4; uid=dd35a356-745c-4400-a4d5-8e22220c9740)
+	openEHR-EHR-OBSERVATION.insulin_dosage_calculator.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-07-09">
+		["name"] = <"Mahmoud Elachi">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"mel.achi@gmail.com">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the total daily insulin dose used as input, and the resulting calculated correction (bolus) dose.">
+			keywords = <"insulin, bolus dose, correction dose, 100-rule, diabetes mellitus, hyperglycemia", ...>
+			copyright = <"Use © Cambio CDS ">
+			use = <"Use to record the total daily insulin dose and the calculated correction dose for a patient with insulin-treated diabetes and a temporarily elevated plasma glucose.">
+			misuse = <"Not to be used for correction-dose calculations based on other methods. Not to be used to record plasma glucose">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"3f2a6d70-2bd6-3317-b254-5f021fab5c4d">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- insulin dosage calculator
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- P-glucose
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::384]>
+												list = <
+													["1"] = <
+														units = <"mmol">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Daily dose of insulin
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::445]>
+												list = <
+													["1"] = <
+														units = <"u">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Bolus dose
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::445]>
+												list = <
+													["1"] = <
+														units = <"u">
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"insulin dosage calculator">
+					description = <"A calculation of the additional bolus dose of rapid-acting insulin required to correct a temporarily elevated plasma glucose, based on a patient's total daily insulin dose.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"P-glucose">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Daily dose of insulin">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Bolus dose">
+					description = <"">
+				>
+			>
+		>
+	>
