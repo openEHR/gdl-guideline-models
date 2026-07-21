@@ -1,0 +1,184 @@
+archetype (adl_version=1.4; uid=33129fa8-bf57-4193-8e95-800fda57f3aa)
+	openEHR-EHR-OBSERVATION.figo_staging_for_endometrial_cancer_.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-07-10">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results of clinical and pathological findings based on the FIGO 2009 endometrial cancer staging.">
+			keywords = <"figo","endometrial","cancer","uterine","staging","oncology","gynecology","tumor">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the clinical and pathological findings of endometrial cancer based on the extent of the tumor.">
+			misuse = <"Not to be used to record staging for cervical, ovarian, or other gynecological cancers.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Pecorelli S. Revised FIGO staging for carcinoma of the vulva, cervix, and endometrium. Int J Gynaecol Obstet. 2009 May;105(2):103-4. doi: 10.1016/j.ijgo.2009.02.012. Erratum in: Int J Gynaecol Obstet. 2010 Feb;108(2):176. PMID: 19367689.
+
+Berek JS, Matias-Guiu X, Creutzberg C, Fotopoulou C, Gaffney D, Kehoe S, Lindemann K, Mutch D, Concin N; Endometrial Cancer Staging Subcommittee, FIGO Women's Cancer Committee. FIGO staging of endometrial cancer: 2023. Int J Gynaecol Obstet. 2023 Aug;162(2):383-394. doi: 10.1002/ijgo.14923. Epub 2023 Jun 20. Erratum in: Int J Gynaecol Obstet. 2024 Sep;166(3):1374. doi: 10.1002/ijgo.15193. PMID: 37337978.
+
+Matsuo K, Klar M, Song BB, Roman LD, Wright JD. Validation of the 2023 FIGO staging schema for advanced endometrial cancer. Eur J Cancer. 2023 Nov;193:113316. doi: 10.1016/j.ejca.2023.113316. Epub 2023 Sep 21. PMID: 37741790.
+
+Nationellt vårdprogram livmoderkroppscancer [Internet]. Regionala cancercentrum i samverkan; [cited 2026 Jul 10]. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/livmoderkroppscancer/vardprogram/kategorisering-av-tumoren/
+Pecorelli S. Revised FIGO staging for carcinoma of the vulva, cervix, and endometrium. Int J Gynaecol Obstet. 2009;105(2):103-4.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"0ea3af2fdf607ba07b41d4a21843a04a">
+		["build_uid"] = <"591bb3e6-32c2-3bf0-8566-765294549ca3">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- FIGO staging for endometrial cancer
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Clinical and pathological findings
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- Tumor confined to the corpus uteri
+													at0008,    -- No invasion or invasion < half the thickness of the myometrium
+													at0009,    -- Invasion ≥ half the thickness of the myometrium
+													at0010,    -- Invasion into the cervical stroma but not outside the uterus
+													at0011,    -- Local and/or regional spread
+													at0012,    -- Invasion of uterine serosa and/or adnexa
+													at0013,    -- Vaginal growth and/or parametrial growth
+													at0014,    -- Metastases to pelvic nodes and/or paraaortic lymph nodes
+													at0015,    -- Positive pelvic nodes
+													at0016,    -- Positive paraaortic glands regardless of positive or negative pelvic glands
+													at0017,    -- Spread to bladder and/or rectum and/or distant metastases
+													at0018,    -- Spread to the bladder and/or rectum
+													at0019]    -- Distant metastases, including intra-abdominal metastases and/or inguinal metastases
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"FIGO staging for endometrial cancer">
+					description = <"The stage of endometrial cancer according to the FIGO 2009 staging system for endometrial cancer.">
+					comment = <"Original version, c 2009.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Clinical and pathological findings">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Tumor confined to the corpus uteri">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"No invasion or invasion < half the thickness of the myometrium">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Invasion ≥ half the thickness of the myometrium">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Invasion into the cervical stroma but not outside the uterus">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Local and/or regional spread">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Invasion of uterine serosa and/or adnexa">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Vaginal growth and/or parametrial growth">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Metastases to pelvic nodes and/or paraaortic lymph nodes">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Positive pelvic nodes">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Positive paraaortic glands regardless of positive or negative pelvic glands">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Spread to bladder and/or rectum and/or distant metastases">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Spread to the bladder and/or rectum">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Distant metastases, including intra-abdominal metastases and/or inguinal metastases">
+					description = <"">
+				>
+			>
+		>
+	>
