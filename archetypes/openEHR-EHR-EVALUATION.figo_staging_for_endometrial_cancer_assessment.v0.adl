@@ -1,0 +1,167 @@
+archetype (adl_version=1.4; uid=70366cd6-6436-4fe6-983c-71c0f89d7a2e)
+	openEHR-EHR-EVALUATION.figo_staging_for_endometrial_cancer_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-07-10">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To assess the results of the clinical and pathological findings stored in the openEHR-EHR-OBSERVATION.figo_staging_for_endometrial_cancer_.v0 archetype.">
+			keywords = <"figo","endometrial","cancer","uterine","staging","oncology","gynecology","tumor","assessment">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the assigned prognostic stage group for endometrial cancer based on the extent of the tumor.">
+			misuse = <"Not to be used to record staging for cervical, ovarian, or other gynecological cancers.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Pecorelli S. Revised FIGO staging for carcinoma of the vulva, cervix, and endometrium. Int J Gynaecol Obstet. 2009 May;105(2):103-4. doi: 10.1016/j.ijgo.2009.02.012. Erratum in: Int J Gynaecol Obstet. 2010 Feb;108(2):176. PMID: 19367689.
+
+Berek JS, Matias-Guiu X, Creutzberg C, Fotopoulou C, Gaffney D, Kehoe S, Lindemann K, Mutch D, Concin N; Endometrial Cancer Staging Subcommittee, FIGO Women's Cancer Committee. FIGO staging of endometrial cancer: 2023. Int J Gynaecol Obstet. 2023 Aug;162(2):383-394. doi: 10.1002/ijgo.14923. Epub 2023 Jun 20. Erratum in: Int J Gynaecol Obstet. 2024 Sep;166(3):1374. doi: 10.1002/ijgo.15193. PMID: 37337978.
+
+Matsuo K, Klar M, Song BB, Roman LD, Wright JD. Validation of the 2023 FIGO staging schema for advanced endometrial cancer. Eur J Cancer. 2023 Nov;193:113316. doi: 10.1016/j.ejca.2023.113316. Epub 2023 Sep 21. PMID: 37741790.
+
+Nationellt vårdprogram livmoderkroppscancer [Internet]. Regionala cancercentrum i samverkan; [cited 2026 Jul 10]. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/livmoderkroppscancer/vardprogram/kategorisering-av-tumoren/
+Pecorelli S. Revised FIGO staging for carcinoma of the vulva, cervix, and endometrium. Int J Gynaecol Obstet. 2009;105(2):103-4.">
+		["build_uid"] = <"f0226a9e-1c55-3d62-852c-b6d7699a209e">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- FIGO staging for endometrial cancer assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Stage group
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- I
+									at0006,    -- IA
+									at0007,    -- IB
+									at0008,    -- II
+									at0009,    -- III
+									at0010,    -- IIIA
+									at0011,    -- IIIB
+									at0012,    -- IIIC
+									at0013,    -- IIIC1
+									at0014,    -- IIIC2
+									at0015,    -- IV
+									at0016,    -- IVA
+									at0017]    -- IVB
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"FIGO staging for endometrial cancer assessment">
+					description = <"Assessment of the stage of endometrial cancer according to the FIGO 2009 staging system for endometrial cancer.">
+					comment = <"Original version, c 2009.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Stage group">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"I">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"IA">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"IB">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"II">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"III">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"IIIA">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"IIIB">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"IIIC">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"IIIC1">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"IIIC2">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"IV">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"IVA">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"IVB">
+					description = <"">
+				>
+			>
+		>
+	>
