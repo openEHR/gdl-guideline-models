@@ -1,0 +1,150 @@
+archetype (adl_version=1.4; uid=cd4c872f-b347-4c42-9e18-3e1271d716b4)
+	openEHR-EHR-EVALUATION.tnm_classification_for_endometrial_cancer_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-07-22">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"Kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the prognostic stage group for endometrial cancer.">
+			keywords = <"tnm","figo","endometrial","cancer","uterine","staging","oncology","gynecology","tumor","stage","assessment","ajcc">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the prognostic stage group for endometrial cancer based on the T, N, and M categories.">
+			misuse = <"Not to be used for staging other types of cancer. ">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"O'Sullivan B, Brierley J, Byrd D, Bosman F, Kehoe S, Kossary C, Piñeros M, Van Eycken E, Weir HK, Gospodarowicz M. The TNM classification of malignant tumours-towards common understanding and reasonable expectations. Lancet Oncol. 2017 Jul;18(7):849-851. doi: 10.1016/S1470-2045(17)30438-2. PMID: 28677562; PMCID: PMC5851445.">
+		["build_uid"] = <"6cff067d-b093-3254-8a8b-296110ccef1f">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- TNM classification for endometrial cancer assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Stage group
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- I
+									at0006,    -- IA
+									at0007,    -- IB
+									at0008,    -- II
+									at0009,    -- III
+									at0010,    -- IIIA
+									at0011,    -- IIIB
+									at0012,    -- IIIC1
+									at0013,    -- IIIC2
+									at0014,    -- IVA
+									at0015]    -- IVB
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"TNM classification for endometrial cancer assessment">
+					description = <"The stage group for endometrial cancer based on the AJCC prognostic stage group and TNM classification.">
+					comment = <"Original version, c 2009.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Stage group">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"I">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"IA">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"IB">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"II">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"III">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"IIIA">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"IIIB">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"IIIC1">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"IIIC2">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"IVA">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"IVB">
+					description = <"">
+				>
+			>
+		>
+	>
