@@ -1,0 +1,216 @@
+guidelines:
+  "1": TNM_classification_for_endometrial_cancer_staging.v0.0.1
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. T - Primary tumor missing (negative test).
+    input:
+      "1":
+        gt0004|N - Lymph nodes: local::at0020|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0027|M0 - no distant metastasis|
+    expected_output:
+      "1": {}
+  - id: 03. N - Lymph nodes missing (negative test).
+    input:
+      "1":
+        gt0003|T - Primary tumor: local::at0010|T0 - No evidence of primary tumor|
+        gt0005|M - Distant metastasis: local::at0027|M0 - no distant metastasis|
+    expected_output:
+      "1": {}
+  - id: 04. M - Distant metastasis missing (negative test).
+    input:
+      "1":
+        gt0003|T - Primary tumor: local::at0010|T0 - No evidence of primary tumor|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No regional lymph node metastasis|
+    expected_output:
+      "1": {}
+  - id: 05. Stage group I
+    input:
+      "1":
+        gt0003|T - Primary tumor: local::at0012|T1 - Tumor confined to the corpus uteri|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0027|M0 - no distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0005|I|
+  - id: 06. Stage group IA
+    input:
+      "1":
+        gt0003|T - Primary tumor: local::at0013|T1a - Tumor limited to endometrium or
+          invades less than one half of the myometrium|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0027|M0 - no distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0006|IA|
+  - id: 07. Stage group IB
+    input:
+      "1":
+        gt0003|T - Primary tumor: local::at0014|T1b - Tumor invades one half or more of the myometrium|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0027|M0 - no distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0007|IB|
+  - id: 08. Stage group II
+    input:
+      "1":
+        gt0003|T - Primary tumor: local::at0015|T2 - Tumor invades stromal connective
+          tissue of the cervix but does not extend beyond uterus|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0027|M0 - no distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0008|II|
+  - id: 09. Stage group IIIA
+    input:
+      "1":
+        gt0003|T - Primary tumor: local::at0016|T3a - Tumor involves serosa and/or adnexa|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0027|M0 - no distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0010|IIIA|
+  - id: 10. Stage group IIIB
+    input:
+      "1":
+        gt0003|T - Primary tumor: local::at0017|T3b - Vaginal involvement or parametrial involvement|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0027|M0 - no distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0011|IIIB|
+  - id: 11. Stage group IIIC1
+    input:
+      "1":
+        gt0003|T - Primary tumor: local::at0017|T3b - Vaginal involvement or parametrial involvement|
+        gt0004|N - Lymph nodes: local::at0021|N1 - Metastasis to pelvic lymph nodes|
+        gt0005|M - Distant metastasis: local::at0027|M0 - no distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0012|IIIC1|
+  - id: 12. Stage group IIIC1
+    input:
+      "1":
+        gt0003|T - Primary tumor: local::at0015|T2 - Tumor invades stromal connective
+          tissue of the cervix but does not extend beyond uterus|
+        gt0004|N - Lymph nodes: local::at0022|N1mi - Regional lymph node metastasis >
+          0.2 mm but ≤ 2.0 mm in diameter to pelvic lymph nodes|
+        gt0005|M - Distant metastasis: local::at0027|M0 - no distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0012|IIIC1|
+  - id: 13. Stage group IIIC1
+    input:
+      "1":
+        gt0003|T - Primary tumor: local::at0012|T1 - Tumor confined to the corpus uteri|
+        gt0004|N - Lymph nodes: local::at0023|N1a - Regional lymph node metastasis > 2.0
+          mm in diameter to pelvic lymph nodes|
+        gt0005|M - Distant metastasis: local::at0027|M0 - no distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0012|IIIC1|
+  - id: 14. Stage group IIIC2
+    input:
+      "1":
+        gt0003|T - Primary tumor: local::at0013|T1a - Tumor limited to endometrium or
+          invades less than one half of the myometrium|
+        gt0004|N - Lymph nodes: local::at0024|N2 - Regional lymph node metastasis to
+          para-aortic lymph nodes with or without metastasis to pelvic lymph
+          nodes|
+        gt0005|M - Distant metastasis: local::at0027|M0 - no distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0013|IIIC2|
+  - id: 15. Stage group IIIC2
+    input:
+      "1":
+        gt0003|T - Primary tumor: local::at0014|T1b - Tumor invades one half or more of the myometrium|
+        gt0004|N - Lymph nodes: local::at0025|N2mi - Regional lymph node metastasis >
+          0.2 mm but ≤ 2.0 mm in diameter to para-aortic lymph nodes with or
+          without metastasis to pelvic lymph nodes|
+        gt0005|M - Distant metastasis: local::at0027|M0 - no distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0013|IIIC2|
+  - id: 16. Stage group IIIC2
+    input:
+      "1":
+        gt0003|T - Primary tumor: local::at0016|T3a - Tumor involves serosa and/or adnexa|
+        gt0004|N - Lymph nodes: local::at0026|N2a - Regional lymph node metastasis > 2.0
+          mm in diameter to para-aortic lymph nodes with or without metastasis
+          to pelvic lymph nodes|
+        gt0005|M - Distant metastasis: local::at0027|M0 - no distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0013|IIIC2|
+  - id: 17. Stage group IVA
+    input:
+      "1":
+        gt0003|T - Primary tumor: local::at0018|T4 - Tumor invades bladder and/or bowel mucosa|
+        gt0004|N - Lymph nodes: local::at0020|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0027|M0 - no distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0014|IVA|
+  - id: 18. Stage group IVA
+    input:
+      "1":
+        gt0003|T - Primary tumor: local::at0018|T4 - Tumor invades bladder and/or bowel mucosa|
+        gt0004|N - Lymph nodes: local::at0021|N1 - Metastasis to pelvic lymph nodes|
+        gt0005|M - Distant metastasis: local::at0027|M0 - no distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0014|IVA|
+  - id: 19. Stage group IVA
+    input:
+      "1":
+        gt0003|T - Primary tumor: local::at0018|T4 - Tumor invades bladder and/or bowel mucosa|
+        gt0004|N - Lymph nodes: local::at0024|N2 - Regional lymph node metastasis to
+          para-aortic lymph nodes with or without metastasis to pelvic lymph
+          nodes|
+        gt0005|M - Distant metastasis: local::at0027|M0 - no distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0014|IVA|
+  - id: 20. Stage group IVB
+    input:
+      "1":
+        gt0003|T - Primary tumor: local::at0018|T4 - Tumor invades bladder and/or bowel mucosa|
+        gt0004|N - Lymph nodes: local::at0024|N2 - Regional lymph node metastasis to
+          para-aortic lymph nodes with or without metastasis to pelvic lymph
+          nodes|
+        gt0005|M - Distant metastasis: "local::at0028|M1 - Distant metastasis: includes
+          metastasis to inguinal lymph nodes, intra-abdominal disease, or other
+          distant organs|"
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0015|IVB|
+  - id: 21. Stage group IVB
+    input:
+      "1":
+        gt0003|T - Primary tumor: local::at0012|T1 - Tumor confined to the corpus uteri|
+        gt0004|N - Lymph nodes: local::at0021|N1 - Metastasis to pelvic lymph nodes|
+        gt0005|M - Distant metastasis: "local::at0028|M1 - Distant metastasis: includes
+          metastasis to inguinal lymph nodes, intra-abdominal disease, or other
+          distant organs|"
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0015|IVB|
+  - id: 22. Stage group IVB
+    input:
+      "1":
+        gt0003|T - Primary tumor: local::at0015|T2 - Tumor invades stromal connective
+          tissue of the cervix but does not extend beyond uterus|
+        gt0004|N - Lymph nodes: local::at0024|N2 - Regional lymph node metastasis to
+          para-aortic lymph nodes with or without metastasis to pelvic lymph
+          nodes|
+        gt0005|M - Distant metastasis: "local::at0028|M1 - Distant metastasis: includes
+          metastasis to inguinal lymph nodes, intra-abdominal disease, or other
+          distant organs|"
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0015|IVB|
