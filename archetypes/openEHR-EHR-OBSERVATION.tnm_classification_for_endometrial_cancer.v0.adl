@@ -1,0 +1,237 @@
+archetype (adl_version=1.4; uid=0d2d9661-42f7-44b6-8791-ac9415738eb0)
+	openEHR-EHR-OBSERVATION.tnm_classification_for_endometrial_cancer.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-07-22">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"Kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the T, N, and M categories for the endometrial cancer TNM classification.">
+			keywords = <"tnm","figo","endometrial","cancer","uterine","staging","oncology","gynecology","tumor">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the T, N, and M categories for the endometrial cancer TNM classification.">
+			misuse = <"Not to be used for staging other types of cancer. ">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"O'Sullivan B, Brierley J, Byrd D, Bosman F, Kehoe S, Kossary C, Piñeros M, Van Eycken E, Weir HK, Gospodarowicz M. The TNM classification of malignant tumours-towards common understanding and reasonable expectations. Lancet Oncol. 2017 Jul;18(7):849-851. doi: 10.1016/S1470-2045(17)30438-2. PMID: 28677562; PMCID: PMC5851445.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"a87ab43c-54dd-37de-a48e-9cb49d93149c">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- TNM classification for endometrial cancer
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- T - Primary tumor
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0009,    -- TX - Primary tumor cannot be assessed
+													at0010,    -- T0 - No evidence of primary tumor
+													at0011,    -- Tis - Carcinoma in situ: preinvasive carcinoma
+													at0012,    -- T1 - Tumor confined to the corpus uteri
+													at0013,    -- T1a - Tumor limited to endometrium or invades less than one half of the myometrium
+													at0014,    -- T1b - Tumor invades one half or more of the myometrium
+													at0015,    -- T2 - Tumor invades stromal connective tissue of the cervix but does not extend beyond uterus
+													at0016,    -- T3a - Tumor involves serosa and/or adnexa
+													at0017,    -- T3b - Vaginal involvement or parametrial involvement
+													at0018]    -- T4 - Tumor invades bladder and/or bowel mucosa
+												}
+											}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- N - Lymph nodes
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0019,    -- NX - Regional lymph nodes cannot be assessed
+													at0020,    -- N0 - No regional lymph node metastasis
+													at0021,    -- N1 - Metastasis to pelvic lymph nodes
+													at0022,    -- N1mi - Regional lymph node metastasis > 0.2 mm but ≤ 2.0 mm in diameter to pelvic lymph nodes
+													at0023,    -- N1a - Regional lymph node metastasis > 2.0 mm in diameter to pelvic lymph nodes
+													at0024,    -- N2 - Regional lymph node metastasis to para-aortic lymph nodes with or without metastasis to pelvic lymph nodes
+													at0025,    -- N2mi - Regional lymph node metastasis > 0.2 mm but ≤ 2.0 mm in diameter to para-aortic lymph nodes with or without metastasis to pelvic lymph nodes
+													at0026]    -- N2a - Regional lymph node metastasis > 2.0 mm in diameter to para-aortic lymph nodes with or without metastasis to pelvic lymph nodes
+												}
+											}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- M - Distant metastasis
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0027,    -- M0 - no distant metastasis
+													at0028]    -- M1 - Distant metastasis: includes metastasis to inguinal lymph nodes, intra-abdominal disease, or other distant organs
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"TNM classification for endometrial cancer">
+					description = <"TNM classification for endometrial cancer.">
+					comment = <"Original version, c 2009.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"T - Primary tumor">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"N - Lymph nodes">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"M - Distant metastasis">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"TX - Primary tumor cannot be assessed">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"T0 - No evidence of primary tumor">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Tis - Carcinoma in situ: preinvasive carcinoma">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"T1 - Tumor confined to the corpus uteri">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"T1a - Tumor limited to endometrium or invades less than one half of the myometrium">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"T1b - Tumor invades one half or more of the myometrium">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"T2 - Tumor invades stromal connective tissue of the cervix but does not extend beyond uterus">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"T3a - Tumor involves serosa and/or adnexa">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"T3b - Vaginal involvement or parametrial involvement">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"T4 - Tumor invades bladder and/or bowel mucosa">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"NX - Regional lymph nodes cannot be assessed">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"N0 - No regional lymph node metastasis">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"N1 - Metastasis to pelvic lymph nodes">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"N1mi - Regional lymph node metastasis > 0.2 mm but ≤ 2.0 mm in diameter to pelvic lymph nodes">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"N1a - Regional lymph node metastasis > 2.0 mm in diameter to pelvic lymph nodes">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"N2 - Regional lymph node metastasis to para-aortic lymph nodes with or without metastasis to pelvic lymph nodes">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"N2mi - Regional lymph node metastasis > 0.2 mm but ≤ 2.0 mm in diameter to para-aortic lymph nodes with or without metastasis to pelvic lymph nodes">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"N2a - Regional lymph node metastasis > 2.0 mm in diameter to para-aortic lymph nodes with or without metastasis to pelvic lymph nodes">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"M0 - no distant metastasis">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"M1 - Distant metastasis: includes metastasis to inguinal lymph nodes, intra-abdominal disease, or other distant organs">
+					description = <"">
+				>
+			>
+		>
+	>
