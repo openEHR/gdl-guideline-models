@@ -1,0 +1,193 @@
+{
+  "uuid" : "4a3257dd-caba-499c-aa13-9427462f1a45",
+  "id" : "FIGO_grading_for_endometrioid_adenocarcinoma.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Kevin Arjona",
+      "email" : "kevin.arjona@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-07-20"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To assess the histologic grade based on the FIGO grading for endometrioid adenocarcinoma.",
+        "keywords" : [
+          "figo",
+          "endometrioid",
+          "adenocarcinoma",
+          "endometrial",
+          "cancer",
+          "oncology",
+          "pathology",
+          "grading",
+          "gynecology",
+          "obstetrics"
+        ],
+        "use" : "Use to assess the histologic grade of endometrioid adenocarcinoma. \n\nThe guideline maps the architectural and cytological features to a final grade:\n\ngrade 1: ≤ 5% solid non-squamous, non-morular growth;\n\ngrade 2: 6% to 50% solid non-squamous, non-morular growth;\n\ngrade 3: > 50% solid non-squamous, non-morular growth;\n\nnotable severe nuclear atypia increases the architectural grade by 1 (e.g., from grade 1 to grade 2, or from grade 2 to grade 3).",
+        "misuse" : "Not to be used for grading other histological subtypes of endometrial cancer, such as serous or clear cell carcinomas. ",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Soslow RA, Tornos C, Park KJ, Malpica A, Matias-Guiu X, Oliva E, Parkash V, Carlson J, McCluggage WG, Gilks CB. Endometrial Carcinoma Diagnosis: Use of FIGO Grading and Genomic Subcategories in Clinical Practice: Recommendations of the International Society of Gynecological Pathologists. Int J Gynecol Pathol. 2019 Jan;38 Suppl 1(Iss 1 Suppl 1):S64-S74. doi: 10.1097/PGP.0000000000000518. PMID: 30550484; PMCID: PMC6295928.\n\nNationellt vårdprogram livmoderkroppscancer [Internet]. Regionala cancercentrum i samverkan; [cited 2026 Jul 10]. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/livmoderkroppscancer/vardprogram/kategorisering-av-tumoren/\nPecorelli S. Revised FIGO staging for carcinoma of the vulva, cervix, and endometrium. Int J Gynaecol Obstet. 2009;105(2):103-4.",
+      "en" : "An assessment tool used to determine the histologic grade of endometrioid adenocarcinoma based on the proportion of solid growth and the presence of severe nuclear atypia."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.figo_grading_for_endometrioid_adenocarcinoma.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.figo_grading_for_endometrioid_adenocarcinoma.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "1|local::at0014",
+              "2|local::at0015",
+              "3|local::at0016"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0010]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0011",
+              "local::at0012"
+            ]
+          }
+        }
+      },
+      "gt0017" : {
+        "id" : "gt0017",
+        "model_id" : "openEHR-EHR-EVALUATION.problem_diagnosis.v1",
+        "template_id" : "openEHR-EHR-EVALUATION.problem_diagnosis.v1",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0018" : {
+            "id" : "gt0018",
+            "path" : "/data[at0001]/items[at0002]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "path" : "/data[at0001]/items[at0069]",
+            "data_type" : "DV_TEXT"
+          }
+        }
+      }
+    },
+    "pre_conditions" : [
+      "$gt0003|Glandular differentiation|!=null",
+      "$gt0004|Notable severe nuclear atypia in more than 50% of the cells|!=null"
+    ],
+    "rules" : {
+      "gt0016" : {
+        "id" : "gt0016",
+        "priority" : 3,
+        "when" : [
+          "$gt0003|Glandular differentiation|.value==1",
+          "$gt0004|Notable severe nuclear atypia in more than 50% of the cells|==local::at0011|Absent|"
+        ],
+        "then" : [
+          "$gt0018|Degree of differentiation|=$gt0009|Low-grade endometrioid cancer|.term",
+          "$gt0019|FIGO grade|='1'"
+        ]
+      },
+      "gt0011" : {
+        "id" : "gt0011",
+        "priority" : 2,
+        "when" : [
+          "$gt0003|Glandular differentiation|.value==2||$gt0003|Glandular differentiation|==1|local::at0014|FIGO grade 1 - tumors ≤5%|&&$gt0004|Notable severe nuclear atypia in more than 50% of the cells|==local::at0012|Present|"
+        ],
+        "then" : [
+          "$gt0018|Degree of differentiation|=$gt0009|Low-grade endometrioid cancer|.term",
+          "$gt0019|FIGO grade|='2'"
+        ]
+      },
+      "gt0008" : {
+        "id" : "gt0008",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|Glandular differentiation|.value>=3||$gt0003|Glandular differentiation|==2|local::at0015|FIGO grade 2 - tumors from 6% to 50%|&&$gt0004|Notable severe nuclear atypia in more than 50% of the cells|==local::at0012|Present|"
+        ],
+        "then" : [
+          "$gt0018|Degree of differentiation|=$gt0010|High-grade endometrioid cancer|.term",
+          "$gt0019|FIGO grade|='3'"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "FIGO grading for endometrioid adenocarcinoma",
+            "description" : "An assessment tool used to determine the histologic grade of endometrioid adenocarcinoma based on the proportion of solid growth and the presence of severe nuclear atypia."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.figo_grading_for_endometrioid_adenocarcinoma.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Glandular differentiation"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Notable severe nuclear atypia in more than 50% of the cells"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Set risk assessment to high-grade, figo 3",
+            "description" : "FIGO grade 3 or FIGO grade 2 with notable severe nuclear atypia "
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Low-grade endometrioid cancer"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "High-grade endometrioid cancer"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Set risk assessment to low-grade , figo 2",
+            "description" : "FIGO grade 1 or FIGO grade 2 without notable severe nuclear atypia "
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "Set risk assessment to low-grade , figo 1",
+            "description" : "FIGO grade 1 without notable severe nuclear atypia "
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "openEHR-EHR-EVALUATION.problem_diagnosis.v1"
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "Degree of differentiation"
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "FIGO grade"
+          }
+        }
+      }
+    }
+  }
+}
