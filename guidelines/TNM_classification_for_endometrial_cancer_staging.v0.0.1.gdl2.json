@@ -1,0 +1,323 @@
+{
+  "uuid" : "9c8f9914-fc3f-4583-b4c0-e6f13bc0d91e",
+  "id" : "TNM_classification_for_endometrial_cancer_staging.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Kevin Arjona",
+      "email" : "kevin.arjona@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-07-22"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To assess the prognostic stage group for endometrial cancer.",
+        "keywords" : [
+          "tnm",
+          "endometrial",
+          "cancer",
+          "uterine",
+          "staging",
+          "oncology",
+          "stage",
+          "group",
+          "ajcc"
+        ],
+        "use" : "Use to assess the clinical or pathological stage group for endometrial cancer. \n\nThe guideline maps the individual TNM components to the overall prognostic stage:\n\nstage I: T1, N0, M0;\n\nstage IA: T1a, N0, M0;\n\nstage IB: T1b, N0, M0;\n\nstage II: T2, N0, M0;\n\nstage III: T3, N0, M0;\n\nstage IIIA: T3a, N0, M0;\n\nstage IIIB: T3b, N0, M0;\n\nstage IIIC1:T1-T3, N1/N1mi/N1a, M0;\n\nstage IIIC2: T1-T3, N2/N2mi/N2a, M0;\n\nstage IVA: T4, any N, M0;\n\nstage IVB: any T, any N, M1.",
+        "misuse" : "Not to be used for other types of cancer.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "O'Sullivan B, Brierley J, Byrd D, Bosman F, Kehoe S, Kossary C, Piñeros M, Van Eycken E, Weir HK, Gospodarowicz M. The TNM classification of malignant tumours-towards common understanding and reasonable expectations. Lancet Oncol. 2017 Jul;18(7):849-851. doi: 10.1016/S1470-2045(17)30438-2. PMID: 28677562; PMCID: PMC5851445.\n",
+      "en" : "An assessment tool used to assign the prognostic stage group for endometrial cancer based on the TNM classification system."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.tnm_classification_for_endometrial_cancer.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.tnm_classification_for_endometrial_cancer.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0009",
+              "local::at0010",
+              "local::at0011",
+              "local::at0012",
+              "local::at0013",
+              "local::at0014",
+              "local::at0015",
+              "local::at0016",
+              "local::at0017",
+              "local::at0018"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0019",
+              "local::at0020",
+              "local::at0021",
+              "local::at0022",
+              "local::at0023",
+              "local::at0024",
+              "local::at0025",
+              "local::at0026"
+            ]
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0027",
+              "local::at0028"
+            ]
+          }
+        }
+      },
+      "gt0006" : {
+        "id" : "gt0006",
+        "model_id" : "openEHR-EHR-EVALUATION.tnm_classification_for_endometrial_cancer_assessment.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.tnm_classification_for_endometrial_cancer_assessment.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0003]/items[at0004]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      }
+    },
+    "pre_conditions" : [
+      "$gt0003|T - Primary tumor|!=null",
+      "$gt0004|N - Lymph nodes|!=null",
+      "$gt0005|M - Distant metastasis|!=null"
+    ],
+    "rules" : {
+      "gt0008" : {
+        "id" : "gt0008",
+        "priority" : 10,
+        "when" : [
+          "$gt0003|T - Primary tumor|==local::at0012|T1 - Tumor confined to the corpus uteri|",
+          "$gt0004|N - Lymph nodes|==local::at0020|N0 - No regional lymph node metastasis|",
+          "$gt0005|M - Distant metastasis|==local::at0027|M0 - no distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0005|I|"
+        ]
+      },
+      "gt0009" : {
+        "id" : "gt0009",
+        "priority" : 9,
+        "when" : [
+          "$gt0003|T - Primary tumor|==local::at0013|T1a - Tumor limited to endometrium or invades less than one half of the myometrium|",
+          "$gt0004|N - Lymph nodes|==local::at0020|N0 - No regional lymph node metastasis|",
+          "$gt0005|M - Distant metastasis|==local::at0027|M0 - no distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0006|IA|"
+        ]
+      },
+      "gt0010" : {
+        "id" : "gt0010",
+        "priority" : 8,
+        "when" : [
+          "$gt0003|T - Primary tumor|==local::at0014|T1b - Tumor invades one half or more of the myometrium|",
+          "$gt0004|N - Lymph nodes|==local::at0020|N0 - No regional lymph node metastasis|",
+          "$gt0005|M - Distant metastasis|==local::at0027|M0 - no distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0007|IB|"
+        ]
+      },
+      "gt0011" : {
+        "id" : "gt0011",
+        "priority" : 7,
+        "when" : [
+          "$gt0003|T - Primary tumor|==local::at0015|T2 - Tumor invades stromal connective tissue of the cervix but does not extend beyond uterus|",
+          "$gt0004|N - Lymph nodes|==local::at0020|N0 - No regional lymph node metastasis|",
+          "$gt0005|M - Distant metastasis|==local::at0027|M0 - no distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0008|II|"
+        ]
+      },
+      "gt0012" : {
+        "id" : "gt0012",
+        "priority" : 6,
+        "when" : [
+          "$gt0003|T - Primary tumor|==local::at0016|T3a - Tumor involves serosa and/or adnexa|",
+          "$gt0004|N - Lymph nodes|==local::at0020|N0 - No regional lymph node metastasis|",
+          "$gt0005|M - Distant metastasis|==local::at0027|M0 - no distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0010|IIIA|"
+        ]
+      },
+      "gt0013" : {
+        "id" : "gt0013",
+        "priority" : 5,
+        "when" : [
+          "$gt0003|T - Primary tumor|==local::at0017|T3b - Vaginal involvement or parametrial involvement|",
+          "$gt0004|N - Lymph nodes|==local::at0020|N0 - No regional lymph node metastasis|",
+          "$gt0005|M - Distant metastasis|==local::at0027|M0 - no distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0011|IIIB|"
+        ]
+      },
+      "gt0014" : {
+        "id" : "gt0014",
+        "priority" : 4,
+        "when" : [
+          "$gt0003|T - Primary tumor|==local::at0012|T1 - Tumor confined to the corpus uteri|||$gt0003|T - Primary tumor|==local::at0013|T1a - Tumor limited to endometrium or invades less than one half of the myometrium|||$gt0003|T - Primary tumor|==local::at0014|T1b - Tumor invades one half or more of the myometrium|||$gt0003|T - Primary tumor|==local::at0015|T2 - Tumor invades stromal connective tissue of the cervix but does not extend beyond uterus|||$gt0003|T - Primary tumor|==local::at0016|T3a - Tumor involves serosa and/or adnexa|||$gt0003|T - Primary tumor|==local::at0017|T3b - Vaginal involvement or parametrial involvement|",
+          "$gt0004|N - Lymph nodes|==local::at0021|N1 - Metastasis to pelvic lymph nodes|||$gt0004|N - Lymph nodes|==local::at0022|N1mi - Regional lymph node metastasis > 0.2 mm but ≤ 2.0 mm in diameter to pelvic lymph nodes|||$gt0004|N - Lymph nodes|==local::at0023|N1a - Regional lymph node metastasis > 2.0 mm in diameter to pelvic lymph nodes|",
+          "$gt0005|M - Distant metastasis|==local::at0027|M0 - no distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0012|IIIC1|"
+        ]
+      },
+      "gt0015" : {
+        "id" : "gt0015",
+        "priority" : 3,
+        "when" : [
+          "$gt0003|T - Primary tumor|==local::at0012|T1 - Tumor confined to the corpus uteri|||$gt0003|T - Primary tumor|==local::at0013|T1a - Tumor limited to endometrium or invades less than one half of the myometrium|||$gt0003|T - Primary tumor|==local::at0014|T1b - Tumor invades one half or more of the myometrium|||$gt0003|T - Primary tumor|==local::at0015|T2 - Tumor invades stromal connective tissue of the cervix but does not extend beyond uterus|||$gt0003|T - Primary tumor|==local::at0016|T3a - Tumor involves serosa and/or adnexa|||$gt0003|T - Primary tumor|==local::at0017|T3b - Vaginal involvement or parametrial involvement|",
+          "$gt0004|N - Lymph nodes|==local::at0024|N2 - Regional lymph node metastasis to para-aortic lymph nodes with or without metastasis to pelvic lymph nodes|||$gt0004|N - Lymph nodes|==local::at0025|N2mi - Regional lymph node metastasis > 0.2 mm but ≤ 2.0 mm in diameter to para-aortic lymph nodes with or without metastasis to pelvic lymph nodes|||$gt0004|N - Lymph nodes|==local::at0026|N2a - Regional lymph node metastasis > 2.0 mm in diameter to para-aortic lymph nodes with or without metastasis to pelvic lymph nodes|",
+          "$gt0005|M - Distant metastasis|==local::at0027|M0 - no distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0013|IIIC2|"
+        ]
+      },
+      "gt0016" : {
+        "id" : "gt0016",
+        "priority" : 2,
+        "when" : [
+          "$gt0003|T - Primary tumor|==local::at0018|T4 - Tumor invades bladder and/or bowel mucosa|",
+          "$gt0004|N - Lymph nodes|!=null",
+          "$gt0005|M - Distant metastasis|==local::at0027|M0 - no distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0014|IVA|"
+        ]
+      },
+      "gt0017" : {
+        "id" : "gt0017",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|T - Primary tumor|!=null",
+          "$gt0004|N - Lymph nodes|!=null",
+          "$gt0005|M - Distant metastasis|==local::at0028|M1 - Distant metastasis: includes metastasis to inguinal lymph nodes, intra-abdominal disease, or other distant organs|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0015|IVB|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "TNM classification for endometrial cancer staging",
+            "description" : "An assessment tool used to assign the prognostic stage group for endometrial cancer based on the TNM classification system."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.tnm_classification_for_endometrial_cancer.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "T - Primary tumor"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "N - Lymph nodes"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "M - Distant metastasis"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "openEHR-EHR-EVALUATION.tnm_classification_for_endometrial_cancer_assessment.v0"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Stage group"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Set stage group to I",
+            "description" : "T1,N0,M0"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Set stage group to IA",
+            "description" : "T1a,N0,M0"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Set stage group to IB",
+            "description" : "T1b,N0,M0"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Set stage group to II",
+            "description" : "T2,N0,M0"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Set stage group to IIIA",
+            "description" : "T3a,N0,M0"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Set stage group to IIIB",
+            "description" : "T3b,N0,M0"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Set stage group to IIIC1",
+            "description" : "T1-T3, N1/N1mi/N1a, M0"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "Set stage group to IIIC2",
+            "description" : "T1-T3, N2/N2mi/N2a, M0"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "Set stage group to IVA",
+            "description" : "T4, any N, M0;"
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "Set stage group to IVB",
+            "description" : "any T, any N, M1"
+          }
+        }
+      }
+    }
+  }
+}
