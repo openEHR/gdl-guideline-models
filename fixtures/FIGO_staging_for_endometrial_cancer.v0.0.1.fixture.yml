@@ -1,0 +1,164 @@
+guidelines:
+  "1": FIGO_staging_for_endometrial_cancer.v0.0.1
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Glandular differentiation missing (negative test).
+    input:
+      "1":
+        gt0004|Notable severe nuclear atypia in more than 50% of the cells: local::at0011|Absent|
+    expected_output:
+      "1": {}
+  - id: 03. Notable severe nuclear atypia in more than 50% of the cells missing
+      (negative test).
+    input:
+      "1":
+        gt0003|Glandular differentiation: 1|local::at0014|FIGO grade 1 - tumors ≤5%|
+    expected_output:
+      "1": {}
+  - id: 04. FIGO 1, Low-grade endometrioid cancer
+    input:
+      "1":
+        gt0003|Glandular differentiation: 1|local::at0014|FIGO grade 1 - tumors ≤5%|
+        gt0004|Notable severe nuclear atypia in more than 50% of the cells: local::at0011|Absent|
+    expected_output:
+      "1": {}
+  - id: 05. FIGO 2, Low-grade endometrioid cancer 1
+    input:
+      "1":
+        gt0003|Glandular differentiation: 1|local::at0014|FIGO grade 1 - tumors ≤5%|
+        gt0004|Notable severe nuclear atypia in more than 50% of the cells: local::at0012|Present|
+    expected_output:
+      "1": {}
+  - id: 06. FIGO 2, Low-grade endometrioid cancer 2
+    input:
+      "1":
+        gt0003|Glandular differentiation: 2|local::at0015|FIGO grade 2 - tumors from 6% to 50%|
+        gt0004|Notable severe nuclear atypia in more than 50% of the cells: local::at0011|Absent|
+    expected_output:
+      "1": {}
+  - id: 07. FIGO 3, High-grade endometrioid cancer 1
+    input:
+      "1":
+        gt0003|Glandular differentiation: 2|local::at0015|FIGO grade 2 - tumors from 6% to 50%|
+        gt0004|Notable severe nuclear atypia in more than 50% of the cells: local::at0012|Present|
+    expected_output:
+      "1": {}
+  - id: 08. FIGO 3, High-grade endometrioid cancer 2
+    input:
+      "1":
+        gt0003|Glandular differentiation: 3|local::at0016|FIGO grade 3 - tumors >50%|
+        gt0004|Notable severe nuclear atypia in more than 50% of the cells: local::at0011|Absent|
+    expected_output:
+      "1": {}
+  - id: 09. FIGO 3, High-grade endometrioid cancer 3
+    input:
+      "1":
+        gt0003|Glandular differentiation: 3|local::at0016|FIGO grade 3 - tumors >50%|
+        gt0004|Notable severe nuclear atypia in more than 50% of the cells: local::at0012|Present|
+    expected_output:
+      "1": {}
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Stage group I.
+    input:
+      "1":
+        gt0021|Clinical and pathological findings: local::at0007|Tumor confined to the corpus uteri|
+    expected_output:
+      "1":
+        gt0023|Stage group: local::at0005|I|
+  - id: 03. Stage group IA.
+    input:
+      "1":
+        gt0021|Clinical and pathological findings: local::at0008|No invasion or invasion
+          < half the thickness of the myometrium|
+    expected_output:
+      "1":
+        gt0023|Stage group: local::at0006|IA|
+  - id: 04. Stage group IB.
+    input:
+      "1":
+        gt0021|Clinical and pathological findings: local::at0009|Invasion ≥ half the thickness of the myometrium|
+    expected_output:
+      "1":
+        gt0023|Stage group: local::at0007|IB|
+  - id: 05. Stage group II.
+    input:
+      "1":
+        gt0021|Clinical and pathological findings: local::at0010|Invasion into the
+          cervical stroma but not outside the uterus|
+    expected_output:
+      "1":
+        gt0023|Stage group: local::at0008|II|
+  - id: 06. Stage group III.
+    input:
+      "1":
+        gt0021|Clinical and pathological findings: local::at0011|Local and/or regional spread|
+    expected_output:
+      "1":
+        gt0023|Stage group: local::at0009|III|
+  - id: 07. Stage group IIIA.
+    input:
+      "1":
+        gt0021|Clinical and pathological findings: local::at0012|Invasion of uterine serosa and/or adnexa|
+    expected_output:
+      "1":
+        gt0023|Stage group: local::at0010|IIIA|
+  - id: 08. Stage group IIIB.
+    input:
+      "1":
+        gt0021|Clinical and pathological findings: local::at0013|Vaginal growth and/or parametrial growth|
+    expected_output:
+      "1":
+        gt0023|Stage group: local::at0011|IIIB|
+  - id: 09. Stage group IIIC.
+    input:
+      "1":
+        gt0021|Clinical and pathological findings: local::at0014|Metastases to pelvic nodes and/or paraaortic lymph nodes|
+    expected_output:
+      "1":
+        gt0023|Stage group: local::at0012|IIIC|
+  - id: 10. Stage group IIIC1.
+    input:
+      "1":
+        gt0021|Clinical and pathological findings: local::at0015|Positive pelvic nodes|
+    expected_output:
+      "1":
+        gt0023|Stage group: local::at0013|IIIC1|
+  - id: 11. Stage group IIIC2.
+    input:
+      "1":
+        gt0021|Clinical and pathological findings: local::at0016|Positive paraaortic
+          glands regardless of positive or negative pelvic glands|
+    expected_output:
+      "1":
+        gt0023|Stage group: local::at0014|IIIC2|
+  - id: 12. Stage group IV.
+    input:
+      "1":
+        gt0021|Clinical and pathological findings: local::at0017|Spread to bladder
+          and/or rectum and/or distant metastases|
+    expected_output:
+      "1":
+        gt0023|Stage group: local::at0015|IV|
+  - id: 13. Stage group IVA.
+    input:
+      "1":
+        gt0021|Clinical and pathological findings: local::at0018|Spread to the bladder and/or rectum|
+    expected_output:
+      "1":
+        gt0023|Stage group: local::at0016|IVA|
+  - id: 14. Stage group IVB.
+    input:
+      "1":
+        gt0021|Clinical and pathological findings: local::at0019|Distant metastases,
+          including intra-abdominal metastases and/or inguinal metastases|
+    expected_output:
+      "1":
+        gt0023|Stage group: local::at0017|IVB|
