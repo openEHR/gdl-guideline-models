@@ -1,0 +1,138 @@
+archetype (adl_version=1.4; uid=c71e5575-046b-4718-bd4d-d25c29857f92)
+	openEHR-EHR-EVALUATION.cml_disease_phase_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-07-24">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the assessed disease phase for chronic myeloid leukemia based on ELN and WHO criteria.">
+			keywords = <"cml","kml","chronic","myeloid","leukemia","eln","european","leukemianet","who","world","health","organization","leukemia","oncology","blast">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the assessed disease phase for chronic myeloid leukemia based on ELN and WHO criteria.">
+			misuse = <"Not to be used to record the staging for other hematological malignancies.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Nationellt vårdprogram kronisk myeloisk leukemi [Internet]. Regionala cancercentrum i samverkan; 2024 [cited 2026 Jul 24]. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/kml/vardprogram/kategorisering-i-sjukdomsfaser-samt-riskgruppering/">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"b6c650cb-a116-3d26-b78d-6e29703c4852">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- CML disease phase assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- World Health Organization disease phase
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0006,    -- Chronic phase: CP
+									at0007,    -- Accelerated phase: AP
+									at0008]    -- Blast crisis: BC
+								}
+							}
+						}
+					}
+					ELEMENT[at0009] occurrences matches {0..1} matches {    -- European Leukemia Net disease phase
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0010,    -- Chronic phase: CP
+									at0011,    -- Accelerated phase: AP
+									at0012]    -- Blast crisis: BC
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"CML disease phase assessment">
+					description = <"The clinical assessment of the disease phase for chronic myeloid leukemia (CML) based on the European Leukemia Net (ELN) and the World Health Organization (WHO) criteria.">
+					comment = <"Original version, c 2024.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"World Health Organization disease phase">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Chronic phase: CP">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Accelerated phase: AP">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Blast crisis: BC">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"European Leukemia Net disease phase">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Chronic phase: CP">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Accelerated phase: AP">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Blast crisis: BC">
+					description = <"">
+				>
+			>
+		>
+	>
