@@ -1,0 +1,348 @@
+archetype (adl_version=1.4; uid=068d81b1-82ef-4bd3-bece-9692309d6624)
+	openEHR-EHR-OBSERVATION.cml_disease_phase.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-07-24">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter for the CML disease stages classification.">
+			keywords = <"cml","kml","chronic","myeloid","leukemia","eln","european","leukemianet","who","world","health","organization","leukemia","oncology","blast">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the component parameters required to classify the disease phase of chronic myeloid leukemia.">
+			misuse = <"Not to be used for patients with other types of leukemia or myeloproliferative neoplasms.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Nationellt vårdprogram kronisk myeloisk leukemi [Internet]. Regionala cancercentrum i samverkan; 2024 [cited 2026 Jul 24]. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/kml/vardprogram/kategorisering-i-sjukdomsfaser-samt-riskgruppering/">
+		["build_uid"] = <"fdee22c0-116f-38d3-a82d-114a938056a5">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- CML disease phase
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Blasts in blood or bone marrow
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- < 10%
+													at0008,    -- 10-14%
+													at0009,    -- 15-19%
+													at0010,    -- 20-29%
+													at0011]    -- ≥ 30%
+												}
+											}
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Basophils in blood ≥ 20%
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0013,    -- Absent
+													at0014]    -- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Extramedullary blast proliferation excluding the spleen
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0016,    -- Absent
+													at0017]    -- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Persistent thrombocytopenia not related to treatment
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0019,    -- Absent
+													at0020]    -- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- Cytogenetic abnormalities in Ph+ cells
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0022,    -- None
+													at0023,    -- Major route at diagnosis
+													at0024]    -- New major route during treatment
+												}
+											}
+										}
+									}
+									ELEMENT[at0025] occurrences matches {0..1} matches {    -- Large foci or clusters of blasts in marrow
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0026,    -- Absent
+													at0027]    -- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0028] occurrences matches {0..1} matches {    -- Thrombocytosis unresponsive to treatment
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0029,    -- Absent
+													at0030]    -- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0031] occurrences matches {0..1} matches {    -- Increased spleen size and rising white blood cell count that does not respond to treatment
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0032,    -- Absent
+													at0033]    -- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0034] occurrences matches {0..1} matches {    -- Blasts plus promyelocytes in blood or bone marrow > 30 %, with blasts < 30 %
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0035,    -- Absent
+													at0036]    -- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0037] occurrences matches {0..1} matches {    -- TKI resistance
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0038,    -- Absent
+													at0039]    -- Present
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"CML disease phase">
+					description = <"The European Leukemia Net (ELN) and the World Health Organization (WHO) systems classify chronic myeloid leukemia (CML) by disease phase based on the clinical, laboratory, and cytogenetic parameters.">
+					comment = <"Original version, c 2024.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Blasts in blood or bone marrow">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"< 10%">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"10-14%">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"15-19%">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"20-29%">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"≥ 30%">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Basophils in blood ≥ 20%">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Extramedullary blast proliferation excluding the spleen">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Persistent thrombocytopenia not related to treatment">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Cytogenetic abnormalities in Ph+ cells">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"None">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Major route at diagnosis">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"New major route during treatment">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Large foci or clusters of blasts in marrow">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Thrombocytosis unresponsive to treatment">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Increased spleen size and rising white blood cell count that does not respond to treatment">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Blasts plus promyelocytes in blood or bone marrow > 30 %, with blasts < 30 %">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"TKI resistance">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"Present">
+					description = <"">
+				>
+			>
+		>
+	>
