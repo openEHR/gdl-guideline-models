@@ -1,0 +1,283 @@
+guidelines:
+  "1": CML_disease_stages_classification.v0.0.1
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Blasts in blood or bone marrow missing (negative test).
+    input:
+      "1":
+        gt0004|Basophils in blood ≥ 20%: local::at0013|Absent|
+        gt0005|Extramedullary blast proliferation excluding the spleen: local::at0016|Absent|
+        gt0006|Persistent thrombocytopenia not related to treatment: local::at0019|Absent|
+        gt0007|Cytogenetic abnormalities in Ph+ cells: local::at0022|None|
+        gt0008|Large foci or clusters of blasts in marrow: local::at0026|Absent|
+        gt0009|Thrombocytosis unresponsive to treatment: local::at0029|Absent|
+        gt0010|Increased spleen size and rising white blood cell count that does not respond to treatment: local::at0032|Absent|
+        "gt0011|Blasts plus promyelocytes in blood or bone marrow > 30 %, with blasts < 30 %": local::at0035|Absent|
+        gt0012|TKI resistance: local::at0038|Absent|
+    expected_output:
+      "1": {}
+  - id: 03. Basophils in blood ≥ 20% missing (negative test).
+    input:
+      "1":
+        gt0003|Blasts in blood or bone marrow: local::at0007|< 10%|
+        gt0005|Extramedullary blast proliferation excluding the spleen: local::at0016|Absent|
+        gt0006|Persistent thrombocytopenia not related to treatment: local::at0019|Absent|
+        gt0007|Cytogenetic abnormalities in Ph+ cells: local::at0022|None|
+        gt0008|Large foci or clusters of blasts in marrow: local::at0026|Absent|
+        gt0009|Thrombocytosis unresponsive to treatment: local::at0029|Absent|
+        gt0010|Increased spleen size and rising white blood cell count that does not respond to treatment: local::at0032|Absent|
+        "gt0011|Blasts plus promyelocytes in blood or bone marrow > 30 %, with blasts < 30 %": local::at0035|Absent|
+        gt0012|TKI resistance: local::at0038|Absent|
+    expected_output:
+      "1": {}
+  - id: 04. Extramedullary blast proliferation excluding the spleen missing
+      (negative test).
+    input:
+      "1":
+        gt0003|Blasts in blood or bone marrow: local::at0008|10-14%|
+        gt0004|Basophils in blood ≥ 20%: local::at0013|Absent|
+        gt0006|Persistent thrombocytopenia not related to treatment: local::at0019|Absent|
+        gt0007|Cytogenetic abnormalities in Ph+ cells: local::at0022|None|
+        gt0008|Large foci or clusters of blasts in marrow: local::at0026|Absent|
+        gt0009|Thrombocytosis unresponsive to treatment: local::at0029|Absent|
+        gt0010|Increased spleen size and rising white blood cell count that does not respond to treatment: local::at0032|Absent|
+        "gt0011|Blasts plus promyelocytes in blood or bone marrow > 30 %, with blasts < 30 %": local::at0035|Absent|
+        gt0012|TKI resistance: local::at0038|Absent|
+    expected_output:
+      "1": {}
+  - id: 05. Persistent thrombocytopenia not related to treatment missing (negative
+      test).
+    input:
+      "1":
+        gt0003|Blasts in blood or bone marrow: local::at0008|10-14%|
+        gt0004|Basophils in blood ≥ 20%: local::at0013|Absent|
+        gt0005|Extramedullary blast proliferation excluding the spleen: local::at0016|Absent|
+        gt0007|Cytogenetic abnormalities in Ph+ cells: local::at0022|None|
+        gt0008|Large foci or clusters of blasts in marrow: local::at0026|Absent|
+        gt0009|Thrombocytosis unresponsive to treatment: local::at0029|Absent|
+        gt0010|Increased spleen size and rising white blood cell count that does not respond to treatment: local::at0032|Absent|
+        "gt0011|Blasts plus promyelocytes in blood or bone marrow > 30 %, with blasts < 30 %": local::at0035|Absent|
+        gt0012|TKI resistance: local::at0038|Absent|
+    expected_output:
+      "1": {}
+  - id: 06. Cytogenetic abnormalities in Ph+ cells missing (negative test).
+    input:
+      "1":
+        gt0003|Blasts in blood or bone marrow: local::at0008|10-14%|
+        gt0004|Basophils in blood ≥ 20%: local::at0013|Absent|
+        gt0005|Extramedullary blast proliferation excluding the spleen: local::at0016|Absent|
+        gt0006|Persistent thrombocytopenia not related to treatment: local::at0019|Absent|
+        gt0008|Large foci or clusters of blasts in marrow: local::at0026|Absent|
+        gt0009|Thrombocytosis unresponsive to treatment: local::at0029|Absent|
+        gt0010|Increased spleen size and rising white blood cell count that does not respond to treatment: local::at0032|Absent|
+        "gt0011|Blasts plus promyelocytes in blood or bone marrow > 30 %, with blasts < 30 %": local::at0035|Absent|
+        gt0012|TKI resistance: local::at0038|Absent|
+    expected_output:
+      "1": {}
+  - id: 07. Large foci or clusters of blasts in marrow missing (negative test).
+    input:
+      "1":
+        gt0003|Blasts in blood or bone marrow: local::at0008|10-14%|
+        gt0004|Basophils in blood ≥ 20%: local::at0013|Absent|
+        gt0005|Extramedullary blast proliferation excluding the spleen: local::at0016|Absent|
+        gt0006|Persistent thrombocytopenia not related to treatment: local::at0019|Absent|
+        gt0007|Cytogenetic abnormalities in Ph+ cells: local::at0022|None|
+        gt0009|Thrombocytosis unresponsive to treatment: local::at0029|Absent|
+        gt0010|Increased spleen size and rising white blood cell count that does not respond to treatment: local::at0032|Absent|
+        "gt0011|Blasts plus promyelocytes in blood or bone marrow > 30 %, with blasts < 30 %": local::at0035|Absent|
+        gt0012|TKI resistance: local::at0038|Absent|
+    expected_output:
+      "1": {}
+  - id: 08. Thrombocytosis unresponsive to treatment missing (negative test).
+    input:
+      "1":
+        gt0003|Blasts in blood or bone marrow: local::at0008|10-14%|
+        gt0004|Basophils in blood ≥ 20%: local::at0013|Absent|
+        gt0005|Extramedullary blast proliferation excluding the spleen: local::at0016|Absent|
+        gt0006|Persistent thrombocytopenia not related to treatment: local::at0019|Absent|
+        gt0007|Cytogenetic abnormalities in Ph+ cells: local::at0022|None|
+        gt0008|Large foci or clusters of blasts in marrow: local::at0026|Absent|
+        gt0010|Increased spleen size and rising white blood cell count that does not respond to treatment: local::at0032|Absent|
+        "gt0011|Blasts plus promyelocytes in blood or bone marrow > 30 %, with blasts < 30 %": local::at0035|Absent|
+        gt0012|TKI resistance: local::at0038|Absent|
+    expected_output:
+      "1": {}
+  - id: 09. Increased spleen size and rising white blood cell count that does not
+      respond to treatment missing (negative test).
+    input:
+      "1":
+        gt0003|Blasts in blood or bone marrow: local::at0008|10-14%|
+        gt0004|Basophils in blood ≥ 20%: local::at0013|Absent|
+        gt0005|Extramedullary blast proliferation excluding the spleen: local::at0016|Absent|
+        gt0006|Persistent thrombocytopenia not related to treatment: local::at0019|Absent|
+        gt0007|Cytogenetic abnormalities in Ph+ cells: local::at0022|None|
+        gt0008|Large foci or clusters of blasts in marrow: local::at0026|Absent|
+        gt0009|Thrombocytosis unresponsive to treatment: local::at0029|Absent|
+        "gt0011|Blasts plus promyelocytes in blood or bone marrow > 30 %, with blasts < 30 %": local::at0035|Absent|
+        gt0012|TKI resistance: local::at0038|Absent|
+    expected_output:
+      "1": {}
+  - id: 10. Blasts plus promyelocytes in blood or bone marrow > 30 %, with blasts <
+      30 % missing (negative test).
+    input:
+      "1":
+        gt0003|Blasts in blood or bone marrow: local::at0008|10-14%|
+        gt0004|Basophils in blood ≥ 20%: local::at0013|Absent|
+        gt0005|Extramedullary blast proliferation excluding the spleen: local::at0016|Absent|
+        gt0006|Persistent thrombocytopenia not related to treatment: local::at0019|Absent|
+        gt0007|Cytogenetic abnormalities in Ph+ cells: local::at0022|None|
+        gt0008|Large foci or clusters of blasts in marrow: local::at0026|Absent|
+        gt0009|Thrombocytosis unresponsive to treatment: local::at0029|Absent|
+        gt0010|Increased spleen size and rising white blood cell count that does not respond to treatment: local::at0032|Absent|
+        gt0012|TKI resistance: local::at0038|Absent|
+    expected_output:
+      "1": {}
+  - id: 11. TKI resistance missing (negative test).
+    input:
+      "1":
+        gt0003|Blasts in blood or bone marrow: local::at0008|10-14%|
+        gt0004|Basophils in blood ≥ 20%: local::at0013|Absent|
+        gt0005|Extramedullary blast proliferation excluding the spleen: local::at0016|Absent|
+        gt0006|Persistent thrombocytopenia not related to treatment: local::at0019|Absent|
+        gt0007|Cytogenetic abnormalities in Ph+ cells: local::at0022|None|
+        gt0008|Large foci or clusters of blasts in marrow: local::at0026|Absent|
+        gt0009|Thrombocytosis unresponsive to treatment: local::at0029|Absent|
+        gt0010|Increased spleen size and rising white blood cell count that does not respond to treatment: local::at0032|Absent|
+        "gt0011|Blasts plus promyelocytes in blood or bone marrow > 30 %, with blasts < 30 %": local::at0035|Absent|
+    expected_output:
+      "1": {}
+  - id: "12. ELN: CP phase."
+    input:
+      "1":
+        gt0003|Blasts in blood or bone marrow: local::at0008|10-14%|
+        gt0004|Basophils in blood ≥ 20%: local::at0013|Absent|
+        gt0005|Extramedullary blast proliferation excluding the spleen: local::at0016|Absent|
+        gt0006|Persistent thrombocytopenia not related to treatment: local::at0019|Absent|
+        gt0007|Cytogenetic abnormalities in Ph+ cells: local::at0022|None|
+        gt0008|Large foci or clusters of blasts in marrow: local::at0026|Absent|
+        gt0009|Thrombocytosis unresponsive to treatment: local::at0029|Absent|
+        gt0010|Increased spleen size and rising white blood cell count that does not respond to treatment: local::at0032|Absent|
+        "gt0011|Blasts plus promyelocytes in blood or bone marrow > 30 %, with blasts < 30 %": local::at0035|Absent|
+        gt0012|TKI resistance: local::at0038|Absent|
+    expected_output:
+      "1":
+        gt0015|European Leukemia Net disease phase: "local::at0010|Chronic phase: CP|"
+  - id: "13. ELN and WHO: CP phase."
+    input:
+      "1":
+        gt0003|Blasts in blood or bone marrow: local::at0007|< 10%|
+        gt0004|Basophils in blood ≥ 20%: local::at0013|Absent|
+        gt0005|Extramedullary blast proliferation excluding the spleen: local::at0016|Absent|
+        gt0006|Persistent thrombocytopenia not related to treatment: local::at0019|Absent|
+        gt0007|Cytogenetic abnormalities in Ph+ cells: local::at0022|None|
+        gt0008|Large foci or clusters of blasts in marrow: local::at0026|Absent|
+        gt0009|Thrombocytosis unresponsive to treatment: local::at0029|Absent|
+        gt0010|Increased spleen size and rising white blood cell count that does not respond to treatment: local::at0032|Absent|
+        "gt0011|Blasts plus promyelocytes in blood or bone marrow > 30 %, with blasts < 30 %": local::at0035|Absent|
+        gt0012|TKI resistance: local::at0038|Absent|
+    expected_output:
+      "1":
+        gt0014|World Health Organization disease phase: "local::at0006|Chronic phase: CP|"
+        gt0015|European Leukemia Net disease phase: "local::at0010|Chronic phase: CP|"
+  - id: "14. ELN and WHO: AP phase."
+    input:
+      "1":
+        gt0003|Blasts in blood or bone marrow: local::at0009|15-19%|
+        gt0004|Basophils in blood ≥ 20%: local::at0014|Present|
+        gt0005|Extramedullary blast proliferation excluding the spleen: local::at0017|Present|
+        gt0006|Persistent thrombocytopenia not related to treatment: local::at0020|Present|
+        gt0007|Cytogenetic abnormalities in Ph+ cells: local::at0024|New major route during treatment|
+        gt0008|Large foci or clusters of blasts in marrow: local::at0027|Present|
+        gt0009|Thrombocytosis unresponsive to treatment: local::at0030|Present|
+        gt0010|Increased spleen size and rising white blood cell count that does not respond to treatment: local::at0033|Present|
+        "gt0011|Blasts plus promyelocytes in blood or bone marrow > 30 %, with blasts < 30 %": local::at0036|Present|
+        gt0012|TKI resistance: local::at0039|Present|
+    expected_output:
+      "1":
+        gt0014|World Health Organization disease phase: "local::at0007|Accelerated phase: AP|"
+        gt0015|European Leukemia Net disease phase: "local::at0011|Accelerated phase: AP|"
+  - id: "15. WHO: AP phase."
+    input:
+      "1":
+        gt0003|Blasts in blood or bone marrow: local::at0009|15-19%|
+        gt0004|Basophils in blood ≥ 20%: local::at0014|Present|
+        gt0005|Extramedullary blast proliferation excluding the spleen: local::at0017|Present|
+        gt0006|Persistent thrombocytopenia not related to treatment: local::at0020|Present|
+        gt0007|Cytogenetic abnormalities in Ph+ cells: local::at0023|Major route at diagnosis|
+        gt0008|Large foci or clusters of blasts in marrow: local::at0027|Present|
+        gt0009|Thrombocytosis unresponsive to treatment: local::at0030|Present|
+        gt0010|Increased spleen size and rising white blood cell count that does not respond to treatment: local::at0033|Present|
+        "gt0011|Blasts plus promyelocytes in blood or bone marrow > 30 %, with blasts < 30 %": local::at0035|Absent|
+        gt0012|TKI resistance: local::at0039|Present|
+    expected_output:
+      "1":
+        gt0014|World Health Organization disease phase: "local::at0007|Accelerated phase: AP|"
+  - id: "16. ELN: AP phase."
+    input:
+      "1":
+        gt0003|Blasts in blood or bone marrow: local::at0010|20-29%|
+        gt0004|Basophils in blood ≥ 20%: local::at0014|Present|
+        gt0005|Extramedullary blast proliferation excluding the spleen: local::at0017|Present|
+        gt0006|Persistent thrombocytopenia not related to treatment: local::at0020|Present|
+        gt0007|Cytogenetic abnormalities in Ph+ cells: local::at0024|New major route during treatment|
+        gt0008|Large foci or clusters of blasts in marrow: local::at0026|Absent|
+        gt0009|Thrombocytosis unresponsive to treatment: local::at0030|Present|
+        gt0010|Increased spleen size and rising white blood cell count that does not respond to treatment: local::at0033|Present|
+        "gt0011|Blasts plus promyelocytes in blood or bone marrow > 30 %, with blasts < 30 %": local::at0036|Present|
+        gt0012|TKI resistance: local::at0038|Absent|
+    expected_output:
+      "1":
+        gt0015|European Leukemia Net disease phase: "local::at0011|Accelerated phase: AP|"
+  - id: "17. ELN: BC phase."
+    input:
+      "1":
+        gt0003|Blasts in blood or bone marrow: local::at0011|≥ 30%|
+        gt0004|Basophils in blood ≥ 20%: local::at0013|Absent|
+        gt0005|Extramedullary blast proliferation excluding the spleen: local::at0017|Present|
+        gt0006|Persistent thrombocytopenia not related to treatment: local::at0019|Absent|
+        gt0007|Cytogenetic abnormalities in Ph+ cells: local::at0022|None|
+        gt0008|Large foci or clusters of blasts in marrow: local::at0026|Absent|
+        gt0009|Thrombocytosis unresponsive to treatment: local::at0029|Absent|
+        gt0010|Increased spleen size and rising white blood cell count that does not respond to treatment: local::at0032|Absent|
+        "gt0011|Blasts plus promyelocytes in blood or bone marrow > 30 %, with blasts < 30 %": local::at0035|Absent|
+        gt0012|TKI resistance: local::at0038|Absent|
+    expected_output:
+      "1":
+        gt0015|European Leukemia Net disease phase: "local::at0012|Blast crisis: BC|"
+  - id: "18. WHO: BC phase."
+    input:
+      "1":
+        gt0003|Blasts in blood or bone marrow: local::at0010|20-29%|
+        gt0004|Basophils in blood ≥ 20%: local::at0013|Absent|
+        gt0005|Extramedullary blast proliferation excluding the spleen: local::at0017|Present|
+        gt0006|Persistent thrombocytopenia not related to treatment: local::at0019|Absent|
+        gt0007|Cytogenetic abnormalities in Ph+ cells: local::at0022|None|
+        gt0008|Large foci or clusters of blasts in marrow: local::at0027|Present|
+        gt0009|Thrombocytosis unresponsive to treatment: local::at0029|Absent|
+        gt0010|Increased spleen size and rising white blood cell count that does not respond to treatment: local::at0032|Absent|
+        "gt0011|Blasts plus promyelocytes in blood or bone marrow > 30 %, with blasts < 30 %": local::at0035|Absent|
+        gt0012|TKI resistance: local::at0038|Absent|
+    expected_output:
+      "1":
+        gt0014|World Health Organization disease phase: "local::at0008|Blast crisis: BC|"
+  - id: "19. ELN and WHO: BC phase."
+    input:
+      "1":
+        gt0003|Blasts in blood or bone marrow: local::at0011|≥ 30%|
+        gt0004|Basophils in blood ≥ 20%: local::at0013|Absent|
+        gt0005|Extramedullary blast proliferation excluding the spleen: local::at0017|Present|
+        gt0006|Persistent thrombocytopenia not related to treatment: local::at0019|Absent|
+        gt0007|Cytogenetic abnormalities in Ph+ cells: local::at0022|None|
+        gt0008|Large foci or clusters of blasts in marrow: local::at0027|Present|
+        gt0009|Thrombocytosis unresponsive to treatment: local::at0029|Absent|
+        gt0010|Increased spleen size and rising white blood cell count that does not respond to treatment: local::at0032|Absent|
+        "gt0011|Blasts plus promyelocytes in blood or bone marrow > 30 %, with blasts < 30 %": local::at0035|Absent|
+        gt0012|TKI resistance: local::at0038|Absent|
+    expected_output:
+      "1":
+        gt0014|World Health Organization disease phase: "local::at0008|Blast crisis: BC|"
+        gt0015|European Leukemia Net disease phase: "local::at0012|Blast crisis: BC|"
