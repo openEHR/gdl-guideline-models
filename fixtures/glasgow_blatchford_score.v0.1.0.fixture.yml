@@ -1,0 +1,345 @@
+guidelines:
+  "1": glasgow_blatchford_score.v0.1.0
+test_cases:
+  - id: 1. Test no input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Only Haemoglobin men input (negative test)
+    input:
+      "1":
+        "gt0016|Haemoglobin, men (g/dL)": 3|local::at0013|100-119|
+    expected_output:
+      "1": {}
+  - id: 3. Only Haemoglobin & Blood urea input (negative test)
+    input:
+      "1":
+        "gt0016|Haemoglobin, men (g/dL)": 3|local::at0013|100-119|
+        gt0018|Blood urea (mmol/L): 4|local::at0008|10 - 25|
+    expected_output:
+      "1": {}
+  - id: 4. Only Haemoglobin, Blood urea & Systolic input (negative test)
+    input:
+      "1":
+        "gt0016|Haemoglobin, men (g/dL)": 3|local::at0013|100-119|
+        gt0018|Blood urea (mmol/L): 4|local::at0008|10 - 25|
+        gt0019|Systolic blood pressure (mmHg): 2|local::at0022|90 - 99|
+    expected_output:
+      "1": {}
+  - id: 5. Only Haemoglobin, Blood urea, Systolic & Pulse input (negative test)
+    input:
+      "1":
+        "gt0016|Haemoglobin, men (g/dL)": 3|local::at0013|100-119|
+        gt0018|Blood urea (mmol/L): 4|local::at0008|10 - 25|
+        gt0019|Systolic blood pressure (mmHg): 2|local::at0022|90 - 99|
+        gt0020|Pulse ≥ 100 / min: 0|local::at0025|< 100|
+    expected_output:
+      "1": {}
+  - id: 6.Missing Syncope, Hepatic & Cardiac (negative test)
+    input:
+      "1":
+        "gt0016|Haemoglobin, men (g/dL)": 3|local::at0013|100-119|
+        gt0018|Blood urea (mmol/L): 4|local::at0008|10 - 25|
+        gt0019|Systolic blood pressure (mmHg): 2|local::at0022|90 - 99|
+        gt0020|Pulse ≥ 100 / min: 0|local::at0025|< 100|
+        gt0021|Melena: 0|local::at0028|No|
+    expected_output:
+      "1": {}
+  - id: 7.Missing Hepatic & Cardiac (negative test)
+    input:
+      "1":
+        "gt0016|Haemoglobin, men (g/dL)": 3|local::at0013|100-119|
+        gt0018|Blood urea (mmol/L): 4|local::at0008|10 - 25|
+        gt0019|Systolic blood pressure (mmHg): 2|local::at0022|90 - 99|
+        gt0020|Pulse ≥ 100 / min: 0|local::at0025|< 100|
+        gt0021|Melena: 0|local::at0028|No|
+        gt0022|Syncope: 0|local::at0031|No|
+    expected_output:
+      "1": {}
+  - id: 8.Missing Cardiac (negative test)
+    input:
+      "1":
+        "gt0016|Haemoglobin, men (g/dL)": 3|local::at0013|100-119|
+        gt0018|Blood urea (mmol/L): 4|local::at0008|10 - 25|
+        gt0019|Systolic blood pressure (mmHg): 2|local::at0022|90 - 99|
+        gt0020|Pulse ≥ 100 / min: 0|local::at0025|< 100|
+        gt0021|Melena: 0|local::at0028|No|
+        gt0022|Syncope: 0|local::at0031|No|
+        gt0023|Hepatic disease: 0|local::at0034|No|
+    expected_output:
+      "1": {}
+  - id: 9. Only Haemoglobin women input (negative test)
+    input:
+      "1":
+        "gt0017|Haemoglobin, women (g/dL)": 1|local::at0017|100-119|
+    expected_output:
+      "1": {}
+  - id: 10. Only Haemoglobin women, & blood urea input (negative test)
+    input:
+      "1":
+        "gt0017|Haemoglobin, women (g/dL)": 1|local::at0017|100-119|
+        gt0018|Blood urea (mmol/L): 3|local::at0007|8 - <1 0|
+    expected_output:
+      "1": {}
+  - id: 11. Only Haemoglobin women, blood urea & melena input (negative test)
+    input:
+      "1":
+        "gt0017|Haemoglobin, women (g/dL)": 1|local::at0017|100-119|
+        gt0018|Blood urea (mmol/L): 3|local::at0007|8 - <1 0|
+        gt0021|Melena: 0|local::at0028|No|
+    expected_output:
+      "1": {}
+  - id: 12. Only Haemoglobin women, blood urea, melena & syncope input (negative
+      test)
+    input:
+      "1":
+        "gt0017|Haemoglobin, women (g/dL)": 1|local::at0017|100-119|
+        gt0018|Blood urea (mmol/L): 3|local::at0007|8 - <1 0|
+        gt0021|Melena: 0|local::at0028|No|
+        gt0022|Syncope: 0|local::at0031|No|
+    expected_output:
+      "1": {}
+  - id: 13. Missing pulse, hepatic & cardiac (negative test)
+    input:
+      "1":
+        "gt0017|Haemoglobin, women (g/dL)": 1|local::at0017|100-119|
+        gt0018|Blood urea (mmol/L): 3|local::at0007|8 - <1 0|
+        gt0019|Systolic blood pressure (mmHg): 1|local::at0021|100 -109|
+        gt0021|Melena: 0|local::at0028|No|
+        gt0022|Syncope: 0|local::at0031|No|
+    expected_output:
+      "1": {}
+  - id: 14. Missing hepatic & cardiac (negative test)
+    input:
+      "1":
+        "gt0017|Haemoglobin, women (g/dL)": 1|local::at0017|100-119|
+        gt0018|Blood urea (mmol/L): 3|local::at0007|8 - <1 0|
+        gt0019|Systolic blood pressure (mmHg): 1|local::at0021|100 -109|
+        gt0020|Pulse ≥ 100 / min: 0|local::at0025|< 100|
+        gt0021|Melena: 0|local::at0028|No|
+        gt0022|Syncope: 0|local::at0031|No|
+    expected_output:
+      "1": {}
+  - id: 15. Missing cardiac (negative test)
+    input:
+      "1":
+        "gt0017|Haemoglobin, women (g/dL)": 1|local::at0017|100-119|
+        gt0018|Blood urea (mmol/L): 3|local::at0007|8 - <1 0|
+        gt0019|Systolic blood pressure (mmHg): 1|local::at0021|100 -109|
+        gt0020|Pulse ≥ 100 / min: 0|local::at0025|< 100|
+        gt0021|Melena: 0|local::at0028|No|
+        gt0022|Syncope: 0|local::at0031|No|
+        gt0023|Hepatic disease: 0|local::at0034|No|
+    expected_output:
+      "1": {}
+  - id: 16. women + hepatic (y)
+    input:
+      "1":
+        "gt0017|Haemoglobin, women (g/dL)": 1|local::at0017|100-119|
+        gt0018|Blood urea (mmol/L): 3|local::at0007|8 - <1 0|
+        gt0019|Systolic blood pressure (mmHg): 1|local::at0021|100 -109|
+        gt0020|Pulse ≥ 100 / min: 0|local::at0025|< 100|
+        gt0021|Melena: 0|local::at0028|No|
+        gt0022|Syncope: 0|local::at0031|No|
+        gt0023|Hepatic disease: 2|local::at0035|Yes|
+        gt0024|Cardiac failure: 0|local::at0037|No|
+    expected_output:
+      "1":
+        gt0013|Total score: "7"
+  - id: 17. women + hepatic (y) + Melena (y)
+    input:
+      "1":
+        "gt0017|Haemoglobin, women (g/dL)": 1|local::at0017|100-119|
+        gt0018|Blood urea (mmol/L): 3|local::at0007|8 - <1 0|
+        gt0019|Systolic blood pressure (mmHg): 1|local::at0021|100 -109|
+        gt0020|Pulse ≥ 100 / min: 0|local::at0025|< 100|
+        gt0021|Melena: 1|local::at0029|Yes|
+        gt0022|Syncope: 0|local::at0031|No|
+        gt0023|Hepatic disease: 2|local::at0035|Yes|
+        gt0024|Cardiac failure: 0|local::at0037|No|
+    expected_output:
+      "1":
+        gt0013|Total score: "8"
+  - id: 18. women + hepatic (y) + Melena (y) + cardiac (y)
+    input:
+      "1":
+        "gt0017|Haemoglobin, women (g/dL)": 1|local::at0017|100-119|
+        gt0018|Blood urea (mmol/L): 3|local::at0007|8 - <1 0|
+        gt0019|Systolic blood pressure (mmHg): 1|local::at0021|100 -109|
+        gt0020|Pulse ≥ 100 / min: 0|local::at0025|< 100|
+        gt0021|Melena: 1|local::at0029|Yes|
+        gt0022|Syncope: 0|local::at0031|No|
+        gt0023|Hepatic disease: 2|local::at0035|Yes|
+        gt0024|Cardiac failure: 2|local::at0038|Yes|
+    expected_output:
+      "1":
+        gt0013|Total score: "10"
+  - id: 19. women + hepatic (y) + Melena (y) + cardiac (y) + syncope (y)
+    input:
+      "1":
+        "gt0017|Haemoglobin, women (g/dL)": 1|local::at0017|100-119|
+        gt0018|Blood urea (mmol/L): 3|local::at0007|8 - <1 0|
+        gt0019|Systolic blood pressure (mmHg): 1|local::at0021|100 -109|
+        gt0020|Pulse ≥ 100 / min: 0|local::at0025|< 100|
+        gt0021|Melena: 1|local::at0029|Yes|
+        gt0022|Syncope: 2|local::at0032|Yes|
+        gt0023|Hepatic disease: 2|local::at0035|Yes|
+        gt0024|Cardiac failure: 2|local::at0038|Yes|
+    expected_output:
+      "1":
+        gt0013|Total score: "12"
+  - id: 20. women haemoglobin >120 + Blood urea 9, Systolic 100, all yes
+    input:
+      "1":
+        "gt0017|Haemoglobin, women (g/dL)": 0|local::at0016|≥ 120|
+        gt0018|Blood urea (mmol/L): 3|local::at0007|8 - <1 0|
+        gt0019|Systolic blood pressure (mmHg): 1|local::at0021|100 -109|
+        gt0020|Pulse ≥ 100 / min: 0|local::at0025|< 100|
+        gt0021|Melena: 1|local::at0029|Yes|
+        gt0022|Syncope: 2|local::at0032|Yes|
+        gt0023|Hepatic disease: 2|local::at0035|Yes|
+        gt0024|Cardiac failure: 2|local::at0038|Yes|
+    expected_output:
+      "1":
+        gt0013|Total score: "11"
+  - id: 21. women haemoglobin >120 + urea>25, Systolic<90, all yes
+    input:
+      "1":
+        "gt0017|Haemoglobin, women (g/dL)": 0|local::at0016|≥ 120|
+        gt0018|Blood urea (mmol/L): 6|local::at0009|> 25|
+        gt0019|Systolic blood pressure (mmHg): 3|local::at0023|< 90|
+        gt0020|Pulse ≥ 100 / min: 0|local::at0025|< 100|
+        gt0021|Melena: 1|local::at0029|Yes|
+        gt0022|Syncope: 2|local::at0032|Yes|
+        gt0023|Hepatic disease: 2|local::at0035|Yes|
+        gt0024|Cardiac failure: 2|local::at0038|Yes|
+    expected_output:
+      "1":
+        gt0013|Total score: "16"
+  - id: 22. Man - NO (Hepatic + Melena + Cardiac + Syncope)
+    input:
+      "1":
+        "gt0016|Haemoglobin, men (g/dL)": 0|local::at0011|≥ 130|
+        gt0018|Blood urea (mmol/L): 6|local::at0009|> 25|
+        gt0019|Systolic blood pressure (mmHg): 0|local::at0020|>= 110|
+        gt0020|Pulse ≥ 100 / min: 0|local::at0025|< 100|
+        gt0021|Melena: 0|local::at0028|No|
+        gt0022|Syncope: 0|local::at0031|No|
+        gt0023|Hepatic disease: 0|local::at0034|No|
+        gt0024|Cardiac failure: 0|local::at0037|No|
+    expected_output:
+      "1":
+        gt0013|Total score: "6"
+  - id: 23. Man + Melena - NO (Hepatic + Cardiac + Syncope)
+    input:
+      "1":
+        "gt0016|Haemoglobin, men (g/dL)": 0|local::at0011|≥ 130|
+        gt0018|Blood urea (mmol/L): 6|local::at0009|> 25|
+        gt0019|Systolic blood pressure (mmHg): 0|local::at0020|>= 110|
+        gt0020|Pulse ≥ 100 / min: 0|local::at0025|< 100|
+        gt0021|Melena: 1|local::at0029|Yes|
+        gt0022|Syncope: 0|local::at0031|No|
+        gt0023|Hepatic disease: 0|local::at0034|No|
+        gt0024|Cardiac failure: 0|local::at0037|No|
+    expected_output:
+      "1":
+        gt0013|Total score: "7"
+  - id: 24. Man + Melena + Cardiac - NO (Hepatic + Syncope)
+    input:
+      "1":
+        "gt0016|Haemoglobin, men (g/dL)": 0|local::at0011|≥ 130|
+        gt0018|Blood urea (mmol/L): 6|local::at0009|> 25|
+        gt0019|Systolic blood pressure (mmHg): 0|local::at0020|>= 110|
+        gt0020|Pulse ≥ 100 / min: 0|local::at0025|< 100|
+        gt0021|Melena: 1|local::at0029|Yes|
+        gt0022|Syncope: 0|local::at0031|No|
+        gt0023|Hepatic disease: 0|local::at0034|No|
+        gt0024|Cardiac failure: 2|local::at0038|Yes|
+    expected_output:
+      "1":
+        gt0013|Total score: "9"
+  - id: 25. Man + Melena + Cardiac + Hepatic - NO Syncope
+    input:
+      "1":
+        "gt0016|Haemoglobin, men (g/dL)": 0|local::at0011|≥ 130|
+        gt0018|Blood urea (mmol/L): 6|local::at0009|> 25|
+        gt0019|Systolic blood pressure (mmHg): 0|local::at0020|>= 110|
+        gt0020|Pulse ≥ 100 / min: 0|local::at0025|< 100|
+        gt0021|Melena: 1|local::at0029|Yes|
+        gt0022|Syncope: 0|local::at0031|No|
+        gt0023|Hepatic disease: 2|local::at0035|Yes|
+        gt0024|Cardiac failure: 2|local::at0038|Yes|
+    expected_output:
+      "1":
+        gt0013|Total score: "11"
+  - id: 26. Man + Melena + Cardiac + Hepatic + Syncope
+    input:
+      "1":
+        "gt0016|Haemoglobin, men (g/dL)": 0|local::at0011|≥ 130|
+        gt0018|Blood urea (mmol/L): 6|local::at0009|> 25|
+        gt0019|Systolic blood pressure (mmHg): 0|local::at0020|>= 110|
+        gt0020|Pulse ≥ 100 / min: 0|local::at0025|< 100|
+        gt0021|Melena: 1|local::at0029|Yes|
+        gt0022|Syncope: 2|local::at0032|Yes|
+        gt0023|Hepatic disease: 2|local::at0035|Yes|
+        gt0024|Cardiac failure: 2|local::at0038|Yes|
+    expected_output:
+      "1":
+        gt0013|Total score: "13"
+  - id: 27. Man testing with input at its lowest band value
+    input:
+      "1":
+        "gt0016|Haemoglobin, men (g/dL)": 0|local::at0011|≥ 130|
+        gt0018|Blood urea (mmol/L): 0|local::at0005|< 6.5|
+        gt0019|Systolic blood pressure (mmHg): 0|local::at0020|>= 110|
+        gt0020|Pulse ≥ 100 / min: 0|local::at0025|< 100|
+        gt0021|Melena: 0|local::at0028|No|
+        gt0022|Syncope: 0|local::at0031|No|
+        gt0023|Hepatic disease: 0|local::at0034|No|
+        gt0024|Cardiac failure: 0|local::at0037|No|
+    expected_output:
+      "1":
+        gt0013|Total score: "0"
+  - id: 28. Woman testing with input at its high band value
+    input:
+      "1":
+        "gt0017|Haemoglobin, women (g/dL)": 6|local::at0018|0-99|
+        gt0018|Blood urea (mmol/L): 6|local::at0009|> 25|
+        gt0019|Systolic blood pressure (mmHg): 3|local::at0023|< 90|
+        gt0020|Pulse ≥ 100 / min: 1|local::at0026|≥ 100|
+        gt0021|Melena: 1|local::at0029|Yes|
+        gt0022|Syncope: 2|local::at0032|Yes|
+        gt0023|Hepatic disease: 2|local::at0035|Yes|
+        gt0024|Cardiac failure: 2|local::at0038|Yes|
+    expected_output:
+      "1":
+        gt0013|Total score: "23"
+  - id: 29. Men testing with Haemoglobin 120-129
+    input:
+      "1":
+        "gt0016|Haemoglobin, men (g/dL)": 1|local::at0012|120-129|
+        gt0018|Blood urea (mmol/L): 6|local::at0009|> 25|
+        gt0019|Systolic blood pressure (mmHg): 3|local::at0023|< 90|
+        gt0020|Pulse ≥ 100 / min: 1|local::at0026|≥ 100|
+        gt0021|Melena: 0|local::at0028|No|
+        gt0022|Syncope: 2|local::at0032|Yes|
+        gt0023|Hepatic disease: 0|local::at0034|No|
+        gt0024|Cardiac failure: 2|local::at0038|Yes|
+    expected_output:
+      "1":
+        gt0013|Total score: "15"
+  - id: 30. Men testing with Haemoglobin < 100
+    input:
+      "1":
+        "gt0016|Haemoglobin, men (g/dL)": 6|local::at0014|0-99|
+        gt0018|Blood urea (mmol/L): 6|local::at0009|> 25|
+        gt0019|Systolic blood pressure (mmHg): 3|local::at0023|< 90|
+        gt0020|Pulse ≥ 100 / min: 1|local::at0026|≥ 100|
+        gt0021|Melena: 0|local::at0028|No|
+        gt0022|Syncope: 0|local::at0031|No|
+        gt0023|Hepatic disease: 0|local::at0034|No|
+        gt0024|Cardiac failure: 0|local::at0037|No|
+    expected_output:
+      "1":
+        gt0013|Total score: "16"
