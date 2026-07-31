@@ -1,0 +1,1144 @@
+{
+  "uuid" : "caf8bf9d-e854-45c4-9f95-61fbfab0ee52",
+  "id" : "2018_Leibovich_Model_for_Renal_Cell_Carcinoma_Assessment.v0.1.0",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Katja Mariko Wilde",
+      "email" : "katja-wilde@t-online.de",
+      "organisation" : "Cambio CDS",
+      "date" : "2025-09-26"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To record prognostic interpretations (5-, 10-, 15-year PFS and CSS) derived from existing inputs: ccRCC PFS/CSS total scores and papRCC/chrRCC risk groups previously calculated by the 2018 Leibovich model, for adult patients with RCC.",
+        "keywords" : [
+          "Leibovich model",
+          "RCC",
+          "renal",
+          "cell",
+          "carcinoma"
+        ],
+        "use" : "Use to assess prognosis in adult patients with renal cell carcinoma (RCC), including clear cell RCC (ccRCC), papillary RCC (papRCC), and chromophobe RCC (chrRCC), based on results already calculated with the 2018 Leibovich model.\n\nFor ccRCC, the previously computed PFS and CSS scores are mapped to predicted survival probabilities at 5, 10, and 15 years.\n\nFor papRCC, the previously assigned risk group (based on tumor grade, perinephric/renal sinus fat invasion, and tumor thrombus) is mapped to predicted PFS and CSS probabilities at 5, 10, and 15 years.\n\nFor chrRCC, the previously assigned risk group (based on sarcomatoid differentiation, perinephric/renal sinus fat invasion, and nodal involvement) is mapped to predicted PFS and CSS probabilities at 5, 10, and 15 years.\n",
+        "misuse" : "Not to be used for calculating the 2018 Leibovich model scores or assigning papRCC/chrRCC risk groups. Use instead the corresponding calculation guideline.\nNot to be used for recording information related to other renal cell carcinoma prognostic models.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Leibovich BC, Lohse CM, Cheville JC, Zaid HB, Boorjian SA, Frank I, Thompson RH, Parker WP. Predicting Oncologic Outcomes in Renal Cell Carcinoma After Surgery. Eur Urol. 2018 May;73(5):772-780. doi: 10.1016/j.eururo.2018.01.005. Epub 2018 Feb 3. PMID: 29398265.",
+      "en" : "An assessment score used to predict progression-free and cancer-specific survival in patients with renal cell carcinoma (RCC)."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0109" : {
+        "id" : "gt0109",
+        "model_id" : "openEHR-EHR-OBSERVATION.leibovich2018_rcc.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.leibovich2018_rcc.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0110" : {
+            "id" : "gt0110",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0113]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0114",
+              "local::at0115",
+              "local::at0116"
+            ]
+          },
+          "gt0111" : {
+            "id" : "gt0111",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0117]",
+            "data_type" : "DV_COUNT"
+          },
+          "gt0112" : {
+            "id" : "gt0112",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0118]",
+            "data_type" : "DV_COUNT"
+          },
+          "gt0113" : {
+            "id" : "gt0113",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0119]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0120",
+              "local::at0121",
+              "local::at0122"
+            ]
+          },
+          "gt0114" : {
+            "id" : "gt0114",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0123]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0124",
+              "local::at0125",
+              "local::at0126"
+            ]
+          }
+        }
+      },
+      "gt0115" : {
+        "id" : "gt0115",
+        "model_id" : "openEHR-EHR-EVALUATION.leibovich2018_rcc_assessment.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.leibovich2018_rcc_assessment.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0116" : {
+            "id" : "gt0116",
+            "path" : "/data[at0001]/items[at0002]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0117" : {
+            "id" : "gt0117",
+            "path" : "/data[at0001]/items[at0003]",
+            "data_type" : "DV_TEXT"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0038" : {
+        "id" : "gt0038",
+        "priority" : 41,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0112|Progression-free survival score for ccRCC|!=null",
+          "$gt0112|Progression-free survival score for ccRCC|==0"
+        ],
+        "then" : [
+          "$gt0116|Progression-Free Survival|=$gt0039|5-year PFS: 98%, 10-year PFS: 97%, 15-year PFS: 96%|.term"
+        ]
+      },
+      "gt0075" : {
+        "id" : "gt0075",
+        "priority" : 40,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0112|Progression-free survival score for ccRCC|!=null",
+          "$gt0112|Progression-free survival score for ccRCC|==1"
+        ],
+        "then" : [
+          "$gt0116|Progression-Free Survival|=$gt0040|5-year PFS: 97%, 10-year PFS: 95%, 15-year PFS: 94%|.term"
+        ]
+      },
+      "gt0076" : {
+        "id" : "gt0076",
+        "priority" : 39,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0112|Progression-free survival score for ccRCC|!=null",
+          "$gt0112|Progression-free survival score for ccRCC|==2"
+        ],
+        "then" : [
+          "$gt0116|Progression-Free Survival|=$gt0041|5-year PFS: 95%, 10-year PFS: 93%, 15-year PFS: 92%|.term"
+        ]
+      },
+      "gt0077" : {
+        "id" : "gt0077",
+        "priority" : 38,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0112|Progression-free survival score for ccRCC|!=null",
+          "$gt0112|Progression-free survival score for ccRCC|==3"
+        ],
+        "then" : [
+          "$gt0116|Progression-Free Survival|=$gt0042|5-year PFS: 93%, 10-year PFS: 91%, 15-year PFS: 89%|.term"
+        ]
+      },
+      "gt0078" : {
+        "id" : "gt0078",
+        "priority" : 37,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0112|Progression-free survival score for ccRCC|!=null",
+          "$gt0112|Progression-free survival score for ccRCC|==4"
+        ],
+        "then" : [
+          "$gt0116|Progression-Free Survival|=$gt0043|5-year PFS: 91%, 10-year PFS: 87%, 15-year PFS: 84%|.term"
+        ]
+      },
+      "gt0079" : {
+        "id" : "gt0079",
+        "priority" : 36,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0112|Progression-free survival score for ccRCC|!=null",
+          "$gt0112|Progression-free survival score for ccRCC|==5"
+        ],
+        "then" : [
+          "$gt0116|Progression-Free Survival|=$gt0044|5-year PFS: 87%, 10-year PFS: 82%, 15-year PFS: 79%|.term"
+        ]
+      },
+      "gt0080" : {
+        "id" : "gt0080",
+        "priority" : 35,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0112|Progression-free survival score for ccRCC|!=null",
+          "$gt0112|Progression-free survival score for ccRCC|==6"
+        ],
+        "then" : [
+          "$gt0116|Progression-Free Survival|=$gt0045|5-year PFS: 82%, 10-year PFS: 76%, 15-year PFS: 71%|.term"
+        ]
+      },
+      "gt0081" : {
+        "id" : "gt0081",
+        "priority" : 34,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0112|Progression-free survival score for ccRCC|!=null",
+          "$gt0112|Progression-free survival score for ccRCC|==7"
+        ],
+        "then" : [
+          "$gt0116|Progression-Free Survival|=$gt0046|5-year PFS: 75%, 10-year PFS: 67%, 15-year PFS: 61%|.term"
+        ]
+      },
+      "gt0082" : {
+        "id" : "gt0082",
+        "priority" : 33,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0112|Progression-free survival score for ccRCC|!=null",
+          "$gt0112|Progression-free survival score for ccRCC|==8"
+        ],
+        "then" : [
+          "$gt0116|Progression-Free Survival|=$gt0047|5-year PFS: 66%, 10-year PFS: 57%, 15-year PFS: 50%|.term"
+        ]
+      },
+      "gt0083" : {
+        "id" : "gt0083",
+        "priority" : 32,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0112|Progression-free survival score for ccRCC|!=null",
+          "$gt0112|Progression-free survival score for ccRCC|==9"
+        ],
+        "then" : [
+          "$gt0116|Progression-Free Survival|=$gt0048|5-year PFS: 56%, 10-year PFS: 45%, 15-year PFS: 37%|.term"
+        ]
+      },
+      "gt0084" : {
+        "id" : "gt0084",
+        "priority" : 31,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0112|Progression-free survival score for ccRCC|!=null",
+          "$gt0112|Progression-free survival score for ccRCC|==10"
+        ],
+        "then" : [
+          "$gt0116|Progression-Free Survival|=$gt0049|5-year PFS: 44%, 10-year PFS: 32%, 15-year PFS: 24%|.term"
+        ]
+      },
+      "gt0085" : {
+        "id" : "gt0085",
+        "priority" : 30,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0112|Progression-free survival score for ccRCC|!=null",
+          "$gt0112|Progression-free survival score for ccRCC|==11"
+        ],
+        "then" : [
+          "$gt0116|Progression-Free Survival|=$gt0050|5-year PFS: 31%, 10-year PFS: 20%, 15-year PFS: 13%|.term"
+        ]
+      },
+      "gt0086" : {
+        "id" : "gt0086",
+        "priority" : 29,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0112|Progression-free survival score for ccRCC|!=null",
+          "$gt0112|Progression-free survival score for ccRCC|==12"
+        ],
+        "then" : [
+          "$gt0116|Progression-Free Survival|=$gt0051|5-year PFS: 19%, 10-year PFS: 10%, 15-year PFS: 6%|.term"
+        ]
+      },
+      "gt0087" : {
+        "id" : "gt0087",
+        "priority" : 28,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0112|Progression-free survival score for ccRCC|!=null",
+          "$gt0112|Progression-free survival score for ccRCC|==13"
+        ],
+        "then" : [
+          "$gt0116|Progression-Free Survival|=$gt0052|5-year PFS: 9%, 10-year PFS: 4%, 15-year PFS: 2%|.term"
+        ]
+      },
+      "gt0088" : {
+        "id" : "gt0088",
+        "priority" : 27,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0112|Progression-free survival score for ccRCC|!=null",
+          "$gt0112|Progression-free survival score for ccRCC|==14"
+        ],
+        "then" : [
+          "$gt0116|Progression-Free Survival|=$gt0053|5-year PFS: 3%, 10-year PFS: 1%, 15-year PFS: <1%|.term"
+        ]
+      },
+      "gt0089" : {
+        "id" : "gt0089",
+        "priority" : 26,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0112|Progression-free survival score for ccRCC|!=null",
+          "$gt0112|Progression-free survival score for ccRCC|>=15"
+        ],
+        "then" : [
+          "$gt0116|Progression-Free Survival|=$gt0054|5-year PFS: 1%, 10-year PFS: <1%, 15-year PFS: <1%|.term"
+        ]
+      },
+      "gt0090" : {
+        "id" : "gt0090",
+        "priority" : 25,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0111|Cancer-specific survival score for ccRCC|!=null",
+          "$gt0111|Cancer-specific survival score for ccRCC|==0"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0056|5-year CSS: 99%, 10-year CSS: 99%, 15-year CSS: 98%|.term"
+        ]
+      },
+      "gt0091" : {
+        "id" : "gt0091",
+        "priority" : 24,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0111|Cancer-specific survival score for ccRCC|!=null",
+          "$gt0111|Cancer-specific survival score for ccRCC|==1"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0057|5-year CSS: 99%, 10-year CSS: 98%, 15-year CSS: 98%|.term"
+        ]
+      },
+      "gt0092" : {
+        "id" : "gt0092",
+        "priority" : 23,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0111|Cancer-specific survival score for ccRCC|!=null",
+          "$gt0111|Cancer-specific survival score for ccRCC|==2"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0058|5-year CSS: 99%, 10-year CSS: 98%, 15-year CSS: 97%|.term"
+        ]
+      },
+      "gt0093" : {
+        "id" : "gt0093",
+        "priority" : 22,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0111|Cancer-specific survival score for ccRCC|!=null",
+          "$gt0111|Cancer-specific survival score for ccRCC|==3"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0059|5-year CSS: 98%, 10-year CSS: 97%, 15-year CSS: 96%|.term"
+        ]
+      },
+      "gt0094" : {
+        "id" : "gt0094",
+        "priority" : 21,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0111|Cancer-specific survival score for ccRCC|!=null",
+          "$gt0111|Cancer-specific survival score for ccRCC|==4"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0060|5-year CSS: 97%, 10-year CSS: 95%, 15-year CSS: 94%|.term"
+        ]
+      },
+      "gt0095" : {
+        "id" : "gt0095",
+        "priority" : 20,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0111|Cancer-specific survival score for ccRCC|!=null",
+          "$gt0111|Cancer-specific survival score for ccRCC|==5"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0061|5-year CSS: 96%, 10-year CSS: 94%, 15-year CSS: 92%|.term"
+        ]
+      },
+      "gt0096" : {
+        "id" : "gt0096",
+        "priority" : 19,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0111|Cancer-specific survival score for ccRCC|!=null",
+          "$gt0111|Cancer-specific survival score for ccRCC|==6"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0062|5-year CSS: 95%, 10-year CSS: 92%, 15-year CSS: 89%|.term"
+        ]
+      },
+      "gt0097" : {
+        "id" : "gt0097",
+        "priority" : 18,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0111|Cancer-specific survival score for ccRCC|!=null",
+          "$gt0111|Cancer-specific survival score for ccRCC|==7"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0063|5-year CSS: 93%, 10-year CSS: 89%, 15-year CSS: 86%|.term"
+        ]
+      },
+      "gt0098" : {
+        "id" : "gt0098",
+        "priority" : 17,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0111|Cancer-specific survival score for ccRCC|!=null",
+          "$gt0111|Cancer-specific survival score for ccRCC|==8"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0064|5-year CSS: 90%, 10-year CSS: 85%, 15-year CSS: 81%|.term"
+        ]
+      },
+      "gt0099" : {
+        "id" : "gt0099",
+        "priority" : 16,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0111|Cancer-specific survival score for ccRCC|!=null",
+          "$gt0111|Cancer-specific survival score for ccRCC|==9"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0065|5-year CSS: 87%, 10-year CSS: 80%, 15-year CSS: 75%|.term"
+        ]
+      },
+      "gt0100" : {
+        "id" : "gt0100",
+        "priority" : 15,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0111|Cancer-specific survival score for ccRCC|!=null",
+          "$gt0111|Cancer-specific survival score for ccRCC|==10"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0066|5-year CSS: 83%, 10-year CSS: 74%, 15-year CSS: 68%|.term"
+        ]
+      },
+      "gt0101" : {
+        "id" : "gt0101",
+        "priority" : 14,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0111|Cancer-specific survival score for ccRCC|!=null",
+          "$gt0111|Cancer-specific survival score for ccRCC|==11"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0067|5-year CSS: 77%, 10-year CSS: 66%, 15-year CSS: 59%|.term"
+        ]
+      },
+      "gt0102" : {
+        "id" : "gt0102",
+        "priority" : 13,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0111|Cancer-specific survival score for ccRCC|!=null",
+          "$gt0111|Cancer-specific survival score for ccRCC|==12"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0068|5-year CSS: 70%, 10-year CSS: 57%, 15-year CSS: 49%|.term"
+        ]
+      },
+      "gt0103" : {
+        "id" : "gt0103",
+        "priority" : 12,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0111|Cancer-specific survival score for ccRCC|!=null",
+          "$gt0111|Cancer-specific survival score for ccRCC|==13"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0069|5-year CSS: 62%, 10-year CSS: 47%, 15-year CSS: 37%|.term"
+        ]
+      },
+      "gt0104" : {
+        "id" : "gt0104",
+        "priority" : 11,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0111|Cancer-specific survival score for ccRCC|!=null",
+          "$gt0111|Cancer-specific survival score for ccRCC|==14"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0070|5-year CSS: 52%, 10-year CSS: 35%, 15-year CSS: 26%|.term"
+        ]
+      },
+      "gt0105" : {
+        "id" : "gt0105",
+        "priority" : 10,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0111|Cancer-specific survival score for ccRCC|!=null",
+          "$gt0111|Cancer-specific survival score for ccRCC|==15"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0071|5-year CSS: 41%, 10-year CSS: 24%, 15-year CSS: 16%|.term"
+        ]
+      },
+      "gt0106" : {
+        "id" : "gt0106",
+        "priority" : 9,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0111|Cancer-specific survival score for ccRCC|!=null",
+          "$gt0111|Cancer-specific survival score for ccRCC|==16"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0072|5-year CSS: 29%, 10-year CSS: 14%, 15-year CSS: 8%|.term"
+        ]
+      },
+      "gt0107" : {
+        "id" : "gt0107",
+        "priority" : 8,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0111|Cancer-specific survival score for ccRCC|!=null",
+          "$gt0111|Cancer-specific survival score for ccRCC|==17"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0073|5-year CSS: 19%, 10-year CSS: 7%, 15-year CSS: 3%|.term"
+        ]
+      },
+      "gt0108" : {
+        "id" : "gt0108",
+        "priority" : 7,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0111|Cancer-specific survival score for ccRCC|!=null",
+          "$gt0111|Cancer-specific survival score for ccRCC|>=18"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0074|5-year CSS: 10%, 10-year CSS: 3%, 15-year CSS: 1%|.term"
+        ]
+      },
+      "gt0014" : {
+        "id" : "gt0014",
+        "priority" : 6,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0115|Papillary RCC (papRCC)|",
+          "$gt0113|papRCC risk group|!=null",
+          "$gt0113|papRCC risk group|==local::at0120|Group 1|"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0015|5-year CSS: 99%, 10-year CSS: 98%, 15-year CSS: 98%|.term",
+          "$gt0116|Progression-Free Survival|=$gt0016|5-year PFS: 97%, 10-year PFS: 97%, 15-year PFS: 96%|.term"
+        ]
+      },
+      "gt0030" : {
+        "id" : "gt0030",
+        "priority" : 5,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0115|Papillary RCC (papRCC)|",
+          "$gt0113|papRCC risk group|!=null",
+          "$gt0113|papRCC risk group|==local::at0121|Group 2|"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0017|5-year CSS: 95%, 10-year CSS: 91%, 15-year CSS: 90%|.term",
+          "$gt0116|Progression-Free Survival|=$gt0018|5-year PFS: 89%, 10-year PFS: 86%, 15-year PFS: 84%|.term"
+        ]
+      },
+      "gt0031" : {
+        "id" : "gt0031",
+        "priority" : 4,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0115|Papillary RCC (papRCC)|",
+          "$gt0113|papRCC risk group|!=null",
+          "$gt0113|papRCC risk group|==local::at0122|Group 3|"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0019|5-year CSS: 74%, 10-year CSS: 60%, 15-year CSS: 56%|.term",
+          "$gt0116|Progression-Free Survival|=$gt0020|5-year PFS: 60%, 10-year PFS: 52%, 15-year PFS: 46% |.term"
+        ]
+      },
+      "gt0032" : {
+        "id" : "gt0032",
+        "priority" : 3,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0116|Chromophobe RCC (chrRCC)|",
+          "$gt0114|chrRCC risk group|!=null",
+          "$gt0114|chrRCC risk group|==local::at0124|Group 1|"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0021|5-year CSS: 96%, 10-year CSS: 95%, 15-year CSS: 94%|.term",
+          "$gt0116|Progression-Free Survival|=$gt0022|5-year PFS: 94%, 10-year PFS: 91%, 15-year PFS: 89%|.term"
+        ]
+      },
+      "gt0033" : {
+        "id" : "gt0033",
+        "priority" : 2,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0116|Chromophobe RCC (chrRCC)|",
+          "$gt0114|chrRCC risk group|!=null",
+          "$gt0114|chrRCC risk group|==local::at0125|Group 2|"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0023|5-year CSS: 85%, 10-year CSS: 79%, 15-year CSS: 76%|.term",
+          "$gt0116|Progression-Free Survival|=$gt0024|5-year PFS: 71%, 10-year PFS: 59%, 15-year PFS: 51%|.term"
+        ]
+      },
+      "gt0034" : {
+        "id" : "gt0034",
+        "priority" : 1,
+        "when" : [
+          "$gt0110|Type of RCC|!=null",
+          "$gt0110|Type of RCC|==local::at0116|Chromophobe RCC (chrRCC)|",
+          "$gt0114|chrRCC risk group|!=null",
+          "$gt0114|chrRCC risk group|==local::at0126|Group 3|"
+        ],
+        "then" : [
+          "$gt0117|Cancer-Specific Survival|=$gt0025|5-year CSS: 49%, 10-year CSS: 34%, 15-year CSS: 30%|.term",
+          "$gt0116|Progression-Free Survival|=$gt0026|5-year PFS: 13%, 10-year PFS: 4%, 15-year PFS: 2%|.term"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "2018 Leibovich Model for Renal Cell Carcinoma Assessment",
+            "description" : "An assessment score used to predict progression-free and cancer-specific survival in patients with renal cell carcinoma (RCC)."
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "5-year CSS: 99%, 10-year CSS: 99%, 15-year CSS: 98%",
+            "description" : "CCS, ccRCC Score 0"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "papRCC risk group 1",
+            "description" : ""
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "5-year CSS: 99%, 10-year CSS: 98%, 15-year CSS: 98%",
+            "description" : "papRCC Group 1 - CSS interpretation"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "5-year PFS: 97%, 10-year PFS: 97%, 15-year PFS: 96%",
+            "description" : "papRCC Group 1 - PFS interpretation"
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "5-year CSS: 95%, 10-year CSS: 91%, 15-year CSS: 90%",
+            "description" : "papRCC Group 2 - CSS interpretation"
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "5-year PFS: 89%, 10-year PFS: 86%, 15-year PFS: 84%",
+            "description" : "papRCC Group 2 - PFS interpretation"
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "5-year CSS: 74%, 10-year CSS: 60%, 15-year CSS: 56%",
+            "description" : "papRCC Group 3 - CSS interpretation"
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "5-year PFS: 60%, 10-year PFS: 52%, 15-year PFS: 46% ",
+            "description" : "papRCC Group 3 - PFS interpretation"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "5-year CSS: 96%, 10-year CSS: 95%, 15-year CSS: 94%",
+            "description" : "chrRCC Group 1 - CCS interpretation"
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "5-year PFS: 94%, 10-year PFS: 91%, 15-year PFS: 89%",
+            "description" : "chrRCC Group 1 - PFS interpretation"
+          },
+          "gt0023" : {
+            "id" : "gt0023",
+            "text" : "5-year CSS: 85%, 10-year CSS: 79%, 15-year CSS: 76%",
+            "description" : "chrRCC Group 2 - CCS interpretation"
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "text" : "5-year PFS: 71%, 10-year PFS: 59%, 15-year PFS: 51%",
+            "description" : "chrRCC Group 2 - PFS interpretation"
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "text" : "5-year CSS: 49%, 10-year CSS: 34%, 15-year CSS: 30%",
+            "description" : "chrRCC Group 3 - CCS interpretation"
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "text" : "5-year PFS: 13%, 10-year PFS: 4%, 15-year PFS: 2%",
+            "description" : "chrRCC Group 3 - PFS interpretation"
+          },
+          "gt0030" : {
+            "id" : "gt0030",
+            "text" : "papRCC risk group 2",
+            "description" : ""
+          },
+          "gt0031" : {
+            "id" : "gt0031",
+            "text" : "papRCC risk group 3",
+            "description" : ""
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "text" : "chrRCC risk group 1",
+            "description" : ""
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "text" : "chrRCC risk group 2",
+            "description" : ""
+          },
+          "gt0034" : {
+            "id" : "gt0034",
+            "text" : "chrRCC risk group 3",
+            "description" : ""
+          },
+          "gt0038" : {
+            "id" : "gt0038",
+            "text" : "PFS - ccRCC score 0",
+            "description" : ""
+          },
+          "gt0039" : {
+            "id" : "gt0039",
+            "text" : "5-year PFS: 98%, 10-year PFS: 97%, 15-year PFS: 96%",
+            "description" : "PFS, ccRCC score 0"
+          },
+          "gt0040" : {
+            "id" : "gt0040",
+            "text" : "5-year PFS: 97%, 10-year PFS: 95%, 15-year PFS: 94%",
+            "description" : "PFS, ccRCC score 1"
+          },
+          "gt0041" : {
+            "id" : "gt0041",
+            "text" : "5-year PFS: 95%, 10-year PFS: 93%, 15-year PFS: 92%",
+            "description" : "PFS, ccRCC score 2"
+          },
+          "gt0042" : {
+            "id" : "gt0042",
+            "text" : "5-year PFS: 93%, 10-year PFS: 91%, 15-year PFS: 89%",
+            "description" : "PFS, ccRCC score 3"
+          },
+          "gt0043" : {
+            "id" : "gt0043",
+            "text" : "5-year PFS: 91%, 10-year PFS: 87%, 15-year PFS: 84%",
+            "description" : "PFS, ccRCC score 4"
+          },
+          "gt0044" : {
+            "id" : "gt0044",
+            "text" : "5-year PFS: 87%, 10-year PFS: 82%, 15-year PFS: 79%",
+            "description" : "PFS, ccRCC score 5"
+          },
+          "gt0045" : {
+            "id" : "gt0045",
+            "text" : "5-year PFS: 82%, 10-year PFS: 76%, 15-year PFS: 71%",
+            "description" : "PFS, ccRCC score 6"
+          },
+          "gt0046" : {
+            "id" : "gt0046",
+            "text" : "5-year PFS: 75%, 10-year PFS: 67%, 15-year PFS: 61%",
+            "description" : "PFS, ccRCC score 7"
+          },
+          "gt0047" : {
+            "id" : "gt0047",
+            "text" : "5-year PFS: 66%, 10-year PFS: 57%, 15-year PFS: 50%",
+            "description" : "PFS, ccRCC score 8"
+          },
+          "gt0048" : {
+            "id" : "gt0048",
+            "text" : "5-year PFS: 56%, 10-year PFS: 45%, 15-year PFS: 37%",
+            "description" : "PFS, ccRCC score 9"
+          },
+          "gt0049" : {
+            "id" : "gt0049",
+            "text" : "5-year PFS: 44%, 10-year PFS: 32%, 15-year PFS: 24%",
+            "description" : "PFS, ccRCC score 10"
+          },
+          "gt0050" : {
+            "id" : "gt0050",
+            "text" : "5-year PFS: 31%, 10-year PFS: 20%, 15-year PFS: 13%",
+            "description" : "PFS, ccRCC score 11"
+          },
+          "gt0051" : {
+            "id" : "gt0051",
+            "text" : "5-year PFS: 19%, 10-year PFS: 10%, 15-year PFS: 6%",
+            "description" : "PFS, ccRCC score 12"
+          },
+          "gt0052" : {
+            "id" : "gt0052",
+            "text" : "5-year PFS: 9%, 10-year PFS: 4%, 15-year PFS: 2%",
+            "description" : "PFS, ccRCC score 13"
+          },
+          "gt0053" : {
+            "id" : "gt0053",
+            "text" : "5-year PFS: 3%, 10-year PFS: 1%, 15-year PFS: <1%",
+            "description" : "PFS, ccRCC score 14"
+          },
+          "gt0054" : {
+            "id" : "gt0054",
+            "text" : "5-year PFS: 1%, 10-year PFS: <1%, 15-year PFS: <1%",
+            "description" : "PFS, ccRCC score ≥15"
+          },
+          "gt0056" : {
+            "id" : "gt0056",
+            "text" : "5-year CSS: 99%, 10-year CSS: 99%, 15-year CSS: 98%",
+            "description" : "CSS, ccRCC score 0"
+          },
+          "gt0057" : {
+            "id" : "gt0057",
+            "text" : "5-year CSS: 99%, 10-year CSS: 98%, 15-year CSS: 98%",
+            "description" : "CSS, ccRCC score 1"
+          },
+          "gt0058" : {
+            "id" : "gt0058",
+            "text" : "5-year CSS: 99%, 10-year CSS: 98%, 15-year CSS: 97%",
+            "description" : "CSS, ccRCC score 2"
+          },
+          "gt0059" : {
+            "id" : "gt0059",
+            "text" : "5-year CSS: 98%, 10-year CSS: 97%, 15-year CSS: 96%",
+            "description" : "CSS, ccRCC score 3"
+          },
+          "gt0060" : {
+            "id" : "gt0060",
+            "text" : "5-year CSS: 97%, 10-year CSS: 95%, 15-year CSS: 94%",
+            "description" : "CSS, ccRCC score 4"
+          },
+          "gt0061" : {
+            "id" : "gt0061",
+            "text" : "5-year CSS: 96%, 10-year CSS: 94%, 15-year CSS: 92%",
+            "description" : "CSS, ccRCC score 5"
+          },
+          "gt0062" : {
+            "id" : "gt0062",
+            "text" : "5-year CSS: 95%, 10-year CSS: 92%, 15-year CSS: 89%",
+            "description" : "CSS, ccRCC score 6"
+          },
+          "gt0063" : {
+            "id" : "gt0063",
+            "text" : "5-year CSS: 93%, 10-year CSS: 89%, 15-year CSS: 86%",
+            "description" : "CSS, ccRCC score 7"
+          },
+          "gt0064" : {
+            "id" : "gt0064",
+            "text" : "5-year CSS: 90%, 10-year CSS: 85%, 15-year CSS: 81%",
+            "description" : "CSS, ccRCC score 8"
+          },
+          "gt0065" : {
+            "id" : "gt0065",
+            "text" : "5-year CSS: 87%, 10-year CSS: 80%, 15-year CSS: 75%",
+            "description" : "CSS, ccRCC score 9"
+          },
+          "gt0066" : {
+            "id" : "gt0066",
+            "text" : "5-year CSS: 83%, 10-year CSS: 74%, 15-year CSS: 68%",
+            "description" : "CSS, ccRCC score 10"
+          },
+          "gt0067" : {
+            "id" : "gt0067",
+            "text" : "5-year CSS: 77%, 10-year CSS: 66%, 15-year CSS: 59%",
+            "description" : "CSS, ccRCC score 11"
+          },
+          "gt0068" : {
+            "id" : "gt0068",
+            "text" : "5-year CSS: 70%, 10-year CSS: 57%, 15-year CSS: 49%",
+            "description" : "CSS, ccRCC score 12"
+          },
+          "gt0069" : {
+            "id" : "gt0069",
+            "text" : "5-year CSS: 62%, 10-year CSS: 47%, 15-year CSS: 37%",
+            "description" : "CSS, ccRCC score 13"
+          },
+          "gt0070" : {
+            "id" : "gt0070",
+            "text" : "5-year CSS: 52%, 10-year CSS: 35%, 15-year CSS: 26%",
+            "description" : "CSS, ccRCC score 14"
+          },
+          "gt0071" : {
+            "id" : "gt0071",
+            "text" : "5-year CSS: 41%, 10-year CSS: 24%, 15-year CSS: 16%",
+            "description" : "CSS, ccRCC score 15"
+          },
+          "gt0072" : {
+            "id" : "gt0072",
+            "text" : "5-year CSS: 29%, 10-year CSS: 14%, 15-year CSS: 8%",
+            "description" : "CSS, ccRCC score 16"
+          },
+          "gt0073" : {
+            "id" : "gt0073",
+            "text" : "5-year CSS: 19%, 10-year CSS: 7%, 15-year CSS: 3%",
+            "description" : "CSS, ccRCC score 17"
+          },
+          "gt0074" : {
+            "id" : "gt0074",
+            "text" : "5-year CSS: 10%, 10-year CSS: 3%, 15-year CSS: 1%",
+            "description" : "CSS, ccRCC score ≥18"
+          },
+          "gt0075" : {
+            "id" : "gt0075",
+            "text" : "PFS - ccRCC score 1",
+            "description" : ""
+          },
+          "gt0076" : {
+            "id" : "gt0076",
+            "text" : "PFS - ccRCC score 2",
+            "description" : ""
+          },
+          "gt0077" : {
+            "id" : "gt0077",
+            "text" : "PFS - ccRCC score 3",
+            "description" : ""
+          },
+          "gt0078" : {
+            "id" : "gt0078",
+            "text" : "PFS - ccRCC score 4",
+            "description" : ""
+          },
+          "gt0079" : {
+            "id" : "gt0079",
+            "text" : "PFS - ccRCC score 5",
+            "description" : ""
+          },
+          "gt0080" : {
+            "id" : "gt0080",
+            "text" : "PFS - ccRCC score 6",
+            "description" : ""
+          },
+          "gt0081" : {
+            "id" : "gt0081",
+            "text" : "PFS - ccRCC score 7",
+            "description" : ""
+          },
+          "gt0082" : {
+            "id" : "gt0082",
+            "text" : "PFS - ccRCC score 8",
+            "description" : ""
+          },
+          "gt0083" : {
+            "id" : "gt0083",
+            "text" : "PFS - ccRCC score 9",
+            "description" : ""
+          },
+          "gt0084" : {
+            "id" : "gt0084",
+            "text" : "PFS - ccRCC score 10",
+            "description" : ""
+          },
+          "gt0085" : {
+            "id" : "gt0085",
+            "text" : "PFS - ccRCC score 11",
+            "description" : ""
+          },
+          "gt0086" : {
+            "id" : "gt0086",
+            "text" : "PFS - ccRCC score 12",
+            "description" : ""
+          },
+          "gt0087" : {
+            "id" : "gt0087",
+            "text" : "PFS - ccRCC score 13",
+            "description" : ""
+          },
+          "gt0088" : {
+            "id" : "gt0088",
+            "text" : "PFS - ccRCC score 14",
+            "description" : ""
+          },
+          "gt0089" : {
+            "id" : "gt0089",
+            "text" : "PFS - ccRCC score ≥ 15",
+            "description" : ""
+          },
+          "gt0090" : {
+            "id" : "gt0090",
+            "text" : "CSS - ccRCC score 0",
+            "description" : ""
+          },
+          "gt0091" : {
+            "id" : "gt0091",
+            "text" : "CSS - ccRCC score 1",
+            "description" : ""
+          },
+          "gt0092" : {
+            "id" : "gt0092",
+            "text" : "CSS - ccRCC score 2",
+            "description" : ""
+          },
+          "gt0093" : {
+            "id" : "gt0093",
+            "text" : "CSS - ccRCC score 3",
+            "description" : ""
+          },
+          "gt0094" : {
+            "id" : "gt0094",
+            "text" : "CSS - ccRCC score 4",
+            "description" : ""
+          },
+          "gt0095" : {
+            "id" : "gt0095",
+            "text" : "CSS - ccRCC score 5",
+            "description" : ""
+          },
+          "gt0096" : {
+            "id" : "gt0096",
+            "text" : "CSS - ccRCC score 6",
+            "description" : ""
+          },
+          "gt0097" : {
+            "id" : "gt0097",
+            "text" : "CSS - ccRCC score 7",
+            "description" : ""
+          },
+          "gt0098" : {
+            "id" : "gt0098",
+            "text" : "CSS - ccRCC score 8",
+            "description" : ""
+          },
+          "gt0099" : {
+            "id" : "gt0099",
+            "text" : "CSS - ccRCC score 9",
+            "description" : ""
+          },
+          "gt0100" : {
+            "id" : "gt0100",
+            "text" : "CSS - ccRCC score 10",
+            "description" : ""
+          },
+          "gt0101" : {
+            "id" : "gt0101",
+            "text" : "CSS - ccRCC score 11",
+            "description" : ""
+          },
+          "gt0102" : {
+            "id" : "gt0102",
+            "text" : "CSS - ccRCC score 12",
+            "description" : ""
+          },
+          "gt0103" : {
+            "id" : "gt0103",
+            "text" : "CSS - ccRCC score 13",
+            "description" : ""
+          },
+          "gt0104" : {
+            "id" : "gt0104",
+            "text" : "CSS - ccRCC score 14",
+            "description" : ""
+          },
+          "gt0105" : {
+            "id" : "gt0105",
+            "text" : "CSS - ccRCC score 15",
+            "description" : ""
+          },
+          "gt0106" : {
+            "id" : "gt0106",
+            "text" : "CSS - ccRCC score 16",
+            "description" : ""
+          },
+          "gt0107" : {
+            "id" : "gt0107",
+            "text" : "CSS - ccRCC score 17",
+            "description" : ""
+          },
+          "gt0108" : {
+            "id" : "gt0108",
+            "text" : "CSS - ccRCC score ≥ 18",
+            "description" : ""
+          },
+          "gt0109" : {
+            "id" : "gt0109",
+            "text" : "openEHR-EHR-OBSERVATION.leibovich2018_rcc.v0"
+          },
+          "gt0110" : {
+            "id" : "gt0110",
+            "text" : "Type of RCC"
+          },
+          "gt0111" : {
+            "id" : "gt0111",
+            "text" : "Cancer-specific survival score for ccRCC"
+          },
+          "gt0112" : {
+            "id" : "gt0112",
+            "text" : "Progression-free survival score for ccRCC"
+          },
+          "gt0113" : {
+            "id" : "gt0113",
+            "text" : "papRCC risk group"
+          },
+          "gt0114" : {
+            "id" : "gt0114",
+            "text" : "chrRCC risk group"
+          },
+          "gt0115" : {
+            "id" : "gt0115",
+            "text" : "openEHR-EHR-EVALUATION.leibovich2018_rcc_assessment.v0"
+          },
+          "gt0116" : {
+            "id" : "gt0116",
+            "text" : "Progression-Free Survival"
+          },
+          "gt0117" : {
+            "id" : "gt0117",
+            "text" : "Cancer-Specific Survival"
+          }
+        }
+      }
+    }
+  }
+}
