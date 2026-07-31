@@ -1,0 +1,809 @@
+guidelines:
+  "1": 2018_Leibovich_Model_for_Renal_Cell_Carcinoma_Calculation.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Type of RCC input missing (negative test)
+    input:
+      "1":
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1": {}
+  - id: 3. ccRCC - Age input missing (negative test)
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1": {}
+  - id: 4. ccRCC - ECOG status input missing (negative test)
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1": {}
+  - id: 5. ccRCC - Constitutional symptoms input missing (negative test)
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1": {}
+  - id: 6. ccRCC - Adrenalectomy input missing (negative test)
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1": {}
+  - id: 7. ccRCC - Surgical margins input missing (negative test)
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1": {}
+  - id: 8. ccRCC - Tumor grade input missing (negative test)
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1": {}
+  - id: 9. ccRCC - Coagulative necrosis input missing (negative test)
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1": {}
+  - id: 10. ccRCC - Sarcomatoid differentiation input missing (negative test)
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1": {}
+  - id: 11. ccRCC - Tumor size input missing (negative test)
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1": {}
+  - id: 12. ccRCC - Perinephric/renal sinus fat invasion input missing (negative
+      test)
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1": {}
+  - id: 13. ccRCC - Tumor thrombus input missing (negative test)
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1": {}
+  - id: 14. ccRCC - Extension beyond kidney input missing (negative test)
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1": {}
+  - id: 15. ccRCC - Nodal involvement input missing (negative test)
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+    expected_output:
+      "1": {}
+  - id: 16. papRCC - Tumor grade input missing (negative test)
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0115|Papillary RCC (papRCC)|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+    expected_output:
+      "1": {}
+  - id: 17. papRCC - Perinephric/renal sinus fat invasion input missing
+      (negative       test)
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0115|Papillary RCC (papRCC)|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0059|Tumor thrombus: local::at0153|No|
+    expected_output:
+      "1": {}
+  - id: 18. papRCC - Tumor thrombus input missing (negative test)
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0115|Papillary RCC (papRCC)|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+    expected_output:
+      "1": {}
+  - id: 19. chrRCC - Sarcomatoid differentiation input missing (negative test)
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0116|Chromophobe RCC (chrRCC)|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1": {}
+  - id: 20. chrRCC - Perinephric/renal sinus fat invasion input missing (negative
+      test)
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0116|Chromophobe RCC (chrRCC)|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1": {}
+  - id: 21. chrRCC - Nodal involvement input missing (negative test)
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0116|Chromophobe RCC (chrRCC)|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+    expected_output:
+      "1": {}
+  - id: 22. papRCC - all inputs, risk group 1
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0115|Papillary RCC (papRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0141|2|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1":
+        gt0065|papRCC risk group: local::at0120|Group 1|
+  - id: 23. papRCC - all inputs, risk group 2
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0115|Papillary RCC (papRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0142|3|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1":
+        gt0065|papRCC risk group: local::at0121|Group 2|
+  - id: 24. papRCC - all inputs, risk group 3
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0115|Papillary RCC (papRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0142|3|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0175|Yes|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1":
+        gt0065|papRCC risk group: local::at0122|Group 3|
+  - id: 25. chrRCC - all inputs, risk group 1
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0116|Chromophobe RCC (chrRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0142|3|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1":
+        gt0066|chrRCC risk group: local::at0124|Group 1|
+  - id: 26. chrRCC - all inputs, risk group 2
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0116|Chromophobe RCC (chrRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0142|3|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0175|Yes|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0181|No|
+    expected_output:
+      "1":
+        gt0066|chrRCC risk group: local::at0125|Group 2|
+  - id: 27. chrRCC - all inputs, risk group 3
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0116|Chromophobe RCC (chrRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0142|3|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0172|Yes|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 2|local::at0182|Yes|
+    expected_output:
+      "1":
+        gt0066|chrRCC risk group: local::at0126|Group 3|
+  - id: 28. ccRCC - Age ≥60, CSS+1
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0130|>=60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1":
+        gt0063|ccRCC (CSS) score: "1"
+        gt0064|ccRCC (PFS) score: "0"
+  - id: 29. ccRCC - ECOG status ≥1, CSS+2
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0133|>=1|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1":
+        gt0063|ccRCC (CSS) score: "2"
+        gt0064|ccRCC (PFS) score: "0"
+  - id: 30. ccRCC - Constitutional symptoms true, CSS+1 and PFS+1
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 1|local::at0163|Yes|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1":
+        gt0063|ccRCC (CSS) score: "1"
+        gt0064|ccRCC (PFS) score: "1"
+  - id: 31. ccRCC - Adrenalectomy true, CSS+1
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 1|local::at0166|Yes|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1":
+        gt0063|ccRCC (CSS) score: "1"
+        gt0064|ccRCC (PFS) score: "0"
+  - id: 32. ccRCC - Surgical margins positive, CSS+1
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0138|Positive|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1":
+        gt0063|ccRCC (CSS) score: "1"
+        gt0064|ccRCC (PFS) score: "0"
+  - id: 33. ccRCC - Tumor grade = 2, CSS+2 and PFS+2
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0141|2|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1":
+        gt0063|ccRCC (CSS) score: "2"
+        gt0064|ccRCC (PFS) score: "2"
+  - id: 34. ccRCC - Tumor grade = 3, CSS+3 and PFS+3
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0142|3|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1":
+        gt0063|ccRCC (CSS) score: "3"
+        gt0064|ccRCC (PFS) score: "3"
+  - id: 35. ccRCC - Tumor grade = 4, CSS+4 and PFS+3
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0143|4|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1":
+        gt0063|ccRCC (CSS) score: "4"
+        gt0064|ccRCC (PFS) score: "3"
+  - id: 36. ccRCC - Coagulative necrosis true, CSS+2 and PFS+2
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 2|local::at0169|Yes|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1":
+        gt0063|ccRCC (CSS) score: "2"
+        gt0064|ccRCC (PFS) score: "2"
+  - id: 37. ccRCC - Sarcomatid differentiation true, CSS+3 and PFS+2
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0172|Yes|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1":
+        gt0063|ccRCC (CSS) score: "3"
+        gt0064|ccRCC (PFS) score: "2"
+  - id: 38. ccRCC - Tumor size >4 to <=7, CSS+4 and PFS+3
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0148|>4 to <=7|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1":
+        gt0063|ccRCC (CSS) score: "4"
+        gt0064|ccRCC (PFS) score: "3"
+  - id: 39. ccRCC - Tumor size >7 to <=10, CSS+4 and PFS+4
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0149|>7 to <=10|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1":
+        gt0063|ccRCC (CSS) score: "4"
+        gt0064|ccRCC (PFS) score: "4"
+  - id: 40. ccRCC - Tumor size >10, CSS+5 and PFS+4
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0150|>10|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1":
+        gt0063|ccRCC (CSS) score: "5"
+        gt0064|ccRCC (PFS) score: "4"
+  - id: 41. ccRCC - Perinephric/renal sinus fat invasion true, CSS+2 and PFS+1
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0175|Yes|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1":
+        gt0063|ccRCC (CSS) score: "2"
+        gt0064|ccRCC (PFS) score: "1"
+  - id: 42. ccRCC - Tumor thrombus level 0, PFS+1
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0154|Level 0|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1":
+        gt0063|ccRCC (CSS) score: "0"
+        gt0064|ccRCC (PFS) score: "1"
+  - id: 43. ccRCC - Tumor thrombus level 1-4, CSS+1 and PFS+2
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0155|Level 1-4|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1":
+        gt0063|ccRCC (CSS) score: "1"
+        gt0064|ccRCC (PFS) score: "2"
+  - id: 44. ccRCC - Extension beyond kidney true, PFS+2
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 2|local::at0178|Yes|
+        gt0061|Nodal involvement: 0|local::at0180|No nodal dissection|
+    expected_output:
+      "1":
+        gt0063|ccRCC (CSS) score: "0"
+        gt0064|ccRCC (PFS) score: "2"
+  - id: 45. ccRCC - Nodal involvement yes, CSS+2 and PFS+2
+    input:
+      "1":
+        gt0048|Type of RCC: local::at0114|Clear cell RCC (ccRCC)|
+        "gt0049|Age at surgery, years": local::at0129|<60|
+        gt0050|ECOG status: local::at0132|0|
+        gt0051|Constitutional symptoms: 0|local::at0162|No|
+        gt0052|Adrenalectomy: 0|local::at0165|No|
+        gt0053|Surgical margins: local::at0137|Negative|
+        gt0054|Tumor grade: local::at0140|1|
+        gt0055|Coagulative necrosis: 0|local::at0168|No|
+        gt0056|Sarcomatid differentiation: local::at0171|No|
+        "gt0057|Tumor size, cm": local::at0147|<=4|
+        gt0058|Perinephric/renal sinus fat invasion: local::at0174|No|
+        gt0059|Tumor thrombus: local::at0153|No|
+        gt0060|Extension beyond kidney: 0|local::at0177|No|
+        gt0061|Nodal involvement: 2|local::at0182|Yes|
+    expected_output:
+      "1":
+        gt0063|ccRCC (CSS) score: "2"
+        gt0064|ccRCC (PFS) score: "2"
