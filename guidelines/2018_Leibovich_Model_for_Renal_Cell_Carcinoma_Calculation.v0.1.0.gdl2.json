@@ -1,0 +1,752 @@
+{
+  "uuid" : "35b71c09-96da-4b86-99dd-2eb9fed9ab53",
+  "id" : "2018_Leibovich_Model_for_Renal_Cell_Carcinoma_Calculation.v0.1.0",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Katja Mariko Wilde",
+      "email" : "katja-wilde@t-online.de",
+      "organisation" : "Cambio CDS",
+      "date" : "2025-09-24"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate the total points for the 2018 Leibovich model in clear cell RCC (ccRCC), or to allocate risk groups in papillary RCC (papRCC) and chromophobe RCC (chrRCC), as inputs for prognostic interpretation of progression-free survival (PFS) and cancer-specific survival (CSS) in adult patients with RCC.",
+        "keywords" : [
+          "Leibovich model",
+          "RCC",
+          "renal",
+          "cell",
+          "carcinoma"
+        ],
+        "use" : "Use to calculate ccRCC scores and papRCC/chrRCC risk groups in adult patients with renal cell carcinoma (RCC).\n\nFor ccRCC, the model assigns points to clinical and pathological variables (age at surgery, ECOG status, constitutional symptoms, adrenalectomy, surgical margins, tumor grade, coagulative necrosis, sarcomatoid differentiation, tumor size, perinephric/renal sinus fat invasion, tumor thrombus, extension beyond the kidney, and nodal involvement). The total points can be used to estimate PFS and CSS probabilities at 5, 10, and 15 years.\n\nFor papRCC, classification is based on tumor grade, perinephric/renal sinus fat invasion, and tumor thrombus. Patients are allocated into prognostic risk groups, which can be linked to predicted PFS and CSS probabilities at 5, 10, and 15 years.\n\nFor chrRCC, classification is based on sarcomatoid differentiation, perinephric/renal sinus fat invasion, and nodal involvement. Patients are allocated into prognostic risk groups, which can be linked to predicted PFS and CSS probabilities at 5, 10, and 15 years.",
+        "misuse" : "Not to be used for recording information related to other renal cell carcinoma prognostic models.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Leibovich BC, Lohse CM, Cheville JC, Zaid HB, Boorjian SA, Frank I, Thompson RH, Parker WP. Predicting Oncologic Outcomes in Renal Cell Carcinoma After Surgery. Eur Urol. 2018 May;73(5):772-780. doi: 10.1016/j.eururo.2018.01.005. Epub 2018 Feb 3. PMID: 29398265.",
+      "en" : "A calculation model used to derive scores and risk groups for predicting progression-free and cancer-specific survival in patients with renal cell carcinoma (RCC)."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0047" : {
+        "id" : "gt0047",
+        "model_id" : "openEHR-EHR-OBSERVATION.leibovich2018_rcc.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.leibovich2018_rcc.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0048" : {
+            "id" : "gt0048",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0113]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0114",
+              "local::at0115",
+              "local::at0116"
+            ]
+          },
+          "gt0049" : {
+            "id" : "gt0049",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0128]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0129",
+              "local::at0130"
+            ]
+          },
+          "gt0050" : {
+            "id" : "gt0050",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0131]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0132",
+              "local::at0133"
+            ]
+          },
+          "gt0051" : {
+            "id" : "gt0051",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0161]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0162",
+              "1|local::at0163"
+            ]
+          },
+          "gt0052" : {
+            "id" : "gt0052",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0164]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0165",
+              "1|local::at0166"
+            ]
+          },
+          "gt0053" : {
+            "id" : "gt0053",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0136]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0137",
+              "local::at0138"
+            ]
+          },
+          "gt0054" : {
+            "id" : "gt0054",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0139]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0140",
+              "local::at0141",
+              "local::at0142",
+              "local::at0143"
+            ]
+          },
+          "gt0055" : {
+            "id" : "gt0055",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0167]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0168",
+              "2|local::at0169"
+            ]
+          },
+          "gt0056" : {
+            "id" : "gt0056",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0170]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0171",
+              "local::at0172"
+            ]
+          },
+          "gt0057" : {
+            "id" : "gt0057",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0146]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0147",
+              "local::at0148",
+              "local::at0149",
+              "local::at0150"
+            ]
+          },
+          "gt0058" : {
+            "id" : "gt0058",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0173]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0174",
+              "local::at0175"
+            ]
+          },
+          "gt0059" : {
+            "id" : "gt0059",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0152]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0153",
+              "local::at0154",
+              "local::at0155"
+            ]
+          },
+          "gt0060" : {
+            "id" : "gt0060",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0176]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0177",
+              "2|local::at0178"
+            ]
+          },
+          "gt0061" : {
+            "id" : "gt0061",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0179]",
+            "data_type" : "DV_ORDINAL",
+            "allowed_values" : [
+              "0|local::at0180",
+              "0|local::at0181",
+              "2|local::at0182"
+            ]
+          }
+        }
+      },
+      "gt0062" : {
+        "id" : "gt0062",
+        "model_id" : "openEHR-EHR-OBSERVATION.leibovich2018_rcc.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.leibovich2018_rcc.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0063" : {
+            "id" : "gt0063",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0117]",
+            "data_type" : "DV_COUNT"
+          },
+          "gt0064" : {
+            "id" : "gt0064",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0118]",
+            "data_type" : "DV_COUNT"
+          },
+          "gt0065" : {
+            "id" : "gt0065",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0119]",
+            "data_type" : "DV_CODED_TEXT"
+          },
+          "gt0066" : {
+            "id" : "gt0066",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0123]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0028" : {
+        "id" : "gt0028",
+        "priority" : 25,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "($gt0049|Age at surgery, years|!=null)&&($gt0050|ECOG status|!=null)&&($gt0051|Constitutional symptoms|!=null)&&($gt0052|Adrenalectomy|!=null)&&($gt0053|Surgical margins|!=null)&&($gt0054|Tumor grade|!=null)&&($gt0055|Coagulative necrosis|!=null)&&($gt0056|Sarcomatid differentiation|!=null)&&($gt0057|Tumor size, cm|!=null)&&($gt0058|Perinephric/renal sinus fat invasion|!=null)&&($gt0059|Tumor thrombus|!=null)&&($gt0060|Extension beyond kidney|!=null)&&($gt0061|Nodal involvement|!=null)"
+        ],
+        "then" : [
+          "$gt0063|ccRCC (CSS) score|.magnitude=0",
+          "$gt0064|ccRCC (PFS) score|.magnitude=0"
+        ]
+      },
+      "gt0029" : {
+        "id" : "gt0029",
+        "priority" : 24,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0049|Age at surgery, years|!=null",
+          "$gt0049|Age at surgery, years|==local::at0130|>=60|"
+        ],
+        "then" : [
+          "$gt0063|ccRCC (CSS) score|.magnitude=$gt0063|ccRCC (CSS) score|.magnitude+1"
+        ]
+      },
+      "gt0030" : {
+        "id" : "gt0030",
+        "priority" : 23,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0050|ECOG status|!=null",
+          "$gt0050|ECOG status|==local::at0133|>=1|"
+        ],
+        "then" : [
+          "$gt0063|ccRCC (CSS) score|.magnitude=$gt0063|ccRCC (CSS) score|.magnitude+2"
+        ]
+      },
+      "gt0031" : {
+        "id" : "gt0031",
+        "priority" : 22,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0051|Constitutional symptoms|!=null",
+          "$gt0051|Constitutional symptoms|==1|local::at0163|Yes|"
+        ],
+        "then" : [
+          "$gt0063|ccRCC (CSS) score|.magnitude=$gt0063|ccRCC (CSS) score|.magnitude+$gt0051|Constitutional symptoms|.value",
+          "$gt0064|ccRCC (PFS) score|.magnitude=$gt0064|ccRCC (PFS) score|.magnitude+$gt0051|Constitutional symptoms|.value"
+        ]
+      },
+      "gt0032" : {
+        "id" : "gt0032",
+        "priority" : 21,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0052|Adrenalectomy|!=null",
+          "$gt0052|Adrenalectomy|==1|local::at0166|Yes|"
+        ],
+        "then" : [
+          "$gt0063|ccRCC (CSS) score|.magnitude=$gt0063|ccRCC (CSS) score|.magnitude+$gt0052|Adrenalectomy|.value"
+        ]
+      },
+      "gt0033" : {
+        "id" : "gt0033",
+        "priority" : 20,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0053|Surgical margins|!=null",
+          "$gt0053|Surgical margins|==local::at0138|Positive|"
+        ],
+        "then" : [
+          "$gt0063|ccRCC (CSS) score|.magnitude=$gt0063|ccRCC (CSS) score|.magnitude+1"
+        ]
+      },
+      "gt0034" : {
+        "id" : "gt0034",
+        "priority" : 19,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0054|Tumor grade|!=null",
+          "$gt0054|Tumor grade|==local::at0141|2|"
+        ],
+        "then" : [
+          "$gt0063|ccRCC (CSS) score|.magnitude=$gt0063|ccRCC (CSS) score|.magnitude+2",
+          "$gt0064|ccRCC (PFS) score|.magnitude=$gt0064|ccRCC (PFS) score|.magnitude+2"
+        ]
+      },
+      "gt0035" : {
+        "id" : "gt0035",
+        "priority" : 18,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0054|Tumor grade|!=null",
+          "$gt0054|Tumor grade|==local::at0142|3|"
+        ],
+        "then" : [
+          "$gt0063|ccRCC (CSS) score|.magnitude=$gt0063|ccRCC (CSS) score|.magnitude+3",
+          "$gt0064|ccRCC (PFS) score|.magnitude=$gt0064|ccRCC (PFS) score|.magnitude+3"
+        ]
+      },
+      "gt0036" : {
+        "id" : "gt0036",
+        "priority" : 17,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0054|Tumor grade|!=null",
+          "$gt0054|Tumor grade|==local::at0143|4|"
+        ],
+        "then" : [
+          "$gt0063|ccRCC (CSS) score|.magnitude=$gt0063|ccRCC (CSS) score|.magnitude+4",
+          "$gt0064|ccRCC (PFS) score|.magnitude=$gt0064|ccRCC (PFS) score|.magnitude+3"
+        ]
+      },
+      "gt0037" : {
+        "id" : "gt0037",
+        "priority" : 16,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0055|Coagulative necrosis|!=null",
+          "$gt0055|Coagulative necrosis|==2|local::at0169|Yes|"
+        ],
+        "then" : [
+          "$gt0063|ccRCC (CSS) score|.magnitude=$gt0063|ccRCC (CSS) score|.magnitude+$gt0055|Coagulative necrosis|.value",
+          "$gt0064|ccRCC (PFS) score|.magnitude=$gt0064|ccRCC (PFS) score|.magnitude+$gt0055|Coagulative necrosis|.value"
+        ]
+      },
+      "gt0038" : {
+        "id" : "gt0038",
+        "priority" : 15,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0056|Sarcomatid differentiation|!=null",
+          "$gt0056|Sarcomatid differentiation|==local::at0172|Yes|"
+        ],
+        "then" : [
+          "$gt0063|ccRCC (CSS) score|.magnitude=$gt0063|ccRCC (CSS) score|.magnitude+3",
+          "$gt0064|ccRCC (PFS) score|.magnitude=$gt0064|ccRCC (PFS) score|.magnitude+2"
+        ]
+      },
+      "gt0039" : {
+        "id" : "gt0039",
+        "priority" : 14,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0057|Tumor size, cm|!=null",
+          "$gt0057|Tumor size, cm|==local::at0148|>4 to <=7|"
+        ],
+        "then" : [
+          "$gt0063|ccRCC (CSS) score|.magnitude=$gt0063|ccRCC (CSS) score|.magnitude+4",
+          "$gt0064|ccRCC (PFS) score|.magnitude=$gt0064|ccRCC (PFS) score|.magnitude+3"
+        ]
+      },
+      "gt0040" : {
+        "id" : "gt0040",
+        "priority" : 13,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0057|Tumor size, cm|!=null",
+          "$gt0057|Tumor size, cm|==local::at0149|>7 to <=10|"
+        ],
+        "then" : [
+          "$gt0063|ccRCC (CSS) score|.magnitude=$gt0063|ccRCC (CSS) score|.magnitude+4",
+          "$gt0064|ccRCC (PFS) score|.magnitude=$gt0064|ccRCC (PFS) score|.magnitude+4"
+        ]
+      },
+      "gt0041" : {
+        "id" : "gt0041",
+        "priority" : 12,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0057|Tumor size, cm|!=null",
+          "$gt0057|Tumor size, cm|==local::at0150|>10|"
+        ],
+        "then" : [
+          "$gt0063|ccRCC (CSS) score|.magnitude=$gt0063|ccRCC (CSS) score|.magnitude+5",
+          "$gt0064|ccRCC (PFS) score|.magnitude=$gt0064|ccRCC (PFS) score|.magnitude+4"
+        ]
+      },
+      "gt0042" : {
+        "id" : "gt0042",
+        "priority" : 11,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0058|Perinephric/renal sinus fat invasion|!=null",
+          "$gt0058|Perinephric/renal sinus fat invasion|==local::at0175|Yes|"
+        ],
+        "then" : [
+          "$gt0063|ccRCC (CSS) score|.magnitude=$gt0063|ccRCC (CSS) score|.magnitude+2",
+          "$gt0064|ccRCC (PFS) score|.magnitude=$gt0064|ccRCC (PFS) score|.magnitude+1"
+        ]
+      },
+      "gt0043" : {
+        "id" : "gt0043",
+        "priority" : 10,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0059|Tumor thrombus|!=null",
+          "$gt0059|Tumor thrombus|==local::at0154|Level 0|"
+        ],
+        "then" : [
+          "$gt0064|ccRCC (PFS) score|.magnitude=$gt0064|ccRCC (PFS) score|.magnitude+1"
+        ]
+      },
+      "gt0044" : {
+        "id" : "gt0044",
+        "priority" : 9,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0059|Tumor thrombus|!=null",
+          "$gt0059|Tumor thrombus|==local::at0155|Level 1-4|"
+        ],
+        "then" : [
+          "$gt0063|ccRCC (CSS) score|.magnitude=$gt0063|ccRCC (CSS) score|.magnitude+1",
+          "$gt0064|ccRCC (PFS) score|.magnitude=$gt0064|ccRCC (PFS) score|.magnitude+2"
+        ]
+      },
+      "gt0045" : {
+        "id" : "gt0045",
+        "priority" : 8,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0060|Extension beyond kidney|!=null",
+          "$gt0060|Extension beyond kidney|==2|local::at0178|Yes|"
+        ],
+        "then" : [
+          "$gt0064|ccRCC (PFS) score|.magnitude=$gt0064|ccRCC (PFS) score|.magnitude+$gt0060|Extension beyond kidney|.value"
+        ]
+      },
+      "gt0046" : {
+        "id" : "gt0046",
+        "priority" : 7,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0114|Clear cell RCC (ccRCC)|",
+          "$gt0061|Nodal involvement|!=null",
+          "$gt0061|Nodal involvement|==2|local::at0182|Yes|"
+        ],
+        "then" : [
+          "$gt0063|ccRCC (CSS) score|.magnitude=$gt0063|ccRCC (CSS) score|.magnitude+$gt0061|Nodal involvement|.value",
+          "$gt0064|ccRCC (PFS) score|.magnitude=$gt0064|ccRCC (PFS) score|.magnitude+$gt0061|Nodal involvement|.value"
+        ]
+      },
+      "gt0022" : {
+        "id" : "gt0022",
+        "priority" : 6,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0115|Papillary RCC (papRCC)|",
+          "($gt0054|Tumor grade|!=null)&&($gt0058|Perinephric/renal sinus fat invasion|!=null)&&($gt0059|Tumor thrombus|!=null)",
+          "($gt0054|Tumor grade|==local::at0143|4|)||($gt0058|Perinephric/renal sinus fat invasion|==local::at0175|Yes|)||($gt0059|Tumor thrombus|!=local::at0153|No|)"
+        ],
+        "then" : [
+          "$gt0065|papRCC risk group|=local::at0122|Group 3|"
+        ]
+      },
+      "gt0023" : {
+        "id" : "gt0023",
+        "priority" : 5,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0115|Papillary RCC (papRCC)|",
+          "($gt0054|Tumor grade|!=null)&&($gt0058|Perinephric/renal sinus fat invasion|!=null)&&($gt0059|Tumor thrombus|!=null)",
+          "$gt0054|Tumor grade|==local::at0142|3|",
+          "$gt0058|Perinephric/renal sinus fat invasion|==local::at0174|No|",
+          "$gt0059|Tumor thrombus|==local::at0153|No|"
+        ],
+        "then" : [
+          "$gt0065|papRCC risk group|=local::at0121|Group 2|"
+        ]
+      },
+      "gt0024" : {
+        "id" : "gt0024",
+        "priority" : 4,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0115|Papillary RCC (papRCC)|",
+          "($gt0054|Tumor grade|!=null)&&($gt0058|Perinephric/renal sinus fat invasion|!=null)&&($gt0059|Tumor thrombus|!=null)",
+          "($gt0054|Tumor grade|==local::at0140|1|)||($gt0054|Tumor grade|==local::at0141|2|)",
+          "$gt0058|Perinephric/renal sinus fat invasion|==local::at0174|No|",
+          "$gt0059|Tumor thrombus|==local::at0153|No|"
+        ],
+        "then" : [
+          "$gt0065|papRCC risk group|=local::at0120|Group 1|"
+        ]
+      },
+      "gt0025" : {
+        "id" : "gt0025",
+        "priority" : 3,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0116|Chromophobe RCC (chrRCC)|",
+          "($gt0056|Sarcomatid differentiation|!=null)&&($gt0058|Perinephric/renal sinus fat invasion|!=null)&&($gt0061|Nodal involvement|!=null)",
+          "($gt0056|Sarcomatid differentiation|==local::at0172|Yes|)||($gt0061|Nodal involvement|==2|local::at0182|Yes|)"
+        ],
+        "then" : [
+          "$gt0066|chrRCC risk group|=local::at0126|Group 3|"
+        ]
+      },
+      "gt0026" : {
+        "id" : "gt0026",
+        "priority" : 2,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0116|Chromophobe RCC (chrRCC)|",
+          "($gt0056|Sarcomatid differentiation|!=null)&&($gt0058|Perinephric/renal sinus fat invasion|!=null)&&($gt0061|Nodal involvement|!=null)",
+          "$gt0058|Perinephric/renal sinus fat invasion|==local::at0175|Yes|",
+          "$gt0056|Sarcomatid differentiation|==local::at0171|No|",
+          "$gt0061|Nodal involvement|!=2|local::at0182|Yes|"
+        ],
+        "then" : [
+          "$gt0066|chrRCC risk group|=local::at0125|Group 2|"
+        ]
+      },
+      "gt0027" : {
+        "id" : "gt0027",
+        "priority" : 1,
+        "when" : [
+          "$gt0048|Type of RCC|==local::at0116|Chromophobe RCC (chrRCC)|",
+          "($gt0056|Sarcomatid differentiation|!=null)&&($gt0058|Perinephric/renal sinus fat invasion|!=null)&&($gt0061|Nodal involvement|!=null)",
+          "$gt0058|Perinephric/renal sinus fat invasion|==local::at0174|No|",
+          "$gt0056|Sarcomatid differentiation|==local::at0171|No|",
+          "$gt0061|Nodal involvement|!=2|local::at0182|Yes|"
+        ],
+        "then" : [
+          "$gt0066|chrRCC risk group|=local::at0124|Group 1|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "2018 Leibovich Model for Renal Cell Carcinoma Calculation",
+            "description" : "A calculation model used to derive scores and risk groups for predicting progression-free and cancer-specific survival in patients with renal cell carcinoma (RCC)."
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "papRCC - risk group 3",
+            "description" : ""
+          },
+          "gt0023" : {
+            "id" : "gt0023",
+            "text" : "papRCC - risk group 2",
+            "description" : ""
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "text" : "papRCC - risk group 1",
+            "description" : ""
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "text" : "chrRCC - risk group 3",
+            "description" : ""
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "text" : "chrRCC - risk group 2",
+            "description" : ""
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "text" : "chrRCC - risk group 1",
+            "description" : ""
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "text" : "ccRCC - init totals",
+            "description" : ""
+          },
+          "gt0029" : {
+            "id" : "gt0029",
+            "text" : "Age ≥60 (ccRCC)",
+            "description" : "CSS+1 "
+          },
+          "gt0030" : {
+            "id" : "gt0030",
+            "text" : "ECOG status ≥1 (ccRCC)",
+            "description" : "CSS+2 "
+          },
+          "gt0031" : {
+            "id" : "gt0031",
+            "text" : "Constitutional symptoms True (ccRCC)",
+            "description" : "CSS+1 and PFS+1"
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "text" : "Adrenalectomy Yes (ccRCC)",
+            "description" : "CSS+1"
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "text" : "Surgical margins Positive (ccRCC)",
+            "description" : "CSS+1"
+          },
+          "gt0034" : {
+            "id" : "gt0034",
+            "text" : "Tumor grade = 2 (ccRCC)",
+            "description" : "CSS+2 and PFS+2"
+          },
+          "gt0035" : {
+            "id" : "gt0035",
+            "text" : "Tumor grade = 3 (ccRCC)",
+            "description" : "CSS+3 and PFS+3"
+          },
+          "gt0036" : {
+            "id" : "gt0036",
+            "text" : "Tumor grade = 4 (ccRCC)",
+            "description" : "CSS+4 and PFS+3"
+          },
+          "gt0037" : {
+            "id" : "gt0037",
+            "text" : "Coagulative necrosis True (ccRCC)",
+            "description" : "CSS+2 and PFS+2"
+          },
+          "gt0038" : {
+            "id" : "gt0038",
+            "text" : "Sarcomatoid differentiation True (ccRCC)",
+            "description" : "CSS+3 and PFS+2"
+          },
+          "gt0039" : {
+            "id" : "gt0039",
+            "text" : "Tumor size >4 to ≤7 (ccRCC)",
+            "description" : "CSS+4 and PFS+3"
+          },
+          "gt0040" : {
+            "id" : "gt0040",
+            "text" : "Tumor size >7 to ≤10 (ccRCC)",
+            "description" : "CSS+4 and PFS+4"
+          },
+          "gt0041" : {
+            "id" : "gt0041",
+            "text" : "Tumor size >10 (ccRCC)",
+            "description" : "CSS+5 and PFS+4"
+          },
+          "gt0042" : {
+            "id" : "gt0042",
+            "text" : "Perinephric/renal sinus fat invasion True (ccRCC)",
+            "description" : "CSS+2 and PFS+1"
+          },
+          "gt0043" : {
+            "id" : "gt0043",
+            "text" : "Tumor thrombus Level 0 (ccRCC)",
+            "description" : "PFS+1"
+          },
+          "gt0044" : {
+            "id" : "gt0044",
+            "text" : "Tumor thrombus Level 1-4 (ccRCC)",
+            "description" : "CSS+1 and PFS+2"
+          },
+          "gt0045" : {
+            "id" : "gt0045",
+            "text" : "Extension beyond kidney True (ccRCC)",
+            "description" : "PFS+2"
+          },
+          "gt0046" : {
+            "id" : "gt0046",
+            "text" : "Nodal involvement Yes (ccRCC)",
+            "description" : "CSS+2 and PFS+2"
+          },
+          "gt0047" : {
+            "id" : "gt0047",
+            "text" : "openEHR-EHR-OBSERVATION.leibovich2018_rcc.v0"
+          },
+          "gt0048" : {
+            "id" : "gt0048",
+            "text" : "Type of RCC"
+          },
+          "gt0049" : {
+            "id" : "gt0049",
+            "text" : "Age at surgery, years"
+          },
+          "gt0050" : {
+            "id" : "gt0050",
+            "text" : "ECOG status"
+          },
+          "gt0051" : {
+            "id" : "gt0051",
+            "text" : "Constitutional symptoms"
+          },
+          "gt0052" : {
+            "id" : "gt0052",
+            "text" : "Adrenalectomy"
+          },
+          "gt0053" : {
+            "id" : "gt0053",
+            "text" : "Surgical margins"
+          },
+          "gt0054" : {
+            "id" : "gt0054",
+            "text" : "Tumor grade"
+          },
+          "gt0055" : {
+            "id" : "gt0055",
+            "text" : "Coagulative necrosis"
+          },
+          "gt0056" : {
+            "id" : "gt0056",
+            "text" : "Sarcomatid differentiation"
+          },
+          "gt0057" : {
+            "id" : "gt0057",
+            "text" : "Tumor size, cm"
+          },
+          "gt0058" : {
+            "id" : "gt0058",
+            "text" : "Perinephric/renal sinus fat invasion"
+          },
+          "gt0059" : {
+            "id" : "gt0059",
+            "text" : "Tumor thrombus"
+          },
+          "gt0060" : {
+            "id" : "gt0060",
+            "text" : "Extension beyond kidney"
+          },
+          "gt0061" : {
+            "id" : "gt0061",
+            "text" : "Nodal involvement"
+          },
+          "gt0062" : {
+            "id" : "gt0062",
+            "text" : "openEHR-EHR-OBSERVATION.leibovich2018_rcc.v0"
+          },
+          "gt0063" : {
+            "id" : "gt0063",
+            "text" : "ccRCC (CSS) score"
+          },
+          "gt0064" : {
+            "id" : "gt0064",
+            "text" : "ccRCC (PFS) score"
+          },
+          "gt0065" : {
+            "id" : "gt0065",
+            "text" : "papRCC risk group"
+          },
+          "gt0066" : {
+            "id" : "gt0066",
+            "text" : "chrRCC risk group"
+          }
+        }
+      }
+    }
+  }
+}
