@@ -1,0 +1,137 @@
+archetype (adl_version=1.4; uid=4719da3f-cb86-4b38-afc7-0dc02de0815c)
+	openEHR-EHR-OBSERVATION.elts.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-07-28">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and their calculated value for the ELTS score.">
+			keywords = <"elts","eutos","cml","chronic","myeloid","leukemia","survival","risk","score","oncology","hematology.">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the component parameters and the calculated score for the ELTS score.">
+			misuse = <"Not to be used for patients with other types of leukemia.
+
+Not to be used for children under 18 years of age.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Nationellt vårdprogram kronisk myeloisk leukemi [Internet]. Regionala cancercentrum i samverkan; 2024 [cited 2026 Jul 28]. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/kml/vardprogram/kategorisering-i-sjukdomsfaser-samt-riskgruppering/
+
+Pfirrmann M, Baccarani M, Saussele S, Guilhot J, Cervantes F, Ossenkoppele G, Hoffmann VS, Castagnetti F, Hasford J, Hehlmann R, Simonsson B. Prognosis of long-term survival considering disease-specific death in patients with chronic myeloid leukemia. Leukemia. 2016 Jan;30(1):48-56. doi: 10.1038/leu.2015.261. Epub 2015 Sep 29. PMID: 26416462.">
+		["build_uid"] = <"70ed53aa-0090-3e76-94c5-4b270ebb0ee2">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- ELTS score
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Spleen size
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::122]>
+												list = <
+													["1"] = <
+														units = <"cm">
+														magnitude = <|>=0.0|>
+														precision = <|3|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"1">
+														precision = <|3|>
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"ELTS score">
+					description = <"The ELTS score is a further development of the EUTOS (European Treatment Outcome Study) score; the ELTS score categorize chronic myeloid leukemia patients into long-term survival risk groups.">
+					comment = <"Original version, c 2015.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Spleen size">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Total score">
+					description = <"The total sum of each component parameter for the ELTS score">
+				>
+			>
+		>
+	>
