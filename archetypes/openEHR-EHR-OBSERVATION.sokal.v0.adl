@@ -2,29 +2,32 @@ archetype (adl_version=1.4; uid=e784f0eb-eb4c-474a-aa56-4534eb4bacd5)
 	openEHR-EHR-OBSERVATION.sokal.v0
 
 concept
-	[at0000]	-- Sokal index for Chronic Myelogenous Leukemia (CML)
+	[at0000]
+
 language
 	original_language = <[ISO_639-1::en]>
+
 description
 	original_author = <
-		["name"] = <"Emma Malm">
-		["email"] = <"emma.snygg@hotmail.com">
-		["organisation"] = <"Cambio CDS">
 		["date"] = <"2021-02-24">
+		["name"] = <"Emma Malm">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"emma.snygg@hotmail.com">
 	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <"Kevin Arjona, Cambio CDS, Kevin.arjona@cambio.se", ...>
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
 			purpose = <"To record the results for each component parameter and the calculated Sokal index.
 ">
-			use = <"Use to record the results for each component parameter and the calculated Sokal index.">
-			keywords = <"CML, Sokal, index, chronic, myelogenous, leukemia", ...>
-			misuse = <"">
+			keywords = <"CML","sokal","index","chronic","myelogenous","leukemia","myeloid","survival","risk","score","oncology","hematology">
 			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and the calculated Sokal index.">
+			misuse = <"Not to be used for patients with other types of leukemia.
+Not to be used for pediatric patients.">
 		>
 	>
-	lifecycle_state = <"AuthorDraft">
-	other_contributors = <>
 	other_details = <
 		["references"] = <"Sokal JE, Cox EB, Baccarani M, Tura S, Gomez GA, Robertson JE, Tso CY, Braun TJ, Clarkson BD, Cervantes F, et al. Prognostic discrimination in \"good-risk\" chronic granulocytic leukemia. Blood. 1984 Apr;63(4):789-99. PMID: 6584184.">
 		["current_contact"] = <"Emma Malm, Cambio CDS, emma.snygg@hotmail.com">
@@ -33,15 +36,15 @@ description
 	>
 
 definition
-	OBSERVATION[at0000] matches {	-- Sokal index for Chronic Myelogenous Leukemia (CML)
+	OBSERVATION[at0000] matches {    -- Sokal index for Chronic Myelogenous Leukemia
 		data matches {
-			HISTORY[at0001] matches {	-- History
+			HISTORY[at0001] matches {    -- History
 				events cardinality matches {1..*; unordered} matches {
-					EVENT[at0002] occurrences matches {0..*} matches {	-- Any event
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
 						data matches {
-							ITEM_TREE[at0003] matches {	-- Tree
+							ITEM_TREE[at0003] matches {    -- Tree
 								items cardinality matches {0..*; unordered} matches {
-									ELEMENT[at0010] occurrences matches {0..1} matches {	-- Spleen size
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Spleen size
 										value matches {
 											C_DV_QUANTITY <
 												property = <[openehr::122]>
@@ -49,6 +52,7 @@ definition
 													["1"] = <
 														units = <"cm">
 														magnitude = <|>=0.0|>
+														precision = <|3|>
 													>
 													["2"] = <
 														units = <"in">
@@ -58,7 +62,7 @@ definition
 											>
 										}
 									}
-									ELEMENT[at0014] occurrences matches {0..1} matches {	-- Total score
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Total score
 										value matches {
 											C_DV_QUANTITY <
 												property = <[openehr::380]>
@@ -79,9 +83,9 @@ definition
 			}
 		}
 		protocol matches {
-			ITEM_TREE[at0007] matches {	-- Item tree
+			ITEM_TREE[at0007] matches {    -- Item tree
 				items cardinality matches {0..*; unordered} matches {
-					allow_archetype CLUSTER[at0015] occurrences matches {0..*} matches {	-- Extenstion
+					allow_archetype CLUSTER[at0015] occurrences matches {0..*} matches {    -- Extenstion
 						include
 							archetype_id/value matches {/.*/}
 					}
@@ -95,8 +99,8 @@ ontology
 		["en"] = <
 			items = <
 				["at0000"] = <
-					text = <"Sokal index for Chronic Myelogenous Leukemia (CML)">
-					description = <"An assessment index used to predict survival of CML. ">
+					text = <"Sokal index for Chronic Myelogenous Leukemia">
+					description = <"An assessment index used to predict survival of Chronic Myelogenous Leukemia (CML). ">
 					comment = <"Original version, c 1984">
 				>
 				["at0001"] = <
