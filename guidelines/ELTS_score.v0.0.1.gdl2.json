@@ -1,0 +1,278 @@
+{
+  "uuid" : "bb023f6d-fd7b-430a-a272-4bd727905d53",
+  "id" : "ELTS_score.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Kevin Arjona",
+      "email" : "kevin.arjona@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-07-28"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate and assess the calculated value and risk group for the ELTS score.",
+        "keywords" : [
+          "elts",
+          "eutos",
+          "cml",
+          "chronic",
+          "myeloid",
+          "leukemia",
+          "survival",
+          "risk",
+          "score",
+          "oncology",
+          "hematology"
+        ],
+        "use" : "Use to calculate the ELTS score and assess the corresponding risk group in patients with chronic myeloid leukemia. \n\nThe formula used to calculate the score requires continuous variables:\n\nage: patient age in years;\n\nspleen size below costal margin: measured in cm;\n\nperipheral blood blasts: measured as a percentage;\n\nplatelet count: measured in 10^9/l.\n\nThe formula calculates the score as: 0.0025 * (age / 10)^3 + 0.0615 * spleen size + 0.1052 * blasts + 0.4104 * (platelet count / 1000)^-0.5. \n\nThe score is then mapped to a risk group:\n\nlow risk: score ≤ 1.568;\n\nintermediate risk: score > 1.568 and ≤ 2.2185;\n\nhigh risk: score > 2.2185.",
+        "misuse" : "Not to be used for assessment of the ELTS score in patients under 18 years of age. \n\nNot to be used for patients with other myeloproliferative neoplasms.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Nationellt vårdprogram kronisk myeloisk leukemi [Internet]. Regionala cancercentrum i samverkan; 2024 [cited 2026 Jul 28]. Available from: https://kunskapsbanken.cancercentrum.se/diagnoser/kml/vardprogram/kategorisering-i-sjukdomsfaser-samt-riskgruppering/\n\nPfirrmann M, Baccarani M, Saussele S, Guilhot J, Cervantes F, Ossenkoppele G, Hoffmann VS, Castagnetti F, Hasford J, Hehlmann R, Simonsson B. Prognosis of long-term survival considering disease-specific death in patients with chronic myeloid leukemia. Leukemia. 2016 Jan;30(1):48-56. doi: 10.1038/leu.2015.261. Epub 2015 Sep 29. PMID: 26416462.",
+      "en" : "The ELTS score is a further development of the EUTOS (European Treatment Outcome Study) score with an emphasis on long-term outcomes and the likelihood of CML patients dying from their underlying hematological disease."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0003" : {
+        "id" : "gt0003",
+        "model_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.basic_demographic.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "a"
+            ]
+          }
+        }
+      },
+      "gt0013" : {
+        "id" : "gt0013",
+        "model_id" : "openEHR-EHR-EVALUATION.health_risk.v1",
+        "template_id" : "openEHR-EHR-EVALUATION.health_risk.v1",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0014" : {
+            "id" : "gt0014",
+            "path" : "/data[at0001]/items[at0003]",
+            "data_type" : "DV_TEXT"
+          }
+        }
+      },
+      "gt0029" : {
+        "id" : "gt0029",
+        "model_id" : "openEHR-EHR-OBSERVATION.lab_test-full_blood_count.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.lab_test-full_blood_count.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0030" : {
+            "id" : "gt0030",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0078.12]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "10*9/l"
+            ]
+          },
+          "gt0031" : {
+            "id" : "gt0031",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0.27]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "%"
+            ]
+          }
+        }
+      },
+      "gt0032" : {
+        "id" : "gt0032",
+        "model_id" : "openEHR-EHR-OBSERVATION.elts.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.elts.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0033" : {
+            "id" : "gt0033",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "cm"
+            ]
+          }
+        }
+      },
+      "gt0034" : {
+        "id" : "gt0034",
+        "model_id" : "openEHR-EHR-OBSERVATION.elts.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.elts.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0035" : {
+            "id" : "gt0035",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "1"
+            ]
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "priority" : 4,
+        "when" : [
+          "$gt0004|Age|!=null",
+          "$gt0030|Platelet count|!=null",
+          "$gt0033|Spleen size below costal margin|!=null",
+          "$gt0031|Blasts in peripheral blood|!=null"
+        ],
+        "then" : [
+          "$gt0035|Total score|.magnitude=(0.0025*(($gt0004|Age|.magnitude/10)^3))+(0.0615*$gt0033|Spleen size below costal margin|.magnitude)+(0.1052*$gt0031|Blasts in peripheral blood|.magnitude)+(0.4104/(($gt0030|Platelet count|.magnitude/1000)^0.5))",
+          "$gt0035|Total score|.precision=4"
+        ]
+      },
+      "gt0015" : {
+        "id" : "gt0015",
+        "priority" : 3,
+        "when" : [
+          "$gt0035|Total score|<=1.568"
+        ],
+        "then" : [
+          "$gt0014|Risk assessment|=$gt0018|Low-risk group|.term"
+        ]
+      },
+      "gt0016" : {
+        "id" : "gt0016",
+        "priority" : 2,
+        "when" : [
+          "$gt0035|Total score|>1.568",
+          "$gt0035|Total score|<=2.2185"
+        ],
+        "then" : [
+          "$gt0014|Risk assessment|=$gt0019|Intermediate-risk group|.term"
+        ]
+      },
+      "gt0017" : {
+        "id" : "gt0017",
+        "priority" : 1,
+        "when" : [
+          "$gt0035|Total score|>2.2185"
+        ],
+        "then" : [
+          "$gt0014|Risk assessment|=$gt0020|High-risk group|.term"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "ELTS score",
+            "description" : "The ELTS score is a further development of the EUTOS (European Treatment Outcome Study) score with an emphasis on long-term outcomes and the likelihood of CML patients dying from their underlying hematological disease."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "Calculate the ELTS score",
+            "description" : "0.0025 * (age / 10)^3 + 0.0615 * spleen size + 0.1052 * blasts + 0.4104 * (platelet count / 1000)^-0.5. "
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "openEHR-EHR-OBSERVATION.basic_demographic.v1"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Age"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "openEHR-EHR-EVALUATION.health_risk.v1"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Risk assessment"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "Set risk to low",
+            "description" : "An ELTS score value ≤ 1.5680 defines the low-risk group."
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "Set risk to intermediate",
+            "description" : "An ELTS score value > 1.5680 but ≤ 2.2185 defines the intermediate-risk group."
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "Set risk to high",
+            "description" : "An ELTS score value > 2.2185 defines the high-risk group."
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "Low-risk group"
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "Intermediate-risk group"
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "High-risk group"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "Platelet count code"
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "Blast cells code"
+          },
+          "gt0029" : {
+            "id" : "gt0029",
+            "text" : "openEHR-EHR-OBSERVATION.lab_test-full_blood_count.v1"
+          },
+          "gt0030" : {
+            "id" : "gt0030",
+            "text" : "Platelet count"
+          },
+          "gt0031" : {
+            "id" : "gt0031",
+            "text" : "Blasts in peripheral blood"
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "text" : "openEHR-EHR-OBSERVATION.elts.v0"
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "text" : "Spleen size below costal margin"
+          },
+          "gt0034" : {
+            "id" : "gt0034",
+            "text" : "openEHR-EHR-OBSERVATION.elts.v0"
+          },
+          "gt0035" : {
+            "id" : "gt0035",
+            "text" : "Total score"
+          }
+        }
+      }
+    }
+  }
+}
