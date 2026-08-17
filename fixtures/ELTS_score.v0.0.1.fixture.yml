@@ -1,0 +1,70 @@
+guidelines:
+  "1": ELTS_score.v0.0.1
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Age missing (negative test).
+    input:
+      "1":
+        gt0030|Platelet count: 450,10*9/l
+        gt0031|Blasts in peripheral blood: 10,%
+        gt0033|Spleen size below costal margin: 2,cm
+    expected_output:
+      "1": {}
+  - id: 03. Platelet count missing (negative test).
+    input:
+      "1":
+        gt0004|Age: 50,a
+        gt0031|Blasts in peripheral blood: 10,%
+        gt0033|Spleen size below costal margin: 2,cm
+    expected_output:
+      "1": {}
+  - id: 04. Blasts in peripheral blood missing (negative test).
+    input:
+      "1":
+        gt0004|Age: 50,a
+        gt0030|Platelet count: 450,10*9/l
+        gt0033|Spleen size below costal margin: 2,cm
+    expected_output:
+      "1": {}
+  - id: 05. Spleen size below costal margin missing (negative test).
+    input:
+      "1":
+        gt0004|Age: 50,a
+        gt0030|Platelet count: 450,10*9/l
+        gt0031|Blasts in peripheral blood: 10,%
+    expected_output:
+      "1": {}
+  - id: 06. ELTS score value ≤ 1.5680, low-risk group.
+    input:
+      "1":
+        gt0004|Age: 25,a
+        gt0030|Platelet count: 450,10*9/l
+        gt0031|Blasts in peripheral blood: 3,%
+        gt0033|Spleen size below costal margin: 2,cm
+    expected_output:
+      "1":
+        gt0035|Total score: "1.0897"
+  - id: 07. ELTS score value > 1.5680 but ≤ 2.2185, intermediate-risk group.
+    input:
+      "1":
+        gt0004|Age: 45,a
+        gt0030|Platelet count: 250,10*9/l
+        gt0031|Blasts in peripheral blood: 5,%
+        gt0033|Spleen size below costal margin: 3,cm
+    expected_output:
+      "1":
+        gt0035|Total score: "1.7591"
+  - id: 08. ELTS score value > 2.2185, high-risk group.
+    input:
+      "1":
+        gt0004|Age: 65,a
+        gt0030|Platelet count: 320,10*9/l
+        gt0031|Blasts in peripheral blood: 15,%
+        gt0033|Spleen size below costal margin: 1,cm
+    expected_output:
+      "1":
+        gt0035|Total score: "3.0511"
