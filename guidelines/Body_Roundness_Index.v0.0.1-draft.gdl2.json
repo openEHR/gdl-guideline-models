@@ -1,0 +1,142 @@
+{
+  "uuid" : "",
+  "id" : "Body_Roundness_Index.v0.0.1-draft",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Kevin Arjona",
+      "email" : "kevin.arjona@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-08-04"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate and assess the BRI",
+        "keywords" : [
+          "BRI",
+          "body",
+          "roundness ",
+          "index"
+        ],
+        "use" : "\nBRI = 364.2 - 365.5 × {1 − [(WC/2π)/(0.5 × H)]2}0.5\n\nWC: waist circumference, m\n\nH: height, m",
+        "misuse" : "Do not use in pediatric patients",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Thomas DM, Bredlau C, Bosy-Westphal A, Mueller M, Shen W, Gallagher D, Maeda Y, McDougall A, Peterson CM, Ravussin E, Heymsfield SB. Relationships between body roundness with body fat and visceral adipose tissue emerging from a new geometrical model. Obesity (Silver Spring). 2013 Nov;21(11):2264-71. doi: 10.1002/oby.20408. Epub 2013 Jun 11. PMID: 23519954; PMCID: PMC3692604.\n\nRico-Martín S, Calderón-García JF, Sánchez-Rey P, Franco-Antonio C, Martínez Alvarez M, Sánchez Muñoz-Torrero JF. Effectiveness of body roundness index in predicting metabolic syndrome: A systematic review and meta-analysis. Obes Rev. 2020 Jul;21(7):e13023. doi: 10.1111/obr.13023. Epub 2020 Apr 8. PMID: 32267621.\n\nZhang X, Ma N, Lin Q, Chen K, Zheng F, Wu J, Dong X, Niu W. Body Roundness Index and All-Cause Mortality Among US Adults. JAMA Netw Open. 2024 Jun 3;7(6):e2415051. doi: 10.1001/jamanetworkopen.2024.15051. Erratum in: JAMA Netw Open. 2024 Jul 1;7(7):e2426540. doi: 10.1001/jamanetworkopen.2024.26540. PMID: 38837158; PMCID: PMC11154161.",
+      "en" : "The Body Roundness Index (BRI) is employed in routine health screenings to assess body shape and estimate body fat, identifying individuals at increased risk of obesity-related conditions and all-cause mortality."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.height.v2",
+        "template_id" : "openEHR-EHR-OBSERVATION.height.v2",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "cm"
+            ]
+          }
+        }
+      },
+      "gt0005" : {
+        "id" : "gt0005",
+        "model_id" : "openEHR-EHR-OBSERVATION.waist_circumference.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.waist_circumference.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0001]/events[at0010]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "cm"
+            ]
+          }
+        }
+      },
+      "gt0007" : {
+        "id" : "gt0007",
+        "model_id" : "openEHR-EHR-EVALUATION.health_risk.v1",
+        "template_id" : "openEHR-EHR-EVALUATION.health_risk.v1",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0008" : {
+            "id" : "gt0008",
+            "path" : "/data[at0001]/items[at0003]",
+            "data_type" : "DV_TEXT"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0004" : {
+        "id" : "gt0004",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|Height/Length|!=null",
+          "$gt0006|Waist circumference|!=null"
+        ],
+        "then" : [
+          "$gt0008|HR of All-Cause Mortality (95% CI)|='5'"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Body Roundness Index",
+            "description" : "The Body Roundness Index (BRI) is employed in routine health screenings to assess body shape and estimate body fat, identifying individuals at increased risk of obesity-related conditions and all-cause mortality."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.height.v2"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Height/Length"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Calculates total score",
+            "description" : "BRI = 364.2 - 365.5 × {1 − [(WC/2π)/(0.5 × H)]2}0.5"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "openEHR-EHR-OBSERVATION.waist_circumference.v1"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "Waist circumference"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "openEHR-EHR-EVALUATION.health_risk.v1"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "HR of All-Cause Mortality (95% CI)"
+          }
+        }
+      }
+    }
+  }
+}
