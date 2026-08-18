@@ -1,0 +1,65 @@
+guidelines:
+  "1": Body_Roundness_Index.v0.0.1
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Height/Length missing (negative test).
+    input:
+      "1":
+        gt0006|Waist circumference: 100,cm
+    expected_output:
+      "1": {}
+  - id: 03. Waist circumference missing (negative test).
+    input:
+      "1":
+        gt0003|Height/Length: 175,cm
+    expected_output:
+      "1": {}
+  - id: 04. BRI 3.11, HR 0.57
+    input:
+      "1":
+        gt0003|Height/Length: 175,cm
+        gt0006|Waist circumference: 85,cm
+    expected_output:
+      "1":
+        gt0010|BRI: "3.11"
+        gt0011|HR of All-Cause Mortality (95%CI): local::at0006|0.57 (0.49-0.67)|
+  - id: 05. BRI 3.85, HR 0.81
+    input:
+      "1":
+        gt0003|Height/Length: 165,cm
+        gt0006|Waist circumference: 86,cm
+    expected_output:
+      "1":
+        gt0010|BRI: "3.85"
+        gt0011|HR of All-Cause Mortality (95%CI): local::at0007|0.81 (0.69-0.95)|
+  - id: 06. BRI 4.60, HR 1
+    input:
+      "1":
+        gt0003|Height/Length: 171,cm
+        gt0006|Waist circumference: 96,cm
+    expected_output:
+      "1":
+        gt0010|BRI: "4.60"
+        gt0011|HR of All-Cause Mortality (95%CI): local::at0008|1 (reference)|
+  - id: 07. BRI 5.71, HR 1.48
+    input:
+      "1":
+        gt0003|Height/Length: 170,cm
+        gt0006|Waist circumference: 104,cm
+    expected_output:
+      "1":
+        gt0010|BRI: "5.71"
+        gt0011|HR of All-Cause Mortality (95%CI): local::at0009|1.48 (1.30-1.69)|
+  - id: 08. BRI 7.02, HR 1.62
+    input:
+      "1":
+        gt0003|Height/Length: 163,cm
+        gt0006|Waist circumference: 109,cm
+    expected_output:
+      "1":
+        gt0010|BRI: "7.02"
+        gt0011|HR of All-Cause Mortality (95%CI): local::at0010|1.62 (1.42-1.85)|
