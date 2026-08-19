@@ -1,0 +1,92 @@
+guidelines:
+  "1": Hemodialysis_Residual_Renal_Function_Calculator.v0.0.3-draft
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Interdialytic urine volume missing (negative test).
+    input:
+      "1":
+        gt0038|Interdialytic period: 2640,min
+        gt0039|Urine urea concentration (	mg/dL): 350,1
+        gt0040|BUN after 1st dialysis of week (mg/dL): 22,1
+        gt0041|BUN prior to 2nd dialysis of week (mg/dL): 64,1
+    expected_output:
+      "1":
+        gt0043|Mean BUN: 43.000,mg/dL
+  - id: 03. Interdialytic period missing (negative test).
+    input:
+      "1":
+        gt0037|Interdialytic urine volume: 1100,mL
+        gt0039|Urine urea concentration (	mg/dL): 350,1
+        gt0040|BUN after 1st dialysis of week (mg/dL): 22,1
+        gt0041|BUN prior to 2nd dialysis of week (mg/dL): 64,1
+    expected_output:
+      "1":
+        gt0043|Mean BUN: 43.000,mg/dL
+  - id: 04. Urine urea concentration missing (negative test).
+    input:
+      "1":
+        gt0037|Interdialytic urine volume: 1100,mL
+        gt0038|Interdialytic period: 2640,min
+        gt0040|BUN after 1st dialysis of week (mg/dL): 22,1
+        gt0041|BUN prior to 2nd dialysis of week (mg/dL): 64,1
+    expected_output:
+      "1":
+        gt0043|Mean BUN: 43.000,mg/dL
+  - id: 05. BUN after 1st dialysis of week missing (negative test).
+    input:
+      "1":
+        gt0037|Interdialytic urine volume: 1100,mL
+        gt0038|Interdialytic period: 2640,min
+        gt0039|Urine urea concentration (	mg/dL): 350,1
+        gt0041|BUN prior to 2nd dialysis of week (mg/dL): 64,1
+    expected_output:
+      "1": {}
+  - id: 06. BUN prior to 2nd dialysis of week missing (negative test).
+    input:
+      "1":
+        gt0037|Interdialytic urine volume: 1100,mL
+        gt0038|Interdialytic period: 2640,min
+        gt0039|Urine urea concentration (	mg/dL): 350,1
+        gt0040|BUN after 1st dialysis of week (mg/dL): 22,1
+    expected_output:
+      "1": {}
+  - id: 07. RRF 3.391 ml/min Mean BUN 43 mg/dL
+    input:
+      "1":
+        gt0037|Interdialytic urine volume: 1100,mL
+        gt0038|Interdialytic period: 2640,min
+        gt0039|Urine urea concentration (	mg/dL): 350,1
+        gt0040|BUN after 1st dialysis of week (mg/dL): 22,1
+        gt0041|BUN prior to 2nd dialysis of week (mg/dL): 64,1
+    expected_output:
+      "1":
+        gt0043|Mean BUN: 43.000,mg/dL
+        gt0044|Residual Renal Function: 3.391,ml/min
+  - id: 08. RRF 0.178 ml/min Mean BUN 57.5 mg/dL
+    input:
+      "1":
+        gt0037|Interdialytic urine volume: 150,mL
+        gt0038|Interdialytic period: 2640,min
+        gt0039|Urine urea concentration (	mg/dL): 180,1
+        gt0040|BUN after 1st dialysis of week (mg/dL): 30,1
+        gt0041|BUN prior to 2nd dialysis of week (mg/dL): 85,1
+    expected_output:
+      "1":
+        gt0043|Mean BUN: 57.500,mg/dL
+        gt0044|Residual Renal Function: 0.178,ml/min
+  - id: 09. RRF 7.197 ml/min Mean BUN 36 mg/dL
+    input:
+      "1":
+        gt0037|Interdialytic urine volume: 1800,mL
+        gt0038|Interdialytic period: 2640,min
+        gt0039|Urine urea concentration (	mg/dL): 380,1
+        gt0040|BUN after 1st dialysis of week (mg/dL): 20,1
+        gt0041|BUN prior to 2nd dialysis of week (mg/dL): 52,1
+    expected_output:
+      "1":
+        gt0043|Mean BUN: 36.000,mg/dL
+        gt0044|Residual Renal Function: 7.197,ml/min
