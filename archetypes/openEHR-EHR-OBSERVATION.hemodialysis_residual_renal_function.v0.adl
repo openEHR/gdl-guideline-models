@@ -1,4 +1,4 @@
-archetype (adl_version=1.4; uid=04307b22-e1a6-495d-a836-5bd872e03f23)
+archetype (adl_version=1.4; uid=39bee36c-3b36-46ac-85c4-557dcaa551f2)
 	openEHR-EHR-OBSERVATION.hemodialysis_residual_renal_function.v0
 
 concept
@@ -9,28 +9,39 @@ language
 
 description
 	original_author = <
-		["date"] = <"2025-01-21">
-		["name"] = <"Rashmi">
+		["date"] = <"2025-01-03">
+		["name"] = <"Kevin Arjona">
 		["organisation"] = <"Cambio CDS">
-		["email"] = <"models@cambiocds.com">
+		["email"] = <"Kevin.arjona@cambio.se">
 	>
 	lifecycle_state = <"unmanaged">
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
+			purpose = <"To record the clinical parameters used to calculate the RRF in patients undergoing hemodialysis.">
+			keywords = <"hemodialysis","residual","renal","function","RRF","kidney","disease","urea","clearance","creatinine","end-stage","ESRD","dialysis">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the clinical parameters used to calculate the RRF.">
+			misuse = <"Should not be used to assess kidney function in patients who are not on dialysis or those with acute kidney injuries.">
 		>
 	>
 	other_details = <
 		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
 		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Wang AY, Lai KN. The importance of residual renal function in dialysis patients. Kidney Int. 2006 May;69(10):1726-32. doi: 10.1038/sj.ki.5000382. PMID: 16612329.
+
+Thomas J, Teitelbaum I. Preservation of residual renal function in dialysis patients. Adv Perit Dial. 2011;27:112-7. PMID: 22073841.
+
+Moist LM, Port FK, Orzol SM, Young EW, Ostbye T, Wolfe RA, Hulbert-Shearon T, Jones CA, Bloembergen WE. Predictors of loss of residual renal function among new dialysis patients. J Am Soc Nephrol. 2000 Mar;11(3):556-564. doi: 10.1681/ASN.V113556. PMID: 10703680.">
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["build_uid"] = <"2c56cb8f-9007-393c-82ce-0ed820bbce7e">
+		["MD5-CAM-1.0.1"] = <"63915a9f508a329fdd7eccbc6cbef164">
+		["build_uid"] = <"a1077843-0737-3cba-a775-2db7bed5334f">
 	>
 
 definition
-	OBSERVATION[at0000] matches {    -- Hemodialysis residual renal function
+	OBSERVATION[at0000] matches {    -- Hemodialysis Residual Renal Function
 		data matches {
 			HISTORY[at0001] matches {    -- History
 				events cardinality matches {1..*; unordered} matches {
@@ -38,14 +49,111 @@ definition
 						data matches {
 							ITEM_TREE[at0003] matches {    -- Tree
 								items cardinality matches {0..*; unordered} matches {
-									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Interdialytic urine volume
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Interdialytic urine volume
 										value matches {
 											C_DV_QUANTITY <
 												property = <[openehr::129]>
 												list = <
 													["1"] = <
 														units = <"mL">
+														magnitude = <|>=0.0|>
 														precision = <|3|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Interdialytic period
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"min">
+														magnitude = <|>=0.0|>
+														precision = <|3|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Urine urea concentration
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::507]>
+												list = <
+													["1"] = <
+														units = <"1">
+														magnitude = <|>=0.0|>
+														precision = <|3|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0028] occurrences matches {0..1} matches {    -- BUN 1
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::507]>
+												list = <
+													["1"] = <
+														units = <"1">
+														magnitude = <|>=0.0|>
+														precision = <|3|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0030] occurrences matches {0..1} matches {    -- BUN 2
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::507]>
+												list = <
+													["1"] = <
+														units = <"1">
+														magnitude = <|>=0.0|>
+														precision = <|3|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0031] occurrences matches {0..1} matches {    -- Mean BUN
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::507]>
+												list = <
+													["1"] = <
+														units = <"1">
+														magnitude = <|>=0.0|>
+														precision = <|3|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0026] occurrences matches {0..1} matches {    -- Residual Renal Function
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::126]>
+												list = <
+													["1"] = <
+														units = <"ml/min">
+														magnitude = <|>=0.0|>
+														precision = <|3|>
+													>
+													["2"] = <
+														units = <"ml/h">
+													>
+													["3"] = <
+														units = <"l/m">
+													>
+													["4"] = <
+														units = <"l/s">
+													>
+													["5"] = <
+														units = <"ml/s">
 													>
 												>
 											>
@@ -58,6 +166,16 @@ definition
 				}
 			}
 		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
 	}
 
 ontology
@@ -65,8 +183,9 @@ ontology
 		["en"] = <
 			items = <
 				["at0000"] = <
-					text = <"Hemodialysis residual renal function">
-					description = <"Hemodialysis residual renal function">
+					text = <"Hemodialysis Residual Renal Function">
+					description = <"Residual Renal Function (RRF) is the remaining capacity of the kidneys to filter and excrete waste products and maintain fluid and electrolyte balance in patients undergoing hemodialysis. RRF is often calculated using urine volume and solute clearance.">
+					comment = <"Original version, c 1994">
 				>
 				["at0001"] = <
 					text = <"History">
@@ -74,15 +193,50 @@ ontology
 				>
 				["at0002"] = <
 					text = <"Any event">
-					description = <"@ internal @">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
 				>
 				["at0003"] = <
 					text = <"Tree">
 					description = <"@ internal @">
 				>
 				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
 					text = <"Interdialytic urine volume">
-					description = <"">
+					description = <"Use to record the urine volume collected between dialysis sessions, measured in milliliters (mL). Ensure accurate measurement using standardized collection methods.">
+				>
+				["at0007"] = <
+					text = <"Urine urea concentration">
+					description = <"The concentration of urea present in a urine sample.">
+				>
+				["at0008"] = <
+					text = <"Interdialytic period">
+					description = <"The time interval between two consecutive hemodialysis sessions, typically measured in hours.">
+				>
+				["at0026"] = <
+					text = <"Residual Renal Function">
+					description = <"The estimated remaining renal function of the patient, typically calculated using the average of urinary urea and creatinine clearance, and expressed in milliliters per minute per 1.73 m² (mL/min/1.73 m²).">
+				>
+				["at0028"] = <
+					text = <"BUN 1">
+					description = <"BUN 1 (after 1st dialysis of week)
+The blood urea nitrogen (BUN) level measured immediately after the first dialysis session of the week.">
+				>
+				["at0030"] = <
+					text = <"BUN 2">
+					description = <"BUN 2 (after 2st dialysis of week)
+The blood urea nitrogen (BUN) level measured immediately after the second dialysis session of the week.">
+				>
+				["at0031"] = <
+					text = <"Mean BUN">
+					description = <"The average blood urea nitrogen (BUN) level, calculated from multiple BUN measurements, typically expressed in milligrams per deciliter (mg/dL).">
 				>
 			>
 		>
