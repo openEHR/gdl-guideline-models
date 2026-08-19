@@ -1,0 +1,39 @@
+guidelines:
+  "1": Residual_Renal_Function.v0.0.3-draft
+test_cases:
+  - id: "1"
+    input:
+      "1":
+        gt0003|Interdialytic urine volume: 0.6,L
+        gt0004|Interdialytic period: 60,min
+        gt0005|Urine urea concentration: 150,mg/L
+        gt0006|BUN 1: 1000,mg/L
+        gt0007|BUN 2: 1200,mg/L
+    expected_output:
+      "1":
+        gt0011|Residual Renal Function: 1.364,ml/min
+        gt0012|Mean BUN: 1100.000,mg/L
+  - id: "2"
+    input:
+      "1":
+        gt0003|Interdialytic urine volume: 600,mL
+        gt0004|Interdialytic period: 1,h
+        gt0005|Urine urea concentration: 150,mg/L
+        gt0006|BUN 1: 1,g/L
+        gt0007|BUN 2: 1.2,g/L
+    expected_output:
+      "1":
+        gt0011|Residual Renal Function: 1.364,ml/min
+        gt0012|Mean BUN: 1100.000,mg/L
+  - id: "3"
+    input:
+      "1":
+        gt0003|Interdialytic urine volume: 600,mL
+        gt0004|Interdialytic period: 3600,s
+        gt0005|Urine urea concentration: 150,mg/L
+        gt0006|BUN 1: 1000000,ug/L
+        gt0007|BUN 2: 1200000,ug/L
+    expected_output:
+      "1":
+        gt0011|Residual Renal Function: 1.364,ml/min
+        gt0012|Mean BUN: 1100.000,mg/L
