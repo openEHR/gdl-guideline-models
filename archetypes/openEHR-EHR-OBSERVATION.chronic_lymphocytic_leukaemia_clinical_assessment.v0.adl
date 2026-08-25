@@ -1,0 +1,1104 @@
+archetype (adl_version=1.4; uid=15bf0056-bdc8-4f3c-a1f6-50db8469d29d)
+	openEHR-EHR-OBSERVATION.chronic_lymphocytic_leukaemia_clinical_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-07-16">
+		["name"] = <"Mahmoud Elachi">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"mel.achi@gmail.com">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record clinical, examination and investigation findings obtained as part of the basal assessment of a patient with chronic lymphocytic leukaemia.">
+			keywords = <"Rai Binet, hematology, CLL, assessment, haematology, leukaemia, lymphadenopathy, hepatomegaly, splenomegaly, cytopenia", ...>
+			copyright = <"Use © Cambio CDS ">
+			use = <"Use to record the number of lymphoid areas involved, presence of hepatomegaly and/or splenomegaly on palpation, hemoglobin level, and platelet count, together with the resulting Rai stage, modified Rai risk group, and Binet stage.">
+			misuse = <"Not to be used to record staging of other lymphoproliferative disorders.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Rai KR, Sawitsky A, Cronkite EP, Chanana AD, Levy RN, Pasternack BS. Clinical staging of chronic lymphocytic leukemia. Blood. 1975 Aug;46(2):219-34. PMID: 1139039.
+Binet JL, Auquier A, Dighiero G, Chastang C, Piguet H, Goasguen J, Vaugier G, Potron G, Colona P, Oberling F, Thomas M, Tchernia G, Jacquillat C, Boivin P, Lesty C, Duault MT, Monconduit M, Belabbes S, Gremy F. A new prognostic classification of chronic lymphocytic leukemia derived from a multivariate survival analysis. Cancer. 1981 Jul 1;48(1):198-206. doi: 10.1002/1097-0142(19810701)48:1<198::aid-cncr2820480131>3.0.co;2-v. PMID: 7237385.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"e0997b5fe21628accf4c21d11d74074d">
+		["build_uid"] = <"236023b6-fc1c-34fa-a75d-1ae28bbfe30e">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Chronic lymphocytic leukaemia clinical assessment
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									CLUSTER[at0004] occurrences matches {0..1} matches {    -- Family history
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0005] occurrences matches {0..1} matches {    -- Hematological disease
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0006] occurrences matches {0..1} matches {    -- Autoimmune disease
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+										}
+									}
+									CLUSTER[at0010] occurrences matches {0..1} matches {    -- Anamnesis
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0011] occurrences matches {0..1} matches {    -- B‑Symptoms
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											CLUSTER[at0012] occurrences matches {0..1} matches {    -- Infection
+												items cardinality matches {0..*; unordered} matches {
+													ELEMENT[at0013] occurrences matches {0..1} matches {    -- Type
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													ELEMENT[at0014] occurrences matches {0..1} matches {    -- Frequency
+														value matches {
+															DV_COUNT matches {*}
+														}
+													}
+													ELEMENT[at0015] occurrences matches {0..1} matches {    -- Severity
+														value matches {
+															DV_CODED_TEXT matches {
+																defining_code matches {
+																	[local::
+																	at0016,    -- Mild
+																	at0017,    -- Moderate
+																	at0018]    -- Severe
+																}
+															}
+														}
+													}
+												}
+											}
+											CLUSTER[at0020] occurrences matches {0..1} matches {    -- Symptoms
+												items cardinality matches {1..*; unordered} matches {
+													ELEMENT[at0021] occurrences matches {0..1} matches {    -- Fever
+														value matches {
+															DV_BOOLEAN matches {*}
+														}
+													}
+													ELEMENT[at0022] occurrences matches {0..1} matches {    -- Night sweats
+														value matches {
+															DV_BOOLEAN matches {*}
+														}
+													}
+													ELEMENT[at0023] occurrences matches {0..1} matches {    -- Unintentional weight loss
+														value matches {
+															DV_BOOLEAN matches {*}
+														}
+													}
+													ELEMENT[at0024] occurrences matches {0..1} matches {    -- Fatigue
+														value matches {
+															DV_BOOLEAN matches {*}
+														}
+													}
+													ELEMENT[at0025] occurrences matches {0..1} matches {    -- Reduced appetite
+														value matches {
+															DV_BOOLEAN matches {*}
+														}
+													}
+													ELEMENT[at0026] occurrences matches {0..1} matches {    -- General malaise
+														value matches {
+															DV_BOOLEAN matches {*}
+														}
+													}
+												}
+											}
+											CLUSTER[at0027] occurrences matches {0..1} matches {    -- Other tumor disease
+												items cardinality matches {1..*; unordered} matches {
+													ELEMENT[at0028] occurrences matches {0..1} matches {    -- Diagnosis name
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													ELEMENT[at0029] occurrences matches {0..1} matches {    -- Year of diagnosis
+														value matches {
+															DV_DATE matches {*}
+														}
+													}
+													ELEMENT[at0030] occurrences matches {0..1} matches {    -- Treatment received
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													ELEMENT[at0031] occurrences matches {0..1} matches {    -- Current status
+														value matches {
+															DV_CODED_TEXT matches {
+																defining_code matches {
+																	[local::
+																	at0032,    -- Active
+																	at0033,    -- Remission
+																	at0034]    -- Unknown
+																}
+															}
+														}
+													}
+												}
+											}
+											ELEMENT[at0073] occurrences matches {0..1} matches {    -- autoimmune disease
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0007] occurrences matches {0..1} matches {    -- Cardiovascular morbidity
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+										}
+									}
+									CLUSTER[at0036] occurrences matches {0..1} matches {    -- Other medication
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0037] occurrences matches {0..1} matches {    -- Medication name
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0038] occurrences matches {0..1} matches {    -- Dosage
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0039] occurrences matches {0..1} matches {    -- Frequency
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0040] occurrences matches {0..1} matches {    -- Indication
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+										}
+									}
+									CLUSTER[at0041] occurrences matches {0..1} matches {    -- Lab results
+										items cardinality matches {1..*; unordered} matches {
+											CLUSTER[at0047] occurrences matches {0..1} matches {    -- Hematology Panel
+												items cardinality matches {1..*; unordered} matches {
+													ELEMENT[at0042] occurrences matches {0..1} matches {    -- Haemoglobin
+														value matches {
+															C_DV_QUANTITY <
+																property = <[openehr::119]>
+																list = <
+																	["1"] = <
+																		units = <"g/L">
+																	>
+																>
+															>
+														}
+													}
+													ELEMENT[at0043] occurrences matches {0..1} matches {    -- Leukocyte count
+														value matches {
+															C_DV_QUANTITY <
+																property = <[openehr::445]>
+																list = <
+																	["1"] = <
+																		units = <"u">
+																	>
+																>
+															>
+														}
+													}
+													ELEMENT[at0044] occurrences matches {0..1} matches {    -- Lymphocyte count
+														value matches {
+															C_DV_QUANTITY <
+																property = <[openehr::445]>
+																list = <
+																	["1"] = <
+																		units = <"u">
+																	>
+																>
+															>
+														}
+													}
+													ELEMENT[at0045] occurrences matches {0..1} matches {    -- Platelet count
+														value matches {
+															C_DV_QUANTITY <
+																property = <[openehr::445]>
+																list = <
+																	["1"] = <
+																		units = <"u">
+																	>
+																>
+															>
+														}
+													}
+													ELEMENT[at0046] occurrences matches {0..1} matches {    -- Reticulocytes
+														value matches {
+															C_DV_QUANTITY <
+																property = <[openehr::445]>
+																list = <
+																	["1"] = <
+																		units = <"u">
+																	>
+																>
+															>
+														}
+													}
+												}
+											}
+											CLUSTER[at0048] occurrences matches {0..1} matches {    -- Differential Count
+												items cardinality matches {1..*; unordered} matches {
+													ELEMENT[at0049] occurrences matches {0..1} matches {    -- Neutrophils
+														value matches {
+															C_DV_QUANTITY <
+																property = <[openehr::445]>
+																list = <
+																	["1"] = <
+																		units = <"u">
+																	>
+																>
+															>
+														}
+													}
+													ELEMENT[at0050] occurrences matches {0..1} matches {    -- Monocytes
+														value matches {
+															C_DV_QUANTITY <
+																property = <[openehr::445]>
+																list = <
+																	["1"] = <
+																		units = <"u">
+																	>
+																>
+															>
+														}
+													}
+													ELEMENT[at0051] occurrences matches {0..1} matches {    -- Eosinophils
+														value matches {
+															C_DV_QUANTITY <
+																property = <[openehr::445]>
+																list = <
+																	["1"] = <
+																		units = <"u">
+																	>
+																>
+															>
+														}
+													}
+													ELEMENT[at0052] occurrences matches {0..1} matches {    -- Basophils
+														value matches {
+															C_DV_QUANTITY <
+																property = <[openehr::445]>
+																list = <
+																	["1"] = <
+																		units = <"u">
+																	>
+																>
+															>
+														}
+													}
+												}
+											}
+											CLUSTER[at0053] occurrences matches {0..1} matches {*}    -- Hemolysis Panel
+										}
+									}
+									CLUSTER[at0054] occurrences matches {0..1} matches {    -- Lymph node examination
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0055] occurrences matches {0..1} matches {    -- Anatomical region
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0056,    -- Cervical
+															at0057,    -- Axillary
+															at0058,    -- Inguinal
+															at0059,    -- Liver
+															at0060]    -- Spleen
+														}
+													}
+												}
+											}
+											ELEMENT[at0061] occurrences matches {0..1} matches {    -- Laterality
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0062,    -- Left
+															at0063,    -- Right
+															at0064,    -- Bilateral
+															at0065]    -- Not specified
+														}
+													}
+												}
+											}
+											ELEMENT[at0066] occurrences matches {0..1} matches {    -- Palpable lymphadenopathy
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0067] occurrences matches {0..1} matches {    -- Lymph node dimension 1
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::122]>
+														list = <
+															["1"] = <
+																units = <"cm">
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0068] occurrences matches {0..1} matches {    -- Lymph node dimension 2
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::122]>
+														list = <
+															["1"] = <
+																units = <"cm">
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0069] occurrences matches {0..1} matches {    -- Liver palpable
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0070] occurrences matches {0..1} matches {    -- Liver enlargement below costal margin
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::122]>
+														list = <
+															["1"] = <
+																units = <"cm">
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0071] occurrences matches {0..1} matches {    -- Spleen palpable
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0072] occurrences matches {0..1} matches {    -- Spleen enlargement below costal margin
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::122]>
+														list = <
+															["1"] = <
+																units = <"cm">
+															>
+														>
+													>
+												}
+											}
+										}
+									}
+									ELEMENT[at0074] occurrences matches {0..1} matches {    -- Creatinine
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::384]>
+												list = <
+													["1"] = <
+														units = <"umol">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0075] occurrences matches {0..1} matches {    -- Urate
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::384]>
+												list = <
+													["1"] = <
+														units = <"umol">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0076] occurrences matches {0..1} matches {    -- AST
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::384]>
+												list = <
+													["1"] = <
+														units = <"mmol">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0077] occurrences matches {0..1} matches {    -- ALT
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::384]>
+												list = <
+													["1"] = <
+														units = <"mmol">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0078] occurrences matches {0..1} matches {    -- Albumin
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::119]>
+												list = <
+													["1"] = <
+														units = <"g/L">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0079] occurrences matches {0..1} matches {    -- Bilirubin
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::384]>
+												list = <
+													["1"] = <
+														units = <"umol">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0080] occurrences matches {0..1} matches {    -- ALP
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::384]>
+												list = <
+													["1"] = <
+														units = <"mmol">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0081] occurrences matches {0..1} matches {    -- LD
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::384]>
+												list = <
+													["1"] = <
+														units = <"mmol">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0082] occurrences matches {0..1} matches {    -- Protein fractions
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::119]>
+												list = <
+													["1"] = <
+														units = <"g/L">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0083] occurrences matches {0..1} matches {    -- DAT
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0084,    -- Positive
+													at0085,    -- Negative
+													at0086,    -- Indeterminate
+													at0087]    -- Not performed
+												}
+											}
+										}
+									}
+									ELEMENT[at0088] occurrences matches {0..1} matches {    -- Bone marrow examination performed
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0089] occurrences matches {0..1} matches {    -- Bone marrow aspiration performed
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0090] occurrences matches {0..1} matches {    -- Bone marrow biopsy performed
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0091] occurrences matches {0..1} matches {    -- Cause of anaemia
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0092,    -- Bone marrow failure
+													at0093,    -- Autoimmune
+													at0094,    -- Indeterminate
+													at0095]    -- Other
+												}
+											}
+										}
+									}
+									ELEMENT[at0096] occurrences matches {0..1} matches {    -- Cause of thrombocytopenia
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0097,    -- Bone marrow failure
+													at0098,    -- Immune thrombocytopenia
+													at0099,    -- Indeterminate
+													at0100]    -- Other
+												}
+											}
+										}
+									}
+									ELEMENT[at0101] occurrences matches {0..5} matches {    -- Number of involved lymphoid areas
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+									ELEMENT[at0102] occurrences matches {0..1} matches {    -- Binet stage
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0105,    -- A
+													at0106,    -- B
+													at0107,    -- C
+													at0108]    -- Indeterminate
+												}
+											}
+										}
+									}
+									ELEMENT[at0103] occurrences matches {0..1} matches {    -- Rai stage
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0109,    -- 0
+													at0110,    -- I
+													at0111,    -- II
+													at0112,    -- III
+													at0113,    -- IV
+													at0114]    -- Indeterminate
+												}
+											}
+										}
+									}
+									ELEMENT[at0104] occurrences matches {0..1} matches {    -- Modified Rai risk
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0115,    -- Low
+													at0116,    -- Intermediate
+													at0117,    -- High
+													at0118]    -- Indeterminate
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0009] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Chronic lymphocytic leukaemia clinical assessment">
+					description = <"Rai and Binet staging are clinical classification systems used to stratify tumor burden in chronic lymphocytic leukemia (CLL), based on physical examination findings and blood counts.">
+					comment = <"Rai staging, original version, 1975.
+Binet staging, original version, 1981.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Family history">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Hematological disease">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Autoimmune disease">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Cardiovascular morbidity">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0010"] = <
+					text = <"Anamnesis">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"B‑Symptoms">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Infection">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Type">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Frequency">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Severity">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Mild">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Moderate">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Severe">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Symptoms">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Fever">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Night sweats">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Unintentional weight loss">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Fatigue">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Reduced appetite">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"General malaise">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Other tumor disease">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Diagnosis name">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Year of diagnosis">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Treatment received">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Current status">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Active">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Remission">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Unknown">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Other medication">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"Medication name">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"Dosage">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"Frequency">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"Indication">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"Lab results">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"Haemoglobin">
+					description = <"">
+				>
+				["at0043"] = <
+					text = <"Leukocyte count">
+					description = <"">
+				>
+				["at0044"] = <
+					text = <"Lymphocyte count">
+					description = <"">
+				>
+				["at0045"] = <
+					text = <"Platelet count">
+					description = <"">
+				>
+				["at0046"] = <
+					text = <"Reticulocytes">
+					description = <"">
+				>
+				["at0047"] = <
+					text = <"Hematology Panel">
+					description = <"">
+				>
+				["at0048"] = <
+					text = <"Differential Count">
+					description = <"">
+				>
+				["at0049"] = <
+					text = <"Neutrophils">
+					description = <"">
+				>
+				["at0050"] = <
+					text = <"Monocytes">
+					description = <"">
+				>
+				["at0051"] = <
+					text = <"Eosinophils">
+					description = <"">
+				>
+				["at0052"] = <
+					text = <"Basophils">
+					description = <"">
+				>
+				["at0053"] = <
+					text = <"Hemolysis Panel">
+					description = <"">
+				>
+				["at0054"] = <
+					text = <"Lymph node examination">
+					description = <"">
+				>
+				["at0055"] = <
+					text = <"Anatomical region">
+					description = <"">
+				>
+				["at0056"] = <
+					text = <"Cervical">
+					description = <"">
+				>
+				["at0057"] = <
+					text = <"Axillary">
+					description = <"">
+				>
+				["at0058"] = <
+					text = <"Inguinal">
+					description = <"">
+				>
+				["at0059"] = <
+					text = <"Liver">
+					description = <"">
+				>
+				["at0060"] = <
+					text = <"Spleen">
+					description = <"">
+				>
+				["at0061"] = <
+					text = <"Laterality">
+					description = <"">
+				>
+				["at0062"] = <
+					text = <"Left">
+					description = <"">
+				>
+				["at0063"] = <
+					text = <"Right">
+					description = <"">
+				>
+				["at0064"] = <
+					text = <"Bilateral">
+					description = <"">
+				>
+				["at0065"] = <
+					text = <"Not specified">
+					description = <"">
+				>
+				["at0066"] = <
+					text = <"Palpable lymphadenopathy">
+					description = <"">
+				>
+				["at0067"] = <
+					text = <"Lymph node dimension 1">
+					description = <"">
+				>
+				["at0068"] = <
+					text = <"Lymph node dimension 2">
+					description = <"">
+				>
+				["at0069"] = <
+					text = <"Liver palpable">
+					description = <"">
+				>
+				["at0070"] = <
+					text = <"Liver enlargement below costal margin">
+					description = <"">
+				>
+				["at0071"] = <
+					text = <"Spleen palpable">
+					description = <"">
+				>
+				["at0072"] = <
+					text = <"Spleen enlargement below costal margin">
+					description = <"">
+				>
+				["at0073"] = <
+					text = <"autoimmune disease">
+					description = <"">
+				>
+				["at0074"] = <
+					text = <"Creatinine">
+					description = <"">
+				>
+				["at0075"] = <
+					text = <"Urate">
+					description = <"">
+				>
+				["at0076"] = <
+					text = <"AST">
+					description = <"">
+				>
+				["at0077"] = <
+					text = <"ALT">
+					description = <"">
+				>
+				["at0078"] = <
+					text = <"Albumin">
+					description = <"">
+				>
+				["at0079"] = <
+					text = <"Bilirubin">
+					description = <"">
+				>
+				["at0080"] = <
+					text = <"ALP">
+					description = <"">
+				>
+				["at0081"] = <
+					text = <"LD">
+					description = <"">
+				>
+				["at0082"] = <
+					text = <"Protein fractions">
+					description = <"">
+				>
+				["at0083"] = <
+					text = <"DAT">
+					description = <"">
+				>
+				["at0084"] = <
+					text = <"Positive">
+					description = <"">
+				>
+				["at0085"] = <
+					text = <"Negative">
+					description = <"">
+				>
+				["at0086"] = <
+					text = <"Indeterminate">
+					description = <"">
+				>
+				["at0087"] = <
+					text = <"Not performed">
+					description = <"">
+				>
+				["at0088"] = <
+					text = <"Bone marrow examination performed">
+					description = <"">
+				>
+				["at0089"] = <
+					text = <"Bone marrow aspiration performed">
+					description = <"">
+				>
+				["at0090"] = <
+					text = <"Bone marrow biopsy performed">
+					description = <"">
+				>
+				["at0091"] = <
+					text = <"Cause of anaemia">
+					description = <"">
+				>
+				["at0092"] = <
+					text = <"Bone marrow failure">
+					description = <"">
+				>
+				["at0093"] = <
+					text = <"Autoimmune">
+					description = <"">
+				>
+				["at0094"] = <
+					text = <"Indeterminate">
+					description = <"">
+				>
+				["at0095"] = <
+					text = <"Other">
+					description = <"">
+				>
+				["at0096"] = <
+					text = <"Cause of thrombocytopenia">
+					description = <"">
+				>
+				["at0097"] = <
+					text = <"Bone marrow failure">
+					description = <"">
+				>
+				["at0098"] = <
+					text = <"Immune thrombocytopenia">
+					description = <"">
+				>
+				["at0099"] = <
+					text = <"Indeterminate">
+					description = <"">
+				>
+				["at0100"] = <
+					text = <"Other">
+					description = <"">
+				>
+				["at0101"] = <
+					text = <"Number of involved lymphoid areas">
+					description = <"">
+				>
+				["at0102"] = <
+					text = <"Binet stage">
+					description = <"">
+				>
+				["at0103"] = <
+					text = <"Rai stage">
+					description = <"">
+				>
+				["at0104"] = <
+					text = <"Modified Rai risk">
+					description = <"">
+				>
+				["at0105"] = <
+					text = <"A">
+					description = <"">
+				>
+				["at0106"] = <
+					text = <"B">
+					description = <"">
+				>
+				["at0107"] = <
+					text = <"C">
+					description = <"">
+				>
+				["at0108"] = <
+					text = <"Indeterminate">
+					description = <"">
+				>
+				["at0109"] = <
+					text = <"0">
+					description = <"">
+				>
+				["at0110"] = <
+					text = <"I">
+					description = <"">
+				>
+				["at0111"] = <
+					text = <"II">
+					description = <"">
+				>
+				["at0112"] = <
+					text = <"III">
+					description = <"">
+				>
+				["at0113"] = <
+					text = <"IV">
+					description = <"">
+				>
+				["at0114"] = <
+					text = <"Indeterminate">
+					description = <"">
+				>
+				["at0115"] = <
+					text = <"Low">
+					description = <"">
+				>
+				["at0116"] = <
+					text = <"Intermediate">
+					description = <"">
+				>
+				["at0117"] = <
+					text = <"High">
+					description = <"">
+				>
+				["at0118"] = <
+					text = <"Indeterminate">
+					description = <"">
+				>
+			>
+		>
+	>
