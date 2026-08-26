@@ -1,0 +1,242 @@
+archetype (adl_version=1.4; uid=b1f581ed-594d-458c-9022-874f25de8414)
+	openEHR-EHR-OBSERVATION.fast_alcohol_screening_test_.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-08-24">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record responses to the FAST items and the total score for the FAST Alcohol Screening Test.">
+			keywords = <"fast","test","audit","alcohol","screening","hazardous","drinking","misuse","addiction","primary","care">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record responses to the FAST items to calculate the total FAST score.">
+			misuse = <"Not to be used to record a diagnosis">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Hodgson R, Alwyn T, John B, Thom B, Smith A. The FAST Alcohol Screening Test. Alcohol Alcohol. 2002 Jan-Feb;37(1):61-6. doi: 10.1093/alcalc/37.1.61. PMID: 11825859.
+
+Allen JP, Maisto SA, Connors GJ. Self-report screening tests for alcohol problems in primary care. Arch Intern Med. 1995 Sep 11;155(16):1726-30. PMID: 7654105.
+
+Bradley KA, Bush KR, Epler AJ, Dobie DJ, Davis TM, Sporleder JL, Maynard C, Burman ML, Kivlahan DR. Two brief alcohol-screening tests From the Alcohol Use Disorders Identification Test (AUDIT): validation in a female Veterans Affairs patient population. Arch Intern Med. 2003 Apr 14;163(7):821-9. doi: 10.1001/archinte.163.7.821. PMID: 12695273.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"56c1e1868b61fd31655520b2ee9157ce">
+		["build_uid"] = <"23ea61a3-da79-3f56-a762-bd203eb78e63">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- FAST alcohol screening test
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0019] occurrences matches {0..1} matches {    -- How often do you have eight, if men, or six, if female, or more drinks on one occasion?
+										value matches {
+											0|[local::at0020],
+											1|[local::at0021],
+											2|[local::at0022],
+											3|[local::at0023],
+											4|[local::at0024]
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- How often during the last year have you been unable to remember what happened the night before because you had been drinking?
+										value matches {
+											0|[local::at0008],
+											1|[local::at0009],
+											2|[local::at0010],
+											3|[local::at0011],
+											4|[local::at0012]
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {    -- How often during the last year have you failed to do what was normally expected of you because of your drinking?
+										value matches {
+											0|[local::at0014],
+											1|[local::at0015],
+											2|[local::at0016],
+											3|[local::at0017],
+											4|[local::at0018]
+										}
+									}
+									ELEMENT[at0025] occurrences matches {0..1} matches {    -- Has a relative or friend, a doctor or other health worker been concerned about your drinking or suggested you cut down?
+										value matches {
+											0|[local::at0026],
+											2|[local::at0027],
+											4|[local::at0028]
+										}
+									}
+									ELEMENT[at0029] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"1">
+														precision = <|3|>
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extenstion
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"FAST alcohol screening test">
+					description = <"Fast alcohol screening test (FAST) is an alcohol harm assessment tool based on the Alcohol Use Disorders Identification Test (AUDIT), a long-term effective screening method.">
+					comment = <"Original version, c 1995">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extenstion">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0007"] = <
+					text = <"How often during the last year have you been unable to remember what happened the night before because you had been drinking?">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Never">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Less than monthly">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Monthly">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Weekly">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Daily or almost daily">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"How often during the last year have you failed to do what was normally expected of you because of your drinking?">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Never">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Less than monthly">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Monthly">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Weekly">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Daily or almost daily">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"How often do you have eight, if men, or six, if female, or more drinks on one occasion?">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Never">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Less than monthly">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Monthly">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Weekly">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Daily or almost daily">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Has a relative or friend, a doctor or other health worker been concerned about your drinking or suggested you cut down?">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Yes, but not in the last year">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Yes, in the last year">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Total score">
+					description = <"The total sum of each component parameter for the FAST score">
+				>
+			>
+		>
+	>
