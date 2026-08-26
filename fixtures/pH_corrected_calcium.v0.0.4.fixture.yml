@@ -1,0 +1,57 @@
+guidelines:
+  "1": pH_corrected_calcium.v0.0.4
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. pH is missing (negative test)
+    input:
+      "1":
+        gt0010|Calcium ion: 1,mmol
+    expected_output:
+      "1": {}
+  - id: 3. Calcium ion is missing (negative test)
+    input:
+      "1":
+        gt0011|pH: 7,1
+    expected_output:
+      "1": {}
+  - id: 4. Calcium ion not between 0.5-2.5 (negative test)
+    input:
+      "1":
+        gt0010|Calcium ion: 3,mmol
+        gt0011|pH: 7,1
+    expected_output:
+      "1": {}
+  - id: 5. Calcium ion not between 0.5-2.5 (negative test)
+    input:
+      "1":
+        gt0010|Calcium ion: 0,mmol
+        gt0011|pH: 7,1
+    expected_output:
+      "1": {}
+  - id: 6. pH not between 6.5-8.5 (negative test)
+    input:
+      "1":
+        gt0010|Calcium ion: 1,mmol
+        gt0011|pH: 5,1
+    expected_output:
+      "1": {}
+  - id: 7. All input C1 & pH7
+    input:
+      "1":
+        gt0010|Calcium ion: 1,mmol
+        gt0011|pH: 7,1
+    expected_output:
+      "1":
+        gt0013|pH-corrected calcium: 0.79,mmol/L
+  - id: 8. all input C2 & pH8
+    input:
+      "1":
+        gt0010|Calcium ion: 2,mmol
+        gt0011|pH: 8,1
+    expected_output:
+      "1":
+        gt0013|pH-corrected calcium: 2.64,mmol/L
