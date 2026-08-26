@@ -1,0 +1,76 @@
+guidelines:
+  "1": FAST_Alcohol_Screening_Test.v0.0.1
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Question 1 missing (negative test).
+    input:
+      "1":
+        gt0004|How often during the last year have you been unable to remember what happened the night before because you had been drinking?: 0|local::at0008|Never|
+        gt0005|How often during the last year have you failed to do what was normally expected of you because of your drinking?: 0|local::at0014|Never|
+        "gt0006|Has a relative or friend, a doctor or other health worker been concerned about your drinking or suggested you cut down?": 0|local::at0026|No|
+    expected_output:
+      "1": {}
+  - id: 03. Question 2 missing (negative test).
+    input:
+      "1":
+        "gt0003|How often do you have eight, if men, or six, if female, or more drinks on one occasion?": 0|local::at0020|Never|
+        gt0005|How often during the last year have you failed to do what was normally expected of you because of your drinking?: 0|local::at0014|Never|
+        "gt0006|Has a relative or friend, a doctor or other health worker been concerned about your drinking or suggested you cut down?": 0|local::at0026|No|
+    expected_output:
+      "1": {}
+  - id: 04. Question 3 missing (negative test).
+    input:
+      "1":
+        "gt0003|How often do you have eight, if men, or six, if female, or more drinks on one occasion?": 0|local::at0020|Never|
+        gt0004|How often during the last year have you been unable to remember what happened the night before because you had been drinking?: 1|local::at0009|Less than monthly|
+        "gt0006|Has a relative or friend, a doctor or other health worker been concerned about your drinking or suggested you cut down?": 0|local::at0026|No|
+    expected_output:
+      "1": {}
+  - id: 05. Question 4 missing (negative test).
+    input:
+      "1":
+        "gt0003|How often do you have eight, if men, or six, if female, or more drinks on one occasion?": 0|local::at0020|Never|
+        gt0004|How often during the last year have you been unable to remember what happened the night before because you had been drinking?: 1|local::at0009|Less than monthly|
+        gt0005|How often during the last year have you failed to do what was normally expected of you because of your drinking?: 1|local::at0015|Less than monthly|
+    expected_output:
+      "1": {}
+  - id: 06. Total score 0
+    input:
+      "1":
+        "gt0003|How often do you have eight, if men, or six, if female, or more drinks on one occasion?": 0|local::at0020|Never|
+        gt0004|How often during the last year have you been unable to remember what happened the night before because you had been drinking?: 0|local::at0008|Never|
+        gt0005|How often during the last year have you failed to do what was normally expected of you because of your drinking?: 0|local::at0014|Never|
+        "gt0006|Has a relative or friend, a doctor or other health worker been concerned about your drinking or suggested you cut down?": 0|local::at0026|No|
+    expected_output:
+      "1": {}
+  - id: 06. Total score 16
+    input:
+      "1":
+        "gt0003|How often do you have eight, if men, or six, if female, or more drinks on one occasion?": 4|local::at0024|Daily or almost daily|
+        gt0004|How often during the last year have you been unable to remember what happened the night before because you had been drinking?: 4|local::at0012|Daily or almost daily|
+        gt0005|How often during the last year have you failed to do what was normally expected of you because of your drinking?: 4|local::at0018|Daily or almost daily|
+        "gt0006|Has a relative or friend, a doctor or other health worker been concerned about your drinking or suggested you cut down?": 4|local::at0028|Yes, in the last year|
+    expected_output:
+      "1": {}
+  - id: 07. Total score 04
+    input:
+      "1":
+        "gt0003|How often do you have eight, if men, or six, if female, or more drinks on one occasion?": 4|local::at0024|Daily or almost daily|
+        gt0004|How often during the last year have you been unable to remember what happened the night before because you had been drinking?: 0|local::at0008|Never|
+        gt0005|How often during the last year have you failed to do what was normally expected of you because of your drinking?: 0|local::at0014|Never|
+        "gt0006|Has a relative or friend, a doctor or other health worker been concerned about your drinking or suggested you cut down?": 0|local::at0026|No|
+    expected_output:
+      "1": {}
+  - id: 08. Total score 09
+    input:
+      "1":
+        "gt0003|How often do you have eight, if men, or six, if female, or more drinks on one occasion?": 4|local::at0024|Daily or almost daily|
+        gt0004|How often during the last year have you been unable to remember what happened the night before because you had been drinking?: 2|local::at0010|Monthly|
+        gt0005|How often during the last year have you failed to do what was normally expected of you because of your drinking?: 3|local::at0017|Weekly|
+        "gt0006|Has a relative or friend, a doctor or other health worker been concerned about your drinking or suggested you cut down?": 0|local::at0026|No|
+    expected_output:
+      "1": {}
