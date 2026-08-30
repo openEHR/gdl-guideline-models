@@ -1,0 +1,138 @@
+archetype (adl_version=1.4; uid=e1844c2f-0c79-4d1e-9739-d530fc56c5ff)
+	openEHR-EHR-OBSERVATION.left_atrial_pressure.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-08-27">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and the calculated LAP.
+">
+			keywords = <"lap","left","atrial","pressure","cardiology","heart","failure","systolic","pressure","regurgitation","mitral">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and the calculated LAP.">
+			misuse = <"Do not use to record the results of other calculations other than the LAP calculation">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Gorcsan J 3rd, Snow FR, Paulsen W, Nixon JV. Noninvasive estimation of left atrial pressure in patients with congestive heart failure and mitral regurgitation by Doppler echocardiography. Am Heart J. 1991 Mar;121(3 Pt 1):858-63. doi: 10.1016/0002-8703(91)90199-r. PMID: 2000753.
+
+Nishimura RA, Tajik AJ. Determination of left-sided pressure gradients by utilizing Doppler aortic and mitral regurgitant signals: validation by simultaneous dual catheter and Doppler studies. J Am Coll Cardiol. 1988 Feb;11(2):317-21. doi: 10.1016/0735-1097(88)90096-4. PMID: 3339169.
+
+Ge Z, Zhang Y, Fan D, Zhang M, Duran CM. Simultaneous measurement of left atrial pressure by Doppler echocardiography and catheterization. Int J Cardiol. 1992 Nov;37(2):243-51. doi: 10.1016/0167-5273(92)90215-o. PMID: 1452383.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["build_uid"] = <"adffea41-5512-3378-8dfe-5baf0491fd59">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Left atrial pressure
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Maximum mitral regurgitation velocity
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::338]>
+												list = <
+													["1"] = <
+														units = <"m/s">
+														magnitude = <|>=0.0|>
+														precision = <|3|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"1">
+														precision = <|3|>
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extenstion
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Left atrial pressure">
+					description = <"The left atrial pressure (LAP) defines the left ventricular filling pressure in patients who have systolic or diastolic left ventricular dysfunction or valvular heart disease.">
+					comment = <"Original version, c 1988">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extenstion">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Maximum mitral regurgitation velocity">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Total score">
+					description = <"The total sum of each component parameter for the LAP calculation">
+				>
+			>
+		>
+	>
