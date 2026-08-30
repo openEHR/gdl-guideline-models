@@ -1,0 +1,60 @@
+guidelines:
+  "1": Left_Atrial_Pressure_Calculator.v0.0.1
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Systolic missing (negative test).
+    input:
+      "1":
+        gt0005|Maximum mitral regurgitation velocity: 5.3,m/s
+    expected_output:
+      "1": {}
+  - id: 03. Maximum mitral regurgitation velocity missing (negative test).
+    input:
+      "1":
+        gt0003|Systolic: 120,mm[Hg]
+    expected_output:
+      "1": {}
+  - id: 03. LAP 12 mmHg.
+    input:
+      "1":
+        gt0003|Systolic: 120,mm[Hg]
+        gt0005|Maximum mitral regurgitation velocity: 5.2,m/s
+    expected_output:
+      "1":
+        gt0007|Left Atrial Pressure (LAP): 12,mmHg
+  - id: 04. LAP 09 mmHg.
+    input:
+      "1":
+        gt0003|Systolic: 105,mm[Hg]
+        gt0005|Maximum mitral regurgitation velocity: 4.9,m/s
+    expected_output:
+      "1":
+        gt0007|Left Atrial Pressure (LAP): 9,mmHg
+  - id: 05. LAP 05 mmHg.
+    input:
+      "1":
+        gt0003|Systolic: 140,mm[Hg]
+        gt0005|Maximum mitral regurgitation velocity: 5.8,m/s
+    expected_output:
+      "1":
+        gt0007|Left Atrial Pressure (LAP): 5,mmHg
+  - id: 06. LAP 01 mmHg.
+    input:
+      "1":
+        gt0003|Systolic: 145,mm[Hg]
+        gt0005|Maximum mitral regurgitation velocity: 6,m/s
+    expected_output:
+      "1":
+        gt0007|Left Atrial Pressure (LAP): 1,mmHg
+  - id: 07. LAP 20 mmHg.
+    input:
+      "1":
+        gt0003|Systolic: 145,mm[Hg]
+        gt0005|Maximum mitral regurgitation velocity: 5.6,m/s
+    expected_output:
+      "1":
+        gt0007|Left Atrial Pressure (LAP): 20,mmHg
