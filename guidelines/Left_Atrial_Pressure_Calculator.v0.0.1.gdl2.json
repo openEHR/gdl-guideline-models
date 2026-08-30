@@ -1,0 +1,180 @@
+{
+  "uuid" : "83904c5a-6601-4e50-86a6-5c40af861b64",
+  "id" : "Left_Atrial_Pressure_Calculator.v0.0.1",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Kevin Arjona",
+      "email" : "kevin.arjona@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-08-27"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate the LAP using Doppler echocardiography parameters.",
+        "keywords" : [
+          "lap",
+          "left",
+          "atrial",
+          "pressure",
+          "echocardiography",
+          "dysfunction",
+          "heart",
+          "failure",
+          "cardiology",
+          "systolic",
+          "regurgitation",
+          "mitral"
+        ],
+        "use" : "Use to calculate LAP using the maximum mitral regurgitation velocity and systolic blood pressure\n\nFormula:\n\nLeft atrial pressure = SBP – 4 x (MR VMAX)2\n\nWhere:\n\nMR VMAX = maximum mitral regurgitation velocity\nSBP = systolic blood pressure",
+        "misuse" : "Do not use in patients with heavy mitral annular calcification, mitral valve prostheses, severe mitral stenosis, or severe mitral regurgitation without clinical adjustment.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Gorcsan J 3rd, Snow FR, Paulsen W, Nixon JV. Noninvasive estimation of left atrial pressure in patients with congestive heart failure and mitral regurgitation by Doppler echocardiography. Am Heart J. 1991 Mar;121(3 Pt 1):858-63. doi: 10.1016/0002-8703(91)90199-r. PMID: 2000753.\n\nNishimura RA, Tajik AJ. Determination of left-sided pressure gradients by utilizing Doppler aortic and mitral regurgitant signals: validation by simultaneous dual catheter and Doppler studies. J Am Coll Cardiol. 1988 Feb;11(2):317-21. doi: 10.1016/0735-1097(88)90096-4. PMID: 3339169.\n\nGe Z, Zhang Y, Fan D, Zhang M, Duran CM. Simultaneous measurement of left atrial pressure by Doppler echocardiography and catheterization. Int J Cardiol. 1992 Nov;37(2):243-51. doi: 10.1016/0167-5273(92)90215-o. PMID: 1452383.",
+      "en" : "using the maximum mitral regurgitation velocity and systolic blood pressure"
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.blood_pressure.v2",
+        "template_id" : "openEHR-EHR-OBSERVATION.blood_pressure.v2",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0006]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mm[Hg]"
+            ]
+          }
+        }
+      },
+      "gt0004" : {
+        "id" : "gt0004",
+        "model_id" : "openEHR-EHR-OBSERVATION.left_atrial_pressure.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.left_atrial_pressure.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "m/s"
+            ]
+          }
+        }
+      },
+      "gt0006" : {
+        "id" : "gt0006",
+        "model_id" : "openEHR-EHR-OBSERVATION.left_atrial_pressure.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.left_atrial_pressure.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "1"
+            ]
+          }
+        }
+      },
+      "gt0010" : {
+        "id" : "gt0010",
+        "model_id" : "openEHR-EHR-EVALUATION.health_risk.v1",
+        "template_id" : "openEHR-EHR-EVALUATION.health_risk.v1",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0011" : {
+            "id" : "gt0011",
+            "path" : "/data[at0001]/items[at0015]",
+            "data_type" : "DV_TEXT"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0008" : {
+        "id" : "gt0008",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|Systolic|!=null",
+          "$gt0005|Maximum mitral regurgitation velocity|!=null"
+        ],
+        "then" : [
+          "$gt0007|Left Atrial Pressure (LAP)|.magnitude=$gt0003|Systolic|.magnitude-(4*($gt0005|Maximum mitral regurgitation velocity|.magnitude^2))",
+          "$gt0007|Left Atrial Pressure (LAP)|.unit='mmHg'",
+          "$gt0011|LAP normal range|=$gt0009|6 – 12 mmHg|.term"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Left Atrial Pressure Calculator",
+            "description" : "Estimates Left Atrial Pressure (LAP) using the maximum mitral regurgitation velocity and systolic blood pressure"
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.blood_pressure.v2"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Systolic"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "openEHR-EHR-OBSERVATION.left_atrial_pressure.v0"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Maximum mitral regurgitation velocity"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "openEHR-EHR-OBSERVATION.left_atrial_pressure.v0"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Left Atrial Pressure (LAP)"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Calculates LAP ",
+            "description" : "Left atrial pressure = SBP – 4 x (MR VMAX)2"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "6 – 12 mmHg"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "openEHR-EHR-EVALUATION.health_risk.v1"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "LAP normal range"
+          }
+        }
+      }
+    }
+  }
+}
