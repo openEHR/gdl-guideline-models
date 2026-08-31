@@ -18,14 +18,11 @@ description
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"To standardise interpretation of ionized calcium values in patients with acid–base disturbances by correcting measured values to physiologic pH (7.40), thereby improving comparability and clinical assessment.">
+			purpose = <"To record the input parameters and the result of the pH-corrected calcium calculation.">
 			keywords = <"ionized calcium, pH correction, acid-base balance, hypocalcemia, hypercalcemia, blood gas analysis, critical care", ...>
 			copyright = <"Use © Cambio CDS ">
-			use = <"Intended for use in adult patients undergoing blood gas analysis where ionised calcium and pH are measured from the same blood sample. Supports interpretation in emergency medicine, intensive care, perioperative care, and metabolic evaluation.">
-			misuse = <"Not intended for use with total serum calcium.
-Not validated in extreme pH values outside physiologic range (e.g., <6.8 or >7.8).
-Should not be used as a standalone diagnostic tool without clinical context.
-Not validated in severe protein-binding disorders or extreme hypoalbuminemia.">
+			use = <"Use to record the total calcium, albumin, and pH values, along with the calculated pH-corrected calcium result.">
+			misuse = <"Not to be used as a substitute for ionized calcium measurement in critically ill patients or those with significant acid-base disturbances.">
 		>
 	>
 	other_details = <
@@ -35,7 +32,7 @@ Not validated in severe protein-binding disorders or extreme hypoalbuminemia.">
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"f68402d786e385008b877dfa93b9c67a">
+		["MD5-CAM-1.0.1"] = <"2c23b7c8632005ed6c082678f53deb0a">
 		["build_uid"] = <"7875e38d-88f4-365e-a02f-fc96094280d9">
 	>
 
@@ -51,11 +48,10 @@ definition
 									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Calcium ion
 										value matches {
 											C_DV_QUANTITY <
-												property = <[openehr::384]>
+												
 												list = <
 													["1"] = <
-														units = <"mmol">
-														magnitude = <|0.5..2.0|>
+														units = <"mmol/L">
 													>
 												>
 											>
@@ -64,17 +60,16 @@ definition
 									ELEMENT[at0005] occurrences matches {0..1} matches {    -- pH
 										value matches {
 											C_DV_QUANTITY <
-												property = <[openehr::380]>
+												property = <[openehr::507]>
 												list = <
 													["1"] = <
 														units = <"1">
-														magnitude = <|6.8..7.8|>
 													>
 												>
 											>
 										}
 									}
-									ELEMENT[at0006] occurrences matches {0..1} matches {    -- output
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- pH-corrected calcium
 										value matches {
 											C_DV_QUANTITY <
 												
@@ -104,7 +99,7 @@ ontology
 			items = <
 				["at0000"] = <
 					text = <"ph_corrected_calcium">
-					description = <"Adjusts measured ionized calcium concentration to a standardized pH of 7.40 to account for pH-dependent alterations in calcium–protein binding. Based on the established observation that ionized calcium changes approximately 5% for each 0.1 unit deviation in pH from 7.40.">
+					description = <"Assessment tool used to estimate the physiologically active calcium level adjusted for pH.">
 					comment = <"Original version, c 1981">
 				>
 				["at0001"] = <
@@ -128,7 +123,7 @@ ontology
 					description = <"">
 				>
 				["at0006"] = <
-					text = <"output">
+					text = <"pH-corrected calcium">
 					description = <"">
 				>
 				["at0007"] = <
