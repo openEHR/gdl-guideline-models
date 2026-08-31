@@ -1,0 +1,269 @@
+{
+  "uuid" : "c4ed9998-f0e1-48f6-a5ee-54aeb917c67a",
+  "id" : "Goteborg_university_cirrhosis_index_GUCI.v0.1.0",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Mahmoud Elachi",
+      "email" : "mel.achi@gmail.com",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-06-11"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate the GUCI score to estimate the probability of liver cirrhosis in adult patients with chronic hepatitis C.",
+        "keywords" : [
+          "GUCI",
+          "cirrhosis",
+          "hepatitis",
+          "fibrosis",
+          "liver",
+          "antiviral",
+          "INR",
+          "platelets",
+          "AST"
+        ],
+        "use" : "Use in adult patients with chronic hepatitis C.\nGUCI &lt; 1.0 is associated with low risk of liver cirrhosis (NPV 97%).\nGUCI &lt; 0.33 is associated with 80% probability of sustained virological response to antiviral therapy (interferon and ribavirin).\nGUCI &gt; 1.11 corresponds to a sustained virological response rate of only 20%.",
+        "misuse" : "Not validated for other liver diseases, acute hepatic conditions, or pediatric patients, and must not replace clinical judgment, imaging, elastography, or biopsy when indicated.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Islam S, Antonsson L, Westin J, Lagging M. Cirrhosis in hepatitis C virus-infected patients can be excluded using an index of standard biochemical serum markers. Scand J Gastroenterol. 2005 Jul;40(7):867-72. doi: 10.1080/00365520510015674. PMID: 16109665.\n\nWestin J, Ydreborg M, Islam S, Alsiö A, Dhillon AP, Pawlotsky JM, Zeuzem S, Schalm SW, Ferrari C, Neumann AU, Hellstrand K, Lagging M; DITTO-HCV Study Group. A non-invasive fibrosis score predicts treatment outcome in chronic hepatitis C virus infection. Scand J Gastroenterol. 2008 Jan;43(1):73-80. doi: 10.1080/00365520701514461. PMID: 18938750.",
+      "en" : "Calculates the Göteborg University Cirrhosis Index (GUCI) to estimate the probability of liver cirrhosis in patients with chronic hepatitis C."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mmol/L"
+            ]
+          }
+        },
+        "predicates" : [
+          "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024] is_a local::gt0006|AST code|"
+        ]
+      },
+      "gt0013" : {
+        "id" : "gt0013",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0014" : {
+            "id" : "gt0014",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "L"
+            ]
+          }
+        },
+        "predicates" : [
+          "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024] is_a local::gt0016|TPK code|"
+        ]
+      },
+      "gt0017" : {
+        "id" : "gt0017",
+        "model_id" : "openEHR-EHR-OBSERVATION.guci_index.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.guci_index.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0018" : {
+            "id" : "gt0018",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type" : "DV_QUANTITY"
+          }
+        }
+      },
+      "gt0019" : {
+        "id" : "gt0019",
+        "model_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0020" : {
+            "id" : "gt0020",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024]",
+            "data_type" : "DV_TEXT"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0001]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "1"
+            ]
+          }
+        },
+        "predicates" : [
+          "/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1]/items[at0024] is_a local::gt0021|PK-INR result|"
+        ]
+      },
+      "gt0022" : {
+        "id" : "gt0022",
+        "model_id" : "openEHR-EHR-OBSERVATION.guci_index.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.guci_index.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0023" : {
+            "id" : "gt0023",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0010]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mmol"
+            ]
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0005" : {
+        "id" : "gt0005",
+        "priority" : 1,
+        "when" : [
+          "$gt0004|AST result|!=null",
+          "$gt0015|TPK result|!=null",
+          "$gt0021|PK-INR result|!=null",
+          "$gt0023|Upper reference|!=null"
+        ],
+        "then" : [
+          "$gt0018|GUCI-score|.magnitude=($gt0004|AST result|.magnitude*$gt0021|PK-INR result|.magnitude*100)/($gt0015|TPK result|.magnitude*$gt0023|Upper reference|.magnitude)",
+          "$gt0018|GUCI-score|.precision=2",
+          "$gt0018|GUCI-score|.unit='1'"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Göteborg University Cirrhosis Index (GUCI)",
+            "description" : "Calculates the Göteborg University Cirrhosis Index (GUCI) to estimate the probability of liver cirrhosis in patients with chronic hepatitis C."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "AST"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "AST result"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "AST code"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Upper reference code"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "TPK"
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "TPK result"
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "TPK code"
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "openEHR-EHR-OBSERVATION.guci_index.v0"
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "GUCI-score"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "Calculate GUCI score",
+            "description" : "GUCI = (AST * PK-INR * 100) / (TPK * Ref)"
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "PK-INR"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "PK-INR result"
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "openEHR-EHR-OBSERVATION.guci_index.v0"
+          },
+          "gt0023" : {
+            "id" : "gt0023",
+            "text" : "Upper reference"
+          }
+        }
+      }
+    },
+    "term_bindings" : {
+      "NPU" : {
+        "id" : "NPU",
+        "bindings" : {
+          "gt0006" : {
+            "codes" : [
+              "NPU::NPU01324"
+            ]
+          },
+          "gt0016" : {
+            "codes" : [
+              "NPU::NPU03568"
+            ]
+          },
+          "gt0021" : {
+            "codes" : [
+              "NPU::NPU01685"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
