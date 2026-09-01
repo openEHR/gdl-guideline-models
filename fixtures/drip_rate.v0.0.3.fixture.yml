@@ -1,0 +1,52 @@
+guidelines:
+  "1": drip_rate.v0.0.3
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. No time (negative test)
+    input:
+      "1":
+        gt0017|Quantity: 15,ml
+    expected_output:
+      "1": {}
+  - id: 3. No quantity (negative test)
+    input:
+      "1":
+        gt0018|Time: 1,h
+    expected_output:
+      "1": {}
+  - id: 4. Input (quantity 15, time1)
+    input:
+      "1":
+        gt0017|Quantity: 15,ml
+        gt0018|Time: 1,h
+    expected_output:
+      "1":
+        gt0020|Drops / min: 5,min
+  - id: 5. Input (quantity 50, time 4)
+    input:
+      "1":
+        gt0017|Quantity: 50,ml
+        gt0018|Time: 4,h
+    expected_output:
+      "1":
+        gt0020|Drops / min: 4,min
+  - id: 6. Input (quantity 1, time 1)
+    input:
+      "1":
+        gt0017|Quantity: 1,ml
+        gt0018|Time: 1,h
+    expected_output:
+      "1":
+        gt0020|Drops / min: 0,min
+  - id: 7. Input (quantity 150, time 5)
+    input:
+      "1":
+        gt0017|Quantity: 150,ml
+        gt0018|Time: 5,h
+    expected_output:
+      "1":
+        gt0020|Drops / min: 10,min
