@@ -1,0 +1,24 @@
+guidelines:
+  "1": Brinavess_infusion.v0.1.1-draft
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Case under 113 kg
+    input:
+      "1":
+        gt0006|Weight: 70,kg
+    expected_output:
+      "1":
+        gt0019|Infusion 1: 315.0,mL/h
+        gt0021|Infusion 2: 210.0,mL/h
+  - id: 03. Case over 113 kg
+    input:
+      "1":
+        gt0006|Weight: 131,kg
+    expected_output:
+      "1":
+        gt0019|Infusion 1: 508.5,mL/h
+        gt0021|Infusion 2: 339.0,mL/h
