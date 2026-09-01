@@ -1,0 +1,158 @@
+{
+  "uuid" : "6b1bb7d8-979a-40fc-b3aa-a036a77da7f3",
+  "id" : "pH_corrected_calcium.v0.1.0",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Mahmoud Elachi",
+      "email" : "mel.achi@gmail.com",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-08-31"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To estimate the biologically active calcium level when ionized calcium is unavailable, adjusted for pH and albumin.",
+        "keywords" : [
+          "calcium",
+          "ionized",
+          "pH",
+          "corrected",
+          "Fogh",
+          "Andersen",
+          "hypocalcemia",
+          "hypercalcemia",
+          "acid",
+          "base"
+        ],
+        "use" : "Use in patients with abnormal albumin or acid-base disturbances to assess true calcium status.",
+        "misuse" : "Not to be used as a replacement for direct ionized calcium measurement, particularly in critically ill patients or those with significant protein abnormalities.",
+        "copyright" : "Â© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Fogh-Andersen N. Ionized calcium analyzer with a built-in pH correction. Clin Chem. 1981 Jul;27(7):1264-7. PMID: 7237795.",
+      "en" : "Estimates ionised calcium concentration adjusted to physiologic pH (7.40) based on the experimentally observed relationship between pH and ionised calcium."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0009" : {
+        "id" : "gt0009",
+        "model_id" : "openEHR-EHR-OBSERVATION.ph_corrected_calcium.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.ph_corrected_calcium.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0010" : {
+            "id" : "gt0010",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mmol/L"
+            ]
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "1"
+            ]
+          }
+        }
+      },
+      "gt0012" : {
+        "id" : "gt0012",
+        "model_id" : "openEHR-EHR-OBSERVATION.ph_corrected_calcium.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.ph_corrected_calcium.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0013" : {
+            "id" : "gt0013",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mmol/L"
+            ]
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0008" : {
+        "id" : "gt0008",
+        "priority" : 2,
+        "when" : [
+          "$gt0011|pH|!=null"
+        ],
+        "then" : [
+          "$gt0008|Calculate pH correction factor|=1-0.53*(7.4-$gt0011|pH|.magnitude)"
+        ]
+      },
+      "gt0007" : {
+        "id" : "gt0007",
+        "priority" : 1,
+        "when" : [
+          "$gt0008|Calculate pH correction factor|!=null",
+          "$gt0010|Calcium ion|!=null",
+          "$gt0010|Calcium ion|.magnitude>=0.5&&$gt0010|Calcium ion|.magnitude<=2.5",
+          "$gt0011|pH|.magnitude>=6.5&&$gt0011|pH|.magnitude<=8.5"
+        ],
+        "then" : [
+          "$gt0013|pH-corrected calcium|.magnitude=$gt0010|Calcium ion|.magnitude*$gt0008|Calculate pH correction factor|",
+          "$gt0013|pH-corrected calcium|.unit='mmol/L'",
+          "$gt0013|pH-corrected calcium|.precision=2"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "pH corrected calcium",
+            "description" : "Calculates the pH-corrected (physiologically adjusted) calcium level based on total calcium, albumin, and pH."
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Calculate corrected calcium",
+            "description" : "output = Calciumjon * Calculation"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Calculate pH correction factor",
+            "description" : "Calculation = 1 - 0.53 * (7.4 - pH)"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "openEHR-EHR-OBSERVATION.ph_corrected_calcium.v0"
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Calcium ion"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "pH"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "openEHR-EHR-OBSERVATION.ph_corrected_calcium.v0"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "pH-corrected calcium"
+          }
+        }
+      }
+    }
+  }
+}
