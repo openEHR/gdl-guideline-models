@@ -1,0 +1,44 @@
+guidelines:
+  "1": Body_surface_area_dosing_calculation.v0.1.0-draft
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Body surface area missing (negative test).
+    input:
+      "1":
+        gt0022|Dosage (mg/m2): 10,mg/m2
+    expected_output:
+      "1": {}
+  - id: 03. Dosage missing (negative test).
+    input:
+      "1":
+        gt0003|Body surface area: 1.73,m2
+    expected_output:
+      "1": {}
+  - id: 04. BSA 1.73 m2 and dosage 10 mg/m2.
+    input:
+      "1":
+        gt0003|Body surface area: 1.73,m2
+        gt0022|Dosage (mg/m2): 10,mg/m2
+    expected_output:
+      "1":
+        gt0028|Calculated dose (mg): 17.30,mg
+  - id: 05. BSA 2.04 m2 and dosage 9 mg/m2.
+    input:
+      "1":
+        gt0003|Body surface area: 2.04,m2
+        gt0022|Dosage (mg/m2): 9,mg/m2
+    expected_output:
+      "1":
+        gt0028|Calculated dose (mg): 18.36,mg
+  - id: 06. BSA 1.75 m2 and dosage 12 mg/m2.
+    input:
+      "1":
+        gt0003|Body surface area: 1.75,m2
+        gt0022|Dosage (mg/m2): 12,mg/m2
+    expected_output:
+      "1":
+        gt0028|Calculated dose (mg): 21.00,mg
