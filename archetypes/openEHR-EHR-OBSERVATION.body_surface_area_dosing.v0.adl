@@ -18,13 +18,11 @@ description
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"To record the target dose and the formula used for BSA calculation.">
-			keywords = <"bsa, body, surface, area, dubois, mosteller, haycock, dosing, chemotherapy, oncology, pharmacology", ...>
+			purpose = <"To record the prescribed medication dosage used to calculate a dose from body surface area.">
+			keywords = <"bsa, body, surface, area, dosing, dosage, chemotherapy, oncology, pharmacology", ...>
 			copyright = <"© Cambio CDS">
-			use = <"Use to record the targeted pharmacological dose and the formula to calculate the patient's BSA.">
-			misuse = <"Not to be used for calculating weight-based (mg/kg) dosing. 
-
-Not to be used for calculating the BSA value itself use the standard openEHR-EHR-OBSERVATION.body_surface_area.v1 archetype instead.">
+			use = <"Use to record a prescribed medication dosage per square metre of body surface area.">
+			misuse = <"Not to be used to calculate body surface area or for weight-based dosing.">
 		>
 	>
 	other_details = <
@@ -51,19 +49,20 @@ definition
 						data matches {
 							ITEM_TREE[at0003] matches {    -- Tree
 								items cardinality matches {0..*; unordered} matches {
-									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Formula
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Dosage
 										value matches {
-											DV_CODED_TEXT matches {
-												defining_code matches {
-													[local::
-													at0008,    -- Du Bois
-													at0009,    -- Mosteller
-													at0010]    -- Haycock
-												}
-											}
+											C_DV_QUANTITY <
+												property = <[openehr::124]>
+												list = <
+													["1"] = <
+														units = <"mg/m2">
+														precision = <|3|>
+													>
+												>
+											>
 										}
 									}
-									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Dosage
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Calculated dose
 										value matches {
 											C_DV_QUANTITY <
 												property = <[openehr::124]>
@@ -101,7 +100,7 @@ ontology
 			items = <
 				["at0000"] = <
 					text = <"Body surface area dosing">
-					description = <"Calculation of a total drug dose based on a target dose per square meter of Body Surface Area (BSA).">
+					description = <"Records a prescribed medication dosage per square metre of body surface area.">
 					comment = <"Original version, c 1916. ">
 				>
 				["at0001"] = <
@@ -125,25 +124,13 @@ ontology
 					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
 					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
 				>
-				["at0006"] = <
-					text = <"Formula">
-					description = <"">
-				>
 				["at0007"] = <
 					text = <"Dosage">
-					description = <"">
+					description = <"Prescribed medication dose per square metre of body surface area.">
 				>
-				["at0008"] = <
-					text = <"Du Bois">
-					description = <"">
-				>
-				["at0009"] = <
-					text = <"Mosteller">
-					description = <"">
-				>
-				["at0010"] = <
-					text = <"Haycock">
-					description = <"">
+				["at0011"] = <
+					text = <"Calculated dose">
+					description = <"Calculated medication dose based on body surface area and prescribed dosage.">
 				>
 			>
 		>
