@@ -1,0 +1,152 @@
+{
+  "uuid" : "66021183-823a-4242-8fce-d57c4660925a",
+  "id" : "Body_surface_area_dosing_calculation.v0.1.0-draft",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Kevin Arjona",
+      "email" : "kevin.arjona@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-04-13"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To calculate a medication dose from a recorded body surface area and prescribed dosage.",
+        "keywords" : [
+          "body surface area",
+          "bsa",
+          "medication",
+          "dose",
+          "dosing"
+        ],
+        "use" : "Use to calculate a prescribed medication dose in mg from the patient's recorded body surface area in m2 and a prescribed dosage in mg/m2.",
+        "misuse" : "Not to be used to calculate body surface area from height and weight, or for weight-based dosing.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Du Bois D, Du Bois EF. A formula to estimate the approximate surface area if height and weight be known. 1916. Nutrition. 1989 Sep-Oct;5(5):303-11; discussion 312-3. PMID: 2520314.\n\nMosteller RD. Simplified calculation of body-surface area. N Engl J Med. 1987 Oct 22;317(17):1098. doi: 10.1056/NEJM198710223171717. PMID: 3657876.\n\nWu Q, Zhou Y, Fan X, Ma H, Gu W, Sun F. Evaluation of nine formulas for estimating the body surface area of children with hematological malignancies. Front Pediatr. 2022 Sep 7;10:989049. doi: 10.3389/fped.2022.989049. PMID: 36160791; PMCID: PMC9489993.",
+      "en" : "Calculates a medication dose from recorded body surface area and prescribed dosage."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.body_surface_area.v1",
+        "template_id" : "openEHR-EHR-OBSERVATION.body_surface_area.v1",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "m2"
+            ]
+          }
+        }
+      },
+      "gt0021" : {
+        "id" : "gt0021",
+        "model_id" : "openEHR-EHR-OBSERVATION.body_surface_area_dosing.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.body_surface_area_dosing.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0022" : {
+            "id" : "gt0022",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mg/m2"
+            ]
+          }
+        }
+      },
+      "gt0026" : {
+        "id" : "gt0026",
+        "model_id" : "openEHR-EHR-OBSERVATION.body_surface_area_dosing.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.body_surface_area_dosing.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0028" : {
+            "id" : "gt0028",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0011]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mg"
+            ]
+          }
+        }
+      }
+    },
+    "pre_conditions" : [
+      "$gt0003|Body surface area|!=null",
+      "$gt0022|Dosage|!=null"
+    ],
+    "rules" : {
+      "gt0020" : {
+        "id" : "gt0020",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|Body surface area|.unit=='m2'",
+          "$gt0022|Dosage|.unit=='mg/m2'"
+        ],
+        "then" : [
+          "$gt0028|Calculated dose|.magnitude=$gt0022|Dosage|.magnitude*$gt0003|Body surface area|.magnitude",
+          "$gt0028|Calculated dose|.precision=2",
+          "$gt0028|Calculated dose|.unit='mg'"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Body surface area dosing calculation",
+            "description" : "Calculates a medication dose from body surface area and prescribed dosage."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.body_surface_area.v1"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Body surface area"
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "Calculate medication dose",
+            "description" : "Calculates the medication dose in mg from body surface area and dosage."
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "openEHR-EHR-OBSERVATION.body_surface_area_dosing.v0"
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "Dosage"
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "text" : "openEHR-EHR-OBSERVATION.body_surface_area_dosing.v0"
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "text" : "Calculated dose"
+          }
+        }
+      }
+    }
+  }
+}
