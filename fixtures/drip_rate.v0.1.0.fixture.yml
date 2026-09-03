@@ -1,0 +1,66 @@
+guidelines:
+  "1": drip_rate.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. No time (negative test)
+    input:
+      "1":
+        gt0010|Infusion amount: 5,mL
+    expected_output:
+      "1": {}
+  - id: 3. No quantity (negative test)
+    input:
+      "1":
+        gt0011|Infusion time: 1,h
+    expected_output:
+      "1": {}
+  - id: 4. negative Infusion amount  (negative test)
+    input:
+      "1":
+        gt0010|Infusion amount: -15,mL
+        gt0011|Infusion time: 1,h
+    expected_output:
+      "1": {}
+  - id: 5. negative Infusion time  (negative test)
+    input:
+      "1":
+        gt0010|Infusion amount: 5,mL
+        gt0011|Infusion time: -1,h
+    expected_output:
+      "1": {}
+  - id: 6. Infusion amount 20ml, time 2h
+    input:
+      "1":
+        gt0010|Infusion amount: 20,mL
+        gt0011|Infusion time: 2,h
+    expected_output:
+      "1":
+        gt0013|Calculated drop rate: 3,drops/min
+  - id: 7. Infusion amount 50ml, time 4h
+    input:
+      "1":
+        gt0010|Infusion amount: 50,mL
+        gt0011|Infusion time: 4,h
+    expected_output:
+      "1":
+        gt0013|Calculated drop rate: 4,drops/min
+  - id: 8. Infusion amount 1ml, time 1h
+    input:
+      "1":
+        gt0010|Infusion amount: 1,mL
+        gt0011|Infusion time: 1,h
+    expected_output:
+      "1":
+        gt0013|Calculated drop rate: 0,drops/min
+  - id: 9. Infusion amount 150ml, time 5h
+    input:
+      "1":
+        gt0010|Infusion amount: 150,mL
+        gt0011|Infusion time: 5,h
+    expected_output:
+      "1":
+        gt0013|Calculated drop rate: 10,drops/min
