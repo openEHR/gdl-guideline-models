@@ -1,0 +1,146 @@
+archetype (adl_version=1.4; uid=fb550990-bf1e-4be7-9f09-7f3309a71661)
+	openEHR-EHR-OBSERVATION.ckid_u25_egfr_result.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-09-07">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"Author draft">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record eGFR results derived from the CKiD U25 equations.">
+			keywords = <"ckid", "egfr", "gfr", "pediatric", "renal", "kidney", "nephrology", "creatinine", "cystatin c">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record creatinine-based, cystatin C-based, and combined creatinine-cystatin C eGFR estimates calculated using the CKiD U25 equations.">
+			misuse = <"Not to be used for measured GFR or for eGFR equations other than CKiD U25.">
+		>
+	>
+	other_details = <
+		["licence"] = <"">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Pierce CB, Muñoz A, Ng DK, Warady BA, Furth SL, Schwartz GJ. Age- and sex-dependent clinical equations to estimate glomerular filtration rates in children and young adults with chronic kidney disease. Kidney Int. 2021 Apr;99(4):948-956. doi: 10.1016/j.kint.2020.10.047.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- CKiD U25 eGFR result
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Estimated GFR by CKiD U25 Creatinine
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::586]>
+												list = <
+													["1"] = <
+														units = <"ml/min/1.73m2">
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Estimated GFR by CKiD U25 Cystatin C
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::586]>
+												list = <
+													["1"] = <
+														units = <"ml/min/1.73m2">
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Estimated GFR by CKiD U25 Creatinine-Cystatin C
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::586]>
+												list = <
+													["1"] = <
+														units = <"ml/min/1.73m2">
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0007] matches {    -- Tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0008] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"CKiD U25 eGFR result">
+					description = <"Calculated eGFR results derived from the CKiD U25 equations.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Estimated GFR by CKiD U25 Creatinine">
+					description = <"Creatinine-based CKiD U25 estimated glomerular filtration rate, normalised to 1.73 m2 body surface area.">
+				>
+				["at0005"] = <
+					text = <"Estimated GFR by CKiD U25 Cystatin C">
+					description = <"Cystatin C-based CKiD U25 estimated glomerular filtration rate, normalised to 1.73 m2 body surface area.">
+				>
+				["at0006"] = <
+					text = <"Estimated GFR by CKiD U25 Creatinine-Cystatin C">
+					description = <"Combined creatinine-cystatin C CKiD U25 estimated glomerular filtration rate, normalised to 1.73 m2 body surface area.">
+				>
+				["at0007"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0008"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+				>
+			>
+		>
+	>
