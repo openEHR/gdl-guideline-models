@@ -1,0 +1,167 @@
+archetype (adl_version=1.4; uid=8e6fd13c-8f8b-4d09-9fda-8ec2d9f1ad3c)
+	openEHR-EHR-EVALUATION.eye_diseases_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-09-07">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"Author draft">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the most likely eye disease and diagnosis-specific symptom hit counts derived from the eye symptom assessment matrix.">
+			keywords = <"eye", "ophthalmology", "diagnosis", "likelihood", "assessment">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the most likely eye disease and the symptom hit counts for acute glaucoma, retinal detachment, keratitis, iritis, posterior vitreous detachment, conjunctivitis, and macular degeneration.">
+			misuse = <"Not to be used as a standalone diagnostic tool or for traumatic eye injuries. The output must be interpreted by a healthcare professional.">
+		>
+	>
+	other_details = <
+		["licence"] = <"">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Ögonbesvär, lathund. Praktisk Medicin [Internet]. 2025 [cited 2026 May 23]. Available from: https://www.praktiskmedicin.se/sjukdomar/ogonbesvar-lathund/
+
+Ögonsjukdomar kalkylator. Internetmedicin [Internet]. 2025 [cited 2026 May 23]. Available from: https://verktyg.internetmedicin.se/kalkylatorer/ogonsjukdomar">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Eye diseases assessment
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- Most likely diagnosis
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0003] occurrences matches {0..1} matches {    -- Acute glaucoma hit count
+						value matches {
+							DV_COUNT matches {
+								magnitude matches {|0..3|}
+							}
+						}
+					}
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Retinal detachment hit count
+						value matches {
+							DV_COUNT matches {
+								magnitude matches {|0..3|}
+							}
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {    -- Keratitis hit count
+						value matches {
+							DV_COUNT matches {
+								magnitude matches {|0..4|}
+							}
+						}
+					}
+					ELEMENT[at0006] occurrences matches {0..1} matches {    -- Iritis hit count
+						value matches {
+							DV_COUNT matches {
+								magnitude matches {|0..4|}
+							}
+						}
+					}
+					ELEMENT[at0007] occurrences matches {0..1} matches {    -- Posterior vitreous detachment hit count
+						value matches {
+							DV_COUNT matches {
+								magnitude matches {|0..2|}
+							}
+						}
+					}
+					ELEMENT[at0008] occurrences matches {0..1} matches {    -- Conjunctivitis hit count
+						value matches {
+							DV_COUNT matches {
+								magnitude matches {|0..3|}
+							}
+						}
+					}
+					ELEMENT[at0009] occurrences matches {0..1} matches {    -- Macular degeneration hit count
+						value matches {
+							DV_COUNT matches {
+								magnitude matches {|0..1|}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0010] matches {    -- Tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0011] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Eye diseases assessment">
+					description = <"Clinical decision-support assessment representing the most likely eye disease and symptom hit counts from the eye disease matrix.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Most likely diagnosis">
+					description = <"Diagnosis with the highest symptom hit count after applying the predefined tie-priority order.">
+				>
+				["at0003"] = <
+					text = <"Acute glaucoma hit count">
+					description = <"Number of acute glaucoma matrix symptoms present: red eye, eye pain, and halos around lights. Range 0-3.">
+				>
+				["at0004"] = <
+					text = <"Retinal detachment hit count">
+					description = <"Number of retinal detachment matrix symptoms present: floaters, flashes of light, and dark shadow in visual field. Range 0-3.">
+				>
+				["at0005"] = <
+					text = <"Keratitis hit count">
+					description = <"Number of keratitis matrix symptoms present: red eye, foreign body sensation, photophobia, and eye pain. Range 0-4.">
+				>
+				["at0006"] = <
+					text = <"Iritis hit count">
+					description = <"Number of iritis matrix symptoms present: red eye, photophobia, eye pain, and floaters. Range 0-4.">
+				>
+				["at0007"] = <
+					text = <"Posterior vitreous detachment hit count">
+					description = <"Number of posterior vitreous detachment matrix symptoms present: floaters and flashes of light. Range 0-2.">
+				>
+				["at0008"] = <
+					text = <"Conjunctivitis hit count">
+					description = <"Number of conjunctivitis matrix symptoms present: red eye, burning or itching, and pus. Range 0-3.">
+				>
+				["at0009"] = <
+					text = <"Macular degeneration hit count">
+					description = <"Number of macular degeneration matrix symptoms present: metamorphopsia. Range 0-1.">
+				>
+				["at0010"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0011"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+				>
+			>
+		>
+	>
