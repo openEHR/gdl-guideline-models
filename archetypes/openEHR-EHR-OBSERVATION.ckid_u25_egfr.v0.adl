@@ -14,19 +14,19 @@ description
 		["organisation"] = <"Cambio CDS">
 		["email"] = <"kevin.arjona@cambio.se">
 	>
-	lifecycle_state = <"unmanaged">
+	lifecycle_state = <"Author draft">
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"To record the input parameters and the calculated result of the CKiD U25 eGFR equation.">
-			keywords = <"ckid, egfr, gfr, pediatric, renal, kidney, nephrology, creatinine, bun", ...>
+			purpose = <"To record the selected CKiD U25 equation and calculated eGFR results.">
+			keywords = <"ckid", "egfr", "gfr", "pediatric", "renal", "kidney", "nephrology", "creatinine", "cystatin c">
 			copyright = <"© Cambio CDS">
-			use = <"In children and young adults (< 25 years) with chronic kidney disease to estimate glomerular filtration rate.">
-			misuse = <"Not to be used in adults aged 25 years or older; use the CKD-EPI equation instead. Not validated for assessing acute kidney injury (AKI) where creatinine levels are unstable. Do not use this archetype as the primary repository for individual data points; use dedicated archetypes such as openEHR-EHR-OBSERVATION.height.v0 for height and openEHR-EHR-OBSERVATION.lab_test-chemistry.v0 for storing serum creatinine and BUN results.">
+			use = <"In children and young adults aged 1 to 25 years with chronic kidney disease to record CKiD U25 eGFR calculation results.">
+			misuse = <"Not to be used in adults older than 25 years; use the CKD-EPI equation instead. Not validated for assessing acute kidney injury (AKI) where creatinine levels are unstable. Not to be used as the primary repository for demographic, height, serum creatinine, or cystatin C inputs; use dedicated archetypes for those source data points.">
 		>
 	>
 	other_details = <
-		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["licence"] = <"">
 		["custodian_organisation"] = <"openEHR Foundation">
 		["references"] = <"Pierce CB, Muñoz A, Ng DK, Warady BA, Furth SL, Schwartz GJ. Age- and sex-dependent clinical equations to estimate glomerular filtration rates in children and young adults with chronic kidney disease. Kidney Int. 2021 Apr;99(4):948-956. doi: 10.1016/j.kint.2020.10.047. Epub 2020 Dec 8. PMID: 33301749; PMCID: PMC9083470.
 
@@ -38,7 +38,7 @@ Ng DK, Furth SL, Warady BA, Crews DC, Seegmiller JC, Schwartz GJ; CKiD Study Inv
 		["build_uid"] = <"4984f704-085b-47b7-a2c1-7e06c9838568">
 	>
 
-definition
+	definition
 	OBSERVATION[at0000] matches {    -- CKiD U25 eGFR
 		data matches {
 			HISTORY[at0001] matches {    -- History
@@ -59,80 +59,40 @@ definition
 											}
 										}
 									}
-									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Sex
-										value matches {
-											DV_CODED_TEXT matches {
-												defining_code matches {
-													[local::
-													at0012,    -- Male
-													at0013]    -- Female
-												}
-											}
-										}
-									}
-									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Estimated GFR by CKiD U25 Creatinine
 										value matches {
 											C_DV_QUANTITY <
-												property = <[openehr::128]>
+												property = <[openehr::586]>
 												list = <
 													["1"] = <
-														units = <"a">
-														magnitude = <|0.0..150.0|>
-														precision = <|3|>
+														units = <"ml/min/1.73m2">
+														precision = <|0|>
 													>
 												>
 											>
 										}
 									}
-									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Height
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Estimated GFR by CKiD U25 Cystatin C
 										value matches {
 											C_DV_QUANTITY <
-												property = <[openehr::122]>
+												property = <[openehr::586]>
 												list = <
 													["1"] = <
-														units = <"cm">
-														magnitude = <|0.0..300.0|>
-														precision = <|3|>
+														units = <"ml/min/1.73m2">
+														precision = <|0|>
 													>
 												>
 											>
 										}
 									}
-									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Serum creatinine
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Estimated GFR by CKiD U25 Creatinine-Cystatin C
 										value matches {
 											C_DV_QUANTITY <
-												property = <[openehr::380]>
+												property = <[openehr::586]>
 												list = <
 													["1"] = <
-														units = <"1">
-														magnitude = <|0.0..10.0|>
-														precision = <|3|>
-													>
-												>
-											>
-										}
-									}
-									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Cystatin C
-										value matches {
-											C_DV_QUANTITY <
-												property = <[openehr::119]>
-												list = <
-													["1"] = <
-														units = <"mg/L">
-														precision = <|3|>
-													>
-												>
-											>
-										}
-									}
-									ELEMENT[at0018] occurrences matches {0..1} matches {    -- k
-										value matches {
-											C_DV_QUANTITY <
-												property = <[openehr::507]>
-												list = <
-													["1"] = <
-														units = <"1">
-														precision = <|3|>
+														units = <"ml/min/1.73m2">
+														precision = <|0|>
 													>
 												>
 											>
@@ -163,7 +123,7 @@ ontology
 			items = <
 				["at0000"] = <
 					text = <"CKiD U25 eGFR">
-					description = <"Records the clinical and laboratory parameters required for the calculation of the estimated Glomerular Filtration Rate (eGFR) using the Chronic Kidney Disease in Children (CKiD) U25 equation.">
+					description = <"Records the selected equation and calculated estimated Glomerular Filtration Rate (eGFR) results using the Chronic Kidney Disease in Children (CKiD) U25 equations.">
 					comment = <"Original version, c 2020">
 				>
 				["at0001"] = <
@@ -189,51 +149,31 @@ ontology
 				>
 				["at0006"] = <
 					text = <"Equation">
-					description = <"">
+					description = <"Selection of the CKiD U25 equation used to estimate glomerular filtration rate.">
 				>
 				["at0007"] = <
 					text = <"CKiD U25 Creatinine">
-					description = <"">
+					description = <"Creatinine-based CKiD U25 eGFR equation using sex, age, height, and serum creatinine.">
 				>
 				["at0008"] = <
 					text = <"CKiD U25 Cystatin C">
-					description = <"">
+					description = <"Cystatin C-based CKiD U25 eGFR equation using sex, age, and cystatin C.">
 				>
 				["at0009"] = <
 					text = <"CKiD U25 Creatinine-Cystatin C">
-					description = <"">
+					description = <"Combined CKiD U25 eGFR equation using creatinine-based and cystatin C-based estimates.">
+				>
+				["at0010"] = <
+					text = <"Estimated GFR by CKiD U25 Creatinine">
+					description = <"Creatinine-based CKiD U25 estimated glomerular filtration rate, normalised to 1.73 m2 body surface area.">
 				>
 				["at0011"] = <
-					text = <"Sex">
-					description = <"">
+					text = <"Estimated GFR by CKiD U25 Cystatin C">
+					description = <"Cystatin C-based CKiD U25 estimated glomerular filtration rate, normalised to 1.73 m2 body surface area.">
 				>
 				["at0012"] = <
-					text = <"Male">
-					description = <"">
-				>
-				["at0013"] = <
-					text = <"Female">
-					description = <"">
-				>
-				["at0014"] = <
-					text = <"Age">
-					description = <"">
-				>
-				["at0015"] = <
-					text = <"Height">
-					description = <"">
-				>
-				["at0016"] = <
-					text = <"Serum creatinine">
-					description = <"">
-				>
-				["at0017"] = <
-					text = <"Cystatin C">
-					description = <"">
-				>
-				["at0018"] = <
-					text = <"k">
-					description = <"">
+					text = <"Estimated GFR by CKiD U25 Creatinine-Cystatin C">
+					description = <"Combined creatinine-cystatin C CKiD U25 estimated glomerular filtration rate, normalised to 1.73 m2 body surface area.">
 				>
 			>
 		>
