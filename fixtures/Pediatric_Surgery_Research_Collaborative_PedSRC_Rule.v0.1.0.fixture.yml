@@ -1,0 +1,118 @@
+guidelines:
+  "1": Pediatric_Surgery_Research_Collaborative_PedSRC_Rule.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. AST input missing (negative test)
+    input:
+      "1":
+        "gt0004|Abdominal wall trauma, distension, or tenderness on exam": 0|local::at0010|No|
+        gt0005|Abnormal chest X-ray: 0|local::at0013|No|
+        gt0006|Complaint of abdominal pain: 0|local::at0016|No|
+        gt0007|Abnormal amylase or lipase: 0|local::at0019|No|
+    expected_output:
+      "1": {}
+  - id: 3. Abdominal wall trauma input missing (negative test)
+    input:
+      "1":
+        gt0003|AST >200 U/L: 0|local::at0007|No|
+        gt0005|Abnormal chest X-ray: 0|local::at0013|No|
+        gt0006|Complaint of abdominal pain: 0|local::at0016|No|
+        gt0007|Abnormal amylase or lipase: 0|local::at0019|No|
+    expected_output:
+      "1": {}
+  - id: 4. Abdominal wall trauma input missing (negative test)
+    input:
+      "1":
+        gt0003|AST >200 U/L: 0|local::at0007|No|
+        "gt0004|Abdominal wall trauma, distension, or tenderness on exam": 0|local::at0010|No|
+        gt0006|Complaint of abdominal pain: 0|local::at0016|No|
+        gt0007|Abnormal amylase or lipase: 0|local::at0019|No|
+    expected_output:
+      "1": {}
+  - id: 5. Complaint of abdominal pain input missing (negative test)
+    input:
+      "1":
+        gt0003|AST >200 U/L: 0|local::at0007|No|
+        "gt0004|Abdominal wall trauma, distension, or tenderness on exam": 0|local::at0010|No|
+        gt0005|Abnormal chest X-ray: 0|local::at0013|No|
+        gt0007|Abnormal amylase or lipase: 0|local::at0019|No|
+    expected_output:
+      "1": {}
+  - id: 6. Abnormal amylase or lipase input missing (negative test)
+    input:
+      "1":
+        gt0003|AST >200 U/L: 0|local::at0007|No|
+        "gt0004|Abdominal wall trauma, distension, or tenderness on exam": 0|local::at0010|No|
+        gt0005|Abnormal chest X-ray: 0|local::at0013|No|
+        gt0006|Complaint of abdominal pain: 0|local::at0016|No|
+    expected_output:
+      "1": {}
+  - id: 7. All inputs, total score = 0
+    input:
+      "1":
+        gt0003|AST >200 U/L: 0|local::at0007|No|
+        "gt0004|Abdominal wall trauma, distension, or tenderness on exam": 0|local::at0010|No|
+        gt0005|Abnormal chest X-ray: 0|local::at0013|No|
+        gt0006|Complaint of abdominal pain: 0|local::at0016|No|
+        gt0007|Abnormal amylase or lipase: 0|local::at0019|No|
+    expected_output:
+      "1":
+        gt0009|Total score: "0"
+        gt0011|Risk of intra-abdominal injury: 0.7%
+        gt0012|Risk of intra-abdominal injury requiring acute intervention: 0%
+  - id: 8. All inputs, total score = 1
+    input:
+      "1":
+        gt0003|AST >200 U/L: 1|local::at0008|Yes|
+        "gt0004|Abdominal wall trauma, distension, or tenderness on exam": 0|local::at0010|No|
+        gt0005|Abnormal chest X-ray: 0|local::at0013|No|
+        gt0006|Complaint of abdominal pain: 0|local::at0016|No|
+        gt0007|Abnormal amylase or lipase: 0|local::at0019|No|
+    expected_output:
+      "1":
+        gt0009|Total score: "1"
+        gt0011|Risk of intra-abdominal injury: 4.5%
+        gt0012|Risk of intra-abdominal injury requiring acute intervention: 0.6%
+  - id: 9. All inputs, total score = 2
+    input:
+      "1":
+        gt0003|AST >200 U/L: 1|local::at0008|Yes|
+        "gt0004|Abdominal wall trauma, distension, or tenderness on exam": 1|local::at0011|Yes|
+        gt0005|Abnormal chest X-ray: 0|local::at0013|No|
+        gt0006|Complaint of abdominal pain: 0|local::at0016|No|
+        gt0007|Abnormal amylase or lipase: 0|local::at0019|No|
+    expected_output:
+      "1":
+        gt0009|Total score: "2"
+        gt0011|Risk of intra-abdominal injury: 16.8%
+        gt0012|Risk of intra-abdominal injury requiring acute intervention: 4.8%
+  - id: 10. All inputs, total score = 3
+    input:
+      "1":
+        gt0003|AST >200 U/L: 1|local::at0008|Yes|
+        "gt0004|Abdominal wall trauma, distension, or tenderness on exam": 1|local::at0011|Yes|
+        gt0005|Abnormal chest X-ray: 1|local::at0014|Yes|
+        gt0006|Complaint of abdominal pain: 0|local::at0016|No|
+        gt0007|Abnormal amylase or lipase: 0|local::at0019|No|
+    expected_output:
+      "1":
+        gt0009|Total score: "3"
+        gt0011|Risk of intra-abdominal injury: 37.8%
+        gt0012|Risk of intra-abdominal injury requiring acute intervention: 8.9%
+  - id: 11. All inputs, total score >= 4
+    input:
+      "1":
+        gt0003|AST >200 U/L: 1|local::at0008|Yes|
+        "gt0004|Abdominal wall trauma, distension, or tenderness on exam": 1|local::at0011|Yes|
+        gt0005|Abnormal chest X-ray: 1|local::at0014|Yes|
+        gt0006|Complaint of abdominal pain: 1|local::at0017|Yes|
+        gt0007|Abnormal amylase or lipase: 0|local::at0019|No|
+    expected_output:
+      "1":
+        gt0009|Total score: "4"
+        gt0011|Risk of intra-abdominal injury: 62.6%
+        gt0012|Risk of intra-abdominal injury requiring acute intervention: 15.2%
