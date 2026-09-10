@@ -391,7 +391,7 @@ _Select a medical specialty below to view the available apps._
 
 * Glasgow-Blatchford Bleeding Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/GBS/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/GBS/1?language=sv))
 
-* Glasgow Coma Scale (GCS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/GCS/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/GCS/1?language=sv))
+* Glasgow Coma Scale (GCS) calculation - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/GCS_calculation/0.1.0))
 
 * Glasgow-Imrie Criteria - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Glasgow-Imrie_Criteria_for_Acute_Pancreatitis/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Glasgow-Imrie_Criteria_for_Acute_Pancreatitis/1?language=sv))
 
@@ -429,13 +429,13 @@ _Select a medical specialty below to view the available apps._
 
 * POMPE-C Tool for Pulmonary Embolism Mortality - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/POMPE-C_Tool_Pulmonary_Embolism_Mortality/1?language=en))
 
-* Pulmonary Embolism Severity Index (PESI) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/PESI/1?language=en))
+* Pulmonary Embolism Severity Index (PESI) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/pesi/0.1.0))
 
 * Pulmonary Embolism Syncope-Anemia-Renal Dysfunction (PE-SARD) Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Pulmonary_Embolism_Syncope_Anemia_Renal_Dysfunction_PE_SARD_Score/0.1.0?language=en))
 
 * Quick COVID-19 Severity Index (qCSI) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Quick_COVID-19_Severity_Index_qCSI_guideline/1?language=en))
 
-* Quick Sepsis Related Organ Failure Assessment (qSOFA) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/qSOFA/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/qSOFA/1?language=sv))
+* Quick Sepsis Related Organ Failure Assessment (qSOFA) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/qSOFA_score/0.1.0))
 
 * Recognition of Stroke in the Emergency Room (ROSIER) Scale - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Recognition_of_stroke_in_the_emergency_room_ROSIER_scale/1?language=en))
 
@@ -759,7 +759,7 @@ _Select a medical specialty below to view the available apps._
 
 * Michigan Risk Score for PICC-Related Thrombosis -  ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Michigan_Risk_Score_guideline/1?language=en))
 
-* Modified Early Warning Score (MEWS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MEWS/1.1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MEWS.v1/1.1?language=sv))
+* Modified Early Warning Score (MEWS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/MEWS/0.1.0))/([_SWE_](https://modelling.cds-platform.com/ckm/view/cambio-community/MEWS/0.1.0))
 
 * National Early Warning Score (NEWS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/NEWS/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/NEWS/1?language=sv))
 
@@ -815,7 +815,7 @@ _Select a medical specialty below to view the available apps._
 
 * Glomerular Filtration Rate (Cockcroft-Gault) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Estimated_GFR_Cockcroft_Gault/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Estimated_GFR_Cockcroft_Gault/1?language=sv))
 
-* Kidney Failure Risk Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Kidney_Failure_Risk_Calculator_guideline/1?language=en))
+* Kidney Failure Risk Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Kidney_Failure_Risk_Equation_KFRE/0.1.0)
 
 * Kinetic Estimated Glomerular Filtration Rate (keGFR) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Kinetic_Estimated_Glomerular_Filtration_Rate/0?language=en))
 
@@ -829,7 +829,7 @@ _Select a medical specialty below to view the available apps._
 
 * RENAL Nephrometry Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/RENAL_Nephrometry_Score/1?language=en))
 
-* Revised Lund-Malmö eGFR - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/LM_Revised_eGFR/0?language=en))
+* Revised Lund-Malmö eGFR - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/LM_Revised_eGFR_calculation/0.1.0))
 
 * Revised Schwartz Equation for Glomerular Filtration Rate (GFR) (2009) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Revised_Schwartz_guideline/1?language=en))
 
@@ -906,7 +906,7 @@ _Select a medical specialty below to view the available apps._
 
 * Montreal Cognitive Assessment (MoCA) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MoCA_guideline/1?language=en))
 
-* National Institutes of Health Stroke Scale (NIHSS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/NIHSS_calculator/1.0.0?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/NIHSS_calculator/1.0.0?language=sv))
+* National Institutes of Health Stroke Scale (NIHSS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/NIHSS_calculation/0.1.0)
 
 * Neuropathy Pain Scale (NPS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Neuropathy_pain_scale/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Neuropathy_pain_scale/1?language=sv))
 
@@ -1052,7 +1052,7 @@ _Select a medical specialty below to view the available apps._
 
 * REACH-B Score for Hepatocellular Carcinoma (HCC) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/REACH_B_Score_guideline/1?language=en))
 
-* Revised Multiple Myeloma International Staging System (R-ISS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/R-ISS_calculator/1?language=en))
+* Revised Multiple Myeloma International Staging System (R-ISS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/R_ISS/0.1.0))
 
 * Radiation Biologically Effective Dose (BED) Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BED_Calculator_guideline/1?language=en))
 
@@ -1248,6 +1248,8 @@ _Select a medical specialty below to view the available apps._
 * ACR EULAR Gout - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ACR_EULAR_Gout/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ACR_EULAR_Gout/1?language=sv))
 
 * ASSIGN Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ASSIGN_original/1?language=en))
+
+* AIBW calculation ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Adjusted_body_weight/0.1.0))
 
 * Body Mass Index (BMI) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BMI/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/BMI/1?language=sv))
 
@@ -1457,7 +1459,7 @@ _Select a medical specialty below to view the available apps._
 
 * Hestia Criteria for Outpatient Pulmonary Embolism Treatment - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Hestia_Criteria_for_Outpatient_Pulmonary_Embolism_Treatment/1?language=en))
 
-* Horowitz Index for Lung Function (P/F Ratio) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Horowitz_Index_for_Lung_Function_P_F_Ratio/1?language=en))
+* Horowitz Index for Lung Function (P/F Ratio) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Horowitz_index/0.1.0))
 
 * LENT Prognostic Score for Malignant Pleural Effusion - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/LENT_prognostic_score/1?language=en))
 
