@@ -11,22 +11,22 @@ We've gathered all of the available applications in one place and organized them
 
 If you would like to test an app, simply click on "ENG" to access the English version, and "SWE" for the Swedish version. To view a detailed description of the app and its components, click on the application name.
 
-### *Published Apps: 705*
+### *Published Apps: 714*
 
 ----------
 
 ### Latest added
 
-1. GLOBE score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/GLOBE_Score_Final/0.0.1?language=en))
-2. GUSS Test - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/THE_GUSS_TEST/0.1?language=en)) 
-3. METS IR - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/METS_IR/2?language=en)) 
-4. NICE NG143 Traffic Light - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/NICE_NG143_Traffic_Light_Assessment/0?language=en))
-5. SCORE2 - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/SCORE2/0.1?language=en))
-6. International Consensus Classification (ICC) Diagnostic Criteria for Primary Myelofibrosis (PMF) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/ICC_Primary_Myelofibrosis_Diagnostic_Criteria/0.1.0?language=en))
-7. Rome IV Diagnostic Criteria for Rumination Syndrome - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rome_IV_Diagnostic_Criteria_for_Rumination_Syndrome/0.1.0?language=en))
-8. LV Mass Index Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Left_ventricle_Mass_Index_LVMI/0.1.0?language=en))
-9. Mutation-Enhanced International Prognostic Score System (MIPSS70/MIPSS70+) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/MIPSS70/0.1.0?language=en))
-10. Wisconsin Criteria - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Wisconsin_criteria/0.1.0?language=en))
+1. NAFLD fibrosis score - ([_ENG_]( https://modelling.cds-platform.com/ckm/view/cambio-community/nafld_fibrosis/0.1.0))
+2. Truelove and Witts Severity Index for Ulcerative Colitis - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Truelove_Witts_Severity_Index/0.1.0))
+3. Berg Balance Scale (BBS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Berg_Balance_Scale/0.1.0))
+4. Sunnybrook facial grading system - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Sunnybrook_facial_grading_system_calculation/0.1.0))
+5. International Prognostic Score for Asymptomatic Early-stage CLL (IPS-E) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/International_Prognostic_Score_for_Asymptomatic_Early_stage_CLL_IPS_E_/0.1.0))
+6. Pediatric Surgery Research Collaborative (PedSRC) Rule for Blunt Abdominal Trauma - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Pediatric_Surgery_Research_Collaborative_PedSRC_Rule/0.1.0))
+7. Carboplatin AUC Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Carboplatin_AUC_calculation/0.1.0))
+8. HbA1C convertor - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/hba1c_converter/0.1.0))
+9. Modified Minnesota Detoxification Scale (mMINDS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Modified_Minnesota_Detoxification_Scale_mMINDS_Calculation/0.1.0))
+10. GLOBE score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/GLOBE_Score_Final/0.0.1?language=en))
 
 ----------
 
@@ -581,6 +581,8 @@ _Select a medical specialty below to view the available apps._
 
 * NAFLD (Non-Alcoholic Fatty Liver Disease) Activity Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/NAFLD_activity_score/1?language=en))
 
+* NAFLD fibrosis score - ([_ENG_]( https://modelling.cds-platform.com/ckm/view/cambio-community/nafld_fibrosis/0.1.0))
+
 * Oakland Score for Safe Discharge After Lower GI Bleed - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Oakland_Score_for_Safe_Discharge_After_Lower_GI_Bleed/1?language=en)
 
 * Prague C & M Classification for Barrett's Esophagus - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Prague_C_M_Classification_for_Barrett_s_Esophagus/0.1.0?language=en))
@@ -616,6 +618,8 @@ _Select a medical specialty below to view the available apps._
 * Tokyo Guidelines for Acute Cholangitis 2018 - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Tokyo_Guidelines_2018_guideline/1?language=en))
 
 * Tokyo Guidelines for Acute Cholecystitis 2018 - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Tokyo_Guidelines_Acute_Cholecystitis_2018_guideline/1?language=en))
+
+* Truelove and Witts Severity Index for Ulcerative Colitis - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Truelove_Witts_Severity_Index/0.1.0))
 
 * UK-PBC Risk Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/UK_PBC_Risk_Score_guideline/1?language=en))
 
@@ -858,6 +862,8 @@ _Select a medical specialty below to view the available apps._
 
 * Barthel Index for Activities of Daily Living (ADL) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/barthel_index_ADL/1?language=en))
 
+* Berg Balance Scale (BBS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Berg_Balance_Scale/0.1.0))
+
 * Bush-Francis Catatonia Rating Scale - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Bush_francis_catatonia_rating_scale/1?language=en))
 
 * Cerebral Perfusion Pressure - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Cerebral_Perfusion_Pressure/1?language=en))
@@ -936,6 +942,8 @@ _Select a medical specialty below to view the available apps._
 
 * Sudbury Vertigo Risk Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Sudbury_Vertigo_Risk_Score/0.1.0?language=en))
 
+* Sunnybrook facial grading system - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Sunnybrook_facial_grading_system_calculation/0.1.0))
+
 * Trunk Impairment Scale - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/TIS_calculator/1?language=en))
 
 * Webster Rating Scale for Parkinson’s Disease - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Webster_Rating_Scale_for_Parkinsons_Disease_guideline/1?language=en))
@@ -996,7 +1004,7 @@ _Select a medical specialty below to view the available apps._
 
 * Fong Clinical Risk Score for Colorectal Cancer Recurrence - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Fong_Clinical_Risk_Score_for_Colorectal_Cancer_Recurrence/1?language=en))
 
-* Fuhrman Nuclear Grade for Clear Cell Renal Cell Carcinoma - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Fuhrman_Nuclear_Grade_ccRCC/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Fuhrman_Nuclear_Grade_ccRCC/1?language=sv))
+* Fuhrman Nuclear Grade for Clear Cell Renal Cell Carcinoma - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Fuhrman_Nuclear_Grade_for_Clear_Cell_Renal_Carcinoma/0.1.0))
 
 * Genetically Inspired Prognostic Scoring System (GIPSS) for Primary Myelofibrosis (PMF) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Genetically_Inspired_Prognostic_Scoring_System_GIPSS_for_Primary_Myelofibrosis_PMF_/0.1.0?language=en)) 
 
@@ -1017,6 +1025,8 @@ _Select a medical specialty below to view the available apps._
 * IMDC (International Metastatic RCC Database Consortium) Risk Model for Metastatic Renal Cell Carcinoma - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/IMDC_risk_model_metastiatic_renal_cell_carcinoma/1?language=en))
 
 * International Prognostic Index for Chronic Lymphocytic Leukemia (CLL-IPI) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/international_prognostic_index_chronic_lymphocytic_leukemia/0?language=en))
+
+* International Prognostic Score for Asymptomatic Early-stage CLL (IPS-E) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/International_Prognostic_Score_for_Asymptomatic_Early_stage_CLL_IPS_E_/0.1.0))
 
 * International Prognostic Index for Diffuse Large B-cell Lymphoma (IPI and R-IPI) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/International_Prognostic_Index_for_Diffuse_Large_B_cell_Lymphoma_guideline/1?language=en))
 
@@ -1183,6 +1193,8 @@ _Select a medical specialty below to view the available apps._
 
 * Pediatric SIRS, Sepsis, and Septic Shock Criteria - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Pediatric_SIRS_Sepsis_Septic_Shock_Criteria_guideline/1?language=en))
 
+* Pediatric Surgery Research Collaborative (PedSRC) Rule for Blunt Abdominal Trauma - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Pediatric_Surgery_Research_Collaborative_PedSRC_Rule/0.1.0))
+
 * Pediatric Trauma Score (PTS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Pediatric_Trauma_Score/1?language=en))
 
 * Rochester Criteria for Febrile Infants - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Rochester_Criteria_guideline/1?language=en))
@@ -1216,6 +1228,8 @@ _Select a medical specialty below to view the available apps._
 * Atropine Dosing for Cholinesterase Inhibitor Toxicity - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Atropine_dosing_cholinesterase_inhibitor_toxicity/0?language=en))
 
 * Benzodiazepine Conversion Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Benzodiazepine_Conversion_Calculator/1?language=en))
+
+* Carboplatin AUC Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Carboplatin_AUC_calculation/0.1.0))
 
 * Cryoprecipitate Dosing for Fibrinogen Replacement - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/Cryoprecipitate_Dosing_Fibrinogen_Replacement/1?language=en))
 
@@ -1293,6 +1307,8 @@ _Select a medical specialty below to view the available apps._
 
 * FeverPAIN - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/FeverPAIN_Strep/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/FeverPAIN_Strep/1?language=sv))
 
+* HbA1C convertor - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/hba1c_converter/0.1.0))
+
 * HIV Needle Stick Risk Assessment Stratification Protocol (RASP) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/HIV_Needle_Stick_Risk_Assessment_Stratification_Protocol_guideline/1?language=en))
 
 * Ideal Body Weight (IBW) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/IBW/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/IBW/1?language=sv))
@@ -1355,6 +1371,8 @@ _Select a medical specialty below to view the available apps._
 * Affective Self Rating Scale (AS-18) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/AS-18/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/AS-18/1?language=sv))
 
 * Alcohol Use Disorders Identification Test Consumption (AUDIT-C) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/AUDIT-C/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/AUDIT-C/1?language=sv))
+
+* Modified Minnesota Detoxification Scale (mMINDS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Modified_Minnesota_Detoxification_Scale_mMINDS_Calculation/0.1.0))
 
 * CAGE - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/CAGE/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/CAGE/1?language=sv))
 
