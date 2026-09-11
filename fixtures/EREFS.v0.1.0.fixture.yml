@@ -1,0 +1,81 @@
+guidelines:
+  "1": EREFS.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Edema input missing (negative test)
+    input:
+      "1":
+        gt0004|Rings: 0|local::at0010|None|
+        gt0005|Exudates: 0|local::at0015|None|
+        gt0006|Furrows: 0|local::at0019|Absent|
+        gt0007|Strictures: 0|local::at0022|None|
+    expected_output:
+      "1": {}
+  - id: 3. Rings input missing (negative test)
+    input:
+      "1":
+        gt0003|Edema: 0|local::at0007|Absent|
+        gt0005|Exudates: 0|local::at0015|None|
+        gt0006|Furrows: 0|local::at0019|Absent|
+        gt0007|Strictures: 0|local::at0022|None|
+    expected_output:
+      "1": {}
+  - id: 4. Exudates input missing (negative test)
+    input:
+      "1":
+        gt0003|Edema: 0|local::at0007|Absent|
+        gt0004|Rings: 0|local::at0010|None|
+        gt0006|Furrows: 0|local::at0019|Absent|
+        gt0007|Strictures: 0|local::at0022|None|
+    expected_output:
+      "1": {}
+  - id: 5.  Furrows input missing (negative test)
+    input:
+      "1":
+        gt0003|Edema: 0|local::at0007|Absent|
+        gt0004|Rings: 0|local::at0010|None|
+        gt0005|Exudates: 0|local::at0015|None|
+        gt0007|Strictures: 0|local::at0022|None|
+    expected_output:
+      "1": {}
+  - id: 6.  Strictures input missing (negative test)
+    input:
+      "1":
+        gt0003|Edema: 0|local::at0007|Absent|
+        gt0004|Rings: 0|local::at0010|None|
+        gt0005|Exudates: 0|local::at0015|None|
+        gt0006|Furrows: 0|local::at0019|Absent|
+    expected_output:
+      "1": {}
+  - id: 7.  All inputs, total score = 6
+    input:
+      "1":
+        gt0003|Edema: 1|local::at0008|Present|
+        gt0004|Rings: 3|local::at0013|Severe (fixed rings)|
+        gt0005|Exudates: 0|local::at0015|None|
+        gt0006|Furrows: 1|local::at0020|Present|
+        gt0007|Strictures: 1|local::at0023|Present|
+    expected_output:
+      "1":
+        gt0009|Total score: "6"
+        gt0010|Inflammatory subscore: "2"
+        gt0011|Fibrostenotic subscore: "4"
+        gt0013|Comment: A higher score indicates more severe disease.
+  - id: 8.  All inputs, total score = 0
+    input:
+      "1":
+        gt0003|Edema: 0|local::at0007|Absent|
+        gt0004|Rings: 0|local::at0010|None|
+        gt0005|Exudates: 0|local::at0015|None|
+        gt0006|Furrows: 0|local::at0019|Absent|
+        gt0007|Strictures: 0|local::at0022|None|
+    expected_output:
+      "1":
+        gt0009|Total score: "0"
+        gt0010|Inflammatory subscore: "0"
+        gt0011|Fibrostenotic subscore: "0"
+        gt0013|Comment: A higher score indicates more severe disease.
