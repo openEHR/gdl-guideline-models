@@ -1,0 +1,162 @@
+guidelines:
+  "1": nafld_fibrosis.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Age input missing (negative test)
+    input:
+      "1":
+        gt0004|Impaired fasting glucose/diabetes: 1|local::at0008|Yes|
+        gt0006|Body mass index: 20,kg/m2
+        gt0009|Aspartate aminotransferase result: 23,U/L
+        gt0033|ASAT: NPU::NPU01324|Aspartate aminotransferase code|
+        gt0016|Alanine aminotransferase result: 30,U/L
+        gt0034|ALAT: NPU::NPU01121|Alanine aminotransferase code|
+        gt0019|Platelet count result: 200,10*9/L
+        gt0035|Platelet count: NPU::NPU03567|Platelet count code|
+        gt0022|Albumin result: 30,g/L
+        gt0036|Albumin: NPU::NPU19673|Albumin code|
+    expected_output:
+      "1": {}
+  - id: 3. Impaired fasting glucose/diabetes input missing (negative test)
+    input:
+      "1":
+        gt0003|Age: 20,a
+        gt0006|Body mass index: 20,kg/m2
+        gt0009|Aspartate aminotransferase result: 23,U/
+        gt0033|ASAT: NPU::NPU01324|Aspartate aminotransferase code|
+        gt0016|Alanine aminotransferase result: 30,U/L
+        gt0034|ALAT: NPU::NPU01121|Alanine aminotransferase code|
+        gt0019|Platelet count result: 200,10*9/L
+        gt0035|Platelet count: NPU::NPU03567|Platelet count code|
+        gt0022|Albumin result: 30,g/L
+        gt0036|Albumin: NPU::NPU19673|Albumin code|
+    expected_output:
+      "1": {}
+  - id: 4. Body mass index input missing (negative test)
+    input:
+      "1":
+        gt0003|Age: 20,a
+        gt0004|Impaired fasting glucose/diabetes: 0|local::at0007|No|
+        gt0009|Aspartate aminotransferase result: 23,U/L
+        gt0033|ASAT: NPU::NPU01324|Aspartate aminotransferase code|
+        gt0016|Alanine aminotransferase result: 30,U/L
+        gt0034|ALAT: NPU::NPU01121|Alanine aminotransferase code|
+        gt0019|Platelet count result: 200,10*9/L
+        gt0035|Platelet count: NPU::NPU03567|Platelet count code|
+        gt0022|Albumin result: 30,g/L
+        gt0036|Albumin: NPU::NPU19673|Albumin code|
+    expected_output:
+      "1": {}
+  - id: 5. AST input missing (negative test)
+    input:
+      "1":
+        gt0003|Age: 20,a
+        gt0004|Impaired fasting glucose/diabetes: 0|local::at0007|No|
+        gt0006|Body mass index: 20,kg/m2
+        gt0016|Alanine aminotransferase result: 30,U/L
+        gt0034|ALAT: NPU::NPU01121|Alanine aminotransferase code|
+        gt0019|Platelet count result: 200,10*9/L
+        gt0035|Platelet count: NPU::NPU03567|Platelet count code|
+        gt0022|Albumin result: 30,g/L
+        gt0036|Albumin: NPU::NPU19673|Albumin code|
+    expected_output:
+      "1": {}
+  - id: 6. ALT input missing (negative test)
+    input:
+      "1":
+        gt0003|Age: 20,a
+        gt0006|Body mass index: 20,kg/m2
+        gt0009|Aspartate aminotransferase result: 23,U/L
+        gt0033|ASAT: NPU::NPU01324|Aspartate aminotransferase code|
+        gt0019|Platelet count result: 200,10*9/
+        gt0035|Platelet count: NPU::NPU03567|Platelet count code|
+        gt0022|Albumin result: 30,g/L
+        gt0036|Albumin: NPU::NPU19673|Albumin code|
+    expected_output:
+      "1": {}
+  - id: 7. Platelet count input missing (negative test)
+    input:
+      "1":
+        gt0003|Age: 20,a
+        gt0004|Impaired fasting glucose/diabetes: 0|local::at0007|No|
+        gt0006|Body mass index: 20,kg/m2
+        gt0009|Aspartate aminotransferase result: 23,U/L
+        gt0033|ASAT: NPU::NPU01324|Aspartate aminotransferase code|
+        gt0016|Alanine aminotransferase result: 30,U/L
+        gt0034|ALAT: NPU::NPU01121|Alanine aminotransferase code|
+        gt0022|Albumin result: 30,g/L
+        gt0036|Albumin: NPU::NPU19673|Albumin code|
+    expected_output:
+      "1": {}
+  - id: 8. Albumin input missing (negative test)
+    input:
+      "1":
+        gt0003|Age: 20,a
+        gt0004|Impaired fasting glucose/diabetes: 0|local::at0007|No|
+        gt0006|Body mass index: 20,kg/m2
+        gt0009|Aspartate aminotransferase result: 23,U/L
+        gt0033|ASAT: NPU::NPU01324|Aspartate aminotransferase code|
+        gt0016|Alanine aminotransferase result: 30,U/L
+        gt0034|ALAT: NPU::NPU01121|Alanine aminotransferase code|
+        gt0019|Platelet count result: 200,10*9/L
+        gt0035|Platelet count: NPU::NPU03567|Platelet count code|
+    expected_output:
+      "1": {}
+  - id: 9. All inputs - Fibrosis Severity F0-F2 (NAFLD score -1.89)
+    input:
+      "1":
+        gt0003|Age: 50,a
+        gt0004|Impaired fasting glucose/diabetes: 0|local::at0007|No|
+        gt0006|Body mass index: 25,kg/m2
+        gt0009|Aspartate aminotransferase result: 30,U/L
+        gt0033|ASAT: NPU::NPU01324|Aspartate aminotransferase code|
+        gt0016|Alanine aminotransferase result: 20,U/L
+        gt0034|ALAT: NPU::NPU01121|Alanine aminotransferase code|
+        gt0019|Platelet count result: 200,10*9/L
+        gt0035|Platelet count: NPU::NPU03567|Platelet count code|
+        gt0022|Albumin result: 50,g/L
+        gt0036|Albumin: NPU::NPU19673|Albumin code|
+    expected_output:
+      "1":
+        gt0024|Total score: -1.890,1
+        gt0026|Correlated Fibrosis Severity: F0-F2
+  - id: 10. All inputs - Fibrosis Severity Indeterminant score (NAFLD score -0.342)
+    input:
+      "1":
+        gt0003|Age: 30,a
+        gt0004|Impaired fasting glucose/diabetes: 0|local::at0007|No|
+        gt0006|Body mass index: 20,kg/m2
+        gt0009|Aspartate aminotransferase result: 30,U/L
+        gt0033|ASAT: NPU::NPU01324|Aspartate aminotransferase code|
+        gt0016|Alanine aminotransferase result: 7,U/L
+        gt0034|ALAT: NPU::NPU01121|Alanine aminotransferase code|
+        gt0019|Platelet count result: 200,10*9/L
+        gt0035|Platelet count: NPU::NPU03567|Platelet count code|
+        gt0022|Albumin result: 50,g/L
+        gt0036|Albumin: NPU::NPU19673|Albumin code|
+    expected_output:
+      "1":
+        gt0024|Total score: -0.342,1
+        gt0026|Correlated Fibrosis Severity: Indeterminant score
+  - id: 11. All inputs - Fibrosis Severity F3-F4 (NAFLD score 0.788)
+    input:
+      "1":
+        gt0003|Age: 30,a
+        gt0004|Impaired fasting glucose/diabetes: 1|local::at0008|Yes|
+        gt0006|Body mass index: 20,kg/m2
+        gt0009|Aspartate aminotransferase result: 30,U/L
+        gt0033|ASAT: NPU::NPU01324|Aspartate aminotransferase code|
+        gt0016|Alanine aminotransferase result: 7,U/L
+        gt0034|ALAT: NPU::NPU01121|Alanine aminotransferase code|
+        gt0019|Platelet count result: 200,10*9/L
+        gt0035|Platelet count: NPU::NPU03567|Platelet count code|
+        gt0022|Albumin result: 50,g/L
+        gt0036|Albumin: NPU::NPU19673|Albumin code|
+    expected_output:
+      "1":
+        gt0024|Total score: 0.788,1
+        gt0026|Correlated Fibrosis Severity: F3-F4

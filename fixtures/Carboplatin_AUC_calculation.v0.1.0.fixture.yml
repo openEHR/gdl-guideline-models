@@ -1,0 +1,203 @@
+guidelines:
+  "1": Carboplatin_AUC_calculation.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Age input missing (negative test, only ideal body weight calculated)
+    input:
+      "1":
+        gt0011|Gender: local::at0005|Male|
+        gt0005|Weight: 70,kg
+        gt0007|Height/Length: 170,cm
+        gt0029|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0030|Serum creatinine result: 70,umol/L
+        gt0033|Target AUC: 7,1
+    expected_output:
+      "1":
+        gt0015|Ideal body weight: 65.94,kg
+  - id: 3. Gender input missing (negative test)
+    input:
+      "1":
+        gt0003|Age: 40,a
+        gt0005|Weight: 70,kg
+        gt0007|Height/Length: 170,cm
+        gt0029|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0030|Serum creatinine result: 70,umol/L
+        gt0033|Target AUC: 7,1
+    expected_output:
+      "1": {}
+  - id: 4. Weight input missing (negative test, only ideal body weight calculated)
+    input:
+      "1":
+        gt0003|Age: 40,a
+        gt0011|Gender: local::at0005|Male|
+        gt0007|Height/Length: 170,cm
+        gt0029|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0030|Serum creatinine result: 70,umol/L
+        gt0033|Target AUC: 7,1
+    expected_output:
+      "1":
+        gt0015|Ideal body weight: 65.94,kg
+  - id: 5. Height input missing (negative test, only creatinine clearance rate
+      estimated)
+    input:
+      "1":
+        gt0003|Age: 40,a
+        gt0011|Gender: local::at0005|Male|
+        gt0005|Weight: 70,kg
+        gt0029|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0030|Serum creatinine result: 70,umol/L
+        gt0033|Target AUC: 7,1
+    expected_output:
+      "1":
+        gt0018|CrCl: 123.00,ml/min
+  - id: 6. Serum creatinine input missing (negative test, only ideal body weight
+      calculated)
+    input:
+      "1":
+        gt0003|Age: 40,a
+        gt0011|Gender: local::at0005|Male|
+        gt0005|Weight: 70,kg
+        gt0007|Height/Length: 170,cm
+        gt0029|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0033|Target AUC: 7,1
+    expected_output:
+      "1":
+        gt0015|Ideal body weight: 65.94,kg
+  - id: 7. Target AUC input missing (negative test, ideal body weight calculated and
+      creatinine clearance rate estimated)
+    input:
+      "1":
+        gt0003|Age: 40,a
+        gt0011|Gender: local::at0005|Male|
+        gt0005|Weight: 70,kg
+        gt0007|Height/Length: 170,cm
+        gt0029|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0030|Serum creatinine result: 70,umol/L
+    expected_output:
+      "1":
+        gt0015|Ideal body weight: 65.94,kg
+        gt0018|CrCl: 123.00,ml/min
+  - id: 8. All input - male, kg, cm
+    input:
+      "1":
+        gt0003|Age: 40,a
+        gt0011|Gender: local::at0005|Male|
+        gt0005|Weight: 70,kg
+        gt0007|Height/Length: 170,cm
+        gt0029|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0030|Serum creatinine result: 70,umol/L
+        gt0033|Target AUC: 7,1
+    expected_output:
+      "1":
+        gt0015|Ideal body weight: 65.94,kg
+        gt0018|CrCl: 123.00,ml/min
+        gt0019|Dosage: 1036.00,mg
+  - id: 9. All input - male, lbs, cm
+    input:
+      "1":
+        gt0003|Age: 40,a
+        gt0011|Gender: local::at0005|Male|
+        gt0005|Weight: 120,[lb_av]
+        gt0007|Height/Length: 170,cm
+        gt0029|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0030|Serum creatinine result: 70,umol/L
+        gt0033|Target AUC: 7,1
+    expected_output:
+      "1":
+        gt0015|Ideal body weight: 65.94,kg
+        gt0018|CrCl: 95.64,ml/min
+        gt0019|Dosage: 844.48,mg
+  - id: 10. All input - male, lbs, in
+    input:
+      "1":
+        gt0003|Age: 40,a
+        gt0011|Gender: local::at0005|Male|
+        gt0005|Weight: 120,[lb_av]
+        gt0007|Height/Length: 70,[in_i]
+        gt0029|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0030|Serum creatinine result: 70,umol/L
+        gt0033|Target AUC: 7,1
+    expected_output:
+      "1":
+        gt0015|Ideal body weight: 73.00,kg
+        gt0018|CrCl: 95.64,ml/min
+        gt0019|Dosage: 844.48,mg
+  - id: 11. All input - male, kg, in
+    input:
+      "1":
+        gt0003|Age: 40,a
+        gt0011|Gender: local::at0005|Male|
+        gt0005|Weight: 70,kg
+        gt0007|Height/Length: 70,[in_i]
+        gt0029|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0030|Serum creatinine result: 70,umol/L
+        gt0033|Target AUC: 7,1
+    expected_output:
+      "1":
+        gt0015|Ideal body weight: 73.00,kg
+        gt0018|CrCl: 123.00,ml/min
+        gt0019|Dosage: 1036.00,mg
+  - id: 12. All input - female, kg, cm
+    input:
+      "1":
+        gt0003|Age: 40,a
+        gt0011|Gender: local::at0006|Female|
+        gt0005|Weight: 70,kg
+        gt0007|Height/Length: 170,cm
+        gt0029|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0030|Serum creatinine result: 70,umol/L
+        gt0033|Target AUC: 7,1
+    expected_output:
+      "1":
+        gt0015|Ideal body weight: 61.44,kg
+        gt0018|CrCl: 104.00,ml/min
+        gt0019|Dosage: 903.00,mg
+  - id: 13. All input - female, lbs, cm
+    input:
+      "1":
+        gt0003|Age: 40,a
+        gt0011|Gender: local::at0006|Female|
+        gt0005|Weight: 130,[lb_av]
+        gt0007|Height/Length: 170,cm
+        gt0029|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0030|Serum creatinine result: 70,umol/L
+        gt0033|Target AUC: 7,1
+    expected_output:
+      "1":
+        gt0015|Ideal body weight: 61.44,kg
+        gt0018|CrCl: 87.61,ml/min
+        gt0019|Dosage: 788.27,mg
+  - id: 14. All input - female, lbs, in
+    input:
+      "1":
+        gt0003|Age: 40,a
+        gt0011|Gender: local::at0006|Female|
+        gt0005|Weight: 130,[lb_av]
+        gt0007|Height/Length: 70,[in_i]
+        gt0029|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0030|Serum creatinine result: 70,umol/L
+        gt0033|Target AUC: 7,1
+    expected_output:
+      "1":
+        gt0015|Ideal body weight: 68.50,kg
+        gt0018|CrCl: 87.61,ml/min
+        gt0019|Dosage: 788.27,mg
+  - id: 15. All input - female, kg, in
+    input:
+      "1":
+        gt0003|Age: 40,a
+        gt0011|Gender: local::at0006|Female|
+        gt0005|Weight: 70,kg
+        gt0007|Height/Length: 70,[in_i]
+        gt0029|Serum creatinine: NPU::NPU18016|Serum creatinine code|
+        gt0030|Serum creatinine result: 70,umol/L
+        gt0033|Target AUC: 7,1
+    expected_output:
+      "1":
+        gt0015|Ideal body weight: 68.50,kg
+        gt0018|CrCl: 104.00,ml/min
+        gt0019|Dosage: 903.00,mg

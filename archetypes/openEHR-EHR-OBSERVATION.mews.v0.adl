@@ -1,0 +1,523 @@
+archetype (adl_version=1.4; uid=797ff3e6-f8e1-453f-936d-021743d835cf)
+	openEHR-EHR-OBSERVATION.mews.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"Dennis Forslund">
+			>
+		>
+	>
+
+description
+	original_author = <
+		["date"] = <"2014-10-01">
+		["name"] = <"Konstantinos Kalliamvakos">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"models@cambiocds.com">
+	>
+	lifecycle_state = <"unmanaged">
+	other_contributors = <"Dennis Forslund, Cambio Healthcare Systems","Kevin Arjona, Cambio CDS">
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"Att baserat på kliniska parametrar identifiera patienter med hög risk att försämras och med hjälp av denna information vidta adekvata förebyggande åtgärder.">
+			keywords = <"tidig, varning, justerat, poäng, MEWS, grad, sjukdom, triage, vitala, tecken, försämring", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Använd för att baserat på kliniska parametrar identifiera patienter med hög risk att försämras och med hjälp av denna information vidta adekvata förebyggande åtgärder.
+
+Modified Early Warning Score (MEWS) baseras på fem parametrar som enkelt kontrolleras genom klinisk undersökning:
+
+- Andningsfrekvens
+- Systoliskt blodtryck
+- Hjärtfrekvens
+- Medvetandegrad (AVPU)
+- Kroppstemperatur
+
+En total poäng om ≥5p och/eller 3p för separat parameter bör föranleda skyndsam bedömning av läkare då det är förenligt med försämrande tillstånd och ökad risk för hjärtstopp och behov av intensivvård.
+
+Flertalet sjukhus använder lokalt anpassade versioner av MEWS där diures inkluderas - denna modell kan enkelt justeras för att tillmötesgå specifika önskemål.">
+			misuse = <"Får ej användas för att registrera National Early Warning Score (NEWS). Använd arketypen openEHR-EHR-OBSERVATION.news_uk_rcp.v1 för detta ändamål.">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record/provide a composite score based on categorising physiological readings and observations, as a simple method to support objective assessment of the degree of illness in an unwell patient.">
+			keywords = <"early, warning, modified, score, MEWS, degree, illness, triage, vital, signs, deterioration", ...>
+			copyright = <"© Cambio CDS">
+			use = <"Use to record a composite score to support assessmennt of the degree of illness in an unwell patient.
+
+The Modified Early Warning Score (MEWS) is based on five parameters easily controlled for through simple bedside examination:
+
+- Respiration rate
+- Systolic blood pressure
+- Heart rate
+- Level of consciousness (AVPU)
+- Body temperature
+
+A total score of ≥5p and/or 3p of one parameter should result in higher level of care as it is consistent with deteriorating state of the patient and increased risk of cardiac arrest and need for intensive care. 
+
+Several hospitals use locally modified versions of the instrument including urine output - the model can be adjusted to accommodate specific requests.">
+			misuse = <"Not to be used to record National Early Warning Score (NEWS). Use openEHR-EHR-OBSERVATION.news_uk_rcp.v1 instead.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Modified Early Warning Scale, MEWS. Capio S:t Görans Sjukhus. Version 4.0. 2011-09-05
+
+Subbe CP, Kruger M, Rutherford P, Gemmel L. Validation of a modified Early Warning Score in medical admissions. QJM. 2001 Oct;94(10):521-6. doi: 10.1093/qjmed/94.10.521. PMID: 11588210.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"c179af5358d360b793ca2c7aac9fb717">
+		["build_uid"] = <"107b637c-8865-3805-9301-31e29a89de52">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Modified Early Warning Score (MEWS)
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Respiratory Rate
+										value matches {
+											0|[local::at0006],
+											1|[local::at0007],
+											2|[local::at0008],
+											2|[local::at0009],
+											3|[local::at0010]
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Heart Rate
+										value matches {
+											0|[local::at0012],
+											1|[local::at0013],
+											1|[local::at0014],
+											2|[local::at0015],
+											2|[local::at0016],
+											3|[local::at0017]
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Systolic Blood Pressure
+										value matches {
+											0|[local::at0019],
+											1|[local::at0020],
+											2|[local::at0021],
+											2|[local::at0022],
+											3|[local::at0023]
+										}
+									}
+									ELEMENT[at0024] occurrences matches {0..1} matches {    -- Temperature
+										value matches {
+											0|[local::at0025],
+											1|[local::at0026],
+											1|[local::at0027],
+											2|[local::at0028],
+											2|[local::at0029]
+										}
+									}
+									ELEMENT[at0030] occurrences matches {0..1} matches {    -- Level of consciousness
+										value matches {
+											0|[local::at0031],
+											1|[local::at0032],
+											1|[local::at0033],
+											2|[local::at0034],
+											3|[local::at0035]
+										}
+									}
+									ELEMENT[at0036] occurrences matches {0..1} matches {    -- Urine output
+										value matches {
+											0|[local::at0037],
+											1|[local::at0038],
+											1|[local::at0039],
+											2|[local::at0040],
+											3|[local::at0041]
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0042] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Modified Early Warning Score (MEWS)">
+					description = <"MEWS acts as a 'track and trigger' system (reaction system) that is used to provide an objective indication of the degree of disease in a patient, so that actions can be put in at the right time.">
+					comment = <"Original version, c 2001.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Respiratory Rate">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"9 - 14 /min">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"15 - 20 /min">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"< 9 /min">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"21 - 29 /min">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"≥ 30 /min">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Heart Rate">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"51 - 100 /min">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"41 - 50 /min">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"101 - 110 /min">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"≤ 40 /min">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"111 - 129 /min">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"≥ 130 /min">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Systolic Blood Pressure">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"101 - 199 mmHg">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"81 - 100 mmHg">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"71 - 80 mmHg">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"≥ 200 mmHg">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"≤ 70 mmHg">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Temperature">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"36,1-38 °C">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"35,1-36 °C">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"38,1-38,5 °C">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"< 35 °C">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"≥ 38.5 °C">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Level of consciousness">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Alert">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"New confusion">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Responds to voice">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Responds to pain">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"Unresponsive">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Urine output">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"Normal">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"< 35 mL/h">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"Excessive">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"< 20 mL/h">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"0 mL/h">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Modified Early Warning Score (MEWS)">
+					description = <"Modified Early Warning Score (MEWS) används för att baserat på kliniska parametrar identifiera patienter med hög risk att försämras och med hjälp av denna information vidta adekvata förebyggande åtgärder.">
+					comment = <"Original version, c 2001.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Vilken händelse som helst">
+					description = <"Standardvärde, ospecificerad tidpunkt eller intervallhändelse som kan definieras explicit i en mall eller vid körning. ">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Andningsfrekvens">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"9 - 14 /min">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"15 - 20 /min">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"< 9 /min">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"21 - 29 /min">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"≥ 30 /min">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Hjärtfrekvens">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"51 - 100 /min">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"41 - 50 /min">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"101 - 110 /min">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"≤ 40 /min">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"111 - 129 /min">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"≥ 130 /min">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Systoliskt blodtryck">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"101 - 199 mmHg">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"81 - 100 mmHg">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"71 - 80 mmHg">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"≥ 200 mmHg">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"≤ 70 mmHg">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Kroppstemperatur">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"36,1-38 °C">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"35,1-36 °C">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"38,1-38,5 °C">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"< 35 °C">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"≥ 38.5 °C">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Vakenhet">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Adekvat">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Nytillkommen förvirring">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Slö, svarar på tilltal">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Reagerar endast på smärtstimulering">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"Reagerar ej">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Urinproduktion">
+					description = <"">
+				>
+				["at0037"] = <
+					text = <"Normal">
+					description = <"">
+				>
+				["at0038"] = <
+					text = <"< 35 mL/h">
+					description = <"">
+				>
+				["at0039"] = <
+					text = <"Stor">
+					description = <"">
+				>
+				["at0040"] = <
+					text = <"< 20 mL/h">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"0 mL/h">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"Extension">
+					description = <"Ytterligare information som krävs för att utöka modellen med lokalt innehåll eller för att anpassa den till andra referensmodeller eller formalism. ">
+					comment = <"Till exempel: lokala informationskrav eller ytterligare metadata för att anpassa sig till FHIR.">
+				>
+			>
+		>
+	>
