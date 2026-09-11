@@ -1,0 +1,44 @@
+guidelines:
+  "1": Brinavess_infusion.v0.1.0
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Case under 113 kg
+    input:
+      "1":
+        gt0006|Weight: 70,kg
+    expected_output:
+      "1":
+        gt0012|Initial dose: 210.0,mg
+        gt0019|Initial infusion rate: 315.0,mL/h
+        gt0022|Initial infusion volume: 52.5,mL
+        gt0013|Second dose: 140.0,mg
+        gt0021|Second infusion rate: 210.0,mL/h
+        gt0023|Second infusion volume: 35.0,mL
+  - id: 03. Case over 113 kg
+    input:
+      "1":
+        gt0006|Weight: 131,kg
+    expected_output:
+      "1":
+        gt0012|Initial dose: 339,mg
+        gt0019|Initial infusion rate: 508.5,mL/h
+        gt0022|Initial infusion volume: 84.7,mL
+        gt0013|Second dose: 226,mg
+        gt0021|Second infusion rate: 339,mL/h
+        gt0023|Second infusion volume: 56.5,mL
+  - id: 04. Case at 113 kg uses capped doses.
+    input:
+      "1":
+        gt0006|Weight: 113,kg
+    expected_output:
+      "1":
+        gt0012|Initial dose: 339,mg
+        gt0019|Infusion 1: 508.5,mL/h
+        gt0022|Initial infusion volume: 84.7,mL
+        gt0013|Second dose: 226,mg
+        gt0021|Infusion 2: 339,mL/h
+        gt0023|Second infusion volume: 56.5,mL

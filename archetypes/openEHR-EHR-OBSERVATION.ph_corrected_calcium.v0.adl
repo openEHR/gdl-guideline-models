@@ -1,0 +1,135 @@
+archetype (adl_version=1.4; uid=a9d95cad-83e9-4b93-b00c-72c7f2a8b7b8)
+	openEHR-EHR-OBSERVATION.ph_corrected_calcium.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-03-02">
+		["name"] = <"Mahmoud Elachi">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"mel.achi@gmail.com">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the input parameters and the result of the pH-corrected calcium calculation.">
+			keywords = <"ionized calcium, pH correction, acid-base balance, hypocalcemia, hypercalcemia, blood gas analysis, critical care", ...>
+			copyright = <"Use © Cambio CDS ">
+			use = <"Use to record the total calcium, albumin, and pH values, along with the calculated pH-corrected calcium result.">
+			misuse = <"Not to be used as a substitute for ionized calcium measurement in critically ill patients or those with significant acid-base disturbances.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Fogh-Andersen N. Ionized calcium analyzer with a built-in pH correction. Clin Chem. 1981 Jul;27(7):1264-7. PMID: 7237795.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"2c23b7c8632005ed6c082678f53deb0a">
+		["build_uid"] = <"7875e38d-88f4-365e-a02f-fc96094280d9">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- ph_corrected_calcium
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Calcium ion
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mmol/L">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- pH
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::507]>
+												list = <
+													["1"] = <
+														units = <"1">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- pH-corrected calcium
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"mmol/L">
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0007] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"ph_corrected_calcium">
+					description = <"Assessment tool used to estimate the physiologically active calcium level adjusted for pH.">
+					comment = <"Original version, c 1981">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Calcium ion">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"pH">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"pH-corrected calcium">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+			>
+		>
+	>

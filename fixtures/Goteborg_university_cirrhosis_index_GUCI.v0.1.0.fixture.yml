@@ -1,0 +1,78 @@
+guidelines:
+  "1": Goteborg_university_cirrhosis_index_GUCI.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1":
+        gt0003|AST: NPU::NPU01324|AST code|
+        gt0014|TPK: NPU::NPU03568|TPK code|
+        gt0020|PK-INR: NPU::NPU01685|PK-INR result|
+    expected_output:
+      "1": {}
+  - id: 2. AST input only (negative test)
+    input:
+      "1":
+        gt0003|AST: NPU::NPU01324|AST code|
+        gt0004|AST result: 40,mmol/L
+        gt0014|TPK: NPU::NPU03568|TPK code|
+        gt0020|PK-INR: NPU::NPU01685|PK-INR result|
+    expected_output:
+      "1": {}
+  - id: 3. AST & TPK input only (negative test)
+    input:
+      "1":
+        gt0003|AST: NPU::NPU01324|AST code|
+        gt0004|AST result: 40,mmol/L
+        gt0014|TPK: NPU::NPU03568|TPK code|
+        gt0015|TPK result: 40,L
+        gt0020|PK-INR: NPU::NPU01685|PK-INR result|
+    expected_output:
+      "1": {}
+  - id: 4. AST, TPK & INR input only (negative test)
+    input:
+      "1":
+        gt0003|AST: NPU::NPU01324|AST code|
+        gt0004|AST result: 40,mmol/L
+        gt0014|TPK: NPU::NPU03568|TPK code|
+        gt0015|TPK result: 40,L
+        gt0020|PK-INR: NPU::NPU01685|PK-INR result|
+        gt0021|PK-INR result: 1,1
+    expected_output:
+      "1": {}
+  - id: 5. All input without TPK NPU binding (negative test)
+    input:
+      "1":
+        gt0003|AST: NPU::NPU01324|AST code|
+        gt0004|AST result: 40,mmol/L
+        gt0015|TPK result: 40,L
+        gt0020|PK-INR: NPU::NPU01685|PK-INR result|
+        gt0021|PK-INR result: 120,1
+        gt0023|Upper reference: 1,mmol
+    expected_output:
+      "1": {}
+  - id: 6. All input
+    input:
+      "1":
+        gt0003|AST: NPU::NPU01324|AST code|
+        gt0004|AST result: 40,mmol/L
+        gt0014|TPK: NPU::NPU03568|TPK code|
+        gt0015|TPK result: 40,L
+        gt0020|PK-INR: NPU::NPU01685|PK-INR result|
+        gt0021|PK-INR result: 150,1
+        gt0023|Upper reference: 1,mmol
+    expected_output:
+      "1":
+        gt0018|GUCI-score: 15000.00,1
+  - id: 7. All input with decimal INR
+    input:
+      "1":
+        gt0003|AST: NPU::NPU01324|AST code|
+        gt0004|AST result: 40,mmol/L
+        gt0014|TPK: NPU::NPU03568|TPK code|
+        gt0015|TPK result: 40,L
+        gt0020|PK-INR: NPU::NPU01685|PK-INR result|
+        gt0021|PK-INR result: 1.5,1
+        gt0023|Upper reference: 1,mmol
+    expected_output:
+      "1":
+        gt0018|GUCI-score: 150.00,1

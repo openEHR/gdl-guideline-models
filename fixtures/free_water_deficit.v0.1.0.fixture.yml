@@ -1,0 +1,109 @@
+guidelines:
+  "1": free_water_deficit.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Weight input missing (negative test)
+    input:
+      "1":
+        gt0005|Gender: local::at0005|Male|
+        gt0007|Age range: local::at0007|Adult|
+        gt0009|S-Na+: NPU::NPU03429|Sodium code|
+        gt0010|S-Na+ result: 160,mmol/l
+    expected_output:
+      "1": {}
+  - id: 3. Gender input missing (negative test)
+    input:
+      "1":
+        gt0003|Weight: 80,kg
+        gt0007|Age range: local::at0007|Adult|
+        gt0009|S-Na+: NPU::NPU03429|Sodium code|
+        gt0010|S-Na+ result: 160,mmol/l
+    expected_output:
+      "1": {}
+  - id: 4. Age range input missing (negative test)
+    input:
+      "1":
+        gt0003|Weight: 80,kg
+        gt0005|Gender: local::at0005|Male|
+        gt0009|S-Na+: NPU::NPU03429|Sodium code|
+        gt0010|S-Na+ result: 160,mmol/l
+    expected_output:
+      "1": {}
+  - id: 5. S-Na+ input missing (negative test)
+    input:
+      "1":
+        gt0003|Weight: 80,kg
+        gt0005|Gender: local::at0005|Male|
+        gt0007|Age range: local::at0007|Adult|
+    expected_output:
+      "1": {}
+  - id: 6. All inputs - child
+    input:
+      "1":
+        gt0003|Weight: 45,kg
+        gt0005|Gender: local::at0005|Male|
+        gt0007|Age range: local::at0006|Child|
+        gt0009|S-Na+: NPU::NPU03429|Sodium code|
+        gt0010|S-Na+ result: 160,mmol/l
+    expected_output:
+      "1":
+        gt0012|Free water deficit: 3.86,l
+  - id: 7. All inputs - adult male
+    input:
+      "1":
+        gt0003|Weight: 80,kg
+        gt0005|Gender: local::at0005|Male|
+        gt0007|Age range: local::at0007|Adult|
+        gt0009|S-Na+: NPU::NPU03429|Sodium code|
+        gt0010|S-Na+ result: 170,mmol/l
+    expected_output:
+      "1":
+        gt0012|Free water deficit: 10.27,l
+  - id: 8. All inputs - adult female
+    input:
+      "1":
+        gt0003|Weight: 65,kg
+        gt0005|Gender: local::at0006|Female|
+        gt0007|Age range: local::at0007|Adult|
+        gt0009|S-Na+: NPU::NPU03429|Sodium code|
+        gt0010|S-Na+ result: 155,mmol/l
+    expected_output:
+      "1":
+        gt0012|Free water deficit: 3.48,l
+  - id: 9. All inputs - elderly male
+    input:
+      "1":
+        gt0003|Weight: 90,kg
+        gt0005|Gender: local::at0005|Male|
+        gt0007|Age range: local::at0008|Elderly|
+        gt0009|S-Na+: NPU::NPU03429|Sodium code|
+        gt0010|S-Na+ result: 188,mmol/l
+    expected_output:
+      "1":
+        gt0012|Free water deficit: 15.44,l
+  - id: 10. All inputs - elderly female
+    input:
+      "1":
+        gt0003|Weight: 70,kg
+        gt0005|Gender: local::at0006|Female|
+        gt0007|Age range: local::at0008|Elderly|
+        gt0009|S-Na+: NPU::NPU03429|Sodium code|
+        gt0010|S-Na+ result: 188,mmol/l
+    expected_output:
+      "1":
+        gt0012|Free water deficit: 10.80,l
+  - id: 11. All inputs - elderly female, weight conversion
+    input:
+      "1":
+        gt0003|Weight: 154,[lb_av]
+        gt0005|Gender: local::at0006|Female|
+        gt0007|Age range: local::at0008|Elderly|
+        gt0009|S-Na+: NPU::NPU03429|Sodium code|
+        gt0010|S-Na+ result: 188,mmol/l
+    expected_output:
+      "1":
+        gt0012|Free water deficit: 10.78,l
