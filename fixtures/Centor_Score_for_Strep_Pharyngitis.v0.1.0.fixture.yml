@@ -1,0 +1,204 @@
+guidelines:
+  "1": Centor_Score_for_Strep_Pharyngitis.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Only Age as input (negative test)
+    input:
+      "1":
+        gt0062|Age: 5,a
+    expected_output:
+      "1": {}
+  - id: 3. Cough & swelling or exudates are missing (negative test)
+    input:
+      "1":
+        gt0062|Age: 5,a
+        gt0065|Fever >= 38 °C: 0|local::at0015|Absent|
+        gt0067|Tender cervical lymph nodes: 0|local::at0019|Absent|
+    expected_output:
+      "1": {}
+  - id: 4. Tonsillar swelling or exudates is missing (negative test)
+    input:
+      "1":
+        gt0062|Age: 7,a
+        gt0065|Fever >= 38 °C: 0|local::at0015|Absent|
+        gt0066|Cough: 0|local::at0017|Absent|
+        gt0067|Tender cervical lymph nodes: 0|local::at0019|Absent|
+    expected_output:
+      "1": {}
+  - id: 5. Age below the minimum age, pre-condition not met (negative test)
+    input:
+      "1":
+        gt0062|Age: 2,a
+        gt0065|Fever >= 38 °C: 0|local::at0015|Absent|
+        gt0066|Cough: 0|local::at0017|Absent|
+        gt0067|Tender cervical lymph nodes: 0|local::at0019|Absent|
+        gt0068|Tonsillar swelling or exudates: 0|local::at0021|Absent|
+    expected_output:
+      "1": {}
+  - id: 6. Age is negative (negative test)
+    input:
+      "1":
+        gt0062|Age: -2,a
+        gt0065|Fever >= 38 °C: 0|local::at0015|Absent|
+        gt0066|Cough: 0|local::at0017|Absent|
+        gt0067|Tender cervical lymph nodes: 0|local::at0019|Absent|
+        gt0068|Tonsillar swelling or exudates: 0|local::at0021|Absent|
+    expected_output:
+      "1": {}
+  - id: 8. Age is missing, precondition not met (negative test)
+    input:
+      "1":
+        gt0065|Fever >= 38 °C: 0|local::at0015|Absent|
+        gt0066|Cough: 0|local::at0017|Absent|
+        gt0067|Tender cervical lymph nodes: 0|local::at0019|Absent|
+        gt0068|Tonsillar swelling or exudates: 0|local::at0021|Absent|
+    expected_output:
+      "1": {}
+  - id: 10. Total score 0 (absent all)
+    input:
+      "1":
+        gt0062|Age: 3,a
+        gt0065|Fever >= 38 °C: 0|local::at0015|Absent|
+        gt0066|Cough: 0|local::at0017|Absent|
+        gt0067|Tender cervical lymph nodes: 0|local::at0019|Absent|
+        gt0068|Tonsillar swelling or exudates: 0|local::at0021|Absent|
+    expected_output:
+      "1":
+        gt0035|Total score: "0"
+        gt0057|Recommendation: local::at0009|No rapid test. Symptomatic treatment if necessary.|
+  - id: 11. Total score 1 (only Fever present)
+    input:
+      "1":
+        gt0062|Age: 3,a
+        gt0065|Fever >= 38 °C: 1|local::at0016|Present|
+        gt0066|Cough: 0|local::at0017|Absent|
+        gt0067|Tender cervical lymph nodes: 0|local::at0019|Absent|
+        gt0068|Tonsillar swelling or exudates: 0|local::at0021|Absent|
+    expected_output:
+      "1":
+        gt0035|Total score: "1"
+        gt0057|Recommendation: local::at0009|No rapid test. Symptomatic treatment if necessary.|
+  - id: 12. Total score 1 (only lymph nodes present)
+    input:
+      "1":
+        gt0062|Age: 3,a
+        gt0065|Fever >= 38 °C: 0|local::at0015|Absent|
+        gt0066|Cough: 0|local::at0017|Absent|
+        gt0067|Tender cervical lymph nodes: 1|local::at0020|Present|
+        gt0068|Tonsillar swelling or exudates: 0|local::at0021|Absent|
+    expected_output:
+      "1":
+        gt0035|Total score: "1"
+        gt0057|Recommendation: local::at0009|No rapid test. Symptomatic treatment if necessary.|
+  - id: 13. Total score 2 (lymph nodes & fever present)
+    input:
+      "1":
+        gt0062|Age: 8,a
+        gt0065|Fever >= 38 °C: 1|local::at0016|Present|
+        gt0066|Cough: 0|local::at0017|Absent|
+        gt0067|Tender cervical lymph nodes: 1|local::at0020|Present|
+        gt0068|Tonsillar swelling or exudates: 0|local::at0021|Absent|
+    expected_output:
+      "1":
+        gt0035|Total score: "2"
+        gt0057|Recommendation: local::at0009|No rapid test. Symptomatic treatment if necessary.|
+  - id: 14. Total score 3 (lymph nodes, Cough, fever present)
+    input:
+      "1":
+        gt0062|Age: 22,a
+        gt0065|Fever >= 38 °C: 1|local::at0016|Present|
+        gt0066|Cough: 1|local::at0018|Present|
+        gt0067|Tender cervical lymph nodes: 1|local::at0020|Present|
+        gt0068|Tonsillar swelling or exudates: 0|local::at0021|Absent|
+    expected_output:
+      "1":
+        gt0035|Total score: "3"
+        gt0057|Recommendation: local::at0010|Antibiotics in case of positive rapid test.|
+  - id: 15. Total score 4 (all are present)
+    input:
+      "1":
+        gt0062|Age: 37,a
+        gt0065|Fever >= 38 °C: 1|local::at0016|Present|
+        gt0066|Cough: 1|local::at0018|Present|
+        gt0067|Tender cervical lymph nodes: 1|local::at0020|Present|
+        gt0068|Tonsillar swelling or exudates: 1|local::at0022|Present|
+    expected_output:
+      "1":
+        gt0035|Total score: "4"
+        gt0057|Recommendation: local::at0010|Antibiotics in case of positive rapid test.|
+  - id: 16. Total score 1 (only swelling or exudates present)
+    input:
+      "1":
+        gt0062|Age: 8,a
+        gt0065|Fever >= 38 °C: 0|local::at0015|Absent|
+        gt0066|Cough: 0|local::at0017|Absent|
+        gt0067|Tender cervical lymph nodes: 0|local::at0019|Absent|
+        gt0068|Tonsillar swelling or exudates: 1|local::at0022|Present|
+    expected_output:
+      "1":
+        gt0035|Total score: "1"
+        gt0057|Recommendation: local::at0009|No rapid test. Symptomatic treatment if necessary.|
+  - id: 17. Total score 2 (swelling or exudates &  Cough are present)
+    input:
+      "1":
+        gt0062|Age: 8,a
+        gt0065|Fever >= 38 °C: 0|local::at0015|Absent|
+        gt0066|Cough: 1|local::at0018|Present|
+        gt0067|Tender cervical lymph nodes: 0|local::at0019|Absent|
+        gt0068|Tonsillar swelling or exudates: 1|local::at0022|Present|
+    expected_output:
+      "1":
+        gt0035|Total score: "2"
+        gt0057|Recommendation: local::at0009|No rapid test. Symptomatic treatment if necessary.|
+  - id: 18. Total score 3 (swelling or exudates, Cough & lymph nodes are present)
+    input:
+      "1":
+        gt0062|Age: 8,a
+        gt0065|Fever >= 38 °C: 0|local::at0015|Absent|
+        gt0066|Cough: 1|local::at0018|Present|
+        gt0067|Tender cervical lymph nodes: 1|local::at0020|Present|
+        gt0068|Tonsillar swelling or exudates: 1|local::at0022|Present|
+    expected_output:
+      "1":
+        gt0035|Total score: "3"
+        gt0057|Recommendation: local::at0010|Antibiotics in case of positive rapid test.|
+  - id: 19. Total score 4 (all are present)
+    input:
+      "1":
+        gt0062|Age: 8,a
+        gt0065|Fever >= 38 °C: 1|local::at0016|Present|
+        gt0066|Cough: 1|local::at0018|Present|
+        gt0067|Tender cervical lymph nodes: 1|local::at0020|Present|
+        gt0068|Tonsillar swelling or exudates: 1|local::at0022|Present|
+    expected_output:
+      "1":
+        gt0035|Total score: "4"
+        gt0057|Recommendation: local::at0010|Antibiotics in case of positive rapid test.|
+  - id: 20. Total score 1 (only Cough Present)
+    input:
+      "1":
+        gt0062|Age: 50,a
+        gt0065|Fever >= 38 °C: 0|local::at0015|Absent|
+        gt0066|Cough: 1|local::at0018|Present|
+        gt0067|Tender cervical lymph nodes: 0|local::at0019|Absent|
+        gt0068|Tonsillar swelling or exudates: 0|local::at0021|Absent|
+    expected_output:
+      "1":
+        gt0035|Total score: "1"
+        gt0057|Recommendation: local::at0009|No rapid test. Symptomatic treatment if necessary.|
+  - id: 21. Total score 1 (only swelling or exudates Present)
+    input:
+      "1":
+        gt0062|Age: 27,a
+        gt0065|Fever >= 38 °C: 0|local::at0015|Absent|
+        gt0066|Cough: 0|local::at0017|Absent|
+        gt0067|Tender cervical lymph nodes: 0|local::at0019|Absent|
+        gt0068|Tonsillar swelling or exudates: 1|local::at0022|Present|
+    expected_output:
+      "1":
+        gt0035|Total score: "1"
+        gt0057|Recommendation: local::at0009|No rapid test. Symptomatic treatment if necessary.|
