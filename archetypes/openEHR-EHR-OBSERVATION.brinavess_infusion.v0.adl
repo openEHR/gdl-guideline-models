@@ -1,0 +1,147 @@
+archetype (adl_version=1.4; uid=8277485d-84d9-4349-beba-03fc3c437d01)
+	openEHR-EHR-OBSERVATION.brinavess_infusion.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-09-01">
+		["name"] = <"Kevin Arjona">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"kevin.arjona@cambio.se">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record calculated initial and conditional second Brinavess infusion doses and rates.">
+			keywords = <"brinavess", "vernakalant", "infusion", "dose", "rate">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record calculated Brinavess doses and infusion rates for pharmacological conversion of atrial fibrillation.">
+			misuse = <"Not to be used as a medication order or to record administered medication.">
+		>
+	>
+	other_details = <
+		["references"] = <"FASS Vårdpersonal [Internet]. Brinavess (Vernakalant); [cited 2026 Mar 17]. Available from: https://fass.se/health/product/20090911000033/fass-text">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Brinavess infusion
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Initial dose
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Initial infusion rate
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Initial infusion volume
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Second dose
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Second infusion rate
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Second infusion volume
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0008] matches {    -- Tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0009] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Brinavess infusion">
+					description = <"Calculated doses, volumes, and rates for initial and conditional second Brinavess infusions.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Initial dose">
+					description = <"Calculated initial Brinavess dose in mg.">
+				>
+				["at0005"] = <
+					text = <"Initial infusion rate">
+					description = <"Calculated initial Brinavess infusion rate in mL/h.">
+				>
+				["at0010"] = <
+					text = <"Initial infusion volume">
+					description = <"Calculated initial Brinavess infusion volume in mL.">
+				>
+				["at0006"] = <
+					text = <"Second dose">
+					description = <"Calculated conditional second Brinavess dose in mg.">
+				>
+				["at0007"] = <
+					text = <"Second infusion rate">
+					description = <"Calculated conditional second Brinavess infusion rate in mL/h.">
+				>
+				["at0011"] = <
+					text = <"Second infusion volume">
+					description = <"Calculated conditional second Brinavess infusion volume in mL.">
+				>
+				["at0008"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0009"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model.">
+				>
+			>
+		>
+	>
