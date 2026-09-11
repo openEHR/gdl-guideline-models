@@ -1,0 +1,99 @@
+archetype (adl_version=1.4; uid=2dca59e4-1dd9-4667-baf7-458d6753abf7)
+	openEHR-EHR-EVALUATION.leibovich2018_rcc_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-05-29">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record progression-free survival and cancer-specific survival estimates derived from the 2018 Leibovich model for renal cell carcinoma.">
+			keywords = <"Leibovich model","RCC","renal","cell","carcinoma","progression-free survival","cancer-specific survival","prognosis","assessment">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record progression-free survival and cancer-specific survival estimates derived from the 2018 Leibovich model for renal cell carcinoma.">
+			misuse = <"Not to be used for recording the component parameters, calculated scores, or risk groups for the 2018 Leibovich model for renal cell carcinoma. Use instead openEHR-EHR-OBSERVATION.leibovich2018_rcc.v0.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Leibovich BC, Lohse CM, Cheville JC, Zaid HB, Boorjian SA, Frank I, Thompson RH, Parker WP. Predicting Oncologic Outcomes in Renal Cell Carcinoma After Surgery. Eur Urol. 2018 May;73(5):772-780. doi: 10.1016/j.eururo.2018.01.005. Epub 2018 Feb 3. PMID: 29398265.">
+		["build_uid"] = <"eefb03cb-2573-450b-8bb5-e0e33fc3e797">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- 2018 Leibovich Model for Renal Cell Carcinoma (RCC) assessment
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- Progression-Free Survival
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0003] occurrences matches {0..1} matches {    -- Cancer-Specific Survival
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"2018 Leibovich Model for Renal Cell Carcinoma (RCC) assessment">
+					description = <"An assessment used to record prognostic survival estimates derived from the 2018 Leibovich model for renal cell carcinoma.">
+					comment = <"Original version, c 2018">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Progression-Free Survival">
+					description = <"">
+				>
+				["at0003"] = <
+					text = <"Cancer-Specific Survival">
+					description = <"">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>

@@ -1,0 +1,192 @@
+guidelines:
+  "1": Rule_of_nines.v0.1.0
+test_cases:
+  - id: 01. No input, test default action (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Head and face missing (negative test).
+    input:
+      "1":
+        gt0016|Torso: local::at0016|0%|
+        gt0017|Back: local::at0019|0%|
+        gt0018|Right arm: local::at0022|0%|
+        gt0019|Left arm: local::at0025|0%|
+        gt0020|Genital area: local::at0028|0%|
+        gt0021|Right leg: local::at0030|0%|
+        gt0022|Left leg: local::at0033|0%|
+    expected_output:
+      "1": {}
+  - id: 03. Torso missing (negative test).
+    input:
+      "1":
+        gt0015|Head and face: local::at0014|4.5%|
+        gt0017|Back: local::at0019|0%|
+        gt0018|Right arm: local::at0022|0%|
+        gt0019|Left arm: local::at0025|0%|
+        gt0020|Genital area: local::at0028|0%|
+        gt0021|Right leg: local::at0030|0%|
+        gt0022|Left leg: local::at0033|0%|
+    expected_output:
+      "1": {}
+  - id: 04. Back missing (negative test).
+    input:
+      "1":
+        gt0015|Head and face: local::at0014|4.5%|
+        gt0016|Torso: local::at0017|9%|
+        gt0018|Right arm: local::at0022|0%|
+        gt0019|Left arm: local::at0025|0%|
+        gt0020|Genital area: local::at0028|0%|
+        gt0021|Right leg: local::at0030|0%|
+        gt0022|Left leg: local::at0033|0%|
+    expected_output:
+      "1": {}
+  - id: 05. Right arm missing (negative test).
+    input:
+      "1":
+        gt0015|Head and face: local::at0014|4.5%|
+        gt0016|Torso: local::at0017|9%|
+        gt0017|Back: local::at0019|0%|
+        gt0019|Left arm: local::at0025|0%|
+        gt0020|Genital area: local::at0028|0%|
+        gt0021|Right leg: local::at0030|0%|
+        gt0022|Left leg: local::at0033|0%|
+    expected_output:
+      "1": {}
+  - id: 06. Left arm missing  (negative test).
+    input:
+      "1":
+        gt0015|Head and face: local::at0014|4.5%|
+        gt0016|Torso: local::at0017|9%|
+        gt0017|Back: local::at0019|0%|
+        gt0018|Right arm: local::at0023|4.5%|
+        gt0020|Genital area: local::at0028|0%|
+        gt0021|Right leg: local::at0030|0%|
+        gt0022|Left leg: local::at0033|0%|
+    expected_output:
+      "1": {}
+  - id: 07. Genital area missing (negative test).
+    input:
+      "1":
+        gt0015|Head and face: local::at0014|4.5%|
+        gt0016|Torso: local::at0017|9%|
+        gt0017|Back: local::at0019|0%|
+        gt0018|Right arm: local::at0023|4.5%|
+        gt0019|Left arm: local::at0026|4.5%|
+        gt0021|Right leg: local::at0030|0%|
+        gt0022|Left leg: local::at0033|0%|
+    expected_output:
+      "1": {}
+  - id: 08. Right leg missing (negative test).
+    input:
+      "1":
+        gt0015|Head and face: local::at0014|4.5%|
+        gt0016|Torso: local::at0017|9%|
+        gt0017|Back: local::at0019|0%|
+        gt0018|Right arm: local::at0023|4.5%|
+        gt0019|Left arm: local::at0026|4.5%|
+        gt0020|Genital area: local::at0028|0%|
+        gt0022|Left leg: local::at0033|0%|
+    expected_output:
+      "1": {}
+  - id: 09. Left leg missing (negative test).
+    input:
+      "1":
+        gt0015|Head and face: local::at0014|4.5%|
+        gt0016|Torso: local::at0017|9%|
+        gt0017|Back: local::at0019|0%|
+        gt0018|Right arm: local::at0023|4.5%|
+        gt0019|Left arm: local::at0026|4.5%|
+        gt0020|Genital area: local::at0028|0%|
+        gt0021|Right leg: local::at0030|0%|
+    expected_output:
+      "1": {}
+  - id: 10. Total body surface area affected by burns of 0%
+    input:
+      "1":
+        gt0015|Head and face: local::at0013|0%|
+        gt0016|Torso: local::at0016|0%|
+        gt0017|Back: local::at0019|0%|
+        gt0018|Right arm: local::at0022|0%|
+        gt0019|Left arm: local::at0025|0%|
+        gt0020|Genital area: local::at0028|0%|
+        gt0021|Right leg: local::at0030|0%|
+        gt0022|Left leg: local::at0033|0%|
+    expected_output:
+      "1":
+        gt0024|Head and face burn area: 0,%
+        gt0025|Torso burn area: 0,%
+        gt0026|Back burn area: 0,%
+        gt0027|Right arm burn area: 0,%
+        gt0028|Left arm burn area: 0,%
+        gt0029|Genital burn area: 0,%
+        gt0030|Right leg burn area: 0,%
+        gt0031|Left leg burn area: 0,%
+        gt0032|Total body surface area affect by burns: 0.0,%
+  - id: 11. Total body surface area affected by burns of 22.5%
+    input:
+      "1":
+        gt0015|Head and face: local::at0014|4.5%|
+        gt0016|Torso: local::at0017|9%|
+        gt0017|Back: local::at0019|0%|
+        gt0018|Right arm: local::at0023|4.5%|
+        gt0019|Left arm: local::at0026|4.5%|
+        gt0020|Genital area: local::at0028|0%|
+        gt0021|Right leg: local::at0030|0%|
+        gt0022|Left leg: local::at0033|0%|
+    expected_output:
+      "1":
+        gt0024|Head and face burn area: 4.5,%
+        gt0025|Torso burn area: 9,%
+        gt0026|Back burn area: 0,%
+        gt0027|Right arm burn area: 4.5,%
+        gt0028|Left arm burn area: 4.5,%
+        gt0029|Genital burn area: 0,%
+        gt0030|Right leg burn area: 0,%
+        gt0031|Left leg burn area: 0,%
+        gt0032|Total body surface area affect by burns: 22.5,%
+  - id: 12. Total body surface area affected by burns of 73%
+    input:
+      "1":
+        gt0015|Head and face: local::at0015|9%|
+        gt0016|Torso: local::at0018|18%|
+        gt0017|Back: local::at0020|9%|
+        gt0018|Right arm: local::at0024|9%|
+        gt0019|Left arm: local::at0027|9%|
+        gt0020|Genital area: local::at0029|1%|
+        gt0021|Right leg: local::at0031|9%|
+        gt0022|Left leg: local::at0034|9%|
+    expected_output:
+      "1":
+        gt0024|Head and face burn area: 9,%
+        gt0025|Torso burn area: 18,%
+        gt0026|Back burn area: 9,%
+        gt0027|Right arm burn area: 9,%
+        gt0028|Left arm burn area: 9,%
+        gt0029|Genital burn area: 1,%
+        gt0030|Right leg burn area: 9,%
+        gt0031|Left leg burn area: 9,%
+        gt0032|Total body surface area affect by burns: 73.0,%
+  - id: 13. Total body surface area affected by burns of 100%
+    input:
+      "1":
+        gt0015|Head and face: local::at0015|9%|
+        gt0016|Torso: local::at0018|18%|
+        gt0017|Back: local::at0021|18%|
+        gt0018|Right arm: local::at0024|9%|
+        gt0019|Left arm: local::at0027|9%|
+        gt0020|Genital area: local::at0029|1%|
+        gt0021|Right leg: local::at0032|18%|
+        gt0022|Left leg: local::at0035|18%|
+    expected_output:
+      "1":
+        gt0024|Head and face burn area: 9,%
+        gt0025|Torso burn area: 18,%
+        gt0026|Back burn area: 18,%
+        gt0027|Right arm burn area: 9,%
+        gt0028|Left arm burn area: 9,%
+        gt0029|Genital burn area: 1,%
+        gt0030|Right leg burn area: 18,%
+        gt0031|Left leg burn area: 18,%
+        gt0032|Total body surface area affect by burns: 100.0,%

@@ -1,0 +1,181 @@
+archetype (adl_version=1.4; uid=9cb9fa0a-019a-494a-8a5a-27057dafb6ad)
+	openEHR-EHR-OBSERVATION.centor_score_strep_pharyngitis.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-02-09">
+		["name"] = <"Mahmoud Elachi">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"mel.achi@gmail.com">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results of each Centor criterion and their total score in patients with suspected acute tonsillitis or pharyngotonsillitis.
+">
+			keywords = <"criteria, tonsillitis, strep throat, sore throat, centor score, pharyngitis", ...>
+			copyright = <"Use © Cambio CDS">
+			use = <"Use to document the presence or absence of the Centor criteria and the calculated total score.">
+			misuse = <"Not to be used to record data for patients aged 3 years or younger.
+Not to be used to store diagnostic conclusions or treatment recommendations; use a dedicated Evaluation archetype instead">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Centor RM, Witherspoon JM, Dalton HP, Brody CE, Link K. The diagnosis of strep throat in adults in the emergency room. Med Decis Making. 1981;1(3):239-46. doi: 10.1177/0272989X8100100304. PMID: 6763125.
+
+McIsaac WJ, White D, Tannenbaum D, Low DE. A clinical score to reduce unnecessary antibiotic use in patients with sore throat. CMAJ. 1998 Jan 13;158(1):75-83. PMID: 9475915; PMCID: PMC1228750.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"9821f90b478d8b3ac9c3f40d2b51b312">
+		["build_uid"] = <"d836f5f9-7bbb-3610-af2f-983524e31084">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Centor criteria
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Fever >= 38 °C
+										value matches {
+											0|[local::at0015],
+											1|[local::at0016]
+										}
+									}
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Cough
+										value matches {
+											0|[local::at0017],
+											1|[local::at0018]
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Tender cervical lymph nodes
+										value matches {
+											0|[local::at0019],
+											1|[local::at0020]
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Tonsillar swelling or exudates
+										value matches {
+											0|[local::at0021],
+											1|[local::at0022]
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											DV_QUANTITY matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0023] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					CLUSTER[at0024] occurrences matches {0..1} matches {*}    -- Extension
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Centor criteria">
+					description = <"A clinical assessment score used to support the evaluation of suspected acute tonsillitis or pharyngotonsillitis and estimate the likelihood of group A streptococcal infection. The score records four clinical criteria: fever, tonsillar findings, tender cervical lymph nodes, and absence of cough.">
+					comment = <"Original version, c 1981">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Cough">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Tender cervical lymph nodes">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Tonsillar swelling or exudates">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Fever >= 38 °C">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Total score">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Absent">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0024"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>

@@ -1,0 +1,162 @@
+archetype (adl_version=1.4; uid=c43619d7-9f45-4511-9982-695947973c6b)
+	openEHR-EHR-OBSERVATION.sulf_fast.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-09-29">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and the overall outcome for the SULF-FAST (Trimethoprim-Sulfamethoxazole Allergy Decision Rule).">
+			keywords = <"SULF-FAST","trimethoprim","sulfamethoxazole","allergy","decision rule","sulfonamide","antibiotic">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and the overall outcome for the SULF-FAST decision rule.">
+			misuse = <"Not to be used for recording information related to other drug allergy prediction tools.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Waldron JL, Rose M, Vogrin S, Krantz MS, Bolotte R, Phillips EJ, Trubiano JA. Development and Validation of a Sulfa Antibiotic Allergy Clinical Decision Rule. JAMA Netw Open. 2023 Jun 1;6(6):e2316776. doi: 10.1001/jamanetworkopen.2023.16776. PMID: 37273210; PMCID: PMC10242418.
+Trubiano JA, Vogrin S, Chua KYL, Bourke J, Yun J, Douglas A, Stone CA, Yu R, Groenendijk L, Holmes NE, Phillips EJ. Development and Validation of a Penicillin Allergy Clinical Decision Rule. JAMA Intern Med. 2020 May 1;180(5):745-752. doi: 10.1001/jamainternmed.2020.0403. PMID: 32176248; PMCID: PMC7076536.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"852abff7223cc780917a9499aaa85c82">
+		["build_uid"] = <"d1b7d247-438a-4c8e-9be8-67e503f438fb">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Trimethoprim-Sulfamethoxazole Allergy Decision Rule (SULF-FAST)
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Five years or less since reaction
+										value matches {
+											0|[local::at0007],
+											2|[local::at0008]
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Anaphylaxis or angioedema OR Severe cutaneous adverse reaction
+										value matches {
+											0|[local::at0010],
+											2|[local::at0011]
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Treatment required for reaction
+										value matches {
+											0|[local::at0013],
+											1|[local::at0014]
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Trimethoprim-Sulfamethoxazole Allergy Decision Rule (SULF-FAST)">
+					description = <"An assessment rule used in adults (≥18 years) with a reported trimethoprim–sulfamethoxazole (TMP-SMX) allergy to estimate the risk of true allergy when considering sulfonamide antibiotic therapy.">
+					comment = <"Original version, c 2023">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Five years or less since reaction">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Yes/unknown">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Anaphylaxis or angioedema OR Severe cutaneous adverse reaction">
+					description = <"Severe cutaneous reactions may include Stevens-Johnson syndrome, toxic epidermal necrolysis, drug reaction with eosinophilia and systemic symptoms, and acute generalized exanthematous pustulosis. Patients with a severe delayed rash with mucosal involvement should be considered to have a severe cutaneous adverse reaction.">
+				>
+				["at0010"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Yes">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Treatment required for reaction">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"No">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Yes/unknown">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Total score">
+					description = <"The total sum of each component parameter for the SULF-FAST decision rule.">
+				>
+			>
+		>
+	>
