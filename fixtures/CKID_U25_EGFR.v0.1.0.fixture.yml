@@ -1,0 +1,256 @@
+guidelines:
+  "1": CKID_U25_EGFR.v0.1.0
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Equation missing (negative test).
+    input:
+      "1":
+        gt0019|Gender: local::at0005|Male|
+        gt0020|Age: 14,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0055|Cystatin C: NPU::NPU23745|Cystatin C code|
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1": {}
+  - id: 03. Gender missing (negative test).
+    input:
+      "1":
+        gt0003|Equation: local::at0007|CKiD U25 Creatinine|
+        gt0020|Age: 14,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0054|S.Creatinine: NPU::NPU01796|Creatinine code|
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1": {}
+  - id: 04. Age missing (negative test).
+    input:
+      "1":
+        gt0003|Equation: local::at0007|CKiD U25 Creatinine|
+        gt0019|Gender: local::at0005|Male|
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0054|S.Creatinine: NPU::NPU01796|Creatinine code|
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1": {}
+  - id: 05. Creatinine equation height missing (negative test).
+    input:
+      "1":
+        gt0003|Equation: local::at0007|CKiD U25 Creatinine|
+        gt0019|Gender: local::at0005|Male|
+        gt0020|Age: 15,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0054|S.Creatinine: NPU::NPU01796|Creatinine code|
+    expected_output:
+      "1": {}
+  - id: 06. Creatinine equation serum creatinine missing (negative test).
+    input:
+      "1":
+        gt0003|Equation: local::at0007|CKiD U25 Creatinine|
+        gt0019|Gender: local::at0005|Male|
+        gt0020|Age: 15,a
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1": {}
+  - id: 07. Cystatin C equation cystatin missing (negative test).
+    input:
+      "1":
+        gt0003|Equation: local::at0008|CKiD U25 Cystatin C|
+        gt0019|Gender: local::at0005|Male|
+        gt0020|Age: 15,a
+    expected_output:
+      "1": {}
+  - id: 08. Combined equation height missing (negative test).
+    input:
+      "1":
+        gt0003|Equation: local::at0009|CKiD U25 Creatinine-Cystatin C|
+        gt0019|Gender: local::at0006|Female|
+        gt0020|Age: 19,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0055|Cystatin C: NPU::NPU23745|Cystatin C code|
+    expected_output:
+      "1": {}
+  - id: 09. Combined equation serum creatinine missing (negative test).
+    input:
+      "1":
+        gt0003|Equation: local::at0009|CKiD U25 Creatinine-Cystatin C|
+        gt0019|Gender: local::at0006|Female|
+        gt0020|Age: 19,a
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0055|Cystatin C: NPU::NPU23745|Cystatin C code|
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1": {}
+  - id: 10. Combined equation cystatin missing (negative test).
+    input:
+      "1":
+        gt0003|Equation: local::at0009|CKiD U25 Creatinine-Cystatin C|
+        gt0019|Gender: local::at0006|Female|
+        gt0020|Age: 19,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0054|S.Creatinine: NPU::NPU01796|Creatinine code|
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1": {}
+  - id: 11. Creatinine eGFR male age 1 lower boundary.
+    input:
+      "1":
+        gt0003|Equation: local::at0007|CKiD U25 Creatinine|
+        gt0019|Gender: local::at0005|Male|
+        gt0020|Age: 1,a
+        gt0022|Serum creatinine: 0.4,mg/dL
+        gt0054|S.Creatinine: NPU::NPU01796|Creatinine code|
+        gt0026|Height/Length: 75,cm
+    expected_output:
+      "1":
+        gt0041|Estimated GFR by CKiD U25 Creatinine: 67,ml/min/1.73m2
+  - id: 12. Creatinine eGFR male age 12 boundary.
+    input:
+      "1":
+        gt0003|Equation: local::at0007|CKiD U25 Creatinine|
+        gt0019|Gender: local::at0005|Male|
+        gt0020|Age: 12,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0054|S.Creatinine: NPU::NPU01796|Creatinine code|
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1":
+        gt0041|Estimated GFR by CKiD U25 Creatinine: 85,ml/min/1.73m2
+  - id: 13. Creatinine eGFR male age 18 boundary.
+    input:
+      "1":
+        gt0003|Equation: local::at0007|CKiD U25 Creatinine|
+        gt0019|Gender: local::at0005|Male|
+        gt0020|Age: 18,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0054|S.Creatinine: NPU::NPU01796|Creatinine code|
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1":
+        gt0041|Estimated GFR by CKiD U25 Creatinine: 111,ml/min/1.73m2
+  - id: 14. Creatinine eGFR male age 25 upper boundary.
+    input:
+      "1":
+        gt0003|Equation: local::at0007|CKiD U25 Creatinine|
+        gt0019|Gender: local::at0005|Male|
+        gt0020|Age: 25,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0054|S.Creatinine: NPU::NPU01796|Creatinine code|
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1":
+        gt0041|Estimated GFR by CKiD U25 Creatinine: 111,ml/min/1.73m2
+  - id: 15. Cystatin C eGFR male age 1 lower boundary.
+    input:
+      "1":
+        gt0003|Equation: local::at0008|CKiD U25 Cystatin C|
+        gt0019|Gender: local::at0005|Male|
+        gt0020|Age: 1,a
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0055|Cystatin C: NPU::NPU23745|Cystatin C code|
+    expected_output:
+      "1":
+        gt0014|Estimated GFR by CKiD U25 Cystatin C: 83,ml/min/1.73m2
+  - id: 16. Cystatin C eGFR male age 15 boundary.
+    input:
+      "1":
+        gt0003|Equation: local::at0008|CKiD U25 Cystatin C|
+        gt0019|Gender: local::at0005|Male|
+        gt0020|Age: 15,a
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0055|Cystatin C: NPU::NPU23745|Cystatin C code|
+    expected_output:
+      "1":
+        gt0014|Estimated GFR by CKiD U25 Cystatin C: 97,ml/min/1.73m2
+  - id: 17. Cystatin C eGFR female age 18 boundary.
+    input:
+      "1":
+        gt0003|Equation: local::at0008|CKiD U25 Cystatin C|
+        gt0019|Gender: local::at0006|Female|
+        gt0020|Age: 18,a
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0055|Cystatin C: NPU::NPU23745|Cystatin C code|
+    expected_output:
+      "1":
+        gt0014|Estimated GFR by CKiD U25 Cystatin C: 76,ml/min/1.73m2
+  - id: 18. Combined creatinine-cystatin C eGFR female age 19.
+    input:
+      "1":
+        gt0003|Equation: local::at0009|CKiD U25 Creatinine-Cystatin C|
+        gt0019|Gender: local::at0006|Female|
+        gt0020|Age: 19,a
+        gt0022|Serum creatinine: 0.8,mg/dL
+        gt0054|S.Creatinine: NPU::NPU01796|Creatinine code|
+        gt0024|Cystatin C: 0.9,mg/L
+        gt0055|Cystatin C: NPU::NPU23745|Cystatin C code|
+        gt0026|Height/Length: 175,cm
+    expected_output:
+      "1":
+        gt0014|Estimated GFR by CKiD U25 Cystatin C: 76,ml/min/1.73m2
+        gt0041|Estimated GFR by CKiD U25 Creatinine: 91,ml/min/1.73m2
+        gt0044|Estimated GFR by CKiD U25 Creatinine-Cystatin C: 85,ml/min/1.73m2
+  - id: 19. Creatinine eGFR for females < 12yrs
+    input:
+      "1":
+        gt0003|Equation: local::at0007|CKiD U25 Creatinine|
+        gt0019|Gender: local::at0006|Female|
+        gt0020|Age: 10,a
+        gt0022|Serum creatinine: 2,mg/dL
+        gt0054|S.Creatinine: NPU::NPU01796|Creatinine code|
+        gt0026|Height/Length: 110,cm
+    expected_output:
+      "1":
+        gt0041|Estimated GFR by CKiD U25 Creatinine: 20,ml/min/1.73m2
+  - id: 20. Creatinine eGFR for females between 12y - 18 yrs
+    input:
+      "1":
+        gt0003|Equation: local::at0007|CKiD U25 Creatinine|
+        gt0019|Gender: local::at0006|Female|
+        gt0020|Age: 15,a
+        gt0022|Serum creatinine: 2,mg/dL
+        gt0054|S.Creatinine: NPU::NPU01796|Creatinine code|
+        gt0026|Height/Length: 120,cm
+    expected_output:
+      "1":
+        gt0041|Estimated GFR by CKiD U25 Creatinine: 23,ml/min/1.73m2
+  - id: 21. Cystatin C eGFR for males between 18y - 25 yrs
+    input:
+      "1":
+        gt0003|Equation: local::at0008|CKiD U25 Cystatin C|
+        gt0019|Gender: local::at0005|Male|
+        gt0020|Age: 20,a
+        gt0024|Cystatin C: 1,mg/L
+        gt0055|Cystatin C: NPU::NPU23745|Cystatin C code|
+        gt0026|Height/Length: 160,cm
+    expected_output:
+      "1":
+        gt0014|Estimated GFR by CKiD U25 Cystatin C: 77,ml/min/1.73m2
+  - id: 22. Cystatin eGFR for females between 1y - 12 yrs
+    input:
+      "1":
+        gt0003|Equation: local::at0008|CKiD U25 Cystatin C|
+        gt0019|Gender: local::at0006|Female|
+        gt0020|Age: 9,a
+        gt0024|Cystatin C: 1,mg/L
+        gt0055|Cystatin C: NPU::NPU23745|Cystatin C code|
+        gt0026|Height/Length: 110,cm
+    expected_output:
+      "1":
+        gt0014|Estimated GFR by CKiD U25 Cystatin C: 79,ml/min/1.73m2
+  - id: 23. Cystatin eGFR for females between 12y - 18 yrs
+    input:
+      "1":
+        gt0003|Equation: local::at0008|CKiD U25 Cystatin C|
+        gt0019|Gender: local::at0006|Female|
+        gt0020|Age: 16,a
+        gt0024|Cystatin C: 0.7,mg/L
+        gt0055|Cystatin C: NPU::NPU23745|Cystatin C code|
+        gt0026|Height/Length: 140,cm
+    expected_output:
+      "1":
+        gt0014|Estimated GFR by CKiD U25 Cystatin C: 103,ml/min/1.73m2
