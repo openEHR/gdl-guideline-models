@@ -1,0 +1,161 @@
+archetype (adl_version=1.4; uid=6a58c7a6-fd8d-4e28-a2f0-efc1bf14a6b2)
+	openEHR-EHR-OBSERVATION.oxygen_cylinder_duration.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-05-26">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and the calculated duration of oxygen supply.">
+			keywords = <"oxygen","cylinder","medical","flow rate","pressure","duration">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and the calculated duration of oxygen supply.">
+			misuse = <"Not to be used for recording oxygen saturation, oxygen therapy prescriptions, or respiratory observations.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"King D, Houseman B, Decker M. Gas Cylinders. 2023 Apr 23. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2026 Jan–. PMID: 30020722.">
+		["build_uid"] = <"c2aef63f-e4ee-40f9-b7e2-d40f3423d5a2">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Oxygen cylinder duration
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Cylinder volume
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::129]>
+												list = <
+													["1"] = <
+														units = <"L">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Cylinder pressure
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::125]>
+												list = <
+													["1"] = <
+														units = <"bar">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Oxygen flow rate
+										value matches {
+											C_DV_QUANTITY <
+												
+												list = <
+													["1"] = <
+														units = <"L/min">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Oxygen cylinder duration
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"min">
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Oxygen cylinder duration">
+					description = <"A calculation used to estimate the remaining duration of oxygen supply in a medical oxygen cylinder based on cylinder volume, pressure, and oxygen flow rate.">
+					comment = <"Based on oxygen cylinder duration calculations derived from gas laws and described in clinical oxygen supply guidance; see King D, et al. Gas Cylinders. StatPearls Publishing.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Cylinder volume">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Cylinder pressure">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Oxygen flow rate">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Oxygen cylinder duration">
+					description = <"">
+				>
+			>
+		>
+	>
