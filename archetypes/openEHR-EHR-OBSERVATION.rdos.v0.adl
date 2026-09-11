@@ -1,0 +1,270 @@
+archetype (adl_version=1.4; uid=7f74bcbb-657f-4415-8a75-fdfb6eb9480f)
+	openEHR-EHR-OBSERVATION.rdos.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-10-20">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and their total sum for the Respiratory Distress Observation Scale (RDOS).">
+			keywords = <"rdos","respiratory","distress","observation","scale">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and their total sum for the Respiratory Distress Observation Scale (RDOS).">
+			misuse = <"Not to be used for recording information related to other respiratory distress scoring systems.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"Campbell ML, Templin T, Walch J. A Respiratory Distress Observation Scale for patients unable to self-report dyspnea. J Palliat Med. 2010 Mar;13(3):285-90. doi: 10.1089/jpm.2009.0229. PMID: 20078243.">
+		["build_uid"] = <"78a68556-ed1b-440b-84ae-ed7164066c50">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Respiratory Distress Observation Scale (RDOS)
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Heart rate per minute
+										value matches {
+											0|[local::at0007],
+											1|[local::at0008],
+											2|[local::at0009]
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Respiratory rate per minute
+										value matches {
+											0|[local::at0011],
+											1|[local::at0012],
+											2|[local::at0013]
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Restlessness
+										value matches {
+											0|[local::at0015],
+											1|[local::at0016],
+											2|[local::at0017]
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- Paradoxical breathing pattern
+										value matches {
+											0|[local::at0019],
+											2|[local::at0020]
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {    -- Accessory muscle use
+										value matches {
+											0|[local::at0022],
+											1|[local::at0023],
+											2|[local::at0024]
+										}
+									}
+									ELEMENT[at0025] occurrences matches {0..1} matches {    -- Grunting at end-expiration
+										value matches {
+											0|[local::at0026],
+											2|[local::at0027]
+										}
+									}
+									ELEMENT[at0029] occurrences matches {0..1} matches {    -- Nasal flaring
+										value matches {
+											0|[local::at0030],
+											2|[local::at0031]
+										}
+									}
+									ELEMENT[at0032] occurrences matches {0..1} matches {    -- Look of fear
+										value matches {
+											0|[local::at0033],
+											2|[local::at0034]
+										}
+									}
+									ELEMENT[at0035] occurrences matches {0..1} matches {    -- Total score
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Respiratory Distress Observation Scale (RDOS)">
+					description = <"An assessment scale used to quantify respiratory distress in patients who are unable to self-report symptoms, based on observable clinical signs.">
+					comment = <"Original version, c 2010">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Heart rate per minute">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"<90 beats">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"90-109 beats">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"≥110 beats">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Respiratory rate per minute">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"≤18 breaths">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"9-30 breaths">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <">30 breaths">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Restlessness">
+					description = <"Nonpurposeful movements">
+				>
+				["at0015"] = <
+					text = <"None">
+					description = <"">
+				>
+				["at0016"] = <
+					text = <"Occasional, slight movements">
+					description = <"">
+				>
+				["at0017"] = <
+					text = <"Frequent movements">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Paradoxical breathing pattern">
+					description = <"Abdomen moves in on inspiration">
+				>
+				["at0019"] = <
+					text = <"None">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Accessory muscle use">
+					description = <"Rise in clavicles during inspiration">
+				>
+				["at0022"] = <
+					text = <"None">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Slight rise">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Pronounced rise">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Grunting at end-expiration">
+					description = <"Guttural sound">
+				>
+				["at0026"] = <
+					text = <"None">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0029"] = <
+					text = <"Nasal flaring">
+					description = <"Involuntary movement of nares">
+				>
+				["at0030"] = <
+					text = <"None">
+					description = <"">
+				>
+				["at0031"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Look of fear">
+					description = <"Eyes wide open, facial muscles tense, brow furrowed, mouth open, teeth together">
+				>
+				["at0033"] = <
+					text = <"None">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Present">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"Total score">
+					description = <"The total sum of each component parameter for the Respiratory Distress Observation Scale (RDOS).">
+				>
+			>
+		>
+	>

@@ -1,0 +1,164 @@
+guidelines:
+  "1": Respiratory_Distress_Observation_Scale_RDOS.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Heart rate per minute input missing (negative test)
+    input:
+      "1":
+        gt0004|Respiratory rate per minute: 0|local::at0011|≤18 breaths|
+        gt0005|Restlessness: 0|local::at0015|None|
+        gt0006|Paradoxical breathing pattern: 0|local::at0019|None|
+        gt0007|Accessory muscle use: 0|local::at0022|None|
+        gt0008|Grunting at end-expiration: 0|local::at0026|None|
+        gt0009|Nasal flaring: 0|local::at0030|None|
+        gt0010|Look of fear: 0|local::at0033|None|
+    expected_output:
+      "1": {}
+  - id: 3. Respiratory rate per minute input missing (negative test)
+    input:
+      "1":
+        gt0003|Heart rate per minute: 0|local::at0007|<90 beats|
+        gt0005|Restlessness: 0|local::at0015|None|
+        gt0006|Paradoxical breathing pattern: 0|local::at0019|None|
+        gt0007|Accessory muscle use: 0|local::at0022|None|
+        gt0008|Grunting at end-expiration: 0|local::at0026|None|
+        gt0009|Nasal flaring: 0|local::at0030|None|
+        gt0010|Look of fear: 0|local::at0033|None|
+    expected_output:
+      "1": {}
+  - id: 4. Restlessness input missing (negative test)
+    input:
+      "1":
+        gt0003|Heart rate per minute: 0|local::at0007|<90 beats|
+        gt0004|Respiratory rate per minute: 0|local::at0011|≤18 breaths|
+        gt0006|Paradoxical breathing pattern: 0|local::at0019|None|
+        gt0007|Accessory muscle use: 0|local::at0022|None|
+        gt0008|Grunting at end-expiration: 0|local::at0026|None|
+        gt0009|Nasal flaring: 0|local::at0030|None|
+        gt0010|Look of fear: 0|local::at0033|None|
+    expected_output:
+      "1": {}
+  - id: 5. Paradoxical breathing pattern input missing (negative test)
+    input:
+      "1":
+        gt0003|Heart rate per minute: 0|local::at0007|<90 beats|
+        gt0004|Respiratory rate per minute: 0|local::at0011|≤18 breaths|
+        gt0005|Restlessness: 0|local::at0015|None|
+        gt0007|Accessory muscle use: 0|local::at0022|None|
+        gt0008|Grunting at end-expiration: 0|local::at0026|None|
+        gt0009|Nasal flaring: 0|local::at0030|None|
+        gt0010|Look of fear: 0|local::at0033|None|
+    expected_output:
+      "1": {}
+  - id: 6. Accessory muscle use input missing (negative test)
+    input:
+      "1":
+        gt0003|Heart rate per minute: 0|local::at0007|<90 beats|
+        gt0004|Respiratory rate per minute: 0|local::at0011|≤18 breaths|
+        gt0005|Restlessness: 0|local::at0015|None|
+        gt0006|Paradoxical breathing pattern: 0|local::at0019|None|
+        gt0008|Grunting at end-expiration: 0|local::at0026|None|
+        gt0009|Nasal flaring: 0|local::at0030|None|
+        gt0010|Look of fear: 0|local::at0033|None|
+    expected_output:
+      "1": {}
+  - id: 7. Grunting at end-expiration input missing (negative test)
+    input:
+      "1":
+        gt0003|Heart rate per minute: 0|local::at0007|<90 beats|
+        gt0004|Respiratory rate per minute: 0|local::at0011|≤18 breaths|
+        gt0005|Restlessness: 0|local::at0015|None|
+        gt0006|Paradoxical breathing pattern: 0|local::at0019|None|
+        gt0007|Accessory muscle use: 0|local::at0022|None|
+        gt0009|Nasal flaring: 0|local::at0030|None|
+        gt0010|Look of fear: 0|local::at0033|None|
+    expected_output:
+      "1": {}
+  - id: 8.  Nasal flaring input missing (negative test)
+    input:
+      "1":
+        gt0003|Heart rate per minute: 0|local::at0007|<90 beats|
+        gt0004|Respiratory rate per minute: 0|local::at0011|≤18 breaths|
+        gt0005|Restlessness: 0|local::at0015|None|
+        gt0006|Paradoxical breathing pattern: 0|local::at0019|None|
+        gt0007|Accessory muscle use: 0|local::at0022|None|
+        gt0008|Grunting at end-expiration: 0|local::at0026|None|
+        gt0010|Look of fear: 0|local::at0033|None|
+    expected_output:
+      "1": {}
+  - id: 9.  Look of fear input missing (negative test)
+    input:
+      "1":
+        gt0003|Heart rate per minute: 0|local::at0007|<90 beats|
+        gt0004|Respiratory rate per minute: 0|local::at0011|≤18 breaths|
+        gt0005|Restlessness: 0|local::at0015|None|
+        gt0006|Paradoxical breathing pattern: 0|local::at0019|None|
+        gt0007|Accessory muscle use: 0|local::at0022|None|
+        gt0008|Grunting at end-expiration: 0|local::at0026|None|
+        gt0009|Nasal flaring: 0|local::at0030|None|
+    expected_output:
+      "1": {}
+  - id: 10.  All inputs, interpretation "No distress"
+    input:
+      "1":
+        gt0003|Heart rate per minute: 1|local::at0008|90-109 beats|
+        gt0004|Respiratory rate per minute: 0|local::at0011|≤18 breaths|
+        gt0005|Restlessness: 0|local::at0015|None|
+        gt0006|Paradoxical breathing pattern: 0|local::at0019|None|
+        gt0007|Accessory muscle use: 0|local::at0022|None|
+        gt0008|Grunting at end-expiration: 0|local::at0026|None|
+        gt0009|Nasal flaring: 0|local::at0030|None|
+        gt0010|Look of fear: 0|local::at0033|None|
+    expected_output:
+      "1":
+        gt0012|Total score: "1"
+        gt0014|Severity: No distress
+  - id: 11.  All inputs, interpretation "Mild distress"
+    input:
+      "1":
+        gt0003|Heart rate per minute: 1|local::at0008|90-109 beats|
+        gt0004|Respiratory rate per minute: 0|local::at0011|≤18 breaths|
+        gt0005|Restlessness: 0|local::at0015|None|
+        gt0006|Paradoxical breathing pattern: 2|local::at0020|Present|
+        gt0007|Accessory muscle use: 0|local::at0022|None|
+        gt0008|Grunting at end-expiration: 0|local::at0026|None|
+        gt0009|Nasal flaring: 0|local::at0030|None|
+        gt0010|Look of fear: 0|local::at0033|None|
+    expected_output:
+      "1":
+        gt0012|Total score: "3"
+        gt0014|Severity: Mild distress
+  - id: 12.  All inputs, interpretation "Moderate distress"
+    input:
+      "1":
+        gt0003|Heart rate per minute: 1|local::at0008|90-109 beats|
+        gt0004|Respiratory rate per minute: 1|local::at0012|9-30 breaths|
+        gt0005|Restlessness: 0|local::at0015|None|
+        gt0006|Paradoxical breathing pattern: 2|local::at0020|Present|
+        gt0007|Accessory muscle use: 2|local::at0024|Pronounced rise|
+        gt0008|Grunting at end-expiration: 0|local::at0026|None|
+        gt0009|Nasal flaring: 0|local::at0030|None|
+        gt0010|Look of fear: 0|local::at0033|None|
+    expected_output:
+      "1":
+        gt0012|Total score: "6"
+        gt0014|Severity: Moderate distress
+  - id: 13.  All inputs, interpretation "Severe distress"
+    input:
+      "1":
+        gt0003|Heart rate per minute: 0|local::at0007|<90 beats|
+        gt0004|Respiratory rate per minute: 1|local::at0012|9-30 breaths|
+        gt0005|Restlessness: 0|local::at0015|None|
+        gt0006|Paradoxical breathing pattern: 2|local::at0020|Present|
+        gt0007|Accessory muscle use: 2|local::at0024|Pronounced rise|
+        gt0008|Grunting at end-expiration: 0|local::at0026|None|
+        gt0009|Nasal flaring: 2|local::at0031|Present|
+        gt0010|Look of fear: 0|local::at0033|None|
+    expected_output:
+      "1":
+        gt0012|Total score: "7"
+        gt0014|Severity: Severe distress
