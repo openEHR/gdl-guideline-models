@@ -1,0 +1,133 @@
+archetype (adl_version=1.4; uid=cad4040b-969a-46f9-bb6e-3ada2ff4ed69)
+	openEHR-EHR-EVALUATION.gmaws_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-05-28">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the recommended medication and reassessment interval based on the Glasgow Modified Alcohol Withdrawal Scale score.">
+			keywords = <"glasgow","modified","alcohol","withdrawal","scale","GMAWS","assessment","recommendation">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the recommended medication and reassessment interval based on the Glasgow Modified Alcohol Withdrawal Scale score.">
+			misuse = <"Not to be used to record the individual Glasgow Modified Alcohol Withdrawal Scale parameters or total score. Use instead openEHR-EHR-OBSERVATION.gmaws.v0.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["references"] = <"McPherson A, Benson G, Forrest EH. Appraisal of the Glasgow assessment and management of alcohol guideline: a comprehensive alcohol management protocol for use in general hospitals. QJM. 2012 Jul;105(7):649-56. doi: 10.1093/qjmed/hcs020. Epub 2012 Feb 10. PMID: 22328545.
+Schonewald B, Hunter K, Ely AV, Heil J, Ganetsky V, Milburn C, Rafeq R, Salzman M. Impact of an alcohol withdrawal screening and treatment protocol for hospitalized patients. J Subst Use Addict Treat. 2024 Sep;164:209443. doi: 10.1016/j.josat.2024.209443. Epub 2024 Jun 12. PMID: 38871256.">
+		["build_uid"] = <"e3a77835-54ce-4bb7-9e36-4cdcf232b4f7">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- Glasgow Modified Alcohol Withdrawal Scale (GMAWS) assessment
+		data matches {
+			ITEM_TREE[at0003] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Recommended medication
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005,    -- No benzodiazepine
+									at0006,    -- Diazepam 10 mg PO/IV ×1; alternative: Lorazepam 2 mg
+									at0007]    -- Diazepam 20 mg PO/IV ×1; alternative: Lorazepam 4 mg
+								}
+							}
+						}
+					}
+					ELEMENT[at0008] occurrences matches {0..1} matches {    -- Reassessment interval
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0009,    -- Reassess in 2 hours
+									at0010]    -- Reassess in 1 hour
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0002] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Glasgow Modified Alcohol Withdrawal Scale (GMAWS) assessment">
+					description = <"An assessment used to record recommendations based on the Glasgow Modified Alcohol Withdrawal Scale score.">
+					comment = <"Original version, c 2012">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0003"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Recommended medication">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"No benzodiazepine">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Diazepam 10 mg PO/IV ×1; alternative: Lorazepam 2 mg">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Diazepam 20 mg PO/IV ×1; alternative: Lorazepam 4 mg">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Reassessment interval">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Reassess in 2 hours">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Reassess in 1 hour">
+					description = <"">
+				>
+			>
+		>
+	>
