@@ -1,0 +1,266 @@
+archetype (adl_version=1.4; uid=1bda1ed5-3a8f-417d-9d94-1785143c418e)
+	openEHR-EHR-OBSERVATION.mgfa.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2025-10-10">
+		["name"] = <"Katja Mariko Wilde">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"katja-wilde@t-online.de">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for each component parameter and the final Myasthenia Gravis Foundation of America (MGFA) Clinical Classification.">
+			keywords = <"mgfa","myasthenia","gravis","foundation","america","clinical","classification","muscle","weakness","severity">
+			copyright = <"© Cambio CDS">
+			use = <"Use to record the results for each component parameter and the final Myasthenia Gravis Foundation of America (MGFA) Clinical Classification.">
+			misuse = <"Not to be used for recording treatment response or post-intervention outcomes in myasthenia gravis.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Jaretzki A 3rd, Barohn RJ, Ernstoff RM, Kaminski HJ, Keesey JC, Penn AS, Sanders DB. Myasthenia gravis: recommendations for clinical research standards. Task Force of the Medical Scientific Advisory Board of the Myasthenia Gravis Foundation of America. Neurology. 2000 Jul 12;55(1):16-23. doi: 10.1212/wnl.55.1.16. PMID: 10891897.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"b79c54fc64ecc11cfc0d30c75c3312bd">
+		["build_uid"] = <"a064b91e-e040-4cbd-b3aa-287846ee29d1">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Myasthenia Gravis Foundation of America (MGFA) Clinical Classification
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Class
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007,    -- Any ocular muscle weakness. All other muscle strength is normal.
+													at0008,    -- Mild non-ocular muscle weakness.
+													at0009,    -- Moderate non-ocular muscle weakness.
+													at0010,    -- Severe non-ocular muscle weakness.
+													at0011;    -- Defined by intubation, with or without mechanical ventilation.
+													at0007]
+												}
+											}
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {    -- Subclass
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0014,    -- Predominantly affecting limb, axial muscles, or both. May also have lesser involvement of oropharyngeal muscles.
+													at0015]    -- Predominantly affecting oropharyngeal, respiratory muscles, or both. May also have lesser or equal involvement of limb, axial muscles, or both.
+												}
+											}
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {    -- MGFA Classification System
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0019,    -- Class I
+													at0020,    -- Class IIa
+													at0021,    -- Class IIb
+													at0022,    -- Class IIIa
+													at0023,    -- Class IIIb
+													at0024,    -- Class IVa
+													at0025,    -- Class IVb
+													at0026]    -- Class V
+												}
+											}
+										}
+									}
+									ELEMENT[at0027] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0028,    -- Any ocular muscle weakness. May have weakness of eye closure. All other muscle strength is normal.
+													at0029,    -- Mild non-ocular muscle weakness predominantly affecting limb, axial muscles, or both. May also have lesser involvement of oropharyngeal muscles and ocular muscle weakness of any severity.
+													at0030,    -- Mild non-ocular muscle weakness predominantly affecting oropharyngeal, respiratory muscles, or both. May also have lesser or equal involvement of limb, axial muscles, or both, and ocular muscle weakness of any severity.
+													at0031,    -- Moderate non-ocular muscle weakness predominantly affecting limb, axial muscles, or both. May also have lesser involvement of oropharyngeal muscles and ocular muscle weakness of any severity.
+													at0032,    -- Moderate non-ocular muscle weakness predominantly affecting oropharyngeal, respiratory muscles, or both. May also have lesser or equal involvement of limb, axial muscles, or both, and ocular muscle weakness of any severity.
+													at0033,    -- Severe non-ocular muscle weakness predominantly affecting limb and/or axial muscles. May also have lesser involvement of oropharyngeal muscles and ocular muscle weakness of any severity.
+													at0034,    -- Severe non-ocular muscle weakness predominantly affecting oropharyngeal, respiratory muscles, or both. May also have lesser or equal involvement of limb, axial muscles, or both, and ocular muscle weakness of any severity.
+													at0035]    -- Defined by intubation, with or without mechanical ventilation (except when used in routine postoperative management). Feeding tube without intubation = Class IVb.
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Myasthenia Gravis Foundation of America (MGFA) Clinical Classification">
+					description = <"A classification system used to stage the severity of myasthenia gravis based on the distribution and intensity of muscle weakness.">
+					comment = <"Original version, c 2000">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Class">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Any ocular muscle weakness. All other muscle strength is normal.">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Mild non-ocular muscle weakness.">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Moderate non-ocular muscle weakness.">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Severe non-ocular muscle weakness.">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Defined by intubation, with or without mechanical ventilation.">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Subclass">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Predominantly affecting limb, axial muscles, or both. May also have lesser involvement of oropharyngeal muscles.">
+					description = <"">
+				>
+				["at0015"] = <
+					text = <"Predominantly affecting oropharyngeal, respiratory muscles, or both. May also have lesser or equal involvement of limb, axial muscles, or both.">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"MGFA Classification System">
+					description = <"">
+				>
+				["at0019"] = <
+					text = <"Class I">
+					description = <"">
+				>
+				["at0020"] = <
+					text = <"Class IIa">
+					description = <"">
+				>
+				["at0021"] = <
+					text = <"Class IIb">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Class IIIa">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Class IIIb">
+					description = <"">
+				>
+				["at0024"] = <
+					text = <"Class IVa">
+					description = <"">
+				>
+				["at0025"] = <
+					text = <"Class IVb">
+					description = <"">
+				>
+				["at0026"] = <
+					text = <"Class V">
+					description = <"">
+				>
+				["at0027"] = <
+					text = <"Description">
+					description = <"">
+				>
+				["at0028"] = <
+					text = <"Any ocular muscle weakness. May have weakness of eye closure. All other muscle strength is normal.">
+					description = <"Class I">
+				>
+				["at0029"] = <
+					text = <"Mild non-ocular muscle weakness predominantly affecting limb, axial muscles, or both. May also have lesser involvement of oropharyngeal muscles and ocular muscle weakness of any severity.">
+					description = <"Class IIa">
+				>
+				["at0030"] = <
+					text = <"Mild non-ocular muscle weakness predominantly affecting oropharyngeal, respiratory muscles, or both. May also have lesser or equal involvement of limb, axial muscles, or both, and ocular muscle weakness of any severity.">
+					description = <"Class IIb">
+				>
+				["at0031"] = <
+					text = <"Moderate non-ocular muscle weakness predominantly affecting limb, axial muscles, or both. May also have lesser involvement of oropharyngeal muscles and ocular muscle weakness of any severity.">
+					description = <"Class IIIa">
+				>
+				["at0032"] = <
+					text = <"Moderate non-ocular muscle weakness predominantly affecting oropharyngeal, respiratory muscles, or both. May also have lesser or equal involvement of limb, axial muscles, or both, and ocular muscle weakness of any severity.">
+					description = <"Class IIIb">
+				>
+				["at0033"] = <
+					text = <"Severe non-ocular muscle weakness predominantly affecting limb and/or axial muscles. May also have lesser involvement of oropharyngeal muscles and ocular muscle weakness of any severity.">
+					description = <"Class IVa">
+				>
+				["at0034"] = <
+					text = <"Severe non-ocular muscle weakness predominantly affecting oropharyngeal, respiratory muscles, or both. May also have lesser or equal involvement of limb, axial muscles, or both, and ocular muscle weakness of any severity.">
+					description = <"Class IVb">
+				>
+				["at0035"] = <
+					text = <"Defined by intubation, with or without mechanical ventilation (except when used in routine postoperative management). Feeding tube without intubation = Class IVb.">
+					description = <"Class V">
+				>
+			>
+		>
+	>
