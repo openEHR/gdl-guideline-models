@@ -26,7 +26,7 @@ If you would like to test an app, simply click on "ENG" to access the English ve
 7. Carboplatin AUC Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Carboplatin_AUC_calculation/0.1.0))
 8. HbA1C convertor - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/hba1c_converter/0.1.0))
 9. Modified Minnesota Detoxification Scale (mMINDS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Modified_Minnesota_Detoxification_Scale_mMINDS_Calculation/0.1.0))
-10. GLOBE score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/GLOBE_Score_Final/0.0.1?language=en))
+10. GLOBE score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/GLOBE_Score_Final/0.0.1?language=en))
 
 ----------
 
