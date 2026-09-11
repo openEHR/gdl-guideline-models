@@ -11,22 +11,22 @@ We've gathered all of the available applications in one place and organized them
 
 If you would like to test an app, simply click on "ENG" to access the English version, and "SWE" for the Swedish version. To view a detailed description of the app and its components, click on the application name.
 
-### *Published Apps: 714*
+### *Published Apps: 724*
 
 ----------
 
 ### Latest added
 
-1. NAFLD fibrosis score - ([_ENG_]( https://modelling.cds-platform.com/ckm/view/cambio-community/nafld_fibrosis/0.1.0))
-2. Truelove and Witts Severity Index for Ulcerative Colitis - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Truelove_Witts_Severity_Index/0.1.0))
-3. Berg Balance Scale (BBS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Berg_Balance_Scale/0.1.0))
-4. Sunnybrook facial grading system - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Sunnybrook_facial_grading_system_calculation/0.1.0))
-5. International Prognostic Score for Asymptomatic Early-stage CLL (IPS-E) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/International_Prognostic_Score_for_Asymptomatic_Early_stage_CLL_IPS_E_/0.1.0))
-6. Pediatric Surgery Research Collaborative (PedSRC) Rule for Blunt Abdominal Trauma - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Pediatric_Surgery_Research_Collaborative_PedSRC_Rule/0.1.0))
-7. Carboplatin AUC Calculator - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Carboplatin_AUC_calculation/0.1.0))
-8. HbA1C convertor - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/hba1c_converter/0.1.0))
-9. Modified Minnesota Detoxification Scale (mMINDS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Modified_Minnesota_Detoxification_Scale_mMINDS_Calculation/0.1.0))
-10. GLOBE score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/ckm-cambio-community/GLOBE_Score_Final/0.0.1?language=en))
+1. Respiratory Distress Observation Scale (RDOS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Respiratory_Distress_Observation_Scale_RDOS/0.1.0))
+2. Trimethoprim-Sulfamethoxazole Allergy Decision Rule (SULF-FAST) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/SULF_FAST/0.1.0))
+3. Eosinophilic Esophagitis Endoscopic Reference Score (EREFS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/EREFS/0.1.0)
+4. Glasgow Modified Alcohol Withdrawal Scale (GMAWS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Glasgow_Modified_Alcohol_Withdrawal_Scale_GMAWS/0.1.0))
+5. Myasthenia Gravis Foundation of America (MGFA) Clinical Classification - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Myasthenia_Gravis_Foundation_of_America_MGFA_Clinical_Classification/0.1.0))
+6. Natriuretic Response Prediction Equation (NRPE) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Natriuretic_Response_Prediction_Equation_NRPE/0.1.0))
+7. Rule of Nines - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Rule_of_nines/0.1.0))
+8. 2018 Leibovich Model for Renal Cell Carcinoma (RCC) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/2018_Leibovich_Model_for_Renal_Cell_Carcinoma_Assessment/0.1.0))
+9. Risk of Paradoxical Embolism (RoPE) Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/RoPE_Score/0.1.0))
+10. WETBAG-5A - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/WETBAGS_5A/0.1.0))
 
 ----------
 
@@ -248,6 +248,8 @@ _Select a medical specialty below to view the available apps._
 
 * Myocardial Performance Index (Tei Index) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Myocardial_Performance_Index_guideline/1?language=en))
 
+* Natriuretic Response Prediction Equation (NRPE) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Natriuretic_Response_Prediction_Equation_NRPE/0.1.0))
+
 * New York Heart Association Functional Classification (NYHA) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/NYHA/1?language=en))
 
 * ORBIT Bleeding Risk Score for Atrial Fibrillation  - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/ORBIT_bleeding_risk_score/1?language=en))
@@ -265,6 +267,8 @@ _Select a medical specialty below to view the available apps._
 * Revised Cardiac Risk Index (RCRI) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/RCRI/1?language=en))
 
 * Reynolds Risk Score for Cardiovascular Risk in Women - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Reynolds_Risk_Score_for_CardiovascularRisk_in_Women_guideline/1?language=en))
+
+* Risk of Paradoxical Embolism (RoPE) Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/RoPE_Score/0.1.0))
 
 * SAVE (Survival after Veno-Arterial ECMO) Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/SAVE_score/1?language=en))
 
@@ -531,7 +535,9 @@ _Select a medical specialty below to view the available apps._
 
 * Crohn's Disease Activity Index (CDAI) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Crohns_Disease_Activity_Index_CDAI/1?language=en)) 
 
-* DeMeester Score for GERD - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/DMS/1?language=en)) 
+* DeMeester Score for GERD - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/DMS/1?language=en))
+
+* Eosinophilic Esophagitis Endoscopic Reference Score (EREFS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/EREFS/0.1.0)
 
 * EVendo Score for Esophageal Varices - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/EVendo_Score_for_Esophageal_Varices/1?language=en))
 
@@ -779,7 +785,11 @@ _Select a medical specialty below to view the available apps._
 
 * Rapid Shallow Breathing Index (RSBI) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Rapid_Shallow_Breathing_Index_RSBI/1?language=en))
 
+* Respiratory Distress Observation Scale (RDOS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Respiratory_Distress_Observation_Scale_RDOS/0.1.0))
+
 * Richmond Agitation Sedation Scale (RASS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Richmond_Agitation_Sedation_Scale/1?language=en))
+
+* Rule of Nines - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Rule_of_nines/0.1.0))
 
 * Sequential Organ Failure Assessment (SOFA) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/sofa/1?language=en))
 
@@ -911,6 +921,8 @@ _Select a medical specialty below to view the available apps._
 * Modified Rankin Scale for Neurologic Disability  - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Modified_Rankin_Scale_for_Neurologic_Disability/1?language=en))
 
 * Montreal Cognitive Assessment (MoCA) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/MoCA_guideline/1?language=en))
+
+* Myasthenia Gravis Foundation of America (MGFA) Clinical Classification - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Myasthenia_Gravis_Foundation_of_America_MGFA_Clinical_Classification/0.1.0))
 
 * National Institutes of Health Stroke Scale (NIHSS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/NIHSS_calculation/0.1.0)
 
@@ -1084,6 +1096,8 @@ _Select a medical specialty below to view the available apps._
 
 * UCSF-CAPRA Score for Prostate Cancer Risk - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/UCSF_CAPRA_prostate_cancer_risk/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/cambio-community/UCSF_CAPRA_prostate_cancer_risk/1?language=sv))
 
+* 2018 Leibovich Model for Renal Cell Carcinoma (RCC) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/2018_Leibovich_Model_for_Renal_Cell_Carcinoma_Assessment/0.1.0))
+
 ----------
 
 ### Ophthalmology
@@ -1215,6 +1229,8 @@ _Select a medical specialty below to view the available apps._
 
 * Westley Croup Score - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Westley_Croup_Score_guideline/1?language=en))
 
+* WETBAG-5A - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/WETBAGS_5A/0.1.0))
+
 * Withdrawal Assessment Tool (WAT-1) for Pediatric Withdrawal - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Withdrawal_Assessment_Tool_for_pediatric_withdrawal/1?language=en))
 ----------
 
@@ -1281,7 +1297,7 @@ _Select a medical specialty below to view the available apps._
 
 * Body Surface Area Mosteller (BSA-Mosteller) calculation - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/BSA_Mosteller/1?language=en))
 
-* Centor Criteria - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Centor_Criteria/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/cambio-community/Centor_Criteria/1?language=sv))
+* Centor Score (Modified/McIsaac) for Strep Pharyngitis - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Centor_Score_for_Strep_Pharyngitis/0.1.0))
 
 * CRIES Pain Scale - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/CRIES_pain_scale/0.1.0?language=en))
 
@@ -1353,6 +1369,8 @@ _Select a medical specialty below to view the available apps._
 
 * Stress and Crisis Inventory 93 (SCI-93) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/SCI-93/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/cambio-community/SCI-93/1?language=sv))
 
+* Trimethoprim-Sulfamethoxazole Allergy Decision Rule (SULF-FAST) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/SULF_FAST/0.1.0))
+
 * Upper Extremity Functional Index (UEFI) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/UEFI_guideline/1?language=en))
 
 * World Health Organization Disability Assessment Schedule 2.0 - 12 item version (WHODAS 2.0) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/WHODAS_2.0_12_item_score/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/cambio-community/WHODAS_2.0_12_item_score/1?language=sv))
@@ -1393,6 +1411,8 @@ _Select a medical specialty below to view the available apps._
 * Generalized Anxiety Disorder Score (GAD-7) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/GAD-7/1?language=en))
 
 * Geriatric Depression Scale (GDS-15) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Rome_IV_Diagnostic_Criteria_for_Child_Functional_Constipation_Assessment/0.1.0?language=en))
+
+* Glasgow Modified Alcohol Withdrawal Scale (GMAWS) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/Glasgow_Modified_Alcohol_Withdrawal_Scale_GMAWS/0.1.0))
 
 * Hamilton Anxiety Scale (HAM-A) - ([_ENG_](https://modelling.cds-platform.com/ckm/view/cambio-community/HAM-A/1?language=en))/([_SWE_](https://modelling.cds-platform.com/ckm/view/cambio-community/HAM-A/1?language=sv))
 
