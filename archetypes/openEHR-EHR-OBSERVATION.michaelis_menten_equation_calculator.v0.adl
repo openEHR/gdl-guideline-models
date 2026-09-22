@@ -10,8 +10,8 @@ language
 description
 	original_author = <
 		["date"] = <"2025-10-13">
-		["organisation"] = <"Cambio CDS">
 		["name"] = <"Mahmoud Elachi">
+		["organisation"] = <"Cambio CDS">
 		["email"] = <"mel.achi@gmail.com">
 	>
 	lifecycle_state = <"unmanaged">
@@ -30,18 +30,18 @@ Do not use as a substitute for documenting enzyme assay results or other laborat
 	other_details = <
 		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
 		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Michaelis L, Menten ML, Johnson KA, Goody RS. The original Michaelis constant: translation of the 1913 Michaelis-Menten paper. Biochemistry. 2011 Oct 4;50(39):8264-9. doi: 10.1021/bi201284u. Epub 2011 Sep 9. PMID: 21888353; PMCID: PMC3381512.
+Johnson KA and Goody RS. The Original Michaelis Constant: Translation of the 1913 Michaelis–Menten Paper. Biochemistry 2011, 50, 39, 8264–8269.
+Reuveni S, Urbakh M, Klafter T. Role of Substrate Unbinding in Michaelis-Menten Enzymatic Reactions. Proc Natl Acad Sci U S A. 2014;111(12):4391-6.">
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
 		["MD5-CAM-1.0.1"] = <"9517039ee97c52691c8c59edcaf77981">
 		["build_uid"] = <"12cf9ee9-8ebb-35ea-90d8-fcb34ce2e7bf">
-		["references"] = <"Michaelis L, Menten ML, Johnson KA, Goody RS. The original Michaelis constant: translation of the 1913 Michaelis-Menten paper. Biochemistry. 2011 Oct 4;50(39):8264-9. doi: 10.1021/bi201284u. Epub 2011 Sep 9. PMID: 21888353; PMCID: PMC3381512.
-Johnson KA and Goody RS. The Original Michaelis Constant: Translation of the 1913 Michaelis–Menten Paper. Biochemistry 2011, 50, 39, 8264–8269.
-Reuveni S, Urbakh M, Klafter T. Role of Substrate Unbinding in Michaelis-Menten Enzymatic Reactions. Proc Natl Acad Sci U S A. 2014;111(12):4391-6.">
 	>
 
 definition
-	OBSERVATION[at0000] matches {    -- michaelis_menten_equation_calculator
+	OBSERVATION[at0000] matches {    -- Michaelis Menten equation calculator
 		data matches {
 			HISTORY[at0001] matches {    -- History
 				events cardinality matches {1..*; unordered} matches {
@@ -55,7 +55,7 @@ definition
 												property = <[openehr::128]>
 												list = <
 													["1"] = <
-														units = <"1/sec">
+														units = <"1/s">
 													>
 													["2"] = <
 														units = <"1/min">
@@ -81,6 +81,18 @@ definition
 													["4"] = <
 														units = <"nanomolars (nM)">
 													>
+													["5"] = <
+														units = <"mol/L">
+													>
+													["6"] = <
+														units = <"mmol/L">
+													>
+													["7"] = <
+														units = <"umol/L">
+													>
+													["8"] = <
+														units = <"nmol/L">
+													>
 												>
 											>
 										}
@@ -91,7 +103,7 @@ definition
 												property = <[openehr::128]>
 												list = <
 													["1"] = <
-														units = <"1/sec">
+														units = <"1/s">
 													>
 													["2"] = <
 														units = <"1/min">
@@ -117,6 +129,18 @@ definition
 													["4"] = <
 														units = <"nanomolars (nM)">
 													>
+													["5"] = <
+														units = <"mol/L">
+													>
+													["6"] = <
+														units = <"mmol/L">
+													>
+													["7"] = <
+														units = <"umol/L">
+													>
+													["8"] = <
+														units = <"nmol/L">
+													>
 												>
 											>
 										}
@@ -139,7 +163,7 @@ definition
 														units = <"nanomolars (nM)">
 													>
 													["5"] = <
-														units = <"1/sec">
+														units = <"1/s">
 													>
 													["6"] = <
 														units = <"1/min">
@@ -166,7 +190,7 @@ definition
 														units = <"nanomolars (nM)">
 													>
 													["5"] = <
-														units = <"1/sec">
+														units = <"1/s">
 													>
 													["6"] = <
 														units = <"1/min">
@@ -193,7 +217,7 @@ definition
 														units = <"nanomolars (nM)">
 													>
 													["5"] = <
-														units = <"1/sec">
+														units = <"1/s">
 													>
 													["6"] = <
 														units = <"1/min">
@@ -228,7 +252,7 @@ ontology
 		["en"] = <
 			items = <
 				["at0000"] = <
-					text = <"michaelis_menten_equation_calculator">
+					text = <"Michaelis Menten equation calculator">
 					description = <"Calculated measurement representing the rate of an enzyme-catalyzed reaction, determined from the Michaelis–Menten equation using parameters for Vmax, Km, and substrate concentration ([S]).
 ">
 					comment = <"Original version, c 2011">
