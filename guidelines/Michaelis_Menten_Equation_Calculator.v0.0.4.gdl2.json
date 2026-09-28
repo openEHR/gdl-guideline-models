@@ -1,0 +1,686 @@
+{
+  "uuid" : "5ea6266d-c2f4-4837-b4ce-78e30d7fc802",
+  "id" : "Michaelis_Menten_Equation_Calculator.v0.0.4",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Mahmoud Elachi",
+      "email" : "mel.achi@gmail.com",
+      "organisation" : "Cambio"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "Calculate one unknown Michaelis-Menten parameter from the other three.",
+        "keywords" : [
+          "Michaelis-Menten",
+          "enzyme kinetics",
+          "V0",
+          "Vmax",
+          "Km",
+          "substrate concentration"
+        ],
+        "use" : "Use when exactly one parameter among V0, Vmax, Km, and substrate concentration [S] is unknown.",
+        "misuse" : "Do not use for multi-substrate kinetics or inhibition models.",
+        "copyright" : "Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Michaelis L, Menten ML. Die Kinetik der Invertinwirkung. Biochem Z. 1913;49:333-369.",
+      "en" : "This model uses local variables to normalize units before applying the equation."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0016" : {
+        "id" : "gt0016",
+        "model_id" : "openEHR-EHR-OBSERVATION.michaelis_menten_equation_calculator.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.michaelis_menten_equation_calculator.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0017" : {
+            "id" : "gt0017",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "1/s",
+              "1/min"
+            ]
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mol/L",
+              "mmol/L",
+              "umol/L",
+              "nmol/L"
+            ]
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "1/s",
+              "1/min"
+            ]
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mol/L",
+              "mmol/L",
+              "umol/L",
+              "nmol/L"
+            ]
+          }
+        }
+      },
+      "gt0021" : {
+        "id" : "gt0021",
+        "model_id" : "openEHR-EHR-OBSERVATION.michaelis_menten_equation_calculator.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.michaelis_menten_equation_calculator.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0022" : {
+            "id" : "gt0022",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0008]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "1/s",
+              "1/min"
+            ]
+          },
+          "gt0023" : {
+            "id" : "gt0023",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0004]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mol/L",
+              "mmol/L",
+              "umol/L",
+              "nmol/L"
+            ]
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0005]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "1/s",
+              "1/min"
+            ]
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mol/L",
+              "mmol/L",
+              "umol/L",
+              "nmol/L"
+            ]
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0013]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mmol/L"
+            ]
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0015]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "umol/L"
+            ]
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0016]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "nmol/L"
+            ]
+          },
+          "gt0029" : {
+            "id" : "gt0029",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0017]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "1/min"
+            ]
+          },
+          "gt0030" : {
+            "id" : "gt0030",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0018]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "mmol/L"
+            ]
+          },
+          "gt0031" : {
+            "id" : "gt0031",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0019]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "umol/L"
+            ]
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0020]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "nmol/L"
+            ]
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0021]",
+            "data_type" : "DV_QUANTITY",
+            "units" : [
+              "1/min"
+            ]
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0100" : {
+        "id" : "gt0100",
+        "priority" : 28,
+        "when" : [
+          "$gt0018|Substrate concentration [S]|!=null",
+          "$gt0018|Substrate concentration [S]|.magnitude!=null",
+          "$gt0018|Substrate concentration [S]|.unit=='mol/L'"
+        ],
+        "then" : [
+          "$gt0104|Local: S in mol/L|=$gt0018|Substrate concentration [S]|.magnitude"
+        ]
+      },
+      "gt0108" : {
+        "id" : "gt0108",
+        "priority" : 27,
+        "when" : [
+          "$gt0018|Substrate concentration [S]|!=null",
+          "$gt0018|Substrate concentration [S]|.magnitude!=null",
+          "$gt0018|Substrate concentration [S]|.unit=='mmol/L'"
+        ],
+        "then" : [
+          "$gt0104|Local: S in mol/L|=$gt0018|Substrate concentration [S]|.magnitude/1000"
+        ]
+      },
+      "gt0109" : {
+        "id" : "gt0109",
+        "priority" : 26,
+        "when" : [
+          "$gt0018|Substrate concentration [S]|!=null",
+          "$gt0018|Substrate concentration [S]|.magnitude!=null",
+          "$gt0018|Substrate concentration [S]|.unit=='umol/L'"
+        ],
+        "then" : [
+          "$gt0104|Local: S in mol/L|=$gt0018|Substrate concentration [S]|.magnitude/1000000"
+        ]
+      },
+      "gt0114" : {
+        "id" : "gt0114",
+        "priority" : 25,
+        "when" : [
+          "$gt0018|Substrate concentration [S]|!=null",
+          "$gt0018|Substrate concentration [S]|.magnitude!=null",
+          "$gt0018|Substrate concentration [S]|.unit=='nmol/L'"
+        ],
+        "then" : [
+          "$gt0104|Local: S in mol/L|=$gt0018|Substrate concentration [S]|.magnitude/1000000000"
+        ]
+      },
+      "gt0101" : {
+        "id" : "gt0101",
+        "priority" : 24,
+        "when" : [
+          "$gt0020|Michaelis constant (Km)|!=null",
+          "$gt0020|Michaelis constant (Km)|.magnitude!=null",
+          "$gt0020|Michaelis constant (Km)|.unit=='mol/L'"
+        ],
+        "then" : [
+          "$gt0105|Local: Km in mol/L|=$gt0020|Michaelis constant (Km)|.magnitude"
+        ]
+      },
+      "gt0115" : {
+        "id" : "gt0115",
+        "priority" : 23,
+        "when" : [
+          "$gt0020|Michaelis constant (Km)|!=null",
+          "$gt0020|Michaelis constant (Km)|.magnitude!=null",
+          "$gt0020|Michaelis constant (Km)|.unit=='mmol/L'"
+        ],
+        "then" : [
+          "$gt0105|Local: Km in mol/L|=$gt0020|Michaelis constant (Km)|.magnitude/1000"
+        ]
+      },
+      "gt0116" : {
+        "id" : "gt0116",
+        "priority" : 22,
+        "when" : [
+          "$gt0020|Michaelis constant (Km)|!=null",
+          "$gt0020|Michaelis constant (Km)|.magnitude!=null",
+          "$gt0020|Michaelis constant (Km)|.unit=='umol/L'"
+        ],
+        "then" : [
+          "$gt0105|Local: Km in mol/L|=$gt0020|Michaelis constant (Km)|.magnitude/1000000"
+        ]
+      },
+      "gt0117" : {
+        "id" : "gt0117",
+        "priority" : 21,
+        "when" : [
+          "$gt0020|Michaelis constant (Km)|!=null",
+          "$gt0020|Michaelis constant (Km)|.magnitude!=null",
+          "$gt0020|Michaelis constant (Km)|.unit=='nmol/L'"
+        ],
+        "then" : [
+          "$gt0105|Local: Km in mol/L|=$gt0020|Michaelis constant (Km)|.magnitude/1000000000"
+        ]
+      },
+      "gt0102" : {
+        "id" : "gt0102",
+        "priority" : 20,
+        "when" : [
+          "$gt0017|Reaction rate (V0)|!=null",
+          "$gt0017|Reaction rate (V0)|.magnitude!=null",
+          "$gt0017|Reaction rate (V0)|.unit=='1/s'"
+        ],
+        "then" : [
+          "$gt0106|Local: V0 in 1/s|=$gt0017|Reaction rate (V0)|.magnitude"
+        ]
+      },
+      "gt0118" : {
+        "id" : "gt0118",
+        "priority" : 19,
+        "when" : [
+          "$gt0017|Reaction rate (V0)|!=null",
+          "$gt0017|Reaction rate (V0)|.magnitude!=null",
+          "$gt0017|Reaction rate (V0)|.unit=='1/min'"
+        ],
+        "then" : [
+          "$gt0106|Local: V0 in 1/s|=$gt0017|Reaction rate (V0)|.magnitude/60"
+        ]
+      },
+      "gt0103" : {
+        "id" : "gt0103",
+        "priority" : 18,
+        "when" : [
+          "$gt0019|Maximum rate (Vmax)|!=null",
+          "$gt0019|Maximum rate (Vmax)|.magnitude!=null",
+          "$gt0019|Maximum rate (Vmax)|.unit=='1/s'"
+        ],
+        "then" : [
+          "$gt0107|Local: Vmax in 1/s|=$gt0019|Maximum rate (Vmax)|.magnitude"
+        ]
+      },
+      "gt0119" : {
+        "id" : "gt0119",
+        "priority" : 17,
+        "when" : [
+          "$gt0019|Maximum rate (Vmax)|!=null",
+          "$gt0019|Maximum rate (Vmax)|.magnitude!=null",
+          "$gt0019|Maximum rate (Vmax)|.unit=='1/min'"
+        ],
+        "then" : [
+          "$gt0107|Local: Vmax in 1/s|=$gt0019|Maximum rate (Vmax)|.magnitude/60"
+        ]
+      },
+      "gt0110" : {
+        "id" : "gt0110",
+        "priority" : 16,
+        "when" : [
+          "$gt0017|Reaction rate (V0)|==null",
+          "$gt0018|Substrate concentration [S]|!=null",
+          "$gt0018|Substrate concentration [S]|.magnitude!=null",
+          "$gt0019|Maximum rate (Vmax)|!=null",
+          "$gt0019|Maximum rate (Vmax)|.magnitude!=null",
+          "$gt0020|Michaelis constant (Km)|!=null",
+          "$gt0020|Michaelis constant (Km)|.magnitude!=null",
+          "$gt0104|Local: S in mol/L|!=null",
+          "$gt0105|Local: Km in mol/L|!=null",
+          "$gt0107|Local: Vmax in 1/s|!=null",
+          "$gt0104|Local: S in mol/L|+$gt0105|Local: Km in mol/L|>0"
+        ],
+        "then" : [
+          "$gt0022|Reaction rate (V0)|.magnitude=($gt0107|Local: Vmax in 1/s|*$gt0104|Local: S in mol/L|)/($gt0104|Local: S in mol/L|+$gt0105|Local: Km in mol/L|)",
+          "$gt0022|Reaction rate (V0)|.unit='1/s'",
+          "$gt0022|Reaction rate (V0)|.precision=6"
+        ]
+      },
+      "gt0111" : {
+        "id" : "gt0111",
+        "priority" : 15,
+        "when" : [
+          "$gt0019|Maximum rate (Vmax)|==null",
+          "$gt0017|Reaction rate (V0)|!=null",
+          "$gt0017|Reaction rate (V0)|.magnitude!=null",
+          "$gt0018|Substrate concentration [S]|!=null",
+          "$gt0018|Substrate concentration [S]|.magnitude!=null",
+          "$gt0020|Michaelis constant (Km)|!=null",
+          "$gt0020|Michaelis constant (Km)|.magnitude!=null",
+          "$gt0104|Local: S in mol/L|!=null",
+          "$gt0105|Local: Km in mol/L|!=null",
+          "$gt0106|Local: V0 in 1/s|!=null",
+          "$gt0104|Local: S in mol/L|>0"
+        ],
+        "then" : [
+          "$gt0024|Maximum rate (Vmax)|.magnitude=$gt0106|Local: V0 in 1/s|*($gt0104|Local: S in mol/L|+$gt0105|Local: Km in mol/L|)/$gt0104|Local: S in mol/L|",
+          "$gt0024|Maximum rate (Vmax)|.unit='1/s'",
+          "$gt0024|Maximum rate (Vmax)|.precision=6"
+        ]
+      },
+      "gt0112" : {
+        "id" : "gt0112",
+        "priority" : 14,
+        "when" : [
+          "$gt0018|Substrate concentration [S]|==null",
+          "$gt0017|Reaction rate (V0)|!=null",
+          "$gt0017|Reaction rate (V0)|.magnitude!=null",
+          "$gt0019|Maximum rate (Vmax)|!=null",
+          "$gt0019|Maximum rate (Vmax)|.magnitude!=null",
+          "$gt0020|Michaelis constant (Km)|!=null",
+          "$gt0020|Michaelis constant (Km)|.magnitude!=null",
+          "$gt0105|Local: Km in mol/L|!=null",
+          "$gt0106|Local: V0 in 1/s|!=null",
+          "$gt0107|Local: Vmax in 1/s|!=null",
+          "$gt0107|Local: Vmax in 1/s|>$gt0106|Local: V0 in 1/s|"
+        ],
+        "then" : [
+          "$gt0023|Substrate concentration [S]|.magnitude=($gt0106|Local: V0 in 1/s|*$gt0105|Local: Km in mol/L|)/($gt0107|Local: Vmax in 1/s|-$gt0106|Local: V0 in 1/s|)",
+          "$gt0023|Substrate concentration [S]|.unit='mol/L'",
+          "$gt0023|Substrate concentration [S]|.precision=6"
+        ]
+      },
+      "gt0113" : {
+        "id" : "gt0113",
+        "priority" : 13,
+        "when" : [
+          "$gt0020|Michaelis constant (Km)|==null",
+          "$gt0017|Reaction rate (V0)|!=null",
+          "$gt0017|Reaction rate (V0)|.magnitude!=null",
+          "$gt0018|Substrate concentration [S]|!=null",
+          "$gt0018|Substrate concentration [S]|.magnitude!=null",
+          "$gt0019|Maximum rate (Vmax)|!=null",
+          "$gt0019|Maximum rate (Vmax)|.magnitude!=null",
+          "$gt0104|Local: S in mol/L|!=null",
+          "$gt0106|Local: V0 in 1/s|!=null",
+          "$gt0107|Local: Vmax in 1/s|!=null",
+          "$gt0106|Local: V0 in 1/s|>0"
+        ],
+        "then" : [
+          "$gt0025|Michaelis constant (Km)|.magnitude=($gt0107|Local: Vmax in 1/s|*$gt0104|Local: S in mol/L|/$gt0106|Local: V0 in 1/s|)-$gt0104|Local: S in mol/L|",
+          "$gt0025|Michaelis constant (Km)|.unit='mol/L'",
+          "$gt0025|Michaelis constant (Km)|.precision=6"
+        ]
+      },
+      "gt0120" : {
+        "id" : "gt0120",
+        "priority" : 12,
+        "when" : [
+          "$gt0025|Michaelis constant (Km)|!=null",
+          "$gt0025|Michaelis constant (Km)|.magnitude!=null",
+          "$gt0025|Michaelis constant (Km)|.unit=='mol/L'"
+        ],
+        "then" : [
+          "$gt0026|Km in mmol/L|.magnitude=$gt0025|Michaelis constant (Km)|.magnitude*1000",
+          "$gt0026|Km in mmol/L|.unit='mmol/L'",
+          "$gt0026|Km in mmol/L|.precision=2",
+          "$gt0027|Km in umol/L|.magnitude=$gt0025|Michaelis constant (Km)|.magnitude*1000000",
+          "$gt0027|Km in umol/L|.unit='umol/L'",
+          "$gt0027|Km in umol/L|.precision=2",
+          "$gt0028|Km in nmol/L|.magnitude=$gt0025|Michaelis constant (Km)|.magnitude*1000000000",
+          "$gt0028|Km in nmol/L|.unit='nmol/L'",
+          "$gt0028|Km in nmol/L|.precision=2"
+        ]
+      },
+      "gt0121" : {
+        "id" : "gt0121",
+        "priority" : 11,
+        "when" : [
+          "$gt0022|Reaction rate (V0)|!=null",
+          "$gt0022|Reaction rate (V0)|.magnitude!=null",
+          "$gt0022|Reaction rate (V0)|.unit=='1/s'"
+        ],
+        "then" : [
+          "$gt0029|V0 in 1/min|.magnitude=$gt0022|Reaction rate (V0)|.magnitude*60",
+          "$gt0029|V0 in 1/min|.unit='1/min'",
+          "$gt0029|V0 in 1/min|.precision=2"
+        ]
+      },
+      "gt0122" : {
+        "id" : "gt0122",
+        "priority" : 10,
+        "when" : [
+          "$gt0023|Substrate concentration [S]|!=null",
+          "$gt0023|Substrate concentration [S]|.magnitude!=null",
+          "$gt0023|Substrate concentration [S]|.unit=='mol/L'"
+        ],
+        "then" : [
+          "$gt0030|S in mmol/L|.magnitude=$gt0023|Substrate concentration [S]|.magnitude*1000",
+          "$gt0030|S in mmol/L|.unit='mmol/L'",
+          "$gt0030|S in mmol/L|.precision=2",
+          "$gt0031|S in umol/L|.magnitude=$gt0023|Substrate concentration [S]|.magnitude*1000000",
+          "$gt0031|S in umol/L|.unit='umol/L'",
+          "$gt0031|S in umol/L|.precision=2",
+          "$gt0032|S in nmol/L|.magnitude=$gt0023|Substrate concentration [S]|.magnitude*1000000000",
+          "$gt0032|S in nmol/L|.unit='nmol/L'",
+          "$gt0032|S in nmol/L|.precision=2"
+        ]
+      },
+      "gt0123" : {
+        "id" : "gt0123",
+        "priority" : 9,
+        "when" : [
+          "$gt0024|Maximum rate (Vmax)|!=null",
+          "$gt0024|Maximum rate (Vmax)|.magnitude!=null",
+          "$gt0024|Maximum rate (Vmax)|.unit=='1/s'"
+        ],
+        "then" : [
+          "$gt0033|Vmax in 1/min|.magnitude=$gt0024|Maximum rate (Vmax)|.magnitude*60",
+          "$gt0033|Vmax in 1/min|.unit='1/min'",
+          "$gt0033|Vmax in 1/min|.precision=2"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Michaelis-Menten Equation Calculator",
+            "description" : "Computes one missing parameter among V0, Vmax, Km, and substrate concentration [S]."
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "openEHR-EHR-OBSERVATION.michaelis_menten_equation_calculator.v0"
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "Reaction rate (V0)"
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "Substrate concentration [S]"
+          },
+          "gt0029" : {
+            "id" : "gt0029",
+            "text" : "V0 in 1/min"
+          },
+          "gt0030" : {
+            "id" : "gt0030",
+            "text" : "S in mmol/L"
+          },
+          "gt0031" : {
+            "id" : "gt0031",
+            "text" : "S in umol/L"
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "text" : "S in nmol/L"
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "text" : "Vmax in 1/min"
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "Maximum rate (Vmax)"
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "Michaelis constant (Km)"
+          },
+          "gt0021" : {
+            "id" : "gt0021",
+            "text" : "openEHR-EHR-OBSERVATION.michaelis_menten_equation_calculator.v0"
+          },
+          "gt0022" : {
+            "id" : "gt0022",
+            "text" : "Reaction rate (V0)"
+          },
+          "gt0023" : {
+            "id" : "gt0023",
+            "text" : "Substrate concentration [S]"
+          },
+          "gt0024" : {
+            "id" : "gt0024",
+            "text" : "Maximum rate (Vmax)"
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "text" : "Michaelis constant (Km)"
+          },
+          "gt0100" : {
+            "id" : "gt0100",
+            "text" : "Normalize substrate concentration"
+          },
+          "gt0101" : {
+            "id" : "gt0101",
+            "text" : "Normalize Michaelis constant"
+          },
+          "gt0102" : {
+            "id" : "gt0102",
+            "text" : "Normalize reaction rate"
+          },
+          "gt0103" : {
+            "id" : "gt0103",
+            "text" : "Normalize maximum rate"
+          },
+          "gt0108" : {
+            "id" : "gt0108",
+            "text" : "Normalize substrate concentration from mmol/L"
+          },
+          "gt0109" : {
+            "id" : "gt0109",
+            "text" : "Normalize substrate concentration from umol/L"
+          },
+          "gt0104" : {
+            "id" : "gt0104",
+            "text" : "Local: S in mol/L"
+          },
+          "gt0105" : {
+            "id" : "gt0105",
+            "text" : "Local: Km in mol/L"
+          },
+          "gt0106" : {
+            "id" : "gt0106",
+            "text" : "Local: V0 in 1/s"
+          },
+          "gt0107" : {
+            "id" : "gt0107",
+            "text" : "Local: Vmax in 1/s"
+          },
+          "gt0110" : {
+            "id" : "gt0110",
+            "text" : "Calculate missing V0"
+          },
+          "gt0111" : {
+            "id" : "gt0111",
+            "text" : "Calculate missing Vmax"
+          },
+          "gt0112" : {
+            "id" : "gt0112",
+            "text" : "Calculate missing substrate concentration"
+          },
+          "gt0113" : {
+            "id" : "gt0113",
+            "text" : "Calculate missing Km"
+          },
+          "gt0114" : {
+            "id" : "gt0114",
+            "text" : "Normalize substrate concentration from nmol/L"
+          },
+          "gt0115" : {
+            "id" : "gt0115",
+            "text" : "Normalize Km from mmol/L"
+          },
+          "gt0116" : {
+            "id" : "gt0116",
+            "text" : "Normalize Km from umol/L"
+          },
+          "gt0117" : {
+            "id" : "gt0117",
+            "text" : "Normalize Km from nmol/L"
+          },
+          "gt0118" : {
+            "id" : "gt0118",
+            "text" : "Normalize V0 from 1/min"
+          },
+          "gt0119" : {
+            "id" : "gt0119",
+            "text" : "Normalize Vmax from 1/min"
+          },
+          "gt0120" : {
+            "id" : "gt0120",
+            "text" : "Display Km in alternative concentration units"
+          },
+          "gt0121" : {
+            "id" : "gt0121",
+            "text" : "Display V0 in alternative rate unit"
+          },
+          "gt0122" : {
+            "id" : "gt0122",
+            "text" : "Display S in alternative concentration units"
+          },
+          "gt0123" : {
+            "id" : "gt0123",
+            "text" : "Display Vmax in alternative rate unit"
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "text" : "Km in mmol/L"
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "text" : "Km in umol/L"
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "text" : "Km in nmol/L"
+          }
+        }
+      }
+    }
+  }
+}
