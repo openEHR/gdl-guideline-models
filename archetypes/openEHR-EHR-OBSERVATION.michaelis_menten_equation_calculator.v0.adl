@@ -1,315 +1,128 @@
-archetype (adl_version=1.4; uid=67bf9948-3070-4efe-91b6-20368f0f1e0b)
-	openEHR-EHR-OBSERVATION.michaelis_menten_equation_calculator.v0
+﻿archetype (adl_version=1.4; uid=67bf9948-3070-4efe-91b6-20368f0f1e0b)
+    openEHR-EHR-OBSERVATION.michaelis_menten_equation_calculator.v0
 
 concept
-	[at0000]
+    [at0000]
 
 language
-	original_language = <[ISO_639-1::en]>
+    original_language = <[ISO_639-1::en]>
 
 description
-	original_author = <
-		["date"] = <"2025-10-13">
-		["name"] = <"Mahmoud Elachi">
-		["organisation"] = <"Cambio CDS">
-		["email"] = <"mel.achi@gmail.com">
-	>
-	lifecycle_state = <"unmanaged">
-	details = <
-		["en"] = <
-			language = <[ISO_639-1::en]>
-			purpose = <"To record the calculated reaction rate (v) of an enzyme-catalyzed reaction according to the Michaelis–Menten model.
-The value reflects the enzymatic velocity at a specific substrate concentration and provides a standardized measure of enzyme activity for laboratory, pharmacological, or research applications.">
-			keywords = <"enzyme kinetics","Michaelis–Menten","reaction rate","velocity","catalytic activity","biochemistry","Vmax","Km","substrate concentration">
-			copyright = <"Use © Cambio CDS">
-			misuse = <"Not intended to record kinetic parameters (Vmax, Km, [S]) or turnover number (kcat).
-Do not use this archetype to record general metabolic or physiological rates not derived from enzyme kinetics.
-Do not use as a substitute for documenting enzyme assay results or other laboratory analyses.">
-		>
-	>
-	other_details = <
-		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
-		["custodian_organisation"] = <"openEHR Foundation">
-		["references"] = <"Michaelis L, Menten ML, Johnson KA, Goody RS. The original Michaelis constant: translation of the 1913 Michaelis-Menten paper. Biochemistry. 2011 Oct 4;50(39):8264-9. doi: 10.1021/bi201284u. Epub 2011 Sep 9. PMID: 21888353; PMCID: PMC3381512.
-Johnson KA and Goody RS. The Original Michaelis Constant: Translation of the 1913 Michaelis–Menten Paper. Biochemistry 2011, 50, 39, 8264–8269.
-Reuveni S, Urbakh M, Klafter T. Role of Substrate Unbinding in Michaelis-Menten Enzymatic Reactions. Proc Natl Acad Sci U S A. 2014;111(12):4391-6.">
-		["original_namespace"] = <"org.openehr">
-		["original_publisher"] = <"openEHR Foundation">
-		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"9517039ee97c52691c8c59edcaf77981">
-		["build_uid"] = <"12cf9ee9-8ebb-35ea-90d8-fcb34ce2e7bf">
-	>
+    original_author = <
+        ["date"] = <"2026-09-28">
+        ["name"] = <"Mahmoud Elachi">
+        ["organisation"] = <"Cambio CDS">
+        ["email"] = <"mel.achi@gmail.com">
+    >
+    lifecycle_state = <"Author draft">
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record Michaelis-Menten parameters and calculated value for one missing parameter.">
+            use = <"Use when one of V0, Vmax, Km, or substrate concentration [S] is unknown.">
+            misuse = <"Not for multi-substrate or inhibition kinetics.">
+            copyright = <"Cambio CDS">
+        >
+    >
 
 definition
-	OBSERVATION[at0000] matches {    -- Michaelis Menten equation calculator
-		data matches {
-			HISTORY[at0001] matches {    -- History
-				events cardinality matches {1..*; unordered} matches {
-					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
-						data matches {
-							ITEM_TREE[at0003] matches {    -- Tree
-								items cardinality matches {0..*; unordered} matches {
-									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Reaction Rate (V0)
-										value matches {
-											C_DV_QUANTITY <
-												property = <[openehr::128]>
-												list = <
-													["1"] = <
-														units = <"1/s">
-													>
-													["2"] = <
-														units = <"1/min">
-													>
-												>
-											>
-										}
-									}
-									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Substrate concentration [S]
-										value matches {
-											C_DV_QUANTITY <
-												
-												list = <
-													["1"] = <
-														units = <"molars (M)">
-													>
-													["2"] = <
-														units = <"milimolars (mM)">
-													>
-													["3"] = <
-														units = <"micromolars (μM)">
-													>
-													["4"] = <
-														units = <"nanomolars (nM)">
-													>
-													["5"] = <
-														units = <"mol/L">
-													>
-													["6"] = <
-														units = <"mmol/L">
-													>
-													["7"] = <
-														units = <"umol/L">
-													>
-													["8"] = <
-														units = <"nmol/L">
-													>
-												>
-											>
-										}
-									}
-									ELEMENT[at0005] occurrences matches {0..1} matches {    -- Maximum Rate (Vmax)
-										value matches {
-											C_DV_QUANTITY <
-												property = <[openehr::128]>
-												list = <
-													["1"] = <
-														units = <"1/s">
-													>
-													["2"] = <
-														units = <"1/min">
-													>
-												>
-											>
-										}
-									}
-									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Michaelis constant (Km)
-										value matches {
-											C_DV_QUANTITY <
-												property = <[openehr::384]>
-												list = <
-													["1"] = <
-														units = <"molars (M)">
-													>
-													["2"] = <
-														units = <"milimolars (mM)">
-													>
-													["3"] = <
-														units = <"micromolars (μM)">
-													>
-													["4"] = <
-														units = <"nanomolars (nM)">
-													>
-													["5"] = <
-														units = <"mol/L">
-													>
-													["6"] = <
-														units = <"mmol/L">
-													>
-													["7"] = <
-														units = <"umol/L">
-													>
-													["8"] = <
-														units = <"nmol/L">
-													>
-												>
-											>
-										}
-									}
-									ELEMENT[at0013] occurrences matches {0..1} matches {    -- holding unit 1
-										value matches {
-											C_DV_QUANTITY <
-												
-												list = <
-													["1"] = <
-														units = <"molars (M)">
-													>
-													["2"] = <
-														units = <"milimolars (mM)">
-													>
-													["3"] = <
-														units = <"micromolars (μM)">
-													>
-													["4"] = <
-														units = <"nanomolars (nM)">
-													>
-													["5"] = <
-														units = <"1/s">
-													>
-													["6"] = <
-														units = <"1/min">
-													>
-												>
-											>
-										}
-									}
-									ELEMENT[at0015] occurrences matches {0..1} matches {    -- holding unit 2
-										value matches {
-											C_DV_QUANTITY <
-												property = <[openehr::384]>
-												list = <
-													["1"] = <
-														units = <"molars (M)">
-													>
-													["2"] = <
-														units = <"milimolars (mM)">
-													>
-													["3"] = <
-														units = <"micromolars (μM)">
-													>
-													["4"] = <
-														units = <"nanomolars (nM)">
-													>
-													["5"] = <
-														units = <"1/s">
-													>
-													["6"] = <
-														units = <"1/min">
-													>
-												>
-											>
-										}
-									}
-									ELEMENT[at0016] occurrences matches {0..1} matches {    -- holding unit 3
-										value matches {
-											C_DV_QUANTITY <
-												property = <[openehr::384]>
-												list = <
-													["1"] = <
-														units = <"molars (M)">
-													>
-													["2"] = <
-														units = <"milimolars (mM)">
-													>
-													["3"] = <
-														units = <"micromolars (μM)">
-													>
-													["4"] = <
-														units = <"nanomolars (nM)">
-													>
-													["5"] = <
-														units = <"1/s">
-													>
-													["6"] = <
-														units = <"1/min">
-													>
-												>
-											>
-										}
-									}
-									ELEMENT[at0012] occurrences matches {0..1} matches {    -- comment field
-										value matches {
-											DV_TEXT matches {*}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		protocol matches {
-			ITEM_TREE[at0009] matches {    -- Item tree
-				items cardinality matches {0..*; unordered} matches {
-					CLUSTER[at0010] occurrences matches {0..1} matches {*}    -- Extension
-				}
-			}
-		}
-	}
+    OBSERVATION[at0000] matches {    -- Michaelis-Menten equation calculator
+        data matches {
+            HISTORY[at0001] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[at0002] occurrences matches {0..*} matches {
+                        data matches {
+                            ITEM_TREE[at0003] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[at0004] occurrences matches {0..1} matches {    -- Substrate concentration [S]
+                                        value matches {
+                                            C_DV_QUANTITY <
+                                                list = <
+                                                    ["1"] = <units = <"mol/L">>
+                                                    ["2"] = <units = <"mmol/L">>
+                                                    ["3"] = <units = <"umol/L">>
+                                                    ["4"] = <units = <"nmol/L">>
+                                                >
+                                            >
+                                        }
+                                    }
+                                    ELEMENT[at0005] occurrences matches {0..1} matches {    -- Maximum rate (Vmax)
+                                        value matches {
+                                            C_DV_QUANTITY <
+                                                list = <
+                                                    ["1"] = <units = <"1/s">>
+                                                    ["2"] = <units = <"1/min">>
+                                                >
+                                            >
+                                        }
+                                    }
+                                    ELEMENT[at0006] occurrences matches {0..1} matches {    -- Michaelis constant (Km)
+                                        value matches {
+                                            C_DV_QUANTITY <
+                                                list = <
+                                                    ["1"] = <units = <"mol/L">>
+                                                    ["2"] = <units = <"mmol/L">>
+                                                    ["3"] = <units = <"umol/L">>
+                                                    ["4"] = <units = <"nmol/L">>
+                                                >
+                                            >
+                                        }
+                                    }
+                                    ELEMENT[at0008] occurrences matches {0..1} matches {    -- Reaction rate (V0)
+                                        value matches {
+                                            C_DV_QUANTITY <
+                                                list = <
+                                                    ["1"] = <units = <"1/s">>
+                                                    ["2"] = <units = <"1/min">>
+                                                >
+                                            >
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 ontology
-	term_definitions = <
-		["en"] = <
-			items = <
-				["at0000"] = <
-					text = <"Michaelis Menten equation calculator">
-					description = <"Calculated measurement representing the rate of an enzyme-catalyzed reaction, determined from the Michaelis–Menten equation using parameters for Vmax, Km, and substrate concentration ([S]).
-">
-					comment = <"Original version, c 2011">
-				>
-				["at0001"] = <
-					text = <"History">
-					description = <"@ internal @">
-				>
-				["at0002"] = <
-					text = <"Any event">
-					description = <"@ internal @">
-				>
-				["at0003"] = <
-					text = <"Tree">
-					description = <"@ internal @">
-				>
-				["at0004"] = <
-					text = <"Substrate concentration [S]">
-					description = <"">
-				>
-				["at0005"] = <
-					text = <"Maximum Rate (Vmax)">
-					description = <"">
-				>
-				["at0006"] = <
-					text = <"Michaelis constant (Km)">
-					description = <"">
-				>
-				["at0008"] = <
-					text = <"Reaction Rate (V0)">
-					description = <"">
-				>
-				["at0009"] = <
-					text = <"Item tree">
-					description = <"@ internal @">
-				>
-				["at0010"] = <
-					text = <"Extension">
-					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
-					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
-				>
-				["at0012"] = <
-					text = <"comment field">
-					description = <"">
-				>
-				["at0013"] = <
-					text = <"holding unit 1">
-					description = <"">
-				>
-				["at0015"] = <
-					text = <"holding unit 2">
-					description = <"">
-				>
-				["at0016"] = <
-					text = <"holding unit 3">
-					description = <"">
-				>
-			>
-		>
-	>
+    term_definitions = <
+        ["en"] = <
+            items = <
+                ["at0000"] = <
+                    text = <"Michaelis-Menten equation calculator">
+                    description = <"Calculates one unknown Michaelis-Menten parameter from the remaining three.">
+                >
+                ["at0001"] = <
+                    text = <"History">
+                    description = <"@ internal @">
+                >
+                ["at0002"] = <
+                    text = <"Any event">
+                    description = <"@ internal @">
+                >
+                ["at0003"] = <
+                    text = <"Tree">
+                    description = <"@ internal @">
+                >
+                ["at0004"] = <
+                    text = <"Substrate concentration [S]">
+                    description = <"Substrate concentration used in the Michaelis-Menten equation.">
+                >
+                ["at0005"] = <
+                    text = <"Maximum rate (Vmax)">
+                    description = <"Maximum reaction rate at saturating substrate concentration.">
+                >
+                ["at0006"] = <
+                    text = <"Michaelis constant (Km)">
+                    description = <"Substrate concentration at which reaction rate is half of Vmax.">
+                >
+                ["at0008"] = <
+                    text = <"Reaction rate (V0)">
+                    description = <"Initial reaction rate.">
+                >
+            >
+        >
+    >
