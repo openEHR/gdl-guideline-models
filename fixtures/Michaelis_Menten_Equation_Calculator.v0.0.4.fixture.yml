@@ -1,0 +1,133 @@
+guidelines:
+  "1": Michaelis_Menten_Equation_Calculator.v0.0.4
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. V0 calculation with mol/L and Km display conversions.
+    input:
+      "1":
+        "gt0018|Substrate concentration [S]": 1.5,mol/L
+        gt0019|Maximum rate (Vmax): 3,1/s
+        gt0020|Michaelis constant (Km): 1.5,mol/L
+    expected_output:
+      "1":
+        gt0022|Reaction rate (V0): 1.500000,1/s
+        gt0029|V0 in 1/min: 90.00,1/min
+  - id: 03. V0 calculation with mmol/L normalization.
+    input:
+      "1":
+        "gt0018|Substrate concentration [S]": 1500,mmol/L
+        gt0019|Maximum rate (Vmax): 3,1/s
+        gt0020|Michaelis constant (Km): 1500,mmol/L
+    expected_output:
+      "1":
+        gt0022|Reaction rate (V0): 1.500000,1/s
+        gt0029|V0 in 1/min: 90.00,1/min
+  - id: 04. V0 calculation with umol/L normalization.
+    input:
+      "1":
+        "gt0018|Substrate concentration [S]": 1500000,umol/L
+        gt0019|Maximum rate (Vmax): 3,1/s
+        gt0020|Michaelis constant (Km): 1500000,umol/L
+    expected_output:
+      "1":
+        gt0022|Reaction rate (V0): 1.500000,1/s
+        gt0029|V0 in 1/min: 90.00,1/min
+  - id: 05. V0 calculation with nmol/L normalization.
+    input:
+      "1":
+        "gt0018|Substrate concentration [S]": 1500000000,nmol/L
+        gt0019|Maximum rate (Vmax): 3,1/s
+        gt0020|Michaelis constant (Km): 1500000000,nmol/L
+    expected_output:
+      "1":
+        gt0022|Reaction rate (V0): 1.500000,1/s
+        gt0029|V0 in 1/min: 90.00,1/min
+  - id: 06. Vmax calculation from V0 in 1/s.
+    input:
+      "1":
+        gt0017|Reaction rate (V0): 1.5,1/s
+        "gt0018|Substrate concentration [S]": 1.5,mol/L
+        gt0020|Michaelis constant (Km): 1.5,mol/L
+    expected_output:
+      "1":
+        gt0024|Maximum rate (Vmax): 3.000000,1/s
+        gt0033|Vmax in 1/min: 180.00,1/min
+  - id: 07. Vmax calculation from V0 in 1/min (rate normalization).
+    input:
+      "1":
+        gt0017|Reaction rate (V0): 90,1/min
+        "gt0018|Substrate concentration [S]": 1.5,mol/L
+        gt0020|Michaelis constant (Km): 1.5,mol/L
+    expected_output:
+      "1":
+        gt0024|Maximum rate (Vmax): 3.000000,1/s
+        gt0033|Vmax in 1/min: 180.00,1/min
+  - id: 08. Substrate calculation with display in mmol/umol/nmol.
+    input:
+      "1":
+        gt0017|Reaction rate (V0): 1.5,1/s
+        gt0019|Maximum rate (Vmax): 3,1/s
+        gt0020|Michaelis constant (Km): 1.5,mol/L
+    expected_output:
+      "1":
+        "gt0023|Substrate concentration [S]": 1.500000,mol/L
+        gt0030|S in mmol/L: 1500.00,mmol/L
+        gt0031|S in umol/L: 1500000.00,umol/L
+        gt0032|S in nmol/L: 1500000000.00,nmol/L
+  - id: 09. Km calculation with display in mmol/umol/nmol.
+    input:
+      "1":
+        gt0017|Reaction rate (V0): 1.5,1/s
+        "gt0018|Substrate concentration [S]": 1.5,mol/L
+        gt0019|Maximum rate (Vmax): 3,1/s
+    expected_output:
+      "1":
+        gt0025|Michaelis constant (Km): 1.500000,mol/L
+        gt0026|Km in mmol/L: 1500.00,mmol/L
+        gt0027|Km in umol/L: 1500000.00,umol/L
+        gt0028|Km in nmol/L: 1500000000.00,nmol/L
+  - id: 10. Multiple missing inputs (negative test).
+    input:
+      "1":
+        "gt0018|Substrate concentration [S]": 1.5,mol/L
+        gt0019|Maximum rate (Vmax): 3,1/s
+    expected_output:
+      "1": {}
+  - id: 11. Substrate solve blocked when Vmax <= V0 (negative test).
+    input:
+      "1":
+        gt0017|Reaction rate (V0): 3,1/s
+        gt0019|Maximum rate (Vmax): 3,1/s
+        gt0020|Michaelis constant (Km): 1.5,mol/L
+    expected_output:
+      "1": {}
+  - id: 12. Vmax solve blocked when S is zero (negative test).
+    input:
+      "1":
+        gt0017|Reaction rate (V0): 1.5,1/s
+        "gt0018|Substrate concentration [S]": 0,mol/L
+        gt0020|Michaelis constant (Km): 1.5,mol/L
+    expected_output:
+      "1": {}
+  - id: 13. Km solve blocked when V0 is zero (negative test).
+    input:
+      "1":
+        gt0017|Reaction rate (V0): 0,1/s
+        "gt0018|Substrate concentration [S]": 1.5,mol/L
+        gt0019|Maximum rate (Vmax): 3,1/s
+    expected_output:
+      "1": {}
+  - id: 14. V0 calculation with Vmax in 1/min (covers gt0119).
+    input:
+      "1":
+        "gt0018|Substrate concentration [S]": 1.5,mol/L
+        gt0019|Maximum rate (Vmax): 180,1/min
+        gt0020|Michaelis constant (Km): 1.5,mol/L
+    expected_output:
+      "1":
+        gt0022|Reaction rate (V0): 1.500000,1/s
+        gt0029|V0 in 1/min: 90.00,1/min
