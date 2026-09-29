@@ -1,0 +1,276 @@
+archetype (adl_version=1.4; uid=7d9528ad-733e-405c-b751-89a2534160b3)
+	openEHR-EHR-OBSERVATION.chronic_lymphocytic_leukaemia_rai_binet_staging.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-07-16">
+		["name"] = <"Mahmoud Elachi">
+		["organisation"] = <"Cambio CDS">
+		["email"] = <"mel.achi@gmail.com">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record clinical, examination and investigation findings obtained as part of the basal assessment of a patient with chronic lymphocytic leukaemia.">
+			keywords = <"Rai Binet, hematology, CLL, assessment, haematology, leukaemia, lymphadenopathy, hepatomegaly, splenomegaly, cytopenia", ...>
+			copyright = <"Use © Cambio CDS ">
+			use = <"Use to record the number of lymphoid areas involved, presence of hepatomegaly and/or splenomegaly on palpation, hemoglobin level, and platelet count, together with the resulting Rai stage, modified Rai risk group, and Binet stage.">
+			misuse = <"Not to be used to record staging of other lymphoproliferative disorders.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Rai KR, Sawitsky A, Cronkite EP, Chanana AD, Levy RN, Pasternack BS. Clinical staging of chronic lymphocytic leukemia. Blood. 1975 Aug;46(2):219-34. PMID: 1139039.
+Binet JL, Auquier A, Dighiero G, Chastang C, Piguet H, Goasguen J, Vaugier G, Potron G, Colona P, Oberling F, Thomas M, Tchernia G, Jacquillat C, Boivin P, Lesty C, Duault MT, Monconduit M, Belabbes S, Gremy F. A new prognostic classification of chronic lymphocytic leukemia derived from a multivariate survival analysis. Cancer. 1981 Jul 1;48(1):198-206. doi: 10.1002/1097-0142(19810701)48:1<198::aid-cncr2820480131>3.0.co;2-v. PMID: 7237385.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"910d90573b6c6f03c229406b93eaf35f">
+		["build_uid"] = <"236023b6-fc1c-34fa-a75d-1ae28bbfe30e">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- chronic_lymphocytic_leukaemia_rai_binet_staging
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									CLUSTER[at0041] occurrences matches {0..1} matches {    -- Lab results
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0042] occurrences matches {0..1} matches {    -- Haemoglobin
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::119]>
+														list = <
+															["1"] = <
+																units = <"g/L">
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0045] occurrences matches {0..1} matches {    -- Platelet count
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::119]>
+														list = <
+															["1"] = <
+																units = <"10*9/L">
+															>
+														>
+													>
+												}
+											}
+										}
+									}
+									CLUSTER[at0054] occurrences matches {0..*} matches {    -- Cervical Lymph node
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0120] occurrences matches {0..1} matches {    -- Cervical lymphadenopathy
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0066] occurrences matches {0..1} matches {    -- Axillary lymphadenopathy
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0069] occurrences matches {0..1} matches {    -- Inguinal lymphadenopathy
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0128] occurrences matches {0..1} matches {    -- Liver lymphadenopathy
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+											ELEMENT[at0071] occurrences matches {0..1} matches {    -- Spleen lymphadenopathy
+												value matches {
+													DV_BOOLEAN matches {*}
+												}
+											}
+										}
+									}
+									ELEMENT[at0088] occurrences matches {0..1} matches {    -- Anaemia due to marrow failure
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Thrombocytopenia due to marrow failure
+										value matches {
+											DV_BOOLEAN matches {*}
+										}
+									}
+									ELEMENT[at0102] occurrences matches {0..1} matches {    -- Binet stage
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0105,    -- A
+													at0106,    -- B
+													at0107,    -- C
+													at0108]    -- Indeterminate
+												}
+											}
+										}
+									}
+									ELEMENT[at0103] occurrences matches {0..1} matches {    -- Rai stage
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0109,    -- 0
+													at0110,    -- I
+													at0111,    -- II
+													at0112,    -- III
+													at0113,    -- IV
+													at0114]    -- Indeterminate
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0009] matches {*}    -- Item tree
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"chronic_lymphocytic_leukaemia_rai_binet_staging">
+					description = <"Rai and Binet staging are clinical classification systems used to stratify tumor burden in chronic lymphocytic leukemia (CLL), based on physical examination findings and blood counts.">
+					comment = <"Rai staging, original version, 1975.
+Binet staging, original version, 1981.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0009"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0011"] = <
+					text = <"Thrombocytopenia due to marrow failure">
+					description = <"">
+				>
+				["at0041"] = <
+					text = <"Lab results">
+					description = <"">
+				>
+				["at0042"] = <
+					text = <"Haemoglobin">
+					description = <"">
+				>
+				["at0045"] = <
+					text = <"Platelet count">
+					description = <"">
+				>
+				["at0054"] = <
+					text = <"Cervical Lymph node">
+					description = <"">
+				>
+				["at0066"] = <
+					text = <"Axillary lymphadenopathy">
+					description = <"">
+				>
+				["at0069"] = <
+					text = <"Inguinal lymphadenopathy">
+					description = <"">
+				>
+				["at0071"] = <
+					text = <"Spleen lymphadenopathy">
+					description = <"">
+				>
+				["at0088"] = <
+					text = <"Anaemia due to marrow failure">
+					description = <"">
+				>
+				["at0102"] = <
+					text = <"Binet stage">
+					description = <"">
+				>
+				["at0103"] = <
+					text = <"Rai stage">
+					description = <"">
+				>
+				["at0105"] = <
+					text = <"A">
+					description = <"">
+				>
+				["at0106"] = <
+					text = <"B">
+					description = <"">
+				>
+				["at0107"] = <
+					text = <"C">
+					description = <"">
+				>
+				["at0108"] = <
+					text = <"Indeterminate">
+					description = <"">
+				>
+				["at0109"] = <
+					text = <"0">
+					description = <"">
+				>
+				["at0110"] = <
+					text = <"I">
+					description = <"">
+				>
+				["at0111"] = <
+					text = <"II">
+					description = <"">
+				>
+				["at0112"] = <
+					text = <"III">
+					description = <"">
+				>
+				["at0113"] = <
+					text = <"IV">
+					description = <"">
+				>
+				["at0114"] = <
+					text = <"Indeterminate">
+					description = <"">
+				>
+				["at0120"] = <
+					text = <"Cervical lymphadenopathy">
+					description = <"">
+				>
+				["at0128"] = <
+					text = <"Liver lymphadenopathy">
+					description = <"">
+				>
+			>
+		>
+	>
