@@ -1,0 +1,54 @@
+current_datetime: 2019-09-01T00:00:00+01:00
+guidelines:
+  "1": MDRD.v0.1.0
+test_cases:
+  - id: 01. No input (negative test)
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0012|Creatinine: NPU::NPU04998|Creatinine code|
+    expected_output:
+      "1": {}
+  - id: 02. Gender missing (negative test)
+    input:
+      "1":
+        gt0004|Age: 65,a
+        gt0006|Creatinine result: 150,umol/L
+        gt0012|Creatinine: NPU::NPU04998|Creatinine code|
+    expected_output:
+      "1": {}
+  - id: 03. Age missing (negative test)
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0006|Creatinine result: 150,umol/L
+        gt0012|Creatinine: NPU::NPU04998|Creatinine code|
+    expected_output:
+      "1": {}
+  - id: 04. Creatinine missing (negative test)
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 71,a
+    expected_output:
+      "1": {}
+  - id: 05. Male 65 years old, creatinine 150 µmol/L
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0004|Age: 65,a
+        gt0006|Creatinine result: 150,umol/L
+        gt0012|Creatinine: NPU::NPU04998|Creatinine code|
+    expected_output:
+      "1":
+        gt0013|Estimated Glomerular Filtration Rate - Relative: 43.40,ml/min/1.73m2
+  - id: 06. 71 years old female, creatinine 150 µmol/L
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age: 71,a
+        gt0006|Creatinine result: 150,umol/L
+        gt0012|Creatinine: NPU::NPU04998|Creatinine code|
+    expected_output:
+      "1":
+        gt0013|Estimated Glomerular Filtration Rate - Relative: 31.60,ml/min/1.73m2
