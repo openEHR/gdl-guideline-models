@@ -1,0 +1,91 @@
+guidelines:
+  "1": insulin_correction_dose.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Missing Daily dose of insulin (negative test)
+    input:
+      "1":
+        gt0003|P-glucose: 14,mmol
+    expected_output:
+      "1": {}
+  - id: 3. Missing P-glucose (negative test)
+    input:
+      "1":
+        gt0004|Daily dose of insulin: 2,E
+    expected_output:
+      "1": {}
+  - id: 4. DDoI is 0 below minimum (negative test)
+    input:
+      "1":
+        gt0003|P-glucose: 20,mmol
+        gt0004|Daily dose of insulin: 0,E
+    expected_output:
+      "1": {}
+  - id: 5. Normal test P-glucose 14, DDoI 2
+    input:
+      "1":
+        gt0003|P-glucose: 14,mmol
+        gt0004|Daily dose of insulin: 2,E
+    expected_output:
+      "1":
+        gt0006|Bolus dose: 0.1,E
+  - id: 6. Basedline P-glucose 20, DDoI 14
+    input:
+      "1":
+        gt0003|P-glucose: 20,mmol
+        gt0004|Daily dose of insulin: 14,E
+    expected_output:
+      "1":
+        gt0006|Bolus dose: 1.7,E
+  - id: 7. Testing P-glucose 10, DDoI 33
+    input:
+      "1":
+        gt0003|P-glucose: 10,mmol
+        gt0004|Daily dose of insulin: 33,E
+    expected_output:
+      "1":
+        gt0006|Bolus dose: 0.7,E
+  - id: 8. Testing P-glucose 8, DDoI 20
+    input:
+      "1":
+        gt0003|P-glucose: 8,mmol
+        gt0004|Daily dose of insulin: 20,E
+    expected_output:
+      "1":
+        gt0006|Bolus dose: 0.0,E
+  - id: 9. Testing P-glucose 40, DDoI 60
+    input:
+      "1":
+        gt0003|P-glucose: 40,mmol
+        gt0004|Daily dose of insulin: 60,E
+    expected_output:
+      "1":
+        gt0006|Bolus dose: 19.2,E
+  - id: 10. Testing P-glucose 80, DDoI 60
+    input:
+      "1":
+        gt0003|P-glucose: 80,mmol
+        gt0004|Daily dose of insulin: 60,E
+    expected_output:
+      "1":
+        gt0006|Bolus dose: 43.2,E
+  - id: 11. Testing P-glucose 9, DDoI 50
+    input:
+      "1":
+        gt0003|P-glucose: 9,mmol
+        gt0004|Daily dose of insulin: 50,E
+    expected_output:
+      "1":
+        gt0006|Bolus dose: 0.5,E
+  - id: 12. Testing with decimal P-glucose 15.5, DDoI 22.5
+    input:
+      "1":
+        gt0003|P-glucose: 15.5,mmol
+        gt0004|Daily dose of insulin: 22.5,E
+    expected_output:
+      "1":
+        gt0006|Bolus dose: 1.7,E
