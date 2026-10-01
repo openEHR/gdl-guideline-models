@@ -1,0 +1,203 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.score2_diabetes.v1
+
+concept
+	[at0000]	-- Score2 diabetes
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Rong Chen">
+		["email"] = <"rong.chen@cambio.se">
+		["organisation"] = <"Cambio CDS">
+		["date"] = <"2025-01-09">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"SCORE2-Diabetes: 10-year cardiovascular risk estimation in type 2 diabetes in Europe">
+			use = <"a recalibrated prediction model (SCORE2-Diabetes) to estimate the 10-year risk of cardiovascular disease (CVD) in individuals with type 2 diabetes in Europe.">
+			keywords = <"SCORE2", "diabetes">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"Initial">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"B25164A3D460BB366B9BB2C0BD642B65">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Score2 diabetes
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Träd
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Smoking
+						value matches {
+							0|[local::at0004], 	-- Other
+							1|[local::at0003]  	-- Current
+						}
+					}
+					ELEMENT[at0007] occurrences matches {0..1} matches {	-- Diabetes
+						value matches {
+							0|[local::at0009], 	-- No
+							1|[local::at0008]  	-- Yes
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {	-- Total cholesterol 
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::384]>
+								list = <
+									["1"] = <
+										units = <"mmol/L">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0006] occurrences matches {0..1} matches {	-- HDL cholesterol 
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::384]>
+								list = <
+									["1"] = <
+										units = <"mmol/L">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0011] occurrences matches {0..1} matches {	-- Diabetes age at diagnosis (yrs)
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::128]>
+								list = <
+									["1"] = <
+										units = <"a">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0012] occurrences matches {0..1} matches {	-- HbA1c
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::384]>
+								list = <
+									["1"] = <
+										units = <"mmol/mol">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0013] occurrences matches {0..1} matches {	-- Ln eGFR
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::586]>
+								list = <
+									["1"] = <
+										units = <"ml/min/1.73m2">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0014] occurrences matches {0..1} matches {	-- Centered HbA1c
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::380]>
+								list = <
+									["1"] = <
+										units = <"1">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0010] occurrences matches {0..1} matches {	-- 10-year risk 
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::380]>
+								list = <
+									["1"] = <
+										units = <"%">
+									>
+								>
+							>
+						}
+					}					
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Score2 diabetes">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Träd">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Smoking">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Current">
+					description = <"Current">
+				>
+				["at0004"] = <
+					text = <"Other">
+					description = <"Other">
+				>
+				["at0005"] = <
+					text = <"Total cholesterol ">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"HDL cholesterol ">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Diabetes">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Yes">
+					description = <"Yes">
+				>
+				["at0009"] = <
+					text = <"No">
+					description = <"No">
+				>
+				["at0010"] = <
+					text = <"10-year risk ">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Diabetes age at diagnosis (yrs)">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"HbA1c">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Ln eGFR">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Centered HbA1c">
+					description = <"Standardized HbA1c: (HbA1c in mmol/mol - 31) / 9.34">
+				>
+			>
+		>
+	>
