@@ -1,0 +1,119 @@
+guidelines:
+  "1": Molecular_testing_indication_breast_cancer.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1":
+        gt0030|Gene expression indication: local::at0037|Not applicable|
+        gt0031|Germline BRCA1/2 testing indication: local::at0042|Not applicable|
+        gt0032|Somatic PIK3CA testing indication: local::at0045|Not applicable|
+        gt0033|Broad genomic profiling indication: local::at0048|Not applicable|
+  - id: 2. Rule Gene expression analysis recommended
+    input:
+      "1":
+        gt0003|ER status: local::at0008|Positive|
+        gt0004|HER2 status: local::at0012|Negative|
+        gt0007|Menopausal status: local::at0023|Postmenopausal|
+        gt0008|Lymph node status: local::at0025|Node-negative (N0)|
+        gt0009|Uncertain tumor risk categorization prior to selection of cytostatic treatment: "true"
+    expected_output:
+      "1":
+        gt0030|Gene expression indication: local::at0038|Recommended|
+        gt0031|Germline BRCA1/2 testing indication: local::at0042|Not applicable|
+        gt0032|Somatic PIK3CA testing indication: local::at0045|Not applicable|
+        gt0033|Broad genomic profiling indication: local::at0048|Not applicable|
+  - id: 3. Rule Gene expression analysis should be considered
+    input:
+      "1":
+        gt0003|ER status: local::at0008|Positive|
+        gt0004|HER2 status: local::at0012|Negative|
+        gt0005|Ki-67 category: local::at0015|Intermediate|
+        gt0006|NHG grade: local::at0019|Grade 2|
+        gt0007|Menopausal status: local::at0023|Postmenopausal|
+        gt0008|Lymph node status: local::at0026|1-3 positive lymph nodes (N1-3)|
+    expected_output:
+      "1":
+        gt0030|Gene expression indication: local::at0039|May be considered|
+        gt0031|Germline BRCA1/2 testing indication: local::at0042|Not applicable|
+        gt0032|Somatic PIK3CA testing indication: local::at0045|Not applicable|
+        gt0033|Broad genomic profiling indication: local::at0048|Not applicable|
+  - id: 4. Rule Gene expression analysis with Oncotype Dx may be considered
+    input:
+      "1":
+        gt0003|ER status: local::at0008|Positive|
+        gt0004|HER2 status: local::at0012|Negative|
+        gt0007|Menopausal status: local::at0022|Premenopausal|
+        gt0008|Lymph node status: local::at0025|Node-negative (N0)|
+    expected_output:
+      "1":
+        gt0030|Gene expression indication: local::at0040|With Oncotype Dx may be considered|
+        gt0031|Germline BRCA1/2 testing indication: local::at0042|Not applicable|
+        gt0032|Somatic PIK3CA testing indication: local::at0045|Not applicable|
+        gt0033|Broad genomic profiling indication: local::at0048|Not applicable|
+  - id: 5. Rule Germline BRCA1/2 testing
+    input:
+      "1":
+        gt0010|Possible candidate for PARP inhibitors: "true"
+    expected_output:
+      "1":
+        gt0030|Gene expression indication: local::at0037|Not applicable|
+        gt0031|Germline BRCA1/2 testing indication: local::at0043|Recommended|
+        gt0032|Somatic PIK3CA testing indication: local::at0045|Not applicable|
+        gt0033|Broad genomic profiling indication: local::at0048|Not applicable|
+  - id: 6. Rule Somatic PIK3CA testing
+    input:
+      "1":
+        gt0011|Possible candidate for PI3K inhibitor: "true"
+    expected_output:
+      "1":
+        gt0030|Gene expression indication: local::at0037|Not applicable|
+        gt0031|Germline BRCA1/2 testing indication: local::at0042|Not applicable|
+        gt0032|Somatic PIK3CA testing indication: local::at0046|Recommended|
+        gt0033|Broad genomic profiling indication: local::at0048|Not applicable|
+  - id: 7. Rule Broad genomic profiling in metastatic disease I
+    input:
+      "1":
+        gt0012|Disease stage: local::at0032|Metastatic breast cancer|
+        gt0034|Eligible for ESCAT I targeted treatments: "true"
+    expected_output:
+      "1":
+        gt0030|Gene expression indication: local::at0037|Not applicable|
+        gt0031|Germline BRCA1/2 testing indication: local::at0042|Not applicable|
+        gt0032|Somatic PIK3CA testing indication: local::at0045|Not applicable|
+        gt0033|Broad genomic profiling indication: local::at0049|May be considered|
+  - id: 8. Rule Broad genomic profiling in metastatic disease II
+    input:
+      "1":
+        gt0012|Disease stage: local::at0032|Metastatic breast cancer|
+        gt0035|Evidence-based treatment options exhausted: "true"
+        gt0036|Suitable for relevant clinical trials: "true"
+    expected_output:
+      "1":
+        gt0030|Gene expression indication: local::at0037|Not applicable|
+        gt0031|Germline BRCA1/2 testing indication: local::at0042|Not applicable|
+        gt0032|Somatic PIK3CA testing indication: local::at0045|Not applicable|
+        gt0033|Broad genomic profiling indication: local::at0049|May be considered|
+  - id: 9. All inputs
+    input:
+      "1":
+        gt0003|ER status: local::at0008|Positive|
+        gt0004|HER2 status: local::at0012|Negative|
+        gt0005|Ki-67 category: local::at0014|Low|
+        gt0006|NHG grade: local::at0018|Grade 1|
+        gt0007|Menopausal status: local::at0022|Premenopausal|
+        gt0008|Lymph node status: local::at0025|Node-negative (N0)|
+        gt0009|Uncertain tumor risk categorization prior to selection of cytostatic treatment: "false"
+        gt0010|Possible candidate for PARP inhibitors: "true"
+        gt0011|Possible candidate for PI3K inhibitor: "false"
+        gt0012|Disease stage: local::at0032|Metastatic breast cancer|
+        gt0034|Eligible for ESCAT I targeted treatments: "false"
+        gt0035|Evidence-based treatment options exhausted: "true"
+        gt0036|Suitable for relevant clinical trials: "true"
+    expected_output:
+      "1":
+        gt0030|Gene expression indication: local::at0040|With Oncotype Dx may be considered|
+        gt0031|Germline BRCA1/2 testing indication: local::at0043|Recommended|
+        gt0032|Somatic PIK3CA testing indication: local::at0045|Not applicable|
+        gt0033|Broad genomic profiling indication: local::at0049|May be considered|
