@@ -1,0 +1,96 @@
+guidelines:
+  "1": anthracycline_treatment_cardiac_risk.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. All inputs - total score 3, intermediate risk
+    input:
+      "1":
+        gt0003|Heart failure or cardiomyopathy: "false"
+        gt0004|Valvular heart disease: "false"
+        gt0005|Coronary artery disease: "false"
+        gt0006|Left ventricular ejection fraction: 0|local::at0038|Not given|
+        gt0007|Age: 0|local::at0045|Not given|
+        gt0008|Prior anthracycline exposure: "false"
+        gt0009|Prior radiotherapy to the heart: "false"
+        gt0010|Elevated troponin: 1|local::at0015|Yes|
+        gt0011|Elevated pro-BNP: 1|local::at0018|Yes|
+        gt0012|Hypertension > 140/90 or medication: 1|local::at0021|Yes|
+        gt0013|Chronic renal failure (eGFR < 60): 0|local::at0023|No|
+        gt0014|Diabetes: 0|local::at0026|No|
+        "gt0015|Prior cytostatics, not anthracyclines": 0|local::at0029|No|
+        gt0016|Smoker: 0|local::at0032|No|
+        gt0017|Obesity BMI > 30: 0|local::at0035|No|
+    expected_output:
+      "1":
+        gt0019|Total score of moderate risk factors: "3"
+        gt0021|Risk category: local::at0007|Intermediate|
+  - id: 3. All inputs - total score >=5, high risk
+    input:
+      "1":
+        gt0003|Heart failure or cardiomyopathy: "false"
+        gt0004|Valvular heart disease: "false"
+        gt0005|Coronary artery disease: "false"
+        gt0006|Left ventricular ejection fraction: 2|local::at0040|50–54%|
+        gt0007|Age: 0|local::at0045|Not given|
+        gt0008|Prior anthracycline exposure: "false"
+        gt0009|Prior radiotherapy to the heart: "false"
+        gt0010|Elevated troponin: 1|local::at0015|Yes|
+        gt0011|Elevated pro-BNP: 1|local::at0018|Yes|
+        gt0012|Hypertension > 140/90 or medication: 1|local::at0021|Yes|
+        gt0013|Chronic renal failure (eGFR < 60): 0|local::at0023|No|
+        gt0014|Diabetes: 0|local::at0026|No|
+        "gt0015|Prior cytostatics, not anthracyclines": 0|local::at0029|No|
+        gt0016|Smoker: 1|local::at0033|Yes|
+        gt0017|Obesity BMI > 30: 0|local::at0035|No|
+    expected_output:
+      "1":
+        gt0019|Total score of moderate risk factors: "6"
+        gt0021|Risk category: local::at0006|High|
+  - id: 4. All inputs - high risk factor present, high risk
+    input:
+      "1":
+        gt0003|Heart failure or cardiomyopathy: "false"
+        gt0004|Valvular heart disease: "true"
+        gt0005|Coronary artery disease: "false"
+        gt0006|Left ventricular ejection fraction: 2|local::at0040|50–54%|
+        gt0007|Age: 0|local::at0045|Not given|
+        gt0008|Prior anthracycline exposure: "false"
+        gt0009|Prior radiotherapy to the heart: "false"
+        gt0010|Elevated troponin: 0|local::at0014|No|
+        gt0011|Elevated pro-BNP: 0|local::at0017|No|
+        gt0012|Hypertension > 140/90 or medication: 0|local::at0020|No|
+        gt0013|Chronic renal failure (eGFR < 60): 0|local::at0023|No|
+        gt0014|Diabetes: 0|local::at0026|No|
+        "gt0015|Prior cytostatics, not anthracyclines": 0|local::at0029|No|
+        gt0016|Smoker: 1|local::at0033|Yes|
+        gt0017|Obesity BMI > 30: 0|local::at0035|No|
+    expected_output:
+      "1":
+        gt0019|Total score of moderate risk factors: "3"
+        gt0021|Risk category: local::at0006|High|
+  - id: 5. All inputs - very high risk factor present, very high risk
+    input:
+      "1":
+        gt0003|Heart failure or cardiomyopathy: "true"
+        gt0004|Valvular heart disease: "true"
+        gt0005|Coronary artery disease: "false"
+        gt0006|Left ventricular ejection fraction: 2|local::at0040|50–54%|
+        gt0007|Age: 0|local::at0045|Not given|
+        gt0008|Prior anthracycline exposure: "false"
+        gt0009|Prior radiotherapy to the heart: "false"
+        gt0010|Elevated troponin: 0|local::at0014|No|
+        gt0011|Elevated pro-BNP: 0|local::at0017|No|
+        gt0012|Hypertension > 140/90 or medication: 0|local::at0020|No|
+        gt0013|Chronic renal failure (eGFR < 60): 0|local::at0023|No|
+        gt0014|Diabetes: 0|local::at0026|No|
+        "gt0015|Prior cytostatics, not anthracyclines": 0|local::at0029|No|
+        gt0016|Smoker: 1|local::at0033|Yes|
+        gt0017|Obesity BMI > 30: 0|local::at0035|No|
+    expected_output:
+      "1":
+        gt0019|Total score of moderate risk factors: "3"
+        gt0021|Risk category: local::at0005|Very high|
