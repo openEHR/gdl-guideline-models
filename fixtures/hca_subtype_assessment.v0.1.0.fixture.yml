@@ -1,0 +1,96 @@
+guidelines:
+  "1": hca_subtype_assessment.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Histological pattern input missing (negative test)
+    input:
+      "1":
+        gt0004|Immunohistochemistry pattern: local::at0012|Loss of LFABP|
+    expected_output:
+      "1": {}
+  - id: 3. Immunohistochemistry pattern input missing (negative test)
+    input:
+      "1":
+        gt0003|Histological pattern: local::at0008|Lobulated contours and steatosis;
+          often microadenomas in the surrounding liver parenchyma|
+    expected_output:
+      "1": {}
+  - id: 4. All inputs - HCA subtype 1
+    input:
+      "1":
+        gt0003|Histological pattern: local::at0008|Lobulated contours and steatosis;
+          often microadenomas in the surrounding liver parenchyma|
+        gt0004|Immunohistochemistry pattern: local::at0012|Loss of LFABP|
+    expected_output:
+      "1":
+        gt0006|HCA subtype: local::at0007|HNF1A-inactivated hepatocellular adenoma|
+        gt0007|Risk for HCC: local::at0013|Low|
+  - id: 5. All inputs - HCA subtype 2
+    input:
+      "1":
+        gt0003|Histological pattern: local::at0009|Sinusoidal dilatation, congestion,
+          foci of lymphocytic inflammation, thick arteries, ductular reaction,
+          pseudoportal tracts|
+        gt0004|Immunohistochemistry pattern: local::at0013|Positive for CRP and SAA|
+    expected_output:
+      "1":
+        gt0006|HCA subtype: local::at0008|Inflammatory hepatocellular adenoma|
+        gt0007|Risk for HCC: local::at0013|Low|
+  - id: 6. All inputs - HCA subtype 3
+    input:
+      "1":
+        gt0003|Histological pattern: "local::at0010|Exon 3 mutation: often
+          cytoarchitectural atypia and pseudoglandular formations|"
+        gt0004|Immunohistochemistry pattern: "local::at0014|Exon 3 mutation (other than
+          S45): diffuse, homogeneous GS; often nuclear β-catenin positivity|"
+    expected_output:
+      "1":
+        gt0006|HCA subtype: local::at0009|β-catenin-activated hepatocellular adenoma
+          (including inflammatory variant)|
+        gt0007|Risk for HCC: local::at0014|High|
+  - id: 7. All inputs - HCA subtype 3a
+    input:
+      "1":
+        gt0003|Histological pattern: "local::at0010|Exon 3 mutation: often
+          cytoarchitectural atypia and pseudoglandular formations|"
+        gt0004|Immunohistochemistry pattern: "local::at0016|Exon 7/8: weak GS, often
+          with a peripheral GS-positive border; nuclear β-catenin negative|"
+    expected_output:
+      "1":
+        gt0006|HCA subtype: local::at0009|β-catenin-activated hepatocellular adenoma
+          (including inflammatory variant)|
+        gt0007|Risk for HCC: local::at0013|Low|
+  - id: 8. All inputs - HCA subtype 4
+    input:
+      "1":
+        gt0003|Histological pattern: local::at0011|No specific histological features reported|
+        gt0004|Immunohistochemistry pattern: local::at0017|Positive for PTGDS|
+    expected_output:
+      "1":
+        gt0006|HCA subtype: local::at0011|Sonic hedgehog hepatocellular adenoma|
+        gt0007|Risk for HCC: local::at0015|Not specified|
+  - id: 9. All inputs - HCA subtype 5
+    input:
+      "1":
+        gt0003|Histological pattern: local::at0011|No specific histological features reported|
+        gt0004|Immunohistochemistry pattern: local::at0018|Some cases with increased
+          bleeding risk express ASS1 (Henriet et al. 2017)|
+    expected_output:
+      "1":
+        gt0006|HCA subtype: local::at0012|Unclassified hepatocellular adenoma|
+        gt0007|Risk for HCC: local::at0015|Not specified|
+  - id: 10. All inputs - Validation message
+    input:
+      "1":
+        gt0003|Histological pattern: local::at0008|Lobulated contours and steatosis;
+          often microadenomas in the surrounding liver parenchyma|
+        gt0004|Immunohistochemistry pattern: local::at0018|Some cases with increased
+          bleeding risk express ASS1 (Henriet et al. 2017)|
+    expected_output:
+      "1":
+        gt0008|Validation message: local::at0016|Selected histology and
+          immunohistochemistry patterns do not match a single HCA subtype.|
