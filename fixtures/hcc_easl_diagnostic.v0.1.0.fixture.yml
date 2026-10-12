@@ -1,0 +1,117 @@
+guidelines:
+  "1": hcc_easl_diagnostic.v0.1.0
+test_cases:
+  - id: 1. No input (negative test)
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 2. Liver change < 1cm
+    input:
+      "1":
+        gt0003|Liver changes: local::at0007|< 1cm|
+    expected_output:
+      "1":
+        gt0010|Diagnostic conclusion: local::at0012|Insufficient imaging evidence to
+          diagnose hepatocellular carcinoma|
+        gt0011|Recommended next step: local::at0005|Repeat liver ultrasound after approximately 4 months|
+  - id: 3. Liver change < 1cm + unchanged follow up (or not performed)
+    input:
+      "1":
+        gt0003|Liver changes: local::at0007|< 1cm|
+        gt0004|Follow-up ultrasound change: local::at0011|Unchanged|
+    expected_output:
+      "1":
+        gt0010|Diagnostic conclusion: local::at0012|Insufficient imaging evidence to
+          diagnose hepatocellular carcinoma|
+        gt0011|Recommended next step: local::at0005|Repeat liver ultrasound after approximately 4 months|
+  - id: 4. Liver change < 1cm + change/growth in follow up
+    input:
+      "1":
+        gt0003|Liver changes: local::at0007|< 1cm|
+        gt0004|Follow-up ultrasound change: local::at0012|Growth or changed|
+    expected_output:
+      "1":
+        gt0010|Diagnostic conclusion: local::at0012|Insufficient imaging evidence to
+          diagnose hepatocellular carcinoma|
+        gt0011|Recommended next step: local::at0006|Reassess diagnostic pathway based on lesion size|
+  - id: 5. Liver change missing (negative test)
+    input:
+      "1":
+        gt0004|Follow-up ultrasound change: local::at0010|Not performed|
+        gt0005|Primary imaging performed: "false"
+        gt0006|Arterial hyperenhancement and washout present: "false"
+        gt0007|Alternative imaging performed: "false"
+        gt0008|Arterial hyperenhancement and washout present in alternative imaging: "false"
+    expected_output:
+      "1": {}
+  - id: 6. Liver change > 1cm, no primary imaging performed
+    input:
+      "1":
+        gt0003|Liver changes: local::at0008|> 1cm|
+        gt0004|Follow-up ultrasound change: local::at0010|Not performed|
+        gt0005|Primary imaging performed: "false"
+        gt0006|Arterial hyperenhancement and washout present: "false"
+        gt0007|Alternative imaging performed: "false"
+        gt0008|Arterial hyperenhancement and washout present in alternative imaging: "false"
+    expected_output:
+      "1":
+        gt0010|Diagnostic conclusion: local::at0012|Insufficient imaging evidence to
+          diagnose hepatocellular carcinoma|
+        gt0011|Recommended next step: local::at0007|Perform four-phase CT or MRI of the liver|
+  - id: 7. Liver change > 1cm + Arterial hyperenhancement and washout present (HCC)
+    input:
+      "1":
+        gt0003|Liver changes: local::at0008|> 1cm|
+        gt0004|Follow-up ultrasound change: local::at0010|Not performed|
+        gt0005|Primary imaging performed: "true"
+        gt0006|Arterial hyperenhancement and washout present: "true"
+        gt0007|Alternative imaging performed: "false"
+        gt0008|Arterial hyperenhancement and washout present in alternative imaging: "false"
+    expected_output:
+      "1":
+        gt0010|Diagnostic conclusion: local::at0011|HCC diagnosed by imaging criteria|
+  - id: 8. Liver change > 1cm + Arterial hyperenhancement and washout not present
+    input:
+      "1":
+        gt0003|Liver changes: local::at0008|> 1cm|
+        gt0004|Follow-up ultrasound change: local::at0010|Not performed|
+        gt0005|Primary imaging performed: "true"
+        gt0006|Arterial hyperenhancement and washout present: "false"
+        gt0007|Alternative imaging performed: "false"
+        gt0008|Arterial hyperenhancement and washout present in alternative imaging: "false"
+    expected_output:
+      "1":
+        gt0010|Diagnostic conclusion: local::at0012|Insufficient imaging evidence to
+          diagnose hepatocellular carcinoma|
+        gt0011|Recommended next step: local::at0008|Perform alternative imaging modality
+          (four-phase CT or MRI)|
+  - id: 9. Liver change > 1cm + alt. method + Arterial hyperenhancement and washout
+      present (HCC)
+    input:
+      "1":
+        gt0003|Liver changes: local::at0008|> 1cm|
+        gt0004|Follow-up ultrasound change: local::at0010|Not performed|
+        gt0005|Primary imaging performed: "true"
+        gt0006|Arterial hyperenhancement and washout present: "false"
+        gt0007|Alternative imaging performed: "true"
+        gt0008|Arterial hyperenhancement and washout present in alternative imaging: "true"
+    expected_output:
+      "1":
+        gt0010|Diagnostic conclusion: local::at0011|HCC diagnosed by imaging criteria|
+  - id: 10. Liver change > 1cm + alt. method + Arterial hyperenhancement and washout
+      not present
+    input:
+      "1":
+        gt0003|Liver changes: local::at0008|> 1cm|
+        gt0004|Follow-up ultrasound change: local::at0010|Not performed|
+        gt0005|Primary imaging performed: "true"
+        gt0006|Arterial hyperenhancement and washout present: "false"
+        gt0007|Alternative imaging performed: "true"
+        gt0008|Arterial hyperenhancement and washout present in alternative imaging: "false"
+    expected_output:
+      "1":
+        gt0010|Diagnostic conclusion: local::at0012|Insufficient imaging evidence to
+          diagnose hepatocellular carcinoma|
+        gt0011|Recommended next step: local::at0009|Multidisciplinary team assessment
+          with consideration of additional diagnostic measures|
