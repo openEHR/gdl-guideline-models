@@ -1,0 +1,262 @@
+{
+  "uuid" : "c338740c-2d83-4e9b-8791-f2aa7a437447",
+  "id" : "hca_subtype_assessment.v0.1.0",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Katja Mariko Wilde",
+      "email" : "katja-wilde@t-online.de",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-01-08"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To assess and interpret histological and immunohistochemical diagnostic patterns in order to classify hepatocellular adenoma subtype and estimate the associated risk of malignant transformation.",
+        "keywords" : [
+          "hepatocellular",
+          "adenoma",
+          "hca",
+          "liver",
+          "pathology",
+          "diagnostic assessment"
+        ],
+        "use" : "Use to assess hepatocellular adenoma subtype and associated risk of malignant transformation in adult patients with available histological and immunohistochemical findings.\n\nThe assessment is performed by evaluating predefined diagnostic patterns:\n\nHistological diagnostic pattern, selected from:\n\n- lobulated contours and steatosis; often microadenomas in the surrounding liver parenchyma;\n- sinusoidal dilatation, congestion, foci of lymphocytic inflammation, thick arteries, ductular reaction, pseudoportal tracts;\n- cytoarchitectural atypia and pseudoglandular formations associated with β-catenin exon 3 mutation;\n- no specific histological features reported.\n\nImmunohistochemical diagnostic pattern, selected from:\n- loss of LFABP;\n- positivity for CRP and SAA;\n- β-catenin exon 3 (non-S45) pattern with diffuse, homogeneous GS and frequent nuclear β-catenin positivity;\n- β-catenin exon 3 S45 pattern with diffuse, heterogeneous GS (starry-sky pattern);\n- β-catenin exon 7/8 pattern with weak GS and peripheral staining;\n- positivity for PTGDS;\n- ASS1 expression associated with increased bleeding risk;\n\nBased on the selected patterns, the guideline:\n- assigns a hepatocellular adenoma subtype;\n- estimates the associated risk for hepatocellular carcinoma; and\n- identifies inconsistent pattern combinations by generating a validation message.",
+        "misuse" : "Not to be used for staging or treatment planning of hepatocellular carcinoma.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Regionala cancercentrum i samverkan. Nationellt vårdprogram levercellscancer: Kapitel 9 Kategorisering av tumören. Kunskapsbanken, 2024. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/levercellscancer/vardprogram/kategorisering-av-tumoren/\n\nBioulac-Sage P, Balabaud C, Zucman-Rossi J. Subtype classification of hepatocellular adenoma. Dig Surg. 2010;27(1):39-45. doi: 10.1159/000268406. Epub 2010 Apr 1. PMID: 20357450.",
+      "en" : "A structured diagnostic assessment used to interpret histological and immunohistochemical patterns in hepatocellular adenoma and to support subtype classification and risk evaluation."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.hca_pattern.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.hca_pattern.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0006]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0008",
+              "local::at0009",
+              "local::at0010",
+              "local::at0011"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0007]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0012",
+              "local::at0013",
+              "local::at0014",
+              "local::at0015",
+              "local::at0016",
+              "local::at0017",
+              "local::at0018"
+            ]
+          }
+        }
+      },
+      "gt0005" : {
+        "id" : "gt0005",
+        "model_id" : "openEHR-EHR-EVALUATION.hca_assessment.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.hca_assessment.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0006" : {
+            "id" : "gt0006",
+            "path" : "/data[at0003]/items[at0004]",
+            "data_type" : "DV_CODED_TEXT"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0003]/items[at0005]",
+            "data_type" : "DV_CODED_TEXT"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "path" : "/data[at0003]/items[at0006]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      }
+    },
+    "rules" : {
+      "gt0009" : {
+        "id" : "gt0009",
+        "priority" : 7,
+        "when" : [
+          "$gt0003|Histological pattern|==local::at0008|Lobulated contours and steatosis; often microadenomas in the surrounding liver parenchyma|",
+          "$gt0004|Immunohistochemistry pattern|==local::at0012|Loss of LFABP|"
+        ],
+        "then" : [
+          "$gt0006|HCA subtype|=local::at0007|HNF1A-inactivated hepatocellular adenoma|",
+          "$gt0007|Risk for HCC|=local::at0013|Low|"
+        ]
+      },
+      "gt0010" : {
+        "id" : "gt0010",
+        "priority" : 6,
+        "when" : [
+          "$gt0003|Histological pattern|==local::at0009|Sinusoidal dilatation, congestion, foci of lymphocytic inflammation, thick arteries, ductular reaction, pseudoportal tracts|",
+          "$gt0004|Immunohistochemistry pattern|==local::at0013|Positive for CRP and SAA|"
+        ],
+        "then" : [
+          "$gt0006|HCA subtype|=local::at0008|Inflammatory hepatocellular adenoma|",
+          "$gt0007|Risk for HCC|=local::at0013|Low|"
+        ]
+      },
+      "gt0011" : {
+        "id" : "gt0011",
+        "priority" : 5,
+        "when" : [
+          "$gt0003|Histological pattern|==local::at0010|Exon 3 mutation: often cytoarchitectural atypia and pseudoglandular formations|",
+          "$gt0004|Immunohistochemistry pattern|==local::at0014|Exon 3 mutation (other than S45): diffuse, homogeneous GS; often nuclear β-catenin positivity|"
+        ],
+        "then" : [
+          "$gt0006|HCA subtype|=local::at0009|β-catenin-activated hepatocellular adenoma (including inflammatory variant)|",
+          "$gt0007|Risk for HCC|=local::at0014|High|"
+        ]
+      },
+      "gt0012" : {
+        "id" : "gt0012",
+        "priority" : 4,
+        "when" : [
+          "$gt0003|Histological pattern|==local::at0010|Exon 3 mutation: often cytoarchitectural atypia and pseudoglandular formations|",
+          "$gt0004|Immunohistochemistry pattern|==local::at0015|Exon 3 S45: diffuse, heterogeneous GS (starry-sky pattern), often with a peripheral GS-positive border; little or no nuclear β-catenin|||$gt0004|Immunohistochemistry pattern|==local::at0016|Exon 7/8: weak GS, often with a peripheral GS-positive border; nuclear β-catenin negative|"
+        ],
+        "then" : [
+          "$gt0006|HCA subtype|=local::at0009|β-catenin-activated hepatocellular adenoma (including inflammatory variant)|",
+          "$gt0007|Risk for HCC|=local::at0013|Low|"
+        ]
+      },
+      "gt0013" : {
+        "id" : "gt0013",
+        "priority" : 3,
+        "when" : [
+          "$gt0003|Histological pattern|==local::at0011|No specific histological features reported|",
+          "$gt0004|Immunohistochemistry pattern|==local::at0017|Positive for PTGDS|"
+        ],
+        "then" : [
+          "$gt0006|HCA subtype|=local::at0011|Sonic hedgehog hepatocellular adenoma|",
+          "$gt0007|Risk for HCC|=local::at0015|Not specified|"
+        ]
+      },
+      "gt0014" : {
+        "id" : "gt0014",
+        "priority" : 2,
+        "when" : [
+          "$gt0003|Histological pattern|==local::at0011|No specific histological features reported|",
+          "$gt0004|Immunohistochemistry pattern|==local::at0018|Some cases with increased bleeding risk express ASS1 (Henriet et al. 2017)|"
+        ],
+        "then" : [
+          "$gt0006|HCA subtype|=local::at0012|Unclassified hepatocellular adenoma|",
+          "$gt0007|Risk for HCC|=local::at0015|Not specified|"
+        ]
+      },
+      "gt0020" : {
+        "id" : "gt0020",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|Histological pattern|!=null",
+          "$gt0004|Immunohistochemistry pattern|!=null",
+          "$gt0006|HCA subtype|==null"
+        ],
+        "then" : [
+          "$gt0008|Validation message|=local::at0016|Selected histology and immunohistochemistry patterns do not match a single HCA subtype.|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "Hepatocellular adenoma subtype assessment",
+            "description" : "A structured diagnostic assessment used to interpret histological and immunohistochemical patterns in hepatocellular adenoma and to support subtype classification and risk evaluation."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.hca_pattern.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "Histological pattern"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "Immunohistochemistry pattern"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "openEHR-EHR-EVALUATION.hca_assessment.v0"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "HCA subtype"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Risk for HCC"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Validation message"
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "HCA subtype 1",
+            "description" : ""
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "HCA subtype 2",
+            "description" : ""
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "HCA subtype 3",
+            "description" : ""
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "HCA subtype 3a",
+            "description" : ""
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "HCA subtype 4",
+            "description" : ""
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "HCA subtype 5",
+            "description" : ""
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "Validation message",
+            "description" : ""
+          }
+        }
+      }
+    }
+  }
+}
