@@ -1,0 +1,544 @@
+{
+  "uuid" : "a7a03fc8-5af0-4e29-86a0-2944acf2d732",
+  "id" : "tnm_liver_hcc.v0.1.0",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Katja Mariko Wilde",
+      "email" : "katja-wilde@t-online.de",
+      "organisation" : "Cambio CDS",
+      "date" : "2025-11-26"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To determine the combined TNM assessment and final stage group for hepatocellular carcinoma of the liver.",
+        "keywords" : [
+          "tnm",
+          "tumour",
+          "node",
+          "metastasis",
+          "liver",
+          "hepatocellular",
+          "carcinoma",
+          "cancer",
+          "hcc",
+          "staging"
+        ],
+        "use" : "Use to classify hepatocellular carcinoma (HCC) of the liver according to the TNM system using categorical Tumour (T), Node (N), and Metastasis (M) inputs.\n\nThe guideline expects clinician-assigned TNM categories recorded as coded values:\n- T category: TX, T0, T1a, T1b, T2, T3, or T4\n- N category: NX, N0, or N1\n- M category: M0 or M1\n\nBased on the recorded TNM categories, the guideline determines the corresponding TNM stage group:\n- Stage IA: T1a N0 M0\n- Stage IB: T1b N0 M0\n- Stage II: T2 N0 M0\n- Stage IIIA: T3 N0 M0\n- Stage IIIB: T4 N0 M0\n- Stage IVA: Any T N1 M0\n\n- Stage IVB: Any T Any N M1\n\nThe guideline outputs a combined TNM assessment (for example, T1aN0M0) from the selected T, N, and M categories, in addition to the stage group.",
+        "misuse" : "Not to be used for staging cholangiocarcinoma or other liver malignancies that have separate TNM classifications.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "references" : "Regionala cancercentrum i samverkan. Nationellt vårdprogram levercellscancer: Kapitel 9 Kategorisering av tumören. Kunskapsbanken, 2024. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/levercellscancer/vardprogram/kategorisering-av-tumoren/\n\nBrierley JD, Gospodarowicz MK, Wittekind C, editors. TNM classification of malignant tumours. 8th ed. Hoboken (NJ): Wiley Blackwell; 2017",
+      "en" : "A structured guideline used to determine the TNM (Tumour-Node-Metastasis) classification and stage grouping for hepatocellular carcinoma (HCC) of the liver, based on recorded Tumour (T), Node (N), and Metastasis (M) categories."
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0025" : {
+        "id" : "gt0025",
+        "model_id" : "openEHR-EHR-EVALUATION.tnm_stage_liver_hcc.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.tnm_stage_liver_hcc.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0026" : {
+            "id" : "gt0026",
+            "path" : "/data[at0003]/items[at0004]",
+            "data_type" : "DV_CODED_TEXT"
+          },
+          "gt0038" : {
+            "id" : "gt0038",
+            "path" : "/data[at0003]/items[at0013]",
+            "data_type" : "DV_TEXT"
+          }
+        }
+      },
+      "gt0034" : {
+        "id" : "gt0034",
+        "model_id" : "openEHR-EHR-OBSERVATION.tnm_liver_hcc.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.tnm_liver_hcc.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0035" : {
+            "id" : "gt0035",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0018]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0019",
+              "local::at0020",
+              "local::at0021",
+              "local::at0022",
+              "local::at0023",
+              "local::at0024",
+              "local::at0025"
+            ]
+          },
+          "gt0036" : {
+            "id" : "gt0036",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0026]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0027",
+              "local::at0028",
+              "local::at0029"
+            ]
+          },
+          "gt0037" : {
+            "id" : "gt0037",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0030]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0031",
+              "local::at0032"
+            ]
+          }
+        }
+      }
+    },
+    "default_actions" : [
+      "$gt0026|Stage group|=local::at0012|Stage cannot be assigned|"
+    ],
+    "rules" : {
+      "gt0065" : {
+        "id" : "gt0065",
+        "priority" : 20,
+        "when" : [
+          "$gt0037|M - Distant metastasis|==local::at0032|M1 - Distant metastasis present|"
+        ],
+        "then" : [
+          "$gt0041|Local variable: M|=$gt0053|M1|.term"
+        ]
+      },
+      "gt0064" : {
+        "id" : "gt0064",
+        "priority" : 19,
+        "when" : [
+          "$gt0037|M - Distant metastasis|==local::at0031|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0041|Local variable: M|=$gt0052|M0|.term"
+        ]
+      },
+      "gt0063" : {
+        "id" : "gt0063",
+        "priority" : 18,
+        "when" : [
+          "$gt0036|N - Regional lymph nodes|==local::at0029|N1 - Regional lymph node metastasis present|"
+        ],
+        "then" : [
+          "$gt0040|Local variable: N|=$gt0051|N1|.term"
+        ]
+      },
+      "gt0062" : {
+        "id" : "gt0062",
+        "priority" : 17,
+        "when" : [
+          "$gt0036|N - Regional lymph nodes|==local::at0028|N0 - No regional lymph node metastasis|"
+        ],
+        "then" : [
+          "$gt0040|Local variable: N|=$gt0050|N0|.term"
+        ]
+      },
+      "gt0061" : {
+        "id" : "gt0061",
+        "priority" : 16,
+        "when" : [
+          "$gt0036|N - Regional lymph nodes|==local::at0027|NX - Regional lymph nodes cannot be assessed|"
+        ],
+        "then" : [
+          "$gt0040|Local variable: N|=$gt0049|NX|.term"
+        ]
+      },
+      "gt0060" : {
+        "id" : "gt0060",
+        "priority" : 15,
+        "when" : [
+          "$gt0035|T - Primary tumour|==local::at0025|T4 - Tumour(s) involving a major branch of the portal vein or hepatic vein with direct invasion of adjacent organs (other than the gallbladder), OR perforation of visceral peritoneum|"
+        ],
+        "then" : [
+          "$gt0039|Local variable: T|=$gt0048|T4|.term"
+        ]
+      },
+      "gt0059" : {
+        "id" : "gt0059",
+        "priority" : 14,
+        "when" : [
+          "$gt0035|T - Primary tumour|==local::at0024|T3 - Multiple tumours, at least one > 5 cm|"
+        ],
+        "then" : [
+          "$gt0039|Local variable: T|=$gt0047|T3|.term"
+        ]
+      },
+      "gt0058" : {
+        "id" : "gt0058",
+        "priority" : 13,
+        "when" : [
+          "$gt0035|T - Primary tumour|==local::at0023|T2 - Solitary tumour > 2 cm with vascular invasion OR multiple tumours, none > 5 cm|"
+        ],
+        "then" : [
+          "$gt0039|Local variable: T|=$gt0046|T2|.term"
+        ]
+      },
+      "gt0057" : {
+        "id" : "gt0057",
+        "priority" : 12,
+        "when" : [
+          "$gt0035|T - Primary tumour|==local::at0022|T1b - Solitary tumour > 2 cm, without vascular invasion|"
+        ],
+        "then" : [
+          "$gt0039|Local variable: T|=$gt0045|T1b|.term"
+        ]
+      },
+      "gt0056" : {
+        "id" : "gt0056",
+        "priority" : 11,
+        "when" : [
+          "$gt0035|T - Primary tumour|==local::at0021|T1a - Solitary tumour ≤ 2 cm, with or without vascular invasion|"
+        ],
+        "then" : [
+          "$gt0039|Local variable: T|=$gt0044|T1a|.term"
+        ]
+      },
+      "gt0055" : {
+        "id" : "gt0055",
+        "priority" : 10,
+        "when" : [
+          "$gt0035|T - Primary tumour|==local::at0020|T0 - No evidence of primary tumour|"
+        ],
+        "then" : [
+          "$gt0039|Local variable: T|=$gt0043|T0|.term"
+        ]
+      },
+      "gt0054" : {
+        "id" : "gt0054",
+        "priority" : 9,
+        "when" : [
+          "$gt0035|T - Primary tumour|==local::at0019|TX - Primary tumour cannot be assessed|"
+        ],
+        "then" : [
+          "$gt0039|Local variable: T|=$gt0042|TX|.term"
+        ]
+      },
+      "gt0066" : {
+        "id" : "gt0066",
+        "priority" : 8,
+        "when" : [
+          "$gt0035|T - Primary tumour|!=null",
+          "$gt0036|N - Regional lymph nodes|!=null",
+          "$gt0037|M - Distant metastasis|!=null"
+        ],
+        "then" : [
+          "$gt0038|TNM assessment|=$gt0039|Local variable: T|+$gt0040|Local variable: N|+$gt0041|Local variable: M|"
+        ]
+      },
+      "gt0027" : {
+        "id" : "gt0027",
+        "priority" : 7,
+        "when" : [
+          "$gt0035|T - Primary tumour|==local::at0021|T1a - Solitary tumour ≤ 2 cm, with or without vascular invasion|",
+          "$gt0036|N - Regional lymph nodes|==local::at0028|N0 - No regional lymph node metastasis|",
+          "$gt0037|M - Distant metastasis|==local::at0031|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0026|Stage group|=local::at0005|Stage IA|"
+        ]
+      },
+      "gt0028" : {
+        "id" : "gt0028",
+        "priority" : 6,
+        "when" : [
+          "$gt0035|T - Primary tumour|==local::at0022|T1b - Solitary tumour > 2 cm, without vascular invasion|",
+          "$gt0036|N - Regional lymph nodes|==local::at0028|N0 - No regional lymph node metastasis|",
+          "$gt0037|M - Distant metastasis|==local::at0031|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0026|Stage group|=local::at0006|Stage IB|"
+        ]
+      },
+      "gt0029" : {
+        "id" : "gt0029",
+        "priority" : 5,
+        "when" : [
+          "$gt0035|T - Primary tumour|==local::at0023|T2 - Solitary tumour > 2 cm with vascular invasion OR multiple tumours, none > 5 cm|",
+          "$gt0036|N - Regional lymph nodes|==local::at0028|N0 - No regional lymph node metastasis|",
+          "$gt0037|M - Distant metastasis|==local::at0031|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0026|Stage group|=local::at0007|Stage II|"
+        ]
+      },
+      "gt0030" : {
+        "id" : "gt0030",
+        "priority" : 4,
+        "when" : [
+          "$gt0035|T - Primary tumour|==local::at0024|T3 - Multiple tumours, at least one > 5 cm|",
+          "$gt0036|N - Regional lymph nodes|==local::at0028|N0 - No regional lymph node metastasis|",
+          "$gt0037|M - Distant metastasis|==local::at0031|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0026|Stage group|=local::at0008|Stage IIIA|"
+        ]
+      },
+      "gt0031" : {
+        "id" : "gt0031",
+        "priority" : 3,
+        "when" : [
+          "$gt0035|T - Primary tumour|==local::at0025|T4 - Tumour(s) involving a major branch of the portal vein or hepatic vein with direct invasion of adjacent organs (other than the gallbladder), OR perforation of visceral peritoneum|",
+          "$gt0036|N - Regional lymph nodes|==local::at0028|N0 - No regional lymph node metastasis|",
+          "$gt0037|M - Distant metastasis|==local::at0031|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0026|Stage group|=local::at0009|Stage IIIB|"
+        ]
+      },
+      "gt0032" : {
+        "id" : "gt0032",
+        "priority" : 2,
+        "when" : [
+          "$gt0035|T - Primary tumour|!=null&&$gt0035|T - Primary tumour|!=local::at0019|TX - Primary tumour cannot be assessed|&&$gt0035|T - Primary tumour|!=local::at0020|T0 - No evidence of primary tumour|",
+          "$gt0036|N - Regional lymph nodes|==local::at0029|N1 - Regional lymph node metastasis present|",
+          "$gt0037|M - Distant metastasis|==local::at0031|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0026|Stage group|=local::at0010|Stage IVA|"
+        ]
+      },
+      "gt0033" : {
+        "id" : "gt0033",
+        "priority" : 1,
+        "when" : [
+          "$gt0035|T - Primary tumour|!=null&&$gt0035|T - Primary tumour|!=local::at0019|TX - Primary tumour cannot be assessed|&&$gt0035|T - Primary tumour|!=local::at0020|T0 - No evidence of primary tumour|",
+          "$gt0036|N - Regional lymph nodes|!=null",
+          "$gt0037|M - Distant metastasis|==local::at0032|M1 - Distant metastasis present|"
+        ],
+        "then" : [
+          "$gt0026|Stage group|=local::at0011|Stage IVB|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "TNM classification for liver hepatocellular carcinoma",
+            "description" : "A structured guideline used to determine the TNM (Tumour-Node-Metastasis) classification and stage grouping for hepatocellular carcinoma (HCC) of the liver, based on recorded Tumour (T), Node (N), and Metastasis (M) categories."
+          },
+          "gt0025" : {
+            "id" : "gt0025",
+            "text" : "openEHR-EHR-EVALUATION.tnm_stage_liver_hcc.v0"
+          },
+          "gt0026" : {
+            "id" : "gt0026",
+            "text" : "Stage group"
+          },
+          "gt0027" : {
+            "id" : "gt0027",
+            "text" : "Stage IA",
+            "description" : ""
+          },
+          "gt0028" : {
+            "id" : "gt0028",
+            "text" : "Stage IB",
+            "description" : ""
+          },
+          "gt0029" : {
+            "id" : "gt0029",
+            "text" : "Stage II",
+            "description" : ""
+          },
+          "gt0030" : {
+            "id" : "gt0030",
+            "text" : "Stage IIIA",
+            "description" : ""
+          },
+          "gt0031" : {
+            "id" : "gt0031",
+            "text" : "Stage IIIB",
+            "description" : ""
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "text" : "Stage IVA",
+            "description" : ""
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "text" : "Stage IVB",
+            "description" : ""
+          },
+          "gt0034" : {
+            "id" : "gt0034",
+            "text" : "openEHR-EHR-OBSERVATION.tnm_liver_hcc.v0"
+          },
+          "gt0035" : {
+            "id" : "gt0035",
+            "text" : "T - Primary tumour"
+          },
+          "gt0036" : {
+            "id" : "gt0036",
+            "text" : "N - Regional lymph nodes"
+          },
+          "gt0037" : {
+            "id" : "gt0037",
+            "text" : "M - Distant metastasis"
+          },
+          "gt0039" : {
+            "id" : "gt0039",
+            "text" : "Local variable: T",
+            "description" : ""
+          },
+          "gt0040" : {
+            "id" : "gt0040",
+            "text" : "Local variable: N",
+            "description" : ""
+          },
+          "gt0041" : {
+            "id" : "gt0041",
+            "text" : "Local variable: M",
+            "description" : ""
+          },
+          "gt0042" : {
+            "id" : "gt0042",
+            "text" : "TX",
+            "description" : ""
+          },
+          "gt0043" : {
+            "id" : "gt0043",
+            "text" : "T0",
+            "description" : ""
+          },
+          "gt0044" : {
+            "id" : "gt0044",
+            "text" : "T1a",
+            "description" : ""
+          },
+          "gt0045" : {
+            "id" : "gt0045",
+            "text" : "T1b",
+            "description" : ""
+          },
+          "gt0046" : {
+            "id" : "gt0046",
+            "text" : "T2",
+            "description" : ""
+          },
+          "gt0047" : {
+            "id" : "gt0047",
+            "text" : "T3",
+            "description" : ""
+          },
+          "gt0048" : {
+            "id" : "gt0048",
+            "text" : "T4",
+            "description" : ""
+          },
+          "gt0049" : {
+            "id" : "gt0049",
+            "text" : "NX",
+            "description" : ""
+          },
+          "gt0050" : {
+            "id" : "gt0050",
+            "text" : "N0",
+            "description" : ""
+          },
+          "gt0051" : {
+            "id" : "gt0051",
+            "text" : "N1",
+            "description" : ""
+          },
+          "gt0052" : {
+            "id" : "gt0052",
+            "text" : "M0",
+            "description" : ""
+          },
+          "gt0053" : {
+            "id" : "gt0053",
+            "text" : "M1",
+            "description" : ""
+          },
+          "gt0065" : {
+            "id" : "gt0065",
+            "text" : "Set M1 term",
+            "description" : ""
+          },
+          "gt0064" : {
+            "id" : "gt0064",
+            "text" : "Set M0 term",
+            "description" : ""
+          },
+          "gt0063" : {
+            "id" : "gt0063",
+            "text" : "Set N1 term",
+            "description" : ""
+          },
+          "gt0062" : {
+            "id" : "gt0062",
+            "text" : "Set N0 term",
+            "description" : ""
+          },
+          "gt0061" : {
+            "id" : "gt0061",
+            "text" : "Set Nx term",
+            "description" : ""
+          },
+          "gt0060" : {
+            "id" : "gt0060",
+            "text" : "Set T4 term",
+            "description" : ""
+          },
+          "gt0059" : {
+            "id" : "gt0059",
+            "text" : "Set T3 term",
+            "description" : ""
+          },
+          "gt0058" : {
+            "id" : "gt0058",
+            "text" : "Set T2 term",
+            "description" : ""
+          },
+          "gt0057" : {
+            "id" : "gt0057",
+            "text" : "Set T1b term",
+            "description" : ""
+          },
+          "gt0056" : {
+            "id" : "gt0056",
+            "text" : "Set T1a term",
+            "description" : ""
+          },
+          "gt0055" : {
+            "id" : "gt0055",
+            "text" : "Set T0 term",
+            "description" : ""
+          },
+          "gt0054" : {
+            "id" : "gt0054",
+            "text" : "Set Tx term",
+            "description" : ""
+          },
+          "gt0066" : {
+            "id" : "gt0066",
+            "text" : "Set TNM assessment",
+            "description" : ""
+          },
+          "gt0038" : {
+            "id" : "gt0038",
+            "text" : "TNM assessment"
+          }
+        }
+      }
+    }
+  }
+}
