@@ -46,7 +46,13 @@ definition
 								items cardinality matches {0..*; unordered} matches {
 									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Breast cancer
 										value matches {
-											DV_BOOLEAN matches {*}
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0020,    -- Yes
+													at0021]    -- No
+														}
+													}
 										}
 									}
 									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Number of breast cancer cases in first or second degree relatives
@@ -63,22 +69,46 @@ definition
 									}
 									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Triple negative breast cancer
 										value matches {
-											DV_BOOLEAN matches {*}
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0020,    -- Yes
+													at0021]    -- No
+														}
+													}
 										}
 									}
 									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Ovarian or related gynecologic cancer
 										value matches {
-											DV_BOOLEAN matches {*}
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0020,    -- Yes
+													at0021]    -- No
+														}
+													}
 										}
 									}
 									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Meets criteria for other hereditary cancer syndrome
 										value matches {
-											DV_BOOLEAN matches {*}
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0020,    -- Yes
+													at0021]    -- No
+														}
+													}
 										}
 									}
 									ELEMENT[at0011] occurrences matches {0..1} matches {    -- Genetic test would change current treatment
 										value matches {
-											DV_BOOLEAN matches {*}
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0020,    -- Yes
+													at0021]    -- No
+														}
+													}
 										}
 									}
 									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Bilateral breast cancer
@@ -201,7 +231,7 @@ ontology
 				>
 				["at0011"] = <
 					text = <"Genetic test would change current treatment">
-					description = <"A positive outcome of a genetic analysis would have immediate significance for the treatment of a patient with manifest cancer.  ">
+					description = <"A positive outcome of a genetic analysis would have immediate significance for the treatment of a patient with manifest cancer.">
 				>
 				["at0013"] = <
 					text = <"Indication for genetic testing">
