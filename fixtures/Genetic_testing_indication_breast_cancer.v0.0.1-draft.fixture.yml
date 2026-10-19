@@ -1,0 +1,85 @@
+guidelines:
+  "1": Genetic_testing_indication_breast_cancer.v0.0.1-draft
+test_cases:
+  - id: 1. No input (negative test) - default action
+    input:
+      "1": {}
+    expected_output:
+      "1":
+        gt0013|Indication for genetic testing: local::at0015|Genetic testing not recommended|
+  - id: 2. Rule Breast cancer ≤40 years
+    input:
+      "1":
+        gt0004|Age at diagnosis: 40,a
+        gt0006|Breast cancer: "true"
+    expected_output:
+      "1":
+        gt0013|Indication for genetic testing: local::at0014|Genetic testing recommended|
+  - id: 3. Rule Breast cancer ≤50 + ≥1 relevant relative
+    input:
+      "1":
+        gt0004|Age at diagnosis: 45,a
+        gt0006|Breast cancer: "true"
+        gt0007|Number of breast cancer cases in first or second degree relatives: 4,1
+    expected_output:
+      "1":
+        gt0013|Indication for genetic testing: local::at0014|Genetic testing recommended|
+  - id: 4. Rule Breast cancer ≤60 + ≥2 relevant relatives
+    input:
+      "1":
+        gt0004|Age at diagnosis: 60,a
+        gt0006|Breast cancer: "true"
+        gt0007|Number of breast cancer cases in first or second degree relatives: 4,1
+    expected_output:
+      "1":
+        gt0013|Indication for genetic testing: local::at0014|Genetic testing recommended|
+  - id: 5. Rule Triple-negative breast cancer
+    input:
+      "1":
+        gt0008|Triple negative breast cancer: "true"
+    expected_output:
+      "1":
+        gt0013|Indication for genetic testing: local::at0014|Genetic testing recommended|
+  - id: 6. Rule Male breast cancer
+    input:
+      "1":
+        gt0003|Gender: local::at0005|Male|
+        gt0006|Breast cancer: "true"
+    expected_output:
+      "1":
+        gt0013|Indication for genetic testing: local::at0014|Genetic testing recommended|
+  - id: 7. Rule Ovarian / fallopian / primary peritoneal carcinoma
+    input:
+      "1":
+        gt0009|Ovarian or related gynecologic cancer: "true"
+    expected_output:
+      "1":
+        gt0013|Indication for genetic testing: local::at0014|Genetic testing recommended|
+  - id: 8. Rule Criteria for another hereditary syndrome met
+    input:
+      "1":
+        gt0010|Meets criteria for other hereditary cancer syndrome: "true"
+    expected_output:
+      "1":
+        gt0013|Indication for genetic testing: local::at0014|Genetic testing recommended|
+  - id: 9. Rule Positive result would directly affect current cancer treatment
+    input:
+      "1":
+        gt0011|Genetic test would change current treatment: "true"
+    expected_output:
+      "1":
+        gt0013|Indication for genetic testing: local::at0014|Genetic testing recommended|
+  - id: 10. All input, default action
+    input:
+      "1":
+        gt0003|Gender: local::at0006|Female|
+        gt0004|Age at diagnosis: 40,a
+        gt0006|Breast cancer: "false"
+        gt0007|Number of breast cancer cases in first or second degree relatives: 1,1
+        gt0008|Triple negative breast cancer: "false"
+        gt0009|Ovarian or related gynecologic cancer: "false"
+        gt0010|Meets criteria for other hereditary cancer syndrome: "false"
+        gt0011|Genetic test would change current treatment: "false"
+    expected_output:
+      "1":
+        gt0013|Indication for genetic testing: local::at0015|Genetic testing not recommended|
