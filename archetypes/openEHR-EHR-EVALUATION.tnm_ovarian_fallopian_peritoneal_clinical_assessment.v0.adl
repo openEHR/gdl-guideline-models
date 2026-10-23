@@ -18,10 +18,10 @@ description
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"To record the derived TNM stage group for ovarian, fallopian tube, and primary peritoneal carcinoma based on the clinical T, N, and M categories.">
+			purpose = <"To record the derived TNM sub-category and stage group for ovarian, fallopian tube, and primary peritoneal carcinoma based on the clinical T, N, and M categories.">
 			keywords = <"tnm","uicc","ovarian","fallopian","tube","peritoneal","carcinoma","staging","oncology">
 			copyright = <"© Cambio CDS">
-			use = <"Use to record the derived TNM stage group for ovarian, fallopian tube, and primary peritoneal carcinoma based on the clinical T, N, and M categories.">
+			use = <"Use to record the derived TNM sub-category and stage group for ovarian, fallopian tube, and primary peritoneal carcinoma based on the clinical T, N, and M categories.">
 			misuse = <"Not to be used for recording raw tumour findings, lymph node measurements, imaging results, surgical findings, or pathological TNM (pTNM).">
 		>
 	>
@@ -63,6 +63,11 @@ definition
 									at0037]    -- Stage cannot be assigned
 								}
 							}
+						}
+					}
+					ELEMENT[at0038] occurrences matches {0..1} matches {    -- TNM assessment
+						value matches {
+							DV_TEXT matches {*}
 						}
 					}
 				}
@@ -165,6 +170,10 @@ ontology
 				["at0037"] = <
 					text = <"Stage cannot be assigned">
 					description = <"">
+				>
+				["at0038"] = <
+					text = <"TNM assessment">
+					description = <"The TNM sub-category string assembled from the clinical T, N, and M categories.">
 				>
 			>
 		>
