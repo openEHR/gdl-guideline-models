@@ -1,0 +1,261 @@
+guidelines:
+  "1": tnm_classification_ovarian_fallopian_peritoneal_clinical.v0.1.0
+test_cases:
+  - id: 1. No input (negative test, default action)
+    input:
+      "1": {}
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0037|Stage cannot be assigned|
+  - id: 2. T - Primary tumour input missing (negative test, default action)
+    input:
+      "1":
+        gt0004|N - Regional lymph nodes: local::at0023|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0028|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0037|Stage cannot be assigned|
+  - id: 3. N - Regional lymph nodes input missing (negative test, default action)
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0009|T1 - Tumour limited to the ovaries (one
+          or both) or fallopian tube(s)|
+        gt0005|M - Distant metastasis: local::at0028|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0037|Stage cannot be assigned|
+  - id: 4. M - Distant metastasis input missing (negative test, default action)
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0009|T1 - Tumour limited to the ovaries (one
+          or both) or fallopian tube(s)|
+        gt0004|N - Regional lymph nodes: local::at0023|N0 - No regional lymph node metastasis|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0037|Stage cannot be assigned|
+  - id: 5. All inputs - Stage I
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0009|T1 - Tumour limited to the ovaries (one
+          or both) or fallopian tube(s)|
+        gt0004|N - Regional lymph nodes: local::at0023|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0028|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0005|Stage I|
+        gt0038|TNM assessment: T1N0M0
+  - id: 6. All inputs - Stage IA
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0010|T1a - Tumour limited to one ovary;
+          capsule intact, no tumour on ovarian surface or fallopian tube
+          surface; no malignant cells in ascites or peritoneal washings|
+        gt0004|N - Regional lymph nodes: local::at0023|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0028|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0006|Stage IA|
+        gt0038|TNM assessment: T1aN0M0
+  - id: 7. All inputs - Stage IB
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0011|T1b - Tumour limited to both ovaries or
+          fallopian tubes; capsule intact, no tumour on ovarian or fallopian
+          tube surface; no malignant cells in ascites or peritoneal washings|
+        gt0004|N - Regional lymph nodes: local::at0023|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0028|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0007|Stage IB|
+        gt0038|TNM assessment: T1bN0M0
+  - id: 8. All inputs - Stage IC
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0013|T1c2 - Tumour limited to one or both
+          ovaries or fallopian tubes with capsule ruptured before surgery or
+          tumour on ovarian or fallopian tube surface|
+        gt0004|N - Regional lymph nodes: local::at0023|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0028|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0008|Stage IC|
+        gt0038|TNM assessment: T1c2N0M0
+  - id: 9. All inputs - Stage II
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0015|T2 - Tumour involves one or both
+          ovaries or fallopian tubes with pelvic extension (below the pelvic
+          brim) or primary peritoneal cancer|
+        gt0004|N - Regional lymph nodes: local::at0023|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0028|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0009|Stage II|
+        gt0038|TNM assessment: T2N0M0
+  - id: 10. All inputs - Stage IIA
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0016|T2a - Extension and/or implants on
+          uterus and/or fallopian tube(s) and/or ovary(ies)|
+        gt0004|N - Regional lymph nodes: local::at0023|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0028|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0010|Stage IIA|
+        gt0038|TNM assessment: T2aN0M0
+  - id: 11. All inputs - Stage IIB
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0017|T2b - Extension to other pelvic
+          tissues, including bowel within the pelvis|
+        gt0004|N - Regional lymph nodes: local::at0023|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0028|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0011|Stage IIB|
+        gt0038|TNM assessment: T2bN0M0
+  - id: 12. All inputs - Stage IIIA1
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0010|T1a - Tumour limited to one ovary;
+          capsule intact, no tumour on ovarian surface or fallopian tube
+          surface; no malignant cells in ascites or peritoneal washings|
+        gt0004|N - Regional lymph nodes: local::at0025|N1a - Lymph node metastasis not
+          more than 10 mm in greatest dimension|
+        gt0005|M - Distant metastasis: local::at0028|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0013|Stage IIIA1|
+        gt0038|TNM assessment: T1aN1aM0
+  - id: 13. All inputs - Stage IIIA2
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0018|T3a - Microscopic extrapelvic (above
+          the pelvic brim) peritoneal involvement with or without
+          retroperitoneal lymph node involvement (including bowel involvement)|
+        gt0004|N - Regional lymph nodes: local::at0023|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0028|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0014|Stage IIIA2|
+        gt0038|TNM assessment: T3aN0M0
+  - id: 14. All inputs - Stage IIIB
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0019|T3b - Macroscopic peritoneal metastasis
+          beyond pelvic brim 2 cm or less in greatest dimension, including bowel
+          involvement outside the pelvis, with or without retroperitoneal nodes|
+        gt0004|N - Regional lymph nodes: local::at0026|N1b - Lymph node metastasis more
+          than 10 mm in greatest dimension|
+        gt0005|M - Distant metastasis: local::at0028|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0015|Stage IIIB|
+        gt0038|TNM assessment: T3bN1bM0
+  - id: 15. All inputs - Stage IIIC
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0020|T3c - Peritoneal metastasis beyond
+          pelvic brim more than 2 cm in greatest dimension and/or
+          retroperitoneal lymph node metastasis (includes extension to capsule
+          of liver and spleen without parenchymal involvement)|
+        gt0004|N - Regional lymph nodes: local::at0026|N1b - Lymph node metastasis more
+          than 10 mm in greatest dimension|
+        gt0005|M - Distant metastasis: local::at0028|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0016|Stage IIIC|
+        gt0038|TNM assessment: T3cN1bM0
+  - id: 16. All inputs - Stage IV
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0015|T2 - Tumour involves one or both
+          ovaries or fallopian tubes with pelvic extension (below the pelvic
+          brim) or primary peritoneal cancer|
+        gt0004|N - Regional lymph nodes: local::at0024|N1 - Retroperitoneal lymph node metastasis only|
+        gt0005|M - Distant metastasis: local::at0029|M1 - Distant metastasis (excludes peritoneal metastasis)|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0017|Stage IV|
+        gt0038|TNM assessment: T2N1M1
+  - id: 17. All inputs - Stage IVA
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0015|T2 - Tumour involves one or both
+          ovaries or fallopian tubes with pelvic extension (below the pelvic
+          brim) or primary peritoneal cancer|
+        gt0004|N - Regional lymph nodes: local::at0024|N1 - Retroperitoneal lymph node metastasis only|
+        gt0005|M - Distant metastasis: local::at0030|M1a - Pleural effusion with positive cytology|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0018|Stage IVA|
+        gt0038|TNM assessment: T2N1M1a
+  - id: 18. All inputs - Stage IVB
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0015|T2 - Tumour involves one or both
+          ovaries or fallopian tubes with pelvic extension (below the pelvic
+          brim) or primary peritoneal cancer|
+        gt0004|N - Regional lymph nodes: local::at0024|N1 - Retroperitoneal lymph node metastasis only|
+        gt0005|M - Distant metastasis: local::at0031|M1b - Parenchymal metastasis and
+          metastasis to extra-abdominal organs (including inguinal lymph nodes
+          and lymph nodes outside the abdominal cavity)|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0019|Stage IVB|
+        gt0038|TNM assessment: T2N1M1b
+  - id: 19. NX regional lymph nodes - sub-category without stage group
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0010|T1a - Tumour limited to one ovary;
+          capsule intact, no tumour on ovarian surface or fallopian tube
+          surface; no malignant cells in ascites or peritoneal washings|
+        gt0004|N - Regional lymph nodes: local::at0022|NX - Regional lymph nodes cannot be assessed|
+        gt0005|M - Distant metastasis: local::at0028|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0037|Stage cannot be assigned|
+        gt0038|TNM assessment: T1aNXM0
+  - id: 20. All inputs - Stage IC with T1c1
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0012|T1c1 - Tumour limited to one or both
+          ovaries or fallopian tubes with surgical spill|
+        gt0004|N - Regional lymph nodes: local::at0023|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0028|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0008|Stage IC|
+        gt0038|TNM assessment: T1c1N0M0
+  - id: 21. All inputs - Stage IC with T1c3
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0014|T1c3 - Tumour limited to one or both
+          ovaries or fallopian tubes with malignant cells in ascites or
+          peritoneal washings|
+        gt0004|N - Regional lymph nodes: local::at0023|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0028|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0008|Stage IC|
+        gt0038|TNM assessment: T1c3N0M0
+  - id: 22. T0 primary tumour - sub-category without stage group
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0008|T0 - No evidence of primary tumour|
+        gt0004|N - Regional lymph nodes: local::at0023|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0028|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0037|Stage cannot be assigned|
+        gt0038|TNM assessment: T0N0M0
+  - id: 23. TX primary tumour - sub-category without stage group
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0007|TX - Primary tumour cannot be assessed|
+        gt0004|N - Regional lymph nodes: local::at0023|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0028|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0026|TNM stage group: local::at0037|Stage cannot be assigned|
+        gt0038|TNM assessment: TXN0M0
