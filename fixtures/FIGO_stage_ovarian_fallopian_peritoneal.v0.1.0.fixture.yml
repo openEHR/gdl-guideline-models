@@ -1,0 +1,369 @@
+guidelines:
+  "1": FIGO_stage_ovarian_fallopian_peritoneal.v0.1.0
+test_cases:
+  - id: 1. No input (negative test, default action)
+    input:
+      "1": {}
+    expected_output:
+      "1":
+        gt0013|FIGO stage: local::at0024|Stage cannot be assigned|
+  - id: 2. All inputs - Stage IX (substage not specified)
+    input:
+      "1":
+        gt0039|Primary peritoneal carcinoma: "false"
+        gt0040|Tumour confined to ovaries/ovary or fallopian tube(s): "true"
+        gt0041|Pelvic extension below pelvic brim: "false"
+        gt0042|Extrapelvic peritoneal spread: "false"
+        gt0043|Retroperitoneal lymph node metastasis: "false"
+        gt0044|Distant metastasis excluding peritoneal metastasis: "false"
+        gt0045|Ovary and fallopian tube involvement pattern: local::at0018|Not applicable|
+        gt0046|Tumour spill / surface / cytology finding: local::at0023|Not applicable|
+        gt0047|Pelvic extension pattern: local::at0028|Not applicable|
+        gt0048|Largest retroperitoneal nodal metastasis size: local::at0037|Not applicable|
+        gt0049|Extrapelvic peritoneal disease extent: local::at0041|Not applicable|
+        gt0050|Type of distant metastasis: local::at0046|Not applicable|
+    expected_output:
+      "1":
+        gt0013|FIGO stage: local::at0025|Stage IX (substage not specified)|
+  - id: 3. All inputs - Stage IA
+    input:
+      "1":
+        gt0039|Primary peritoneal carcinoma: "false"
+        gt0040|Tumour confined to ovaries/ovary or fallopian tube(s): "true"
+        gt0041|Pelvic extension below pelvic brim: "false"
+        gt0042|Extrapelvic peritoneal spread: "false"
+        gt0043|Retroperitoneal lymph node metastasis: "false"
+        gt0044|Distant metastasis excluding peritoneal metastasis: "false"
+        gt0045|Ovary and fallopian tube involvement pattern: local::at0019|Limited to
+          one ovary (capsule intact) or one fallopian tube|
+        gt0046|Tumour spill / surface / cytology finding: local::at0023|Not applicable|
+        gt0047|Pelvic extension pattern: local::at0028|Not applicable|
+        gt0048|Largest retroperitoneal nodal metastasis size: local::at0037|Not applicable|
+        gt0049|Extrapelvic peritoneal disease extent: local::at0041|Not applicable|
+        gt0050|Type of distant metastasis: local::at0046|Not applicable|
+    expected_output:
+      "1":
+        gt0013|FIGO stage: local::at0006|Stage IA|
+  - id: 4. All inputs - Stage IB
+    input:
+      "1":
+        gt0039|Primary peritoneal carcinoma: "false"
+        gt0040|Tumour confined to ovaries/ovary or fallopian tube(s): "true"
+        gt0041|Pelvic extension below pelvic brim: "false"
+        gt0042|Extrapelvic peritoneal spread: "false"
+        gt0043|Retroperitoneal lymph node metastasis: "false"
+        gt0044|Distant metastasis excluding peritoneal metastasis: "false"
+        gt0045|Ovary and fallopian tube involvement pattern: local::at0020|Limited to
+          both ovaries (capsule intact) or both fallopian tubes|
+        gt0046|Tumour spill / surface / cytology finding: local::at0023|Not applicable|
+        gt0047|Pelvic extension pattern: local::at0028|Not applicable|
+        gt0048|Largest retroperitoneal nodal metastasis size: local::at0037|Not applicable|
+        gt0049|Extrapelvic peritoneal disease extent: local::at0041|Not applicable|
+        gt0050|Type of distant metastasis: local::at0046|Not applicable|
+    expected_output:
+      "1":
+        gt0013|FIGO stage: local::at0007|Stage IB|
+  - id: 5. All inputs - Stage ICX (substage not specified)
+    input:
+      "1":
+        gt0039|Primary peritoneal carcinoma: "false"
+        gt0040|Tumour confined to ovaries/ovary or fallopian tube(s): "true"
+        gt0041|Pelvic extension below pelvic brim: "false"
+        gt0042|Extrapelvic peritoneal spread: "false"
+        gt0043|Retroperitoneal lymph node metastasis: "false"
+        gt0044|Distant metastasis excluding peritoneal metastasis: "false"
+        gt0045|Ovary and fallopian tube involvement pattern: local::at0021|Limited to
+          one or both ovaries/fallopian tubes with either of the following|
+        gt0046|Tumour spill / surface / cytology finding: local::at0023|Not applicable|
+        gt0047|Pelvic extension pattern: local::at0028|Not applicable|
+        gt0048|Largest retroperitoneal nodal metastasis size: local::at0037|Not applicable|
+        gt0049|Extrapelvic peritoneal disease extent: local::at0041|Not applicable|
+        gt0050|Type of distant metastasis: local::at0046|Not applicable|
+    expected_output:
+      "1":
+        gt0013|FIGO stage: local::at0026|Stage ICX (substage not specified)|
+  - id: 6. All inputs - Stage IC1
+    input:
+      "1":
+        gt0039|Primary peritoneal carcinoma: "false"
+        gt0040|Tumour confined to ovaries/ovary or fallopian tube(s): "true"
+        gt0041|Pelvic extension below pelvic brim: "false"
+        gt0042|Extrapelvic peritoneal spread: "false"
+        gt0043|Retroperitoneal lymph node metastasis: "false"
+        gt0044|Distant metastasis excluding peritoneal metastasis: "false"
+        gt0045|Ovary and fallopian tube involvement pattern: local::at0021|Limited to
+          one or both ovaries/fallopian tubes with either of the following|
+        gt0046|Tumour spill / surface / cytology finding: local::at0024|Surgical spill (intraoperative rupture/spillage)|
+        gt0047|Pelvic extension pattern: local::at0028|Not applicable|
+        gt0048|Largest retroperitoneal nodal metastasis size: local::at0037|Not applicable|
+        gt0049|Extrapelvic peritoneal disease extent: local::at0041|Not applicable|
+        gt0050|Type of distant metastasis: local::at0046|Not applicable|
+    expected_output:
+      "1":
+        gt0013|FIGO stage: local::at0009|Stage IC1|
+  - id: 7. All inputs - Stage IC2
+    input:
+      "1":
+        gt0039|Primary peritoneal carcinoma: "false"
+        gt0040|Tumour confined to ovaries/ovary or fallopian tube(s): "true"
+        gt0041|Pelvic extension below pelvic brim: "false"
+        gt0042|Extrapelvic peritoneal spread: "false"
+        gt0043|Retroperitoneal lymph node metastasis: "false"
+        gt0044|Distant metastasis excluding peritoneal metastasis: "false"
+        gt0045|Ovary and fallopian tube involvement pattern: local::at0021|Limited to
+          one or both ovaries/fallopian tubes with either of the following|
+        gt0046|Tumour spill / surface / cytology finding: local::at0025|Capsule ruptured
+          before surgery or tumour on ovarian/fallopian tube surface|
+        gt0047|Pelvic extension pattern: local::at0028|Not applicable|
+        gt0048|Largest retroperitoneal nodal metastasis size: local::at0037|Not applicable|
+        gt0049|Extrapelvic peritoneal disease extent: local::at0041|Not applicable|
+        gt0050|Type of distant metastasis: local::at0046|Not applicable|
+    expected_output:
+      "1":
+        gt0013|FIGO stage: local::at0010|Stage IC2|
+  - id: 8. All inputs - Stage IC3
+    input:
+      "1":
+        gt0039|Primary peritoneal carcinoma: "false"
+        gt0040|Tumour confined to ovaries/ovary or fallopian tube(s): "true"
+        gt0041|Pelvic extension below pelvic brim: "false"
+        gt0042|Extrapelvic peritoneal spread: "false"
+        gt0043|Retroperitoneal lymph node metastasis: "false"
+        gt0044|Distant metastasis excluding peritoneal metastasis: "false"
+        gt0045|Ovary and fallopian tube involvement pattern: local::at0021|Limited to
+          one or both ovaries/fallopian tubes with either of the following|
+        gt0046|Tumour spill / surface / cytology finding: local::at0026|Malignant cells in ascites or peritoneal washings|
+        gt0047|Pelvic extension pattern: local::at0028|Not applicable|
+        gt0048|Largest retroperitoneal nodal metastasis size: local::at0037|Not applicable|
+        gt0049|Extrapelvic peritoneal disease extent: local::at0041|Not applicable|
+        gt0050|Type of distant metastasis: local::at0046|Not applicable|
+    expected_output:
+      "1":
+        gt0013|FIGO stage: local::at0011|Stage IC3|
+  - id: 9. All inputs - Stage IIX (substage not specified)
+    input:
+      "1":
+        gt0039|Primary peritoneal carcinoma: "false"
+        gt0040|Tumour confined to ovaries/ovary or fallopian tube(s): "false"
+        gt0041|Pelvic extension below pelvic brim: "true"
+        gt0042|Extrapelvic peritoneal spread: "false"
+        gt0043|Retroperitoneal lymph node metastasis: "false"
+        gt0044|Distant metastasis excluding peritoneal metastasis: "false"
+        gt0045|Ovary and fallopian tube involvement pattern: local::at0018|Not applicable|
+        gt0046|Tumour spill / surface / cytology finding: local::at0023|Not applicable|
+        gt0047|Pelvic extension pattern: local::at0028|Not applicable|
+        gt0048|Largest retroperitoneal nodal metastasis size: local::at0037|Not applicable|
+        gt0049|Extrapelvic peritoneal disease extent: local::at0041|Not applicable|
+        gt0050|Type of distant metastasis: local::at0046|Not applicable|
+    expected_output:
+      "1":
+        gt0013|FIGO stage: local::at0027|Stage IIX (substage not specified)|
+  - id: 10. All inputs - Stage IIA
+    input:
+      "1":
+        gt0039|Primary peritoneal carcinoma: "false"
+        gt0040|Tumour confined to ovaries/ovary or fallopian tube(s): "false"
+        gt0041|Pelvic extension below pelvic brim: "true"
+        gt0042|Extrapelvic peritoneal spread: "false"
+        gt0043|Retroperitoneal lymph node metastasis: "false"
+        gt0044|Distant metastasis excluding peritoneal metastasis: "false"
+        gt0045|Ovary and fallopian tube involvement pattern: local::at0018|Not applicable|
+        gt0046|Tumour spill / surface / cytology finding: local::at0023|Not applicable|
+        gt0047|Pelvic extension pattern: local::at0029|Extension to and/or implants on
+          uterus, tubes, or ovaries|
+        gt0048|Largest retroperitoneal nodal metastasis size: local::at0037|Not applicable|
+        gt0049|Extrapelvic peritoneal disease extent: local::at0041|Not applicable|
+        gt0050|Type of distant metastasis: local::at0046|Not applicable|
+    expected_output:
+      "1":
+        gt0013|FIGO stage: local::at0013|Stage IIA|
+  - id: 11. All inputs - Stage IIB
+    input:
+      "1":
+        gt0039|Primary peritoneal carcinoma: "false"
+        gt0040|Tumour confined to ovaries/ovary or fallopian tube(s): "false"
+        gt0041|Pelvic extension below pelvic brim: "true"
+        gt0042|Extrapelvic peritoneal spread: "false"
+        gt0043|Retroperitoneal lymph node metastasis: "false"
+        gt0044|Distant metastasis excluding peritoneal metastasis: "false"
+        gt0045|Ovary and fallopian tube involvement pattern: local::at0018|Not applicable|
+        gt0046|Tumour spill / surface / cytology finding: local::at0023|Not applicable|
+        gt0047|Pelvic extension pattern: local::at0030|Extension to other pelvic intraperitoneal tissues|
+        gt0048|Largest retroperitoneal nodal metastasis size: local::at0037|Not applicable|
+        gt0049|Extrapelvic peritoneal disease extent: local::at0041|Not applicable|
+        gt0050|Type of distant metastasis: local::at0046|Not applicable|
+    expected_output:
+      "1":
+        gt0013|FIGO stage: local::at0014|Stage IIB|
+  - id: 12. All inputs - Stage IIIA1X (substage not specified)
+    input:
+      "1":
+        gt0039|Primary peritoneal carcinoma: "true"
+        gt0040|Tumour confined to ovaries/ovary or fallopian tube(s): "false"
+        gt0041|Pelvic extension below pelvic brim: "true"
+        gt0042|Extrapelvic peritoneal spread: "false"
+        gt0043|Retroperitoneal lymph node metastasis: "true"
+        gt0044|Distant metastasis excluding peritoneal metastasis: "false"
+        gt0045|Ovary and fallopian tube involvement pattern: local::at0018|Not applicable|
+        gt0046|Tumour spill / surface / cytology finding: local::at0023|Not applicable|
+        gt0047|Pelvic extension pattern: local::at0028|Not applicable|
+        gt0048|Largest retroperitoneal nodal metastasis size: local::at0037|Not applicable|
+        gt0049|Extrapelvic peritoneal disease extent: local::at0041|Not applicable|
+        gt0050|Type of distant metastasis: local::at0046|Not applicable|
+    expected_output:
+      "1":
+        gt0013|FIGO stage: local::at0029|Stage IIIA1X (substage not specified)|
+  - id: 13. All inputs - Stage IIIA1i
+    input:
+      "1":
+        gt0039|Primary peritoneal carcinoma: "true"
+        gt0040|Tumour confined to ovaries/ovary or fallopian tube(s): "false"
+        gt0041|Pelvic extension below pelvic brim: "true"
+        gt0042|Extrapelvic peritoneal spread: "false"
+        gt0043|Retroperitoneal lymph node metastasis: "true"
+        gt0044|Distant metastasis excluding peritoneal metastasis: "false"
+        gt0045|Ovary and fallopian tube involvement pattern: local::at0018|Not applicable|
+        gt0046|Tumour spill / surface / cytology finding: local::at0023|Not applicable|
+        gt0047|Pelvic extension pattern: local::at0028|Not applicable|
+        gt0048|Largest retroperitoneal nodal metastasis size: local::at0038|≤ 10 mm|
+        gt0049|Extrapelvic peritoneal disease extent: local::at0041|Not applicable|
+        gt0050|Type of distant metastasis: local::at0046|Not applicable|
+    expected_output:
+      "1":
+        gt0013|FIGO stage: local::at0016|Stage IIIA1i|
+  - id: 14. All inputs - Stage IIIA1ii
+    input:
+      "1":
+        gt0039|Primary peritoneal carcinoma: "true"
+        gt0040|Tumour confined to ovaries/ovary or fallopian tube(s): "false"
+        gt0041|Pelvic extension below pelvic brim: "true"
+        gt0042|Extrapelvic peritoneal spread: "false"
+        gt0043|Retroperitoneal lymph node metastasis: "true"
+        gt0044|Distant metastasis excluding peritoneal metastasis: "false"
+        gt0045|Ovary and fallopian tube involvement pattern: local::at0018|Not applicable|
+        gt0046|Tumour spill / surface / cytology finding: local::at0023|Not applicable|
+        gt0047|Pelvic extension pattern: local::at0028|Not applicable|
+        gt0048|Largest retroperitoneal nodal metastasis size: local::at0039|> 10 mm|
+        gt0049|Extrapelvic peritoneal disease extent: local::at0041|Not applicable|
+        gt0050|Type of distant metastasis: local::at0046|Not applicable|
+    expected_output:
+      "1":
+        gt0013|FIGO stage: local::at0017|Stage IIIA1ii|
+  - id: 15. All inputs - Stage IIIA2
+    input:
+      "1":
+        gt0039|Primary peritoneal carcinoma: "true"
+        gt0040|Tumour confined to ovaries/ovary or fallopian tube(s): "false"
+        gt0041|Pelvic extension below pelvic brim: "true"
+        gt0042|Extrapelvic peritoneal spread: "true"
+        gt0043|Retroperitoneal lymph node metastasis: "true"
+        gt0044|Distant metastasis excluding peritoneal metastasis: "false"
+        gt0045|Ovary and fallopian tube involvement pattern: local::at0018|Not applicable|
+        gt0046|Tumour spill / surface / cytology finding: local::at0023|Not applicable|
+        gt0047|Pelvic extension pattern: local::at0028|Not applicable|
+        gt0048|Largest retroperitoneal nodal metastasis size: local::at0039|> 10 mm|
+        gt0049|Extrapelvic peritoneal disease extent: local::at0042|Microscopic extrapelvic peritoneal disease|
+        gt0050|Type of distant metastasis: local::at0046|Not applicable|
+    expected_output:
+      "1":
+        gt0013|FIGO stage: local::at0018|Stage IIIA2|
+  - id: 16. All inputs - Stage IIIB
+    input:
+      "1":
+        gt0039|Primary peritoneal carcinoma: "true"
+        gt0040|Tumour confined to ovaries/ovary or fallopian tube(s): "false"
+        gt0041|Pelvic extension below pelvic brim: "true"
+        gt0042|Extrapelvic peritoneal spread: "true"
+        gt0043|Retroperitoneal lymph node metastasis: "true"
+        gt0044|Distant metastasis excluding peritoneal metastasis: "false"
+        gt0045|Ovary and fallopian tube involvement pattern: local::at0018|Not applicable|
+        gt0046|Tumour spill / surface / cytology finding: local::at0023|Not applicable|
+        gt0047|Pelvic extension pattern: local::at0028|Not applicable|
+        gt0048|Largest retroperitoneal nodal metastasis size: local::at0039|> 10 mm|
+        gt0049|Extrapelvic peritoneal disease extent: local::at0043|Macroscopic extrapelvic peritoneal metastasis ≤ 2 cm|
+        gt0050|Type of distant metastasis: local::at0046|Not applicable|
+    expected_output:
+      "1":
+        gt0013|FIGO stage: local::at0019|Stage IIIB|
+  - id: 17. All inputs - Stage IIIC
+    input:
+      "1":
+        gt0039|Primary peritoneal carcinoma: "true"
+        gt0040|Tumour confined to ovaries/ovary or fallopian tube(s): "false"
+        gt0041|Pelvic extension below pelvic brim: "true"
+        gt0042|Extrapelvic peritoneal spread: "true"
+        gt0043|Retroperitoneal lymph node metastasis: "true"
+        gt0044|Distant metastasis excluding peritoneal metastasis: "false"
+        gt0045|Ovary and fallopian tube involvement pattern: local::at0018|Not applicable|
+        gt0046|Tumour spill / surface / cytology finding: local::at0023|Not applicable|
+        gt0047|Pelvic extension pattern: local::at0028|Not applicable|
+        gt0048|Largest retroperitoneal nodal metastasis size: local::at0039|> 10 mm|
+        gt0049|Extrapelvic peritoneal disease extent: local::at0044|Macroscopic
+          extrapelvic peritoneal metastasis > 2 cm (includes liver/spleen
+          capsule involvement without parenchymal disease)|
+        gt0050|Type of distant metastasis: local::at0046|Not applicable|
+    expected_output:
+      "1":
+        gt0013|FIGO stage: local::at0020|Stage IIIC|
+  - id: 18. All inputs - Stage IVX (substage not specified)
+    input:
+      "1":
+        gt0039|Primary peritoneal carcinoma: "true"
+        gt0040|Tumour confined to ovaries/ovary or fallopian tube(s): "false"
+        gt0041|Pelvic extension below pelvic brim: "true"
+        gt0042|Extrapelvic peritoneal spread: "true"
+        gt0043|Retroperitoneal lymph node metastasis: "true"
+        gt0044|Distant metastasis excluding peritoneal metastasis: "true"
+        gt0045|Ovary and fallopian tube involvement pattern: local::at0018|Not applicable|
+        gt0046|Tumour spill / surface / cytology finding: local::at0023|Not applicable|
+        gt0047|Pelvic extension pattern: local::at0028|Not applicable|
+        gt0048|Largest retroperitoneal nodal metastasis size: local::at0039|> 10 mm|
+        gt0049|Extrapelvic peritoneal disease extent: local::at0044|Macroscopic
+          extrapelvic peritoneal metastasis > 2 cm (includes liver/spleen
+          capsule involvement without parenchymal disease)|
+        gt0050|Type of distant metastasis: local::at0046|Not applicable|
+    expected_output:
+      "1":
+        gt0013|FIGO stage: local::at0030|Stage IVX (substage not specified)|
+  - id: 19. All inputs - Stage IVA
+    input:
+      "1":
+        gt0039|Primary peritoneal carcinoma: "true"
+        gt0040|Tumour confined to ovaries/ovary or fallopian tube(s): "false"
+        gt0041|Pelvic extension below pelvic brim: "true"
+        gt0042|Extrapelvic peritoneal spread: "true"
+        gt0043|Retroperitoneal lymph node metastasis: "true"
+        gt0044|Distant metastasis excluding peritoneal metastasis: "true"
+        gt0045|Ovary and fallopian tube involvement pattern: local::at0018|Not applicable|
+        gt0046|Tumour spill / surface / cytology finding: local::at0023|Not applicable|
+        gt0047|Pelvic extension pattern: local::at0028|Not applicable|
+        gt0048|Largest retroperitoneal nodal metastasis size: local::at0039|> 10 mm|
+        gt0049|Extrapelvic peritoneal disease extent: local::at0044|Macroscopic
+          extrapelvic peritoneal metastasis > 2 cm (includes liver/spleen
+          capsule involvement without parenchymal disease)|
+        gt0050|Type of distant metastasis: local::at0047|Pleural effusion with positive cytology|
+    expected_output:
+      "1":
+        gt0013|FIGO stage: local::at0022|Stage IVA|
+  - id: 20. All inputs - Stage IVB
+    input:
+      "1":
+        gt0039|Primary peritoneal carcinoma: "true"
+        gt0040|Tumour confined to ovaries/ovary or fallopian tube(s): "false"
+        gt0041|Pelvic extension below pelvic brim: "true"
+        gt0042|Extrapelvic peritoneal spread: "true"
+        gt0043|Retroperitoneal lymph node metastasis: "true"
+        gt0044|Distant metastasis excluding peritoneal metastasis: "true"
+        gt0045|Ovary and fallopian tube involvement pattern: local::at0018|Not applicable|
+        gt0046|Tumour spill / surface / cytology finding: local::at0023|Not applicable|
+        gt0047|Pelvic extension pattern: local::at0028|Not applicable|
+        gt0048|Largest retroperitoneal nodal metastasis size: local::at0039|> 10 mm|
+        gt0049|Extrapelvic peritoneal disease extent: local::at0044|Macroscopic
+          extrapelvic peritoneal metastasis > 2 cm (includes liver/spleen
+          capsule involvement without parenchymal disease)|
+        gt0050|Type of distant metastasis: local::at0048|Parenchymal metastasis and/or
+          extra-abdominal organ metastasis (incl. inguinal nodes and nodes
+          outside abdominal cavity)|
+    expected_output:
+      "1":
+        gt0013|FIGO stage: local::at0023|Stage IVB|
