@@ -19,10 +19,10 @@ description
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"To record the final stage group for cutaneous squamous cell carcinoma (cSCC).">
+			purpose = <"To record the TNM sub-category and final stage group for cutaneous squamous cell carcinoma (cSCC).">
 			keywords = <"tnm","tumour","node","metastasis","staging","cutaneous","squamous","cell","carcinoma","cSCC","skin">
 			copyright = <"© Cambio CDS">
-			use = <"Use to record the final stage group for cutaneous squamous cell carcinoma (cSCC).">
+			use = <"Use to record the TNM sub-category and final stage group for cutaneous squamous cell carcinoma (cSCC).">
 			misuse = <"Not to be used for recording TNM staging for malignancies other than cutaneous squamous cell carcinoma.">
 		>
 	>
@@ -63,6 +63,11 @@ definition
 									at0058]    -- Stage cannot be assigned
 								}
 							}
+						}
+					}
+					ELEMENT[at0059] occurrences matches {0..1} matches {
+						value matches {
+							DV_TEXT matches {*}
 						}
 					}
 				}
@@ -161,6 +166,10 @@ ontology
 				["at0058"] = <
 					text = <"Stage cannot be assigned">
 					description = <"">
+				>
+				["at0059"] = <
+					text = <"TNM assessment">
+					description = <"The TNM sub-category string assembled from the recorded T, N, and M categories.">
 				>
 			>
 		>
