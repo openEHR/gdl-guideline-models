@@ -1,0 +1,192 @@
+guidelines:
+  "1": tnm_classification_cSCC_head_neck_clinical.v0.1.0
+test_cases:
+  - id: 1. No input (negative test, default action)
+    input:
+      "1": {}
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0058|Stage cannot be assigned|
+  - id: 2. T - Primary tumour input missing (negative test, default action)
+    input:
+      "1":
+        gt0004|N - Lymph nodes: local::at0049|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0056|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0058|Stage cannot be assigned|
+  - id: 3. N - Lymph nodes input missing (negative test, default action)
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0043|Tis - Carcinoma in situ|
+        gt0005|M - Distant metastasis: local::at0056|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0058|Stage cannot be assigned|
+  - id: 4. M - Distant metastasis input missing (negative test, default action)
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0043|Tis - Carcinoma in situ|
+        gt0004|N - Lymph nodes: local::at0049|N0 - No regional lymph node metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0058|Stage cannot be assigned|
+  - id: 5. All inputs - Stage 0
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0043|Tis - Carcinoma in situ|
+        gt0004|N - Lymph nodes: local::at0049|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0056|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0045|Stage 0|
+        gt0014|TNM assessment: TisN0M0
+  - id: 6. All inputs - Stage I
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0044|T1 - Tumour diameter ≤ 2.0 cm|
+        gt0004|N - Lymph nodes: local::at0049|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0056|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0046|Stage I|
+        gt0014|TNM assessment: T1N0M0
+  - id: 7. All inputs - Stage II
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0045|T2 - Tumour diameter > 2 cm and ≤ 4 cm|
+        gt0004|N - Lymph nodes: local::at0049|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0056|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0049|Stage II|
+        gt0014|TNM assessment: T2N0M0
+  - id: 8. All inputs - Stage III
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0044|T1 - Tumour diameter ≤ 2.0 cm|
+        gt0004|N - Lymph nodes: local::at0050|N1 - Metastasis in a single node ≤ 3 cm,
+          no extranodal extension|
+        gt0005|M - Distant metastasis: local::at0056|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0052|Stage III|
+        gt0014|TNM assessment: T1N1M0
+  - id: 9. All inputs - Stage IVA
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0045|T2 - Tumour diameter > 2 cm and ≤ 4 cm|
+        gt0004|N - Lymph nodes: local::at0051|N2a - Metastasis in single ipsilateral
+          node > 3 cm and ≤ 6 cm, no extranodal extension|
+        gt0005|M - Distant metastasis: local::at0056|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0056|Stage IVA|
+        gt0014|TNM assessment: T2N2aM0
+  - id: 10. All inputs - Stage IVB
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0045|T2 - Tumour diameter > 2 cm and ≤ 4 cm|
+        gt0004|N - Lymph nodes: local::at0050|N1 - Metastasis in a single node ≤ 3 cm,
+          no extranodal extension|
+        gt0005|M - Distant metastasis: local::at0057|M1 - Distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0057|Stage IVB|
+        gt0014|TNM assessment: T2N1M1
+  - id: 11. T3 N0 M0 - Stage III
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0046|T3 - Tumour > 4 cm or minor bone
+          erosion or perineural invasion or deep invasion|
+        gt0004|N - Lymph nodes: local::at0049|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0056|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0052|Stage III|
+        gt0014|TNM assessment: T3N0M0
+  - id: 12. T4a N0 M0 - Stage IVA
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0047|T4a - Tumour with gross cortical bone/marrow invasion|
+        gt0004|N - Lymph nodes: local::at0049|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0056|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0056|Stage IVA|
+        gt0014|TNM assessment: T4aN0M0
+  - id: 13. T4b N0 M0 - Stage IVA
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0048|T4b - Tumour with skull base or axial
+          skeleton invasion including foraminal involvement and/or vertebral
+          foramen involvement to the epidural space|
+        gt0004|N - Lymph nodes: local::at0049|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0056|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0056|Stage IVA|
+        gt0014|TNM assessment: T4bN0M0
+  - id: 14. T1 N2b M0 - Stage IVA
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0044|T1 - Tumour diameter ≤ 2.0 cm|
+        gt0004|N - Lymph nodes: local::at0052|N2b - Metastasis in multiple ipsilateral
+          nodes ≤ 6 cm, no extranodal extension|
+        gt0005|M - Distant metastasis: local::at0056|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0056|Stage IVA|
+        gt0014|TNM assessment: T1N2bM0
+  - id: 15. Bilateral or contralateral regional nodes N2c with M0 - Stage IVA
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0044|T1 - Tumour diameter ≤ 2.0 cm|
+        gt0004|N - Lymph nodes: local::at0053|N2c - Metastasis in bilateral or
+          contralateral nodes ≤ 6 cm, no extranodal extension|
+        gt0005|M - Distant metastasis: local::at0056|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0056|Stage IVA|
+        gt0014|TNM assessment: T1N2cM0
+  - id: 16. T1 N3a M0 - Stage IVA
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0044|T1 - Tumour diameter ≤ 2.0 cm|
+        gt0004|N - Lymph nodes: local::at0054|N3a - Metastasis in node > 6 cm, no extranodal extension|
+        gt0005|M - Distant metastasis: local::at0056|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0056|Stage IVA|
+        gt0014|TNM assessment: T1N3aM0
+  - id: 17. Clinical extranodal extension N3b with M0 - Stage IVA
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0044|T1 - Tumour diameter ≤ 2.0 cm|
+        gt0004|N - Lymph nodes: local::at0055|N3b - Metastasis in any node(s) with
+          clinical extranodal extension|
+        gt0005|M - Distant metastasis: local::at0056|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0056|Stage IVA|
+        gt0014|TNM assessment: T1N3bM0
+  - id: 18. Unknown primary T0 - TNM assessment without stage group
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0042|T0 - Unknown primary tumour|
+        gt0004|N - Lymph nodes: local::at0049|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0056|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0058|Stage cannot be assigned|
+        gt0014|TNM assessment: T0N0M0
+  - id: 19. TX - TNM assessment without stage group
+    input:
+      "1":
+        gt0003|T - Primary tumour: local::at0041|TX - Primary tumour cannot be identified|
+        gt0004|N - Lymph nodes: local::at0049|N0 - No regional lymph node metastasis|
+        gt0005|M - Distant metastasis: local::at0056|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0058|Stage cannot be assigned|
+        gt0014|TNM assessment: TXN0M0
