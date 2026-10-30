@@ -1,0 +1,286 @@
+{
+  "uuid" : "27e04ffd-f741-4a5f-9447-e10c3855ab63",
+  "id" : "tnm_classification_cSCC_eyelid_clinical.v0.1.0",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Katja Mariko Wilde",
+      "email" : "katja-wilde@t-online.de",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-01-22"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To determine the clinical T, N, and M categories and derive the TNM stage group for cutaneous squamous cell carcinoma of the eyelid.",
+        "keywords" : [
+          "tnm",
+          "cutaneous",
+          "squamous",
+          "cell",
+          "carcinoma",
+          "skin",
+          "eyelid",
+          "clinical",
+          "staging"
+        ],
+        "use" : "Use to classify cutaneous squamous cell carcinoma (cSCC) of the eyelid by selecting the appropriate clinical TNM categories:\n- Clinical T category (T0, Tis, T1a, T1b, T1c, T2a, T2b, T2c, T3a, T3b, T3c, T4, T4a, T4b), based on tumour diameter and extent of invasion of eyelid structures and adjacent ocular/orbital/facial tissues.\n- Clinical N category (Nx, N0, N1, N2), based on regional lymph node involvement and nodal metastasis size/laterality.\n- Clinical M category (M0, M1), based on presence of distant metastasis.\n\nThe guideline then derives the TNM stage group from the selected TNM categories using the UICC8 stage grouping table for eyelid skin cancer:\n- Stage 0: Tis N0 M0\n- Stage IA: T1 N0 M0\n- Stage IB: T2a N0 M0\n- Stage IIA: T2b/T2c/T3 N0 M0\n- Stage IIB: T4 N0 M0\n- Stage IIIA: Any T N1 M0\n- Stage IIIB: Any T N2 M0\n- Stage IV: Any T Any N M1",
+        "misuse" : "Not to be used for TNM classification of non-eyelid cutaneous squamous cell carcinoma (e.g., non-head and neck skin or head and neck skin excluding eyelid), which have different TNM/stage grouping rules.\nNot to be used for pathological TNM (pTNM) staging if a separate pathological classification is required.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "en" : "A structured guideline used to determine the clinical TNM (Tumour-Node-Metastasis) categories and stage group for cutaneous squamous cell carcinoma (cSCC) of the eyelid, according to the UICC8 definitions.",
+      "references" : "Regionala cancercentrum i samverkan. Nationellt vårdprogram skivepitelcancer i huden: Kapitel 8 Kategorisering av tumören. Kunskapsbanken, 2021. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/skivepitelcancer-i-huden/vardprogram/kategorisering-av-tumoren/\n\nBrierley JD, Gospodarowicz MK, Wittekind C, editors. TNM classification of malignant tumours. 8th ed. Hoboken (NJ): Wiley Blackwell; 2017"
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0006" : {
+        "id" : "gt0006",
+        "model_id" : "openEHR-EHR-EVALUATION.tnm_squamous_cell_carcinoma_of_skin_assessment.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.tnm_squamous_cell_carcinoma_of_skin_assessment.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0001]/items[at0044]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      },
+      "gt0010" : {
+        "id" : "gt0010",
+        "model_id" : "openEHR-EHR-OBSERVATION.tnm_squamous_cell_carcinoma_of_skin.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.tnm_squamous_cell_carcinoma_of_skin.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0011" : {
+            "id" : "gt0011",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0037]/items[at0058]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0061",
+              "local::at0062",
+              "local::at0063",
+              "local::at0064",
+              "local::at0065",
+              "local::at0077",
+              "local::at0078",
+              "local::at0079",
+              "local::at0080",
+              "local::at0081",
+              "local::at0082",
+              "local::at0083",
+              "local::at0084"
+            ]
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0037]/items[at0059]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0073",
+              "local::at0074",
+              "local::at0075",
+              "local::at0076"
+            ]
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0037]/items[at0060]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0071",
+              "local::at0072"
+            ]
+          }
+        }
+      }
+    },
+    "default_actions" : [
+      "$gt0007|Stage group|=local::at0058|Stage cannot be assigned|"
+    ],
+    "rules" : {
+      "gt0008" : {
+        "id" : "gt0008",
+        "priority" : 8,
+        "when" : [
+          "$gt0011|T - Primary tumour|==local::at0062|Tis - Carcinoma in situ|",
+          "$gt0012|N - Lymph nodes|==local::at0074|N0 - No evidence of lymph node involvement|",
+          "$gt0013|M - Distant metastasis|==local::at0071|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0045|Stage 0|"
+        ]
+      },
+      "gt0014" : {
+        "id" : "gt0014",
+        "priority" : 7,
+        "when" : [
+          "$gt0011|T - Primary tumour|==local::at0063|T1a - Tumour diameter ≤ 10 mm, no invasion of tarsal plate or eyelid margin|||$gt0011|T - Primary tumour|==local::at0064|T1b - Tumour diameter ≤ 10 mm, invasion of tarsal plate or eyelid margin|||$gt0011|T - Primary tumour|==local::at0065|T1c - Tumour diameter ≤ 10 mm, full-thickness eyelid involvement|",
+          "$gt0012|N - Lymph nodes|==local::at0074|N0 - No evidence of lymph node involvement|",
+          "$gt0013|M - Distant metastasis|==local::at0071|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0047|Stage IA|"
+        ]
+      },
+      "gt0015" : {
+        "id" : "gt0015",
+        "priority" : 6,
+        "when" : [
+          "$gt0011|T - Primary tumour|==local::at0077|T2a - Tumour > 10 mm and ≤ 20 mm, no invasion of tarsal plate or eyelid margin|",
+          "$gt0012|N - Lymph nodes|==local::at0074|N0 - No evidence of lymph node involvement|",
+          "$gt0013|M - Distant metastasis|==local::at0071|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0048|Stage IB|"
+        ]
+      },
+      "gt0016" : {
+        "id" : "gt0016",
+        "priority" : 5,
+        "when" : [
+          "$gt0011|T - Primary tumour|==local::at0078|T2b - Tumour > 10 mm and ≤ 20 mm, invasion of tarsal plate or eyelid margin|||$gt0011|T - Primary tumour|==local::at0079|T2c - Tumour > 10 mm and ≤ 20 mm, full-thickness eyelid involvement|||$gt0011|T - Primary tumour|==local::at0080|T3a - Tumour > 20 mm and ≤ 30 mm, no invasion of tarsal plate or eyelid margin|||$gt0011|T - Primary tumour|==local::at0081|T3b - Tumour > 20 mm and ≤ 30 mm, invasion of tarsal plate or eyelid margin|||$gt0011|T - Primary tumour|==local::at0082|T3c - Tumour > 20 mm and ≤ 30 mm, full-thickness eyelid involvement|",
+          "$gt0012|N - Lymph nodes|==local::at0074|N0 - No evidence of lymph node involvement|",
+          "$gt0013|M - Distant metastasis|==local::at0071|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0050|Stage IIA|"
+        ]
+      },
+      "gt0017" : {
+        "id" : "gt0017",
+        "priority" : 4,
+        "when" : [
+          "$gt0011|T - Primary tumour|==local::at0083|T4a - Tumour invading ocular or intraorbital structures|||$gt0011|T - Primary tumour|==local::at0084|T4b - Tumour invading orbital bone, paranasal sinus, lacrimal sac/duct, or brain|",
+          "$gt0012|N - Lymph nodes|==local::at0074|N0 - No evidence of lymph node involvement|",
+          "$gt0013|M - Distant metastasis|==local::at0071|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0051|Stage IIB|"
+        ]
+      },
+      "gt0018" : {
+        "id" : "gt0018",
+        "priority" : 3,
+        "when" : [
+          "$gt0011|T - Primary tumour|!=null",
+          "$gt0012|N - Lymph nodes|==local::at0075|N1 - Metastasis in a single ipsilateral node ≤ 3 cm|",
+          "$gt0013|M - Distant metastasis|==local::at0071|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0053|Stage IIIA|"
+        ]
+      },
+      "gt0019" : {
+        "id" : "gt0019",
+        "priority" : 2,
+        "when" : [
+          "$gt0011|T - Primary tumour|!=null",
+          "$gt0012|N - Lymph nodes|==local::at0076|N2 - Metastasis in a single ipsilateral node > 3 cm or bilateral/contralateral nodal metastases|",
+          "$gt0013|M - Distant metastasis|==local::at0071|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0054|Stage IIIB|"
+        ]
+      },
+      "gt0020" : {
+        "id" : "gt0020",
+        "priority" : 1,
+        "when" : [
+          "$gt0011|T - Primary tumour|!=null",
+          "$gt0012|N - Lymph nodes|!=null",
+          "$gt0013|M - Distant metastasis|==local::at0072|M1 - Distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0055|Stage IV|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "TNM classification for cutaneous squamous cell carcinoma of the eyelid (clinical)",
+            "description" : "A structured guideline used to determine the clinical TNM (Tumour-Node-Metastasis) categories and stage group for cutaneous squamous cell carcinoma (cSCC) of the eyelid, according to the UICC8 definitions."
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "openEHR-EHR-EVALUATION.tnm_squamous_cell_carcinoma_of_skin_assessment.v0"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Stage group"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Stage 0",
+            "description" : ""
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "openEHR-EHR-OBSERVATION.tnm_squamous_cell_carcinoma_of_skin.v0"
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "T - Primary tumour"
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "N - Lymph nodes"
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "M - Distant metastasis"
+          },
+          "gt0014" : {
+            "id" : "gt0014",
+            "text" : "Stage IA",
+            "description" : ""
+          },
+          "gt0015" : {
+            "id" : "gt0015",
+            "text" : "Stage IB",
+            "description" : ""
+          },
+          "gt0016" : {
+            "id" : "gt0016",
+            "text" : "Stage IIA",
+            "description" : ""
+          },
+          "gt0017" : {
+            "id" : "gt0017",
+            "text" : "Stage IIB",
+            "description" : ""
+          },
+          "gt0018" : {
+            "id" : "gt0018",
+            "text" : "Stage IIIA",
+            "description" : ""
+          },
+          "gt0019" : {
+            "id" : "gt0019",
+            "text" : "Stage IIIB",
+            "description" : ""
+          },
+          "gt0020" : {
+            "id" : "gt0020",
+            "text" : "Stage IV",
+            "description" : ""
+          }
+        }
+      }
+    }
+  }
+}
