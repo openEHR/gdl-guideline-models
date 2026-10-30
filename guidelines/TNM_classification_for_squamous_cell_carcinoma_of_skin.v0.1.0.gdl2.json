@@ -1,0 +1,593 @@
+{
+  "uuid" : "3f4860f4-b87f-488c-ac2f-e7a96f805fe5",
+  "id" : "TNM_classification_for_squamous_cell_carcinoma_of_skin.v0.1.0",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Umiah Gohar",
+      "email" : "umiah.gohar@cambio.se",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-01-20"
+    },
+    "other_contributors" : [
+      "Katja Mariko Wilde"
+    ],
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To derive the clinical TNM sub-category string and corresponding stage group from the recorded T, N, and M categories for cutaneous squamous cell carcinoma of non-head and neck skin, according to UICC 8th edition criteria.",
+        "keywords" : [
+          "tnm",
+          "cscc",
+          "cutaneous",
+          "squamous",
+          "cell",
+          "carcinoma",
+          "skin",
+          "non-head",
+          "neck",
+          "clinical",
+          "staging",
+          "tumour",
+          "node",
+          "metastasis"
+        ],
+        "use" : "Use to classify cutaneous squamous cell carcinoma (cSCC) of the skin (non-head and neck region, excluding eyelid, perianal, vulva and penis) by selecting the appropriate clinical TNM categories:\n- Clinical T category (Tx, T0, Tis, T1, T2, T3, T4a, T4b), based on tumour diameter and defined high-risk local extension criteria. T0 denotes an unknown primary tumour.\n- Clinical N category (Nx, N0, N1, N2, N3), based on regional lymph node involvement and nodal metastasis size/distribution. N2 requires a single ipsilateral nodal metastasis > 3 cm and <= 6 cm, or multiple ipsilateral nodal metastases <= 6 cm.\n- Clinical M category (M0, M1), based on presence of distant metastasis. Contralateral lymph node metastases are classified as M1 in non-head and neck skin cancer.\n\nFor T3, deep invasion means invasion below subcutaneous fat or > 6 mm depth, measured from the granular layer of adjacent normal epidermis to the tumour base. Qualifying perineural invasion means clinical or radiological involvement of named nerves without invasion of the foramina or skull base, or transgression, as specified in Table 3.\n\nThe guideline derives a TNM sub-category string and the TNM stage group (Stage 0-IVB) from the selected TNM categories using the UICC8 stage grouping table:\n- Stage 0: Tis N0 M0\n- Stage I: T1 N0 M0\n- Stage II: T2 N0 M0\n- Stage III: T3 N0 M0, or T1–T3 N1 M0\n- Stage IVA: T1–T3 N2–N3 M0, or T4 Any N M0\n- Stage IVB: Any T Any N M1\n\nLimitation for multiple simultaneous tumours: select the highest T category manually. This guideline does not record the tumour count or append the parenthesised count required by Table 3 (for example, T2 (5)); record that notation separately. The TNM assessment output contains only the selected T, N, and M categories.",
+        "misuse" : "Not to be used for TNM classification of head and neck skin cancer, eyelid skin cancer, or cutaneous SCC in perianal, vulvar, or penile sites, as these have different UICC8 definitions and stage groupings.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "en" : "A structured guideline used to assign the clinical Tumour-Node-Metastasis (TNM) categories and stage grouping for cutaneous squamous cell carcinoma (cSCC) of the skin excluding head and neck region and eyelid, according to the UICC 8th edition definitions.",
+      "references" : "Regionala cancercentrum i samverkan. Nationellt vårdprogram skivepitelcancer i huden: Kapitel 8 Kategorisering av tumören. Kunskapsbanken, 2021. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/skivepitelcancer-i-huden/vardprogram/kategorisering-av-tumoren/\n\nBrierley JD, Gospodarowicz MK, Wittekind C, editors. TNM classification of malignant tumours. 8th ed. Hoboken (NJ): Wiley Blackwell; 2017"
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0030" : {
+        "id" : "gt0030",
+        "model_id" : "openEHR-EHR-OBSERVATION.tnm_squamous_cell_carcinoma_of_skin.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.tnm_squamous_cell_carcinoma_of_skin.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0031" : {
+            "id" : "gt0031",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0031]/items[at0007]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0008",
+              "local::at0009",
+              "local::at0010",
+              "local::at0011",
+              "local::at0012",
+              "local::at0013",
+              "local::at0014",
+              "local::at0015"
+            ]
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0031]/items[at0016]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0017",
+              "local::at0018",
+              "local::at0019",
+              "local::at0020",
+              "local::at0021"
+            ]
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0031]/items[at0022]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0023",
+              "local::at0024"
+            ]
+          }
+        }
+      },
+      "gt0034" : {
+        "id" : "gt0034",
+        "model_id" : "openEHR-EHR-EVALUATION.tnm_squamous_cell_carcinoma_of_skin_assessment.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.tnm_squamous_cell_carcinoma_of_skin_assessment.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0035" : {
+            "id" : "gt0035",
+            "path" : "/data[at0001]/items[at0044]",
+            "data_type" : "DV_CODED_TEXT"
+          },
+          "gt0042" : {
+            "id" : "gt0042",
+            "path" : "/data[at0001]/items[at0059]",
+            "data_type" : "DV_TEXT"
+          }
+        }
+      }
+    },
+    "default_actions" : [
+      "$gt0035|Stage group|=local::at0058|Stage cannot be assigned|"
+    ],
+    "rules" : {
+      "gt0075" : {
+        "id" : "gt0075",
+        "priority" : 22,
+        "when" : [
+          "$gt0033|M - Distant metastasis|==local::at0024|M1 - Distant metastatic disease (including contralateral lymph nodes)|"
+        ],
+        "then" : [
+          "$gt0045|Local variable: M|=$gt0060|M1|.term"
+        ]
+      },
+      "gt0074" : {
+        "id" : "gt0074",
+        "priority" : 21,
+        "when" : [
+          "$gt0033|M - Distant metastasis|==local::at0023|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0045|Local variable: M|=$gt0059|M0|.term"
+        ]
+      },
+      "gt0073" : {
+        "id" : "gt0073",
+        "priority" : 20,
+        "when" : [
+          "$gt0032|N - Lymph nodes|==local::at0021|N3 - Node > 6 cm|"
+        ],
+        "then" : [
+          "$gt0044|Local variable: N|=$gt0058|N3|.term"
+        ]
+      },
+      "gt0072" : {
+        "id" : "gt0072",
+        "priority" : 19,
+        "when" : [
+          "$gt0032|N - Lymph nodes|==local::at0020|N2 - Single ipsilateral node > 3 cm and ≤ 6 cm or multiple ipsilateral nodes ≤ 6 cm|"
+        ],
+        "then" : [
+          "$gt0044|Local variable: N|=$gt0057|N2|.term"
+        ]
+      },
+      "gt0071" : {
+        "id" : "gt0071",
+        "priority" : 18,
+        "when" : [
+          "$gt0032|N - Lymph nodes|==local::at0019|N1 - Single lymph node ≤ 3 cm|"
+        ],
+        "then" : [
+          "$gt0044|Local variable: N|=$gt0056|N1|.term"
+        ]
+      },
+      "gt0070" : {
+        "id" : "gt0070",
+        "priority" : 17,
+        "when" : [
+          "$gt0032|N - Lymph nodes|==local::at0018|N0 - No regional lymph node metastasis|"
+        ],
+        "then" : [
+          "$gt0044|Local variable: N|=$gt0055|N0|.term"
+        ]
+      },
+      "gt0069" : {
+        "id" : "gt0069",
+        "priority" : 16,
+        "when" : [
+          "$gt0032|N - Lymph nodes|==local::at0017|NX - Regional lymph nodes cannot be assessed|"
+        ],
+        "then" : [
+          "$gt0044|Local variable: N|=$gt0054|NX|.term"
+        ]
+      },
+      "gt0068" : {
+        "id" : "gt0068",
+        "priority" : 15,
+        "when" : [
+          "$gt0031|T - Primary tumor|==local::at0015|T4b - Tumour with axial skeleton invasion including foraminal involvement and/or vertebral foramen involvement to the epidural space|"
+        ],
+        "then" : [
+          "$gt0043|Local variable: T|=$gt0053|T4b|.term"
+        ]
+      },
+      "gt0067" : {
+        "id" : "gt0067",
+        "priority" : 14,
+        "when" : [
+          "$gt0031|T - Primary tumor|==local::at0014|T4a - Tumour with gross cortical bone/marrow invasion|"
+        ],
+        "then" : [
+          "$gt0043|Local variable: T|=$gt0052|T4a|.term"
+        ]
+      },
+      "gt0066" : {
+        "id" : "gt0066",
+        "priority" : 13,
+        "when" : [
+          "$gt0031|T - Primary tumor|==local::at0013|T3 - Tumour > 4 cm or minor bone erosion or perineural invasion or deep invasion|"
+        ],
+        "then" : [
+          "$gt0043|Local variable: T|=$gt0051|T3|.term"
+        ]
+      },
+      "gt0065" : {
+        "id" : "gt0065",
+        "priority" : 12,
+        "when" : [
+          "$gt0031|T - Primary tumor|==local::at0012|T2 - Tumour diameter > 2 cm and ≤ 4 cm|"
+        ],
+        "then" : [
+          "$gt0043|Local variable: T|=$gt0050|T2|.term"
+        ]
+      },
+      "gt0064" : {
+        "id" : "gt0064",
+        "priority" : 11,
+        "when" : [
+          "$gt0031|T - Primary tumor|==local::at0011|T1 - Tumour diameter ≤ 2.0 cm|"
+        ],
+        "then" : [
+          "$gt0043|Local variable: T|=$gt0049|T1|.term"
+        ]
+      },
+      "gt0063" : {
+        "id" : "gt0063",
+        "priority" : 10,
+        "when" : [
+          "$gt0031|T - Primary tumor|==local::at0010|Tis - Carcinoma in situ|"
+        ],
+        "then" : [
+          "$gt0043|Local variable: T|=$gt0048|Tis|.term"
+        ]
+      },
+      "gt0062" : {
+        "id" : "gt0062",
+        "priority" : 9,
+        "when" : [
+          "$gt0031|T - Primary tumor|==local::at0009|T0 - Unknown primary tumour|"
+        ],
+        "then" : [
+          "$gt0043|Local variable: T|=$gt0047|T0|.term"
+        ]
+      },
+      "gt0061" : {
+        "id" : "gt0061",
+        "priority" : 8,
+        "when" : [
+          "$gt0031|T - Primary tumor|==local::at0008|Tx - Primary tumor cannot be identified|"
+        ],
+        "then" : [
+          "$gt0043|Local variable: T|=$gt0046|TX|.term"
+        ]
+      },
+      "gt0076" : {
+        "id" : "gt0076",
+        "priority" : 7,
+        "when" : [
+          "$gt0031|T - Primary tumor|!=null",
+          "$gt0032|N - Lymph nodes|!=null",
+          "$gt0033|M - Distant metastasis|!=null"
+        ],
+        "then" : [
+          "$gt0042|TNM assessment|=$gt0043|Local variable: T|+$gt0044|Local variable: N|+$gt0045|Local variable: M|"
+        ]
+      },
+      "gt0036" : {
+        "id" : "gt0036",
+        "priority" : 6,
+        "when" : [
+          "$gt0031|T - Primary tumor|==local::at0010|Tis - Carcinoma in situ|",
+          "$gt0032|N - Lymph nodes|==local::at0018|N0 - No regional lymph node metastasis|",
+          "$gt0033|M - Distant metastasis|==local::at0023|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0035|Stage group|=local::at0045|Stage 0|"
+        ]
+      },
+      "gt0037" : {
+        "id" : "gt0037",
+        "priority" : 5,
+        "when" : [
+          "$gt0031|T - Primary tumor|==local::at0011|T1 - Tumour diameter ≤ 2.0 cm|",
+          "$gt0032|N - Lymph nodes|==local::at0018|N0 - No regional lymph node metastasis|",
+          "$gt0033|M - Distant metastasis|==local::at0023|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0035|Stage group|=local::at0046|Stage I|"
+        ]
+      },
+      "gt0038" : {
+        "id" : "gt0038",
+        "priority" : 4,
+        "when" : [
+          "$gt0031|T - Primary tumor|==local::at0012|T2 - Tumour diameter > 2 cm and ≤ 4 cm|",
+          "$gt0032|N - Lymph nodes|==local::at0018|N0 - No regional lymph node metastasis|",
+          "$gt0033|M - Distant metastasis|==local::at0023|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0035|Stage group|=local::at0049|Stage II|"
+        ]
+      },
+      "gt0039" : {
+        "id" : "gt0039",
+        "priority" : 3,
+        "when" : [
+          "($gt0031|T - Primary tumor|==local::at0013|T3 - Tumour > 4 cm or minor bone erosion or perineural invasion or deep invasion|&&$gt0032|N - Lymph nodes|==local::at0018|N0 - No regional lymph node metastasis|&&$gt0033|M - Distant metastasis|==local::at0023|M0 - No distant metastasis|)||(($gt0031|T - Primary tumor|==local::at0011|T1 - Tumour diameter ≤ 2.0 cm|||$gt0031|T - Primary tumor|==local::at0012|T2 - Tumour diameter > 2 cm and ≤ 4 cm|||$gt0031|T - Primary tumor|==local::at0013|T3 - Tumour > 4 cm or minor bone erosion or perineural invasion or deep invasion|)&&$gt0032|N - Lymph nodes|==local::at0019|N1 - Single lymph node ≤ 3 cm|&&$gt0033|M - Distant metastasis|==local::at0023|M0 - No distant metastasis|)"
+        ],
+        "then" : [
+          "$gt0035|Stage group|=local::at0052|Stage III|"
+        ]
+      },
+      "gt0040" : {
+        "id" : "gt0040",
+        "priority" : 2,
+        "when" : [
+          "(($gt0031|T - Primary tumor|==local::at0014|T4a - Tumour with gross cortical bone/marrow invasion|||$gt0031|T - Primary tumor|==local::at0015|T4b - Tumour with axial skeleton invasion including foraminal involvement and/or vertebral foramen involvement to the epidural space|)&&$gt0032|N - Lymph nodes|!=null&&$gt0033|M - Distant metastasis|==local::at0023|M0 - No distant metastasis|)||(($gt0031|T - Primary tumor|==local::at0011|T1 - Tumour diameter ≤ 2.0 cm|||$gt0031|T - Primary tumor|==local::at0012|T2 - Tumour diameter > 2 cm and ≤ 4 cm|||$gt0031|T - Primary tumor|==local::at0013|T3 - Tumour > 4 cm or minor bone erosion or perineural invasion or deep invasion|)&&($gt0032|N - Lymph nodes|==local::at0020|N2 - Single ipsilateral node > 3 cm and ≤ 6 cm or multiple ipsilateral nodes ≤ 6 cm|||$gt0032|N - Lymph nodes|==local::at0021|N3 - Node > 6 cm|)&&$gt0033|M - Distant metastasis|==local::at0023|M0 - No distant metastasis|)"
+        ],
+        "then" : [
+          "$gt0035|Stage group|=local::at0056|Stage IVA|"
+        ]
+      },
+      "gt0041" : {
+        "id" : "gt0041",
+        "priority" : 1,
+        "when" : [
+          "$gt0031|T - Primary tumor|!=null",
+          "$gt0032|N - Lymph nodes|!=null",
+          "$gt0033|M - Distant metastasis|==local::at0024|M1 - Distant metastatic disease (including contralateral lymph nodes)|"
+        ],
+        "then" : [
+          "$gt0035|Stage group|=local::at0057|Stage IVB|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0042" : {
+            "id" : "gt0042",
+            "text" : "TNM assessment"
+          },
+          "gt0043" : {
+            "id" : "gt0043",
+            "text" : "Local variable: T",
+            "description" : ""
+          },
+          "gt0044" : {
+            "id" : "gt0044",
+            "text" : "Local variable: N",
+            "description" : ""
+          },
+          "gt0045" : {
+            "id" : "gt0045",
+            "text" : "Local variable: M",
+            "description" : ""
+          },
+          "gt0046" : {
+            "id" : "gt0046",
+            "text" : "TX",
+            "description" : ""
+          },
+          "gt0047" : {
+            "id" : "gt0047",
+            "text" : "T0",
+            "description" : ""
+          },
+          "gt0048" : {
+            "id" : "gt0048",
+            "text" : "Tis",
+            "description" : ""
+          },
+          "gt0049" : {
+            "id" : "gt0049",
+            "text" : "T1",
+            "description" : ""
+          },
+          "gt0050" : {
+            "id" : "gt0050",
+            "text" : "T2",
+            "description" : ""
+          },
+          "gt0051" : {
+            "id" : "gt0051",
+            "text" : "T3",
+            "description" : ""
+          },
+          "gt0052" : {
+            "id" : "gt0052",
+            "text" : "T4a",
+            "description" : ""
+          },
+          "gt0053" : {
+            "id" : "gt0053",
+            "text" : "T4b",
+            "description" : ""
+          },
+          "gt0054" : {
+            "id" : "gt0054",
+            "text" : "NX",
+            "description" : ""
+          },
+          "gt0055" : {
+            "id" : "gt0055",
+            "text" : "N0",
+            "description" : ""
+          },
+          "gt0056" : {
+            "id" : "gt0056",
+            "text" : "N1",
+            "description" : ""
+          },
+          "gt0057" : {
+            "id" : "gt0057",
+            "text" : "N2",
+            "description" : ""
+          },
+          "gt0058" : {
+            "id" : "gt0058",
+            "text" : "N3",
+            "description" : ""
+          },
+          "gt0059" : {
+            "id" : "gt0059",
+            "text" : "M0",
+            "description" : ""
+          },
+          "gt0060" : {
+            "id" : "gt0060",
+            "text" : "M1",
+            "description" : ""
+          },
+          "gt0061" : {
+            "id" : "gt0061",
+            "text" : "Set local variable T to TX",
+            "description" : ""
+          },
+          "gt0062" : {
+            "id" : "gt0062",
+            "text" : "Set local variable T to T0",
+            "description" : ""
+          },
+          "gt0063" : {
+            "id" : "gt0063",
+            "text" : "Set local variable T to Tis",
+            "description" : ""
+          },
+          "gt0064" : {
+            "id" : "gt0064",
+            "text" : "Set local variable T to T1",
+            "description" : ""
+          },
+          "gt0065" : {
+            "id" : "gt0065",
+            "text" : "Set local variable T to T2",
+            "description" : ""
+          },
+          "gt0066" : {
+            "id" : "gt0066",
+            "text" : "Set local variable T to T3",
+            "description" : ""
+          },
+          "gt0067" : {
+            "id" : "gt0067",
+            "text" : "Set local variable T to T4a",
+            "description" : ""
+          },
+          "gt0068" : {
+            "id" : "gt0068",
+            "text" : "Set local variable T to T4b",
+            "description" : ""
+          },
+          "gt0069" : {
+            "id" : "gt0069",
+            "text" : "Set local variable N to NX",
+            "description" : ""
+          },
+          "gt0070" : {
+            "id" : "gt0070",
+            "text" : "Set local variable N to N0",
+            "description" : ""
+          },
+          "gt0071" : {
+            "id" : "gt0071",
+            "text" : "Set local variable N to N1",
+            "description" : ""
+          },
+          "gt0072" : {
+            "id" : "gt0072",
+            "text" : "Set local variable N to N2",
+            "description" : ""
+          },
+          "gt0073" : {
+            "id" : "gt0073",
+            "text" : "Set local variable N to N3",
+            "description" : ""
+          },
+          "gt0074" : {
+            "id" : "gt0074",
+            "text" : "Set local variable M to M0",
+            "description" : ""
+          },
+          "gt0075" : {
+            "id" : "gt0075",
+            "text" : "Set local variable M to M1",
+            "description" : ""
+          },
+          "gt0076" : {
+            "id" : "gt0076",
+            "text" : "Assemble TNM assessment",
+            "description" : ""
+          },
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "TNM classification for cutaneous squamous cell carcinoma of non-head and neck skin (clinical)",
+            "description" : "A structured guideline used to assign the clinical Tumour-Node-Metastasis (TNM) categories and stage grouping for cutaneous squamous cell carcinoma (cSCC) of the skin excluding head and neck region and eyelid, according to the UICC 8th edition definitions."
+          },
+          "gt0030" : {
+            "id" : "gt0030",
+            "text" : "openEHR-EHR-OBSERVATION.tnm_squamous_cell_carcinoma_of_skin.v0"
+          },
+          "gt0031" : {
+            "id" : "gt0031",
+            "text" : "T - Primary tumor"
+          },
+          "gt0032" : {
+            "id" : "gt0032",
+            "text" : "N - Lymph nodes"
+          },
+          "gt0033" : {
+            "id" : "gt0033",
+            "text" : "M - Distant metastasis"
+          },
+          "gt0034" : {
+            "id" : "gt0034",
+            "text" : "openEHR-EHR-EVALUATION.tnm_squamous_cell_carcinoma_of_skin_assessment.v0"
+          },
+          "gt0035" : {
+            "id" : "gt0035",
+            "text" : "Stage group"
+          },
+          "gt0036" : {
+            "id" : "gt0036",
+            "text" : "Stage 0",
+            "description" : ""
+          },
+          "gt0037" : {
+            "id" : "gt0037",
+            "text" : "Stage I",
+            "description" : ""
+          },
+          "gt0038" : {
+            "id" : "gt0038",
+            "text" : "Stage II",
+            "description" : ""
+          },
+          "gt0039" : {
+            "id" : "gt0039",
+            "text" : "Stage III",
+            "description" : ""
+          },
+          "gt0040" : {
+            "id" : "gt0040",
+            "text" : "Stage IVA",
+            "description" : ""
+          },
+          "gt0041" : {
+            "id" : "gt0041",
+            "text" : "Stage IVB",
+            "description" : ""
+          }
+        }
+      }
+    }
+  }
+}
