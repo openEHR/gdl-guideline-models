@@ -1,0 +1,247 @@
+{
+  "uuid" : "6a999d13-a99a-4372-961a-d33766495ab6",
+  "id" : "tnm_classification_cSCC_head_neck_clinical.v0.1.0",
+  "gdl_version" : "2.1",
+  "concept" : "gt0001",
+  "language" : {
+    "original_language" : "ISO_639-1::en"
+  },
+  "description" : {
+    "original_author" : {
+      "name" : "Katja Mariko Wilde",
+      "email" : "katja-wilde@t-online.de",
+      "organisation" : "Cambio CDS",
+      "date" : "2026-01-21"
+    },
+    "lifecycle_state" : "DRAFTED",
+    "details" : {
+      "en" : {
+        "id" : "en",
+        "purpose" : "To determine the clinical T, N, and M categories and the corresponding TNM stage group for cutaneous squamous cell carcinoma of the head and neck.",
+        "keywords" : [
+          "tnm",
+          "cutaneous",
+          "squamous",
+          "cell",
+          "carcinoma",
+          "skin",
+          "head",
+          "neck",
+          "clinical",
+          "staging"
+        ],
+        "use" : "Use to classify cutaneous squamous cell carcinoma (cSCC) of the head and neck (excluding eyelids) by selecting the appropriate clinical TNM categories:\n- Clinical T category (Tx, T0, Tis, T1, T2, T3, T4a, T4b), based on primary tumour size, depth of invasion, perineural invasion, and invasion of cortical bone, bone marrow, skull base, or axial skeleton as defined in UICC 8.\n- Clinical N category (N0, N1, N2a, N2b, N2c, N3a, N3b), based on regional lymph node involvement, including number of involved nodes, maximum nodal diameter, laterality, and presence of extranodal extension.\n- Clinical M category (M0, M1), based on the presence or absence of distant metastases.\n\nThe guideline then derives the TNM stage group (Stage 0–IV) from the selected TNM categories using the UICC 8 stage grouping table for head and neck cutaneous squamous cell carcinoma:\n- Stage 0: Tis N0 M0\n- Stage I: T1 N0 M0\n- Stage II: T2 N0 M0\n- Stage III: T3 N0 M0, or T1–T3 N1 M0\n- Stage IVA: T1–T3 N2–N3 M0, or T4 Any N M0\n- Stage IVB: Any T Any N M1",
+        "misuse" : "Not to be used for pathological TNM staging, staging of eyelid squamous cell carcinoma, or staging of non-head and neck malignancies.",
+        "copyright" : "© Cambio CDS"
+      }
+    },
+    "other_details" : {
+      "en" : "A structured guideline used to determine the clinical Tumour-Node-Metastasis (TNM) classification and stage grouping for cutaneous squamous cell carcinoma (cSCC) of the head and neck (excluding eyelids), according to the UICC 8th edition.",
+      "references" : "Regionala cancercentrum i samverkan. Nationellt vårdprogram skivepitelcancer i huden: Kapitel 8 Kategorisering av tumören. Kunskapsbanken, 2021. Available at: https://kunskapsbanken.cancercentrum.se/diagnoser/skivepitelcancer-i-huden/vardprogram/kategorisering-av-tumoren/\n\nBrierley JD, Gospodarowicz MK, Wittekind C, editors. TNM classification of malignant tumours. 8th ed. Hoboken (NJ): Wiley Blackwell; 2017"
+    }
+  },
+  "definition" : {
+    "data_bindings" : {
+      "gt0002" : {
+        "id" : "gt0002",
+        "model_id" : "openEHR-EHR-OBSERVATION.tnm_squamous_cell_carcinoma_of_skin.v0",
+        "template_id" : "openEHR-EHR-OBSERVATION.tnm_squamous_cell_carcinoma_of_skin.v0",
+        "type" : "INPUT",
+        "elements" : {
+          "gt0003" : {
+            "id" : "gt0003",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0035]/items[at0038]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0041",
+              "local::at0042",
+              "local::at0043",
+              "local::at0044",
+              "local::at0045",
+              "local::at0046",
+              "local::at0047",
+              "local::at0048"
+            ]
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0035]/items[at0039]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0049",
+              "local::at0050",
+              "local::at0051",
+              "local::at0052",
+              "local::at0053",
+              "local::at0054",
+              "local::at0055"
+            ]
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "path" : "/data[at0001]/events[at0002]/data[at0003]/items[at0035]/items[at0040]",
+            "data_type" : "DV_CODED_TEXT",
+            "allowed_values" : [
+              "local::at0056",
+              "local::at0057"
+            ]
+          }
+        }
+      },
+      "gt0006" : {
+        "id" : "gt0006",
+        "model_id" : "openEHR-EHR-EVALUATION.tnm_squamous_cell_carcinoma_of_skin_assessment.v0",
+        "template_id" : "openEHR-EHR-EVALUATION.tnm_squamous_cell_carcinoma_of_skin_assessment.v0",
+        "type" : "OUTPUT",
+        "elements" : {
+          "gt0007" : {
+            "id" : "gt0007",
+            "path" : "/data[at0001]/items[at0044]",
+            "data_type" : "DV_CODED_TEXT"
+          }
+        }
+      }
+    },
+    "default_actions" : [
+      "$gt0007|Stage group|=local::at0058|Stage cannot be assigned|"
+    ],
+    "rules" : {
+      "gt0008" : {
+        "id" : "gt0008",
+        "priority" : 6,
+        "when" : [
+          "$gt0003|T - Primary tumour|==local::at0043|Tis - Carcinoma in situ|",
+          "$gt0004|N - Lymph nodes|==local::at0049|N0 - No regional lymph node metastasis|",
+          "$gt0005|M - Distant metastasis|==local::at0056|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0045|Stage 0|"
+        ]
+      },
+      "gt0009" : {
+        "id" : "gt0009",
+        "priority" : 5,
+        "when" : [
+          "$gt0003|T - Primary tumour|==local::at0044|T1 - Tumour diameter ≤ 2.0 cm|",
+          "$gt0004|N - Lymph nodes|==local::at0049|N0 - No regional lymph node metastasis|",
+          "$gt0005|M - Distant metastasis|==local::at0056|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0046|Stage I|"
+        ]
+      },
+      "gt0010" : {
+        "id" : "gt0010",
+        "priority" : 4,
+        "when" : [
+          "$gt0003|T - Primary tumour|==local::at0045|T2 - Tumour diameter > 2 cm and ≤ 4 cm|",
+          "$gt0004|N - Lymph nodes|==local::at0049|N0 - No regional lymph node metastasis|",
+          "$gt0005|M - Distant metastasis|==local::at0056|M0 - No distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0049|Stage II|"
+        ]
+      },
+      "gt0011" : {
+        "id" : "gt0011",
+        "priority" : 3,
+        "when" : [
+          "($gt0003|T - Primary tumour|==local::at0046|T3 - Tumour > 4 cm or minor bone erosion or perineural invasion or deep invasion|&&$gt0004|N - Lymph nodes|==local::at0049|N0 - No regional lymph node metastasis|&&$gt0005|M - Distant metastasis|==local::at0056|M0 - No distant metastasis|)||(($gt0003|T - Primary tumour|==local::at0044|T1 - Tumour diameter ≤ 2.0 cm|||$gt0003|T - Primary tumour|==local::at0045|T2 - Tumour diameter > 2 cm and ≤ 4 cm|||$gt0003|T - Primary tumour|==local::at0046|T3 - Tumour > 4 cm or minor bone erosion or perineural invasion or deep invasion|)&&$gt0004|N - Lymph nodes|==local::at0050|N1 - Metastasis in single ipsilateral node ≤ 3 cm, no extranodal extension|&&$gt0005|M - Distant metastasis|==local::at0056|M0 - No distant metastasis|)"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0052|Stage III|"
+        ]
+      },
+      "gt0012" : {
+        "id" : "gt0012",
+        "priority" : 2,
+        "when" : [
+          "(($gt0003|T - Primary tumour|==local::at0047|T4a - Tumour with gross cortical bone/marrow invasion|||$gt0003|T - Primary tumour|==local::at0048|T4b - Tumour with skull base or axial skeleton invasion including foraminal involvement and/or vertebral foramen involvement to the epidural space|)&&$gt0004|N - Lymph nodes|!=null&&$gt0005|M - Distant metastasis|==local::at0056|M0 - No distant metastasis|)||(($gt0003|T - Primary tumour|==local::at0044|T1 - Tumour diameter ≤ 2.0 cm|||$gt0003|T - Primary tumour|==local::at0045|T2 - Tumour diameter > 2 cm and ≤ 4 cm|||$gt0003|T - Primary tumour|==local::at0046|T3 - Tumour > 4 cm or minor bone erosion or perineural invasion or deep invasion|)&&($gt0004|N - Lymph nodes|==local::at0051|N2a - Metastasis in single ipsilateral node > 3 cm and ≤ 6 cm, no extranodal extension|||$gt0004|N - Lymph nodes|==local::at0052|N2b - Metastasis in multiple ipsilateral nodes ≤ 6 cm, no extranodal extension|||$gt0004|N - Lymph nodes|==local::at0053|N2c - Metastasis in bilateral or contralateral nodes ≤ 6 cm, no extranodal extension|||$gt0004|N - Lymph nodes|==local::at0054|N3a - Metastasis in node > 6 cm, no extranodal extension|||$gt0004|N - Lymph nodes|==local::at0055|N3b - Metastasis in any node(s) with extranodal extension|)&&$gt0005|M - Distant metastasis|==local::at0056|M0 - No distant metastasis|)"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0056|Stage IVA|"
+        ]
+      },
+      "gt0013" : {
+        "id" : "gt0013",
+        "priority" : 1,
+        "when" : [
+          "$gt0003|T - Primary tumour|!=null",
+          "$gt0004|N - Lymph nodes|!=null",
+          "$gt0005|M - Distant metastasis|==local::at0057|M1 - Distant metastasis|"
+        ],
+        "then" : [
+          "$gt0007|Stage group|=local::at0057|Stage IVB|"
+        ]
+      }
+    }
+  },
+  "ontology" : {
+    "term_definitions" : {
+      "en" : {
+        "id" : "en",
+        "terms" : {
+          "gt0001" : {
+            "id" : "gt0001",
+            "text" : "TNM classification for cutaneous squamous cell carcinoma of the head and neck (clinical)",
+            "description" : "A structured guideline used to determine the clinical Tumour-Node-Metastasis (TNM) classification and stage grouping for cutaneous squamous cell carcinoma (cSCC) of the head and neck (excluding eyelids), according to the UICC 8th edition."
+          },
+          "gt0002" : {
+            "id" : "gt0002",
+            "text" : "openEHR-EHR-OBSERVATION.tnm_squamous_cell_carcinoma_of_skin.v0"
+          },
+          "gt0003" : {
+            "id" : "gt0003",
+            "text" : "T - Primary tumour"
+          },
+          "gt0004" : {
+            "id" : "gt0004",
+            "text" : "N - Lymph nodes"
+          },
+          "gt0005" : {
+            "id" : "gt0005",
+            "text" : "M - Distant metastasis"
+          },
+          "gt0006" : {
+            "id" : "gt0006",
+            "text" : "openEHR-EHR-EVALUATION.tnm_squamous_cell_carcinoma_of_skin_assessment.v0"
+          },
+          "gt0007" : {
+            "id" : "gt0007",
+            "text" : "Stage group"
+          },
+          "gt0008" : {
+            "id" : "gt0008",
+            "text" : "Stage 0",
+            "description" : ""
+          },
+          "gt0009" : {
+            "id" : "gt0009",
+            "text" : "Stage I",
+            "description" : ""
+          },
+          "gt0010" : {
+            "id" : "gt0010",
+            "text" : "Stage II",
+            "description" : ""
+          },
+          "gt0011" : {
+            "id" : "gt0011",
+            "text" : "Stage III",
+            "description" : ""
+          },
+          "gt0012" : {
+            "id" : "gt0012",
+            "text" : "Stage IVA",
+            "description" : ""
+          },
+          "gt0013" : {
+            "id" : "gt0013",
+            "text" : "Stage IVB",
+            "description" : ""
+          }
+        }
+      }
+    }
+  }
+}
