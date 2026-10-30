@@ -1,0 +1,250 @@
+guidelines:
+  "1": tnm_classification_cSCC_eyelid_clinical.v0.1.0
+test_cases:
+  - id: 1. No input (negative test, default action)
+    input:
+      "1": {}
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0058|Stage cannot be assigned|
+  - id: 2. T - Primary tumour input missing (negative test, default action)
+    input:
+      "1":
+        gt0012|N - Lymph nodes: local::at0074|N0 - No evidence of lymph node involvement|
+        gt0013|M - Distant metastasis: local::at0071|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0058|Stage cannot be assigned|
+  - id: 3. N - Lymph nodes input missing (negative test, default action)
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0062|Tis - Carcinoma in situ|
+        gt0013|M - Distant metastasis: local::at0071|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0058|Stage cannot be assigned|
+  - id: 4. M - Distant metastasis input missing (negative test, default action)
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0062|Tis - Carcinoma in situ|
+        gt0012|N - Lymph nodes: local::at0074|N0 - No evidence of lymph node involvement|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0058|Stage cannot be assigned|
+  - id: 5. All inputs - Stage 0
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0062|Tis - Carcinoma in situ|
+        gt0012|N - Lymph nodes: local::at0074|N0 - No evidence of lymph node involvement|
+        gt0013|M - Distant metastasis: local::at0071|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0045|Stage 0|
+        gt0021|TNM assessment: TisN0M0
+  - id: 6. All inputs - Stage IA
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0065|T1c - Tumour diameter ≤ 10 mm,
+          full-thickness eyelid involvement|
+        gt0012|N - Lymph nodes: local::at0074|N0 - No evidence of lymph node involvement|
+        gt0013|M - Distant metastasis: local::at0071|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0047|Stage IA|
+        gt0021|TNM assessment: T1cN0M0
+  - id: 7. All inputs - Stage IB
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0077|T2a - Tumour > 10 mm and ≤ 20 mm, no
+          invasion of tarsal plate or eyelid margin|
+        gt0012|N - Lymph nodes: local::at0074|N0 - No evidence of lymph node involvement|
+        gt0013|M - Distant metastasis: local::at0071|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0048|Stage IB|
+        gt0021|TNM assessment: T2aN0M0
+  - id: 8. All inputs - Stage IIA
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0079|T2c - Tumour > 10 mm and ≤ 20 mm,
+          full-thickness eyelid involvement|
+        gt0012|N - Lymph nodes: local::at0074|N0 - No evidence of lymph node involvement|
+        gt0013|M - Distant metastasis: local::at0071|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0050|Stage IIA|
+        gt0021|TNM assessment: T2cN0M0
+  - id: 9. All inputs - Stage IIB
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0084|T4b - Tumour invading orbital bone,
+          paranasal sinus, lacrimal sac/duct, or brain|
+        gt0012|N - Lymph nodes: local::at0074|N0 - No evidence of lymph node involvement|
+        gt0013|M - Distant metastasis: local::at0071|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0051|Stage IIB|
+        gt0021|TNM assessment: T4bN0M0
+  - id: 10. All inputs - Stage IIIA
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0078|T2b - Tumour > 10 mm and ≤ 20 mm,
+          invasion of tarsal plate or eyelid margin|
+        gt0012|N - Lymph nodes: local::at0075|N1 - Metastasis in a single ipsilateral node ≤ 3 cm|
+        gt0013|M - Distant metastasis: local::at0071|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0053|Stage IIIA|
+        gt0021|TNM assessment: T2bN1M0
+  - id: 11. All inputs - Stage IIIB
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0078|T2b - Tumour > 10 mm and ≤ 20 mm,
+          invasion of tarsal plate or eyelid margin|
+        gt0012|N - Lymph nodes: local::at0076|N2 - Metastasis in a single ipsilateral
+          node > 3 cm or bilateral/contralateral nodal metastases|
+        gt0013|M - Distant metastasis: local::at0071|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0054|Stage IIIB|
+        gt0021|TNM assessment: T2bN2M0
+  - id: 12. All inputs - Stage IV
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0078|T2b - Tumour > 10 mm and ≤ 20 mm,
+          invasion of tarsal plate or eyelid margin|
+        gt0012|N - Lymph nodes: local::at0074|N0 - No evidence of lymph node involvement|
+        gt0013|M - Distant metastasis: local::at0072|M1 - Distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0055|Stage IV|
+        gt0021|TNM assessment: T2bN0M1
+  - id: 13. T1a N0 M0 - Stage IA
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0063|T1a - Tumour diameter ≤ 10 mm, no
+          invasion of tarsal plate or eyelid margin|
+        gt0012|N - Lymph nodes: local::at0074|N0 - No evidence of lymph node involvement|
+        gt0013|M - Distant metastasis: local::at0071|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0047|Stage IA|
+        gt0021|TNM assessment: T1aN0M0
+  - id: 14. T1b N0 M0 - Stage IA
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0064|T1b - Tumour diameter ≤ 10 mm, invasion
+          of tarsal plate or eyelid margin|
+        gt0012|N - Lymph nodes: local::at0074|N0 - No evidence of lymph node involvement|
+        gt0013|M - Distant metastasis: local::at0071|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0047|Stage IA|
+        gt0021|TNM assessment: T1bN0M0
+  - id: 15. T3a N0 M0 - Stage IIA
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0080|T3a - Tumour > 20 mm and ≤ 30 mm, no
+          invasion of tarsal plate or eyelid margin|
+        gt0012|N - Lymph nodes: local::at0074|N0 - No evidence of lymph node involvement|
+        gt0013|M - Distant metastasis: local::at0071|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0050|Stage IIA|
+        gt0021|TNM assessment: T3aN0M0
+  - id: 16. T3b N0 M0 - Stage IIA
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0081|T3b - Tumour > 20 mm and ≤ 30 mm,
+          invasion of tarsal plate or eyelid margin|
+        gt0012|N - Lymph nodes: local::at0074|N0 - No evidence of lymph node involvement|
+        gt0013|M - Distant metastasis: local::at0071|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0050|Stage IIA|
+        gt0021|TNM assessment: T3bN0M0
+  - id: 17. T3c N0 M0 - Stage IIA
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0082|T3c - Tumour > 20 mm and ≤ 30 mm,
+          full-thickness eyelid involvement|
+        gt0012|N - Lymph nodes: local::at0074|N0 - No evidence of lymph node involvement|
+        gt0013|M - Distant metastasis: local::at0071|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0050|Stage IIA|
+        gt0021|TNM assessment: T3cN0M0
+  - id: 18. T4a N0 M0 - Stage IIB
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0083|T4a - Tumour invading ocular or intraorbital structures|
+        gt0012|N - Lymph nodes: local::at0074|N0 - No evidence of lymph node involvement|
+        gt0013|M - Distant metastasis: local::at0071|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0051|Stage IIB|
+        gt0021|TNM assessment: T4aN0M0
+  - id: 19. Unknown primary T0 N0 M0 - TNM assessment without stage group
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0061|T0 - Unknown primary tumour|
+        gt0012|N - Lymph nodes: local::at0074|N0 - No evidence of lymph node involvement|
+        gt0013|M - Distant metastasis: local::at0071|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0058|Stage cannot be assigned|
+        gt0021|TNM assessment: T0N0M0
+  - id: 20. NX with M0 - TNM assessment without stage group
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0063|T1a - Tumour diameter ≤ 10 mm, no
+          invasion of tarsal plate or eyelid margin|
+        gt0012|N - Lymph nodes: local::at0073|NX - Regional lymph nodes cannot be assessed|
+        gt0013|M - Distant metastasis: local::at0071|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0058|Stage cannot be assigned|
+        gt0021|TNM assessment: T1aNXM0
+  - id: 21. M1 with NX - Stage IV for any N
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0063|T1a - Tumour diameter ≤ 10 mm, no
+          invasion of tarsal plate or eyelid margin|
+        gt0012|N - Lymph nodes: local::at0073|NX - Regional lymph nodes cannot be assessed|
+        gt0013|M - Distant metastasis: local::at0072|M1 - Distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0055|Stage IV|
+        gt0021|TNM assessment: T1aNXM1
+  - id: 22. N1 with unknown primary - Stage IIIA for any T
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0061|T0 - Unknown primary tumour|
+        gt0012|N - Lymph nodes: local::at0075|N1 - Metastasis in a single ipsilateral node ≤ 3 cm|
+        gt0013|M - Distant metastasis: local::at0071|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0053|Stage IIIA|
+        gt0021|TNM assessment: T0N1M0
+  - id: 23. Bilateral or contralateral regional nodes N2 - Stage IIIB for any T
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0061|T0 - Unknown primary tumour|
+        gt0012|N - Lymph nodes: local::at0076|N2 - Metastasis in a single ipsilateral
+          node > 3 cm or bilateral/contralateral nodal metastases|
+        gt0013|M - Distant metastasis: local::at0071|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0054|Stage IIIB|
+        gt0021|TNM assessment: T0N2M0
+  - id: 24. T2b N0 M0 - Stage IIA
+    input:
+      "1":
+        gt0011|T - Primary tumour: local::at0078|T2b - Tumour > 10 mm and ≤ 20 mm,
+          invasion of tarsal plate or eyelid margin|
+        gt0012|N - Lymph nodes: local::at0074|N0 - No evidence of lymph node involvement|
+        gt0013|M - Distant metastasis: local::at0071|M0 - No distant metastasis|
+    expected_output:
+      "1":
+        gt0007|Stage group: local::at0050|Stage IIA|
+        gt0021|TNM assessment: T2bN0M0
