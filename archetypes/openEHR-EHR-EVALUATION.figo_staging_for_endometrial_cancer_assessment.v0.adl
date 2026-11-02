@@ -18,10 +18,10 @@ description
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"To assess the results of the clinical and pathological findings stored in the openEHR-EHR-OBSERVATION.figo_staging_for_endometrial_cancer_.v0 archetype.">
+			purpose = <"To assign the FIGO stage from the clinical and pathological findings stored in the openEHR-EHR-OBSERVATION.figo_staging_for_endometrial_cancer_.v0 archetype.">
 			keywords = <"figo","endometrial","cancer","uterine","staging","oncology","gynecology","tumor","assessment">
 			copyright = <"© Cambio CDS">
-			use = <"Use to record the assigned prognostic stage group for endometrial cancer based on the extent of the tumor.">
+			use = <"Use to record the assigned FIGO stage for endometrial cancer based on the extent of the tumor.">
 			misuse = <"Not to be used to record staging for cervical, ovarian, or other gynecological cancers.">
 		>
 	>
@@ -47,7 +47,7 @@ definition
 		data matches {
 			ITEM_TREE[at0003] matches {    -- Item tree
 				items cardinality matches {0..*; unordered} matches {
-					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Stage group
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- FIGO stage
 						value matches {
 							DV_CODED_TEXT matches {
 								defining_code matches {
@@ -107,8 +107,8 @@ ontology
 					description = <"@ internal @">
 				>
 				["at0004"] = <
-					text = <"Stage group">
-					description = <"">
+					text = <"FIGO stage">
+					description = <"Final FIGO 2009 stage assigned from endometrial cancer findings.">
 				>
 				["at0005"] = <
 					text = <"I">
