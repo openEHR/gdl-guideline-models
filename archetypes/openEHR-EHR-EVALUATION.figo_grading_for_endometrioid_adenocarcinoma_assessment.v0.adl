@@ -1,0 +1,92 @@
+archetype (adl_version=1.4; uid=1f47b880-09f1-4a04-8c11-28469ecfe66f)
+	openEHR-EHR-EVALUATION.figo_grading_for_endometrioid_adenocarcinoma_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2026-11-02">
+		["name"] = <"Cambio CDS">
+		["organisation"] = <"Cambio CDS">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the FIGO grade and differentiation classification derived for endometrioid adenocarcinoma.">
+			keywords = <"figo","endometrioid","adenocarcinoma","endometrial","cancer","oncology","pathology","grading","assessment">
+			use = <"Use to record the FIGO grade and degree of differentiation for endometrioid adenocarcinoma.">
+			misuse = <"Not to be used for other histological subtypes of endometrial cancer or for staging of endometrial cancer.">
+		>
+	>
+	other_details = <
+		["custodian_organisation"] = <"Cambio CDS">
+		["references"] = <"Pecorelli S. Revised FIGO staging for carcinoma of the vulva, cervix, and endometrium. Int J Gynaecol Obstet. 2009;105(2):103-4.">
+	>
+
+definition
+	EVALUATION[at0000] matches {    -- FIGO grading assessment for endometrioid adenocarcinoma
+		data matches {
+			ITEM_TREE[at0001] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- Degree of differentiation
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0003] occurrences matches {0..1} matches {    -- FIGO grade
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0005] occurrences matches {0..1} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"FIGO grading assessment for endometrioid adenocarcinoma">
+					description = <"A structured evaluation recording the derived degree of differentiation and FIGO grade for endometrioid adenocarcinoma.">
+				>
+				["at0001"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Degree of differentiation">
+					description = <"Derived low-grade or high-grade endometrioid classification.">
+				>
+				["at0003"] = <
+					text = <"FIGO grade">
+					description = <"Derived histologic FIGO grade, recorded as 1, 2, or 3.">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+			>
+		>
+	>
