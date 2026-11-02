@@ -18,10 +18,10 @@ description
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"To record the results of clinical and pathological findings based on the FIGO 2009 endometrial cancer staging.">
+			purpose = <"To record the individual anatomical, nodal, and distant-spread findings used to determine FIGO 2009 stage for endometrial cancer.">
 			keywords = <"figo","endometrial","cancer","uterine","staging","oncology","gynecology","tumor">
 			copyright = <"© Cambio CDS">
-			use = <"Use to record the clinical and pathological findings of endometrial cancer based on the extent of the tumor.">
+			use = <"Use to record each endometrial cancer staging finding separately: depth of myometrial invasion; cervical stromal involvement; uterine serosal/adnexal involvement; vaginal/parametrial involvement; pelvic and para-aortic nodal status; bladder/rectal mucosal invasion; and distant metastasis. For each applicable finding, distinguish absent, present, and not assessed. Record isolated tumour cells separately from nodal metastasis. These inputs are structured for the FIGO 2009 staging logic; FIGO 2023 molecular and histological risk modifiers are not represented by this archetype version.">
 			misuse = <"Not to be used to record staging for cervical, ovarian, or other gynecological cancers.">
 		>
 	>
@@ -52,24 +52,102 @@ definition
 						data matches {
 							ITEM_TREE[at0003] matches {    -- Tree
 								items cardinality matches {0..*; unordered} matches {
-									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Clinical and pathological findings
+									ELEMENT[at0020] occurrences matches {0..1} matches {    -- Myometrial invasion
 										value matches {
 											DV_CODED_TEXT matches {
 												defining_code matches {
 													[local::
-													at0007,    -- Tumor confined to the corpus uteri
-													at0008,    -- No invasion or invasion < half the thickness of the myometrium
-													at0009,    -- Invasion ≥ half the thickness of the myometrium
-													at0010,    -- Invasion into the cervical stroma but not outside the uterus
-													at0011,    -- Local and/or regional spread
-													at0012,    -- Invasion of uterine serosa and/or adnexa
-													at0013,    -- Vaginal growth and/or parametrial growth
-													at0014,    -- Metastases to pelvic nodes and/or paraaortic lymph nodes
-													at0015,    -- Positive pelvic nodes
-													at0016,    -- Positive paraaortic glands regardless of positive or negative pelvic glands
-													at0017,    -- Spread to bladder and/or rectum and/or distant metastases
-													at0018,    -- Spread to the bladder and/or rectum
-													at0019]    -- Distant metastases, including intra-abdominal metastases and/or inguinal metastases
+													at0021,    -- No myometrial invasion
+													at0022,    -- Less than half of myometrial thickness
+													at0023,    -- At least half of myometrial thickness
+													at0024]    -- Not assessed
+												}
+											}
+										}
+									}
+									ELEMENT[at0025] occurrences matches {0..1} matches {    -- Cervical stromal invasion
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0026,    -- Absent
+													at0027,    -- Present
+													at0028]    -- Not assessed
+												}
+											}
+										}
+									}
+									ELEMENT[at0029] occurrences matches {0..1} matches {    -- Uterine serosa and adnexal involvement
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0030,    -- Absent
+													at0031,    -- Present
+													at0032]    -- Not assessed
+												}
+											}
+										}
+									}
+									ELEMENT[at0033] occurrences matches {0..1} matches {    -- Vaginal and parametrial involvement
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0034,    -- Absent
+													at0035,    -- Present
+													at0036]    -- Not assessed
+												}
+											}
+										}
+									}
+									ELEMENT[at0037] occurrences matches {0..1} matches {    -- Pelvic lymph node status
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0038,    -- Not assessed
+													at0039,    -- No metastasis identified
+													at0040,    -- Isolated tumour cells only
+													at0041]    -- Metastasis identified
+												}
+											}
+										}
+									}
+									ELEMENT[at0042] occurrences matches {0..1} matches {    -- Para-aortic lymph node status
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0043,    -- Not assessed
+													at0044,    -- No metastasis identified
+													at0045,    -- Isolated tumour cells only
+													at0046]    -- Metastasis identified
+												}
+											}
+										}
+									}
+									ELEMENT[at0047] occurrences matches {0..1} matches {    -- Bladder and rectal mucosal invasion
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0048,    -- Absent
+													at0049,    -- Present
+													at0050]    -- Not assessed
+												}
+											}
+										}
+									}
+									ELEMENT[at0051] occurrences matches {0..1} matches {    -- Distant metastasis
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+														at0052,    -- Not assessed
+														at0053,    -- No distant metastasis identified
+														at0054,    -- Intra-abdominal and/or inguinal metastasis
+														at0055]    -- Other distant metastasis
 												}
 											}
 										}
@@ -77,10 +155,10 @@ definition
 								}
 							}
 						}
+							}
+						}
 					}
-				}
-			}
-		}
+					}
 		protocol matches {
 			ITEM_TREE[at0004] matches {    -- Item tree
 				items cardinality matches {0..*; unordered} matches {
@@ -123,61 +201,149 @@ ontology
 					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
 					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
 				>
-				["at0006"] = <
-					text = <"Clinical and pathological findings">
-					description = <"">
+				["at0020"] = <
+					text = <"Myometrial invasion">
+					description = <"Depth of invasion into the myometrium.">
 				>
-				["at0007"] = <
-					text = <"Tumor confined to the corpus uteri">
-					description = <"">
+				["at0021"] = <
+					text = <"No myometrial invasion">
+					description = <"No invasion into the myometrium.">
 				>
-				["at0008"] = <
-					text = <"No invasion or invasion < half the thickness of the myometrium">
-					description = <"">
+				["at0022"] = <
+					text = <"Less than half of myometrial thickness">
+					description = <"Myometrial invasion is less than 50% of its thickness.">
 				>
-				["at0009"] = <
-					text = <"Invasion ≥ half the thickness of the myometrium">
-					description = <"">
+				["at0023"] = <
+					text = <"At least half of myometrial thickness">
+					description = <"Myometrial invasion is 50% or more of its thickness.">
 				>
-				["at0010"] = <
-					text = <"Invasion into the cervical stroma but not outside the uterus">
-					description = <"">
+				["at0024"] = <
+					text = <"Not assessed">
+					description = <"Myometrial invasion could not be assessed or was not recorded.">
 				>
-				["at0011"] = <
-					text = <"Local and/or regional spread">
-					description = <"">
+				["at0025"] = <
+					text = <"Cervical stromal invasion">
+					description = <"Invasion of cervical stroma, excluding cervical mucosal involvement alone.">
 				>
-				["at0012"] = <
-					text = <"Invasion of uterine serosa and/or adnexa">
-					description = <"">
+				["at0026"] = <
+					text = <"Absent">
+					description = <"No cervical stromal invasion identified.">
 				>
-				["at0013"] = <
-					text = <"Vaginal growth and/or parametrial growth">
-					description = <"">
+				["at0027"] = <
+					text = <"Present">
+					description = <"Cervical stromal invasion identified.">
 				>
-				["at0014"] = <
-					text = <"Metastases to pelvic nodes and/or paraaortic lymph nodes">
-					description = <"">
+				["at0028"] = <
+					text = <"Not assessed">
+					description = <"Cervical stromal invasion could not be assessed or was not recorded.">
 				>
-				["at0015"] = <
-					text = <"Positive pelvic nodes">
-					description = <"">
+				["at0029"] = <
+					text = <"Uterine serosal or adnexal involvement">
+					description = <"Involvement of the uterine serosa or adnexa.">
 				>
-				["at0016"] = <
-					text = <"Positive paraaortic glands regardless of positive or negative pelvic glands">
-					description = <"">
+				["at0030"] = <
+					text = <"Absent">
+					description = <"No uterine serosal or adnexal involvement identified.">
 				>
-				["at0017"] = <
-					text = <"Spread to bladder and/or rectum and/or distant metastases">
-					description = <"">
+				["at0031"] = <
+					text = <"Present">
+					description = <"Uterine serosal and/or adnexal involvement identified.">
 				>
-				["at0018"] = <
-					text = <"Spread to the bladder and/or rectum">
-					description = <"">
+				["at0032"] = <
+					text = <"Not assessed">
+					description = <"Uterine serosal or adnexal involvement could not be assessed or was not recorded.">
 				>
-				["at0019"] = <
-					text = <"Distant metastases, including intra-abdominal metastases and/or inguinal metastases">
-					description = <"">
+				["at0033"] = <
+					text = <"Vaginal or parametrial involvement">
+					description = <"Vaginal or parametrial tumour involvement.">
+				>
+				["at0034"] = <
+					text = <"Absent">
+					description = <"No vaginal or parametrial involvement identified.">
+				>
+				["at0035"] = <
+					text = <"Present">
+					description = <"Vaginal and/or parametrial involvement identified.">
+				>
+				["at0036"] = <
+					text = <"Not assessed">
+					description = <"Vaginal or parametrial involvement could not be assessed or was not recorded.">
+				>
+				["at0037"] = <
+					text = <"Pelvic lymph node status">
+					description = <"Status of pelvic lymph nodes. Isolated tumour cells are recorded separately from nodal metastasis.">
+				>
+				["at0038"] = <
+					text = <"Not assessed">
+					description = <"Pelvic lymph nodes were not assessed or the result was not recorded.">
+				>
+				["at0039"] = <
+					text = <"No metastasis identified">
+					description = <"No pelvic lymph node metastasis identified.">
+				>
+				["at0040"] = <
+					text = <"Isolated tumour cells only (N0(i+))">
+					description = <"Only isolated tumour cells are identified in pelvic lymph node(s); this is not classified as nodal metastasis for FIGO 2009 staging.">
+				>
+				["at0041"] = <
+					text = <"Metastasis identified">
+					description = <"Pelvic lymph node metastasis identified.">
+				>
+				["at0042"] = <
+					text = <"Para-aortic lymph node status">
+					description = <"Status of para-aortic lymph nodes. Isolated tumour cells are recorded separately from nodal metastasis.">
+				>
+				["at0043"] = <
+					text = <"Not assessed">
+					description = <"Para-aortic lymph nodes were not assessed or the result was not recorded.">
+				>
+				["at0044"] = <
+					text = <"No metastasis identified">
+					description = <"No para-aortic lymph node metastasis identified.">
+				>
+				["at0045"] = <
+					text = <"Isolated tumour cells only (N0(i+))">
+					description = <"Only isolated tumour cells are identified in para-aortic lymph node(s); this is not classified as nodal metastasis for FIGO 2009 staging.">
+				>
+				["at0046"] = <
+					text = <"Metastasis identified">
+					description = <"Para-aortic lymph node metastasis identified.">
+				>
+				["at0047"] = <
+					text = <"Bladder or rectal mucosal invasion">
+					description = <"Invasion of the bladder or rectal mucosa, rather than serosal contact alone.">
+				>
+				["at0048"] = <
+					text = <"Absent">
+					description = <"No bladder or rectal mucosal invasion identified.">
+				>
+				["at0049"] = <
+					text = <"Present">
+					description = <"Bladder and/or rectal mucosal invasion identified.">
+				>
+				["at0050"] = <
+					text = <"Not assessed">
+					description = <"Bladder or rectal mucosal invasion could not be assessed or was not recorded.">
+				>
+				["at0051"] = <
+					text = <"Distant metastasis status">
+					description = <"Distant metastatic disease, including intra-abdominal or inguinal metastases.">
+				>
+				["at0052"] = <
+					text = <"Not assessed">
+					description = <"Distant metastases were not assessed or the result was not recorded.">
+				>
+				["at0053"] = <
+					text = <"No distant metastasis identified">
+					description = <"No distant metastasis identified.">
+				>
+				["at0054"] = <
+					text = <"Intra-abdominal and/or inguinal metastasis">
+					description = <"Distant metastatic involvement in the abdomen and/or inguinal region.">
+				>
+				["at0055"] = <
+					text = <"Other distant metastasis">
+					description = <"Distant metastatic disease at another site.">
 				>
 			>
 		>
