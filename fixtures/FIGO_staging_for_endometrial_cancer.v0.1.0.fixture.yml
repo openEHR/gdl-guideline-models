@@ -1,0 +1,254 @@
+guidelines:
+  "1": FIGO_staging_for_endometrial_cancer.v0.1.0
+test_cases:
+  - id: 01. No input (negative test).
+    input:
+      "1": {}
+    expected_output:
+      "1": {}
+  - id: 02. Myometrial invasion not recorded (negative test).
+    input:
+      "1":
+        gt0041|Cervical stromal invasion: local::at0026|Absent|
+        gt0042|Uterine serosal or adnexal involvement: local::at0030|Absent|
+        gt0043|Vaginal or parametrial involvement: local::at0034|Absent|
+        gt0044|Pelvic lymph node status: local::at0039|No metastasis identified|
+        gt0045|Para-aortic lymph node status: local::at0044|No metastasis identified|
+        gt0046|Bladder or rectal mucosal invasion: local::at0048|Absent|
+        gt0047|Distant metastasis status: local::at0053|No distant metastasis identified|
+    expected_output:
+      "1": {}
+  - id: 03. Pelvic nodal status not recorded (negative test).
+    input:
+      "1":
+        gt0040|Myometrial invasion: local::at0021|No myometrial invasion|
+        gt0041|Cervical stromal invasion: local::at0026|Absent|
+        gt0042|Uterine serosal or adnexal involvement: local::at0030|Absent|
+        gt0043|Vaginal or parametrial involvement: local::at0034|Absent|
+        gt0045|Para-aortic lymph node status: local::at0044|No metastasis identified|
+        gt0046|Bladder or rectal mucosal invasion: local::at0048|Absent|
+        gt0047|Distant metastasis status: local::at0053|No distant metastasis identified|
+    expected_output:
+      "1": {}
+  - id: 04. Distant metastasis status not recorded (negative test).
+    input:
+      "1":
+        gt0040|Myometrial invasion: local::at0021|No myometrial invasion|
+        gt0041|Cervical stromal invasion: local::at0026|Absent|
+        gt0042|Uterine serosal or adnexal involvement: local::at0030|Absent|
+        gt0043|Vaginal or parametrial involvement: local::at0034|Absent|
+        gt0044|Pelvic lymph node status: local::at0039|No metastasis identified|
+        gt0045|Para-aortic lymph node status: local::at0044|No metastasis identified|
+        gt0046|Bladder or rectal mucosal invasion: local::at0048|Absent|
+    expected_output:
+      "1": {}
+  - id: 05. Stage I - depth of myometrial invasion not assessed
+    input:
+      "1":
+        gt0040|Myometrial invasion: local::at0024|Not assessed|
+        gt0041|Cervical stromal invasion: local::at0026|Absent|
+        gt0042|Uterine serosal or adnexal involvement: local::at0030|Absent|
+        gt0043|Vaginal or parametrial involvement: local::at0034|Absent|
+        gt0044|Pelvic lymph node status: local::at0039|No metastasis identified|
+        gt0045|Para-aortic lymph node status: local::at0044|No metastasis identified|
+        gt0046|Bladder or rectal mucosal invasion: local::at0048|Absent|
+        gt0047|Distant metastasis status: local::at0053|No distant metastasis identified|
+    expected_output:
+      "1":
+        gt0023|FIGO stage: local::at0005|I|
+  - id: 06. Stage IA - no myometrial invasion
+    input:
+      "1":
+        gt0040|Myometrial invasion: local::at0021|No myometrial invasion|
+        gt0041|Cervical stromal invasion: local::at0026|Absent|
+        gt0042|Uterine serosal or adnexal involvement: local::at0030|Absent|
+        gt0043|Vaginal or parametrial involvement: local::at0034|Absent|
+        gt0044|Pelvic lymph node status: local::at0039|No metastasis identified|
+        gt0045|Para-aortic lymph node status: local::at0044|No metastasis identified|
+        gt0046|Bladder or rectal mucosal invasion: local::at0048|Absent|
+        gt0047|Distant metastasis status: local::at0053|No distant metastasis identified|
+    expected_output:
+      "1":
+        gt0023|FIGO stage: local::at0006|IA|
+  - id: 07. Stage IA - invasion less than half of myometrial thickness
+    input:
+      "1":
+        gt0040|Myometrial invasion: local::at0022|Less than half of myometrial thickness|
+        gt0041|Cervical stromal invasion: local::at0026|Absent|
+        gt0042|Uterine serosal or adnexal involvement: local::at0030|Absent|
+        gt0043|Vaginal or parametrial involvement: local::at0034|Absent|
+        gt0044|Pelvic lymph node status: local::at0039|No metastasis identified|
+        gt0045|Para-aortic lymph node status: local::at0044|No metastasis identified|
+        gt0046|Bladder or rectal mucosal invasion: local::at0048|Absent|
+        gt0047|Distant metastasis status: local::at0053|No distant metastasis identified|
+    expected_output:
+      "1":
+        gt0023|FIGO stage: local::at0006|IA|
+  - id: 08. Stage IB
+    input:
+      "1":
+        gt0040|Myometrial invasion: local::at0023|At least half of myometrial thickness|
+        gt0041|Cervical stromal invasion: local::at0026|Absent|
+        gt0042|Uterine serosal or adnexal involvement: local::at0030|Absent|
+        gt0043|Vaginal or parametrial involvement: local::at0034|Absent|
+        gt0044|Pelvic lymph node status: local::at0039|No metastasis identified|
+        gt0045|Para-aortic lymph node status: local::at0044|No metastasis identified|
+        gt0046|Bladder or rectal mucosal invasion: local::at0048|Absent|
+        gt0047|Distant metastasis status: local::at0053|No distant metastasis identified|
+    expected_output:
+      "1":
+        gt0023|FIGO stage: local::at0007|IB|
+  - id: 09. Stage II - cervical stromal invasion
+    input:
+      "1":
+        gt0040|Myometrial invasion: local::at0023|At least half of myometrial thickness|
+        gt0041|Cervical stromal invasion: local::at0027|Present|
+        gt0042|Uterine serosal or adnexal involvement: local::at0030|Absent|
+        gt0043|Vaginal or parametrial involvement: local::at0034|Absent|
+        gt0044|Pelvic lymph node status: local::at0039|No metastasis identified|
+        gt0045|Para-aortic lymph node status: local::at0044|No metastasis identified|
+        gt0046|Bladder or rectal mucosal invasion: local::at0048|Absent|
+        gt0047|Distant metastasis status: local::at0053|No distant metastasis identified|
+    expected_output:
+      "1":
+        gt0023|FIGO stage: local::at0008|II|
+  - id: 10. Stage IIIA - uterine serosal/adnexal involvement
+    input:
+      "1":
+        gt0040|Myometrial invasion: local::at0023|At least half of myometrial thickness|
+        gt0041|Cervical stromal invasion: local::at0026|Absent|
+        gt0042|Uterine serosal or adnexal involvement: local::at0031|Present|
+        gt0043|Vaginal or parametrial involvement: local::at0034|Absent|
+        gt0044|Pelvic lymph node status: local::at0039|No metastasis identified|
+        gt0045|Para-aortic lymph node status: local::at0044|No metastasis identified|
+        gt0046|Bladder or rectal mucosal invasion: local::at0048|Absent|
+        gt0047|Distant metastasis status: local::at0053|No distant metastasis identified|
+    expected_output:
+      "1":
+        gt0023|FIGO stage: local::at0010|IIIA|
+  - id: 11. Stage IIIB - vaginal/parametrial involvement
+    input:
+      "1":
+        gt0040|Myometrial invasion: local::at0023|At least half of myometrial thickness|
+        gt0041|Cervical stromal invasion: local::at0026|Absent|
+        gt0042|Uterine serosal or adnexal involvement: local::at0030|Absent|
+        gt0043|Vaginal or parametrial involvement: local::at0035|Present|
+        gt0044|Pelvic lymph node status: local::at0039|No metastasis identified|
+        gt0045|Para-aortic lymph node status: local::at0044|No metastasis identified|
+        gt0046|Bladder or rectal mucosal invasion: local::at0048|Absent|
+        gt0047|Distant metastasis status: local::at0053|No distant metastasis identified|
+    expected_output:
+      "1":
+        gt0023|FIGO stage: local::at0011|IIIB|
+  - id: 12. Stage IIIC1 - pelvic node metastasis
+    input:
+      "1":
+        gt0040|Myometrial invasion: local::at0023|At least half of myometrial thickness|
+        gt0041|Cervical stromal invasion: local::at0026|Absent|
+        gt0042|Uterine serosal or adnexal involvement: local::at0030|Absent|
+        gt0043|Vaginal or parametrial involvement: local::at0034|Absent|
+        gt0044|Pelvic lymph node status: local::at0041|Metastasis identified|
+        gt0045|Para-aortic lymph node status: local::at0044|No metastasis identified|
+        gt0046|Bladder or rectal mucosal invasion: local::at0048|Absent|
+        gt0047|Distant metastasis status: local::at0053|No distant metastasis identified|
+    expected_output:
+      "1":
+        gt0023|FIGO stage: local::at0013|IIIC1|
+  - id: 13. Stage IIIC2 - para-aortic node metastasis
+    input:
+      "1":
+        gt0040|Myometrial invasion: local::at0023|At least half of myometrial thickness|
+        gt0041|Cervical stromal invasion: local::at0026|Absent|
+        gt0042|Uterine serosal or adnexal involvement: local::at0030|Absent|
+        gt0043|Vaginal or parametrial involvement: local::at0034|Absent|
+        gt0044|Pelvic lymph node status: local::at0041|Metastasis identified|
+        gt0045|Para-aortic lymph node status: local::at0046|Metastasis identified|
+        gt0046|Bladder or rectal mucosal invasion: local::at0048|Absent|
+        gt0047|Distant metastasis status: local::at0053|No distant metastasis identified|
+    expected_output:
+      "1":
+        gt0023|FIGO stage: local::at0014|IIIC2|
+  - id: 14. Stage IIIC - pelvic metastasis; para-aortic status not assessed
+    input:
+      "1":
+        gt0040|Myometrial invasion: local::at0023|At least half of myometrial thickness|
+        gt0041|Cervical stromal invasion: local::at0026|Absent|
+        gt0042|Uterine serosal or adnexal involvement: local::at0030|Absent|
+        gt0043|Vaginal or parametrial involvement: local::at0034|Absent|
+        gt0044|Pelvic lymph node status: local::at0041|Metastasis identified|
+        gt0045|Para-aortic lymph node status: local::at0043|Not assessed|
+        gt0046|Bladder or rectal mucosal invasion: local::at0048|Absent|
+        gt0047|Distant metastasis status: local::at0053|No distant metastasis identified|
+    expected_output:
+      "1":
+        gt0023|FIGO stage: local::at0012|IIIC|
+  - id: 15. Stage III - local spread known, substage details incomplete
+    input:
+      "1":
+        gt0040|Myometrial invasion: local::at0023|At least half of myometrial thickness|
+        gt0041|Cervical stromal invasion: local::at0026|Absent|
+        gt0042|Uterine serosal or adnexal involvement: local::at0031|Present|
+        gt0043|Vaginal or parametrial involvement: local::at0036|Not assessed|
+        gt0044|Pelvic lymph node status: local::at0038|Not assessed|
+        gt0045|Para-aortic lymph node status: local::at0043|Not assessed|
+        gt0046|Bladder or rectal mucosal invasion: local::at0048|Absent|
+        gt0047|Distant metastasis status: local::at0053|No distant metastasis identified|
+    expected_output:
+      "1":
+        gt0023|FIGO stage: local::at0009|III|
+  - id: 16. Stage IV - bladder/rectal invasion, distant status not assessed
+    input:
+      "1":
+        gt0040|Myometrial invasion: local::at0024|Not assessed|
+        gt0041|Cervical stromal invasion: local::at0028|Not assessed|
+        gt0042|Uterine serosal or adnexal involvement: local::at0032|Not assessed|
+        gt0043|Vaginal or parametrial involvement: local::at0036|Not assessed|
+        gt0044|Pelvic lymph node status: local::at0038|Not assessed|
+        gt0045|Para-aortic lymph node status: local::at0043|Not assessed|
+        gt0046|Bladder or rectal mucosal invasion: local::at0049|Present|
+        gt0047|Distant metastasis status: local::at0052|Not assessed|
+    expected_output:
+      "1":
+        gt0023|FIGO stage: local::at0015|IV|
+  - id: 17. Stage IVA - bladder/rectal mucosal invasion
+    input:
+      "1":
+        gt0040|Myometrial invasion: local::at0024|Not assessed|
+        gt0041|Cervical stromal invasion: local::at0028|Not assessed|
+        gt0042|Uterine serosal or adnexal involvement: local::at0032|Not assessed|
+        gt0043|Vaginal or parametrial involvement: local::at0036|Not assessed|
+        gt0044|Pelvic lymph node status: local::at0038|Not assessed|
+        gt0045|Para-aortic lymph node status: local::at0043|Not assessed|
+        gt0046|Bladder or rectal mucosal invasion: local::at0049|Present|
+        gt0047|Distant metastasis status: local::at0053|No distant metastasis identified|
+    expected_output:
+      "1":
+        gt0023|FIGO stage: local::at0016|IVA|
+  - id: 18. Stage IVB - intra-abdominal and/or inguinal metastasis
+    input:
+      "1":
+        gt0040|Myometrial invasion: local::at0024|Not assessed|
+        gt0041|Cervical stromal invasion: local::at0028|Not assessed|
+        gt0042|Uterine serosal or adnexal involvement: local::at0032|Not assessed|
+        gt0043|Vaginal or parametrial involvement: local::at0036|Not assessed|
+        gt0044|Pelvic lymph node status: local::at0038|Not assessed|
+        gt0045|Para-aortic lymph node status: local::at0043|Not assessed|
+        gt0046|Bladder or rectal mucosal invasion: local::at0050|Not assessed|
+        gt0047|Distant metastasis status: local::at0054|Intra-abdominal and/or inguinal metastasis|
+    expected_output:
+      "1":
+        gt0023|FIGO stage: local::at0017|IVB|
+  - id: 19. Isolated tumour cells only do not upstage Stage IA
+    input:
+      "1":
+        gt0040|Myometrial invasion: local::at0022|Less than half of myometrial thickness|
+        gt0041|Cervical stromal invasion: local::at0026|Absent|
+        gt0042|Uterine serosal or adnexal involvement: local::at0030|Absent|
+        gt0043|Vaginal or parametrial involvement: local::at0034|Absent|
+        gt0044|Pelvic lymph node status: local::at0040|Isolated tumour cells only (N0(i+))|
+        gt0045|Para-aortic lymph node status: local::at0045|Isolated tumour cells only (N0(i+))|
+        gt0046|Bladder or rectal mucosal invasion: local::at0048|Absent|
+        gt0047|Distant metastasis status: local::at0053|No distant metastasis identified|
+    expected_output:
+      "1":
+        gt0023|FIGO stage: local::at0006|IA|
