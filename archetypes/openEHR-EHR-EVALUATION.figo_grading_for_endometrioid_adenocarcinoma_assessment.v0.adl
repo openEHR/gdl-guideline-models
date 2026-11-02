@@ -35,12 +35,25 @@ definition
 				items cardinality matches {0..*; unordered} matches {
 					ELEMENT[at0002] occurrences matches {0..1} matches {    -- Degree of differentiation
 						value matches {
-							DV_TEXT matches {*}
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0006,    -- Low-grade endometrioid cancer
+									at0007]    -- High-grade endometrioid cancer
+								}
+							}
 						}
 					}
 					ELEMENT[at0003] occurrences matches {0..1} matches {    -- FIGO grade
 						value matches {
-							DV_TEXT matches {*}
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0008,    -- 1
+									at0009,    -- 2
+									at0010]    -- 3
+								}
+							}
 						}
 					}
 				}
@@ -86,6 +99,26 @@ ontology
 					text = <"Extension">
 					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
 					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0006"] = <
+					text = <"Low-grade endometrioid cancer">
+					description = <"Low-grade endometrioid carcinoma, FIGO grade 1 or 2.">
+				>
+				["at0007"] = <
+					text = <"High-grade endometrioid cancer">
+					description = <"High-grade endometrioid carcinoma, FIGO grade 3.">
+				>
+				["at0008"] = <
+					text = <"1">
+					description = <"FIGO histologic grade 1.">
+				>
+				["at0009"] = <
+					text = <"2">
+					description = <"FIGO histologic grade 2.">
+				>
+				["at0010"] = <
+					text = <"3">
+					description = <"FIGO histologic grade 3.">
 				>
 			>
 		>
