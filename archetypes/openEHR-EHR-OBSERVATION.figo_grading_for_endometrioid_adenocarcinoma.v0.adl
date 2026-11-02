@@ -50,9 +50,14 @@ definition
 								items cardinality matches {0..*; unordered} matches {
 									ELEMENT[at0013] occurrences matches {0..1} matches {    -- Glandular differentiation
 										value matches {
-											1|[local::at0014],
-											2|[local::at0015],
-											3|[local::at0016]
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0014,    -- Less than 5% solid tumor component
+													at0015,    -- 5-50% Solid Tumor Component
+													at0016]    -- More than 50% solid tumour component
+												}
+											}
 										}
 									}
 									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Notable severe nuclear atypia in more than 50% of the cells
@@ -132,16 +137,16 @@ ontology
 					description = <"">
 				>
 				["at0014"] = <
-					text = <"FIGO grade 1 - tumors ≤5%">
-					description = <"">
+					text = <"Less than 5% solid tumor component">
+					description = <"Architectural grade 1 criterion: less than 5% solid tumor component, excluding squamous and morular growth.">
 				>
 				["at0015"] = <
-					text = <"FIGO grade 2 - tumors from 6% to 50%">
-					description = <"">
+					text = <"5-50% Solid Tumor Component">
+					description = <"Architectural grade 2 criterion: 5-50% solid non-squamous, non-morular tumor component.">
 				>
 				["at0016"] = <
-					text = <"FIGO grade 3 - tumors >50%">
-					description = <"">
+					text = <"More than 50% solid tumour component">
+					description = <"Architectural grade 3 criterion: more than 50% solid non-squamous, non-morular tumour component.">
 				>
 			>
 		>
